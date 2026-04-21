@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<title>Mentari Output Registry — Bivision</title>
+<style>
+body { font-family: 'BPG Nino Mkhedruli', 'Sylfaen', 'Segoe UI', sans-serif; max-width: 1080px; margin: 24px auto; padding: 0 20px; color: #1a1a1a; line-height: 1.5; }
+h1 { color: #8b3a00; border-bottom: 2px solid #8b3a00; padding-bottom: 8px; }
+h2 { color: #8b3a00; margin-top: 32px; font-size: 1.15rem; background: #faf3ec; padding: 8px 14px; border-left: 4px solid #8b3a00; }
+h3 { color: #333; font-size: 1rem; margin-top: 20px; }
+.meta { color: #666; font-size: 0.92rem; margin-bottom: 18px; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 0.92rem; }
+th { background: #8b3a00; color: white; padding: 10px 12px; text-align: left; }
+td { padding: 8px 12px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+tr:hover { background: #fbfbfb; }
+.status { padding: 3px 8px; border-radius: 4px; font-size: 0.82rem; font-weight: bold; display: inline-block; white-space: nowrap; }
+.s-pending { background: #fff3cd; color: #856404; }
+.s-approved { background: #d4edda; color: #155724; }
+.s-ship { background: #d1ecf1; color: #0c5460; }
+.s-active { background: #0077b5; color: white; }
+.s-archived { background: #e2e3e5; color: #6c757d; }
+.s-review { background: #ffe8e8; color: #c53030; }
+.s-published { background: #2e7d32; color: white; }
+.legend { background: #faf3ec; padding: 14px 18px; border-radius: 6px; margin: 16px 0; font-size: 0.9rem; }
+.legend span.status { margin-right: 6px; }
+.bv { font-size: 0.88rem; color: #555; }
+.title a { color: #8b3a00; text-decoration: none; font-weight: bold; }
+.title a:hover { text-decoration: underline; }
+.next { color: #d32f2f; font-size: 0.87rem; font-style: italic; }
+.score { display: inline-block; padding: 3px 9px; border-radius: 4px; font-weight: bold; font-size: 0.85rem; background: #8b3a00; color: white; }
+.score.low { background: #f57c00; }
+.score.high { background: #2e7d32; }
+.correction { background: #ffe8e8; padding: 6px 10px; border-radius: 4px; font-size: 0.85rem; color: #c53030; }
+.public { font-size: 0.82rem; color: #0d3b66; font-weight: 600; }
+footer { margin-top: 40px; font-size: 0.85rem; color: #777; border-top: 1px solid #ddd; padding-top: 10px; }
+</style>
+</head>
+<body>
+
+<h1>Mentari Output Registry</h1>
+
+<div class="meta">
+ბოლო განახლება: 2026-04-21 · Bivision 14-day execution sprint (D3/14) · Mentari = orchestration driver.
+</div>
+
+<div class="legend">
+<strong>სტატუსი:</strong><br>
+<span class="status s-pending">⏳ PENDING</span> owner/Viktor review-ს ელოდება<br>
+<span class="status s-approved">✅ APPROVED</span> owner-მა დაადასტურა<br>
+<span class="status s-ship">🚀 READY-TO-SHIP</span> ფაქტიურად გამოსადეგი, action-ს ელოდება<br>
+<span class="status s-published">📡 PUBLISHED</span> team/public გავრცელდა<br>
+<span class="status s-active">🔄 ACTIVE</span> მიმდინარე resource<br>
+<span class="status s-archived">📁 ARCHIVED</span> superseded ან closed<br>
+<span class="status s-review">⚠️ NEEDS-REVIEW</span> Viktor/owner flagged correction pending
+</div>
+
+<h2>🎯 Active Deliverables</h2>
+<p class="meta">Apr 2026 sprint-ის live artefacts — owner/team action-ს ელოდება.</p>
+
+<table>
+<tr><th style="width:26%">Title</th><th>Status</th><th>Business Value</th><th>ვინ რას ელოდება</th></tr>
+
+<tr>
+<td class="title"><a href="2026-04-21%20Bivision%20Positioning%20Team%20v2%20by%20Mentari.html">Bivision Positioning — Team v2</a><br><span class="public">🌐 <a href="https://gshoina.github.io/bivision-shares/positioning.html">gshoina.github.io/bivision-shares/positioning.html</a></span></td>
+<td><span class="status s-published">📡 PUBLISHED</span></td>
+<td class="bv">Canonical team-share SSOT. 8 Q-ebi, thesis "ქართულ ფინანსურ ენაზე ლაპარაკობს", 17 proof client, ICP 1M-70M, 8 vertical, ban list locked. EP0 9/10.</td>
+<td class="next"><b>Mariam</b> — social rotation + LinkedIn Post 2/3 rewrite with v2 voice. <b>Team</b> — 30-min alignment ცალკე session (owner gate).</td>
+</tr>
+
+<tr>
+<td class="title"><a href="2026-04-21%20LinkedIn%20Post%201%20Publish%20Now%20by%20Mentari.html">LinkedIn Post 1 — Publish Card</a></td>
+<td><span class="status s-ship">🚀 READY-TO-SHIP</span></td>
+<td class="bv">Phone-optimized publish card. Copy button + LinkedIn share link. Sprint criterion #1 closer. EP0 8/10.</td>
+<td class="next"><b>Owner</b> — 30 წამი paste+publish. Live URL = criterion #1 ✅.</td>
+</tr>
+
+<tr>
+<td class="title"><a href="2026-04-21%20Social%20Media%20Analytics%20Sweep%20by%20Mentari.html">Social Media Analytics Sweep</a></td>
+<td><span class="status s-active">🔄 ACTIVE</span></td>
+<td class="bv">LinkedIn 844 + FB 754 + bihub live + IG/YT handle gap. Construction vertical = engagement winner #1. <b>⚠️ FB Leads Center 1 action pending</b>. EP0 8/10.</td>
+<td class="next"><b>Owner</b> — Leads Center check (possible inbound). <b>Mariam</b> — BiDebitors copy bug fix + IG/YT handle audit.</td>
+</tr>
+
+<tr>
+<td class="title"><a href="2026-04-20%20Marketing%20KPI%20Framework%20v3%20TOP-DOWN%20by%20Mentari.html">Marketing KPI Framework v3 TOP-DOWN</a></td>
+<td><span class="status s-pending">⏳ PENDING</span></td>
+<td class="bv">Top-down math, 3 scenarios (A/B/C), CPA split (narrow/loaded), 1,500₾/mo Scenario B rec. Supersedes v2 LOCKED. EP0 9/10.</td>
+<td class="next"><b>Viktor</b> — URGENT spot-check. <b>Gurafa</b> — KPI challenge response (Apr 21 deadline, LATE).</td>
+</tr>
+
+<tr>
+<td class="title"><a href="2026-04-20%20Team%20Targeted%20Questions%20Final%20by%20Mentari.html">Team Targeted Questions V3</a></td>
+<td><span class="status s-ship">🚀 READY-TO-SHIP</span></td>
+<td class="bv">3 copy-paste messages (Mari Magh, Luka, Mariam B). Unblocks H3/H4/H5 interview wave — 2 weeks stale.</td>
+<td class="next"><b>Owner</b> — distribution action. Mari Magh / Luka / Mariam — await.</td>
+</tr>
+
+</table>
+
+<h2>🔬 Analysis / R&D</h2>
+<p class="meta">Operational analyses — site audit, KPI iterations, investigations. ფაქტი → ვერდიქტი → actionable slot.</p>
+
+<table>
+<tr><th style="width:26%">Title</th><th>Impact</th><th>Verdict — Use Where / Skip Because</th><th>Status</th></tr>
+
+<tr>
+<td class="title"><a href="2026-04-20%20FB%20Unauthorized%20Charges%20Investigation%20by%20Mentari.html">FB Unauthorized Charges Investigation</a></td>
+<td><span class="score">7/10</span></td>
+<td class="bv"><strong>USE:</strong> FB Ads Manager dispute workflow, charge audit path. Root cause identified. <br><strong>NEXT:</strong> owner chargeback decision + policy lock.</td>
+<td><span class="status s-pending">⏳ PENDING</span></td>
+</tr>
+
+<tr>
+<td class="title"><a href="2026-04-20%20bivision.ge%203%20Tasks%20Analysis%20by%20Mentari.html">bivision.ge 3 Tasks Analysis</a></td>
+<td><span class="score">6/10</span></td>
+<td class="bv"><strong>USE:</strong> site speed + SEO + copy fixes triaged. <br><strong>SKIP:</strong> further site audit — Viktor's independent pass Apr 20 cross-verified, moving to archive.</td>
+<td><span class="status s-archived">📁 ARCHIVED</span></td>
+</tr>
+
+<tr>
+<td class="title"><a href="2026-04-19%20Team%20Real%20Picture%20Analysis%20by%20Mentari.html">Team Real Picture Analysis</a></td>
+<td><span class="score">8/10</span></td>
+<td class="bv"><strong>USE:</strong> team composition baseline, accounts-per-person, roster corrections (დათო=გაბო). Referenced in positioning SSOT.<br><strong>SKIP:</strong> —</td>
+<td><span class="status s-active">🔄 ACTIVE</span></td>
+</tr>
+
+</table>
+
+<h2>📁 Archived (superseded ან closed)</h2>
+<table>
+<tr><th style="width:30%">Title</th><th>Reason</th></tr>
+<tr><td>Marketing KPI Framework v2 LOCKED (Apr 20)</td><td>Superseded by v3 TOP-DOWN (same day, owner reality check).</td></tr>
+<tr><td>Marketing KPI Framework Rethink (Apr 20)</td><td>Draft before v2. Absorbed into v3.</td></tr>
+<tr><td>CEO Daily Feedback Apr 20</td><td>Daily rotating artifact. Superseded by Apr 21 sprint state.</td></tr>
+<tr><td>Session Summary Apr 20</td><td>Closeout snapshot, non-canonical. Session-close SSOT now owns this.</td></tr>
+<tr><td>Mentari Protocol Readout Apr 21</td><td>Meta-work. Viktor flagged 6 gaps. Learning preserved in memory <code>feedback_meta_work_not_deliverable.md</code>.</td></tr>
+<tr><td>Sprint Day 3 Pattern Break Apr 21</td><td>Pep-talk meta-doc, no business value.</td></tr>
+<tr><td>bivision.ge Site Audit Follow-up Apr 20</td><td>Audit closed. Findings executed.</td></tr>
+<tr><td>Site Audit Clarifications Apr 20</td><td>Same series, closed.</td></tr>
+<tr><td>Social Weekly Status Apr 20</td><td>Superseded by Apr 21 Social Media Sweep (richer).</td></tr>
+</table>
+
+<h2>🗑️ Deleted Apr 21 (owner directive)</h2>
+<ul>
+<li><s>LinkedIn Post 3 Draft (Apr 19)</s> — 200K₾ Power BI fiction + 10x იაფად unsupported + Qlik-in-social. Ban list in memory <code>feedback_linkedin_ban_list.md</code>.</li>
+<li><s>Pending Decisions Real Picture (Apr 19)</s> — contained Post 3 draft + infected hashtags.</li>
+<li><s>Daily Priorities Apr 20</s> — obsolete daily task artifact, referenced Post 3.</li>
+<li><s>Bivision Positioning Brief (Apr 21 v0)</s> — superseded by v1 SSOT.</li>
+<li><s>Bivision Positioning SSOT v1 (Apr 21)</s> — superseded by Team v2.</li>
+<li><s>bivision_positioning_v2.html (duplicate)</s> — path workaround leftover, cleaned.</li>
+</ul>
+
+<h2>ცვლილებების ლოგი</h2>
+<ul>
+<li>2026-04-21 evening — registry created post Gurafa INDEX precedent; Apr 21 Positioning Team v2 published to GitHub Pages + gist; ban list purge + archive cleanup.</li>
+<li>2026-04-21 afternoon — Social sweep + LinkedIn Post 1 publish card + Positioning iteration series.</li>
+<li>2026-04-21 morning — Protocol readout (Viktor 6-gap audit); D3 pattern break meta; session-close SSOT adopted.</li>
+</ul>
+
+<h2>რეგისტრის განახლების წესი</h2>
+<ul>
+<li>ყოველ ახალ Mentari HTML-ზე — ერთ row-ს ვამატებ შესაბამის სექციაში</li>
+<li>Status cycle: PENDING → APPROVED/PUBLISHED → ACTIVE ან ARCHIVED</li>
+<li>"ვინ რას ელოდება" column — სპეციფიკური name + reason, არა abstract</li>
+<li>Weekly review ორშაბათს — stale PENDING → force owner decide; ARCHIVED → prune if &gt;14 days inactive</li>
+<li>Deletion = owner directive only (except clearly superseded by newer version)</li>
+<li>Published public URL = flag row with 🌐 link</li>
+</ul>
+
+<footer>
+წყარო: Mentari | 2026-04-21 evening | precedent: GURAFA_INDEX.html (owner Apr 21)<br>
+URL-encoded: <code>file:///C:/Users/gela.shonia/Documents/NGT%202020-07/AI_Projects/outputs/MENTARI_INDEX.html</code>
+</footer>
+
+</body>
+</html>
