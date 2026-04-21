@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bivision Positioning — Team v2</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'BPG Nino Mtavruli', 'Sylfaen', Arial, sans-serif;
+    background: #faf9f4;
+    color: #1a1a1a;
+    line-height: 1.7;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 24px 20px;
+    font-size: 15px;
+  }
+  header {
+    background: linear-gradient(135deg, #1a2a44 0%, #2a3e5a 100%);
+    color: #fff;
+    padding: 28px;
+    border-radius: 12px;
+    margin-bottom: 22px;
+    border-left: 6px solid #c9a227;
+  }
+  header h1 { font-size: 26px; color: #ffd966; margin-bottom: 6px; }
+  header .sub { color: #d8dee9; font-size: 13px; }
+  header .thesis {
+    margin-top: 14px;
+    padding: 14px 18px;
+    background: rgba(255,217,102,0.12);
+    border-left: 3px solid #ffd966;
+    border-radius: 4px;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  section {
+    background: #fff;
+    border: 1px solid #e5e2d9;
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  h2 {
+    font-size: 18px;
+    color: #1a2a44;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #c9a227;
+  }
+  h3 {
+    font-size: 13px;
+    margin: 14px 0 6px 0;
+    color: #8b6914;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .one-liner {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a2a44;
+    padding: 14px 18px;
+    background: #fff8e0;
+    border-radius: 6px;
+    margin: 10px 0;
+    text-align: center;
+    line-height: 1.5;
+  }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px; }
+  th, td { padding: 9px 12px; text-align: left; border-bottom: 1px solid #e5e2d9; vertical-align: top; }
+  th { background: #faf7ee; color: #8b6914; }
+  ul { padding-left: 24px; margin: 6px 0; }
+  li { margin: 5px 0; }
+  .phrase-box {
+    background: #f0f4ee;
+    border-left: 3px solid #5a7a3a;
+    padding: 12px 16px;
+    margin: 8px 0;
+    border-radius: 4px;
+    font-size: 15px;
+  }
+  .phrase-box .phrase { font-weight: 600; color: #1a2a44; font-size: 16px; }
+  .phrase-box .note { font-size: 13px; color: #6b6860; margin-top: 4px; font-style: italic; }
+  .proof-client {
+    display: inline-block;
+    background: #1a2a44;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 14px;
+    margin: 3px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  a { color: #8b6914; }
+  footer {
+    background: #1a2a44;
+    color: #fff;
+    padding: 18px 22px;
+    border-radius: 10px;
+    margin-top: 22px;
+    font-size: 13px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 3px 8px;
+    background: #faf7ee;
+    color: #8b6914;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 6px;
+  }
+  .pillar-card {
+    background: #faf7ee;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 8px 0;
+    border-left: 3px solid #c9a227;
+  }
+  .pillar-card .title {
+    font-weight: 700;
+    color: #1a2a44;
+    font-size: 15px;
+  }
+  .pillar-card .detail {
+    margin-top: 4px;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🎯 Bivision Positioning — Team v2</h1>
+  <div class="sub">2026-04-21 • Team-share canonical • persistent SSOT</div>
+  <div class="thesis">
+    "ყველა ჩვენი ანგარიში ქართულ ფინანსურ ენაზე ლაპარაკობს."<br>
+    <small style="font-size: 13px; opacity: 0.8;">10 წელი. 50+ პარტნიორი. 6 ქართული ERP. არა ცდა — გამოცდილი.</small>
+  </div>
+</header>
+
+<!-- Q1 -->
+<section>
+  <h2>1. რას აკეთებს ბივიჟენი</h2>
+
+  <div class="one-liner">
+    რეპორტების ავტომატიზაცია და გაციფრულება.
+  </div>
+
+  <h3>სიტუაციის მიხედვით ვარიანტები</h3>
+  <div class="phrase-box">
+    <div class="phrase">Elevator (მეგობრობა)</div>
+    ვეხმარებით ქართულ კომპანიებს ციფრებით მართონ ბიზნესი — ინტუიციის ნაცვლად.
+  </div>
+  <div class="phrase-box">
+    <div class="phrase">CFO talk</div>
+    შენი ბუღალტერის ცხრილები ცოცხლდება. 3-5 დღის სამუშაო = 3 წამი.
+  </div>
+  <div class="phrase-box">
+    <div class="phrase">Investor/bank talk</div>
+    10 წელი ქართულ ბაზარზე. 50+ აქტიური პარტნიორი. ფოკუსი — სერვისი და შედეგი, არა მხოლოდ პროგრამა.
+  </div>
+</section>
+
+<!-- Q2 -->
+<section>
+  <h2>2. პროდუქტები</h2>
+
+  <h3>მოკლე (social, ads, first-call)</h3>
+  <table>
+    <tr><th>პროდუქტი</th><th>ერთი წინადადებით</th></tr>
+    <tr><td><strong>BiFinance</strong></td><td>ფინანსური წესრიგი და ავტომატური რეპორტინგი</td></tr>
+    <tr><td><strong>BiRetail</strong></td><td>გაყიდვების ანალიტიკა — SKU-ის დონეზე მომგებიანობა და მარჟა</td></tr>
+    <tr><td><strong>BiStock</strong></td><td>მარაგებისა და კაპიტალის მართვის BI სისტემა</td></tr>
+    <tr><td><strong>BiDebitors</strong></td><td>დებიტორების მართვა და ლიკვიდობის გაუმჯობესება</td></tr>
+    <tr><td><strong>BiMedical</strong></td><td>კლინიკის ოპერაციული და ფინანსური მართვა</td></tr>
+    <tr><td><strong>BiAudit</strong></td><td>უწყვეტი კონტროლი და რისკების პრევენცია</td></tr>
+  </table>
+
+  <h3>სრული (proposal, deep-dive)</h3>
+  <ul>
+    <li><strong>BiFinance</strong> — ფინანსური რეპორტინგი და ანალიტიკა, real-time P&L, cash flow, სამუშაო კაპიტალი</li>
+    <li><strong>BiRetail</strong> — გაყიდვების ანალიტიკა, მომგებიანობა და მარჟები SKU მიხედვით</li>
+    <li><strong>BiStock</strong> — ნაშთი, დეფიციტი, ბრუნვის დრო</li>
+    <li><strong>BiDebitors</strong> — დებიტორები, ხანდაზმულობა (aging), ლიკვიდობის ზრდა, გადახდების გაუმჯობესება</li>
+    <li><strong>BiMedical</strong> — კლინიკის ოპერატიული + კლინიკური ანალიტიკა</li>
+    <li><strong>BiAudit</strong> — აუდიტის რისკების გამოვლენა, პრევენცია და უწყვეტი კონტროლი</li>
+  </ul>
+</section>
+
+<!-- Q3 -->
+<section>
+  <h2>3. კლიენტის ტკივილი</h2>
+
+  <div class="one-liner" style="font-size: 16px; font-style: italic; line-height: 1.5;">
+    "ვუზოგავთ დროს და ენერგიას რეპორტებზე, ვაჩქარებთ გადაწყვეტილებებს.<br>
+    არა მხოლოდ ავტომატიზაცია — ვეხმარებით data-driven კულტურის დამკვიდრებაში."
+  </div>
+
+  <h3>6 კონკრეტული slice</h3>
+  <ul>
+    <li>CFO-ს თვის ბოლოს <strong>3-5 დღე</strong> ეხარჯება ციფრების ERP-დან Excel-ში შეკრებაზე</li>
+    <li>სხვადასხვა ადგილას <strong>მიმოფანტული რეპორტები</strong> — ერთიანი სურათი არ დგება <span class="badge">Inga</span></li>
+    <li>დიდი ძალისხმევა ანალიტიკისთვის მომზადებასა და რიცხვების <strong>ერთმანეთთან შეჯერებაზე</strong></li>
+    <li><strong>"რა მოხდა" რეპორტი არის, "რატომ" და "რა იქნება" ანალიტიკა არ არის</strong></li>
+    <li>გადაწყვეტილება <strong>გუშინდელ</strong> მონაცემზე — დღევანდელი ჯერ Excel-ში "შედის"</li>
+    <li><strong>Key person რისკი</strong> — ფინანსისტი წავიდა, ცოდნაც თან წაიღო</li>
+  </ul>
+</section>
+
+<!-- Q4 -->
+<section>
+  <h2>4. როგორ აგვარებდნენ ჩვენამდე — ქართული რეალობა</h2>
+
+  <table>
+    <tr><th>Pattern</th><th>რას ნიშნავს</th></tr>
+    <tr><td><strong>ERP + Excel კომბო</strong></td><td>ERP-ში ციფრები ზის, Excel-ში ხელით ამოდის. ყოველი თვე ხელახლა. არადროული რეპორტინგი</td></tr>
+    <tr><td><strong>Data-driven არ არიან</strong></td><td>ანალიტიკის მიღება დიდ ძალისხმევას ითხოვს, მონაცემი ვერ ამაგრებს გადაწყვეტილებას</td></tr>
+    <tr><td><strong>KPI უცოდინრობა</strong></td><td>ბლომად რეპორტი, არა ანალიტიკა. "რომელ მაჩვენებელს ვუყურო?" უპასუხოდ</td></tr>
+    <tr><td><strong>ინტუიცია + ბაზრის ცოდნა</strong></td><td>"ვიცი ჩემი ბიზნესი" ლოგიკა. მონაცემი სხვადასხვა წყაროშია — თავი ვერ მოგვყავს</td></tr>
+  </table>
+</section>
+
+<!-- Q5 -->
+<section>
+  <h2>5. რა იცვლება ჩვენი შემდეგ</h2>
+
+  <div class="one-liner" style="font-size: 16px;">
+    ორი ფრონტი: <strong>ფულის დაკარგვის შეჩერება</strong> + <strong>ზრდის აჩქარება</strong>
+    <div style="font-size: 12px; margin-top: 4px; font-weight: 400; opacity: 0.8;">Member 3 team survey</div>
+  </div>
+
+  <ul style="margin-top: 12px;">
+    <li><strong>Speed:</strong> 3-5 დღე/თვე → 4 წამი/query</li>
+    <li><strong>ერთი სიმართლის წყარო:</strong> ცხრილების ქაოსი ქრება, ყველაფერი ერთ ანალიტიკურ სისტემაში</li>
+    <li><strong>ახლა, არა გუშინ:</strong> გადაწყვეტილება დღევანდელ ფაქტებზე</li>
+    <li><strong>C-Level თავისუფლება:</strong> operational → strategic. რეპორტის მომზადება აღარ ხარჯავს დროს</li>
+    <li><strong>Self-service:</strong> ყველა თვითონ სვამს კითხვას და იღებს პასუხს</li>
+    <li><strong>ტექნოლოგია სამსახურში:</strong> ბუნებრივი ენით — "რამდენი გავყიდეთ მარტში რეგიონებით?" → 3 წამში <span class="badge">BI + AI</span></li>
+    <li><strong>Scalability:</strong> ახალი ფილიალი/პროდუქტი → რეპორტი თავისით ინახავს</li>
+  </ul>
+</section>
+
+<!-- Q6 -->
+<section>
+  <h2>6. რატომ ჩვენ — კონკურენტული უპირატესობა</h2>
+
+  <div class="pillar-card">
+    <div class="title">1. გამზადებული და ტესტირებული connector-ები ERP და ბუღალტრულ პროგრამებთან</div>
+    <div class="detail">Fina, Oris, Balance, 1C, FMG, Superfin — ქართული ERP ბაზრის 65-80%. სტაბილური, დღესვე მზადაა ინტეგრაციისთვის.</div>
+  </div>
+
+  <div class="pillar-card">
+    <div class="title">2. გამზადებული გადაწყვეტილებები ქართულ ფინანსურ პრაქტიკაზე</div>
+    <div class="detail">ყველა ანგარიში "ქართულ ფინანსურ ენაზე ლაპარაკობს". სექტორული სტანდარტული რეპორტების ვერსიები კლიენტს პირველი დღიდან აძლევს საჩვენებელს. <span class="badge">Inga</span></div>
+  </div>
+
+  <div class="pillar-card">
+    <div class="title">3. 2-3 კვირა deployment</div>
+    <div class="detail">საქართველოში unique speed. სტანდარტი 3+ თვე — ჩვენთან 2-3 კვირა, რადგან connector-ები და best-practice რეპორტები წინასწარ გვაქვს.</div>
+  </div>
+
+  <div class="pillar-card">
+    <div class="title">4. Qlik + Claude AI native integration (MCP)</div>
+    <div class="detail">ბუნებრივი ენის query layer — კითხვას სვამ ქართულად, AI Qlik-ის data-დან პასუხობს real-time. Apr 2026 pilot live. ერთ ბიჯი წინ ქართულ BI ბაზარზე.</div>
+  </div>
+
+  <div class="pillar-card">
+    <div class="title">5. არა უბრალო რეპორტი — მორგებული ბიზნეს ანალიტიკა</div>
+    <div class="detail">"ჯერ გვაინტერესებს კლიენტის ბიზნესი, მერე რეპორტი." ანალიტიკა კონკრეტულ ბიზნესზეა მორგებული, არა სტანდარტული შაბლონი. <span class="badge">Inga</span></div>
+  </div>
+
+  <div class="pillar-card">
+    <div class="title">6. Post-launch stay</div>
+    <div class="detail">დანერგვით ურთიერთობა არ სრულდება. გუნდი აკვირდება შედეგს, ანვითარებს რეპორტებს, ზრუნავს შიდა ანალიტიკურ კულტურაზე. SaaS ყოველთვიური სერვისი + ინდივიდუალური მიდგომა.</div>
+  </div>
+
+  <div class="pillar-card">
+    <div class="title">7. 10 წელი, 50+ პარტნიორი</div>
+    <div class="detail">ჩვენი ცოდნა და გამოცდილება დადასტურებულია. Proof ↓</div>
+  </div>
+
+  <h3>Proof clients (public, მოქმედი)</h3>
+  <div style="margin: 10px 0;">
+    <span class="proof-client">TBC Pay</span>
+    <span class="proof-client">Aversi</span>
+    <span class="proof-client">Orbita</span>
+    <span class="proof-client">NRG</span>
+    <span class="proof-client">Crocobet</span>
+    <span class="proof-client">Leaderbet</span>
+    <span class="proof-client">SuperStore</span>
+    <span class="proof-client">Nutrimax</span>
+    <span class="proof-client">Chirina</span>
+    <span class="proof-client">ICR Trade</span>
+    <span class="proof-client">ICR Home</span>
+    <span class="proof-client">DIO</span>
+    <span class="proof-client">GeoCord</span>
+    <span class="proof-client">DGA</span>
+    <span class="proof-client">NAPR</span>
+    <span class="proof-client">MIA</span>
+    <span class="proof-client">GNERC</span>
+  </div>
+
+  <div class="one-liner" style="margin-top: 14px;">
+    "ჩვენ dashboard-ს არ ვყიდით — მზა პასუხებს ვყიდით."
+  </div>
+</section>
+
+<!-- Q7 -->
+<section>
+  <h2>7. ვინ არის კლიენტი + რა ათრიგერებს</h2>
+
+  <h3>ICP (quantified)</h3>
+  <ul>
+    <li><strong>შემოსავალი:</strong> 1M–70M ₾/წელი</li>
+    <li><strong>გუნდი:</strong> 5+ ადამიანი</li>
+    <li><strong>ტიპი:</strong> SME და Medium — ფოკუსი ზრდასა და განვითარებაზე</li>
+    <li><strong>ERP:</strong> Balance, Fina, Oris, 1C, FMG, Superfin (ქართული 65-80%)</li>
+    <li><strong>Buyer:</strong> CFO / Finance Director / Owner-CEO / Operations Director / Head of Unit</li>
+    <li><strong>Structure:</strong> მულტი-ფილიალი, მულტი-კატეგორია, ან scale-up ფაზა</li>
+  </ul>
+
+  <h3>Verticals (validated)</h3>
+  <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0;">
+    <span class="proof-client" style="background: #8b6914;">Retail</span>
+    <span class="proof-client" style="background: #8b6914;">Distribution</span>
+    <span class="proof-client" style="background: #8b6914;">Construction</span>
+    <span class="proof-client" style="background: #8b6914;">Importers</span>
+    <span class="proof-client" style="background: #8b6914;">Medical</span>
+    <span class="proof-client" style="background: #8b6914;">Holdings</span>
+    <span class="proof-client" style="background: #8b6914;">Finance Services</span>
+    <span class="proof-client" style="background: #8b6914;">წარმოება</span>
+  </div>
+
+  <h3>Anti-ICP (არ ვემსახურებით)</h3>
+  <ul>
+    <li>&lt;1M ₾ შემოსავალი — ცხრილი ჯერ კიდევ საკმარისია</li>
+    <li>არა-ქართული ERP — connector depth არ გვაქვს</li>
+    <li>BI = "ლამაზი ჩარტები" ფიქრი — decision-culture ready არ არის</li>
+  </ul>
+
+  <h3>"ახლავე მჭირდება" triggers</h3>
+  <ol>
+    <li><strong>სრული სურათის არ ქონა + დაგვიანებული რეპორტინგი</strong> — ყველაზე ხშირი <span class="badge">Inga</span></li>
+    <li><strong>C-level-ს ოპერატიულობა სჭირდება</strong> — თვის დახურვა 3-5+ დღე ეკარგება</li>
+    <li><strong>მონაცემების გამრავლება</strong> — ახალი ფილიალი → consolidation Excel-ში ქაოსდება</li>
+    <li><strong>კადრების დენადობა</strong> — CFO/analyst წავიდა, ცოდნაც წავიდა</li>
+    <li><strong>ინვესტორი / ბანკი / აუდიტი</strong> სტრუქტურულ რეპორტს ითხოვს</li>
+    <li><strong>ზრდის წნეხი</strong> — "რომელი პროდუქტი/ფილიალი გვაქცევს სარგებელს?" უპასუხოდ</li>
+    <li><strong>კონკურენტი AI-ზე ისაუბრა</strong> → "ჩამოვრჩებით" CEO-ს თავში</li>
+    <li><strong>ERP migration</strong> — "სად ვნახო ისტორიული მონაცემები?"</li>
+  </ol>
+</section>
+
+<!-- Q8 -->
+<section>
+  <h2>8. Marketing ფრაზები — rotation</h2>
+
+  <p style="margin-bottom: 10px;">ეს 5 + bonus ფრაზა social, site, proposals, first-call-ში უნდა ჟღერდეს:</p>
+
+  <div class="phrase-box">
+    <div class="phrase">1. მართე მონაცემებით — შენი ინტუიცია დაგიდასტუროს ციფრებმა</div>
+    <div class="note">CEO-ის ეგოს არ უტეხავს, ცოდნას ამაგრებს. Hero angle — site + LinkedIn.</div>
+  </div>
+
+  <div class="phrase-box">
+    <div class="phrase">2. გამოცადე ახლავე — 2 კვირაში ჯდები, შემდეგ გუნდი შენთან რჩება</div>
+    <div class="note">Deployment speed + post-launch stay ერთ ფრაზაში. Low-risk entry.</div>
+  </div>
+
+  <div class="phrase-box">
+    <div class="phrase">3. ჩვენ dashboard-ს არ ვყიდით — მზა პასუხებს ვყიდით თქვენს კითხვებზე</div>
+    <div class="note">Strongest differentiation line. AI integration-ის ბუნებრივი setup.</div>
+  </div>
+
+  <div class="phrase-box">
+    <div class="phrase">4. BI და AI შენს სამსახურში — გააძლიერე გუნდი</div>
+    <div class="note">Tech-anxiety flip: AI ≠ replace, AI = amplify. CFO psychology.</div>
+  </div>
+
+  <div class="phrase-box">
+    <div class="phrase">5. ფულის დაკარგვის შეჩერება + ზრდის აჩქარება</div>
+    <div class="note">Defense + offense dual frame. <span class="badge">Member 3 team survey</span></div>
+  </div>
+
+  <h3>Bonus (social, ads)</h3>
+  <ul>
+    <li>"რეპორტი ≠ ანალიტიკა. რა მოხდა გეტყვით ყველა. რატომ — მხოლოდ ჩვენ."</li>
+    <li>"ფინანსისტი წავიდა? ცოდნა დარჩა."</li>
+    <li>"3-5 დღე კი არა, 3 წამი."</li>
+    <li>"ყველა ანგარიში ქართულ ფინანსურ ენაზე ლაპარაკობს."</li>
+    <li>"სწორი გადაწყვეტილება იწყება სწორი ანალიტიკით." <span class="badge">Member 3</span></li>
+  </ul>
+</section>
+
+<!-- Pricing -->
+<section>
+  <h2>💰 Pricing — value-sell, არა price-sell</h2>
+
+  <div class="one-liner" style="font-size: 15px; font-style: italic; line-height: 1.5;">
+    "ჩვენ სერვისებს არ ვყიდით 'კარგ ფასად' — ჩვენ ვყიდით ღირებულებას, რაც ჩვენი SaaS გადაწყვეტილებებით იქმნება."
+  </div>
+
+  <ul style="margin-top: 10px;">
+    <li><strong>მოდელი:</strong> SaaS ყოველთვიური სერვისი</li>
+    <li><strong>მიდგომა:</strong> ინდივიდუალური — scope, connector, ბიზნესის სპეციფიკა</li>
+    <li><strong>გუნდისთვის რიცხვი:</strong> Gela-ს ვთხოვოთ კონკრეტული prospect-ის ბიუჯეტი. Public range არ ვიძლევით — value conversation ჯერ, ფასი შემდეგ.</li>
+  </ul>
+</section>
+
+<!-- Voice rules -->
+<section>
+  <h2>🗣️ Voice rules (ყველა content-ზე — MUST)</h2>
+  <ul>
+    <li><strong>"Real-time" ნუ</strong> → "ახლა" ან "დღევანდელი"</li>
+    <li><strong>"Efficiency" ნუ</strong> → "დრო-ს დაზოგვა" კონკრეტული რიცხვით</li>
+    <li><strong>"Generic BI" არა</strong> — ჩვენ vertical + ლოკალური ვართ</li>
+    <li><strong>ERP სახელები ყოველთვის</strong> — Fina, Oris, Balance, 1C, FMG, Superfin (ქართული buyer-ის ენა)</li>
+    <li><strong>"Pre-built" ნუ</strong> → "გამზადებული"</li>
+    <li><strong>CEO-ის ენა</strong>, არა AI-translator-ის — ცოცხალი მეტაფორა, კრებითობა</li>
+    <li><strong>"რა მოხდა vs რატომ"</strong> distinction — გამოიყენე pain-articulation-ში ყოველთვის</li>
+  </ul>
+</section>
+
+<footer>
+  <strong>Status:</strong> Canonical v2 — team-share ready (pricing talking-points pending owner case-by-case)<br>
+  <strong>Path:</strong> <code>outputs/2026-04-21 Bivision Positioning Team v2 by Mentari.html</code><br>
+  <strong>Changes from v1:</strong> thesis refined ("ქართულ ფინანსურ ენაზე ლაპარაკობს"), Excel timeline 3-5 დღე, ICP adds "SME+Medium growth-focused", verticals 8 (incl. Finance Services + წარმოება), 17 proof clients enumerated, Qlik+Claude AI elevated to moat #4, pricing = value-sell SaaS, Inga's "სექტორული სტანდარტული რეპორტები" + "ჯერ ბიზნესი" woven in, Member 3's "ფულის დაკარგვა + ზრდა" as Q5/Q8 anchor.<br>
+  <strong>Next:</strong> Mariam → social rotation. LinkedIn Post 2+ → rewrite with v2 phrases. Proposal cover letter → Q3+Q6 open.
+</footer>
+
+</body>
+</html>
