@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bivision 2026 OKR Framework — Draft v1</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', 'BPG Nino Mkhedruli', 'Sylfaen', Arial, sans-serif; background: #faf9f4; color: #1a1a1a; line-height: 1.65; max-width: 1080px; margin: 0 auto; padding: 24px 20px; font-size: 15px; }
+header { background: linear-gradient(135deg, #1a2a44 0%, #2a3e5a 100%); color: #fff; padding: 26px; border-radius: 10px; margin-bottom: 20px; border-left: 6px solid #c9a227; }
+header h1 { font-size: 24px; color: #ffd966; margin-bottom: 6px; }
+header .sub { color: #d8dee9; font-size: 13px; }
+section { background: #fff; border: 1px solid #e5e2d9; border-radius: 10px; padding: 20px 24px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+h2 { font-size: 18px; color: #1a2a44; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 2px solid #c9a227; }
+h3 { font-size: 15px; margin: 14px 0 6px 0; color: #8b6914; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px; }
+th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #e5e2d9; vertical-align: top; }
+th { background: #faf7ee; color: #8b6914; }
+ul { padding-left: 22px; margin: 6px 0; }
+li { margin: 4px 0; }
+.okr-card { background: #faf7ee; padding: 14px 18px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #c9a227; }
+.okr-card .okr-title { font-weight: 700; font-size: 16px; color: #1a2a44; }
+.okr-card .kr { margin: 6px 0 0 8px; padding: 4px 0; }
+.kr-label { display: inline-block; background: #1a2a44; color: #fff; padding: 1px 6px; border-radius: 3px; font-size: 11px; font-weight: 600; margin-right: 6px; }
+.target { color: #2d7a3e; font-weight: 600; }
+.current { color: #8b6914; font-weight: 600; }
+.unknown { color: #c45c5c; font-weight: 600; font-style: italic; }
+.access-row { background: #fff8e0; padding: 10px 14px; border-radius: 6px; margin: 6px 0; border-left: 3px solid #c9a227; font-size: 14px; }
+.access-row strong { color: #8b6914; }
+.risk { background: #fce9d6; border-left: 3px solid #c07030; padding: 10px 14px; margin: 8px 0; border-radius: 4px; font-size: 14px; }
+.tag-new { background: #e0e8f2; color: #1a4a8a; padding: 1px 6px; border-radius: 3px; font-size: 11px; font-weight: 600; }
+.tag-keep { background: #d8ecd0; color: #2a5a2a; padding: 1px 6px; border-radius: 3px; font-size: 11px; font-weight: 600; }
+.tag-ref { background: #fdf0d0; color: #8b6914; padding: 1px 6px; border-radius: 3px; font-size: 11px; font-weight: 600; }
+footer { background: #1a2a44; color: #fff; padding: 18px 22px; border-radius: 10px; margin-top: 22px; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🎯 Bivision 2026 OKR Framework — Draft v1</h1>
+  <div class="sub">2026-04-22 • Mentari • owner stress-test + team rollout draft • base period: 2026-04-01</div>
+</header>
+
+<section>
+  <h2>🔑 Access + Data საჭიროება (upfront)</h2>
+  <p style="margin-bottom: 10px;">ქვემოთ დეშბორდის ასაშენებლად რაც მჭირდება. ყველაფერი ერთხელ მიწოდე — yes-yes loop-ს არ დავაყრი.</p>
+
+  <h3>OKR1 (ARR + customers)</h3>
+  <div class="access-row"><strong>HubSpot:</strong> owner Super Admin → claude.ai connector enable. 1x setup, forever autonomous. (Alternative: private app API key if OAuth-flow blocker persists — ვცდი self-fix first)</div>
+  <div class="access-row"><strong>Current ARR breakdown per client:</strong> ცხრილი — client name, monthly recurring, contract start/end, renewal date. Owner-ს Excel/HubSpot-იდან.</div>
+  <div class="access-row"><strong>Salary baseline (for ARR/Salary ratio):</strong> total monthly payroll 2026-04-01 snapshot (sensitive — can be anonymized total only).</div>
+
+  <h3>OKR2 (Power BI + AI products)</h3>
+  <div class="access-row"><strong>Power BI existing state:</strong> რაიმე exploratory work გვაქვს? საცდელი კლიენტი? Team Power BI skill inventory (ვინ რას იცის)?</div>
+  <div class="access-row"><strong>AI products roadmap:</strong> Qlik+Claude MCP pilot (Apr 20) — ვინ აშენებს? Health Check lead magnet (Gurafa-ს) — status?</div>
+
+  <h3>OKR3 (Brand + Leads)</h3>
+  <div class="access-row"><strong>Meta Business Suite:</strong> owner login ან screen-share — FB Ads Manager, Leads Center, Page Insights. 1 pending lead უკვე ფიქსირდება Apr 21 sweep-ში.</div>
+  <div class="access-row"><strong>LinkedIn Company page admin:</strong> impressions, CTR, visitor demographics, follower source. გელას personal LinkedIn — 10K contact breakdown საჭირო Seg 2 targeting-ისთვის.</div>
+  <div class="access-row"><strong>Mailchimp (ან current email tool):</strong> audience size, open rate, click rate, campaign history.</div>
+  <div class="access-row"><strong>GA4 + Search Console + Tag Manager:</strong> bivision.ge traffic, form submissions, event tracking status.</div>
+
+  <h3>OKR4 (R&D)</h3>
+  <div class="access-row"><strong>Team skill self-assessment:</strong> 7-person inventory — AI tool usage, BI platform competency, vertical expertise. 15-min-per-person self-report.</div>
+
+  <h3>Apr 1 baseline (all OKRs)</h3>
+  <div class="access-row"><strong>Snapshot pull:</strong> ARR state, customer count (active/churning), social metrics, pipeline HubSpot, website traffic. 1 day data-gathering — ან owner pastes, ან system access მომდევნო session-ში.</div>
+</section>
+
+<section>
+  <h2>📝 OKR1 — Commercially successful, product-centric <span class="tag-keep">owner-locked</span></h2>
+  <div class="okr-card">
+    <div class="okr-title">OKR1: Bivision გადავიდეს product-centric მოდელზე + commercial success</div>
+    <div class="kr"><span class="kr-label">KR1</span> ARR <span class="current">68,000 ₾</span> → <span class="target">950,000 ₾</span> (13.9x)</div>
+    <div class="kr"><span class="kr-label">KR2</span> <span class="target">+12 new customers</span></div>
+    <div class="kr"><span class="kr-label">KR3</span> ARR/Salary ratio <span class="current">1.55</span> → <span class="target">1.8</span></div>
+  </div>
+  <div class="risk">
+    <strong>⚠️ Reality check:</strong> 13.9x ARR growth 1 წელში = extreme. Math: 12 new customers × avg X ₾/year + existing expansion ≈ 882K ₾ გაზრდა. ანუ avg new-customer ARR ≈ 60-70K ₾/year + existing expansion 200-300K ₾. Pipeline math-ი OKR-ის adoption-ის წინ უნდა გადმოიხსენო — რეალურია თუ stretch?
+  </div>
+</section>
+
+<section>
+  <h2>🧱 OKR2 — Vendor-agnostic product platform <span class="tag-keep">owner-locked</span></h2>
+  <div class="okr-card">
+    <div class="okr-title">OKR2: Bivision ხდება multi-platform vendor (Qlik + Power BI + AI)</div>
+    <div class="kr"><span class="kr-label">KR1</span> 2 Power BI standard products launched (2 months)</div>
+    <div class="kr"><span class="kr-label">KR2</span> 2 AI standard products launched (2 months)</div>
+    <div class="kr"><span class="kr-label">KR3</span> 1-3 new customers on Power BI standard (4 months)</div>
+    <div class="kr"><span class="kr-label">KR4</span> 1-3 new customers on AI standard (4 months)</div>
+  </div>
+  <div class="risk">
+    <strong>⚠️ Messaging implication:</strong> "ერთადერთი Qlik პარტნიორი" positioning ↔ "vendor-agnostic" OKR contradiction. ხვალ-ზეგ positioning reframe საჭიროა (Team v2 update). Power BI "200K fiction" ban memory ხელახლა გადაიხედოს — Power BI ახლა Bivision-ის build platform, არა competitor.
+  </div>
+</section>
+
+<section>
+  <h2>📢 OKR3 — Brand + Lead Generation <span class="tag-new">enriched Apr 22</span></h2>
+  <p style="margin-bottom: 10px;">ჩვენი საუბრებიდან + Apr 21 social sweep-ის ფაქტებიდან enriched.</p>
+
+  <div class="okr-card">
+    <div class="okr-title">OKR3.1: ჩართულობის გაზრდა</div>
+    <div class="kr"><span class="kr-label">KR1.1</span> Avg engagement per post — <span class="current">Apr 1 baseline საჭირო</span> → <span class="target">growth trajectory vs baseline</span></div>
+    <div class="kr"><span class="kr-label">KR1.2</span> Link clicks per post → <span class="target">growth trajectory vs Apr 1 baseline</span></div>
+    <div class="kr"><span class="kr-label">KR1.3</span> <span class="tag-new">NEW</span> Winning angle ratio: posts tying to validated pain (construction vertical = winner per Apr 21 LinkedIn sweep) → <span class="target">≥60% of monthly content</span></div>
+  </div>
+
+  <div class="okr-card">
+    <div class="okr-title">OKR3.2: კონტენტის ხარისხი + რიტმი</div>
+    <div class="kr"><span class="kr-label">KR2.1</span> Post frequency LinkedIn: <span class="current">Apr 1 baseline</span> → <span class="target">3-4/week</span></div>
+    <div class="kr"><span class="kr-label">KR2.2</span> Reels/Video per week: <span class="current">0 (Apr 17 FB = 0 reels in April)</span> → <span class="target">≥2/week</span></div>
+    <div class="kr"><span class="kr-label">KR2.3</span> <span class="tag-new">NEW</span> Bihub content amplification: <span class="current">0/month</span> → <span class="target">4 dashboards/month repurposed to social</span> (bihub.ge engine live, untapped per Apr 21 sweep)</div>
+    <div class="kr"><span class="kr-label">KR2.4</span> <span class="tag-new">NEW</span> Ban-list compliance: 0% vendor-fiction, 0% tool-brag. Quality filter pre-publish.</div>
+  </div>
+
+  <div class="okr-card">
+    <div class="okr-title">OKR3.3: ლიდების გენერაცია</div>
+    <div class="kr"><span class="kr-label">KR3.1</span> Qualified leads from social per month — <span class="target">Apr 1 baseline → target TBD</span></div>
+    <div class="kr"><span class="kr-label">KR3.2</span> SQL rate (lead → qualified): <span class="target">≥30%</span></div>
+    <div class="kr"><span class="kr-label">KR3.3</span> Conversion rate (click-to-lead): <span class="target">≥5% industry baseline</span></div>
+    <div class="kr"><span class="kr-label">KR3.4</span> Email campaigns sent: <span class="target">≥2/month verticals-targeted</span></div>
+    <div class="kr"><span class="kr-label">KR3.5</span> <span class="tag-new">NEW</span> SQL = ICP match (1M-70M ₾ revenue, Georgian ERP user, 5+ people, growth phase) per <span class="tag-ref">project_bivision_positioning</span></div>
+    <div class="kr"><span class="kr-label">KR3.6</span> <span class="tag-new">NEW</span> FB Leads Center active management: 0 action items pending >24h</div>
+  </div>
+
+  <div class="okr-card">
+    <div class="okr-title">OKR3.4: ოპერაციული ეფექტურობა</div>
+    <div class="kr"><span class="kr-label">KR4.2</span> Site health: Forms conversion tracking + GA4 events + GTM audit → 100% functional</div>
+    <div class="kr"><span class="kr-label">KR4.3</span> <span class="tag-new">NEW</span> Site-to-CRM lead flow: form submission → HubSpot pipeline automated, no manual email-chase</div>
+  </div>
+</section>
+
+<section>
+  <h2>🔬 OKR4 — R&D <span class="tag-new">refined Apr 22 (owner flagged loose formulation)</span></h2>
+
+  <h3>Current issues (owner correct)</h3>
+  <ul>
+    <li>KR2 (AI products) overlaps OKR2.KR2 — ambiguous ownership</li>
+    <li>KR3 "team growth" vague — hiring? skill? retention?</li>
+    <li>No quantified targets</li>
+  </ul>
+
+  <h3>Refined proposal</h3>
+  <div class="okr-card">
+    <div class="okr-title">OKR4: Tech signal → business action velocity</div>
+    <div class="kr"><span class="kr-label">KR1</span> Weekly competitor intel published — <span class="target">1+ concrete action plan/week</span>. Gurafa owns. <span class="tag-ref">feedback_claude_daily_scout</span></div>
+    <div class="kr"><span class="kr-label">KR2</span> Daily AI/Claude scout — <span class="target">≥1 applicable feature adopted/week</span>. Gurafa owns. Adoption = integrated to ≥1 agent/team workflow.</div>
+    <div class="kr"><span class="kr-label">KR3</span> <span class="tag-new">NEW</span> Team AI adoption: <span class="current">Apr 1 baseline</span> → <span class="target">100% team has ≥1 AI-in-daily-workflow</span> (7/7)</div>
+    <div class="kr"><span class="kr-label">KR4</span> <span class="tag-new">NEW</span> Internal automation hours saved: <span class="target">measurable monthly delta, trending up</span></div>
+    <div class="kr"><span class="kr-label">KR5</span> <span class="tag-new">NEW</span> Retention: key team member departure within sprint window → 0 (Mari Mik 2026-06-01 = planned transition, Luka succession gate)</div>
+  </div>
+
+  <h3>Owner validation ask</h3>
+  <p>OKR4 KR3 (team AI adoption) + KR4 (hours saved) = team development + tool integration. KR5 retention გადადის აქეთ ან ცალკე "OKR5: Team" ცალკე? შემდეგი round-ში გავარკვიოთ.</p>
+</section>
+
+<section>
+  <h2>👥 Team alignment mapping (proposal)</h2>
+
+  <table>
+    <tr><th>პერსონა</th><th>Primary OKR</th><th>Secondary</th></tr>
+    <tr><td><strong>გელა</strong> (Owner)</td><td>OKR1 (strategy, sales, key accounts)</td><td>OKR2 (product spec approval)</td></tr>
+    <tr><td><strong>ინგა</strong> (Support)</td><td>OKR1 (churn protection, upsell), OKR1.KR1 existing ARR expansion</td><td>OKR4.KR3 (AI in support workflow)</td></tr>
+    <tr><td><strong>დათო/გაბო</strong> (Dev)</td><td>OKR2 (product build)</td><td>OKR4 (dev AI workflow)</td></tr>
+    <tr><td><strong>მარი მაღლაკელიძე</strong> (Acc mgr, re-entry)</td><td>OKR1 (new customer onboard)</td><td>OKR3.3 (lead nurture to SQL)</td></tr>
+    <tr><td><strong>მარი მიკურტუმაშვილი</strong> (Dev, leaving 2026-06-01)</td><td>OKR2 Power BI kickoff + knowledge transfer to Luka</td><td>OKR4.KR5 handover completion</td></tr>
+    <tr><td><strong>ლუკა</strong> (Junior, AI-native)</td><td>OKR2 AI product build</td><td>OKR4.KR3 (AI workflow champion)</td></tr>
+    <tr><td><strong>მარიამ ბანძელაძე</strong> (Marketing, outsource)</td><td>OKR3 (all KRs primary)</td><td>OKR1.KR2 (brand → pipeline contribution)</td></tr>
+    <tr><td><strong>Gurafa</strong> (agent)</td><td>OKR4 (intel + AI scout)</td><td>OKR3.2 (content quality)</td></tr>
+    <tr><td><strong>Viktor</strong> (agent)</td><td>Cross-OKR process audit</td><td>—</td></tr>
+    <tr><td><strong>Mentari</strong> (agent)</td><td>OKR1 (sales enablement) + OKR3 (content+leads) + OKR-wide coordination</td><td>OKR2 (product go-to-market)</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>📅 Base period methodology — Apr 1, 2026</h2>
+
+  <ol>
+    <li><strong>Freeze Apr 1 snapshot</strong> — all metrics frozen as baseline (single source of truth)</li>
+    <li><strong>Measurement cadence:</strong>
+      <ul>
+        <li>OKR1: monthly review (owner + Mentari)</li>
+        <li>OKR2: bi-monthly milestone (product ship dates)</li>
+        <li>OKR3: weekly (engagement, leads) + monthly (roll-up)</li>
+        <li>OKR4: weekly (Gurafa) + quarterly (KR3/KR4)</li>
+      </ul>
+    </li>
+    <li><strong>Progress tracking:</strong> % to target + velocity (delta/period)</li>
+    <li><strong>Dashboard integration:</strong> dashboard.html restructure — OKR1/2/3/4 tabs primary, everything else secondary</li>
+    <li><strong>Weekly Friday review:</strong> each OKR owner 5-min status → Mentari compiles for Monday decision</li>
+  </ol>
+</section>
+
+<section>
+  <h2>🚀 Next step</h2>
+
+  <ol>
+    <li><strong>Owner</strong>: access/data list review → provide (HubSpot enable + Apr 1 snapshot data + 4 system credentials)</li>
+    <li><strong>Owner + Mentari</strong>: stress-test OKR1 reality (pipeline math) + OKR3 baselines validation</li>
+    <li><strong>Mentari</strong>: build Apr 1 baseline snapshot → canonical measurement file</li>
+    <li><strong>Team rollout</strong>: 30-min session walking through OKR framework + per-person alignment (after owner approve v2)</li>
+    <li><strong>Dashboard restructure</strong>: OKR-first architecture, all other views secondary</li>
+  </ol>
+
+  <div class="risk" style="margin-top: 14px;">
+    <strong>⚠️ Blocker to ack:</strong> OKR2 Power BI + AI direction contradicts recent positioning SSOT (Qlik-forward). Messaging reframe MUST come with OKR2 adoption. Next sessions: positioning v3 aligned to vendor-agnostic stance + ban-list update (Power BI no longer "enemy tool").
+  </div>
+</section>
+
+<footer>
+  <strong>Status:</strong> Draft v1 — awaiting owner stress-test feedback + access list delivery<br>
+  <strong>Path:</strong> <code>outputs/2026-04-22 Bivision OKR Framework Draft by Mentari.html</code><br>
+  <strong>Next iteration:</strong> v2 after owner-Mentari stress-test + Apr 1 baseline data → team rollout
+</footer>
+
+</body>
+</html>
