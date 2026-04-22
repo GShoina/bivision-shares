@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<title>Signify × Business Registry Merge — 2026-04-22</title>
+<style>
+body{font-family:'BPG Nino Mkhedruli','Sylfaen','Segoe UI',sans-serif;max-width:1100px;margin:2rem auto;padding:0 1.5rem;color:#1a1a1a;line-height:1.5}
+h1{border-bottom:3px solid #0d3b66;padding-bottom:.4rem;color:#0d3b66}
+h2{color:#0d3b66;margin-top:1.8rem;border-left:4px solid #0d3b66;padding-left:.6rem}
+.ep0{background:#fff4e6;border:1px solid #d49a3a;padding:.8rem 1rem;border-radius:6px;font-weight:600;margin:1rem 0}
+.card{background:#f7f9fc;border-radius:8px;padding:1rem 1.2rem;margin:.8rem 0;border:1px solid #d9dfe8}
+.metric-big{font-size:2.2rem;font-weight:700;color:#0d3b66;line-height:1}
+.metric-label{font-size:.88rem;color:#666;margin-top:.25rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1rem 0}
+table{border-collapse:collapse;width:100%;margin:.8rem 0;font-size:.92rem}
+th,td{border:1px solid #d9dfe8;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#eef2f7}
+.bar-container{margin:.7rem 0}
+.bar-label{font-weight:600;margin-bottom:.25rem}
+.bar-outer{background:#e9ecef;border-radius:6px;overflow:hidden;height:24px}
+.bar-inner{background:linear-gradient(90deg,#2e7d32,#66bb6a);height:100%;transition:width .5s}
+.tag{display:inline-block;padding:.1rem .5rem;border-radius:4px;font-size:.82rem;font-weight:600}
+.tag-large{background:#1b5e20;color:white}
+.tag-medium{background:#f57c00;color:white}
+.tag-small{background:#6c757d;color:white}
+.tag-personal{background:#9e9e9e;color:white}
+code{background:#eef2f7;padding:.1rem .3rem;border-radius:3px;font-size:.9em}
+</style>
+</head>
+<body>
+
+<h1>Signify Accounts × Business Registry</h1>
+<p style="color:#666;font-size:.9rem">2026-04-22 · Viktor analysis · Source: Downloads/სიგნიფაი/</p>
+
+<div class="ep0">EP0: 9/10 (O) — owner direct task, disk merge executed, percentages disk-gated.</div>
+
+<h2>ძირითადი მაჩვენებლები</h2>
+
+<div class="grid">
+<div class="card"><div class="metric-big">23,645</div><div class="metric-label">Signify Accounts total</div></div>
+<div class="card"><div class="metric-big">1,920</div><div class="metric-label">Matched to registry</div></div>
+<div class="card"><div class="metric-big">277</div><div class="metric-label">Unique Large clients</div></div>
+<div class="card"><div class="metric-big">499</div><div class="metric-label">Unique Medium clients</div></div>
+</div>
+
+<h2>Market Penetration</h2>
+
+<div class="card">
+<div class="bar-container"><div class="bar-label">მსხვილი ბიზნესი (277 / 613): 45.2%</div><div class="bar-outer"><div class="bar-inner" style="width: 45.18760195758564%"></div></div></div>
+<div class="bar-container"><div class="bar-label">საშუალო ბიზნესი (499 / 2408): 20.7%</div><div class="bar-outer"><div class="bar-inner" style="width: 20.72259136212625%"></div></div></div>
+</div>
+
+<h2>Account Classification</h2>
+
+<table>
+<tr><th>Category</th><th>Count</th><th>% of Accounts</th></tr>
+<tr><td><span class="tag tag-large">LARGE</span></td><td>1,072</td><td>4.5%</td></tr>
+<tr><td><span class="tag tag-medium">MEDIUM</span></td><td>848</td><td>3.6%</td></tr>
+<tr><td><span class="tag tag-small">SMALL / UNLISTED</span> <small>(has Tax, not in L/M registry)</small></td><td>933</td><td>3.9%</td></tr>
+<tr><td><span class="tag tag-personal">PERSONAL / NO-ID</span> <small>(no Tax Code — likely personal user)</small></td><td>20,792</td><td>87.9%</td></tr>
+</table>
+
+<h2>Match Method Breakdown</h2>
+
+<table>
+<tr><th>Method</th><th>Count</th></tr>
+<tr><td>Exact Tax ID match</td><td>392</td></tr>
+<tr><td>Fuzzy Name match (≥88 token_set_ratio)</td><td>1,528</td></tr>
+<tr><td>No match</td><td>21,725</td></tr>
+</table>
+
+<h2>Answers to Owner's Questions</h2>
+
+<div class="card">
+<p><strong>Q1. მსხვილი ბიზნესიდან რამდენი/პროცენტი ათვისებული:</strong><br>
+<span class="metric-big">277</span> / 613 = <strong>45.2%</strong></p>
+
+<p><strong>Q2. საშუალო ბიზნესიდან რამდენი/პროცენტი ათვისებული:</strong><br>
+<span class="metric-big">499</span> / 2408 = <strong>20.7%</strong></p>
+
+<p><strong>Q3. არც მსხვილ, არც საშუალოს ეკუთვნის (სავარაუდოდ მცირე):</strong><br>
+<span class="metric-big">933</span> account (has Tax Code, არ ფიქსირდება L/M registry-ში)<br>
+<em style="color:#666">+ 20,792 account personal/no-ID (Tax Code null) — ამ ნაწილს owner-ის rule-ით პერსონალად ვთვლი</em></p>
+</div>
+
+<h2>Files</h2>
+<table>
+<tr><th>File</th><th>Purpose</th></tr>
+<tr><td><code>2026-04-22 Signify Accounts Registry Merge by Viktor.xlsx</code></td><td>Unified (all 23,645 + registry metadata) + Summary + Matched Clients + Small/Unlisted — 4 sheets</td></tr>
+<tr><td><code>2026-04-22 Signify Accounts Registry Merge by Viktor.html</code></td><td>This dashboard</td></tr>
+</table>
+
+<h2>Op Note</h2>
+<ul>
+<li><strong>Match discipline:</strong> Pass 1 exact Tax Code (after digit-only normalization) → Pass 2 fuzzy name (token_set_ratio ≥88), Georgian-aware normalization (strip შპს/სს/ltd/quotes, lower-case).</li>
+<li><strong>Unlisted business:</strong> 933 account has Tax Code but isn't in Large OR Medium registry. These are likely <strong>small businesses</strong> — registry only covers L+M by default. Could enlarge registry with small-business export if needed.</li>
+<li><strong>Fuzzy threshold 88:</strong> conservative, reduces false positives. Lower threshold = more matches but more noise. Can rerun at 80 if needed.</li>
+<li><strong>Multi-account dedupe:</strong> Unique L/M counts dedupe by TAX ID — if 3 accounts share same company tax, counted once.</li>
+<li><strong>Personal/No-ID bucket:</strong> per owner directive "Tax Code missing = personal user, not client." Excel still contains full row; HTML dashboard shows count separately.</li>
+</ul>
+
+</body>
+</html>
