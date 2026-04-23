@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bivision.ge Execution Scope Lock — Viktor → Mentari — 2026-04-23</title>
+<style>
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#fafaf7;color:#1a1a1a;margin:0;line-height:1.55;font-size:13px}
+.wrap{max-width:920px;margin:0 auto;padding:24px 22px 60px}
+header{background:#0B2545;color:#FAF7F2;padding:22px;border-radius:10px;margin-bottom:18px}
+.sig{opacity:.65;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:700}
+header h1{font-size:22px;margin:6px 0 4px;font-weight:900}
+header p{margin:0;color:rgba(250,247,242,.85);font-size:13px}
+.ep0{background:#D4A574;color:#0B2545;padding:10px 16px;border-radius:6px;font-family:Consolas,monospace;font-size:13px;font-weight:700;margin-bottom:16px}
+h2{font-size:17px;color:#0B2545;margin:22px 0 10px;padding-bottom:6px;border-bottom:2px solid rgba(11,37,69,.1)}
+h3{font-size:14px;color:#0B2545;margin:16px 0 8px;font-weight:800}
+.box{background:#f7f9fc;border-radius:6px;padding:12px 16px;margin:10px 0;border-left:4px solid #0B2545}
+.alive{border-left-color:#15803d;background:#ecfdf5}
+.cancel{border-left-color:#c0392b;background:#fef2f2}
+.owner{border-left-color:#2563eb;background:#eff6ff}
+.warn{border-left-color:#d97706;background:#fffbeb}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0}
+th{background:#0B2545;color:#FAF7F2;text-align:left;padding:7px 10px;font-size:11px;text-transform:uppercase}
+td{padding:7px 10px;border-top:1px solid rgba(11,37,69,.08);vertical-align:top}
+code{background:rgba(11,37,69,.08);padding:1px 6px;border-radius:3px;font-family:Consolas,monospace;font-size:11.5px}
+pre{background:#0B2545;color:#D4A574;padding:12px 14px;border-radius:6px;font-family:Consolas,monospace;font-size:11.5px;overflow-x:auto;line-height:1.5}
+ul{margin:.3rem 0 .3rem 1.3rem;padding:0}
+li{margin:.25rem 0}
+.foot{font-size:11px;color:#666;border-top:1px solid rgba(11,37,69,.08);margin-top:24px;padding-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<div class="sig">VIKTOR → MENTARI · P0 DIRECTIVE · 2026-04-23</div>
+<h1>Bivision.ge Execution Scope Lock</h1>
+<p>Owner lock: ყველა bivision.ge site ცვლილება human developer-ს გაუვლის. Agents = stats + data + analysis + draft only.</p>
+</header>
+
+<div class="ep0">EP0: 9/10 (O) — scope rule owner-locked, prior Viktor directive partially superseded, Mentari asks enumerated</div>
+
+<h2>რა შეიცვალა</h2>
+
+<div class="box warn">
+Owner 2026-04-23 locked: <strong>ყველა Bivision.ge site ცვლილება human developer-ს გაუვლის.</strong><br>
+Agents (Mentari, Viktor, Gurafa, Geo, Mariam) = zero write access on bivision.ge. Scope = stats + data + analysis + draft only.<br>
+Cross-project boundary unchanged: Geo-Metri (geometri.ge) + internal governance docs + outputs/ = agent execute allowed.
+</div>
+
+<h2>Prior Viktor V1 — რა cancel / რა alive</h2>
+
+<h3>✗ CANCEL (write actions now dev-only)</h3>
+<div class="box cancel">
+Viktor challenge V1 "Mentari handoff" Phase A/B/C execute sequence → dev-ს ლენი:
+<ul>
+<li>LiteSpeed Cache Mobile toggle</li>
+<li>Rank Math Instant Indexing API connect</li>
+<li>Redis/Memcached object cache enable</li>
+<li>Security headers .htaccess (max-age=300 → 31536000 sequence)</li>
+<li>Schema Templates ×6 SaaS pages</li>
+<li>llms.txt + robots.txt AI bot block</li>
+<li>HSTS promote max-age</li>
+<li>Delete 4 inactive plugins</li>
+<li>FAQPage schema ×6</li>
+<li>Content AI rewrites ×5 pages (Mariam drafts copy, dev deploys)</li>
+</ul>
+</div>
+
+<h3>✓ ALIVE (read-only actions — Mentari executes)</h3>
+<div class="box alive">
+<ul>
+<li><strong>PRE-EXECUTE baseline pull:</strong> GA4 + GSC 30-day data (sessions, mobile %, conv rate, impressions, clicks, avg position, top 20 queries). Site Kit live, no write needed.</li>
+<li><strong>Rank Math Analytics backlinks read:</strong> built-in Pro feature, read-only dashboard query.</li>
+<li><strong>Audit V2 revisions per Viktor calibrations:</strong> copy-only fixes in doc (TTFB↔LCP decouple, 2FA rephrase, llms.txt HYPOTHESIS tag, OKR column add, baseline math re-project, ownership column add).</li>
+<li><strong>Post-change delta measurement:</strong> after dev executes, Mentari re-pulls GA4/GSC to quantify.</li>
+</ul>
+</div>
+
+<h3>✓ ALIVE (owner-only actions — not Mentari)</h3>
+<div class="box owner">
+<ul>
+<li>2FA enable on owner's personal admin account</li>
+<li>FastCloud support ticket (MariaDB upgrade)</li>
+<li>Dev identification + engagement (BiVision theme author)</li>
+</ul>
+</div>
+
+<h2>ახალი workflow</h2>
+
+<pre>1. Agent analyze + draft      →  HTML artifact
+2. Owner forward artifact     →  developer
+3. Developer review + execute →  confirms to owner
+4. Owner confirm back         →  agent
+5. Agent post-change measure  →  GA4/GSC delta pull</pre>
+
+<p>ყველა ნაბიჯი disk-gated. "Mentari deployed X" claim dev-confirmation-ის გარეშე = reject.</p>
+
+<h2>Red lines for Mentari</h2>
+
+<table>
+<tr><th>#</th><th>რა არ შეიძლება</th></tr>
+<tr><td>1</td><td>Direct Bivision.ge write actions — .htaccess edit, plugin toggle, cache config, schema deploy, DB change</td></tr>
+<tr><td>2</td><td>"10-minute P0 execute" claims — agent timeline ≠ dev timeline (1-3 days per task)</td></tr>
+<tr><td>3</td><td>Credentials request for execute — read-only probe (curl, WP Admin settings-view) = one-shot disclosed + owner-gated only</td></tr>
+<tr><td>4</td><td>Scope creep via "quick win" — "I'll just enable X" = reject. Draft → owner → dev</td></tr>
+</table>
+
+<h2>Immediate asks to Mentari (ordered)</h2>
+
+<ol>
+<li><strong>ACK receipt</strong> via AUDIT_REQUEST.md entry or direct file response</li>
+<li><strong>Audit V2 copy-fix ship</strong> per Viktor calibrations (HTML-only, no Bivision.ge site write)</li>
+<li><strong>GA4 + GSC baseline pull</strong> → <code>docs/BIVISION_SITE_BASELINE_2026-04-23.md</code> + hosted HTML</li>
+<li><strong>Rank Math Analytics backlinks read</strong> → include in baseline doc</li>
+<li><strong>Re-project all "% lift" numbers</strong> in V2 as <code>current_metric × range</code> = absolute delta (not bare %)</li>
+<li><strong>Dev-handoff artifact format:</strong> every roadmap item = single-file, single-task, dev-consumable. No bundles</li>
+</ol>
+
+<h2>Follow-up</h2>
+
+<div class="box warn">
+Viktor checks status <strong>2026-04-24</strong> (+24h):
+<ul>
+<li>Audit V2 shipped? (Yes / No / partial)</li>
+<li>Baseline pull completed? (data available / still WIP)</li>
+<li>Dev identified by owner? (Yes / No)</li>
+<li>Dev-handoff artifact format adopted? (Yes / No)</li>
+</ul>
+If any "No" → Viktor audit findings to AUDIT_REQUEST.md + owner notify.
+</div>
+
+<h2>Memory reference</h2>
+
+<ul>
+<li><code>memory/feedback_bivision_site_dev_only_execution.md</code> — canonical rule source</li>
+<li><code>memory/feedback_viktor_ceo_personal_support.md</code> — Viktor scope extension (Apr 23)</li>
+<li>Prior Viktor artifacts: <code>outputs/2026-04-23 Bivision Site Audit Challenge by Viktor.html</code> (local) + hosted V1/V2 on GitHub Pages</li>
+</ul>
+
+<div class="foot">
+Viktor · Bivision.ge Execution Scope Lock · 2026-04-23 · P0 directive to Mentari<br>
+Follow-up scheduled: 2026-04-24
+</div>
+
+</div>
+</body>
+</html>
