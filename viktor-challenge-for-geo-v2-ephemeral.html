@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Technical Peer Review — Bivision Site Audit (for Geo)</title>
+<style>
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#fafaf7;color:#1a1a1a;margin:0;line-height:1.55;font-size:13px}
+.wrap{max-width:920px;margin:0 auto;padding:24px 22px 60px}
+header{background:#1e3a5f;color:#FAF7F2;padding:22px;border-radius:10px;margin-bottom:18px}
+header .sig{opacity:.65;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:700}
+header h1{font-size:21px;margin:6px 0 4px;font-weight:900}
+header p{margin:0;color:rgba(250,247,242,.85);font-size:12.5px}
+.ephemeral{background:#ffe8cc;border:2px dashed #e67e22;color:#7a3e00;padding:10px 14px;border-radius:6px;margin:12px 0;font-size:12.5px;font-weight:600}
+h2{font-size:16px;color:#1e3a5f;margin:22px 0 8px;padding-bottom:4px;border-bottom:2px solid rgba(30,58,95,.12)}
+h3{font-size:13.5px;color:#1e3a5f;margin:14px 0 6px;font-weight:800}
+.box{background:#f7f9fc;border-radius:6px;padding:10px 14px;margin:8px 0;border-left:4px solid #1e3a5f}
+.ok{border-left-color:#15803d;background:#ecfdf5}
+.note{border-left-color:#d97706;background:#fffbeb}
+.critical{border-left-color:#c0392b;background:#fef2f2}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0}
+th{background:#1e3a5f;color:#FAF7F2;text-align:left;padding:6px 10px;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+td{padding:6px 10px;border-top:1px solid rgba(30,58,95,.08);vertical-align:top}
+code{background:rgba(30,58,95,.08);padding:1px 6px;border-radius:3px;font-family:Consolas,monospace;font-size:11.5px}
+pre{background:#0B2545;color:#D4A574;padding:10px 12px;border-radius:5px;font-family:Consolas,monospace;font-size:11.5px;overflow-x:auto;line-height:1.5}
+ul{margin:.3rem 0 .3rem 1.2rem;padding:0}
+li{margin:.2rem 0}
+.foot{font-size:11px;color:#666;border-top:1px solid rgba(30,58,95,.08);margin-top:24px;padding-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<div class="sig">TECHNICAL PEER REVIEW · 2026-04-23</div>
+<h1>Bivision Site Audit — Technical Calibration Notes</h1>
+<p>From: Viktor (Bivision audit layer) · To: Geo (peer technical review) · Tone: informational, not hierarchical</p>
+</header>
+
+<div class="ephemeral">
+⏱ <strong>EPHEMERAL:</strong> This note is shared for technical calibration and will be removed within 2 hours of owner confirmation. No storage, no circulation beyond direct peer handoff.
+</div>
+
+<div class="box ok">
+<strong>Context:</strong> Audit (<code>bivision-audit-2026-04-23.html</code>) is technically solid — stack-verified data, SWOT scaffolding, copy-paste security block, rollback procedures. This note covers 4 surgical calibrations and 1 praise item, plus the real impact assessment of the methodology. No OKR or org-scope commentary — those sit on Bivision's side, not on your review.
+</div>
+
+<h2>1. Praise (keep exactly as-is)</h2>
+
+<div class="box ok">
+<strong>HSTS rollback sequence</strong> (max-age=300 test → 31536000 promote after 24h) is the textbook-correct approach. Security block with rollback inline + testing procedure via <code>securityheaders.com</code> + <code>curl -sI</code> = ship-ready. This is the right pattern to reuse across the fleet.
+</div>
+
+<h2>2. Technical calibrations (surgical)</h2>
+
+<h3>2.1 TTFB diagnosis — mixed signal</h3>
+<div class="box note">
+Audit attributes TTFB 1.35s partly to <em>"LiteSpeed Cache Mobile OFF"</em>. Calibration: Mobile Cache affects <strong>render/LCP</strong>, not TTFB (TTFB = server first-byte time, happens before cache layer return). Your P1 Redis/Memcached recommendation correctly targets TTFB. Suggest decoupling the two in the copy:
+<ul>
+<li>TTFB root cause → PHP opcache + object cache (Redis/Memcached) + DB (MariaDB upgrade)</li>
+<li>LCP mobile gap → LS Cache Mobile ON + QUIC.cloud CDN</li>
+</ul>
+Cleaner diagnostic chain, same actions.
+</div>
+
+<h3>2.2 2FA threat framing</h3>
+<div class="box note">
+Line: <em>"info@bivision.ge is publicly visible → brute-force risk high"</em>. Technical nuance: <code>info@bivision.ge</code> is a contact address — WordPress admin login takes <strong>WP username</strong>, not email. Probe: <code>curl -s https://bivision.ge/?author=1</code> exposes real username via redirect. That's the actual enumerable surface, and the real case for 2FA. Suggest rephrasing to the author-enumeration vector — same recommendation, sharper logic.
+</div>
+
+<h3>2.3 Baseline-math gap (biggest structural note)</h3>
+<div class="box note">
+Projections like <em>"+5-15% mobile conv"</em>, <em>"+10-30% organic ranking lift"</em>, <em>"+5-15% AI-citation referrals"</em> cite generic benchmarks (Unbounce, Portent) but are not anchored to current Bivision numbers. Without current-state conversion %, organic sessions, and MQL count, the deltas can't be sized in absolute impact. Suggestion:
+<ul>
+<li>Pull GA4 (last 30 day): sessions, mobile share, conversion rate</li>
+<li>Pull GSC (last 28 day): impressions, clicks, avg position, top 20 queries</li>
+<li>Rank Math Analytics: backlink count, referring domains</li>
+</ul>
+Then restate projection as <code>current_metric × range</code>, not bare %. Changes nothing about the recommendations — only how the impact is sized. Rank Math Analytics is already connected per your stack inventory, so this is a 30-minute pull, not a new dependency.
+</div>
+
+<h3>2.4 "llms.txt +5-15% AI-citation referrals"</h3>
+<div class="box note">
+The channel is real and emerging, but the number range is speculative for the Georgian B2B BI market (no measured Perplexity/ChatGPT referral baseline exists publicly). Suggest flagging the range as <code>[HYPOTHESIS]</code> rather than projecting it alongside benchmarked items. Ship llms.txt anyway — the cost is trivial and the positioning is correct.
+</div>
+
+<h2>3. Suggestions to add</h2>
+
+<table>
+<tr><th>Item</th><th>Why</th></tr>
+<tr><td>GA4 + GSC 30-day baseline section</td><td>Precondition for every "% lift" projection in the roadmap. 30 min with Site Kit live.</td></tr>
+<tr><td>CLS score (PageSpeed Insights)</td><td>Core Web Vitals section covers LCP + INP but not CLS. Custom WP themes often ship with layout shifts on hero fold. 1 number to add.</td></tr>
+<tr><td>Backlink count (Rank Math Analytics)</td><td>Audit states "no SEO tool access" but Rank Math Pro Analytics has backlinks built-in. Probably sufficient before paid Ahrefs/Semrush.</td></tr>
+<tr><td>Ownership column per action row</td><td>Current roadmap mixes owner actions (FastCloud ticket, 2FA) with agent actions (code edits). Column split = cleaner handoff.</td></tr>
+</table>
+
+<h2>4. Real impact assessment of methodology (owner question)</h2>
+
+<p>The owner asked what concrete impact came from (a) cPanel investigation and (b) the HTML build. Honest ranking:</p>
+
+<h3>a) cPanel scope — .htaccess + File Manager + phpMyAdmin</h3>
+
+<table>
+<tr><th>Activity</th><th>Real impact</th><th>Why</th></tr>
+<tr><td><code>.htaccess</code> read</td><td><strong>HIGH</strong></td><td>Revealed LiteSpeed rules, GZIP, browser caching present + security headers missing. Directly produced the copy-paste fix block. Without this read, the headers would have been recommended blindly without knowing what's already there.</td></tr>
+<tr><td>File Manager structure</td><td><strong>LOW</strong></td><td>Inventory is nice-to-know but not action-generating. Didn't find theme bugs, orphan files, or backup gaps. Skippable on next audit unless a specific suspicion drives it.</td></tr>
+<tr><td>phpMyAdmin table stats</td><td><strong>LOW-MED</strong></td><td>Useful only if followed up with slow-query analysis or DB size anomaly. As inventory alone = low. MariaDB upgrade recommendation came from WP Site Health, not phpMyAdmin directly.</td></tr>
+</table>
+
+<h3>b) HTML build — SWOT + technical sections + priority roadmap</h3>
+
+<table>
+<tr><th>Component</th><th>Real impact</th><th>Why</th></tr>
+<tr><td>SWOT</td><td><strong>MED</strong></td><td>Strengths/Weaknesses generated 2 real action items (2FA, security headers). Opportunities/Threats mostly rephrase. Useful for owner-readable summary, not for engineering handoff.</td></tr>
+<tr><td>Stack inventory tables</td><td><strong>HIGH (one-time)</strong></td><td>Baseline for future diff audits. 30-day re-audit measures delta. Without re-audit cadence planned = single-use documentation.</td></tr>
+<tr><td>Priority roadmap</td><td><strong>HIGH IF executed, ZERO if shelved</strong></td><td>The roadmap is the deliverable. Execute-gate is everything. 2FA + Cache Mobile + Instant Indexing are real wins; the rest is tech hygiene with marginal lift on low-traffic site until content + backlinks grow.</td></tr>
+<tr><td>Security headers copy-paste block</td><td><strong>HIGH</strong></td><td>Ship-ready artifact. One of the highest-leverage deliverables in the document.</td></tr>
+<tr><td>AI-friendly SEO section</td><td><strong>MED</strong></td><td>Positions for emerging channel; concrete on llms.txt + robots.txt (HIGH) + schema (MED). Entity richness + E-E-A-T = generic playbook, not site-specific diagnostic.</td></tr>
+</table>
+
+<h3>Net honest verdict</h3>
+
+<div class="box">
+The audit's highest-leverage outputs are <strong>the <code>.htaccess</code> read + security headers block + 2FA gap identification + Cache Mobile toggle</strong>. These four items alone justify the work. SWOT and inventory are scaffolding — useful to structure, not the value core. The <em>projected percentage lifts</em> are the weakest part because they're applied to an unmeasured current baseline, so the absolute impact can't be sized. A 30-minute GA4 + GSC pull would upgrade the doc from "directionally correct" to "quantified decision-support."
+</div>
+
+<h2>5. On the prior Viktor note (for your awareness)</h2>
+
+<div class="box critical">
+An earlier Viktor memo (local, not shared) made three claims that the full-document read did not support:
+<ul>
+<li>"Author-less document" — incorrect; line 427 names the audit author explicitly</li>
+<li>"HSTS rollback missing" — incorrect; max-age=300 test-first is documented at line 320</li>
+<li>"Disk 64% manufactured problem" — overdrawn; the threat framing ("3 months to growth exhaustion") is reasonable</li>
+</ul>
+Root cause on Viktor's side: relied on a web-fetch summary instead of full-document disk read. Calibration rule updated on Viktor's side: WebFetch summary ≠ challenge-claim basis. Noted here only to keep the peer review honest — the prior errors came from Viktor, not from any issue in your audit.
+</div>
+
+<div class="foot">
+Viktor · Technical peer review · 2026-04-23 · ephemeral (2h auto-delete intent)<br>
+No OKR framing, no org-scope commentary — those live outside your lane.
+</div>
+
+</div>
+</body>
+</html>
