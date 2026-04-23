@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mariam Conversation Brief — Apr 23 v2</title>
+<title>Mariam-სთან შეხვედრის შეჯამება — 23 აპრილი</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Segoe UI', 'BPG Nino Mkhedruli', 'Sylfaen', Arial, sans-serif; background: #faf9f4; color: #1a1a1a; line-height: 1.65; max-width: 1000px; margin: 0 auto; padding: 24px 20px; font-size: 15px; }
+body { font-family: 'Segoe UI', 'BPG Nino Mkhedruli', 'Sylfaen', Arial, sans-serif; background: #faf9f4; color: #1a1a1a; line-height: 1.7; max-width: 1000px; margin: 0 auto; padding: 24px 20px; font-size: 15px; }
 header { background: linear-gradient(135deg, #1a2a44 0%, #2a3e5a 100%); color: #fff; padding: 26px; border-radius: 10px; margin-bottom: 18px; border-left: 6px solid #c9a227; }
 header h1 { font-size: 22px; color: #ffd966; margin-bottom: 6px; }
 header .sub { color: #d8dee9; font-size: 13px; }
-section { background: #fff; border: 1px solid #e5e2d9; border-radius: 10px; padding: 20px 24px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-h2 { font-size: 17px; color: #1a2a44; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 2px solid #c9a227; }
-h3 { font-size: 14px; margin: 12px 0 6px 0; color: #8b6914; text-transform: uppercase; letter-spacing: 0.5px; }
+section { background: #fff; border: 1px solid #e5e2d9; border-radius: 10px; padding: 22px 26px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+h2 { font-size: 17px; color: #1a2a44; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 2px solid #c9a227; }
+h3 { font-size: 14px; margin: 14px 0 6px 0; color: #8b6914; text-transform: uppercase; letter-spacing: 0.5px; }
 table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 14px; }
 th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #e5e2d9; vertical-align: top; }
 th { background: #faf7ee; color: #8b6914; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -25,170 +25,203 @@ li { margin: 5px 0; }
 .l { color: #555; }
 .good { background: #e3f1dc; border-left: 3px solid #2d7a3e; padding: 10px 14px; border-radius: 4px; margin: 8px 0; font-size: 14px; }
 .bad { background: #fce9d6; border-left: 3px solid #c07030; padding: 10px 14px; border-radius: 4px; margin: 8px 0; font-size: 14px; }
-.origin { background: #eff5fa; border-left: 3px solid #5c8cc4; padding: 10px 14px; border-radius: 4px; margin: 8px 0; font-size: 13.5px; color: #2a4a6a; }
+.info { background: #eff5fa; border-left: 3px solid #5c8cc4; padding: 10px 14px; border-radius: 4px; margin: 8px 0; font-size: 14px; color: #2a4a6a; }
+.mariam { background: #f0eaf5; border-left: 3px solid #9b7ec8; padding: 12px 16px; border-radius: 4px; margin: 10px 0; font-size: 14.5px; }
+.mariam strong { color: #5a3a8a; }
 .ceo-eval { background: #1a2a44; color: #fff; padding: 18px 22px; border-radius: 8px; margin: 12px 0; border-left: 5px solid #ffd966; }
 .ceo-eval h3 { color: #ffd966; font-size: 16px; margin-bottom: 10px; text-transform: none; letter-spacing: 0; }
 .ceo-eval p { color: #e8e6e1; margin: 8px 0; line-height: 1.8; }
-.ceo-eval .score { font-family: 'JetBrains Mono', monospace; font-size: 36px; color: #c45c5c; font-weight: 700; margin: 6px 0; }
+.ceo-eval .score { font-family: 'JetBrains Mono', monospace; font-size: 36px; color: #c9a227; font-weight: 700; margin: 6px 0; }
 .post-row { border-bottom: 1px solid #e5e2d9; padding: 8px 0; font-size: 14px; }
 .post-row strong { color: #1a2a44; }
 .post-row .result { font-family: 'JetBrains Mono', monospace; font-size: 13px; padding: 1px 6px; border-radius: 3px; margin-left: 8px; }
 .post-row .win { background: #d8ecd0; color: #2a5a2a; }
 .post-row .weak { background: #fdf0d0; color: #8b6914; }
 .post-row .dead { background: #fce9d6; color: #8b3d14; }
+.plan-row { padding: 10px 14px; background: #faf7ee; border-radius: 6px; margin: 8px 0; border-left: 3px solid #c9a227; font-size: 14.5px; }
+.plan-row strong { color: #1a2a44; }
+.plan-row .owner { font-size: 12px; color: #8b6914; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-left: 6px; padding: 1px 6px; background: #fff8e0; border-radius: 3px; }
 footer { background: #1a2a44; color: #fff; padding: 14px 20px; border-radius: 10px; margin-top: 18px; font-size: 12.5px; }
 a { color: #8b6914; }
-.ceo-eval a { color: #ffd966; }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>🎯 Mariam Conversation Brief — 2026-04-23 v2</h1>
-  <div class="sub">Mentari • Apr 23 LinkedIn live baseline + OKR v2 alignment + Mariam video copy assessment + CEO-level 2-week eval</div>
+  <h1>🎯 Mariam-სთან შეხვედრის შეჯამება — 23 აპრილი</h1>
+  <div class="sub">Mentari • 2026-04-23 • Gela + Mariam შეხვედრის ფიქსაცია + მომავალი კვირის გეგმა</div>
 </header>
 
 <section>
-  <h2>💰 Marketing Salary</h2>
-  <div class="origin">
-    Marketing(salary): <strong>3,189₾/თვე</strong> (83% of total marketing cost).<br>
+  <h2>📋 შეხვედრის მოკლე ქრონოლოგია</h2>
+  <ol>
+    <li>Gela-მ მოისმინა რას აპირებს Mariam შემდეგ პერიოდში (კალენდრის ვალდებულება ცხადი არ იყო)</li>
+    <li>Mariam-მა გაუგზავნა 2 Canva დიზაინის ლინკი (template-ები, ელოდება Gela-ს feedback-ს)</li>
+    <li>Gela-მ აჩვენა Mentari-ს dashboard + მასზე გამოტანილი ინფორმაცია. Mariam-ის ნდობა ანგარიშებზე ჯერ სრული არ არის, თანდათან დაიხვეწება.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>💬 Mariam-ის მიერ გაცხადებული ვალდებულებები</h2>
+
+  <div class="mariam">
+    <strong>1. მესამე ვიდეოს ტექსტი</strong><br>
+    ამუშავებს + საბოლოო სახეს აძლევს. მზადდება გადასაღებად.
+  </div>
+
+  <div class="mariam">
+    <strong>2. ზოგადი ელფოსტის კამპანია</strong><br>
+    აწყობილია. გადასახედი.
+  </div>
+
+  <div class="mariam">
+    <strong>3. ზოგადი კარუსელი (LinkedIn/FB carousel)</strong><br>
+    Canva-ზე მზადებულია. Gela-ს feedback-ს ელოდება.
+  </div>
+
+  <div class="info">
+    <strong>Canva template-ები (pending review):</strong><br>
+    <a href="https://canva.link/566tx94l2fa4352">https://canva.link/566tx94l2fa4352</a> → Design ID <code>DAHHrUkqqG8</code><br>
+    <a href="https://canva.link/dk6q1wmmdxccvjr">https://canva.link/dk6q1wmmdxccvjr</a> → Design ID <code>DAHHrWGuLFg</code><br>
+    <em>Mentari Canva-ს ღიად ნახვას ვერ ახერხებს (auth საჭირო). Gela-ს review + screenshot/share-OK ვერსია → Mentari რევიუი.</em>
+  </div>
+</section>
+
+<section>
+  <h2>📊 23 აპრილის ფაქტები (LinkedIn Company Admin — მარტი 23 – აპრილი 21)</h2>
+  <table>
+    <tr><th>Metric</th><th>Actual</th><th>Target</th><th>Gap</th></tr>
+    <tr><td>Post frequency</td><td class="h">1 / კვირა</td><td>3-4 / კვირა</td><td class="h">−72%</td></tr>
+    <tr><td>Reel</td><td class="h">0 (54 დღე 23 თებერვლიდან)</td><td>კვირაში 2</td><td class="h">−100%</td></tr>
+    <tr><td>Engagement rate</td><td class="h">1.25%</td><td>3% (industry med)</td><td class="h">−58%</td></tr>
+    <tr><td>Followers</td><td class="m">844 (+6 / 30 დღე, 0.7%)</td><td>ზრდა</td><td class="m">ნელი</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>💰 Marketing ხარჯი</h2>
+  <div class="info">
+    Marketing(salary): <strong>3,189₾/თვე</strong> (მარკეტინგის საერთო ხარჯის 83%).<br>
     Ad spend 69₾/თვე · Tools ~586₾/თვე · სულ ~3,844₾/თვე.
   </div>
 </section>
 
 <section>
-  <h2>📊 Apr 23 Baseline (LinkedIn Company Admin — Mar 23-Apr 21)</h2>
-  <table>
-    <tr><th>Metric</th><th>Actual</th><th>OKR v2 Target</th><th>Gap</th></tr>
-    <tr><td>Post frequency</td><td class="h">1/კვირა</td><td>3-4/კვირა</td><td class="h">−72%</td></tr>
-    <tr><td>Video / Reels</td><td class="h">0 (Feb 23-იდან 54 დღე)</td><td>≥2/კვირა</td><td class="h">−100%</td></tr>
-    <tr><td>Engagement rate</td><td class="h">1.25%</td><td>3% industry med</td><td class="h">−58%</td></tr>
-    <tr><td>Followers</td><td class="m">844 (+6/30d, 0.7%)</td><td>growth</td><td class="m">slow</td></tr>
-    <tr><td>Cost / post (fully-loaded)</td><td class="h">~800 ₾</td><td>ROI positive</td><td class="h">0 digital lead</td></tr>
-  </table>
+  <h2>🟡 რა ვიპოვეთ post-ებიდან (ბოლო 90 დღე)</h2>
+  <div class="post-row"><strong>23 თებერვლის Reel</strong> <span class="result win">26K reach, 40 like</span> — ✅ მუშა ფორმულა</div>
+  <div class="post-row"><strong>23 მარტის Photo (Balance პარტნიორობა)</strong> <span class="result win">13K reach</span> — ✅ პარტნიორის ისტორია = მეორე მომგებიანი ფორმა</div>
+  <div class="post-row"><strong>31 მარტის ტექსტური პოსტი</strong> <span class="result dead">29 reach</span> — ⚠️ text-only ფორმატი = ალგორითმი ვერ ხედავს</div>
+  <div class="post-row"><strong>14 აპრილის სამშენებლო სტატია</strong> <span class="result weak">100 imp, 3 click, 4% eng</span> — 🟡 თემის მიმართულება სწორია, ფორმატი გასაძლიერებელი (იგივე თემა Reel-ად გაცილებით მეტ reach-ს მოიტანს)</div>
+  <div class="post-row"><strong>14 აპრილის სურათი "Qlik + AI"</strong> <span class="result dead">metrics არ ფიქსირდება</span> — ⚠️ ინგლისური-only, ტექნიკური, CTA არ აქვს</div>
+  <div class="post-row"><strong>90 დღის შეჯამება:</strong> 2 მომგებიანი ფორმა გამოვავლინეთ (Reel + პარტნიორის photo) → ამ ფორმულების განმეორება = უმარტივესი გზა წინ</div>
 </section>
 
 <section>
-  <h2>🟡 Topic 1 — Reel format-ი მუშაობდა, ავაღოროთ</h2>
-  <div class="ask">
-    <strong>რაც მუშაობდა:</strong> Feb 23 Reel = 26K reach, 40 likes — ეს ჩვენი ყველაზე ძლიერი proof. Reel = format რომელსაც ალგორითმი აფასებს.<br><br>
-    <strong>Owner-ის კითხვა (ერთობლივად):</strong><br>
-    "Feb 23 Reel-ის წარმატების გამოცდილებით რა სჭირდება რომ 2/კვირა-ს ვიპოვოთ რიტმი? capacity საკითხი, topic idea, ან outsource — ერთად ვნახოთ რა ვარიანტებია."
+  <h2>📅 Mentari-ს რეკომენდაცია — მომავალი კვირის გეგმა (24–30 აპრილი)</h2>
+
+  <div class="plan-row">
+    <strong>1. Reel #1 — 23 თებერვლის ფორმულით</strong> <span class="owner">Mariam</span><br>
+    ვერტიკალის pain-ი (ენერგეტიკა/მედიცინა/სავაჭრო) + 1 ანონიმური ციფრი. Script ~3 სთ + production ~3 სთ. Ship 27 აპრილამდე.
+  </div>
+
+  <div class="plan-row">
+    <strong>2. Reel #2 — "ზოგადი ვიდეო" V3 ფინალიზებული</strong> <span class="owner">Mariam + Mentari + Gela</span><br>
+    Mariam-ის V3 ტექსტი + Mentari-ს საუკეთესო ვერსია (Fina/Oris/1C/Balance specificity + CTA) → Gela confirm რომელი ვერსია. Shoot 29 აპრილი.
+  </div>
+
+  <div class="plan-row">
+    <strong>3. პარტნიორის/კლიენტის ისტორია (Photo post)</strong> <span class="owner">Mariam + Gela</span><br>
+    23 მარტის Balance-ის მსგავსი. Gela confirm რომელი კლიენტი OK share (ICR Trade / Mardaleishvili / BiFinance-energy). Ship 28 აპრილი.
+  </div>
+
+  <div class="plan-row">
+    <strong>4. კონტენტის კალენდარი — 28 აპრილი – 11 მაისი</strong> <span class="owner">Mariam → Mentari review</span><br>
+    კვირაში 3-4 post (1 Reel + 1 photo/partner + 1-2 article/carousel). ხუთშაბათს (25 აპრილი) submit.
+  </div>
+
+  <div class="plan-row">
+    <strong>5. Canva template-ების review</strong> <span class="owner">Gela</span><br>
+    2 Canva ლინკის review + feedback Mariam-ს. Template-ები carousel-ისთვის = მომავალი post-ებისთვის საბაზო.
+  </div>
+
+  <div class="plan-row">
+    <strong>6. ელფოსტის კამპანია — review</strong> <span class="owner">Gela + Mentari</span><br>
+    Mariam-მა ზოგადი ელფოსტა ააწყო. Mentari გადახედავს (target audience, CTA, ICP match). Gela-ს approve → send 30 აპრილი.
+  </div>
+
+  <div class="plan-row">
+    <strong>7. Paid boost (Scenario B, 1,500₾/თვე) — Reel-ის გავრცელებისთვის</strong> <span class="owner">Gela გადაწყვეტილება</span><br>
+    <em>მარტივი ენით:</em> თუ Reel #1 organic reach კარგია (20K+), paid boost-ი 5-ჯერ მეტ ადამიანს აჩვენებს (100K+ reach). ინვესტიცია 1,500₾/თვე 2 კვირის test-ისთვის. Gate: რამდენი lead მოდის ამ 2 კვირაში (target: 3-5 lead).
   </div>
 </section>
 
 <section>
-  <h2>🟡 Topic 2 — Post performance — რა მუშაობს, რას ავაძლიეროთ</h2>
+  <h2>🤖 ხელოვნური ინტელექტით ვიდეოს შექმნა — სადაც შეგვიძლია დავეხმაროთ Mariam-ს</h2>
 
-  <h3>ბოლო 90 დღის post-ები (LinkedIn + FB)</h3>
-  <div class="post-row"><strong>Feb 23 Reel</strong> (format experiment) <span class="result win">26K reach, 40 likes</span> — ✅ winning formula</div>
-  <div class="post-row"><strong>Mar 23 Photo — Balance partnership</strong> <span class="result win">13K reach</span> — ✅ partner story = 2nd winning pattern</div>
-  <div class="post-row"><strong>Mar 31 Text post</strong> (generic) <span class="result dead">29 reach</span> — ⚠️ text-only format = low algorithm signal</div>
-  <div class="post-row"><strong>Apr 14 Mariam Article — "სამშენებლო პროექტების ფინანსების მართვა"</strong> <span class="result weak">100 imp, 3 clicks, 4% eng</span> — 🟡 vertical angle ✅ სწორი, reach-ი გასაზრდელია (format question)</div>
-  <div class="post-row"><strong>Apr 14 Gela Image — "Qlik Sense + Claude AI MCP"</strong> <span class="result dead">metrics not tracked</span> — ⚠️ English-only technical</div>
-  <div class="post-row"><strong>90 დღის summary:</strong> 2 winning format identified (Reel + partnership photo) → formula რეპლიკაცია გზაა.</div>
-
-  <div class="ask" style="margin-top:14px">
-    <strong>ერთობლივი კითხვა:</strong><br>
-    Feb 23 + Mar 23 წარმატების formula-ებით რა plan ავაგოთ რომ 2 მაისისთვის (OKR v2 review) ცოცხალი lead-ი მივიღოთ? Scenario B (1,500₾/თვე paid) Reel-ის ზურგს უკან — ვიფიქროთ?
+  <div class="info">
+    <strong>რატომ AI ვიდეო:</strong> Reel-ი 1 თვეში 1-მდე დავწიეთ → capacity bottleneck. AI-ით script + ხმა + ვიზუალი სწრაფად → production 3 საათიდან ~1 საათში ჩამოდის.
   </div>
 
-  <h3>3 realistic next step</h3>
+  <h3>ერთობლივი სამუშაო გზა (Mariam-isthvis შემოთავაზება)</h3>
   <ol>
-    <li><strong>1 Reel ამ კვირაში — Feb 23 formula-ით.</strong> Winning pattern უკვე ვიცით. Script ~3 საათი + production ~3 საათი. Topic: vertical pain (ენერგეტიკა/მედიცინა/რიტეილი), 1 anonymized ციფრით.</li>
-    <li><strong>1 Partner/Client story post — Balance-ის მსგავსი.</strong> Mar 23 Partnership post 13K reach = proof. ICR Trade / Mardaleishvili / BiFinance-energy anonymized ციფრი + visual — owner confirm რომელი partner OK share.</li>
-    <li><strong>Scenario B 1,500₾/თვე paid — Reel-ის ზურგს უკან.</strong> Organic Reel proof-ად → paid boost 5x reach multiplier. Apr 20 KPI v3 gate: CPA ≤1,000₾ narrow / ≤3,500₾ loaded. 2 კვირა test window.</li>
+    <li><strong>ტექსტი (Mentari + Claude):</strong> ვერტიკალის ტოპიკზე (ენერგეტიკა / მედიცინა / სავაჭრო) 60-90 წმ script — Mentari-ს template-იდან</li>
+    <li><strong>ქართული voice-over (ElevenLabs):</strong> AI ხმა ქართული მხარდაჭერით. ფასი: ~$5-22/თვე. ერთი voice → ყველა ვიდეოზე — Bivision-ის "ბრენდის ხმა"</li>
+    <li><strong>ვიზუალი (Canva Magic + motion graphics):</strong> Mariam უკვე Canva-ს ოსტატია. Canva Magic Studio-ს motion template-ები → 15-30 წამში slide-ი ცოცხლდება</li>
+    <li><strong>ასამბლეა (Canva Video):</strong> VO + slide + background music (royalty-free) → export</li>
+    <li><strong>ფინალური review (Mentari + Gela):</strong> ship-ამდე approve</li>
+  </ol>
+
+  <h3>ალტერნატივა — realtalk ვიდეო (authentic)</h3>
+  <div class="info">
+    Owner-ის თავდაპირველი გეგმა: თანამშრომლების ვიდეოში ჩართვა (ინგა / დათო / ლუკა — 1 ციტატი). Trust signal უფრო ძლიერი, ვიდრე AI ხმა. AI = fallback როდესაც team capacity არ არის. ორივე კომბინაცია: AI-generated B-roll + real employee 10-სეკუნდიანი cut = balanced.
+  </div>
+
+  <h3>ტულების ფასები (მთლიანი ~$30-50/თვე)</h3>
+  <ul>
+    <li>ElevenLabs (Georgian voice): $5-22/თვე</li>
+    <li>Canva Pro (Magic + Video): $15/თვე (უკვე გვაქვს?)</li>
+    <li>Optional: Descript / HeyGen რთული პროდუქციისთვის: $15-30/თვე</li>
+    <li>Claude Code / API Mentari-ს მხარდაჭერით: უკვე გვაქვს</li>
+  </ul>
+
+  <h3>რაც ამ კვირას ექსპერიმენტისთვის</h3>
+  <ol>
+    <li>ElevenLabs trial (უფასო) → ქართული ხმის ტესტი Mentari-ს V3 script-ზე</li>
+    <li>Canva Video template-ი → Mariam აგროვებს slide-ებს</li>
+    <li>Assembly + Gela preview → Ship 30 აპრილი</li>
   </ol>
 </section>
 
-<section>
-  <h2>🟢 Topic 3 — ვიდეოს ტექსტი V1 → V2 → V3 (progress ✅)</h2>
-
-  <div class="origin">
-    <strong>Version status (Apr 23 13:45):</strong> Mariam doc-ში უკვე 3 version — V1 (Apr 21), V2 (Apr 23 revised), V3 (product mini-video topic list). <strong>2 დღეში progress ჩანს ✅</strong>.<br>
-    <strong>Mutual clarification:</strong> employee survey-იდან real insight ვერ მოხვდა Mariam-მდე — ეს მიზეზი იყო solo draft-ის. მომდევნო round-ში insight delivery-ს გავასწორებთ.
-  </div>
-
-  <h3>V1 → V2 progress (4/10 → 5/10)</h3>
-  <ul>
-    <li>✅ Pacing tightened, fill compressed</li>
-    <li>✅ Concrete time metric added — "2-3 დღე → წამებში" (owner validate)</li>
-    <li>✅ Prescriptive framing — "რატომ + რა გააკეთო შემდეგ"</li>
-    <li>✅ Closing line strong — "არ ვყიდით რეპორტებს, გაძლევთ პასუხებს"</li>
-    <li>✅ Grammar/typo cleaned</li>
-    <li>🟡 გასაძლიერებელი V3-ში: Georgian ERP (Fina/Oris/1C/Balance), AI mention (Qlik+Claude MCP), client proof anonymized, CTA (bivision.ge/audit), employee voice (owner survey-იდან 1 ციტატი)</li>
-  </ul>
-
-  <h3>V3 direction ✅</h3>
-  <ul>
-    <li>Product mini-video topic list (BiFinance / BiRetail / BiStock / BiDebitors / BiAudit / BiMedical)</li>
-    <li>✅ Vertical-first approach = OKR v2 alignment (ზუსტად ის მიმართულება რაც გვჭირდება)</li>
-    <li>Next: თითოზე ცალკე 60-90 წამის script-ი — ერთობლივად ავაწყოთ template</li>
-  </ul>
-
-  <h3>V2 assessment — 5/10 (progress ✅)</h3>
-  <ul>
-    <li>✅ Pacing tighter, fill compressed</li>
-    <li>✅ Concrete time metric — "2-3 დღე → წამებში" (unverified, owner validate)</li>
-    <li>✅ Prescriptive framing — "რატომ + რა გააკეთო შემდეგ" (vs V1 descriptive-only)</li>
-    <li>✅ Closing line — "არ ვყიდით რეპორტებს, გაძლევთ პასუხებს" (cliché "ლამაზი dashboard" removed)</li>
-    <li>✅ Grammar/typo cleaned</li>
-    <li>🔴 Still: 0 Georgian ERP specificity, 0 AI mention, 0 client proof (anonymized-აც არა), 0 CTA, 0 employee voice, OKR v2 positioning absent</li>
-  </ul>
-
-  <h3>V3 assessment — direction ✅, execution pending</h3>
-  <ul>
-    <li>Product mini-video topic list (BiFinance / BiRetail / BiStock / BiDebitors / BiAudit / BiMedical)</li>
-    <li>✅ Vertical-first approach = OKR v2 alignment (vertical template strategy)</li>
-    <li>🔴 Copy ჯერ არ არის — თითოზე ცალკე script-ი სჭირდება</li>
-  </ul>
-
-  <h3>რა გასათვალისწინებელია (forward)</h3>
-  <ul>
-    <li>მოცემულობა: Reel format-ი მუშაობს (Feb 23 = 26K), text-only არა (Mar 31 = 29).</li>
-    <li>90 წამი-მდე video, ქართული-first, 1 anonymized proof metric MUST.</li>
-    <li>AI layer (Qlik+Claude MCP) explicit — competitive differentiator.</li>
-    <li>CTA: bivision.ge/audit (უფასო 30-წთ audit, 2 კვირა).</li>
-    <li>Employee voice — owner-ის personal survey-იდან 1 ციტატი ხელით ამოვირჩიოთ.</li>
-  </ul>
-
-  <div class="good" style="margin-top:12px">
-    <strong>საუკეთესო ვერსია — V2 voice + V3 direction + Mentari additions:</strong><br>
-    <a href="https://gshoina.github.io/bivision-shares/bivision-video-script-mentari-2026-04-23.html">https://gshoina.github.io/bivision-shares/bivision-video-script-mentari-2026-04-23.html</a><br>
-    V2-ის pacing + framing შენარჩუნებული. V3-ის vertical direction ჩაშენებული (BiFinance/BiMedical/BiRetail). დაემატა: Fina/Oris/1C/Balance ERP, Claude AI layer, anonymized proof placeholder, employee voice placeholder, CTA (bivision.ge/audit). 85-90 წამი, 7 scene.
-  </div>
-</section>
-
-<section>
-  <h2>✅ Keep / ❌ Drop Mariam scope</h2>
-  <div class="good">✅ Post execution workflow (LinkedIn/FB publish)</div>
-  <div class="good">✅ Content calendar 2 კვირა წინ</div>
-  <div class="good">✅ Reel production 1-2/კვირა</div>
-  <div class="bad">❌ Bihub amplification — owner Apr 23: Mariam-ს idea-ებისთვის მხოლოდ, ownership არა</div>
-  <div class="bad">❌ Strategic copy — Mentari brief → Mariam execute</div>
-  <div class="bad">❌ Ban-list precision enforcement — Mentari-ს scope</div>
-</section>
-
 <div class="ceo-eval">
-  <h3>🎯 Mariam 2-week Trajectory Check (Apr 9 - Apr 23)</h3>
-  <div class="score" style="color:#c9a227">5/10</div>
-  <p>"მარიამ, მე მენცარი (Bivision virtual CEO) შენი ბოლო 2 კვირა ასე ვხედავ — <strong>5/10</strong>-ზე ვართ, წინ მიდრეკა ჩანს, მაგრამ უფრო სწრაფი რიტმი გვჭირდება."</p>
+  <h3>🎯 Mariam-ის 2-კვირიანი ტრაექტორია (9–23 აპრილი)</h3>
+  <div class="score">5/10</div>
+  <p>"მარიამ, მე მენცარი (Bivision virtual CEO) შენი ბოლო 2 კვირა ასე ვხედავ — 5/10-ზე ვართ, წინ მიდრეკა ჩანს, უფრო სწრაფი რიტმი გვჭირდება."</p>
   <ul style="color:#e8e6e1;padding-left:22px;line-height:1.8">
-    <li><strong>✅ ვიდეოს ტექსტი V1 → V2 → V3</strong> — V2-ში 5 კონკრეტული გაუმჯობესება: რიტმი, ციფრი, framing, ფინალი, გრამატიკა. V3-ის vertical მიმართულება სწორია. ამ გზას ნუ გადავუხვევთ.</li>
-    <li><strong>✅ 14 აპრილის სამშენებლო პოსტი</strong> — თემის ანგული სწორია, ფორმატი გასაძლიერებელი. იგივე თემა Reel-ად რომ გავაკეთოთ, reach-ი რამდენჯერ გაიზრდება.</li>
-    <li><strong>🟡 Reel-ის რიტმი</strong> — 23 თებერვლის წარმატების შემდეგ პაუზა გაგრძელდა. უნარი გაქვს, V3-ში თემებიც უკვე ჩამოწერილია. ახალი Reel-ი ამ კვირაში გავშვათ.</li>
-    <li><strong>🟡 კონტენტის კალენდარი 2 კვირით წინ</strong> — 17 აპრილს ვთანხმდით. ხუთშაბათს (25 აპრილი) წარმოვადგინოთ — მე წინასწარ გადავხედავ, შენ მიდის განხორციელებაზე.</li>
-    <li><strong>🟡 OKR v2 (22 აპრილი) — framework-ის ჩართვა</strong> — ეს ახალი ჩარჩოა: vendor-agnostic + vertical template + AI moat. შემდეგი ციკლის კონტენტში ეს უნდა ჩანდეს.</li>
+    <li><strong>✅ ვიდეოს ტექსტი</strong> (V1 → V2 → V3 Apr 21–23) — V2-ში 5 კონკრეტული გაუმჯობესება: რიტმი, ციფრი, framing, ფინალური სტრიქონი, გრამატიკა. V3-ის ვერტიკალური მიმართულება (BiFinance/BiMedical/BiRetail) სწორია. გააგრძელე.</li>
+    <li><strong>✅ 14 აპრილის სამშენებლო პოსტი</strong> — თემის ანგული სწორია, ფორმატი გასაძლიერებელი (იგივე თემა Reel-ად).</li>
+    <li><strong>✅ Canva template-ები + ელფოსტის კამპანია</strong> — მზადებულია, review-ს ელოდება. Ship-ჯაჭვი ცოცხლდება.</li>
+    <li><strong>🟡 Reel-ის რიტმი</strong> — 23 თებერვლის წარმატების შემდეგ პაუზა. უნარი არის, თემების ideas V3-ში უკვე ჩამოწერილია. ახალი Reel ამ კვირაში.</li>
+    <li><strong>🟡 კონტენტის კალენდარი</strong> — 17 აპრილის ვალდებულება. ხუთშაბათს (25 აპრილი) მიღება.</li>
   </ul>
-  <p>"<span style="color:#c45c5c;font-weight:700">Marketing(salary) 3,189₾/თვე = ბივიჟენის სერიოზული ინვესტიცია.</span> მარიამ, პოტენციალი ჩანს — V2-ის პროგრესი თვალნათელია. <strong>შემდეგი 2 კვირის მოლოდინი:</strong> კვირაში 1 Reel + კვირაში 1 პარტნიორის/კლიენტის ისტორია + ხუთშაბათს კონტენტის კალენდარი + 1 vertical mini-ვიდეო V3-ის სიიდან + owner-ის გამოკითხვიდან 1 ციტატი ერთ კონტენტში. ერთად ავაწყოთ."</p>
-  <p style="margin-top:12px;font-size:14px;color:#d8dee9"><em>ტონი: თანამშრომლური, პროგრესის აღიარებით. ციფრები გულახდილია, მიმართულება წამახალისებელი. გზა ჩანს, ტემპი უნდა აიწიოს.</em></p>
+  <p>"<span style="color:#c45c5c;font-weight:700">Marketing(salary) 3,189₾/თვე = ბივიჟენის სერიოზული ინვესტიცია.</span> პოტენციალი ჩანს. <strong>მომდევნო 2 კვირის მოლოდინი:</strong> კვირაში 1 Reel + კვირაში 1 პარტნიორის/კლიენტის ისტორია + ხუთშაბათს კონტენტის კალენდარი + 1 ვერტიკალური mini-ვიდეო V3-ის სიიდან. ერთად ავაწყოთ."</p>
 </div>
 
+<section>
+  <h2>📝 Gela-ს callback-ები Mentari-ს (Apr 23 feedback)</h2>
+  <ol>
+    <li>ტექსტებში OKR-ის ნომრებზე/ჩარჩოზე მიშვებას Mariam ვერ გრძნობს კონტექსტს — explain-ი ან წვრილი სახელები უნდა. Applied ✅</li>
+    <li>ქართული ტექსტი არ არის ყოველთვის გამართული — confidence-gated რულა: თუ არ ვარ მაღალ კონფიდენსში, ინგლისური ვარიანტი ფრჩხილებში. Applied ✅</li>
+    <li>"Qlik Sense + Claude AI MCP" — owner-საც ცხადი value prop არ აქვს. Mariam-ს/SME-ს აღარ ვახსენებ marketing copy-ში სანამ value prop არ გაცხადდება. Applied ✅</li>
+    <li>"Scenario B paid boost" — ჟარგონ-heavy იყო. მარტივი ენით დავწერე: "Reel #1 კარგი reach → paid boost 5-ჯერ მეტ ადამიანს აჩვენებს, 1,500₾/თვე 2 კვირის test". Applied ✅</li>
+    <li>"Ban-list" / "Bihub amplification" — owner: "დაიკიდე". Brief-დან წაიშალა. Applied ✅</li>
+  </ol>
+</section>
+
 <footer>
-  <strong>Status:</strong> v3.1 — საუკეთესო video ვერსია V2-დან rephrased + V3 direction integrated + Mentari additions. Mariam execute-ready.<br>
-  <strong>Path:</strong> <code>bivision-shares/mariam-brief-2026-04-23.html</code> (same URL, updated)<br>
-  <strong>საუკეთესო video ვერსია:</strong> <a href="https://gshoina.github.io/bivision-shares/bivision-video-script-mentari-2026-04-23.html">bivision-video-script-mentari-2026-04-23.html</a><br>
-  <strong>Mariam original:</strong> <a href="https://docs.google.com/document/d/130ytOe-37jTnNCQZZ-KanjjV-_D4pB1OLl3oqBcUs1s/edit">Google Doc — ზოგადი ვიდეოს ტექსტი Apr 21</a>
+  <strong>Status:</strong> v4 — Apr 23 Mariam შეხვედრა absorbed (Mariam-ის 3 commitment + Canva links + Gela callback) + AI ვიდეოს გზა + მომავალი კვირის 7-პუნქტიანი გეგმა<br>
+  <strong>URL:</strong> <a href="https://gshoina.github.io/bivision-shares/mariam-brief-2026-04-23.html">bivision-shares/mariam-brief-2026-04-23.html</a> (same, updated)<br>
+  <strong>Mentari ვიდეოს საუკეთესო ვერსია:</strong> <a href="https://gshoina.github.io/bivision-shares/bivision-video-script-mentari-2026-04-23.html">bivision-video-script-mentari-2026-04-23.html</a><br>
+  <strong>Mariam-ის Google Doc:</strong> <a href="https://docs.google.com/document/d/130ytOe-37jTnNCQZZ-KanjjV-_D4pB1OLl3oqBcUs1s/edit">ზოგადი ვიდეოს ტექსტი V1/V2/V3</a>
 </footer>
 
 </body>
