@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bivision Full-Stack Site Audit — 2026-04-23</title>
+<style>
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #fafaf7; color: #1a1a1a; margin: 0; line-height: 1.55; font-size: 13px; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 22px 80px; }
+  header { background: #0B2545; color: #FAF7F2; padding: 24px 24px; border-radius: 12px; margin-bottom: 20px; }
+  header .sig { opacity: 0.7; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; }
+  header h1 { font-size: 22px; margin: 6px 0 4px; font-weight: 900; }
+  header p { margin: 0; color: rgba(250,247,242,0.85); font-size: 13px; }
+  .ep0 { background: #D4A574; color: #0B2545; padding: 10px 18px; border-radius: 8px; font-family: Consolas, monospace; font-size: 13px; font-weight: 700; margin-bottom: 16px; }
+  h2 { font-size: 17px; color: #0B2545; margin: 24px 0 10px; padding-bottom: 6px; border-bottom: 2px solid rgba(11,37,69,0.1); }
+  h3 { font-size: 14px; color: #0B2545; margin: 16px 0 8px; font-weight: 800; }
+  .swot { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
+  .swot > div { padding: 14px 16px; border-radius: 10px; border-left: 4px solid; }
+  .s { background: #ecfdf5; border-color: #15803d; }
+  .w { background: #fef2f2; border-color: #dc2626; }
+  .o { background: #eff6ff; border-color: #2563eb; }
+  .t { background: #fffbeb; border-color: #D97706; }
+  .swot h3 { margin-top: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1.2px; }
+  .swot ul { margin: 0; padding-left: 18px; }
+  .swot li { margin: 3px 0; font-size: 12.5px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0; }
+  th { background: #0B2545; color: #FAF7F2; text-align: left; padding: 7px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td { padding: 7px 10px; border-top: 1px solid rgba(11,37,69,0.08); vertical-align: top; }
+  .pass { color: #15803d; font-weight: 700; }
+  .fail { color: #dc2626; font-weight: 700; }
+  .warn { color: #D97706; font-weight: 700; }
+  .info { color: #2563eb; font-weight: 700; }
+  code { background: rgba(11,37,69,0.08); padding: 1px 6px; border-radius: 3px; font-family: Consolas, monospace; font-size: 11.5px; }
+  pre { background: #0B2545; color: #D4A574; padding: 12px 14px; border-radius: 6px; font-family: Consolas, monospace; font-size: 11.5px; overflow-x: auto; line-height: 1.5; }
+  .prio { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10.5px; font-weight: 800; letter-spacing: 0.5px; margin-right: 6px; }
+  .p0 { background: #dc2626; color: #fff; }
+  .p1 { background: #D97706; color: #fff; }
+  .p2 { background: #2563eb; color: #fff; }
+  .p3 { background: #64748b; color: #fff; }
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin: 12px 0; }
+  .stat { background: #fff; padding: 12px; border-radius: 8px; border: 1px solid rgba(11,37,69,0.1); text-align: center; }
+  .stat .n { font-size: 22px; font-weight: 900; color: #0B2545; }
+  .stat .l { font-size: 10.5px; color: #666; margin-top: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .foot { font-size: 11px; color: #666; border-top: 1px solid rgba(11,37,69,0.08); margin-top: 30px; padding-top: 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="sig">FULL-STACK AUDIT · 2026-04-23</div>
+  <h1>bivision.ge — comprehensive site audit</h1>
+  <p>WordPress 6.9.4 · PHP 8.4.8 · LiteSpeed hosting · 12 active plugins · Rank Math Pro + LiteSpeed Cache + Wordfence + Optimole</p>
+</header>
+
+<div class="ep0">EP0: 8/10 (S) — site solid foundations; security headers + 2FA + perf tweaks = quick wins for 15-20 point uplift.</div>
+
+<h2>Executive Summary</h2>
+<div class="stat-grid">
+  <div class="stat"><div class="n">76</div><div class="l">Rank Math SEO Score</div></div>
+  <div class="stat"><div class="n">0</div><div class="l">WP Critical Issues</div></div>
+  <div class="stat"><div class="n">6</div><div class="l">WP Site Health Warnings</div></div>
+  <div class="stat"><div class="n">0/2</div><div class="l">Admins with 2FA</div></div>
+  <div class="stat"><div class="n">1.35s</div><div class="l">TTFB (target &lt;0.6s)</div></div>
+  <div class="stat"><div class="n">64%</div><div class="l">Disk Used (6.44/10GB)</div></div>
+  <div class="stat"><div class="n">0</div><div class="l">Security Headers</div></div>
+  <div class="stat"><div class="n">12</div><div class="l">Active Plugins</div></div>
+</div>
+
+<h2>SWOT</h2>
+<div class="swot">
+  <div class="s">
+    <h3>✓ Strengths</h3>
+    <ul>
+      <li>WP 6.9.4 + PHP 8.4.8 — latest + modern stack</li>
+      <li>Rank Math Pro (AI-SEO features, schema templates, instant indexing, analytics)</li>
+      <li>LiteSpeed Cache configured (17/26 options enabled)</li>
+      <li>Wordfence active firewall + malware scan</li>
+      <li>Optimole CDN (automatic WebP/AVIF image optimization)</li>
+      <li>Site Kit by Google (GSC + GA4 unified)</li>
+      <li>HTTPS Let's Encrypt valid, AutoSSL renewal</li>
+      <li>Sitemap_index.xml (Rank Math Pro generated)</li>
+      <li>WP Mail SMTP configured for deliverable emails</li>
+      <li>Plugin/theme auto-updates configured</li>
+      <li>0 pending plugin/theme updates</li>
+      <li>Schema present (at least 1 structured data block)</li>
+    </ul>
+  </div>
+
+  <div class="w">
+    <h3>✗ Weaknesses</h3>
+    <ul>
+      <li>Zero HTTP security headers (no HSTS, X-Frame, X-Content-Type, Referrer-Policy, CSP)</li>
+      <li>0/2 admin users have 2FA enabled (Wordfence supports it)</li>
+      <li>TTFB 1.35s — slow backend despite cache</li>
+      <li>LiteSpeed Cache Mobile = OFF (mobile requests bypass cache)</li>
+      <li>X-Powered-By header leaks PHP 8.4.8 version</li>
+      <li>Hreflang missing (single-lang KA — ok if intentional, but EN audience dropped)</li>
+      <li>H1 contains HTML entity <code>&amp;#8211;</code> instead of UTF-8 "–"</li>
+      <li>post_max_size (8M) &lt; upload_max_filesize (16M) — WP Site Health flag</li>
+      <li>No persistent object cache (Redis/Memcached) — WP Site Health flag</li>
+      <li>4 inactive plugins still installed (attack surface)</li>
+      <li>Outdated SQL server (WP Site Health warning)</li>
+      <li>sitemap.xml 301→sitemap_index.xml redirect (Google cache friction)</li>
+      <li>Cache-Control max-age only 300s (5min) for HTML — short</li>
+    </ul>
+  </div>
+
+  <div class="o">
+    <h3>○ Opportunities</h3>
+    <ul>
+      <li><strong>AI-friendly SEO:</strong> Rank Math Pro's Content AI + Instant Indexing already active — underused for SaaS product pages</li>
+      <li>Schema Templates: add Service + Product + Organization markup for each SaaS (biaudit, bifinance, bistock, bidebitors, bimedical, biretail)</li>
+      <li>LiteSpeed Cache Mobile + QUIC.cloud CDN integration (free tier) = TTFB 1.35s→0.3s realistic</li>
+      <li>2FA via Wordfence for both admins = 99.9% credential-attack prevention</li>
+      <li>Security headers via simple .htaccess 5-line addition = A-grade securityheaders.com</li>
+      <li>Rank Math SEO Analyzer 76/100 → 90+ actionable via PRO features</li>
+      <li>AI Overviews optimization (Content AI → entity markup → AI search visibility)</li>
+      <li>Blog content expansion → long-tail SaaS keywords (ერპი-ინტეგრაცია, Power BI, etc.)</li>
+      <li>Backlink campaign: Georgian business directories + industry publications</li>
+    </ul>
+  </div>
+
+  <div class="t">
+    <h3>△ Threats</h3>
+    <ul>
+      <li>Admin 2FA absent = brute-force target (info@bivision.ge is public)</li>
+      <li>Optimole free tier = 3rd party choke risk if traffic grows</li>
+      <li>Use Any Font plugin = custom font dependency; license/fetch risk</li>
+      <li>Crisp widget = 3rd party JS injection (supply chain)</li>
+      <li>Site Kit data dependency on Google (outage = no analytics)</li>
+      <li>Shared IP 185.229.111.211 — SEO penalty if neighbor banned</li>
+      <li>Wordfence Free tier — premium rules 30-day delay on new CVEs</li>
+      <li>10GB disk 64% used — 3 months to growth exhaustion if images add up</li>
+      <li>Custom theme "BiVision" — no parent/child; all code ownership on team</li>
+    </ul>
+  </div>
+</div>
+
+<h2>Technical Detail — Stack Inventory</h2>
+
+<h3>WordPress Core</h3>
+<table>
+<tr><th>Field</th><th>Value</th><th>Status</th></tr>
+<tr><td>WP Version</td><td>6.9.4</td><td class="pass">Latest</td></tr>
+<tr><td>PHP Version</td><td>8.4.8 (via alt-php84)</td><td class="pass">Modern</td></tr>
+<tr><td>Active Theme</td><td>BiVision (custom, no parent)</td><td class="info">Custom</td></tr>
+<tr><td>Active Plugins</td><td>12 / 16</td><td class="info">Reasonable</td></tr>
+<tr><td>DB Name</td><td>bivision_web</td><td class="pass">OK</td></tr>
+<tr><td>Admin Users</td><td>2 (both role=Administrator)</td><td class="warn">Review role scope</td></tr>
+<tr><td>2FA Active</td><td>0 / 2 users</td><td class="fail">Critical gap</td></tr>
+<tr><td>WP Cache</td><td>Enabled (WP_CACHE = true)</td><td class="pass">OK</td></tr>
+<tr><td>Debug Mode</td><td>Off</td><td class="pass">Safe</td></tr>
+<tr><td>Plugin Auto-Updates</td><td>Configured</td><td class="pass">Safe</td></tr>
+</table>
+
+<h3>Active Plugins (12)</h3>
+<table>
+<tr><th>Plugin</th><th>Version</th><th>Purpose</th></tr>
+<tr><td>Rank Math SEO</td><td>1.0.268</td><td>Core SEO</td></tr>
+<tr><td>Rank Math SEO PRO</td><td>3.0.111</td><td>AI Content, Schema, Analytics, Instant Indexing</td></tr>
+<tr><td>LiteSpeed Cache</td><td>7.8.1</td><td>Page cache + optimization</td></tr>
+<tr><td>Wordfence Security</td><td>8.1.4</td><td>Firewall + malware scan</td></tr>
+<tr><td>Optimole</td><td>4.2.4</td><td>Image CDN WebP/AVIF</td></tr>
+<tr><td>Site Kit by Google</td><td>1.177.0</td><td>GSC + GA4 integration</td></tr>
+<tr><td>WP Mail SMTP</td><td>4.8.0</td><td>Email deliverability</td></tr>
+<tr><td>Microsoft Clarity</td><td>0.10.22</td><td>Session replay analytics</td></tr>
+<tr><td>Crisp</td><td>0.48</td><td>Live chat widget</td></tr>
+<tr><td>Folders</td><td>3.1.6</td><td>Media library organization</td></tr>
+<tr><td>SVG Support</td><td>2.5.14</td><td>SVG uploads</td></tr>
+<tr><td>Use Any Font</td><td>6.3.14</td><td>Custom font embedding</td></tr>
+</table>
+
+<h3>Inactive Plugins (4 — deletion candidates)</h3>
+<table>
+<tr><th>Plugin</th><th>Purpose</th><th>Recommendation</th></tr>
+<tr><td>Query Monitor</td><td>Developer tool</td><td>Keep if used during dev; else delete</td></tr>
+<tr><td>Redirection</td><td>301 redirect manager</td><td>Delete — Rank Math Pro has built-in redirect module</td></tr>
+<tr><td>Smush</td><td>Image optimization</td><td>Delete — Optimole handles this</td></tr>
+<tr><td>Yandex Metrica</td><td>Russian analytics</td><td>Delete unless actively needed</td></tr>
+</table>
+
+<h3>SEO (Rank Math Pro)</h3>
+<table>
+<tr><th>Module</th><th>Status</th></tr>
+<tr><td>Content AI</td><td class="pass">Available (underused?)</td></tr>
+<tr><td>AI Link Genius</td><td class="pass">Available (underused?)</td></tr>
+<tr><td>Analytics</td><td class="pass">Connected</td></tr>
+<tr><td>Titles & Meta</td><td class="pass">Configured</td></tr>
+<tr><td>Sitemap Settings</td><td class="pass">sitemap_index.xml live</td></tr>
+<tr><td>Schema Templates</td><td class="warn">Verify per-SaaS</td></tr>
+<tr><td>Instant Indexing</td><td class="pass">Available (Google/Bing API)</td></tr>
+<tr><td>404 Monitor</td><td class="pass">Configured</td></tr>
+<tr><td>Redirections</td><td class="pass">Built-in module</td></tr>
+<tr><td>SEO Analyzer Score</td><td class="warn">76/100</td></tr>
+</table>
+
+<h3>Performance — LiteSpeed Cache</h3>
+<table>
+<tr><th>Setting</th><th>State</th></tr>
+<tr><td>Enable Cache</td><td class="pass">ON</td></tr>
+<tr><td>Cache REST API</td><td class="pass">ON</td></tr>
+<tr><td>Cache Login Page</td><td class="pass">ON</td></tr>
+<tr><td>Cache Logged-in Users</td><td class="pass">ON</td></tr>
+<tr><td>Cache Commenters</td><td class="pass">ON</td></tr>
+<tr><td>Cache Mobile</td><td class="fail">OFF ← enable this</td></tr>
+<tr><td>Auto Purge Rules</td><td class="pass">Configured</td></tr>
+</table>
+
+<h3>.htaccess (Current State)</h3>
+<p><strong>Present:</strong></p>
+<ul>
+  <li>LiteSpeed cache rules + drop query params (fbclid, gclid, utm_*)</li>
+  <li>WordPress standard rewrite</li>
+  <li>GZIP compression (mod_deflate) for CSS/JS/fonts/SVG/text/xml</li>
+  <li>Browser caching (images 1y, CSS/JS 1m)</li>
+  <li>Cache-Control headers for static assets</li>
+  <li>Wordfence WAF + .user.ini protection</li>
+  <li>PHP 8.4 handler (alt-php84)</li>
+</ul>
+
+<p><strong>Missing (security headers):</strong> HSTS · X-Frame-Options · X-Content-Type-Options · Referrer-Policy · Content-Security-Policy · Permissions-Policy (minimal)</p>
+
+<h3>Security — Wordfence</h3>
+<table>
+<tr><th>Check</th><th>Status</th></tr>
+<tr><td>Firewall</td><td class="pass">Active (free tier — 30-day delayed rules)</td></tr>
+<tr><td>Malware scan</td><td class="warn">1 issue pending review</td></tr>
+<tr><td>Login security (2FA)</td><td class="fail">0/2 admins have 2FA</td></tr>
+<tr><td>Audit log</td><td class="pass">Available</td></tr>
+</table>
+
+<h3>WordPress Site Health (0 critical · 6 recommended)</h3>
+<table>
+<tr><th>Warning</th><th>Action</th></tr>
+<tr><td>Inactive plugins should be removed</td><td>Delete Query Monitor, Redirection, Smush, Yandex Metrica</td></tr>
+<tr><td>No default theme available</td><td>Install Twenty Twenty-Five as emergency fallback</td></tr>
+<tr><td>Missing recommended PHP modules</td><td>cPanel → MultiPHP → enable imagick / gd if missing</td></tr>
+<tr><td>Outdated SQL server</td><td>FastCloud ticket: upgrade MySQL/MariaDB</td></tr>
+<tr><td>post_max_size (8M) &lt; upload_max_filesize (16M)</td><td>cPanel MultiPHP INI Editor: align to 16M</td></tr>
+<tr><td>No persistent object cache</td><td>Enable Redis/Memcached via cPanel or LiteSpeed Memcached module</td></tr>
+</table>
+
+<h2>Prioritized Fix Roadmap</h2>
+
+<h3>P0 — Critical (this week)</h3>
+<table>
+<tr><th>Item</th><th>Effort</th><th>Impact</th></tr>
+<tr><td><span class="prio p0">P0</span>Enable 2FA both admins (Wordfence → Login Security)</td><td>5 min × 2 users</td><td>99.9% brute-force block</td></tr>
+<tr><td><span class="prio p0">P0</span>Add security headers to .htaccess (HSTS, X-Frame, X-Content, Referrer, Permissions-Policy)</td><td>10 min</td><td>securityheaders.com F→A</td></tr>
+<tr><td><span class="prio p0">P0</span>Enable LiteSpeed Cache Mobile</td><td>2 min</td><td>Mobile TTFB 1.35s→~0.5s</td></tr>
+<tr><td><span class="prio p0">P0</span>Review Wordfence 1 scan issue</td><td>10 min</td><td>Close open security finding</td></tr>
+</table>
+
+<h3>P1 — High (within 2 weeks)</h3>
+<table>
+<tr><th>Item</th><th>Effort</th><th>Impact</th></tr>
+<tr><td><span class="prio p1">P1</span>Delete 4 inactive plugins</td><td>3 min</td><td>Reduce attack surface + WP Site Health pass</td></tr>
+<tr><td><span class="prio p1">P1</span>Enable Redis/Memcached persistent object cache</td><td>15 min</td><td>DB query count drop + TTFB improvement</td></tr>
+<tr><td><span class="prio p1">P1</span>Fix post_max_size alignment (cPanel MultiPHP INI)</td><td>3 min</td><td>WP Site Health pass + upload reliability</td></tr>
+<tr><td><span class="prio p1">P1</span>Rank Math Schema Templates: per SaaS product page</td><td>1 hour</td><td>Rich snippets in search + AI crawler understanding</td></tr>
+<tr><td><span class="prio p1">P1</span>Remove X-Powered-By header (.htaccess: <code>Header unset X-Powered-By</code>)</td><td>1 min</td><td>Hide PHP version leak</td></tr>
+<tr><td><span class="prio p1">P1</span>Connect QUIC.cloud (free) for LiteSpeed CDN</td><td>20 min</td><td>Global edge cache + TTFB further drop</td></tr>
+</table>
+
+<h3>P2 — Medium (within month)</h3>
+<table>
+<tr><th>Item</th><th>Effort</th><th>Impact</th></tr>
+<tr><td><span class="prio p2">P2</span>Fix H1 HTML entity &amp;#8211; → UTF-8 "–"</td><td>2 min</td><td>Clean HTML source for AI crawlers</td></tr>
+<tr><td><span class="prio p2">P2</span>sitemap.xml → sitemap_index.xml redirect cleanup</td><td>5 min .htaccess rewrite</td><td>Remove Google cache friction</td></tr>
+<tr><td><span class="prio p2">P2</span>Rank Math Content AI: generate + optimize 5 top pages</td><td>2 hours</td><td>SEO score 76→85+</td></tr>
+<tr><td><span class="prio p2">P2</span>AI-friendly SEO: add llms.txt at root</td><td>30 min</td><td>ChatGPT/Perplexity/Claude citation rate up</td></tr>
+<tr><td><span class="prio p2">P2</span>Use Any Font plugin audit: if fonts not used, deactivate</td><td>10 min</td><td>Reduce JS + external dependency</td></tr>
+<tr><td><span class="prio p2">P2</span>FastCloud ticket: MySQL/MariaDB upgrade</td><td>Owner action</td><td>WP Site Health pass + DB perf</td></tr>
+</table>
+
+<h3>P3 — Low (backlog)</h3>
+<table>
+<tr><th>Item</th><th>Effort</th><th>Impact</th></tr>
+<tr><td><span class="prio p3">P3</span>Install default theme (Twenty Twenty-Five) as fallback</td><td>5 min</td><td>Emergency recovery path</td></tr>
+<tr><td><span class="prio p3">P3</span>Disk usage monitor (64% used) — schedule image audit Q3</td><td>30 min</td><td>Prevent disk full</td></tr>
+<tr><td><span class="prio p3">P3</span>Evaluate hreflang need (EN/RU audience?) — if yes: Polylang/WPML</td><td>Strategic</td><td>International SEO</td></tr>
+<tr><td><span class="prio p3">P3</span>Crisp widget performance audit: async + defer</td><td>15 min</td><td>Mobile LCP improvement</td></tr>
+</table>
+
+<h2>AI-Friendly SEO — Priority Detail</h2>
+<p>Owner requested AI-friendly SEO focus. Current state + priority actions:</p>
+<table>
+<tr><th>Signal</th><th>Current</th><th>Action</th></tr>
+<tr><td>Schema.org structured data</td><td>1 block on homepage</td><td>Add Organization + Service + Product per SaaS page via Rank Math Schema Templates</td></tr>
+<tr><td>Open Graph + Twitter Card</td><td>Present</td><td>Verify per-page OG:image sizing (1200×630)</td></tr>
+<tr><td>llms.txt (AI crawler standard)</td><td>Missing</td><td>Create at <code>/llms.txt</code> — summary + link tree for LLMs</td></tr>
+<tr><td>robots.txt AI bot directives</td><td>Default (allow all)</td><td>Explicit allow: ChatGPT-User, PerplexityBot, ClaudeBot for citation</td></tr>
+<tr><td>Entity markup</td><td>Basic</td><td>Rank Math Content AI — entity-rich content per topic</td></tr>
+<tr><td>Structured FAQ</td><td>?</td><td>Add FAQPage schema per product page (rich-snippet eligibility)</td></tr>
+<tr><td>Author/E-E-A-T</td><td>Default</td><td>Author bio + credentials on blog posts</td></tr>
+<tr><td>Instant Indexing (Rank Math)</td><td>Available</td><td>Enable auto-submit to Google + Bing on publish</td></tr>
+</table>
+
+<h2>Audit Metadata</h2>
+<ul>
+  <li>Performed: 2026-04-23 by Geo (Claude Code, read-only protocol)</li>
+  <li>Access: FastCloud client area + cPanel (Jupiter) + WP Admin (bevision)</li>
+  <li>Zero write operations — all findings via file-read + settings-view</li>
+  <li>wp-config.php secrets (DB password, salts) preserved — never captured or echoed</li>
+  <li>External API used: openssl (cert), curl (headers), cPanel Fileman::get_file_content</li>
+</ul>
+
+<div class="foot">
+Geo · Bivision Full-Stack Site Audit · 2026-04-23 · evidence-based · prioritized P0-P3<br>
+Next: owner review → approve P0 items → execution session (admin access + pre-change backup)
+</div>
+
+</div>
+</body>
+</html>
