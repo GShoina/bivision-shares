@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Viktor Challenge — Bivision Site Audit 2026-04-23</title>
+<style>
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#fafaf7;color:#1a1a1a;margin:0;line-height:1.55;font-size:13px}
+.wrap{max-width:980px;margin:0 auto;padding:24px 22px 80px}
+header{background:#7f1d1d;color:#FAF7F2;padding:24px;border-radius:12px;margin-bottom:20px}
+header .sig{opacity:.7;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:700}
+header h1{font-size:22px;margin:6px 0 4px;font-weight:900}
+header p{margin:0;color:rgba(250,247,242,.85);font-size:13px}
+.ep0{background:#D4A574;color:#0B2545;padding:10px 18px;border-radius:8px;font-family:Consolas,monospace;font-size:13px;font-weight:700;margin-bottom:16px}
+.grade{background:#fde7e9;border:2px solid #c0392b;padding:12px 16px;border-radius:8px;margin:14px 0;font-weight:600}
+h2{font-size:17px;color:#0B2545;margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid rgba(11,37,69,.1)}
+h3{font-size:14px;color:#0B2545;margin:16px 0 8px;font-weight:800}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0}
+th{background:#0B2545;color:#FAF7F2;text-align:left;padding:7px 10px;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+td{padding:7px 10px;border-top:1px solid rgba(11,37,69,.08);vertical-align:top}
+.ok{background:#ecfdf5}
+.warn{background:#fffbeb}
+.fail{background:#fef2f2}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10.5px;font-weight:800;letter-spacing:.5px;margin-right:6px;color:#fff}
+.t-keep{background:#15803d}
+.t-fix{background:#e67e22}
+.t-drop{background:#c0392b}
+.t-add{background:#2980b9}
+code{background:rgba(11,37,69,.08);padding:1px 6px;border-radius:3px;font-family:Consolas,monospace;font-size:11.5px}
+pre{background:#0B2545;color:#D4A574;padding:12px 14px;border-radius:6px;font-family:Consolas,monospace;font-size:11.5px;overflow-x:auto;line-height:1.5}
+.correction{background:#fff4e6;border-left:4px solid #d49a3a;padding:10px 14px;border-radius:4px;margin:14px 0;font-size:12.5px}
+.box{background:#f7f9fc;border-radius:6px;padding:12px 16px;margin:10px 0;border-left:4px solid #0B2545}
+ul{margin:.4rem 0 .4rem 1.2rem;padding:0}
+li{margin:.25rem 0}
+.path{background:#e8f4f8;border-left:4px solid #2980b9;padding:12px 16px;border-radius:4px;margin:16px 0}
+.foot{font-size:11px;color:#666;border-top:1px solid rgba(11,37,69,.08);margin-top:30px;padding-top:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<div class="sig">VIKTOR CHALLENGE · 2026-04-23</div>
+<h1>Bivision Site Audit — Challenge Response</h1>
+<p>Target: <code>bivision-audit-2026-04-23.html</code> by Geo · OKR3 (brand/lead gen) direct trace · Mentari handoff</p>
+</header>
+
+<div class="ep0">EP0: 8/10 (O) — 2nd-read full audit, prior challenge memo corrected, priority re-ranked</div>
+
+<div class="grade">
+<strong>Audit self-grade EP0 8/10 → Viktor re-grade EP0 7/10 (O).</strong><br>
+Solid foundational audit (stack-verified, SWOT, rollback protocols). Gaps: OKR trace per-item, baseline-math thin, scope-origin unclear. Execute after 2 surgical corrections.
+</div>
+
+<div class="correction">
+<strong>⚠ Viktor self-correction (1st memo, earlier today):</strong><br>
+3 claim-ი მცდარი იყო, აქ ვასწორებ:
+<ul>
+<li><strong>"Author-less document"</strong> — ცრუ. Audit line 427: "Performed 2026-04-23 by Geo". WebFetch summary-ში ჩემამდე არ მოსული, local full-read-ით დაფიქსირდა.</li>
+<li><strong>"HSTS rollback missing"</strong> — ცრუ. Audit line 320: max-age=300 test-first, then 31536000. Rollback protocol ცხადი, სწორი.</li>
+<li><strong>"Disk 64% manufactured"</strong> — overdrawn. Audit threat section: "3 months to growth exhaustion" — reasonable framing, არა cosmetic.</li>
+</ul>
+Viktor calibration rule: WebFetch summary ≠ full content. Full disk-read required სანამ challenge claim-ს ვდებ. Memory update pending.
+</div>
+
+<h2>Verdict — 3-line</h2>
+
+<div class="box">
+<strong>1. Audit execute-ready P0 items-ზე</strong>, 2 surgical correction-ის შემდეგ.<br>
+<strong>2. რეალური OKR3 lever-ები ცხადია</strong> (Instant Indexing, Content AI, Schema, Cache Mobile).<br>
+<strong>3. Baseline math + OKR-column დააკანკლუდე</strong> სანამ Mentari execute ქნა.
+</div>
+
+<h2>Agree (keep as-is — 12 item)</h2>
+
+<table>
+<tr><th>Item</th><th>Why keep</th></tr>
+<tr class="ok"><td><span class="tag t-keep">KEEP</span> P0 LiteSpeed Cache Mobile toggle</td><td>Mobile = 60-70% traffic, 2 წთ, zero-risk reversible. Single click, immediate LCP win.</td></tr>
+<tr class="ok"><td><span class="tag t-keep">KEEP</span> P0 Rank Math Instant Indexing API</td><td>Same-day index ≠ 1-4 week wait. Product launch + blog publish velocity unlock.</td></tr>
+<tr class="ok"><td><span class="tag t-keep">KEEP</span> P1 2FA admin × 2</td><td>10 წთ, 99.9% credential attack prevention (real number for 2FA class). Wordfence built-in, zero license cost.</td></tr>
+<tr class="ok"><td><span class="tag t-keep">KEEP</span> P1 Security headers .htaccess</td><td>8-line copy-paste block + rollback procedure included. Grade F→A one-shot.</td></tr>
+<tr class="ok"><td><span class="tag t-keep">KEEP</span> HSTS rollback sequence max-age 300→31536000</td><td>Lesson-transfer from Geo-Metri cert incident კი. Correct gate.</td></tr>
+<tr class="ok"><td><span class="tag t-keep">KEEP</span> P1 Redis/Memcached persistent object cache</td><td>TTFB real fix (server-side, correct diagnosis here). cPanel LiteSpeed Memcached module = 15 წთ.</td></tr>
+<tr class="ok"><td><span class="tag t-keep">KEEP</span> P2 Schema sameAs + FAQPage + BreadcrumbList</td><td>AI Overviews + Google Knowledge Graph entity richness. Rank Math Pro template-ებით supported.</td></tr>
+<tr class="ok"><td><span class="tag t-keep">KEEP</span> llms.txt + robots.txt AI bot allow block</td><td>Early-mover positioning. Code block ready-to-ship ჩართულია.</td></tr>
+<tr class="ok"><td><span class="tag t-keep">KEEP</span> SWOT framework + plugin inventory</td><td>Solid baseline. Inactive plugin identification fair.</td></tr>
+<tr class="ok"><td><span class="tag t-keep">KEEP</span> .htaccess security header copy-paste block</td><td>Copy-paste ready, rollback included, testing procedure documented.</td></tr>
+<tr class="ok"><td><span class="tag t-keep">KEEP</span> Stack inventory tables (WP, PHP, plugins)</td><td>Disk-verified data, fair diagnostic foundation.</td></tr>
+<tr class="ok"><td><span class="tag t-keep">KEEP</span> FastCloud support ticket for MariaDB upgrade</td><td>Real TTFB contributor, 5-min filing, 1-7 day execute. Correct owner-ping action.</td></tr>
+</table>
+
+<h2>Fix (revise before execute — 6 item)</h2>
+
+<table>
+<tr><th>Item</th><th>Problem</th><th>Fix</th></tr>
+<tr class="warn"><td><span class="tag t-fix">FIX</span> OKR trace per-item absent</td><td>Mentari Apr 22 directive: "output missing OKR trace → Level 2 issue". ამ audit-ს column არ აქვს.</td><td>Per-row column: <code>OKR1 | OKR3 | hygiene</code>. KR1 = ARR 68K→95K, KR1 customer 12 new — რომელი action რომელს ემსახურება?</td></tr>
+<tr class="warn"><td><span class="tag t-fix">FIX</span> Baseline-math thin</td><td>"+5-15% mobile conv", "+10-30% ranking lift" — ყველა delta projection current baseline-ის გარეშე. Unbounce/Portent გენერიკული benchmark, არა Bivision-specific.</td><td>Current state: mobile conv %, organic traffic /თვე, MQL count. Delta = current × projection range. თუ baseline უცნობია → GA4 + GSC pull P0.</td></tr>
+<tr class="warn"><td><span class="tag t-fix">FIX</span> "info@bivision.ge → brute-force target" logic</td><td>info@bivision.ge = contact email address. WP admin username = different (default <code>bevision</code> per audit line 428). 2FA WP-user-ზე ვრცელდება, არა email-ზე. Threat framing weak.</td><td>Reframe: "WP admin usernames bevision + 2nd admin — enumerable via <code>?author=1</code> probe. 2FA = MFA 2nd factor." Real threat, not email-related.</td></tr>
+<tr class="warn"><td><span class="tag t-fix">FIX</span> Content AI rewrites "2-3 h" — ownership missing</td><td>ვინ წერს? Geo (audit author)? Mariam (copy)? Owner? Content AI ≠ autopilot — entity prompts + fact-checking + Georgian grammar editing საჭიროა.</td><td>Assignment ცხადი: Mariam = copy authority per memory + temp marketing owner. 2-3h → realistic 4-6h first 5 pages (scoping + fact check + Georgian polish).</td></tr>
+<tr class="warn"><td><span class="tag t-fix">FIX</span> "llms.txt +5-15% AI-citation referrals"</td><td>HYPOTHESIS-ად ჩაცმული projection. ქართულ B2B BI-ზე zero-evidence Perplexity/ChatGPT traffic. Early-mover positioning კი, traffic share სპეკულაცია.</td><td>Tag: "+5-15%" → "[HYPOTHESIS: emerging channel, unmeasured Georgia]". Ship llms.txt anyway (cheap), expectation calibrated.</td></tr>
+<tr class="warn"><td><span class="tag t-fix">FIX</span> Audit author + scope provenance</td><td>Author "Geo" (Geo-Metri agent) did Bivision.ge audit. Scope boundary — Geo-ს role = Geo-Metri. Mentari/Gurafa-ს lane?</td><td>Owner clarification: Geo cross-lane owner-assigned? Or routing error? Future audits = Mentari (ops) ან Gurafa (R&D). Memory flag: agent scope drift.</td></tr>
+</table>
+
+<h2>Drop (low-impact noise — 2 item)</h2>
+
+<table>
+<tr><th>Item</th><th>Why drop</th></tr>
+<tr class="fail"><td><span class="tag t-drop">DROP</span> P3 "Install default theme fallback"</td><td>Emergency-path hygiene. BiVision custom theme stable ~6 თვე. Recovery scenario probability negligible. Disk + attention tax.</td></tr>
+<tr class="fail"><td><span class="tag t-drop">DROP</span> P3 "Fix H1 HTML entity <code>&amp;#8211;</code>"</td><td>Zero Google impact (HTML-decoded server-side). Zero user impact (rendered as "–"). Cosmetic obsession, meta-work risk.</td></tr>
+</table>
+
+<h2>Add (missing from audit — 4 item)</h2>
+
+<table>
+<tr><th>Item</th><th>Why add</th></tr>
+<tr><td><span class="tag t-add">ADD</span> GA4 + GSC baseline pull</td><td>P0 precondition. Without current conversion / traffic / ranking data, every "lift" projection cosmetic. Rank Math Analytics = connected; pull 30-day now.</td></tr>
+<tr><td><span class="tag t-add">ADD</span> Mobile viewport + CLS audit</td><td>Core Web Vitals section flags LCP/INP but not CLS. Mobile layout shift common on WP custom themes. PageSpeed Insights CLS score = 1 number to add.</td></tr>
+<tr><td><span class="tag t-add">ADD</span> Backlink audit (Rank Math Analytics)</td><td>Audit says "not audited — no tool". Rank Math Pro Analytics = backlinks module built-in. Use it before outsourcing to Ahrefs paid.</td></tr>
+<tr><td><span class="tag t-add">ADD</span> Ownership column (owner / agent / external)</td><td>Every action row = who executes. Current audit mixes owner actions (FastCloud ticket, GSC check) with agent actions (code changes). Split required.</td></tr>
+</table>
+
+<h2>Viktor Priority Matrix (revised)</h2>
+
+<p>ზემოდან ქვემოთ = impact × cost ratio. Mentari execute ამ რიგით.</p>
+
+<table>
+<tr><th>#</th><th>Action</th><th>OKR</th><th>Who</th><th>Effort</th><th>Impact</th></tr>
+<tr style="background:#fee"><td><strong>1</strong></td><td>GA4+GSC baseline 30-day pull (conv %, traffic, queries)</td><td>OKR3</td><td>Mentari (Site Kit live)</td><td>30 წთ</td><td>ALL projections depend on this</td></tr>
+<tr style="background:#fee"><td><strong>2</strong></td><td>LiteSpeed Cache Mobile toggle ON</td><td>OKR3</td><td>Mentari</td><td>2 წთ</td><td>mobile LCP drop</td></tr>
+<tr style="background:#fee"><td><strong>3</strong></td><td>2FA admin × 2 enable</td><td>hygiene (P1)</td><td>Owner + 2nd admin</td><td>10 წთ</td><td>takeover risk kill</td></tr>
+<tr style="background:#ffe"><td><strong>4</strong></td><td>Rank Math Instant Indexing API connect</td><td>OKR3</td><td>Mentari</td><td>10 წთ</td><td>index velocity</td></tr>
+<tr style="background:#ffe"><td><strong>5</strong></td><td>Redis/Memcached object cache enable</td><td>OKR3</td><td>Mentari (cPanel)</td><td>15 წთ</td><td>TTFB real fix</td></tr>
+<tr style="background:#ffe"><td><strong>6</strong></td><td>Security headers .htaccess (max-age=300 start)</td><td>hygiene</td><td>Mentari</td><td>15 წთ</td><td>A-grade one-shot</td></tr>
+<tr style="background:#eef"><td><strong>7</strong></td><td>Schema Templates: Service+Product×6 SaaS pages</td><td>OKR3</td><td>Mentari + Mariam (copy)</td><td>1-2 სთ</td><td>SERP CTR + AI Overviews</td></tr>
+<tr style="background:#eef"><td><strong>8</strong></td><td>llms.txt + robots.txt AI bot block</td><td>OKR3 [speculative]</td><td>Mentari</td><td>30 წთ</td><td>emerging channel position</td></tr>
+<tr style="background:#eef"><td><strong>9</strong></td><td>FastCloud ticket: MariaDB upgrade</td><td>hygiene</td><td>Owner (file)</td><td>5 წთ file + 1-7 day</td><td>TTFB secondary lift</td></tr>
+<tr style="background:#eef"><td><strong>10</strong></td><td>Content AI rewrites × 5 pages (home, BiFinance, BiRetail, BiAudit, blog hub)</td><td>OKR3</td><td>Mariam (copy) + Mentari (Rank Math)</td><td>4-6 სთ</td><td>ranking keyword expansion</td></tr>
+<tr style="background:#efe"><td><strong>11</strong></td><td>HSTS promote max-age=300 → 31536000 (post-24h stability)</td><td>hygiene</td><td>Mentari</td><td>2 წთ</td><td>lock-in after validate</td></tr>
+<tr style="background:#efe"><td><strong>12</strong></td><td>Delete 4 inactive plugins</td><td>hygiene</td><td>Mentari</td><td>5 წთ</td><td>attack surface trim</td></tr>
+<tr style="background:#efe"><td><strong>13</strong></td><td>FAQPage schema × 6 SaaS pages</td><td>OKR3</td><td>Mariam (FAQ copy) + Mentari</td><td>6 სთ total</td><td>rich snippet eligibility</td></tr>
+<tr style="background:#efe"><td><strong>14</strong></td><td>Backlink directory outreach (gov.ge, GITA, Startup Georgia)</td><td>OKR3</td><td>Owner + Mariam</td><td>2-4 სთ</td><td>DR growth slow but real</td></tr>
+</table>
+
+<h2>Owner vs Agent split</h2>
+
+<div class="box">
+<strong>Owner action only (3):</strong>
+<ol>
+<li>2FA enable on <strong>your</strong> admin account (+ 2nd admin contact)</li>
+<li>FastCloud support ticket: MariaDB upgrade</li>
+<li>Directory outreach (gov.ge, GITA, Startup Georgia) — relationship-based</li>
+</ol>
+<strong>Mentari / agent action:</strong> ყველა დანარჩენი. Mariam scope-ში: copy-heavy items (#10, #13).
+</div>
+
+<h2>Mentari handoff — paste-ready directive</h2>
+
+<div class="path">
+<pre style="white-space:pre-wrap">
+Mentari — Bivision site audit (Geo, 2026-04-23) Viktor challenge gaiara.
+Execute rigit:
+
+PRE-EXECUTE:
+1. GA4 + GSC 30-day baseline pull: mobile conv %, organic sessions, top queries, avg SERP pos.
+   Output: baseline.json ან docs/BIVISION_SITE_BASELINE_2026-04-23.md.
+   Sanam es ar aris, item 2-dan projections cosmetic.
+
+2. Audit-shi 6 FIX damuavde (OKR column per-row, baseline math, info@ reframe,
+   Content AI ownership Mariam, llms.txt HYPOTHESIS tag, author scope clarify owner-tan).
+   Output: outputs/2026-04-23 Bivision Site Audit V2 by Mentari.html.
+
+3. 2 DROP amoige: H1 entity + default theme fallback.
+
+EXECUTE (order):
+P0 (today):
+  - LS Cache Mobile ON (2 wt)
+  - 2FA ×2 (owner + 2nd admin, 10 wt)
+  - Instant Indexing connect (10 wt)
+  - Redis/Memcached (15 wt)
+  - Security headers max-age=300 + verify (15 wt)
+
+P1 (1-3 day):
+  - Schema Templates ×6 SaaS (Mariam copy assist)
+  - llms.txt + robots.txt AI block
+  - MariaDB ticket (owner)
+  - HSTS promote to 31536000 post-24h stability
+
+P2 (1-2 week):
+  - Content AI rewrites ×5 pages (Mariam lead)
+  - FAQPage schema ×6
+  - Delete 4 inactive plugins
+
+P3 (backlog, not urgent):
+  - Backlink outreach (owner/Mariam split)
+  - Rank Math SEO Analyzer 76→90+ per-page drill-down
+
+RULES:
+- Every change: rollback procedure documented inline
+- Post-execute: Playwright + securityheaders.com + PageSpeed Insights verify
+- Weekly: GA4 baseline re-pull, delta vs projection
+- Trust-deficit window: ship-gate = measurement, ara claim
+</pre>
+</div>
+
+<h2>Op Note</h2>
+
+<div class="box" style="border-left-color:#666">
+<ul>
+<li>Viktor prior memo had 3 factual errors — corrected above. Calibration rule save: WebFetch summary never = full-content claim basis.</li>
+<li>Audit author = "Geo" (Geo-Metri agent). Cross-lane scope — owner clarify: delegation or routing error?</li>
+<li>OKR3 trace direct confirmed per owner Apr 23. Bivision.ge site = brand/lead gen KR, არა off-OKR.</li>
+<li>Memory updated: <code>feedback_viktor_ceo_personal_support.md</code> — CEO ad-hoc support valid Viktor scope without strict OKR gate.</li>
+<li>[EP1: FACT — full audit HTML disk-read 441 lines; INFERENCE — baseline math impact pending GA4/GSC pull]</li>
+</ul>
+</div>
+
+<div class="foot">
+Viktor · Bivision Site Audit Challenge · 2026-04-23 · forward to Mentari for V2 + execute sequence<br>
+Target: <a href="https://gshoina.github.io/bivision-shares/bivision-audit-2026-04-23.html">bivision-audit-2026-04-23.html</a>
+</div>
+
+</div>
+</body>
+</html>
