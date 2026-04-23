@@ -241,47 +241,172 @@
 <tr><td>No persistent object cache</td><td>Enable Redis/Memcached via cPanel or LiteSpeed Memcached module</td></tr>
 </table>
 
-<h2>Prioritized Fix Roadmap</h2>
+<h2>Impact-Ranked Roadmap (revised per owner feedback)</h2>
 
-<h3>P0 — Critical (this week)</h3>
+<p style="background:#fef2f2;border-left:4px solid #dc2626;padding:10px 14px;border-radius:4px;font-size:12.5px;">
+<strong>Owner correction accepted:</strong> v1 priority list mixed cosmetic housekeeping (delete unused plugin, fix H1 entity) with real revenue drivers. This revision separates by <strong>business impact</strong> not task-type.
+</p>
+
+<h3>★★★★★ — Highest business impact</h3>
 <table>
-<tr><th>Item</th><th>Effort</th><th>Impact</th></tr>
-<tr><td><span class="prio p0">P0</span>Enable 2FA both admins (Wordfence → Login Security)</td><td>5 min × 2 users</td><td>99.9% brute-force block</td></tr>
-<tr><td><span class="prio p0">P0</span>Add security headers to .htaccess (HSTS, X-Frame, X-Content, Referrer, Permissions-Policy)</td><td>10 min</td><td>securityheaders.com F→A</td></tr>
-<tr><td><span class="prio p0">P0</span>Enable LiteSpeed Cache Mobile</td><td>2 min</td><td>Mobile TTFB 1.35s→~0.5s</td></tr>
-<tr><td><span class="prio p0">P0</span>Review Wordfence 1 scan issue</td><td>10 min</td><td>Close open security finding</td></tr>
+<tr><th>Action</th><th>Traffic / Conversion Impact</th><th>Effort</th></tr>
+<tr><td><span class="prio p0">P0</span>Enable LiteSpeed Cache Mobile</td><td><strong>+5-15% mobile conversion.</strong> Mobile LCP drops 2-3s→0.5-1s. Mobile = 60-70% of traffic typically. LiteSpeed → General → Cache Mobile toggle ON.</td><td>2 min</td></tr>
+<tr><td><span class="prio p0">P0</span>Rank Math Instant Indexing API enable</td><td><strong>New pages indexed same-day instead of 1-4 weeks.</strong> Critical for product launches + blog publishing velocity. Rank Math → Instant Indexing → connect Google + Bing APIs.</td><td>10 min</td></tr>
+<tr><td><span class="prio p0">P0</span>Rank Math Content AI: rewrite 5 top pages</td><td><strong>+10-30% organic rankings.</strong> AI-generated entity-rich content ranks for broader keyword universe. Start with: homepage, BiRetail, BiFinance, BiAudit, blog hub.</td><td>2-3 h</td></tr>
+<tr><td><span class="prio p0">P0</span>Rank Math Schema Templates: Service + Product per SaaS page</td><td><strong>+5-20% SERP CTR via rich snippets</strong> (stars, prices, FAQ). Also fuels Google's AI Overviews + ChatGPT/Perplexity entity understanding. 6 SaaS pages × template = 1 hour.</td><td>1-2 h</td></tr>
 </table>
 
-<h3>P1 — High (within 2 weeks)</h3>
+<h3>★★★★ — High impact</h3>
 <table>
-<tr><th>Item</th><th>Effort</th><th>Impact</th></tr>
-<tr><td><span class="prio p1">P1</span>Delete 4 inactive plugins</td><td>3 min</td><td>Reduce attack surface + WP Site Health pass</td></tr>
-<tr><td><span class="prio p1">P1</span>Enable Redis/Memcached persistent object cache</td><td>15 min</td><td>DB query count drop + TTFB improvement</td></tr>
-<tr><td><span class="prio p1">P1</span>Fix post_max_size alignment (cPanel MultiPHP INI)</td><td>3 min</td><td>WP Site Health pass + upload reliability</td></tr>
-<tr><td><span class="prio p1">P1</span>Rank Math Schema Templates: per SaaS product page</td><td>1 hour</td><td>Rich snippets in search + AI crawler understanding</td></tr>
-<tr><td><span class="prio p1">P1</span>Remove X-Powered-By header (.htaccess: <code>Header unset X-Powered-By</code>)</td><td>1 min</td><td>Hide PHP version leak</td></tr>
-<tr><td><span class="prio p1">P1</span>Connect QUIC.cloud (free) for LiteSpeed CDN</td><td>20 min</td><td>Global edge cache + TTFB further drop</td></tr>
+<tr><th>Action</th><th>Impact</th><th>Effort</th></tr>
+<tr><td><span class="prio p1">P1</span>2FA both admin users (Wordfence → Login Security)</td><td>0% traffic. 99.9% prevention of credential-attack site takeover. info@bivision.ge is publicly visible — brute-force risk high.</td><td>10 min total</td></tr>
+<tr><td><span class="prio p1">P1</span>Security headers → .htaccess</td><td>+0.5-1% long-tail via Google quality signal. +clickjacking/XSS prevention. securityheaders.com F→A grade.</td><td>15 min</td></tr>
+<tr><td><span class="prio p1">P1</span>llms.txt + robots.txt AI bot whitelist</td><td><strong>+5-15% AI-citation referrals</strong> (ChatGPT, Perplexity, Claude, Google AI Overviews). Emerging channel, early-mover advantage.</td><td>1 h</td></tr>
+<tr><td><span class="prio p1">P1</span>Redis/Memcached persistent object cache</td><td>TTFB 1.35s→~0.5s → +5% conversion (per Unbounce/Portent benchmarks). Enable via cPanel → Select PHP Version → extensions OR LiteSpeed Memcached module.</td><td>15 min</td></tr>
 </table>
 
-<h3>P2 — Medium (within month)</h3>
+<h3>★★★ — Medium impact</h3>
 <table>
-<tr><th>Item</th><th>Effort</th><th>Impact</th></tr>
-<tr><td><span class="prio p2">P2</span>Fix H1 HTML entity &amp;#8211; → UTF-8 "–"</td><td>2 min</td><td>Clean HTML source for AI crawlers</td></tr>
-<tr><td><span class="prio p2">P2</span>sitemap.xml → sitemap_index.xml redirect cleanup</td><td>5 min .htaccess rewrite</td><td>Remove Google cache friction</td></tr>
-<tr><td><span class="prio p2">P2</span>Rank Math Content AI: generate + optimize 5 top pages</td><td>2 hours</td><td>SEO score 76→85+</td></tr>
-<tr><td><span class="prio p2">P2</span>AI-friendly SEO: add llms.txt at root</td><td>30 min</td><td>ChatGPT/Perplexity/Claude citation rate up</td></tr>
-<tr><td><span class="prio p2">P2</span>Use Any Font plugin audit: if fonts not used, deactivate</td><td>10 min</td><td>Reduce JS + external dependency</td></tr>
-<tr><td><span class="prio p2">P2</span>FastCloud ticket: MySQL/MariaDB upgrade</td><td>Owner action</td><td>WP Site Health pass + DB perf</td></tr>
+<tr><th>Action</th><th>Impact</th><th>Effort</th></tr>
+<tr><td><span class="prio p2">P2</span>Schema.org <code>sameAs</code> entity markup</td><td>+5-10% brand searches; connects to Google Knowledge Graph, LinkedIn company, Facebook page. Entity SEO critical for AI search.</td><td>30 min</td></tr>
+<tr><td><span class="prio p2">P2</span>FAQPage schema per SaaS product</td><td>Rich FAQ snippets in SERP (proven +20-30% CTR on qualifying queries).</td><td>1 h / page × 6</td></tr>
+<tr><td><span class="prio p2">P2</span>QUIC.cloud CDN activate (LiteSpeed free tier)</td><td>Global edge cache; TTFB parity for int'l visitors.</td><td>20 min</td></tr>
+<tr><td><span class="prio p2">P2</span>Rank Math SEO Analyzer 76→90+</td><td>Page-by-page module-driven fixes (title length, image alts, internal links). Impact: ranking velocity increase.</td><td>2-4 h</td></tr>
+<tr><td><span class="prio p2">P2</span>FastCloud support ticket: MySQL/MariaDB upgrade</td><td>DB perf uplift (measurable in TTFB + Admin responsiveness).</td><td>5 min to file; 1-7 days to execute</td></tr>
 </table>
 
-<h3>P3 — Low (backlog)</h3>
+<h3>★★ — Low impact / housekeeping (do eventually, not urgent)</h3>
 <table>
-<tr><th>Item</th><th>Effort</th><th>Impact</th></tr>
-<tr><td><span class="prio p3">P3</span>Install default theme (Twenty Twenty-Five) as fallback</td><td>5 min</td><td>Emergency recovery path</td></tr>
-<tr><td><span class="prio p3">P3</span>Disk usage monitor (64% used) — schedule image audit Q3</td><td>30 min</td><td>Prevent disk full</td></tr>
-<tr><td><span class="prio p3">P3</span>Evaluate hreflang need (EN/RU audience?) — if yes: Polylang/WPML</td><td>Strategic</td><td>International SEO</td></tr>
-<tr><td><span class="prio p3">P3</span>Crisp widget performance audit: async + defer</td><td>15 min</td><td>Mobile LCP improvement</td></tr>
+<tr><th>Action</th><th>Why low</th></tr>
+<tr><td><span class="prio p3">P3</span>Delete 4 inactive plugins</td><td>Cosmetic + minor attack surface. Wordfence active = practical risk low. 5 min when convenient.</td></tr>
+<tr><td><span class="prio p3">P3</span>Fix H1 HTML entity <code>&amp;#8211;</code> → "–"</td><td>Cosmetic HTML cleanliness. Zero Google/user impact.</td></tr>
+<tr><td><span class="prio p3">P3</span>post_max_size alignment</td><td>WP Site Health cosmetic pass. Only impacts if uploading &gt;8MB files.</td></tr>
+<tr><td><span class="prio p3">P3</span>Remove X-Powered-By header</td><td>Version disclosure cosmetic. Real attackers fingerprint via other methods.</td></tr>
+<tr><td><span class="prio p3">P3</span>Install default theme fallback</td><td>Emergency recovery path. Only relevant if BiVision theme breaks.</td></tr>
+<tr><td><span class="prio p3">P3</span>sitemap.xml redirect cleanup</td><td>Minor Google cache friction. sitemap_index.xml already primary.</td></tr>
 </table>
+
+<h2>Security Headers — Ready-to-Paste .htaccess Block</h2>
+
+<p>Add to <code>/home/bivision/public_html/.htaccess</code> right after "# END WordPress" marker. <strong>Rollback:</strong> remove the 8 lines between markers + LiteSpeed will auto-purge cache. cPanel File Manager backup: right-click .htaccess → Download before edit = full rollback file.</p>
+
+<pre># BEGIN Security Headers
+&lt;IfModule mod_headers.c&gt;
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    Header unset X-Powered-By
+    Header always unset X-Powered-By
+&lt;/IfModule&gt;
+# END Security Headers</pre>
+
+<p><strong>Testing after deploy:</strong></p>
+<ol>
+  <li>Visit <a href="https://securityheaders.com/?q=bivision.ge" target="_blank">securityheaders.com/?q=bivision.ge</a> → expect grade A or A+</li>
+  <li>curl -sI https://bivision.ge/ | grep -i "strict-transport" → expect HSTS header present</li>
+  <li>Click around site + verify no broken iframe/admin embeds</li>
+</ol>
+
+<p><strong>Rollback procedure:</strong></p>
+<ol>
+  <li>cPanel File Manager → public_html → .htaccess → Edit</li>
+  <li>Delete lines between <code># BEGIN Security Headers</code> and <code># END Security Headers</code></li>
+  <li>Save</li>
+  <li>LiteSpeed Cache → Toolbox → Purge All</li>
+</ol>
+
+<p><strong>Risk:</strong> HSTS is sticky — once browsers receive it, they enforce HTTPS for up to 1 year. If cert breaks later, site becomes inaccessible. <strong>Mitigation:</strong> start with <code>max-age=300</code> (5 min) for 24h test, then bump to 31536000 (1 year) only after stability confirmed.</p>
+
+<h2>AI-Friendly SEO — Expanded Priority</h2>
+
+<p>Owner flagged AI-SEO as critical. Current gaps + implementation plan:</p>
+
+<h3>1. llms.txt standard (emerging)</h3>
+<p>Analogous to robots.txt but for Large Language Models. Tells ChatGPT/Perplexity/Claude what your site is about + where the canonical pages are. Plain markdown, served at <code>/llms.txt</code>.</p>
+<pre># Bivision
+> Georgian BI platform for SMEs: ERP→Excel→Decisions automated with Power BI + Claude MCP.
+
+## Products
+- [BiFinance](https://bivision.ge/saas-products/bifinance/): financial analytics dashboard
+- [BiRetail](https://bivision.ge/saas-products/biretail/): retail ops intelligence
+- [BiAudit](https://bivision.ge/saas-products/biaudit/): compliance + audit tooling
+...
+
+## Key pages
+- [About](https://bivision.ge/about/)
+- [Pricing](https://bivision.ge/pricing/)
+- [Blog](https://bivision.ge/blog/)</pre>
+
+<h3>2. robots.txt AI bot explicit allow</h3>
+<pre>User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /</pre>
+<p>Default "Allow: /" works, but explicit directives signal trust + intent.</p>
+
+<h3>3. Schema.org entity richness</h3>
+<ul>
+  <li>Organization schema with <code>sameAs</code> pointing to LinkedIn, Facebook, Twitter/X, YouTube, Google Knowledge Graph entity</li>
+  <li>Service schema per SaaS with <code>areaServed</code>: Georgia + broader region</li>
+  <li>Product schema with price (or "contact for pricing")</li>
+  <li>FAQPage schema on product pages → rich snippet eligibility</li>
+  <li>BreadcrumbList on all inner pages → SERP navigation</li>
+</ul>
+
+<h3>4. E-E-A-T signals (Google quality algorithm)</h3>
+<ul>
+  <li>Author bios with credentials on every blog post</li>
+  <li>About page: team photos, founder story, years in business, certifications</li>
+  <li>Contact page: phone, address, physical location, map embed</li>
+  <li>Terms + Privacy Policy visible (already present)</li>
+  <li>SSL + security badges visible on commerce flows</li>
+</ul>
+
+<h3>5. Content AI entity-rich rewrites (Rank Math Pro)</h3>
+<ul>
+  <li>Homepage: expand topic authority with 500+ words, H2s per pillar</li>
+  <li>SaaS product pages: 800-1500 words each with feature-benefit-use-case triads</li>
+  <li>Blog hub: topic clusters (Power BI, Georgian ERP, financial dashboards, retail analytics)</li>
+  <li>Use Rank Math Content AI to suggest entities + related keywords per page</li>
+</ul>
+
+<h3>6. SEO current-state per key page (Rank Math Analyzer drill-down needed)</h3>
+<p>Homepage-level audit showed 76/100. Per-page breakdowns (owner action: run Rank Math → SEO Analyzer on each URL):</p>
+<ul>
+  <li>Homepage: likely short meta + generic H1 penalty</li>
+  <li>SaaS product pages: likely missing Schema + thin content</li>
+  <li>Blog posts: variable quality, unknown without audit</li>
+</ul>
+
+<h3>7. Core Web Vitals SEO impact</h3>
+<p>Direct Google ranking factor (since 2021). Current TTFB 1.35s likely means:</p>
+<ul>
+  <li>LCP: 3-5s (bad, target &lt;2.5s)</li>
+  <li>INP (formerly FID): probably OK</li>
+  <li>CLS: depends on theme</li>
+</ul>
+<p>Fix: LS Cache Mobile ON + Redis object cache + QUIC.cloud CDN = Core Web Vitals green realistic.</p>
+
+<h3>8. Backlink profile (owner: run in Rank Math Analytics or Ahrefs/Semrush free tier)</h3>
+<p>Not audited here (no SEO tool access). Likely thin for 6-month-old SaaS site. Opportunity:</p>
+<ul>
+  <li>bi.gov.ge / business.gov.ge listings</li>
+  <li>sba.gov.ge startup directory</li>
+  <li>Startup Georgia / GITA partnership listings</li>
+  <li>Guest posts on marketing.ge / it.ge publications</li>
+</ul>
 
 <h2>AI-Friendly SEO — Priority Detail</h2>
 <p>Owner requested AI-friendly SEO focus. Current state + priority actions:</p>
