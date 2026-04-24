@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bivision Carousel V2 — კონტენტის ვერსია owner-ისთვის</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', 'BPG Nino Mkhedruli', 'Sylfaen', Arial, sans-serif; background: #faf9f4; color: #1a1a1a; line-height: 1.7; max-width: 960px; margin: 0 auto; padding: 24px 20px; font-size: 15.5px; }
+header { background: linear-gradient(135deg, #1a2a44 0%, #2a3e5a 100%); color: #fff; padding: 24px; border-radius: 10px; margin-bottom: 18px; border-left: 6px solid #c9a227; }
+header h1 { font-size: 22px; color: #ffd966; margin-bottom: 6px; }
+header .sub { color: #d8dee9; font-size: 13px; }
+section { background: #fff; border: 1px solid #e5e2d9; border-radius: 10px; padding: 22px 26px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+h2 { font-size: 18px; color: #1a2a44; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 2px solid #c9a227; }
+h3 { font-size: 14px; margin: 14px 0 6px 0; color: #8b6914; text-transform: uppercase; letter-spacing: 0.5px; }
+.slide { background: #faf7ee; padding: 16px 20px; border-radius: 10px; margin: 10px 0; border-left: 5px solid #c9a227; display: flex; align-items: flex-start; gap: 14px; }
+.slide .n { background: #1a2a44; color: #ffd966; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+.slide .body { flex: 1; }
+.slide .role { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: #8b6914; margin-bottom: 4px; }
+.slide .text { font-size: 17px; color: #1a2a44; line-height: 1.5; font-weight: 500; }
+.slide .text small { display: block; font-size: 14px; color: #555; margin-top: 4px; font-weight: 400; }
+.slide .visual { font-size: 12px; color: #777; font-style: italic; margin-top: 6px; padding: 6px 10px; background: #fff; border-radius: 4px; border-left: 2px solid #d8dee9; }
+.delta { background: #eff5fa; border-left: 3px solid #5c8cc4; padding: 10px 14px; border-radius: 4px; margin: 8px 0; font-size: 13.5px; color: #2a4a6a; }
+.delta strong { color: #1a2a44; }
+.v1 { background: #fce9d6; border-left: 3px solid #c07030; padding: 8px 12px; border-radius: 4px; margin: 6px 0; font-size: 13px; color: #8b3d14; }
+.v1 strong { color: #c07030; }
+footer { background: #1a2a44; color: #fff; padding: 14px 20px; border-radius: 10px; margin-top: 18px; font-size: 12.5px; }
+.pill { display: inline-block; background: #c9a227; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-right: 6px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🎨 Bivision Carousel V2 — კონტენტის ვერსია</h1>
+  <div class="sub">Mentari • 2026-04-24 • სტანდარტი: მაქსიმალურად სწორი შინაარსი, ადამიანური ენა, გამართული ქართული</div>
+</header>
+
+<section>
+  <h2>📝 რა გავასწორე V1-დან V2-ზე</h2>
+  <div class="delta">
+    <strong>Typo-ები:</strong> "Exel" → Excel, "საბუღალტროსისტემაში" → საბუღალტრო სისტემაში (სივრცე), "სხვგან" → სხვაგან, "სურათს,რეალურ" → სურათს, რეალურ (სივრცე), "მარჟები / მოგებაპროდუქტებზე" → მარჟა პროდუქტებზე.<br>
+    <strong>ენის სიმარტივე:</strong> ყოველი slide ≤10 სიტყვა, ერთი აზრი თითოზე. არც ინგლისურ-ქართული ნაზავი, არც კონსტრუქცია.<br>
+    <strong>სრულყოფა:</strong> Carousel 2-ში 3 პროდუქტი დავამატე (BiDebitors, BiAudit, BiMedical) — იყო 3, გახდა 6.<br>
+    <strong>CTA:</strong> "გაეცანით დეტალურად ➞" → "გაეცანით დეტალურად → bivision.ge" (placeholder ქაღალდზე ხურდება).
+  </div>
+</section>
+
+<section>
+  <h2>🎞️ Carousel 1 — "Problem → System" (V2)</h2>
+
+  <div class="slide">
+    <div class="n">1</div>
+    <div class="body">
+      <div class="role">Hook</div>
+      <div class="text">გაქვს მონაცემები, მაგრამ ვერ ხედავ სრულ სურათს?</div>
+      <div class="visual">VISUAL: CFO-ის დაბნეული შეხედვა, 3 ეკრანი ღია (Excel / ERP / WhatsApp).</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="n">2</div>
+    <div class="body">
+      <div class="role">Amplify — კონკრეტული ტკივილი</div>
+      <div class="text">ფინანსები — Excel-ში.<br>გაყიდვები — საბუღალტრო სისტემაში.<br>მარაგები — სხვაგან.</div>
+      <div class="visual">VISUAL: 3 სხვადასხვა ფაილი / ფანჯარა იშლება, კაცი გორდება Excel-ებს.</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="n">3</div>
+    <div class="body">
+      <div class="role">Consequence</div>
+      <div class="text">საბოლოოდ? გადაწყვეტილებას იღებ გვიან — ან ინტუიციაზე.</div>
+      <div class="visual">VISUAL: კალენდარი ტიკ-ტიკებს, საათი გარბის.</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="n">4</div>
+    <div class="body">
+      <div class="role">Solution</div>
+      <div class="text">Bivision ყველაფერს ერთ სივრცეში აერთიანებს.</div>
+      <div class="visual">VISUAL: წინა 3 ცალკე ფანჯარა ერთ dashboard-ში ერთვება.</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="n">5</div>
+    <div class="body">
+      <div class="role">Promise</div>
+      <div class="text">სრული სურათი. რეალურ დროში.</div>
+      <div class="visual">VISUAL: dashboard cards, ციფრები "live" ცვლილებით.</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="n">6</div>
+    <div class="body">
+      <div class="role">Differentiation</div>
+      <div class="text">ჩვენ არ გაძლევთ რეპორტებს.</div>
+      <div class="visual">VISUAL: რეპორტის PDF გადაიშლება, მთრგუნავი ფურცლები.</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="n">7</div>
+    <div class="body">
+      <div class="role">Promise 2</div>
+      <div class="text">ჩვენ გიქმნით სისტემას, რომლითაც ბიზნესს მართავ.</div>
+      <div class="visual">VISUAL: CFO თავდაჯერებული, dashboard ეკრანი ნათელი.</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="n">8</div>
+    <div class="body">
+      <div class="role">Scope — მიმართულებები</div>
+      <div class="text">ფინანსები · გაყიდვები · მარაგები · დებიტორები · აუდიტი · მედიცინა</div>
+      <div class="visual">VISUAL: 6 ხატი (ცალკე circle) თითო მიმართულებისთვის. Bivision ფერები.</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="n">9</div>
+    <div class="body">
+      <div class="role">CTA</div>
+      <div class="text">გაეცანით დეტალურად → <strong>bivision.ge</strong></div>
+      <div class="visual">VISUAL: URL დიდი, Bivision ლოგო, ისრის ხატი.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>🎞️ Carousel 2 — "პროდუქტი-პროდუქტზე" (V2)</h2>
+
+  <div class="slide">
+    <div class="n">1</div>
+    <div class="body">
+      <div class="role">Hook</div>
+      <div class="text">რა რეპორტებს გიბრუნებს Bivision?</div>
+      <div class="visual">VISUAL: 6 პროდუქტის ხატი გარშემო, Bivision ლოგო ცენტრში.</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="n">2</div>
+    <div class="body">
+      <div class="role">🟢 BiFinance — ფინანსები</div>
+      <div class="text">P&L (მოგება/ზარალი) · Cash Flow (ფულის მოძრაობა) · ბიუჯეტი vs ფაქტი · ხარჯის ანალიზი · მოგებიანობა</div>
+      <div class="visual">VISUAL: P&L-ის ცხრილის და Cash Flow-ის ხაზის გრაფიკი.</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="n">3</div>
+    <div class="body">
+      <div class="role">🟢 BiRetail — გაყიდვები</div>
+      <div class="text">გაყიდვები SKU-ების მიხედვით · მარჟა პროდუქტზე · არხების ეფექტურობა · სეზონური ტრენდი</div>
+      <div class="visual">VISUAL: ტოპ-10 პროდუქტი bar chart-ად, მარჟის ფერადი ხატვა.</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="n">4</div>
+    <div class="body">
+      <div class="role">🟢 BiStock — მარაგები</div>
+      <div class="text">რეალური ნაშთი · დეფიციტი / ოვერსტოკი · მარაგის ბრუნვა · შესყიდვის რეკომენდაცია</div>
+      <div class="visual">VISUAL: საწყობის ხედი, წითელ-ყვითელ-მწვანე სტატუსი SKU-ზე.</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="n">5</div>
+    <div class="body">
+      <div class="role">🟢 BiDebitors — დებიტორები</div>
+      <div class="text">ღია დავალიანება · გადახდის გრაფიკი · ფულადი ნაკადის პროგნოზი · ვადაგადაცილების ანალიზი</div>
+      <div class="visual">VISUAL: ქრონოლოგიური ბარი "დავალიანება 0-30 / 30-60 / 60+ დღე".</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="n">6</div>
+    <div class="body">
+      <div class="role">🟢 BiAudit — აუდიტი</div>
+      <div class="text">რისკის გამოვლენა · კონტროლის წერტილები · შიდა შესაბამისობა · სრული ოპერაციული ჟურნალი</div>
+      <div class="visual">VISUAL: ფარი + ხარისხის ნიშანი, კონტროლის დიაგრამა.</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="n">7</div>
+    <div class="body">
+      <div class="role">🟢 BiMedical — სამედიცინო</div>
+      <div class="text">კლინიკის ოპერაციები · პაციენტის ნაკადი · მომსახურების ხარისხი · შემოსავლების წყაროები</div>
+      <div class="visual">VISUAL: კლინიკის plan view, departments color-coded.</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="n">8</div>
+    <div class="body">
+      <div class="role">CTA</div>
+      <div class="text">გაეცანით დეტალურად → <strong>bivision.ge</strong></div>
+      <div class="visual">VISUAL: URL დიდი, Bivision ლოგო.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>🔍 V1 vs V2 — slide-by-slide comparison</h2>
+
+  <h3>Carousel 1 — 3 ყველაზე მნიშვნელოვანი ცვლილება</h3>
+  <div class="v1"><strong>V1 slide 2:</strong> "ფინანსები Exel-ში, გაყიდვები საბუღალტროსისტემაში, მარაგები კი სხვგან..." — 3 typo.<br><strong>V2:</strong> "ფინანსები — Excel-ში. გაყიდვები — საბუღალტრო სისტემაში. მარაგები — სხვაგან." — typo fix + line breaks visual clarity.</div>
+  <div class="v1"><strong>V1 slide 3:</strong> "👉 და საბოლოოდ გადაწყვეტილება რთულდება" — abstract.<br><strong>V2:</strong> "საბოლოოდ? გადაწყვეტილებას იღებ გვიან — ან ინტუიციაზე." — concrete consequence.</div>
+  <div class="v1"><strong>V1 slide 9:</strong> CTA "გაეცანით დეტალურად ➞" → რა? არ არის URL.<br><strong>V2:</strong> "გაეცანით დეტალურად → bivision.ge".</div>
+
+  <h3>Carousel 2 — 3 ცვლილება</h3>
+  <div class="v1"><strong>V1:</strong> მხოლოდ 3 პროდუქტი (BiFinance / BiRetail / BiStock).<br><strong>V2:</strong> 6 პროდუქტი (BiDebitors + BiAudit + BiMedical დაემატა) — Bivision-ის სრული პორტფოლიო.</div>
+  <div class="v1"><strong>V1:</strong> "მარჟები / მოგებაპროდუქტებზე" — spacing error + ორი სიტყვა ერთად.<br><strong>V2:</strong> "მარჟა პროდუქტზე" — ერთი კონცეფცია, მოკლე.</div>
+  <div class="v1"><strong>V1:</strong> "შესყიდვების რეკომენდაცი" — სრული სიტყვა slide-ზე ვერ ჩაეტია.<br><strong>V2:</strong> "შესყიდვის რეკომენდაცია" — მოკლე + დასრულებული.</div>
+</section>
+
+<section>
+  <h2>⚠️ ფორმატი — Instagram Post → LinkedIn/FB carousel</h2>
+  <div class="delta">
+    <strong>Canva template label:</strong> "Instagram Post" (1080×1080 square). Bivision-ს IG არ აქვს.<br>
+    <strong>გადატანა LinkedIn/FB-ზე:</strong> ფორმატი თანხვდება (1:1 square OK ორივეზე). მხოლოდ ტექსტი არ მოიცვლება. Export-ის დროს "LinkedIn Post" template-ის სახელით save-ი — Mariam-ს სუფთა label რომ ახსოვდეს.<br>
+    <strong>ალტერნატივა:</strong> LinkedIn-ისთვის 1200×627 (4:2 horizontal) უკეთესად მუშაობს feed-ში. 1:1 ფორმატი მუშაობს მაგრამ feed-ში ნაკლებ კომფორტულად ჩანს. თუ Mariam-ს დრო აქვს, 2 ფორმატი (1:1 FB/IG-ისთვის, 4:2 LinkedIn-ისთვის) export-ი — 5 წუთი დამატებით.
+  </div>
+</section>
+
+<section>
+  <h2>✅ Ship-gate checklist Mariam-ს</h2>
+  <ol>
+    <li>Typo fix — 5 წერტილი Carousel 1-ში, 3 Carousel 2-ში</li>
+    <li>Carousel 2-ში 3 slide დამატება (BiDebitors + BiAudit + BiMedical)</li>
+    <li>CTA slide — "bivision.ge" URL-ი ქაღალდზე placeholder-ის ნაცვლად</li>
+    <li>Export label: "LinkedIn Post" ან "Bivision Carousel" (არა "Instagram Post")</li>
+    <li>Pre-publish review — Gela 10 წამის მზერა</li>
+  </ol>
+</section>
+
+<footer>
+  <strong>Status:</strong> V2 draft — owner-ის review-ის შემდეგ Mariam-ს გაეგზავნება<br>
+  <strong>URL:</strong> <a href="https://gshoina.github.io/bivision-shares/bivision-carousel-v2-2026-04-24.html">bivision-shares/bivision-carousel-v2-2026-04-24.html</a><br>
+  <strong>სტანდარტი:</strong> Clean Georgian · Laconic · Typo-free · CTA concrete · Full product portfolio
+</footer>
+
+</body>
+</html>
