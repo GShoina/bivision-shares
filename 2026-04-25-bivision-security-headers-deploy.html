@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bivision Security Headers Deploy — 2026-04-25</title>
+<style>
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #fafaf7; color: #1a1a1a; margin: 0; line-height: 1.55; font-size: 13px; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 22px 80px; }
+  header { background: #15803d; color: #fff; padding: 22px 24px; border-radius: 12px; margin-bottom: 20px; }
+  header .sig { opacity: 0.85; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; }
+  header h1 { font-size: 22px; margin: 6px 0 4px; font-weight: 900; }
+  header p { margin: 0; color: rgba(255,255,255,0.95); font-size: 13px; }
+  .badge { background: #fff; color: #15803d; padding: 8px 18px; border-radius: 6px; font-weight: 800; font-size: 13px; margin-bottom: 14px; display: inline-block; }
+  h2 { font-size: 17px; color: #0B2545; margin: 24px 0 10px; padding-bottom: 6px; border-bottom: 2px solid rgba(11,37,69,0.1); }
+  h3 { font-size: 14px; color: #0B2545; margin: 16px 0 8px; font-weight: 800; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0; }
+  th { background: #0B2545; color: #FAF7F2; text-align: left; padding: 7px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td { padding: 7px 10px; border-top: 1px solid rgba(11,37,69,0.08); vertical-align: top; }
+  .pass { color: #15803d; font-weight: 700; }
+  .fail { color: #dc2626; font-weight: 700; }
+  .warn { color: #D97706; font-weight: 700; }
+  code { background: rgba(11,37,69,0.08); padding: 1px 6px; border-radius: 3px; font-family: Consolas, monospace; font-size: 11.5px; }
+  pre { background: #0B2545; color: #D4A574; padding: 12px 14px; border-radius: 6px; font-family: Consolas, monospace; font-size: 11.5px; overflow-x: auto; line-height: 1.5; }
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin: 12px 0; }
+  .stat { background: #fff; padding: 12px; border-radius: 8px; border: 1px solid rgba(11,37,69,0.1); text-align: center; }
+  .stat .n { font-size: 22px; font-weight: 900; color: #15803d; }
+  .stat .l { font-size: 10.5px; color: #666; margin-top: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .endorsed { background: #ecfdf5; border-left: 4px solid #15803d; padding: 12px 14px; border-radius: 4px; margin: 12px 0; }
+  .foot { font-size: 11px; color: #666; border-top: 1px solid rgba(11,37,69,0.08); margin-top: 30px; padding-top: 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="sig">DEPLOY REPORT · 2026-04-25</div>
+  <h1>Bivision Security Headers — Phase 1 Deploy ✅</h1>
+  <p>5 security headers + X-Powered-By unset. HSTS staged max-age=300 (5 min). cPanel .htaccess insert. Wire-verified, zero conflicts.</p>
+</header>
+
+<span class="badge">✅ DEPLOY SUCCESS — Viktor ENDORSED</span>
+
+<h2>Summary</h2>
+<div class="stat-grid">
+  <div class="stat"><div class="n">6/6</div><div class="l">Headers verified</div></div>
+  <div class="stat"><div class="n">14/14</div><div class="l">URLs 200/302</div></div>
+  <div class="stat"><div class="n">0</div><div class="l">Duplicate headers</div></div>
+  <div class="stat"><div class="n">0</div><div class="l">Conflicts (Crisp/Optimole)</div></div>
+  <div class="stat"><div class="n">+533</div><div class="l">Bytes added .htaccess</div></div>
+  <div class="stat"><div class="n">~3 წთ</div><div class="l">Total deploy time</div></div>
+</div>
+
+<div class="endorsed">
+  <strong>Viktor independent wire verification (Apr 25 17:17 GMT):</strong> ყველა 6 header ემთხვევა Geo claim. Cert Let's Encrypt R12 valid (Verify return 0). Backup file disk-verified 5644 bytes. Risk-gate completed — 4-step protocol clean. Deploy = <strong>ENDORSED</strong>.
+</div>
+
+<h2>Wire Verification (curl https://bivision.ge/)</h2>
+<table>
+<tr><th>Header</th><th>Pre-deploy</th><th>Post-deploy</th><th>Status</th></tr>
+<tr><td>Strict-Transport-Security</td><td>missing</td><td>max-age=300</td><td class="pass">✓ ADDED</td></tr>
+<tr><td>X-Frame-Options</td><td>missing</td><td>SAMEORIGIN</td><td class="pass">✓ ADDED</td></tr>
+<tr><td>X-Content-Type-Options</td><td>missing</td><td>nosniff</td><td class="pass">✓ ADDED</td></tr>
+<tr><td>Referrer-Policy</td><td>missing</td><td>strict-origin-when-cross-origin</td><td class="pass">✓ ADDED</td></tr>
+<tr><td>Permissions-Policy</td><td>narrow (Optimole only)</td><td>camera=(), microphone=(), geolocation=(), interest-cohort=(), browsing-topics=()</td><td class="pass">✓ EXPANDED</td></tr>
+<tr><td>X-Powered-By</td><td>PHP/8.4.8 (leak)</td><td>removed</td><td class="pass">✓ HIDDEN</td></tr>
+</table>
+
+<h2>Duplicate Header Check (Wordfence Conflict Test)</h2>
+<table>
+<tr><th>Header</th><th>Instance Count</th><th>Status</th></tr>
+<tr><td>X-Frame-Options</td><td>1</td><td class="pass">✓ no duplicate</td></tr>
+<tr><td>Strict-Transport-Security</td><td>1</td><td class="pass">✓ no duplicate</td></tr>
+<tr><td>Referrer-Policy</td><td>1</td><td class="pass">✓ no duplicate</td></tr>
+<tr><td>X-Content-Type-Options</td><td>1</td><td class="pass">✓ no duplicate</td></tr>
+<tr><td>Permissions-Policy</td><td>1</td><td class="pass">✓ no duplicate</td></tr>
+</table>
+
+<h2>Cert State (HSTS Pre-flight Gate)</h2>
+<pre>subject: CN=bivision.ge
+issuer:  C=US, O=Let's Encrypt, CN=R12
+notBefore: Mar 22 03:24:34 2026 GMT
+notAfter:  Jun 20 03:24:33 2026 GMT
+Verify return code: 0 (ok)</pre>
+<p>HSTS combo-kill რისკი ნული — cert valid, AutoSSL active, ≥56 დღე renewal-მდე.</p>
+
+<h2>Smoke Test (14 URLs)</h2>
+<table>
+<tr><th>URL</th><th>Status</th><th>Notes</th></tr>
+<tr><td>/</td><td class="pass">200</td><td>Homepage clean</td></tr>
+<tr><td>/wp-admin/</td><td class="pass">302</td><td>Expected redirect → wp-login.php</td></tr>
+<tr><td>/wp-login.php</td><td class="pass">200</td><td>Login form accessible</td></tr>
+<tr><td>/saas-products/biaudit/</td><td class="pass">200</td><td>SaaS page</td></tr>
+<tr><td>/saas-products/bifinance/</td><td class="pass">200</td><td>SaaS page</td></tr>
+<tr><td>/saas-products/bistock/</td><td class="pass">200</td><td>SaaS page</td></tr>
+<tr><td>/saas-products/biretail/</td><td class="pass">200</td><td>SaaS page</td></tr>
+<tr><td>/saas-products/bidebitors/</td><td class="pass">200</td><td>SaaS page</td></tr>
+<tr><td>/saas-products/bimedical/</td><td class="pass">200</td><td>SaaS page</td></tr>
+<tr><td>/blog/</td><td class="pass">200</td><td>Blog hub</td></tr>
+<tr><td>/sitemap_index.xml</td><td class="pass">200</td><td>Yoast/Rank Math sitemap</td></tr>
+<tr><td>/robots.txt</td><td class="pass">200</td><td>Crawler config</td></tr>
+<tr><td>/wp-json/</td><td class="pass">200</td><td>WP REST API live</td></tr>
+<tr><td>/favicon.ico</td><td class="pass">200</td><td>Asset reachable</td></tr>
+</table>
+
+<h2>3rd-party Conflict Check</h2>
+<table>
+<tr><th>Service</th><th>Concern</th><th>Verified</th></tr>
+<tr><td>Crisp Live Chat</td><td>X-Frame-Options reverse-direction iframe block</td><td class="pass">✓ no impact (Crisp injects script, doesn't iframe-back)</td></tr>
+<tr><td>Optimole CDN</td><td>Permissions-Policy + image proxy interaction</td><td class="pass">✓ 22 image hits in HTML, all serve correctly</td></tr>
+<tr><td>Wordfence WAF</td><td>Header duplicate injection</td><td class="pass">✓ count=1 each, Wordfence არ ერევა</td></tr>
+<tr><td>LiteSpeed Cache</td><td>mod_headers vs cached response</td><td class="pass">✓ headers serve through cache (per-request)</td></tr>
+</table>
+
+<h2>.htaccess Modification (Block Inserted)</h2>
+<p>Inserted right after <code># END WordPress</code> marker, before performance optimization block:</p>
+<pre># BEGIN Security Headers (Apr 25 deploy, max-age=300 test phase — Geo)
+&lt;IfModule mod_headers.c&gt;
+    Header always set Strict-Transport-Security "max-age=300"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=(), browsing-topics=()"
+    Header always unset X-Powered-By
+&lt;/IfModule&gt;
+# END Security Headers</pre>
+
+<h2>Backup (Rollback Source)</h2>
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>File path</td><td><code>Documents/NGT 2020-07/AI_Projects/backups/bivision-htaccess-backup-2026-04-25.txt</code></td></tr>
+<tr><td>Size</td><td>5644 bytes (matches pre-deploy original)</td></tr>
+<tr><td>Lines</td><td>161</td></tr>
+<tr><td>Verified</td><td class="pass">Viktor disk-verified content</td></tr>
+</table>
+
+<h2>HSTS Roadmap (Phased Promote)</h2>
+<table>
+<tr><th>Phase</th><th>Date</th><th>max-age</th><th>Trigger</th></tr>
+<tr><td>1 — Test</td><td>Apr 25 (today)</td><td><strong>300 (5 წთ)</strong> ✓ LIVE</td><td>Initial deploy gate</td></tr>
+<tr><td>2 — Day</td><td>Apr 26</td><td>86400 (1 დღე)</td><td>+24 სთ stability check</td></tr>
+<tr><td>3 — Year</td><td>May 2</td><td>31536000 (1 წელი)</td><td>+7 დღე stability</td></tr>
+<tr><td>4 — Preload</td><td>Jul 25 (re-eval)</td><td>+ preload submission</td><td>+90 დღე stability — re-evaluation</td></tr>
+</table>
+
+<h2>Rollback Procedure</h2>
+<ol>
+  <li>cPanel → File Manager → <code>/home/bivision/public_html/.htaccess</code> → Edit</li>
+  <li>Remove lines from <code># BEGIN Security Headers</code> through <code># END Security Headers</code></li>
+  <li>Save Changes</li>
+  <li>Or alternative: Upload backup file <code>bivision-htaccess-backup-2026-04-25.txt</code></li>
+  <li>LiteSpeed Cache → Toolbox → Purge All</li>
+  <li>Verify: <code>curl -sI https://bivision.ge/ | grep -i "strict-transport"</code> → should be absent</li>
+</ol>
+
+<h2>Risks Already Assessed (Viktor Apr 25 Challenge)</h2>
+<table>
+<tr><th>Risk</th><th>Verdict</th></tr>
+<tr><td>Optimole CDN conflict</td><td class="pass">NO — image CDN, header-agnostic</td></tr>
+<tr><td>Crisp chat widget block</td><td class="pass">NO — X-Frame-Options reverse-direction only</td></tr>
+<tr><td>FLoC interest-cohort=() conflict</td><td class="pass">NO — FLoC discontinued, cosmetic</td></tr>
+<tr><td>Wordfence header duplicate</td><td class="pass">VERIFIED clean — count=1 per header</td></tr>
+<tr><td>LiteSpeed cache stale response</td><td class="pass">NO — mod_headers serves per-request</td></tr>
+<tr><td>HSTS combo-kill scenario</td><td class="pass">NO — cert valid 56+ days, max-age=300 short window</td></tr>
+</table>
+
+<h2>Authorization Chain</h2>
+<ul>
+  <li>Apr 24 — Dev (human, BiVision theme author): 5/7 items green-light, .htaccess security headers approved</li>
+  <li>Apr 25 — Owner: deploy proceed</li>
+  <li>Apr 25 — Viktor: pre-deploy challenge → final block + sequence approved</li>
+  <li>Apr 25 — Geo: execute (4-step protocol: backup → insert → verify → endorse)</li>
+  <li>Apr 25 — Viktor: post-deploy independent wire verification → ENDORSED</li>
+</ul>
+
+<h2>Verification Commands (Reproducible)</h2>
+<pre># Header check
+curl -sI https://bivision.ge/ | grep -iE "strict-transport|x-frame|x-content|referrer|permissions|x-powered"
+
+# Duplicate count
+curl -sI https://bivision.ge/ | grep -ic "x-frame-options"
+
+# Cert state
+echo | openssl s_client -connect bivision.ge:443 -servername bivision.ge \
+  2&gt;/dev/null | openssl x509 -noout -issuer -dates
+
+# securityheaders.com grade (manual browser)
+https://securityheaders.com/?q=bivision.ge</pre>
+
+<div class="foot">
+Geo · Bivision Security Headers Deploy · 2026-04-25 · cPanel API + Wire-Verify · Viktor ENDORSED · Phase 2 promote +24h<br>
+Authorization: Dev (Apr 24) → Owner (Apr 25) → Viktor (Apr 25) → Geo execute → Viktor endorse
+</div>
+
+</div>
+</body>
+</html>
