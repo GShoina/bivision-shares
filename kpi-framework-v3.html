@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<title>Marketing KPI Framework v3 — Top-Down Rebuild | 2026-04-20</title>
+<style>
+  :root { --bg:#faf9f6; --ink:#1a1a1a; --muted:#555; --accent:#0a6b47; --soft:#eef3ef; --border:#d8d5cd; --warn:#8a5a00; --warn-bg:#fff3dc; --bad:#8a1f1f; --bad-bg:#fbe4e4; --good:#0a6b47; --good-bg:#e4f3ec; --blue:#0a4ea8; --blue-bg:#e6eeff; }
+  * { box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "BPG Nino Mtavruli", sans-serif; background:var(--bg); color:var(--ink); margin:0; padding:32px; max-width:1020px; margin-inline:auto; line-height:1.6; font-size:15px; }
+  header { border-bottom:2px solid var(--accent); padding-bottom:16px; margin-bottom:24px; }
+  h1 { font-size:25px; margin:0 0 8px; color:var(--accent); }
+  h2 { font-size:19px; margin:30px 0 12px; color:var(--ink); border-left:4px solid var(--accent); padding-left:12px; }
+  h3 { font-size:16px; margin:20px 0 8px; color:var(--ink); }
+  .meta { font-size:13px; color:var(--muted); display:flex; gap:12px; flex-wrap:wrap; }
+  .meta span { background:var(--soft); padding:2px 8px; border-radius:4px; }
+  .retention { display:inline-block; padding:4px 12px; border-radius:6px; font-size:13px; font-weight:700; background:var(--good-bg); color:var(--good); border:1px solid var(--good); }
+
+  .alert { background:var(--warn-bg); border:2px solid var(--warn); border-radius:10px; padding:14px 20px; margin:14px 0; }
+  .alert strong { color:var(--warn); }
+  .decision { background:var(--blue-bg); border:2px solid var(--blue); border-radius:10px; padding:14px 20px; margin:14px 0; }
+  .decision strong { color:var(--blue); }
+
+  table { width:100%; border-collapse:collapse; margin:8px 0; font-size:14px; }
+  th, td { border:1px solid var(--border); padding:8px 10px; text-align:left; vertical-align:top; }
+  th { background:var(--soft); font-weight:600; }
+
+  .callout { background:var(--soft); border-left:4px solid var(--accent); padding:12px 16px; margin:12px 0; font-size:14px; }
+  .block { background:#fff; border:1px solid var(--border); border-radius:10px; padding:16px 20px; margin:14px 0; border-left:5px solid var(--accent); }
+  code { background:var(--soft); padding:1px 5px; border-radius:3px; font-size:12px; }
+
+  ul, ol { margin:6px 0; padding-left:22px; }
+  li { margin:4px 0; }
+  footer { margin-top:32px; padding-top:14px; border-top:1px solid var(--border); font-size:12px; color:var(--muted); }
+
+  .math-flow { background:#fff; border:1px solid var(--border); border-radius:8px; padding:16px 20px; margin:12px 0; font-family: "SF Mono", Consolas, monospace; font-size:13px; line-height:1.8; }
+  .math-flow .row { display:grid; grid-template-columns:40% 30% 30%; gap:10px; padding:4px 0; border-bottom:1px dotted var(--border); }
+  .math-flow .row:last-child { border-bottom:none; }
+  .math-flow .label { color:var(--muted); }
+  .math-flow .calc { color:var(--accent); }
+  .math-flow .result { color:var(--ink); font-weight:600; text-align:right; }
+  .math-flow .red { color:var(--bad); font-weight:700; }
+  .math-flow .green { color:var(--good); font-weight:700; }
+
+  .scenario { background:#fff; border:1px solid var(--border); border-radius:8px; padding:14px 18px; margin:10px 0; }
+  .scenario.a { border-left:5px solid var(--bad); }
+  .scenario.b { border-left:5px solid var(--warn); }
+  .scenario.c { border-left:5px solid var(--good); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Marketing KPI Framework v3 — Top-Down Rebuild</h1>
+  <div class="meta">
+    <span>2026-04-20</span>
+    <span>by Mentari</span>
+    <span>EP0: 9/10 (O)</span>
+    <span>supersedes v2 (LOCKED artifact from same day)</span>
+    <span class="retention">💾 PERSISTENT</span>
+  </div>
+</header>
+
+<div class="alert">
+  <strong>Why v3 exists:</strong> v2-ს გააჩნდა 4 structural gap (bottom-up logic, CPD measurement untested, CPA scope ambiguous, daily cap 10₾ = Meta algorithm blocker). Owner caught. Mentari-ს decision: rebuild first, send clean v3 to Viktor+Gurafa for challenge.
+</div>
+
+<div class="decision">
+  <strong>Decision made:</strong> Option A (rebuild → send). Option B (wait for challenges on v2) rejected — wasting challenger time on known-broken framework.
+</div>
+
+<h2>1. Top-down math FIRST (the missing challenge)</h2>
+
+<p>Owner-ის critique: "ზევიდან დაგვეგემა და გეპასუხა 'გელა ამ ბიუჯეტით ეს არ გამოვა'". ეს v3-ის core. გაანგარიშება:</p>
+
+<h3>Bivision business target reverse-engineering</h3>
+
+<div class="math-flow">
+  <div class="row"><div class="label">Step 1 — 14-day sprint success #4</div><div class="calc">target</div><div class="result">1 prospect full cycle</div></div>
+  <div class="row"><div class="label">Step 1b — Q2 realistic target (3 months)</div><div class="calc">given 6-month zero FB deals baseline</div><div class="result">1-3 new BiFinance clients</div></div>
+  <div class="row"><div class="label">Step 2 — Deals → SQLs</div><div class="calc">B2B SME close rate 20-30%</div><div class="result">4-10 SQLs/quarter</div></div>
+  <div class="row"><div class="label">Step 3 — SQLs → demos booked</div><div class="calc">50% demo-to-SQL</div><div class="result">8-20 demos/quarter</div></div>
+  <div class="row"><div class="label">Step 4 — Demos → leads</div><div class="calc">30% lead-to-demo (warm)</div><div class="result">27-67 leads/quarter</div></div>
+  <div class="row"><div class="label">Step 5 — Leads → ad-sourced visits</div><div class="calc">landing page 2-3%</div><div class="result">900-3,300 visits/quarter</div></div>
+  <div class="row"><div class="label">Step 6 — Visits → ad spend (CPC GE B2B ~2₾)</div><div class="calc">spend = visits × CPC</div><div class="result">1,800-6,600₾/quarter</div></div>
+  <div class="row"><div class="label">Step 7 — Monthly ad spend range</div><div class="calc">quarterly ÷ 3</div><div class="result red">600-2,200₾/თვე</div></div>
+</div>
+
+<div class="callout">
+  <strong>Honest verdict:</strong> <span class="math-flow red">300₾/month budget INSUFFICIENT</span> for Bivision targets at industry conversion rates. Math requires <strong>minimum 600₾/თვე, realistic 1,500-2,000₾/თვე</strong>.
+</div>
+
+<h3>Platform minimum reality check</h3>
+<table>
+  <thead><tr><th>Platform</th><th>Technical minimum</th><th>At current cap 10₾/day?</th></tr></thead>
+  <tbody>
+    <tr><td>Meta (FB+IG) — Learning Phase exit</td><td>~$50/day = 140₾/day × 5 days = 700₾</td><td>❌ Impossible (10₾/day = $3.5/day, algorithm doesn't deliver)</td></tr>
+    <tr><td>LinkedIn Ads — platform minimum</td><td>$10/day = 28₾/day</td><td>❌ Rejected at 10₾ cap</td></tr>
+    <tr><td>Mailchimp — transactional email</td><td>Free up to 500 contacts, then ~$13/month</td><td>✅ Within budget</td></tr>
+  </tbody>
+</table>
+
+<h2>2. 3 scenarios (owner picks)</h2>
+
+<div class="scenario a">
+  <h3>Scenario A — Stay at 300₾/month (current approved)</h3>
+  <ul>
+    <li><strong>Reality:</strong> ads functionally DO NOT WORK. Meta Learning Phase unreached. LinkedIn rejected.</li>
+    <li><strong>Allocation:</strong> 100% organic strategy: Mailchimp emails, LinkedIn personal posts, Balance-type partnerships, WhatsApp outreach</li>
+    <li><strong>300₾ spend:</strong> Mailchimp subscription ($13/mo = 36₾) + content tools (Canva free) + misc. ~250₾ unallocated.</li>
+    <li><strong>Expected output:</strong> 0-1 SQL/quarter from digital. Main pipeline = Balance partnership replication + owner LinkedIn outreach (manual).</li>
+    <li><strong>Sprint criterion #4 risk:</strong> HIGH — 1 prospect full cycle unlikely from digital at this spend.</li>
+  </ul>
+</div>
+
+<div class="scenario b">
+  <h3>Scenario B — Concentrated burst (1,500₾/month × 3 months)</h3>
+  <ul>
+    <li><strong>Strategy:</strong> 1 focused 90-day test, then decide scale.</li>
+    <li><strong>Monthly allocation:</strong> FB Ads 1,200₾ (Meta Learning Phase crosses threshold — $50/day for ~8 days/month concentrated) + LinkedIn 200₾ (4 ads × 7 days) + Mailchimp 100₾.</li>
+    <li><strong>Daily cap:</strong> 40-50₾/day during burst weeks, 0 rest of month. Burst = Week 1+2, pause 3+4.</li>
+    <li><strong>Expected output:</strong> 3-5 SQLs/quarter, 1-2 deals if conversion holds.</li>
+    <li><strong>Sprint criterion #4 risk:</strong> MED — achievable but tight timeline (14 days sprint, 90-day test).</li>
+  </ul>
+</div>
+
+<div class="scenario c">
+  <h3>Scenario C — Aggressive test (3,000₾/month × 3 months)</h3>
+  <ul>
+    <li><strong>Strategy:</strong> Full platform Learning Phase achievement, meaningful statistical sample.</li>
+    <li><strong>Monthly allocation:</strong> FB 2,500₾ (continuous $50/day for 20 days) + LinkedIn 400₾ + Mailchimp 100₾.</li>
+    <li><strong>Daily cap:</strong> 100-140₾/day consistent.</li>
+    <li><strong>Expected output:</strong> 8-15 SQLs/quarter, 3-5 deals.</li>
+    <li><strong>Sprint criterion #4 risk:</strong> LOW — likely delivers.</li>
+    <li><strong>Total 3-month investment:</strong> 9,000₾. If 3 deals close, CAC = 3,000₾/deal (within LTV 12,000 comfort zone, below 5:1 ratio).</li>
+  </ul>
+</div>
+
+<div class="callout">
+  <strong>Mentari recommendation:</strong> Scenario B (1,500₾/month concentrated burst). Data-informed decision possible in 90 days without major capital exposure. Scenario A = organic-only "ads effectively off" acceptable if owner accepts low digital pipeline. Scenario C = aggressive, reserve for post-validation scale.
+</div>
+
+<h2>3. CPA definition — LOCKED</h2>
+
+<table>
+  <thead><tr><th>Metric</th><th>Definition v3 (clear)</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>CPA (narrow — platform CPA)</strong></td>
+      <td>Ad spend ÷ deals closed with FB/LI attribution. <br>Gate: ≤ 650₾ narrow CPA.<br><strong>Used for:</strong> real-time campaign kill decisions.</td>
+    </tr>
+    <tr>
+      <td><strong>Fully-loaded CAC (monthly overhead)</strong></td>
+      <td>(Ad spend + Mariam salary allocation + sales labor allocation) ÷ deals closed.<br>Tracked as separate monthly health metric. <br><strong>Used for:</strong> unit economics health check, investor-grade reporting. <br><strong>Ceiling:</strong> ≤ 3,500₾ fully-loaded CAC (aligns with LTV:CAC 3:1 conservative).</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Why split:</strong> campaign optimization needs narrow CPA (immediate signal). Business health needs fully-loaded (reality check). Both matter, different decisions.</p>
+
+<h2>4. 5-stage gates — realistic numbers v3</h2>
+
+<table>
+  <thead>
+    <tr><th>Stage</th><th>Metric</th><th>Gate v2</th><th>Gate v3 (realistic)</th><th>Change reason</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1. Traffic</td><td>CTR</td><td>≥ 0.5%</td><td>≥ 0.8% (GE B2B benchmark)</td><td>Industry data tighter than v2 floor</td></tr>
+    <tr><td>2. Landing</td><td>bounce, time</td><td>&lt; 70%, &gt; 30s</td><td>&lt; 65%, &gt; 45s</td><td>Organic bounce on bivision.ge currently 52% — paid benchmark should be near organic, not far</td></tr>
+    <tr><td>3. Lead</td><td>CPL</td><td>≤ 50₾</td><td>≤ 75₾</td><td>Realistic for SME Georgian B2B; 50₾ too tight</td></tr>
+    <tr><td>4. SQL (demo)</td><td>CPD</td><td>≤ 150₾</td><td>≤ 300₾</td><td>5-lead-per-demo conversion × 75₾ CPL = 375₾; 300₾ stretch but achievable</td></tr>
+    <tr><td>5. Deal</td><td>Narrow CPA</td><td>≤ 650₾</td><td>≤ 1,000₾</td><td>3-demo-per-deal × 300₾ CPD = 900₾ natural outcome</td></tr>
+  </tbody>
+</table>
+
+<p><strong>Measurement prerequisites (BLOCKING — framework can't activate without):</strong></p>
+<ol>
+  <li>HubSpot workflow: UTM capture from form submit → Deal source field</li>
+  <li>GA4 event: form_submit tied to source=facebook, source=linkedin</li>
+  <li>Landing page UTM-tagged ads (Mariam must use Mentari-generated URLs)</li>
+  <li>Demo booked = HubSpot Meeting object created, owner tags source</li>
+  <li>Weekly Mon 09:00 billing + attribution pull (already scheduled)</li>
+</ol>
+
+<h2>5. OKR v3 — revised from v2</h2>
+
+<p>v2 OKR targets (10 SQLs/quarter, 5 demos, 3 deals) too aggressive given math. v3 realistic:</p>
+
+<table>
+  <thead><tr><th>O</th><th>Objective</th><th>Key Results v3 (realistic)</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>O5</td>
+      <td>Generate digital pipeline with validated economics</td>
+      <td>
+        <ul>
+          <li>KR1: ≥ 5 SQLs/quarter from digital channels (UTM-tagged) <em>[was 10]</em></li>
+          <li>KR2: ≥ 3 demos booked/quarter <em>[was 5]</em></li>
+          <li>KR3: weighted CPD ≤ 300₾ <em>[was 150]</em></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>O6</td>
+      <td>Prove paid-channel economics at scale 1,500₾/month</td>
+      <td>
+        <ul>
+          <li>KR1: ≥ 2 deals closed-won from paid attribution by end Q2 <em>[was 3]</em></li>
+          <li>KR2: narrow CPA ≤ 1,000₾ averaged <em>[was 650]</em></li>
+          <li>KR3: fully-loaded CAC ≤ 3,500₾ <em>[new — reality anchor]</em></li>
+          <li>KR4: LTV:CAC ≥ 3:1 fully-loaded <em>[was 18:1 — unrealistic]</em></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>O7</td>
+      <td>Organic cadence + partnership replication (primary pipeline)</td>
+      <td>
+        <ul>
+          <li>KR1: ≥ 2 Reels/month published organic</li>
+          <li>KR2: ≥ 8 LinkedIn posts/quarter (owner personal + company page)</li>
+          <li>KR3: ≥ 1 Balance-type partnership launched by May 3</li>
+          <li>KR4: Weekly Mon 09:00 Marketing Truth digest delivered</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>6. Daily cap v3 — realistic</h2>
+
+<div class="block">
+  <p><strong>v2: 10₾/day across all channels</strong> → Meta impossible, LinkedIn rejected. Broken.</p>
+  <p><strong>v3 concentrated burst model (Scenario B default):</strong></p>
+  <ul>
+    <li>Burst week (Week 1+2 of month): $50/day FB = 140₾/day. LinkedIn $10/day = 28₾/day. Total ~170₾/day during burst.</li>
+    <li>Rest week (Week 3+4): 0₾ paid, focus content + organic</li>
+    <li>Monthly burst total: 170₾ × 14 burst days = 2,380₾... wait too high</li>
+  </ul>
+  <p><strong>Recalc for Scenario B (1,500₾/month total):</strong></p>
+  <ul>
+    <li>FB 1,200₾ = $50/day × 8.5 days concentrated</li>
+    <li>LinkedIn 200₾ = $10/day × 7 days test</li>
+    <li>Mailchimp 100₾ = monthly subscription + add-ons</li>
+    <li>Daily caps by platform (hard stop at Meta/LinkedIn level): Meta $50/day, LinkedIn $10/day. Total possible spend ceiling 170₾/day × 8 days = 1,360₾ monthly — math checks.</li>
+  </ul>
+</div>
+
+<h2>6b. Total marketing cost — historical comparison (owner-requested context)</h2>
+
+<div class="callout">
+  <strong>Owner critique: "შედარებისთვის შეიძლება სწორი იყოს წინა პერიდოს მარკეტინგის ხარჯების შედარება, მაგრამ შესაფასებლად მარკეტინგის ჯამური ხარჯები ან სრულად გაციფრულება — მანდ total cost."</strong>
+  Mentari response: historical + total monthly cost view ქვემოთ.
+</div>
+
+<h3>Historical digital ad spend (disk evidence)</h3>
+<table>
+  <thead><tr><th>Period</th><th>Ad spend</th><th>Source</th></tr></thead>
+  <tbody>
+    <tr><td>15 months (cumulative FB ads)</td><td>1,037₾ / 15 = <strong>~69₾/month avg</strong></td><td>MENTARI_FULL_CONTEXT.md §Marketing, owner-validated</td></tr>
+    <tr><td>Apr 10 (ენერგეტიკა campaign)</td><td>128₾ single boost</td><td>MARKETING_PARETO_AUDIT.md (Meta Apr 14)</td></tr>
+    <tr><td>Apr 17-18 (unauthorized)</td><td>$57.23 ≈ <strong>157₾</strong> in 2 days</td><td>owner bank statement, FB_INVESTIGATION.html</td></tr>
+    <tr><td>Apr (full month est)</td><td>~285₾</td><td>ენერგეტიკა + Apr 17-18 combined</td></tr>
+  </tbody>
+</table>
+
+<h3>Total marketing cost — current monthly</h3>
+<table>
+  <thead><tr><th>Item</th><th>Monthly cost</th><th>Category</th></tr></thead>
+  <tbody>
+    <tr><td>Mariam salary (outsource, 83% of total)</td><td>3,189₾</td><td>Labor overhead</td></tr>
+    <tr><td>Digital ads (historical baseline)</td><td>~69₾</td><td>Platform spend</td></tr>
+    <tr><td>Content tools (Canva free, Optimole) — estimate</td><td>~50₾</td><td>Tool overhead</td></tr>
+    <tr><td>Mailchimp (estimate)</td><td>~36₾</td><td>Tool overhead</td></tr>
+    <tr><td>LinkedIn Premium / other (estimate)</td><td>~100₾</td><td>Tool overhead</td></tr>
+    <tr><td><strong>Total current monthly marketing cost</strong></td><td><strong>~3,444₾</strong></td><td>≈ 41,300₾/year</td></tr>
+  </tbody>
+</table>
+
+<h3>Scenarios vs total marketing cost (what changes)</h3>
+<table>
+  <thead><tr><th>Scenario</th><th>Ad spend</th><th>Δ vs historical</th><th>Total monthly marketing</th><th>Δ vs current total</th></tr></thead>
+  <tbody>
+    <tr><td>Current baseline</td><td>~69₾</td><td>—</td><td>3,444₾</td><td>—</td></tr>
+    <tr><td>A (300₾)</td><td>300₾</td><td>+4.3×</td><td>3,675₾</td><td>+7%</td></tr>
+    <tr><td>B (1,500₾ rec)</td><td>1,500₾</td><td>+22×</td><td>4,875₾</td><td>+42%</td></tr>
+    <tr><td>C (3,000₾)</td><td>3,000₾</td><td>+43×</td><td>6,375₾</td><td>+85%</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Interpretive insight:</strong>
+  <ul>
+    <li>Current ~3,444₾/თვე total marketing → 83% = Mariam salary, 2% = ads. <strong>Imbalanced: paying content creator more than content distribution.</strong></li>
+    <li>Scenario B 4,875₾/mo total = adds 1,431₾ to existing. Still Mariam = 65% of total. <em>Healthier ratio</em>.</li>
+    <li>Scenario C 6,375₾/mo total = Mariam ratio drops to 50%. Functional distribution-to-creation balance.</li>
+    <li>Annual view: A = 44K, B = 58K, C = 76K. Current annual = 41K. Bivision EBITDA 2026 = 177K — marketing increase to 58K consumes 10% of EBITDA for validated digital acquisition. Reasonable bet.</li>
+  </ul>
+</div>
+
+<h2>7. Summary — what owner picks (1 scenario)</h2>
+
+<div class="decision">
+  <strong>Owner decisions needed (15 წთ):</strong>
+  <ol>
+    <li><strong>Pick scenario A/B/C.</strong> Mentari rec: B (1,500₾/month concentrated burst, 3-month test).</li>
+    <li><strong>Confirm CPA definition split:</strong> narrow (ad-only) for campaign ops, fully-loaded (ad+labor) for business health.</li>
+    <li><strong>Revised gates approve:</strong> CTR 0.8, bounce 65/time 45, CPL 75, CPD 300, CPA 1,000 (narrow), CAC 3,500 (fully-loaded).</li>
+    <li><strong>OKR v3 adopt:</strong> reduced targets aligned to realistic math, added O7 KR3 Balance partnership replication.</li>
+    <li><strong>Blocking prerequisite:</strong> HubSpot UTM wiring. ვინ აკეთებს ამ კვირაში? Mentari ან გაბო?</li>
+  </ol>
+</div>
+
+<h2>8. After owner decision — Viktor + Gurafa challenge v3</h2>
+
+<p>Mentari ნაბიჯი:</p>
+<ol>
+  <li>Owner confirms scenario + gates</li>
+  <li>Mentari updates FB_OPERATING_POLICY.md v3 final</li>
+  <li>Viktor AUDIT_REQUEST updated to point at v3 (discard v2 challenge)</li>
+  <li>Gurafa challenge request updated to v3 with different focus:
+    <ul>
+      <li>Scenario B viability: burst budget 1,500₾ concentrated enough for Meta signal?</li>
+      <li>GE B2B conversion rates — Mentari's 20-30% close / 30% lead-to-demo assumed realistic?</li>
+      <li>Alternative channels (WhatsApp Business API, organic SEO, partnership) prioritization?</li>
+    </ul>
+  </li>
+  <li>Challenges return Apr 21 18:00 → Mentari synthesis → owner final lock</li>
+</ol>
+
+<footer>
+  supersedes: <code>outputs/2026-04-20 Marketing KPI Framework v2 LOCKED by Mentari.html</code> · source: <code>outputs/2026-04-20 Owner Challenge Test Note — Hidden.html</code> 4 gaps addressed · memory: <code>feedback_top_down_challenge.md</code> · generated by Mentari · 2026-04-20
+</footer>
+
+</body>
+</html>
