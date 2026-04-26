@@ -26,7 +26,11 @@ hr{border:none;border-top:1px solid #ccc;margin:2rem 0}
 <body>
 
 <h1>GEO/SEO Master Prompt — Portable Claude Skill Pack</h1>
-<div class="meta">10 prompts · Site-agnostic · Copy-paste runnable in Claude / ChatGPT / Perplexity · Author: Gurafa (Bivision) · 2026-04-26 · Free to share</div>
+<div class="meta">10 prompts · Site-agnostic · Copy-paste runnable in Claude / ChatGPT / Perplexity · Author: Gurafa (Bivision) · 2026-04-26 v0.2 · Free to share</div>
+
+<div style="background:#fde7e9;border:2px solid #c0392b;padding:.8rem 1rem;border-radius:6px;margin:.7rem 0">
+<b>v0.2 status — HOLD external distribution.</b> Viktor independent challenge (2026-04-26): 3 mandatory fixes pending — (M1) Bivision own schema <code>inLanguage</code> proof-of-concept, (M2) citability score formula now defined ✓, (M3) "+30% in 30 days" stripped ✓. Remaining: bivision.ge schema fix (Geo phase A). External release after both close.
+</div>
 
 <div class="intro">
 <b>What this is.</b> A portable, project-agnostic prompt pack for <b>GEO</b> (Generative Engine Optimization — citation in AI-search) + classic SEO. Apply to any site / brand / product. Each prompt is self-contained: trigger condition, input variables, paste-text, expected output.<br><br>
@@ -35,6 +39,14 @@ hr{border:none;border-top:1px solid #ccc;margin:2rem 0}
 </div>
 
 <h2>Setup — Required inputs (fill once, reuse across all 10)</h2>
+
+<div class="note"><b>Pre-filled archetypes — adapt-and-go:</b>
+<ul>
+<li><b>SaaS B2B:</b> {ICP}="VP Operations at 50-500 headcount SaaS, $5M-$50M ARR, churn-focused"; {KEY_QUERIES} = ["best churn analytics tool", "[category] vs [category]", …]</li>
+<li><b>E-commerce:</b> {ICP}="DTC founder, $1M-$10M GMV, Shopify, looking for retention"; {KEY_QUERIES} = ["best Shopify retention app", "abandoned cart tools comparison", …]</li>
+<li><b>Local agency:</b> {ICP}="SME owner in [city], 10-50 employees, looking for [service]"; {KEY_QUERIES} = ["[service] in [city]", "best [agency type] [country]", …]</li>
+</ul>
+Use closest archetype as start, then refine for your specific {BRAND}.</div>
 
 <table>
 <tr><th>Variable</th><th>Definition</th><th>Example</th></tr>
@@ -61,7 +73,16 @@ For each of these 10 queries: {KEY_QUERIES}
 Output a table:
 | Query | Cited? Y/N | Position | Context (1 line) | Citation source URL if any |
 
-End with: 3 patterns observed (e.g., "{BRAND} cited only when query includes country name"), 3 gap hypotheses, and a citability score 0-10.</pre>
+End with: 3 patterns observed (e.g., "{BRAND} cited only when query includes country name"), 3 gap hypotheses.
+
+CITABILITY SCORE — explicit formula (use exactly this, do not approximate):
+  citability_score = (queries_cited_top3 / total_queries) × 10
+  WEIGHTED by position (position 1 = 10pt, position 2 = 7pt, position 3 = 5pt, not cited = 0pt)
+  AVERAGED across N=3 runs over 7 days (engine drift control)
+
+Output the score with the breakdown: {position-weighted citations} / {total queries × 10} × 10 = X.X</pre>
+
+<div class="note"><b>Why N=3 over 7 days:</b> Claude/Perplexity/ChatGPT update training and re-crawl on different schedules. Single-run = snapshot. 3-run average over 7 days = trend baseline that can be compared cross-quarter.</div>
 
 <h3>2. Schema.org markup audit <span class="tag">audit</span></h3>
 <pre>Fetch {SITE_URL} (or paste HTML). Audit current schema.org markup.
@@ -83,7 +104,29 @@ For each missing/incomplete schema: provide ready-to-paste JSON-LD with placehol
 
 Per page: 0-10 score per dimension + 1-line evidence + top-1 fix.
 
-End with: which 1 page to fix first for max AI-citability lift, and what to add (declarative facts with year, named clients, specific outcomes).</pre>
+EEAT RUBRIC ANCHORS (use exactly these, no opinion):
+
+EXPERIENCE:
+  0 = no client examples or first-hand evidence
+  5 = 2-3 client mentions, generic praise, no metrics
+  10 = year-anchored named case studies + outcome metrics + specific numbers
+
+EXPERTISE:
+  0 = generic copy, buzzwords, no technical depth
+  5 = some technical detail, mixed accuracy, no named experts
+  10 = named experts + cited credentials + accurate technical specifics
+
+AUTHORITATIVENESS:
+  0 = no third-party citations, mentions, or partnerships
+  5 = 1-2 partner logos, some directory listings
+  10 = high-authority backlinks + named partnerships + media coverage with year
+
+TRUST:
+  0 = no contact info, no security signals (no HTTPS, no privacy policy, no legal address)
+  5 = basic contact + privacy policy + HTTPS
+  10 = full transparency: legal address + named team + privacy + GDPR/local compliance + security headers visible
+
+End with: which 1 page to fix first for max AI-citability lift, and what to add.</pre>
 
 <h3>4. Competitor AI-citation comparison <span class="tag">audit</span></h3>
 <pre>For {COMPETITORS} vs {BRAND}, run the same 10 queries: {KEY_QUERIES}.
@@ -94,7 +137,9 @@ Output table:
 End with:
 - Which competitor "owns" which query bucket and why (specific signal: schema, named clients, year-anchored facts, etc.)
 - 3 gaps where {BRAND} can leapfrog with low effort
-- 1 query where {BRAND} should NOT compete (let competitor own; differentiate elsewhere)</pre>
+- 1 query where {BRAND} should NOT compete (let competitor own; differentiate elsewhere)
+
+DISCLAIMER (include in output): "Reasons attributed to competitor ownership are HYPOTHESES, not causation. Before applying any competitor tactic, verify by overlaying domain authority (Ahrefs/Moz DR), backlink profile, and domain age. Correlation ≠ causation."</pre>
 
 <h2>Stage 2 — Optimize (4 prompts)</h2>
 
@@ -186,8 +231,8 @@ Format: clean markdown ready for PDF export. Audience: non-technical CEO/owner.<
 <b>Validation gate (per Validation Master Prompt v2 — Mini tier):</b>
 <ul>
 <li><b>Build:</b> implement top-3 gap fixes (1-2 days)</li>
-<li><b>Measure:</b> baseline citability score from prompt #1, target +30% in 30 days</li>
-<li><b>Pre-mortem (Side B — cost of not doing):</b> competitor first-mover lock in narrow AI-search vocabulary; positioning credibility leak; growing AI-search share gap (2027+ trend)</li>
+<li><b>Measure:</b> baseline citability score from prompt #1 (N=3 runs over 7 days). Lift target = empirical: set after baseline established + first comparison cycle (≥7 days post-fix). DO NOT pre-set numeric target; over-promise + post-hoc rationalization both fail per <code>feedback_no_fabrication</code> rule.</li>
+<li><b>Pre-mortem (Side B — cost of not doing):</b> competitor first-mover lock in narrow AI-search vocabulary [HYPOTHESIS — verify via prompt #4]; positioning credibility leak; growing AI-search share gap (2027+ trend, market data dependent)</li>
 </ul>
 </div>
 
