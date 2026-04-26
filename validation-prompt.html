@@ -2,7 +2,7 @@
 <html lang="ka">
 <head>
 <meta charset="utf-8">
-<title>Validation Master Prompt + Connector Lesson — Bivision 2026-04-23</title>
+<title>Validation Master Prompt v2 — Bivision 2026-04-26</title>
 <style>
 body{font-family:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;max-width:920px;margin:2rem auto;padding:0 1.2rem;color:#1a1a1a;line-height:1.55;font-size:15px}
 h1{font-size:1.55rem;margin:0 0 .3rem 0}
@@ -11,153 +11,123 @@ h3{font-size:1.02rem;margin:1.2rem 0 .4rem 0;color:#2a2a2a}
 .meta{color:#666;font-size:.82rem;margin-bottom:1.2rem}
 .lesson{background:#fff8e1;border-left:4px solid #f5a623;padding:.8rem 1rem;margin:.8rem 0;border-radius:4px}
 .frame{background:#f4f7fb;border-left:4px solid #2563eb;padding:.8rem 1rem;margin:.8rem 0;border-radius:4px}
-.fact-ok{background:#eefbe6;border-left:4px solid #10b981;padding:.6rem 1rem;margin:.5rem 0;border-radius:4px}
-.fact-gap{background:#fdecea;border-left:4px solid #d9534f;padding:.6rem 1rem;margin:.5rem 0;border-radius:4px}
+.new{background:#eefbe6;border-left:4px solid #10b981;padding:.8rem 1rem;margin:.8rem 0;border-radius:4px}
+.warn{background:#fdecea;border-left:4px solid #d9534f;padding:.6rem 1rem;margin:.5rem 0;border-radius:4px}
 table{border-collapse:collapse;width:100%;margin:.5rem 0 1rem 0;font-size:.9rem}
 th,td{border:1px solid #d4d4d4;padding:.45rem .6rem;text-align:left;vertical-align:top}
 th{background:#f0f0f0}
 code,kbd{font-family:Consolas,"SF Mono",monospace;background:#f2f2f2;padding:.05rem .3rem;border-radius:3px;font-size:.86rem}
-pre{background:#1f2937;color:#e5e7eb;padding:.8rem;border-radius:4px;overflow-x:auto;font-size:.82rem}
 .tag{display:inline-block;padding:.1rem .45rem;border-radius:3px;font-size:.72rem;font-weight:600}
-.tag.v{background:#10b981;color:#fff}
-.tag.g{background:#d9534f;color:#fff}
-.tag.h{background:#f5a623;color:#fff}
+.tag.heavy{background:#d9534f;color:#fff}
+.tag.mini{background:#f5a623;color:#fff}
+.tag.skip{background:#10b981;color:#fff}
+.tag.new{background:#2563eb;color:#fff}
 ul,ol{margin:.3rem 0 .6rem 1.4rem}
 li{margin:.2rem 0}
 hr{border:none;border-top:1px solid #ccc;margin:2rem 0}
 .small{font-size:.82rem;color:#555}
+.ver{display:inline-block;background:#222;color:#fff;padding:.2rem .55rem;border-radius:4px;font-size:.78rem;font-weight:700}
 </style>
 </head>
 <body>
 
-<h1>Validation Master Prompt + Connector Lesson</h1>
-<div class="meta">Bivision · Gurafa · 2026-04-23 · Shareable artifact (team + agents + external reference)</div>
+<h1>Validation Master Prompt <span class="ver">v2</span></h1>
+<div class="meta">Bivision · Gurafa · 2026-04-26 · Viktor 6-rec adopted · ACK cycle closed</div>
 
 <div class="lesson">
-<b>რატომ ეს დოკუმენტი?</b><br>
-Apr 23 owner–Gurafa session-ში theory-loop–ი გამოიკვეთა: agent-მა "priority" / "opportunity" labels გამოიყენა substance-ის გარეშე, classic (წიგნური) terminology დააწერა domain-ს რომელიც არ იცოდა. ეს არტეფაქტი აფიქსირებს — რა ვისწავლე, რა framework-ები ხსნიან ამ gap-ს, და რა Bivision-specific connector facts გამოჩნდა საუბარში (verified vs to-verify).
+<b>რატომ v2 ?</b><br>
+Apr 22 OKR Framework-ში "<b>95K → 950K ARR</b>" typo escape-ი გაუკეთა pre-publish review-ს — 10x ციფრის შეცდომა north-star-ფაილში. v2 (Heavy-tier + JTBD-first + numeric sanity check) ეს კერძო შემთხვევას დაიჭერდა. Validation discipline = error-rate floor strategic artifact-ებზე, არა ცერემონია.
 </div>
 
-<h2>1. გაკვეთილი (session lesson)</h2>
-
-<ol>
-<li><b>Label ≠ substance.</b> "Priority" / "ready" / "validated" memory-დან ნასესხები სიტყვაა. Disk verify + dev interview + prototype საჭიროა, ამის გარეშე = blackbox.</li>
-<li><b>Classic terms ≠ domain fit.</b> JTBD "schema / mapping / testing / errors / back-and-forth" = textbook template. Bivision-ს შესაძლოა სხვა terminology ჰქონდეს — დომეინი არ ვიცი → კითხვარიც არ ვიცი.</li>
-<li><b>Distribution არ არის ნაგულისხმები.</b> SSOT ფაილი ≠ team awareness. ყოველი shared-core update ითხოვს explicit broadcast + ACK.</li>
-<li><b>Self-challenge missed.</b> Peer-challenge (Viktor/Mentari) + owner review ყოველი artifact-ზე pre-ship, არა post.</li>
-<li><b>Theory-loop default = agent trap.</b> "Recommend" / "Let's explore" / "consider" = words for when concrete step missing. Cure = force BML + JTBD + Pre-mortem.</li>
-</ol>
-
-<h2>2. Validation Master Prompt — 3 Framework</h2>
-
-<div class="frame">
-<h3>Slot 1 — Build-Measure-Learn (Eric Ries, Lean Startup)</h3>
-<b>Trigger:</b> claim რომ "X-ს ვაშენებთ / ვრეკომენდებთ"<br>
-<b>Build:</b> minimum working artifact (prototype / test output / measurement) — 1-3 დღე max. არა slide, არა analysis doc.<br>
-<b>Measure:</b> ციფრი / binary outcome pre-defined. Baseline vs target წინასწარ.<br>
-<b>Learn:</b> pass → რა ვიცით? fail → რა ვიცით? ორივე სცენარი actionable უნდა იყოს.<br>
-<b>Output:</b> <code>docs/BML_&lt;idea&gt;_&lt;YYYY-MM-DD&gt;.md</code>
-</div>
-
-<div class="frame">
-<h3>Slot 2 — Jobs-To-Be-Done Interview (Clayton Christensen)</h3>
-<b>Trigger:</b> claim რომ "user/dev/client-ს X სჭირდება"<br>
-<b>5-Q script (15 წთ):</b>
-<ol>
-<li><b>Context</b> — რა routine-ს აკეთებ? რამდენი დრო?</li>
-<li><b>Pain</b> — რომელი ნაწილი იწელება? კონკრეტული.</li>
-<li><b>Repetition</b> — რა იმეორება? რა ყოველთვის ახალი?</li>
-<li><b>Failure mode</b> — სად ცდება? კონკრეტული example.</li>
-<li><b>Counterfactual</b> — 1 საათი თუ დაგიზოგა, რას გააკეთებ? ("არაფერს" = save არ ღირს)</li>
-</ol>
-<b>Test task default:</b> Interview-ის ბოლოს 1-3 დღიანი test assignment ask. Dev decline → reject idea, არა push.<br>
-<b>Domain-fit rule:</b> კითხვები domain terms-ით, არა classic textbook terms-ით. "Schema / mapping" რომ ქართულ ERP-ის dev-ს ესმოდეს — ჯერ domain-ს გაეცანი.<br>
-<b>Output:</b> <code>docs/JTBD_&lt;domain&gt;_&lt;person&gt;_&lt;YYYY-MM-DD&gt;.md</code>
-</div>
-
-<div class="frame">
-<h3>Slot 3 — Pre-mortem (Gary Klein)</h3>
-<b>Trigger:</b> Build + Interview pass → სანამ ship/commit/recommend, 10-წთ pre-mortem.<br>
-<b>Script:</b> "წარმოვიდგინოთ: 3 თვე გავიდა. ეს აიდეა ჩავარდა. რა მოხდა?"<br>
-<b>Categories:</b> technical / adoption / capacity / economic / external.<br>
-<b>Rule:</b> 5+ failure cause. 2+ cause-ს mitigation თუ არ აქვს → don't ship, redesign.<br>
-<b>Output:</b> <code>docs/PREMORTEM_&lt;idea&gt;_&lt;YYYY-MM-DD&gt;.md</code>
-</div>
-
-<h3>Gate summary</h3>
-<table>
-<tr><th>Slot</th><th>Artifact</th><th>Pass criterion</th></tr>
-<tr><td>BML</td><td>Working prototype / test result</td><td>Baseline vs target pre-defined, outcome measured</td></tr>
-<tr><td>JTBD</td><td>Interview file + test task outcome</td><td>≥1 dev/user agreed test task OR idea rejected</td></tr>
-<tr><td>Pre-mortem</td><td>5+ failure modes, mitigated</td><td>No orphan failure mode</td></tr>
-</table>
-All 3 pass → <span class="tag v">PRIORITY OK</span>. Any fail → <span class="tag g">BLACKBOX / UNTESTED</span>.
-
-<h2>3. Bivision "Connector" — რა ვიცით რეალურად (2026-04-23 state)</h2>
-
-<p class="small">ამ section-ის მიზანი: honest baseline. Verified facts from disk vs to-verify gaps. Agent-ი / team member-ი ვინც ამ პრომპტს იყენებს, ამ სქემით უნდა შეამოწმოს რა იცის და რა არა, არა წარმოდგენილი სიტყვებით იმუშავოს.</p>
-
-<h3>3.1 Connector semantic (2 different meanings at Bivision)</h3>
-
-<div class="fact-ok"><span class="tag v">VERIFIED</span> <b>ERP→BI connector</b> — data pipeline ქართულ ERP (Fina, Oris, 1C, Balance)-დან Bivision BI stack (Qlik)-მდე. Bivision-ის core moat: "2-3 კვირა deployment" claim ეფუძნება ამას.</div>
-
-<div class="fact-ok"><span class="tag v">VERIFIED</span> <b>MCP connector</b> — Model Context Protocol connector agent tool integrations (HubSpot / Slack / LinkedIn / Exa / Qlik MCP). ERP connector-ისგან განსხვავებული კონცეფცია.</div>
-
-<div class="fact-gap"><span class="tag g">TO VERIFY</span> <b>ERP connector technical anatomy</b> — რა არის deployment-ში? SQL read? API call? CSV scheduled export? Schema auto-discovery თუ manual mapping? Error handling flow? — <i>Mentari deepdive request pending</i> (<code>GURAFA_TO_MENTARI_CONNECTOR_DEEPDIVE.md</code>).</div>
-
-<h3>3.2 Per-ERP fact snapshot</h3>
+<h2>Tier system <span class="tag new">NEW v2</span></h2>
 
 <table>
-<tr><th>ERP</th><th>ცნობილი</th><th>უცნობი (to verify)</th></tr>
-<tr><td><b>Fina</b></td><td>ქართული ERP; Bivision-ს connector აქვს</td><td>Deployment time, schema type, API vs file export</td></tr>
-<tr><td><b>Oris</b></td><td>ქართული ERP; connector ready; Amadeo-ს ახალი Orio 7 connector-თან შედარება გახდა საჭირო</td><td>Oris vs Orio 7 ვერსიული დიფერენცია</td></tr>
-<tr><td><b>1C</b></td><td>Post-Soviet accounting standard; Bivision supports</td><td>Version coverage, language coverage (რუსული vs ქართული)</td></tr>
-<tr><td><b>Balance</b></td><td>Balance.ge = Georgian cloud accounting; Bivision-ს connector აქვს; <b>Balance.ge ასევე Amadeo-ს distribution partner</b> (competitive nuance)</td><td>Conflict of interest ?, data access model, Mari Mik პასუხისმგებელი</td></tr>
+<tr><th>Tier</th><th>როდის</th><th>Slots საჭირო</th><th>დრო</th></tr>
+<tr><td><span class="tag heavy">HEAVY</span></td><td>High-stakes: product launch, framework lock, OKR/KPI definition, owner-facing strategic claim, irreversible commit, financial gate</td><td>3 slot (JTBD → BML → Pre-mortem) + ACK + owner sign-off</td><td>2-5 დღე</td></tr>
+<tr><td><span class="tag mini">MINI</span></td><td>Medium: single-channel test, internal tool, reversible hypothesis, low cost-of-failure</td><td>BML + 1 complement (JTBD or Pre-mortem)</td><td>4-8 სთ</td></tr>
+<tr><td><span class="tag skip">SKIP</span></td><td>Operational: pure execution, OKR-trace explicit, no hypothesis</td><td>OKR trace + EP0 ≥8 + owner explicit go</td><td>0</td></tr>
 </table>
 
-<h3>3.3 Qlik MCP — connector adjacent</h3>
+<div class="warn">
+<b>Tier downgrade forbidden</b> mid-validation (no convenience-driven scope reduction). Heavy → Mini გადასვლა მხოლოდ explicit owner approval-ით.<br>
+<b>Tier escalation OK:</b> Mini-ში material risk discovered → escalate Heavy.
+</div>
 
-<div class="fact-ok"><span class="tag v">VERIFIED</span> Qlik MCP + Claude = validated product concept (Viktor + owner sign-off). IG pilot approved.</div>
-<div class="fact-gap"><span class="tag g">BLOCKED</span> Productization — Qlik-AI language gap (Georgian prompt + Qlik script coverage &lt;?). Test plan on disk (<code>QLIK_MCP_LANGUAGE_GAP_TEST.md</code>), Day 0 verification pending.</div>
-
-<h3>3.4 What "deployment" means — honest gap</h3>
-
-<p>Owner Apr 21 positioning says "2-3 კვირა per client". მე არ ვიცი ეს 2-3 კვირა რა time breakdown-ია (schema? mapping? client back-and-forth? Qlik app build?). ეს exactly რაც dev interview-მ უნდა დაადგინოს — და აქამდე classic terms-ით მეცდა, dev-ის რეალური workflow-ის გაგების გარეშე.</p>
-
-<h2>4. Application to current case (ERP AI-improvement hypothesis)</h2>
-
-<ol>
-<li><b>Build:</b> schema auto-discovery prototype 1 client-ს real accounting DB-ზე (owner-ი სთავაზობს) → Statement generation test.</li>
-<li><b>Measure:</b> baseline manual time (to collect) vs prototype time; accuracy field-match % vs ground-truth Statement.</li>
-<li><b>Learn:</b> pass (≥90% match, &lt;50% baseline time) → productize; fail → specific root cause (schema complexity? Georgian accounting rules? data quality?).</li>
-<li><b>JTBD interview:</b> <b>AFTER</b> Mentari connector deepdive; redesign interview with Bivision-specific terms (not textbook schema/mapping).</li>
-<li><b>Pre-mortem:</b> 5 failure modes already mapped (<code>ACCOUNTING_DB_TEST_ACCEPTANCE.md</code>) — Georgian accounting rules, format non-standardization, DB access, subjective "better", overfitting 1 client.</li>
-</ol>
-
-<h2>5. Team usage — how to apply this prompt</h2>
-
-<ol>
-<li>Before labeling anything <code>priority</code> — fill 3 slots on disk (BML, JTBD, Pre-mortem). Otherwise label = <code>blackbox</code>.</li>
-<li>Before interview — verify domain terminology. List of real concepts from real workflow, არა textbook.</li>
-<li>Share draft interview with peer (Viktor / Mentari / Mariam depending on agent) + owner for challenge, THEN send to dev/team/client.</li>
-<li>After each session — 3-block closer: <b>რა გაიგე / რა იმოქმედე / next steps</b>. Bullets only.</li>
-<li>Any shared-core update (this doc included) MUST broadcast + ACK loop.</li>
-</ol>
-
-<h2>6. Related artifacts on disk</h2>
+<h2>"Priority" threshold <span class="tag new">NEW v2</span></h2>
 
 <ul>
-<li><code>Mentari_Virtual-C-Suite/docs/core/VALIDATION_MASTER_PROMPT.md</code> — SSOT 3-slot gate</li>
-<li><code>Mentari_Virtual-C-Suite/docs/VALIDATION_MASTER_PROMPT_BROADCAST_2026-04-23.md</code> — agent ACK broadcast</li>
-<li><code>BI_gurafa/docs/GURAFA_TO_MENTARI_CONNECTOR_DEEPDIVE.md</code> — 16+3 Qs awaiting Mentari answer</li>
-<li><code>BI_gurafa/docs/ACCOUNTING_DB_TEST_ACCEPTANCE.md</code> — BML plan for owner's DB offer</li>
-<li><code>BI_gurafa/docs/QLIK_MCP_LANGUAGE_GAP_TEST.md</code> — falsifier-first test plan</li>
-<li><code>BI_gurafa/docs/ERP_INTERVIEW_RETRACTED_2026-04-23.md</code> — self-retraction doc</li>
-<li><code>BI_gurafa/docs/MENTARI_MARKETING_KPI_CHALLENGE_RESPONSE.md</code> — 2-day-late debt closed</li>
+<li><b>Heavy:</b> all 3 slots PASS + Viktor/peer ACK + owner sign-off (if owner-facing)</li>
+<li><b>Mini:</b> BML PASS + selected complement PASS + EP0 ≥7</li>
+<li><b>Skip:</b> OKR-KR trace explicit + EP0 ≥8 + owner go</li>
 </ul>
 
+<p>Below threshold → label = <code>hypothesis</code> / <code>blackbox</code> / <code>untested</code> / <code>idea</code>. <b>არასოდეს "priority".</b></p>
+
+<h2>Slot order — JTBD → BML → Pre-mortem <span class="tag new">REORDERED v2</span></h2>
+
+<p class="small">v1 was BML → JTBD → Pre-mortem. v2 puts <b>JTBD first</b> — domain-ground before building. Build without domain understanding = textbook artifact, არა Bivision-fit (Apr 23 Gurafa lesson).</p>
+
+<div class="frame">
+<h3>Slot 1 — Jobs-To-Be-Done (Christensen)</h3>
+<b>Pre-interview domain check:</b> domain terminology verify (real terms, not textbook), existing artifacts read, peer-challenge interview script before send.<br>
+<b>5-Q (15 წთ):</b> Context · Pain · Repetition · Failure mode · Counterfactual<br>
+<b>Test task default:</b> 1-3 დღე ask. Decline → reject idea, არა push.<br>
+<b>Output:</b> <code>docs/JTBD_&lt;domain&gt;_&lt;person&gt;_&lt;date&gt;.md</code>
+</div>
+
+<div class="frame">
+<h3>Slot 2 — Build-Measure-Learn (Ries)</h3>
+<b>Build:</b> minimum working artifact 1-3 დღე. Code/measurement, არა slide.<br>
+<b>Measure:</b> ციფრი/binary outcome pre-defined. Numeric sanity check (95K vs 950K typo prevention).<br>
+<b>Learn:</b> pass/fail ორივე actionable.<br>
+<b>Output:</b> <code>docs/BML_&lt;idea&gt;_&lt;date&gt;.md</code>
+</div>
+
+<div class="new">
+<h3>Slot 3 — Pre-mortem cost-symmetric (Klein) <span class="tag new">UPDATED v2</span></h3>
+<b>Side A — cost of doing wrong:</b> "3 თვე გავიდა, ჩავარდა — რა მოხდა?" Min 5 failure mode + mitigation.<br>
+<b>Side B — cost of NOT doing <span class="tag new">NEW v2</span>:</b> "3 თვე გავიდა, არ გავაკეთეთ — რა დავკარგეთ?" Min 3 not-doing costs + magnitude.<br>
+<b>Decision:</b> A &gt; B → don't ship; B &gt; A → ship even with high A; A ≈ B → Mini scope.<br>
+<b>Output:</b> <code>docs/PREMORTEM_&lt;idea&gt;_&lt;date&gt;.md</code>
+</div>
+
+<h2>Expiration / refresh rule <span class="tag new">NEW v2</span></h2>
+
+<table>
+<tr><th>Tier</th><th>Default expiration</th><th>Refresh trigger (any)</th></tr>
+<tr><td>Heavy</td><td>30 დღე</td><td>Owner directive change · market shift · team change · metric drift · competitor move</td></tr>
+<tr><td>Mini</td><td>14 დღე</td><td>Outcome metric drift · scope expansion · repeated failure</td></tr>
+<tr><td>Skip</td><td>None</td><td>OKR re-prioritization (re-check every session)</td></tr>
+</table>
+
+<p><b>Refresh ≠ re-run all 3.</b> Refresh = relevant slot only. Stamp every validation file: <code>validated-at · expires · tier</code>.</p>
+
+<h2>Anti-patterns (forbidden)</h2>
+
+<ol>
+<li>"Priority" label below tier threshold</li>
+<li>Tier downgrade mid-validation (convenience reduction)</li>
+<li>JTBD skipped on user/dev claim</li>
+<li>Pre-mortem one-sided (only A, no B)</li>
+<li>Validation older than expiration without refresh</li>
+<li>"Test it" without baseline + target pre-defined</li>
+<li>Numeric claims (revenue, %, count) without order-of-magnitude sanity check</li>
+</ol>
+
+<h2>Viktor ACK cycle <span class="tag new">CLOSED 2026-04-26</span></h2>
+
+<table>
+<tr><th>#</th><th>Viktor rec</th><th>Adoption</th></tr>
+<tr><td>1</td><td>Tier system Heavy/Mini/Skip</td><td>✅</td></tr>
+<tr><td>2</td><td>Reorder JTBD → BML → Pre-mortem</td><td>✅</td></tr>
+<tr><td>3</td><td>Define "priority" threshold explicitly</td><td>✅</td></tr>
+<tr><td>4</td><td>Expiration / refresh rule</td><td>✅</td></tr>
+<tr><td>5</td><td>Cost-of-not-doing in pre-mortem</td><td>✅</td></tr>
+<tr><td>6</td><td>ACK cycle formal close</td><td>✅</td></tr>
+</table>
+
 <hr>
-<p class="small">Author: Gurafa (Bivision intelligence/R&D) · Owner-distributed · Valid until next iteration update · Sharing encouraged (internal team + external reference where appropriate)</p>
+<p class="small">SSOT: <code>Mentari_Virtual-C-Suite/docs/core/VALIDATION_MASTER_PROMPT.md</code> · ACK file: <code>VIKTOR_VALIDATION_PROMPT_ACK_2026-04-26.md</code> · Hosted: gshoina.github.io/bivision-shares/validation-prompt.html</p>
 
 </body>
 </html>
