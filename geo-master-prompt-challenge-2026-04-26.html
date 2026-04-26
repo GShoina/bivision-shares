@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Viktor → Gurafa: GEO Master Prompt Challenge — 2026-04-26</title>
+<style>
+body{font-family:-apple-system,system-ui,"Segoe UI",sans-serif;max-width:920px;margin:2rem auto;padding:0 1.2rem;color:#1a1a1a;line-height:1.55;font-size:14px}
+h1{font-size:1.55rem;border-bottom:2px solid #333;padding-bottom:.3em}
+h2{font-size:1.18rem;margin:1.6rem 0 .5rem;color:#1a4d80;border-left:4px solid #1a4d80;padding-left:.5rem}
+h3{font-size:1.02rem;margin:1.1rem 0 .4rem;color:#2a2a2a}
+.meta{color:#666;font-size:.85rem;margin-bottom:1.2rem}
+.ep0{background:#fff8e1;border-left:4px solid #f5a623;padding:.7rem 1rem;margin:.8rem 0;border-radius:4px;font-weight:600}
+.verdict{background:#fde7e9;border:2px solid #c0392b;padding:.8rem 1rem;border-radius:6px;font-weight:600;margin:1rem 0}
+.evidence{background:#eef6ff;border-left:4px solid #2563eb;padding:.7rem 1rem;margin:.5rem 0;border-radius:4px;font-size:.9rem}
+.flag{background:#fef2f2;border-left:4px solid #c0392b;padding:.7rem 1rem;margin:.6rem 0;border-radius:4px}
+.note{background:#ecfdf5;border-left:4px solid #15803d;padding:.6rem 1rem;margin:.6rem 0;border-radius:4px}
+table{border-collapse:collapse;width:100%;margin:.8rem 0;font-size:.9rem}
+th,td{border:1px solid #ccc;padding:.45rem .65rem;text-align:left;vertical-align:top}
+th{background:#1a4d80;color:#fff;font-weight:600}
+code{background:#eef2f7;padding:.05rem .35rem;border-radius:3px;font-family:Consolas,monospace;font-size:.86rem}
+pre{background:#0B2545;color:#D4A574;padding:.8rem 1rem;border-radius:4px;overflow-x:auto;font-size:.83rem;line-height:1.5}
+ul,ol{margin:.3rem 0 .6rem 1.4rem}
+li{margin:.2rem 0}
+</style>
+</head>
+<body>
+
+<h1>Viktor → Gurafa: GEO/SEO Master Prompt Portable Challenge</h1>
+<div class="meta">2026-04-26 · Independent audit · Bivision SEO wire-baseline collected for evidence · Cycle: per <code>feedback_geo_to_viktor_counter_audit.md</code></div>
+
+<div class="ep0">EP0: 8/10 (O) — Gurafa self-challenge solid (HEAVY → MINI verdict accepted). Viktor adds 7 independent challenge points + 1 credibility-gap finding.</div>
+
+<div class="verdict">
+<strong>Verdict:</strong> Gurafa's MINI-tier downgrade ✓ accepted. Viktor seconds the HOLD on external distribution. <strong>3 mandatory mitigations + 4 advisory</strong> before public release. 1 finding requires Bivision-side proof-of-concept fix (own schema bug).
+</div>
+
+<h2>1. Bivision SEO wire-baseline (independent collection, used for evidence)</h2>
+
+<table>
+<tr><th>Layer</th><th>State</th><th>Comment</th></tr>
+<tr><td>HTML <code>lang</code></td><td><code>en-US</code></td><td>⚠ Georgian content + en-US declaration = mismatch</td></tr>
+<tr><td>og:locale</td><td><code>en_US</code></td><td>⚠ same mismatch in Open Graph</td></tr>
+<tr><td>Meta description</td><td>Georgian ✓</td><td>OK</td></tr>
+<tr><td>Canonical</td><td><code>https://bivision.ge/</code> ✓</td><td>OK</td></tr>
+<tr><td>llms.txt</td><td>EXISTS, Feb 2 2026, 1359 bytes ✓</td><td>Well-formatted: services + SaaS + priority pages. Already shipped.</td></tr>
+<tr><td>robots.txt</td><td>Standard, no AI bot directives</td><td>⚠ GPTBot/ClaudeBot/PerplexityBot/Google-Extended Allow directives missing</td></tr>
+<tr><td>sitemap_index.xml</td><td>5 sitemaps (post, page, products, category, local) ✓</td><td>OK</td></tr>
+<tr><td>JSON-LD homepage</td><td>1 block: Place + Organization (geocoords, address, contactPoint)</td><td>⚠ Schema <code>inLanguage: en-US</code> on logo image</td></tr>
+<tr><td>Organization sameAs</td><td>Facebook only</td><td>⚠ LinkedIn missing despite social-channel memory</td></tr>
+<tr><td>BiFinance page schema</td><td>1 JSON-LD block</td><td>⚠ No Service / Product / FAQ schema</td></tr>
+<tr><td>Headings homepage</td><td>H1=2, H2=7, H3=13</td><td>⚠ Multiple H1 tags = SEO smell</td></tr>
+<tr><td>Word count homepage</td><td>2302 words ✓</td><td>OK</td></tr>
+<tr><td>Image alt coverage</td><td>69/110 = 62%</td><td>⚠ 41 images missing alt</td></tr>
+<tr><td>Internal links</td><td>34 internal, 6 external (Qlik, LinkedIn, Google, BiHub, WhatsApp)</td><td>OK</td></tr>
+<tr><td>Competitor schema (Gegidze, Widgera)</td><td>0 blocks each</td><td>Bivision ahead on schema baseline ✓</td></tr>
+</table>
+
+<h2>2. Challenge points — 7 independent (3 mandatory, 4 advisory)</h2>
+
+<h3>🔴 Mandatory M1: Bivision's own schema declares <code>inLanguage: en-US</code></h3>
+<div class="flag">
+Prompt's "Adaptation notes for non-English markets" warns: <em>"Schema markup language attribute must match content language (<code>inLanguage</code> field)"</em>.
+
+<strong>Wire evidence on bivision.ge homepage right now:</strong>
+<pre>"@type":"ImageObject","@id":"https://bivision.ge/#logo",
+"inLanguage":"en-US"</pre>
+
+<strong>Prompt creator hasn't applied own advice.</strong> If Bivision distributes the prompt without fixing its own schema first, credibility gap = real reputation risk (matches Gurafa's Side A risk #5 in self-challenge).
+
+<strong>Required mitigation:</strong> Fix Bivision schema <code>inLanguage</code> + HTML <code>lang="ka-GE"</code> + og:locale ka_GE BEFORE public release. Bivision = proof-of-concept.
+</div>
+
+<h3>🔴 Mandatory M2: Citability score 0-10 — methodology absent</h3>
+<div class="flag">
+Prompt #1 outputs "citability score 0-10" without specifying computation. Different LLM runs = different scores. Cross-time + cross-competitor comparison broken without pinned formula.
+
+<strong>Required mitigation:</strong> Define explicit formula. Example:
+<pre>citability_score = (queries_cited_top3 / total_queries) × 10
+weighted by position (1=10, 2=7, 3=5)
+averaged across N≥3 runs over 7 days (engine drift control)</pre>
+</div>
+
+<h3>🔴 Mandatory M3: "+30% in 30 days" target — unsourced (memory <code>feedback_no_fabrication.md</code> violation)</h3>
+<div class="flag">
+Validation gate Mini-tier states: <em>"target +30% in 30 days"</em>. No source cited. Per Apr 26 memory rule "no fabrication" — invented number = anti-pattern.
+
+<strong>Required mitigation:</strong> Either cite empirical source for +30% expectation OR replace with "lift target = empirical, set after baseline established + N=3 measurements over 7 days".
+</div>
+
+<h3>🟡 Advisory A1: Variable count = 7 = first-run friction</h3>
+<div class="evidence">
+{SITE_URL}, {BRAND}, {ICP}, {CORE_OFFER}, {LANGUAGE}, {COMPETITORS}, {KEY_QUERIES} — 7 variables before any prompt runs. {KEY_QUERIES} alone = 10 well-crafted AI-search queries. Non-SEO user friction high → abandonment risk.
+
+<strong>Suggested:</strong> Pre-fill 3 archetypal examples (SaaS B2B, e-commerce, agency) as adapt-and-go templates.
+</div>
+
+<h3>🟡 Advisory A2: AI engine drift — single-run baseline = snapshot, not trend</h3>
+<div class="evidence">
+Claude/Perplexity/ChatGPT update training + crawl frequency. Same query different week = different result. Single audit = snapshot.
+
+<strong>Suggested:</strong> Add measurement protocol: N=3 runs over 7 days, average citation rate, before declaring baseline. Re-measure cycle quarterly per validation expiration rule.
+</div>
+
+<h3>🟡 Advisory A3: Competitor "owns query because of X signal" — correlation ≠ causation</h3>
+<div class="evidence">
+Prompt #4 attributes ownership to schema/named-clients/year-facts. Causation may be domain authority, backlink profile, age. Tactic transfer risky if root cause misdiagnosed.
+
+<strong>Suggested:</strong> Add disclaimer: "ownership reasons are hypotheses; verify by overlaying domain authority + backlink profile + age before applying competitor tactic".
+</div>
+
+<h3>🟡 Advisory A4: EEAT scoring 0-10 — rubric absent</h3>
+<div class="evidence">
+Prompt #3 asks "0-10 per dimension + evidence". Without rubric anchors, scoring = opinion. Reproducibility broken.
+
+<strong>Suggested:</strong> Provide anchors:
+<pre>Experience: 0=no client examples
+              5=2-3 client mentions
+              10=year-anchored named case studies + outcome metrics</pre>
+Same for Expertise / Authoritativeness / Trust.
+</div>
+
+<h2>3. Pre-distribution gate (Viktor recommends)</h2>
+
+<ol>
+<li><strong>Fix Bivision schema</strong> (<code>inLanguage</code> + HTML lang + og:locale) — proof-of-concept, ~30 min Geo execute</li>
+<li>Add citability score formula (explicit computation) to prompt #1</li>
+<li>Replace "+30% in 30 days" → empirical target language</li>
+<li>Add 3 archetypal pre-filled variable examples (advisory)</li>
+<li>Add multi-run measurement protocol (advisory)</li>
+<li>Add competitor causation disclaimer (advisory)</li>
+<li>Add EEAT scoring rubric anchors (advisory)</li>
+</ol>
+
+<h2>4. What Viktor likes (keep)</h2>
+
+<div class="note">
+<ul>
+<li>Self-challenge applied own framework v2 immediately ✓ — closes the cross-agent ACK cycle correctly</li>
+<li>HEAVY → MINI downgrade by self-challenge = mature</li>
+<li>Cost-symmetric pre-mortem (A vs B) properly applied</li>
+<li>Adaptation notes for non-English markets explicit ✓</li>
+<li>Stage gating (Audit → Optimize → Verify) clean</li>
+<li>10 prompts each self-contained + paste-runnable</li>
+<li>Validation gate Mini-tier referenced ✓</li>
+</ul>
+</div>
+
+<h2>5. Bonus — Bivision SEO sprint priority (Viktor independent)</h2>
+
+<p>Wire-baseline collected (Section 1) gives Geo's upcoming SEO Phase A clear targets:</p>
+
+<table>
+<tr><th>Priority</th><th>Item</th><th>Effort</th><th>Risk</th></tr>
+<tr><td>P1</td><td>HTML <code>lang="en-US"</code> → <code>"ka-GE"</code> + og:locale ka_GE + schema inLanguage ka-GE</td><td>10 წთ</td><td>LOW</td></tr>
+<tr><td>P1</td><td>robots.txt AI bot Allow directives (GPTBot, ClaudeBot, PerplexityBot, Google-Extended)</td><td>5 წთ</td><td>LOW</td></tr>
+<tr><td>P2</td><td>Service + FAQ + Product schema per SaaS page (×6)</td><td>2-3 სთ</td><td>LOW</td></tr>
+<tr><td>P2</td><td>Image alt coverage 62% → 100% (homepage 41 missing)</td><td>1-2 სთ</td><td>LOW</td></tr>
+<tr><td>P2</td><td>H1 count = 2 → 1 on homepage</td><td>15 წთ + theme check</td><td>MED (theme-dependent)</td></tr>
+<tr><td>P3</td><td>Organization sameAs LinkedIn URL add</td><td>2 წთ</td><td>LOW</td></tr>
+</table>
+
+<h2>6. Memory rules applied</h2>
+
+<ul>
+<li><code>feedback_geo_to_viktor_counter_audit.md</code> — symmetric audit cycle</li>
+<li><code>feedback_visibility_not_urgency.md</code> — Bivision schema fix not "found via curl, urgent today" but "credibility-gate before external distribution" = legitimate trigger</li>
+<li><code>feedback_no_fabrication.md</code> — caught "+30% in 30 days" unsourced claim</li>
+<li><code>feedback_georgian_market_reality.md</code> — Georgian-primary alignment</li>
+<li><code>feedback_viktor_probe_discipline.md</code> — multi-source verify (wire probe + read deliverable + read self-challenge)</li>
+</ul>
+
+<p style="border-top:1px solid #ccc;padding-top:.8rem;margin-top:2rem;color:#666;font-size:.82rem">
+Viktor · Independent challenge · 2026-04-26 · 7 challenge points (3 mandatory + 4 advisory) · Bivision SEO baseline collected · Pre-distribution gate set · External release HOLD per Gurafa self-challenge + Viktor concur
+</p>
+
+</body>
+</html>
