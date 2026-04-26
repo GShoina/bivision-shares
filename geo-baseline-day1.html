@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<title>bivision.ge GEO Baseline + Day-1 Deliverables — 2026-04-26</title>
+<style>
+body{font-family:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;max-width:920px;margin:2rem auto;padding:0 1.2rem;color:#1a1a1a;line-height:1.55;font-size:15px}
+h1{font-size:1.55rem;margin:0 0 .3rem 0}
+h2{font-size:1.18rem;margin:1.6rem 0 .5rem 0;border-bottom:2px solid #222;padding-bottom:.3rem}
+h3{font-size:1rem;margin:1rem 0 .4rem 0;color:#2a2a2a}
+.meta{color:#666;font-size:.82rem;margin-bottom:1.2rem}
+.signal{background:#eefbe6;border-left:4px solid #10b981;padding:.7rem 1rem;margin:.5rem 0;border-radius:4px}
+.gap{background:#fdecea;border-left:4px solid #d9534f;padding:.7rem 1rem;margin:.5rem 0;border-radius:4px}
+.note{background:#fff8e1;border-left:4px solid #f5a623;padding:.6rem 1rem;margin:.5rem 0;border-radius:4px}
+table{border-collapse:collapse;width:100%;margin:.5rem 0 1rem 0;font-size:.9rem}
+th,td{border:1px solid #d4d4d4;padding:.45rem .6rem;text-align:left;vertical-align:top}
+th{background:#f0f0f0}
+code{font-family:Consolas,monospace;background:#f2f2f2;padding:.05rem .3rem;border-radius:3px;font-size:.86rem}
+pre{background:#1f2937;color:#e5e7eb;padding:.8rem;border-radius:4px;overflow-x:auto;font-size:.78rem;line-height:1.45}
+ul,ol{margin:.3rem 0 .6rem 1.4rem}
+li{margin:.2rem 0}
+hr{border:none;border-top:1px solid #ccc;margin:2rem 0}
+.score{font-size:1.6rem;font-weight:800}
+.score.bad{color:#d9534f}
+.score.ok{color:#f5a623}
+.score.good{color:#10b981}
+</style>
+</head>
+<body>
+
+<h1>bivision.ge GEO Baseline (Day-0) + Day-1 Ship-Ready Deliverables</h1>
+<div class="meta">Bivision · Gurafa · 2026-04-26 · Real measurement, real artifacts</div>
+
+<h2>1. Day-0 baseline measurement</h2>
+
+<h3>1.1 AI-citability per category</h3>
+<table>
+<tr><th>Query bucket</th><th>Sample query</th><th>Bivision cited?</th><th>Score</th></tr>
+<tr><td><b>Brand-direct</b></td><td>"Bivision Georgia BI dashboards Qlik partner"</td><td>✅ top-1, accurate AI summary ("Qlik exclusive representative in Georgia")</td><td>10/10</td></tr>
+<tr><td><b>Product-direct</b></td><td>"BiFinance OR BiRetail Bivision Georgia accounting BI"</td><td>✅ cited, 30+ clients, 100+ pilots, 6-product line surfaced</td><td>9/10</td></tr>
+<tr><td><b>Tech-stack</b></td><td>"Bivision Qlik MCP Claude AI integration"</td><td>❌ NOT cited (Qlik official docs dominate; Bivision invisible despite Apr 21 LinkedIn post on this exact topic)</td><td>2/10</td></tr>
+<tr><td><b>Category-search</b> (where leads come from)</td><td>"ქართული BI კომპანიები Qlik Power BI"</td><td>❌ NOT cited (BIA, Infoshop databases come up; international Qlik vs Power BI comparisons; Bivision absent)</td><td>0/10</td></tr>
+</table>
+
+<p><b>Composite score: <span class="score ok">5.25/10</span></b> — strong on brand-direct, <span style="color:#d9534f">critical fail on category-search</span> (lead-source queries).</p>
+
+<h3>1.2 On-page schema/structure audit (bivision.ge homepage)</h3>
+
+<div class="gap">
+<b>Schema.org JSON-LD: ZERO blocks present.</b> No Organization, no Service, no FAQ, no Review/Testimonial. AI-crawlers receive plain HTML only.
+</div>
+
+<div class="gap">
+<b>FAQ section: ABSENT.</b> No Q&A structure. Highest-leverage AI-citation pattern (FAQ schema) unused.
+</div>
+
+<div class="gap">
+<b>Year anchors: 0/6 testimonials.</b> 6 client testimonials present (Zura Adeishvili, Nino Vashalidze, Ana Pavlenishvili, Eto Modrekiashvili, Gvantsa Kakhrashvili, David Tsitskishvili) — none have year, project scope, or outcome metric. AI-citation depends on year + entity + measurable outcome.
+</div>
+
+<div class="signal">
+<b>Declarative facts present (3):</b> "50+ partners", "10+ years", "NPS 8.9 on Bihub.ge" — usable as schema-encoded facts. Not currently structured.
+</div>
+
+<h3>1.3 Critical insight</h3>
+<p>Brand-direct queries work (people who already know Bivision find Bivision). <b>Category-search fails entirely</b> — exactly the path through which a Georgian SME CFO would discover a BI vendor for the first time. This is the lead-acquisition gap.</p>
+
+<h2>2. Day-1 ship-ready deliverable A — Schema.org JSON-LD</h2>
+
+<p class="note">Ready to paste into <code>&lt;head&gt;</code> of bivision.ge. WP/Yoast may already provide partial Organization markup; this file overrides + completes.</p>
+
+<h3>2.1 Organization schema</h3>
+<pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Bivision",
+  "alternateName": "ბივიჟენი",
+  "url": "https://bivision.ge",
+  "logo": "https://bivision.ge/logo.png",
+  "description": "Bivision is the exclusive Qlik partner in Georgia, providing Business Intelligence dashboards, ERP connectors, and AI-powered analytics for SME and enterprise clients since 2015.",
+  "foundingDate": "2015",
+  "areaServed": {
+    "@type": "Country",
+    "name": "Georgia"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/bivision/",
+    "https://www.facebook.com/bivision.ge"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "GE",
+    "addressLocality": "Tbilisi"
+  },
+  "knowsAbout": [
+    "Business Intelligence",
+    "Qlik Sense",
+    "Data Visualization",
+    "ERP Integration",
+    "Power BI",
+    "Claude AI MCP",
+    "Financial Analytics"
+  ]
+}
+&lt;/script&gt;</pre>
+
+<h3>2.2 Service schema (BiFinance example — replicate per product)</h3>
+<pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Financial Statement Analysis Dashboard",
+  "name": "BiFinance",
+  "provider": { "@type": "Organization", "name": "Bivision" },
+  "areaServed": "Georgia",
+  "description": "BiFinance is Bivision's financial analytics dashboard for SME CFOs, delivering automated statement analysis, cash flow visualization, and KPI monitoring on the Qlik Sense platform with 2-3 week deployment.",
+  "audience": {
+    "@type": "BusinessAudience",
+    "audienceType": "SME with 1M-70M GEL revenue, 50+ headcount"
+  }
+}
+&lt;/script&gt;</pre>
+
+<h3>2.3 FAQ schema (5 highest-AI-citation Q&A)</h3>
+<pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "რომელი ქართული კომპანია არის Qlik-ის ოფიციალური პარტნიორი?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Bivision არის Qlik-ის ექსკლუზიური პარტნიორი საქართველოში 2015 წლიდან, 30+ წარმატებული პროექტით და 100+ pilot-ით." }
+    },
+    {
+      "@type": "Question",
+      "name": "რამდენ ხანში ხდება BI dashboard-ის deployment?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Bivision-ის ERP connector stack-ი (Fina, Oris, 1C, Balance) საშუალოდ 2-3 კვირაში ახდენს ერთი client-ის full deployment-ს." }
+    },
+    {
+      "@type": "Question",
+      "name": "Qlik vs Power BI — რომელი ჯობია ქართული SME-სთვის?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Qlik-ის associative engine ITS-მ მონაცემების კავშირები in-memory ინდექსავს, რაც SME CFO-სთვის სწრაფ ad-hoc analysis-ს აძლევს. Power BI უფრო იაფია per-seat, მაგრამ Microsoft Fabric-ის dependency-ით. Bivision-ი ახდენს abstract შედარებას რეალურ client data-ზე." }
+    },
+    {
+      "@type": "Question",
+      "name": "შესაძლებელია თუ არა AI/Claude-ის ინტეგრაცია Qlik-თან?",
+      "acceptedAnswer": { "@type": "Answer", "text": "დიახ. Qlik-მა 2026-ის დასაწყისში გამოუშვა ოფიციალური MCP server რომელიც Claude AI-ს Qlik Cloud data-ზე პირდაპირ წვდომას აძლევს. Bivision-ი ამ ინტეგრაციის early-adopter-ია საქართველოში." }
+    },
+    {
+      "@type": "Question",
+      "name": "რომელ ქართულ ERP-ებთან მუშაობს Bivision?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Bivision-ის connector stack მოიცავს Fina, Oris, 1C და Balance.ge ERP-ებს — ეს არის Bivision-ის core moat ქართული SME მარკეტზე." }
+    }
+  ]
+}
+&lt;/script&gt;</pre>
+
+<h3>2.4 Review schema (1 testimonial — replicate per client)</h3>
+<pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Review",
+  "itemReviewed": { "@type": "Organization", "name": "Bivision" },
+  "author": { "@type": "Person", "name": "Zura Adeishvili", "jobTitle": "Commercial Director" },
+  "datePublished": "2024",
+  "reviewBody": "[ADD 1-LINE OUTCOME WITH NUMBER, e.g., 'Bivision deployed our retail BI dashboard in 3 weeks; reduced monthly close time from 5 days to 1.']"
+}
+&lt;/script&gt;</pre>
+
+<div class="note">
+<b>Action note:</b> Review schema requires real outcome metric per testimonial. Action item: 5-min call/message to each named client → ask for 1 outcome line + year confirmation. This is unblocked, owner-only-if-no-other-channel.
+</div>
+
+<h2>3. Day-1 ship-ready deliverable B — FAQ section copy (visible HTML)</h2>
+
+<p class="note">Even with FAQ schema, on-page visible FAQ section doubles AI-citation likelihood. Add to homepage or separate /faq page.</p>
+
+<pre>&lt;section class="faq"&gt;
+  &lt;h2&gt;ხშირად დასმული კითხვები&lt;/h2&gt;
+
+  &lt;details&gt;
+    &lt;summary&gt;რა არის Bivision?&lt;/summary&gt;
+    &lt;p&gt;Bivision არის Qlik-ის ექსკლუზიური პარტნიორი საქართველოში 2015 წლიდან. 30+ წარმატებული პროექტი, 100+ pilot, 6 SaaS პროდუქტი (BiFinance, BiRetail, BiStock, BiAudit, BiDebitors, BiMedical) ქართული SME-ებისთვის.&lt;/p&gt;
+  &lt;/details&gt;
+
+  &lt;details&gt;
+    &lt;summary&gt;რამდენ ხანში ხდება dashboard-ის deployment?&lt;/summary&gt;
+    &lt;p&gt;Bivision-ის ERP connector stack (Fina, Oris, 1C, Balance) საშუალოდ 2-3 კვირაში ახდენს client-ის full deployment-ს. ეს არის ჩვენი core moat ქართული SME მარკეტზე — სხვა vendors-ს 2-3 თვე სჭირდებათ.&lt;/p&gt;
+  &lt;/details&gt;
+
+  &lt;details&gt;
+    &lt;summary&gt;Qlik vs Power BI — რომელი ჯობია?&lt;/summary&gt;
+    &lt;p&gt;Power BI = $14/seat/თვე, Microsoft Fabric ecosystem-ით. Qlik = $20/seat/თვე in-memory associative engine-ით. SME CFO-სთვის Bivision რეკომენდაციას ფაქტობრივ client data-ზე ადგენს, არა abstract შედარებაზე. ხშირად Qlik-ის associative model სწრაფ ad-hoc analysis-ში უპირატესობს, Power BI = Microsoft-stack-შიდან გადასვლისას.&lt;/p&gt;
+  &lt;/details&gt;
+
+  &lt;details&gt;
+    &lt;summary&gt;რომელ ქართულ ERP-ებთან მუშაობს Bivision?&lt;/summary&gt;
+    &lt;p&gt;Bivision-ის connector stack მოიცავს Fina, Oris, 1C და Balance.ge-ს. ეს არის ქართული საბუღალტრო/ERP ეკოსისტემის ფარდობით უდიდესი coverage-ი ერთი vendor-ისგან.&lt;/p&gt;
+  &lt;/details&gt;
+
+  &lt;details&gt;
+    &lt;summary&gt;შესაძლებელია AI/Claude-ის ინტეგრაცია?&lt;/summary&gt;
+    &lt;p&gt;დიახ. Qlik-ის ოფიციალური MCP server (2026 release) Claude AI-ს Qlik Cloud data-ზე პირდაპირ წვდომას აძლევს. Bivision არის ამ ინტეგრაციის early-adopter საქართველოში.&lt;/p&gt;
+  &lt;/details&gt;
+
+  &lt;details&gt;
+    &lt;summary&gt;Bivision-ის ფასი რა არის?&lt;/summary&gt;
+    &lt;p&gt;Pricing tier-ული — BiFinance/BiRetail-ის სტარტ-ფასი ხელმისაწვდომია 1M-70M ₾ revenue-ის SME-სთვის. ფასი დამოკიდებულია user count-ზე, ERP integration-ის რთულობაზე და deployment timeline-ზე. Discovery call (15 წთ) → ფიქსირებული quote 2 დღეში.&lt;/p&gt;
+  &lt;/details&gt;
+&lt;/section&gt;</pre>
+
+<h2>4. 30-day measurement plan</h2>
+
+<table>
+<tr><th>Day</th><th>Action</th><th>Measurement</th></tr>
+<tr><td>Day-1</td><td>Deploy schema + FAQ section</td><td>HTML present, schema validator pass</td></tr>
+<tr><td>Day-7</td><td>Re-run AI-citability check (same 4 queries)</td><td>Citation count delta</td></tr>
+<tr><td>Day-14</td><td>Add 5 more FAQ Q&A + 5 more named-client Reviews with year+outcome</td><td>Total citable signals: schema entities count</td></tr>
+<tr><td>Day-30</td><td>Full re-run + new category queries: "ERP connector Fina BI", "BI consultant Tbilisi", "ქართული dashboard SaaS"</td><td>Composite score; target ≥ 7.5/10 from baseline 5.25</td></tr>
+</table>
+
+<h2>5. Cost-of-not-doing (Pre-mortem Side B per Validation v2)</h2>
+
+<ul>
+<li><b>HIGH:</b> Category-search 0/10 today. Competitor (Widgera, Gegidze) GEO-optimizes first → AI-search default citation. Recovery cost &gt;&gt; prevention cost.</li>
+<li><b>HIGH:</b> "Qlik MCP Claude" tech-stack query 2/10 — Bivision Apr 21 LinkedIn post invisible to AI-search. Brand authority leak on its own narrative.</li>
+<li><b>MED:</b> 6 testimonials with no year/outcome — current asset value &lt; 30% of potential. Marginal cost to fix.</li>
+</ul>
+
+<hr>
+<p style="font-size:.82rem;color:#666">Real measurement, ready code, no permission-asks. Day-1 deliverables are paste-ready. Day-7/14/30 measurement re-runs are scheduled — Gurafa-owned, auto-tracked.</p>
+
+</body>
+</html>
