@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bivision Carousel — Visual (brand colors)</title>
+<title>Bivision Carousel — Visual (4:5 LinkedIn/FB)</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -15,7 +15,6 @@
   --bv-yellow-green: #DCEAA8;
   --bv-white: #FFFFFF;
   --bv-text: #221A4C;
-  --bv-text-light: #555;
   --bv-red: #C45C5C;
 }
 body {
@@ -48,20 +47,20 @@ body {
 }
 .slides {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
   gap: 20px;
 }
 .slide {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 5;
   border-radius: 14px;
-  padding: 36px;
+  padding: 38px 32px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(34,26,76,0.18);
+  box-shadow: 0 6px 20px rgba(34,26,76,0.20);
   font-size: 22px;
   line-height: 1.35;
 }
@@ -82,17 +81,22 @@ body {
   font-family: 'JetBrains Mono', monospace;
 }
 .slide.bg-light .slide-num { background: rgba(34,26,76,0.18); color: var(--bv-dark); }
-.logo-corner {
+.logo-svg {
   position: absolute;
-  bottom: 18px;
-  right: 22px;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  color: var(--bv-white);
-  opacity: 0.9;
+  bottom: 22px;
+  right: 26px;
+  width: 90px;
+  height: auto;
+  opacity: 0.95;
 }
-.slide.bg-light .logo-corner { color: var(--bv-purple); opacity: 1; }
+.logo-svg.bottom-center {
+  position: relative;
+  bottom: auto;
+  right: auto;
+  margin: 18px auto 0;
+  display: block;
+  width: 140px;
+}
 .bg-purple { background: linear-gradient(135deg, var(--bv-purple) 0%, var(--bv-dark) 100%); color: var(--bv-white); }
 .bg-dark { background: linear-gradient(135deg, var(--bv-dark) 0%, #15102e 100%); color: var(--bv-white); }
 .bg-light { background: linear-gradient(135deg, var(--bv-cream) 0%, var(--bv-yellow-green) 100%); color: var(--bv-text); }
@@ -100,80 +104,80 @@ body {
 .bg-gradient { background: linear-gradient(135deg, var(--bv-purple-light) 0%, var(--bv-purple) 50%, var(--bv-dark) 100%); color: var(--bv-white); }
 .slide-content { position: relative; z-index: 1; }
 .headline {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 12px;
+  line-height: 1.18;
+  margin-bottom: 14px;
 }
 .headline-large {
-  font-size: 36px;
+  font-size: 40px;
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.12;
 }
-.subhead { font-size: 18px; opacity: 0.92; margin-top: 8px; }
-.icon-big { font-size: 64px; margin-bottom: 16px; display: block; }
+.subhead { font-size: 19px; opacity: 0.92; margin-top: 10px; }
+.icon-big { font-size: 72px; margin-bottom: 20px; display: block; }
 .icon-row {
   display: flex;
   justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
-  margin-top: 18px;
+  margin-top: 22px;
 }
 .icon-pill {
   background: rgba(255,255,255,0.15);
   border: 1px solid rgba(220,234,168,0.5);
-  padding: 10px 14px;
-  border-radius: 12px;
-  font-size: 13px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 14px;
   font-weight: 600;
   text-align: center;
-  min-width: 90px;
+  min-width: 100px;
 }
-.icon-pill .emoji { font-size: 28px; display: block; margin-bottom: 4px; }
+.icon-pill .emoji { font-size: 32px; display: block; margin-bottom: 4px; }
 .dashboard-mock {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px;
-  margin-top: 16px;
+  gap: 10px;
+  margin-top: 20px;
 }
 .kpi-card {
   background: rgba(255,255,255,0.12);
   border: 1px solid rgba(47,202,2,0.4);
   border-radius: 8px;
-  padding: 10px;
+  padding: 12px 10px;
 }
-.kpi-card .label { font-size: 9px; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; }
-.kpi-card .val { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; color: var(--bv-yellow-green); margin-top: 4px; }
-.kpi-card .delta { font-size: 10px; color: var(--bv-green); }
+.kpi-card .label { font-size: 10px; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; }
+.kpi-card .val { font-family: 'JetBrains Mono', monospace; font-size: 20px; font-weight: 700; color: var(--bv-yellow-green); margin-top: 4px; }
+.kpi-card .delta { font-size: 11px; color: var(--bv-green); margin-top: 2px; }
 .fragmented {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 14px;
+  gap: 12px;
+  margin-top: 18px;
 }
 .frag-item {
   background: rgba(0,0,0,0.18);
-  padding: 12px;
+  padding: 14px;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 15px;
   border-left: 3px solid var(--bv-red);
 }
-.frag-item .src { font-size: 11px; opacity: 0.7; margin-bottom: 3px; }
+.frag-item .src { font-size: 12px; opacity: 0.7; margin-bottom: 4px; }
 .product-icon {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 6px;
+  gap: 14px;
+  margin-bottom: 8px;
 }
-.product-icon .name { font-size: 26px; font-weight: 800; }
-.feature-list { font-size: 16px; line-height: 1.7; opacity: 0.95; margin-top: 8px; }
-.feature-list li { list-style: none; padding-left: 18px; position: relative; }
-.feature-list li::before { content: '·'; color: var(--bv-green); position: absolute; left: 0; font-weight: 900; font-size: 22px; line-height: 1; }
+.product-icon .name { font-size: 30px; font-weight: 800; }
+.feature-list { font-size: 17px; line-height: 1.7; opacity: 0.95; margin-top: 10px; }
+.feature-list li { list-style: none; padding-left: 20px; position: relative; }
+.feature-list li::before { content: '·'; color: var(--bv-green); position: absolute; left: 0; font-weight: 900; font-size: 24px; line-height: 1; }
 .scope-circle {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
-  margin-top: 16px;
+  gap: 12px;
+  margin-top: 20px;
 }
 .scope-item {
   background: rgba(102,83,198,0.15);
@@ -185,65 +189,76 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   text-align: center;
   padding: 8px;
   color: var(--bv-dark);
 }
-.scope-item .emoji { font-size: 28px; margin-bottom: 2px; }
+.scope-item .emoji { font-size: 30px; margin-bottom: 3px; }
 .url-display {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 800;
   color: var(--bv-yellow-green);
   text-align: center;
   margin-top: 14px;
   letter-spacing: 1px;
 }
-.brand-tag {
-  text-align: center;
-  font-size: 24px;
-  font-weight: 900;
-  letter-spacing: 2px;
-}
 .tagline {
   font-size: 13px;
   text-align: center;
   margin-top: 8px;
-  opacity: 0.75;
+  opacity: 0.8;
   font-style: italic;
 }
 .product-badge {
   background: var(--bv-green);
   color: var(--bv-white);
-  padding: 4px 12px;
+  padding: 4px 14px;
   border-radius: 6px;
   font-size: 14px;
   font-weight: 700;
   display: inline-block;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
-.bg-light .product-badge { color: var(--bv-white); }
 .bg-purple .product-badge, .bg-dark .product-badge { background: var(--bv-yellow-green); color: var(--bv-dark); }
 @media (max-width: 700px) {
   .slides { grid-template-columns: 1fr; }
-  .slide { padding: 24px; font-size: 18px; }
-  .headline { font-size: 22px; }
-  .headline-large { font-size: 26px; }
+  .slide { padding: 26px 22px; font-size: 18px; }
+  .headline { font-size: 24px; }
+  .headline-large { font-size: 28px; }
+  .url-display { font-size: 28px; }
 }
 </style>
 </head>
 <body>
 
 <div class="intro">
-  <h1>🎨 Bivision Carousel — Visual (brand palette)</h1>
-  <p>26 აპრილი • Bivision real palette: indigo #6653C6 · dark #221A4C · accent green #2FCA02 · cream #F4F7E8 + yellow-green #DCEAA8 · 17 slide 1:1 square. Mariam-ს Canva reference (screenshot per slide).</p>
+  <h1>🎨 Bivision Carousel — 4:5 Portrait (LinkedIn + FB)</h1>
+  <p>26 აპრილი • <strong>1080×1350 (4:5 portrait)</strong> = LinkedIn + FB carousel best practice • Bivision logo SVG embed (#6653C6 + #2FCA02) • brand palette extracted bivision.ge-დან • 17 slide</p>
 </div>
+
+<!-- Reusable Logo SVG (defined once) -->
+<svg style="display:none">
+  <defs>
+    <symbol id="bvlogo" viewBox="0 0 144 26">
+      <path d="M56.8281 0.919434V25.0884H63.5676V0.919434H56.8281Z" fill="currentColor"/>
+      <path d="M76.1284 10.0346C72.7799 9.2725 71.9509 8.79009 71.9509 7.6834V7.61651C71.9509 6.75101 72.7495 6.05983 74.371 6.05983C76.5094 6.05983 78.9275 6.89087 81.1409 8.44349L84.4894 3.71266C81.8605 1.6067 78.6498 0.5 74.5433 0.5C68.7402 0.5 65.1871 3.74509 65.1871 8.23472V8.30566C65.1871 13.2777 69.1598 14.7249 74.3021 15.9025C77.5837 16.6606 78.3782 17.214 78.3782 18.2153V18.2821C78.3782 19.3179 77.4053 19.9422 75.6115 19.9422C72.8164 19.9422 70.1571 18.9389 67.7734 17.0417L64.0459 21.4928C67.0153 24.1521 71.0935 25.5 75.3703 25.5C81.2402 25.5 85.14 22.563 85.14 17.6275V17.5565C85.14 13.0345 81.6902 11.2366 76.1284 10.0306V10.0346Z" fill="currentColor"/>
+      <path d="M86.416 0.919434V25.0884H93.1515V0.919434H86.416Z" fill="currentColor"/>
+      <path d="M136.379 0.919434V13.6931L126.439 0.919434H120.19V25.0884H126.818V11.8283L137.142 25.0884H143.012V0.919434H136.379Z" fill="currentColor"/>
+      <path d="M49.0915 0.919434L43.6067 16.2146L38.1117 0.919434H30.6182L40.4244 25.2627H46.6409L56.4472 0.919434H49.0915Z" fill="currentColor"/>
+      <path d="M16.8092 12.4526C18.9517 11.5202 20.5408 9.86017 20.5408 7.06505V6.99411C20.5408 5.33811 19.957 4.06116 18.9841 3.09634C17.5693 1.6775 15.4309 0.919434 12.3926 0.919434H0V25.0884H12.4615C18.2281 25.0884 21.6151 22.5669 21.6151 18.4239V18.357C21.6151 15.0754 19.7503 13.4194 16.8113 12.4526H16.8092ZM6.52059 6.30293H10.8724C12.873 6.30293 13.9087 7.06505 13.9087 8.37444V8.44538C13.9087 9.86017 12.7736 10.5513 10.7386 10.5513H6.52059V6.30293ZM14.9161 17.4895C14.9161 18.9083 13.7384 19.7029 11.7014 19.7029H6.52262V15.2477H11.6386C13.8803 15.2477 14.9181 16.1092 14.9181 17.4226V17.4895H14.9161Z" fill="currentColor"/>
+      <path d="M110.086 17.1556C109.166 17.9015 107.996 18.3474 106.719 18.3474C103.764 18.3474 101.368 15.9516 101.368 12.9963C101.368 10.2336 103.466 7.9574 106.162 7.67566V0.926025C99.7486 1.21993 94.6367 6.51018 94.6367 12.9963C94.6367 19.4825 100.047 25.0828 106.719 25.0828C109.857 25.0828 112.715 23.8869 114.861 21.9269L110.086 17.1556Z" fill="currentColor"/>
+      <path d="M29.8513 4.75031C29.8513 6.86844 28.1345 8.58321 26.0184 8.58321C23.9023 8.58321 22.1875 6.86844 22.1875 4.75031C22.1875 2.63218 23.9023 0.919434 26.0184 0.919434C28.1345 0.919434 29.8513 2.63421 29.8513 4.75031Z" fill="#2FCA02"/>
+      <path d="M107.275 0.925537V7.67517C109.971 7.95692 112.069 10.2331 112.069 12.9958C112.069 14.2728 111.623 15.4464 110.873 16.3666L115.649 21.138C117.613 18.9915 118.804 16.1335 118.804 12.9958C118.804 6.5097 113.689 1.21741 107.275 0.925537Z" fill="#2FCA02"/>
+    </symbol>
+  </defs>
+</svg>
 
 <!-- ═══════ CAROUSEL 1 ═══════ -->
 <div class="carousel-section">
-  <h2>🎞️ Carousel 1 — "Problem → System" (9 slides)</h2>
+  <h2>🎞️ Carousel 1 — "Problem → System" (9 slides · 4:5)</h2>
   <div class="slides">
 
     <!-- Slide 1: Hook -->
@@ -253,14 +268,14 @@ body {
         <span class="icon-big">🤔</span>
         <div class="headline">გაქვს მონაცემები,<br>მაგრამ ვერ ხედავ<br>სრულ სურათს?</div>
       </div>
-      <span class="logo-corner">B'VISION</span>
+      <svg class="logo-svg" style="color:var(--bv-white)"><use href="#bvlogo"/></svg>
     </div>
 
     <!-- Slide 2: Fragmented -->
     <div class="slide bg-dark">
       <span class="slide-num">2</span>
       <div class="slide-content">
-        <div class="headline" style="font-size:22px;color:var(--bv-yellow-green)">სად არის შენი ინფო?</div>
+        <div class="headline" style="font-size:22px;color:var(--bv-yellow-green);margin-bottom:8px">სად არის შენი ინფო?</div>
         <div class="fragmented">
           <div class="frag-item"><div class="src">📊 ფინანსები</div>Excel-ში</div>
           <div class="frag-item"><div class="src">🛒 გაყიდვები</div>საბუღალტრო სისტემა</div>
@@ -268,7 +283,7 @@ body {
           <div class="frag-item"><div class="src">📁 დანარჩენი</div>...?</div>
         </div>
       </div>
-      <span class="logo-corner">B'VISION</span>
+      <svg class="logo-svg" style="color:var(--bv-white)"><use href="#bvlogo"/></svg>
     </div>
 
     <!-- Slide 3: Consequence -->
@@ -277,9 +292,9 @@ body {
       <div class="slide-content">
         <span class="icon-big" style="color:var(--bv-red)">⏰</span>
         <div class="headline" style="color:var(--bv-dark)">საბოლოოდ?</div>
-        <div class="subhead" style="color:var(--bv-text);font-size:20px;margin-top:14px">გადაწყვეტილებას იღებ <strong>გვიან</strong> —<br>ან ინტუიციაზე.</div>
+        <div class="subhead" style="color:var(--bv-text);font-size:22px;margin-top:14px">გადაწყვეტილებას იღებ <strong>გვიან</strong> —<br>ან ინტუიციაზე.</div>
       </div>
-      <span class="logo-corner">B'VISION</span>
+      <svg class="logo-svg" style="color:var(--bv-purple)"><use href="#bvlogo"/></svg>
     </div>
 
     <!-- Slide 4: Solution -->
@@ -294,7 +309,7 @@ body {
           <div class="kpi-card"><div class="label">Stock</div><div class="val">98%</div><div class="delta">↑ 2%</div></div>
         </div>
       </div>
-      <span class="logo-corner">B'VISION</span>
+      <svg class="logo-svg" style="color:var(--bv-white)"><use href="#bvlogo"/></svg>
     </div>
 
     <!-- Slide 5: Promise -->
@@ -304,17 +319,17 @@ body {
         <span class="icon-big">⚡</span>
         <div class="headline-large">სრული სურათი.<br>რეალურ დროში.</div>
       </div>
-      <span class="logo-corner">B'VISION</span>
+      <svg class="logo-svg" style="color:var(--bv-white)"><use href="#bvlogo"/></svg>
     </div>
 
     <!-- Slide 6: Differentiation -->
     <div class="slide bg-dark">
       <span class="slide-num">6</span>
       <div class="slide-content">
-        <div style="text-align:center;font-size:64px;color:var(--bv-red);margin-bottom:14px">🚫</div>
+        <div style="text-align:center;font-size:72px;color:var(--bv-red);margin-bottom:16px">🚫</div>
         <div class="headline-large" style="text-align:center">ჩვენ არ გაძლევთ<br>რეპორტებს.</div>
       </div>
-      <span class="logo-corner">B'VISION</span>
+      <svg class="logo-svg" style="color:var(--bv-white)"><use href="#bvlogo"/></svg>
     </div>
 
     <!-- Slide 7: Promise 2 -->
@@ -324,14 +339,14 @@ body {
         <span class="icon-big">⚙️</span>
         <div class="headline">ჩვენ გიქმნით<br><span style="color:var(--bv-yellow-green)">სისტემას,</span><br>რომლითაც ბიზნესს<br>მართავ.</div>
       </div>
-      <span class="logo-corner">B'VISION</span>
+      <svg class="logo-svg" style="color:var(--bv-white)"><use href="#bvlogo"/></svg>
     </div>
 
     <!-- Slide 8: Scope -->
     <div class="slide bg-light">
       <span class="slide-num">8</span>
       <div class="slide-content">
-        <div class="headline" style="color:var(--bv-dark);text-align:center;font-size:20px">ფარგლები</div>
+        <div class="headline" style="color:var(--bv-dark);text-align:center;font-size:22px;margin-bottom:8px">ფარგლები</div>
         <div class="scope-circle">
           <div class="scope-item"><span class="emoji">💰</span>ფინანსები</div>
           <div class="scope-item"><span class="emoji">🛒</span>გაყიდვები</div>
@@ -341,17 +356,17 @@ body {
           <div class="scope-item"><span class="emoji">⚕️</span>მედიცინა</div>
         </div>
       </div>
-      <span class="logo-corner">B'VISION</span>
+      <svg class="logo-svg" style="color:var(--bv-purple)"><use href="#bvlogo"/></svg>
     </div>
 
     <!-- Slide 9: CTA -->
     <div class="slide bg-gradient">
       <span class="slide-num">9</span>
       <div class="slide-content" style="text-align:center">
-        <div class="headline" style="font-size:22px">გაეცანით დეტალურად</div>
-        <div style="font-size:48px;color:var(--bv-yellow-green);margin:8px 0">→</div>
+        <div class="headline" style="font-size:24px">გაეცანით დეტალურად</div>
+        <div style="font-size:54px;color:var(--bv-yellow-green);margin:8px 0">→</div>
         <div class="url-display">bivision.ge</div>
-        <div class="brand-tag" style="margin-top:24px;color:var(--bv-yellow-green)">B'VISION</div>
+        <svg class="logo-svg bottom-center" style="color:var(--bv-yellow-green)"><use href="#bvlogo"/></svg>
         <div class="tagline">Qlik Partner</div>
       </div>
     </div>
@@ -361,7 +376,7 @@ body {
 
 <!-- ═══════ CAROUSEL 2 ═══════ -->
 <div class="carousel-section">
-  <h2>🎞️ Carousel 2 — "რა გადაწყვეტილებებს მიიღებ?" (8 slides)</h2>
+  <h2>🎞️ Carousel 2 — "რა გადაწყვეტილებებს მიიღებ?" (8 slides · 4:5)</h2>
   <div class="slides">
 
     <!-- Slide 1: Hook -->
@@ -369,14 +384,14 @@ body {
       <span class="slide-num">1</span>
       <div class="slide-content" style="text-align:center">
         <span class="icon-big">🎯</span>
-        <div class="headline" style="font-size:26px">რა გადაწყვეტილებებს<br>მიიღებ <span style="color:var(--bv-yellow-green)">Bivision-ით</span>?</div>
-        <div class="icon-row" style="margin-top:18px">
+        <div class="headline" style="font-size:28px">რა გადაწყვეტილებებს<br>მიიღებ <span style="color:var(--bv-yellow-green)">Bivision-ით</span>?</div>
+        <div class="icon-row">
           <div class="icon-pill"><span class="emoji">💰</span>BiFinance</div>
           <div class="icon-pill"><span class="emoji">🛒</span>BiRetail</div>
           <div class="icon-pill"><span class="emoji">📦</span>BiStock</div>
         </div>
       </div>
-      <span class="logo-corner">B'VISION</span>
+      <svg class="logo-svg" style="color:var(--bv-white)"><use href="#bvlogo"/></svg>
     </div>
 
     <!-- Slide 2: BiFinance -->
@@ -384,7 +399,7 @@ body {
       <span class="slide-num">2</span>
       <div class="slide-content">
         <div class="product-icon">
-          <span style="font-size:50px">💰</span>
+          <span style="font-size:54px">💰</span>
           <span class="name" style="color:var(--bv-dark)">BiFinance</span>
         </div>
         <span class="product-badge">ფინანსები</span>
@@ -396,7 +411,7 @@ body {
           <li>მოგებიანობა</li>
         </ul>
       </div>
-      <span class="logo-corner">B'VISION</span>
+      <svg class="logo-svg" style="color:var(--bv-purple)"><use href="#bvlogo"/></svg>
     </div>
 
     <!-- Slide 3: BiRetail -->
@@ -404,7 +419,7 @@ body {
       <span class="slide-num">3</span>
       <div class="slide-content">
         <div class="product-icon">
-          <span style="font-size:50px">🛒</span>
+          <span style="font-size:54px">🛒</span>
           <span class="name" style="color:var(--bv-yellow-green)">BiRetail</span>
         </div>
         <span class="product-badge">გაყიდვები</span>
@@ -415,7 +430,7 @@ body {
           <li>სეზონური ტრენდი</li>
         </ul>
       </div>
-      <span class="logo-corner">B'VISION</span>
+      <svg class="logo-svg" style="color:var(--bv-white)"><use href="#bvlogo"/></svg>
     </div>
 
     <!-- Slide 4: BiStock -->
@@ -423,7 +438,7 @@ body {
       <span class="slide-num">4</span>
       <div class="slide-content">
         <div class="product-icon">
-          <span style="font-size:50px">📦</span>
+          <span style="font-size:54px">📦</span>
           <span class="name" style="color:var(--bv-dark)">BiStock</span>
         </div>
         <span class="product-badge">მარაგები</span>
@@ -434,7 +449,7 @@ body {
           <li>შესყიდვის რეკომენდაცია</li>
         </ul>
       </div>
-      <span class="logo-corner">B'VISION</span>
+      <svg class="logo-svg" style="color:var(--bv-purple)"><use href="#bvlogo"/></svg>
     </div>
 
     <!-- Slide 5: BiDebitors -->
@@ -442,7 +457,7 @@ body {
       <span class="slide-num">5</span>
       <div class="slide-content">
         <div class="product-icon">
-          <span style="font-size:50px">💳</span>
+          <span style="font-size:54px">💳</span>
           <span class="name" style="color:var(--bv-yellow-green)">BiDebitors</span>
         </div>
         <span class="product-badge">დებიტორები</span>
@@ -453,7 +468,7 @@ body {
           <li>ვადაგადაცილების ანალიზი</li>
         </ul>
       </div>
-      <span class="logo-corner">B'VISION</span>
+      <svg class="logo-svg" style="color:var(--bv-white)"><use href="#bvlogo"/></svg>
     </div>
 
     <!-- Slide 6: BiAudit -->
@@ -461,7 +476,7 @@ body {
       <span class="slide-num">6</span>
       <div class="slide-content">
         <div class="product-icon">
-          <span style="font-size:50px">🔍</span>
+          <span style="font-size:54px">🔍</span>
           <span class="name" style="color:var(--bv-dark)">BiAudit</span>
         </div>
         <span class="product-badge">აუდიტი</span>
@@ -472,7 +487,7 @@ body {
           <li>სრული ოპერაციული ჟურნალი</li>
         </ul>
       </div>
-      <span class="logo-corner">B'VISION</span>
+      <svg class="logo-svg" style="color:var(--bv-purple)"><use href="#bvlogo"/></svg>
     </div>
 
     <!-- Slide 7: BiMedical -->
@@ -480,7 +495,7 @@ body {
       <span class="slide-num">7</span>
       <div class="slide-content">
         <div class="product-icon">
-          <span style="font-size:50px">⚕️</span>
+          <span style="font-size:54px">⚕️</span>
           <span class="name" style="color:var(--bv-yellow-green)">BiMedical</span>
         </div>
         <span class="product-badge">სამედიცინო</span>
@@ -491,17 +506,17 @@ body {
           <li>შემოსავლების წყაროები</li>
         </ul>
       </div>
-      <span class="logo-corner">B'VISION</span>
+      <svg class="logo-svg" style="color:var(--bv-white)"><use href="#bvlogo"/></svg>
     </div>
 
     <!-- Slide 8: CTA -->
     <div class="slide bg-green">
       <span class="slide-num">8</span>
       <div class="slide-content" style="text-align:center">
-        <div class="headline" style="font-size:22px">გაეცანით დეტალურად</div>
-        <div style="font-size:48px;color:var(--bv-white);margin:8px 0">→</div>
+        <div class="headline" style="font-size:24px">გაეცანით დეტალურად</div>
+        <div style="font-size:54px;color:var(--bv-white);margin:8px 0">→</div>
         <div class="url-display" style="color:var(--bv-white)">bivision.ge</div>
-        <div class="brand-tag" style="margin-top:24px;color:var(--bv-white)">B'VISION</div>
+        <svg class="logo-svg bottom-center" style="color:var(--bv-white)"><use href="#bvlogo"/></svg>
       </div>
     </div>
 
@@ -509,14 +524,12 @@ body {
 </div>
 
 <div class="intro" style="background:var(--bv-purple)">
-  <h1 style="color:var(--bv-yellow-green)">🎨 Brand palette extracted from bivision.ge</h1>
-  <p style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
-    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:24px;height:24px;background:#221A4C;border-radius:4px;border:2px solid #fff"></span>#221A4C dark</span>
-    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:24px;height:24px;background:#6653C6;border-radius:4px;border:2px solid #fff"></span>#6653C6 indigo</span>
-    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:24px;height:24px;background:#7B61FF;border-radius:4px;border:2px solid #fff"></span>#7B61FF purple-light</span>
-    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:24px;height:24px;background:#2FCA02;border-radius:4px;border:2px solid #fff"></span>#2FCA02 green accent</span>
-    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:24px;height:24px;background:#DCEAA8;border-radius:4px;border:2px solid #fff"></span>#DCEAA8 yellow-green</span>
-    <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:24px;height:24px;background:#F4F7E8;border-radius:4px;border:2px solid #fff"></span>#F4F7E8 cream</span>
+  <h1 style="color:var(--bv-yellow-green)">📐 Specs</h1>
+  <p>
+    <strong>Format:</strong> 1080×1350 (4:5 portrait) — LinkedIn + FB carousel optimal<br>
+    <strong>Logo:</strong> Bivision SVG real path (purple #6653C6 + green dot #2FCA02) embed-ად<br>
+    <strong>Palette:</strong> #221A4C (dark) · #6653C6 (purple) · #2FCA02 (green) · #DCEAA8 (yellow-green) · #F4F7E8 (cream)<br>
+    <strong>17 slide:</strong> Carousel 1 (9) + Carousel 2 (8)
   </p>
 </div>
 
