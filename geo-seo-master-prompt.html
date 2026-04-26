@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GEO/SEO Master Prompt — Portable Claude Skill Pack (10 prompts)</title>
+<style>
+body{font-family:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;max-width:920px;margin:2rem auto;padding:0 1.2rem;color:#1a1a1a;line-height:1.55;font-size:15px}
+h1{font-size:1.55rem;margin:0 0 .3rem 0}
+h2{font-size:1.18rem;margin:1.6rem 0 .5rem 0;border-bottom:2px solid #222;padding-bottom:.3rem}
+h3{font-size:1rem;margin:1rem 0 .4rem 0;color:#2a2a2a}
+.meta{color:#666;font-size:.82rem;margin-bottom:1.2rem}
+.intro{background:#f4f7fb;border-left:4px solid #2563eb;padding:.8rem 1rem;margin:.8rem 0;border-radius:4px}
+.note{background:#fff8e1;border-left:4px solid #f5a623;padding:.7rem 1rem;margin:.7rem 0;border-radius:4px}
+table{border-collapse:collapse;width:100%;margin:.5rem 0 1rem 0;font-size:.9rem}
+th,td{border:1px solid #d4d4d4;padding:.45rem .6rem;text-align:left;vertical-align:top}
+th{background:#f0f0f0}
+code{font-family:Consolas,monospace;background:#f2f2f2;padding:.05rem .3rem;border-radius:3px;font-size:.86rem}
+pre{background:#1f2937;color:#e5e7eb;padding:.9rem;border-radius:4px;overflow-x:auto;font-size:.83rem;line-height:1.5;white-space:pre-wrap}
+ul,ol{margin:.3rem 0 .6rem 1.4rem}
+li{margin:.2rem 0}
+hr{border:none;border-top:1px solid #ccc;margin:2rem 0}
+.tag{display:inline-block;padding:.1rem .45rem;border-radius:3px;font-size:.72rem;font-weight:600;background:#2563eb;color:#fff}
+.small{font-size:.82rem;color:#555}
+</style>
+</head>
+<body>
+
+<h1>GEO/SEO Master Prompt — Portable Claude Skill Pack</h1>
+<div class="meta">10 prompts · Site-agnostic · Copy-paste runnable in Claude / ChatGPT / Perplexity · Author: Gurafa (Bivision) · 2026-04-26 · Free to share</div>
+
+<div class="intro">
+<b>What this is.</b> A portable, project-agnostic prompt pack for <b>GEO</b> (Generative Engine Optimization — citation in AI-search) + classic SEO. Apply to any site / brand / product. Each prompt is self-contained: trigger condition, input variables, paste-text, expected output.<br><br>
+<b>Why GEO matters.</b> AI-search (Claude, Perplexity, ChatGPT, Gemini) is replacing classic Google for B2B research. If your brand isn't AI-citable, prospects researching via AI won't find you — even if classic SEO is healthy.<br><br>
+<b>How to use.</b> Pick the prompt by stage (Audit → Optimize → Verify), fill the <code>{VARIABLES}</code>, paste into Claude. Output goes to disk or CMS. Re-run quarterly per the validation expiration rule.
+</div>
+
+<h2>Setup — Required inputs (fill once, reuse across all 10)</h2>
+
+<table>
+<tr><th>Variable</th><th>Definition</th><th>Example</th></tr>
+<tr><td><code>{SITE_URL}</code></td><td>Your domain</td><td>bivision.ge</td></tr>
+<tr><td><code>{BRAND}</code></td><td>Brand name as users say it</td><td>Bivision</td></tr>
+<tr><td><code>{ICP}</code></td><td>Ideal customer profile, 1 sentence</td><td>Georgian SME CFO at 1M-70M GEL revenue, 50+ headcount, ERP exists</td></tr>
+<tr><td><code>{CORE_OFFER}</code></td><td>Main product/service, 1 sentence</td><td>BI dashboards on Qlik with ERP connectors, 2-3 week deployment</td></tr>
+<tr><td><code>{LANGUAGE}</code></td><td>Primary user language</td><td>Georgian (English secondary)</td></tr>
+<tr><td><code>{COMPETITORS}</code></td><td>3-5 named competitors</td><td>Gegidze, Widgera, …</td></tr>
+<tr><td><code>{KEY_QUERIES}</code></td><td>10 queries customers actually ask AI/search to find a vendor like you</td><td>"BI tools Georgia", "Power BI vs Qlik for SME", …</td></tr>
+</table>
+
+<hr>
+
+<h2>Stage 1 — Audit (4 prompts)</h2>
+
+<h3>1. AI-citability baseline <span class="tag">audit</span></h3>
+<pre>You are a GEO analyst. Run a citability audit for {BRAND} ({SITE_URL}).
+
+For each of these 10 queries: {KEY_QUERIES}
+- Simulate the response a user would get from Claude / Perplexity / ChatGPT.
+- Note: is {BRAND} cited? In top-3? With what context? Or absent?
+
+Output a table:
+| Query | Cited? Y/N | Position | Context (1 line) | Citation source URL if any |
+
+End with: 3 patterns observed (e.g., "{BRAND} cited only when query includes country name"), 3 gap hypotheses, and a citability score 0-10.</pre>
+
+<h3>2. Schema.org markup audit <span class="tag">audit</span></h3>
+<pre>Fetch {SITE_URL} (or paste HTML). Audit current schema.org markup.
+
+Report:
+1. Schema types present (Organization, Service, Product, FAQ, Article, …) — list each with completeness %
+2. Schema types missing but recommended for {CORE_OFFER}
+3. Errors / warnings (use Schema.org validator logic)
+4. Top-3 ROI fixes ranked by AI-citability impact
+
+For each missing/incomplete schema: provide ready-to-paste JSON-LD with placeholders filled from {BRAND} / {CORE_OFFER} / {ICP}.</pre>
+
+<h3>3. CORE-EEAT content quality scoring <span class="tag">audit</span></h3>
+<pre>Score the top-5 pages of {SITE_URL} on CORE-EEAT framework:
+- Experience (first-hand evidence: dates, named clients, case specifics)
+- Expertise (depth, technical accuracy, named experts)
+- Authoritativeness (citations, mentions, partnerships)
+- Trust (transparency, contact info, security signals)
+
+Per page: 0-10 score per dimension + 1-line evidence + top-1 fix.
+
+End with: which 1 page to fix first for max AI-citability lift, and what to add (declarative facts with year, named clients, specific outcomes).</pre>
+
+<h3>4. Competitor AI-citation comparison <span class="tag">audit</span></h3>
+<pre>For {COMPETITORS} vs {BRAND}, run the same 10 queries: {KEY_QUERIES}.
+
+Output table:
+| Query | {BRAND} cited? | Competitor 1 | Competitor 2 | … | Winning citation pattern |
+
+End with:
+- Which competitor "owns" which query bucket and why (specific signal: schema, named clients, year-anchored facts, etc.)
+- 3 gaps where {BRAND} can leapfrog with low effort
+- 1 query where {BRAND} should NOT compete (let competitor own; differentiate elsewhere)</pre>
+
+<h2>Stage 2 — Optimize (4 prompts)</h2>
+
+<h3>5. Topic cluster + content map <span class="tag">optimize</span></h3>
+<pre>Build a topic cluster map for {BRAND} targeting {ICP}, language {LANGUAGE}, around {CORE_OFFER}.
+
+Output:
+1. 3 pillar topics (broad, evergreen)
+2. 5-7 sub-topics per pillar (specific, query-matched)
+3. Internal linking pattern (pillar ↔ sub, sub ↔ sub where relevant)
+4. Top-10 priority pages to write/optimize (rank by AI-citability lift × business relevance)
+
+For each priority page: 1-line H1, 3 H2 sections, 1 declarative fact-with-year to include.</pre>
+
+<h3>6. AI-friendly Q&amp;A extraction <span class="tag">optimize</span></h3>
+<pre>From {SITE_URL} content + {ICP} pain points, generate 20 question-answer pairs that an AI would use to cite {BRAND}.
+
+Format per Q&amp;A:
+- Question: as user would phrase it in {LANGUAGE}
+- Short answer: 1-2 sentences, declarative, fact-anchored (year, named entity, specific number)
+- Source page: which page on {SITE_URL} backs this answer
+
+Group by topic. Mark which 5 should become FAQ schema markup (highest AI-citation likelihood).</pre>
+
+<h3>7. Schema markup JSON-LD generator <span class="tag">optimize</span></h3>
+<pre>Generate complete schema.org JSON-LD for {SITE_URL}, including:
+1. Organization (with sameAs: LinkedIn, Facebook, YouTube)
+2. Service (per {CORE_OFFER} variant)
+3. FAQ (use top-5 Q&amp;A from prompt #6)
+4. Article (template for blog posts, with author, datePublished, dateModified)
+5. BreadcrumbList (template for category pages)
+
+Output: 5 JSON-LD blocks, each ready to paste in &lt;head&gt;.
+
+Validate mentally against Schema.org spec; flag any required field I'd need to fill manually.</pre>
+
+<h3>8. AI-citable copy rewrite <span class="tag">optimize</span></h3>
+<pre>Rewrite this page/section: [PASTE CURRENT COPY]
+
+Target audience: {ICP}, language: {LANGUAGE}, brand: {BRAND}.
+
+Apply these AI-citation rules:
+1. Replace vague claims with declarative facts (add year, entity, number)
+2. Add 1+ named client/case per main section
+3. Use Q&amp;A subheadings where natural (matches AI-search pattern)
+4. Eliminate buzzwords (synergy, cutting-edge, innovative)
+5. Each paragraph ≤ 3 sentences (AI-extractable)
+6. End with 1 declarative one-liner an AI could quote standalone
+
+Output: rewritten copy + diff summary (what changed and why per rule).</pre>
+
+<h2>Stage 3 — Verify (2 prompts)</h2>
+
+<h3>9. Internal link + canonical structure audit <span class="tag">verify</span></h3>
+<pre>Audit {SITE_URL} for:
+1. Orphan pages (no internal links pointing in)
+2. Canonical URL consistency (any duplicate / conflicting canonicals?)
+3. Internal anchor text — generic ("click here") vs descriptive (target keyword)
+4. Hub-spoke pattern integrity (do pillars link to all sub-topics? do sub-topics link back?)
+5. Outbound link authority (linking out to authoritative sources increases AI-citation likelihood)
+
+Output: top-10 fixes ranked by impact × effort. For each: file/page + before → after.</pre>
+
+<h3>10. PDF report builder + 30-day priority action list <span class="tag">verify</span></h3>
+<pre>Synthesize all prior 9 prompt outputs for {BRAND} into one executive report:
+
+Sections:
+1. Executive summary (1 paragraph + 1-line citability score before/target)
+2. Top-3 wins (what's working — keep)
+3. Top-3 critical gaps (what's broken — fix first)
+4. 30-day action plan: 10 ranked tasks with owner, effort estimate, expected impact
+5. Measurement plan: what to re-measure at day 30 to verify lift
+6. Appendix: schema JSON-LD blocks, Q&amp;A library, rewritten copy samples
+
+Format: clean markdown ready for PDF export. Audience: non-technical CEO/owner.</pre>
+
+<h2>Usage protocol</h2>
+
+<ol>
+<li><b>Run all 4 audit prompts</b> first → establish baseline</li>
+<li><b>Pick top-3 gaps</b> → run relevant optimize prompts (5-8)</li>
+<li><b>Implement</b> outputs into CMS / codebase</li>
+<li><b>Wait 14-30 days</b> for AI-search re-crawl</li>
+<li><b>Re-run prompt #1</b> → measure citability lift</li>
+<li><b>Quarterly</b>: re-run #4 (competitor comparison) + #10 (PDF report)</li>
+</ol>
+
+<div class="note">
+<b>Validation gate (per Validation Master Prompt v2 — Mini tier):</b>
+<ul>
+<li><b>Build:</b> implement top-3 gap fixes (1-2 days)</li>
+<li><b>Measure:</b> baseline citability score from prompt #1, target +30% in 30 days</li>
+<li><b>Pre-mortem (Side B — cost of not doing):</b> competitor first-mover lock in narrow AI-search vocabulary; positioning credibility leak; growing AI-search share gap (2027+ trend)</li>
+</ul>
+</div>
+
+<h2>Adaptation notes for non-English markets</h2>
+
+<ul>
+<li>Run prompt #1 with queries in <b>both</b> primary {LANGUAGE} and English — AI-search may pull from English knowledge base even for native-language queries</li>
+<li>Schema markup language attribute must match content language (<code>inLanguage</code> field)</li>
+<li>For low-resource languages (e.g., Georgian, Armenian, Azerbaijani), declarative facts with year + entity carry extra weight (training data sparse → distinctive signals dominate)</li>
+<li>If {BRAND} serves multiple language markets — run audit per language separately, do not blend</li>
+</ul>
+
+<hr>
+<p class="small">License: free to share, adapt, fork. Attribution appreciated. Source: Gurafa (Bivision agent) · Inspired by public Claude SEO/GEO skill packs (aaron-he-zhu/seo-geo-claude-skills, zubair-trabzada/geo-seo-claude) and Nino Mchedlishvili LinkedIn signal 2026-04 · Validation framework: <a href="https://gshoina.github.io/bivision-shares/validation-prompt.html">Validation Master Prompt v2</a></p>
+
+</body>
+</html>
