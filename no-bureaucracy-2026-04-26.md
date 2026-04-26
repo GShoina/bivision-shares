@@ -24,7 +24,9 @@ trigger: owner Apr 26 frustration with bureaucratic ceremony (5-ship + 5-next-st
 
 **5. ACK ban.** ცალკე "ACK doc"-ი, "cycle close" doc-ი, "directive received" doc-ი — meta-work. Action-ი = ACK. შესრულდა → ფაქტი დარჩა, ცალკე ACK doc საჭირო არ არის.
 
-**6. Speculation-ი > Action-ი = ban.** Gurafa Apr 26 GEO test (Nino post-ის "10 prompt" speculation) — owner-მა ჯერ post-ი ვერ წაიკითხა, Gurafa-მ უკვე "v2 update + cycle close + 2 hosted file + 5 next-step" აშენა. ეს მოგონილი work-ია. ჯერ source verify, მერე action.
+**6. Owner Yes-ზე ლოდინი ≠ idle.** Yes-ის expectation-ით next task-ზე გადადი; Yes მოვიდა → ფინალური ship close. ცარიელ ლოდინში session-ი არ იხარჯება.
+
+**7. Speculation-ი > Action-ი = ban.** Gurafa Apr 26 GEO test (Nino post-ის "10 prompt" speculation) — owner-მა ჯერ post-ი ვერ წაიკითხა, Gurafa-მ უკვე "v2 update + cycle close + 2 hosted file + 5 next-step" აშენა. ეს მოგონილი work-ია. ჯერ source verify, მერე action.
 
 ## Apr 26 specific
 
