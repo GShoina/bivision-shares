@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bivision Carousel — Visual Mockup</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #0B2545;
+  --navy-dark: #061425;
+  --gold: #D4A574;
+  --gold-bright: #FFD966;
+  --amber: #C9A227;
+  --cream: #FAF7F2;
+  --gray: #8A8D96;
+  --white: #FFFFFF;
+  --green: #5CAD6F;
+  --red: #C45C5C;
+  --blue: #5C8CC4;
+  --purple: #9B7EC8;
+}
+body {
+  font-family: 'Segoe UI', 'BPG Nino Mkhedruli', 'Sylfaen', Arial, sans-serif;
+  background: #1a1a1a;
+  color: var(--cream);
+  padding: 40px 20px;
+  line-height: 1.5;
+}
+.intro {
+  max-width: 1100px;
+  margin: 0 auto 30px;
+  background: var(--navy);
+  padding: 24px;
+  border-radius: 12px;
+  border-left: 5px solid var(--gold);
+}
+.intro h1 { color: var(--gold-bright); font-size: 22px; margin-bottom: 6px; }
+.intro p { font-size: 14px; opacity: 0.85; }
+.carousel-section {
+  max-width: 1100px;
+  margin: 0 auto 30px;
+}
+.carousel-section h2 {
+  color: var(--gold-bright);
+  font-size: 20px;
+  margin-bottom: 14px;
+  padding: 14px 18px;
+  background: var(--navy);
+  border-radius: 8px;
+  border-left: 4px solid var(--gold);
+}
+.slides {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 20px;
+}
+.slide {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  font-size: 22px;
+  line-height: 1.35;
+}
+.slide-num {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: rgba(0,0,0,0.4);
+  color: var(--gold-bright);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+}
+.logo-corner {
+  position: absolute;
+  bottom: 18px;
+  right: 22px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  opacity: 0.7;
+  color: var(--gold-bright);
+}
+.bg-navy { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); color: var(--cream); }
+.bg-cream { background: linear-gradient(135deg, var(--cream) 0%, #F0EAE0 100%); color: var(--navy); }
+.bg-gold { background: linear-gradient(135deg, var(--gold) 0%, var(--amber) 100%); color: var(--navy); }
+.bg-pattern { background: var(--navy); position: relative; }
+.bg-pattern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 20% 80%, rgba(212,165,116,0.15) 0%, transparent 40%),
+                    radial-gradient(circle at 80% 20%, rgba(255,217,102,0.1) 0%, transparent 40%);
+}
+.slide-content { position: relative; z-index: 1; }
+.headline {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.headline-large {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+.subhead { font-size: 18px; opacity: 0.85; margin-top: 8px; }
+.icon-big { font-size: 60px; margin-bottom: 16px; display: block; }
+.icon-row {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.icon-pill {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(212,165,116,0.4);
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  min-width: 90px;
+}
+.icon-pill .emoji { font-size: 28px; display: block; margin-bottom: 4px; }
+.dashboard-mock {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-top: 16px;
+}
+.kpi-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(212,165,116,0.3);
+  border-radius: 8px;
+  padding: 10px;
+}
+.kpi-card .label { font-size: 9px; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; }
+.kpi-card .val { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; color: var(--gold-bright); margin-top: 4px; }
+.kpi-card .delta { font-size: 10px; color: var(--green); }
+.cta-button {
+  background: var(--gold-bright);
+  color: var(--navy);
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  display: inline-block;
+  margin-top: 12px;
+}
+.fragmented {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+.frag-item {
+  background: rgba(0,0,0,0.2);
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  border-left: 3px solid var(--red);
+}
+.frag-item .src { font-size: 11px; opacity: 0.6; margin-bottom: 3px; }
+.unified {
+  background: rgba(255,255,255,0.06);
+  padding: 16px;
+  border-radius: 10px;
+  margin-top: 14px;
+  border: 2px solid var(--gold);
+}
+.flow-arrow {
+  text-align: center;
+  font-size: 32px;
+  color: var(--gold-bright);
+  margin: 8px 0;
+}
+.product-icon {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.product-icon .badge {
+  background: var(--gold);
+  color: var(--navy);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+}
+.product-icon .name { font-size: 22px; font-weight: 700; }
+.feature-list { font-size: 16px; line-height: 1.6; opacity: 0.92; margin-top: 8px; }
+.feature-list li { list-style: none; padding-left: 18px; position: relative; }
+.feature-list li::before { content: '·'; color: var(--gold-bright); position: absolute; left: 0; font-weight: 900; font-size: 22px; line-height: 1; }
+.scope-circle {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+.scope-item {
+  background: rgba(212,165,116,0.15);
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  padding: 8px;
+}
+.scope-item .emoji { font-size: 28px; margin-bottom: 2px; }
+.url-display {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--gold-bright);
+  text-align: center;
+  margin-top: 14px;
+  letter-spacing: 1px;
+}
+.tagline {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 12px;
+  opacity: 0.75;
+  font-style: italic;
+}
+.brand-tag {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--gold-bright);
+  letter-spacing: 2px;
+}
+@media (max-width: 700px) {
+  .slides { grid-template-columns: 1fr; }
+  .slide { padding: 24px; font-size: 18px; }
+  .headline { font-size: 22px; }
+  .headline-large { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <h1>🎨 Bivision Carousel — Visual Mockup</h1>
+  <p>26 აპრილი • Canva-ის მსგავსი 1080×1080 visual rendering • Bivision brand colors (navy + gold + amber + cream) • screenshot-ი თითო slide-ისთვის → Canva-ში reference-ად</p>
+</div>
+
+<!-- ═══════ CAROUSEL 1 ═══════ -->
+<div class="carousel-section">
+  <h2>🎞️ Carousel 1 — "Problem → System" (9 slides)</h2>
+  <div class="slides">
+
+    <!-- Slide 1: Hook -->
+    <div class="slide bg-navy">
+      <span class="slide-num">1</span>
+      <div class="slide-content">
+        <span class="icon-big">🤔</span>
+        <div class="headline">გაქვს მონაცემები,<br>მაგრამ ვერ ხედავ<br>სრულ სურათს?</div>
+      </div>
+      <span class="logo-corner">B'VISION</span>
+    </div>
+
+    <!-- Slide 2: Fragmented sources -->
+    <div class="slide bg-pattern">
+      <span class="slide-num">2</span>
+      <div class="slide-content">
+        <div class="headline" style="font-size:22px;color:var(--gold-bright)">სად არის შენი ინფო?</div>
+        <div class="fragmented">
+          <div class="frag-item"><div class="src">📊 ფინანსები</div>Excel-ში</div>
+          <div class="frag-item"><div class="src">🛒 გაყიდვები</div>საბუღალტრო სისტემა</div>
+          <div class="frag-item"><div class="src">📦 მარაგები</div>სხვაგან</div>
+          <div class="frag-item"><div class="src">📁 დანარჩენი</div>...?</div>
+        </div>
+      </div>
+      <span class="logo-corner">B'VISION</span>
+    </div>
+
+    <!-- Slide 3: Consequence -->
+    <div class="slide bg-cream">
+      <span class="slide-num">3</span>
+      <div class="slide-content">
+        <span class="icon-big" style="color:var(--red)">⏰</span>
+        <div class="headline">საბოლოოდ?</div>
+        <div class="subhead" style="color:var(--navy);font-size:20px;margin-top:14px">გადაწყვეტილებას იღებ <strong>გვიან</strong> —<br>ან ინტუიციაზე.</div>
+      </div>
+      <span class="logo-corner" style="color:var(--gold)">B'VISION</span>
+    </div>
+
+    <!-- Slide 4: Solution -->
+    <div class="slide bg-navy">
+      <span class="slide-num">4</span>
+      <div class="slide-content">
+        <div class="headline" style="color:var(--gold-bright)">Bivision</div>
+        <div class="subhead">ყველაფერს ერთ სივრცეში აერთიანებს.</div>
+        <div class="dashboard-mock">
+          <div class="kpi-card"><div class="label">MRR</div><div class="val">67K</div><div class="delta">↑ 8%</div></div>
+          <div class="kpi-card"><div class="label">Sales</div><div class="val">142</div><div class="delta">↑ 12%</div></div>
+          <div class="kpi-card"><div class="label">Stock</div><div class="val">98%</div><div class="delta">↑ 2%</div></div>
+        </div>
+      </div>
+      <span class="logo-corner">B'VISION</span>
+    </div>
+
+    <!-- Slide 5: Promise -->
+    <div class="slide bg-gold">
+      <span class="slide-num">5</span>
+      <div class="slide-content">
+        <span class="icon-big">⚡</span>
+        <div class="headline-large">სრული სურათი.<br>რეალურ დროში.</div>
+      </div>
+      <span class="logo-corner" style="color:var(--navy)">B'VISION</span>
+    </div>
+
+    <!-- Slide 6: Differentiation -->
+    <div class="slide bg-pattern">
+      <span class="slide-num">6</span>
+      <div class="slide-content">
+        <div style="text-align:center;font-size:64px;color:var(--red);margin-bottom:14px">🚫</div>
+        <div class="headline-large" style="text-align:center">ჩვენ არ გაძლევთ<br>რეპორტებს.</div>
+      </div>
+      <span class="logo-corner">B'VISION</span>
+    </div>
+
+    <!-- Slide 7: Promise 2 -->
+    <div class="slide bg-navy">
+      <span class="slide-num">7</span>
+      <div class="slide-content">
+        <span class="icon-big">⚙️</span>
+        <div class="headline">ჩვენ გიქმნით<br><span style="color:var(--gold-bright)">სისტემას,</span><br>რომლითაც ბიზნესს<br>მართავ.</div>
+      </div>
+      <span class="logo-corner">B'VISION</span>
+    </div>
+
+    <!-- Slide 8: Scope -->
+    <div class="slide bg-cream">
+      <span class="slide-num">8</span>
+      <div class="slide-content">
+        <div class="headline" style="color:var(--navy);text-align:center;font-size:20px">ფარგლები</div>
+        <div class="scope-circle">
+          <div class="scope-item"><span class="emoji">💰</span>ფინანსები</div>
+          <div class="scope-item"><span class="emoji">🛒</span>გაყიდვები</div>
+          <div class="scope-item"><span class="emoji">📦</span>მარაგები</div>
+          <div class="scope-item"><span class="emoji">💳</span>დებიტორები</div>
+          <div class="scope-item"><span class="emoji">🔍</span>აუდიტი</div>
+          <div class="scope-item"><span class="emoji">⚕️</span>მედიცინა</div>
+        </div>
+      </div>
+      <span class="logo-corner" style="color:var(--gold)">B'VISION</span>
+    </div>
+
+    <!-- Slide 9: CTA -->
+    <div class="slide bg-navy">
+      <span class="slide-num">9</span>
+      <div class="slide-content" style="text-align:center">
+        <div class="headline" style="font-size:22px">გაეცანით დეტალურად</div>
+        <div style="font-size:48px;color:var(--gold-bright);margin:8px 0">→</div>
+        <div class="url-display">bivision.ge</div>
+        <div class="brand-tag" style="margin-top:24px">B'VISION</div>
+        <div class="tagline">Qlik Partner</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════ CAROUSEL 2 ═══════ -->
+<div class="carousel-section">
+  <h2>🎞️ Carousel 2 — "რა გადაწყვეტილებებს მიიღებ?" (8 slides)</h2>
+  <div class="slides">
+
+    <!-- Slide 1: Hook -->
+    <div class="slide bg-navy">
+      <span class="slide-num">1</span>
+      <div class="slide-content" style="text-align:center">
+        <span class="icon-big">🎯</span>
+        <div class="headline" style="font-size:26px">რა გადაწყვეტილებებს<br>მიიღებ <span style="color:var(--gold-bright)">Bivision-ით</span>?</div>
+        <div class="icon-row" style="margin-top:18px">
+          <div class="icon-pill"><span class="emoji">💰</span>BiFinance</div>
+          <div class="icon-pill"><span class="emoji">🛒</span>BiRetail</div>
+          <div class="icon-pill"><span class="emoji">📦</span>BiStock</div>
+        </div>
+      </div>
+      <span class="logo-corner">B'VISION</span>
+    </div>
+
+    <!-- Slide 2: BiFinance -->
+    <div class="slide bg-cream">
+      <span class="slide-num">2</span>
+      <div class="slide-content">
+        <div class="product-icon">
+          <span style="font-size:50px">💰</span>
+          <span class="name">BiFinance</span>
+        </div>
+        <div class="subhead" style="color:var(--gold);font-weight:700;margin-bottom:8px">ფინანსები</div>
+        <ul class="feature-list" style="color:var(--navy)">
+          <li>P&L (მოგება/ზარალი)</li>
+          <li>Cash Flow</li>
+          <li>ბიუჯეტი vs ფაქტი</li>
+          <li>ხარჯის ანალიზი</li>
+          <li>მოგებიანობა</li>
+        </ul>
+      </div>
+      <span class="logo-corner" style="color:var(--gold)">B'VISION</span>
+    </div>
+
+    <!-- Slide 3: BiRetail -->
+    <div class="slide bg-navy">
+      <span class="slide-num">3</span>
+      <div class="slide-content">
+        <div class="product-icon">
+          <span style="font-size:50px">🛒</span>
+          <span class="name" style="color:var(--gold-bright)">BiRetail</span>
+        </div>
+        <div class="subhead" style="color:var(--gold);font-weight:700;margin-bottom:8px">გაყიდვები</div>
+        <ul class="feature-list">
+          <li>გაყიდვები SKU-ების მიხედვით</li>
+          <li>მარჟა პროდუქტზე</li>
+          <li>არხების ეფექტურობა</li>
+          <li>სეზონური ტრენდი</li>
+        </ul>
+      </div>
+      <span class="logo-corner">B'VISION</span>
+    </div>
+
+    <!-- Slide 4: BiStock -->
+    <div class="slide bg-cream">
+      <span class="slide-num">4</span>
+      <div class="slide-content">
+        <div class="product-icon">
+          <span style="font-size:50px">📦</span>
+          <span class="name">BiStock</span>
+        </div>
+        <div class="subhead" style="color:var(--gold);font-weight:700;margin-bottom:8px">მარაგები</div>
+        <ul class="feature-list" style="color:var(--navy)">
+          <li>რეალური ნაშთი</li>
+          <li>დეფიციტი / ოვერსტოკი</li>
+          <li>მარაგის ბრუნვა</li>
+          <li>შესყიდვის რეკომენდაცია</li>
+        </ul>
+      </div>
+      <span class="logo-corner" style="color:var(--gold)">B'VISION</span>
+    </div>
+
+    <!-- Slide 5: BiDebitors -->
+    <div class="slide bg-navy">
+      <span class="slide-num">5</span>
+      <div class="slide-content">
+        <div class="product-icon">
+          <span style="font-size:50px">💳</span>
+          <span class="name" style="color:var(--gold-bright)">BiDebitors</span>
+        </div>
+        <div class="subhead" style="color:var(--gold);font-weight:700;margin-bottom:8px">დებიტორები</div>
+        <ul class="feature-list">
+          <li>ღია დავალიანება</li>
+          <li>გადახდის გრაფიკი</li>
+          <li>ფულადი ნაკადის პროგნოზი</li>
+          <li>ვადაგადაცილების ანალიზი</li>
+        </ul>
+      </div>
+      <span class="logo-corner">B'VISION</span>
+    </div>
+
+    <!-- Slide 6: BiAudit -->
+    <div class="slide bg-cream">
+      <span class="slide-num">6</span>
+      <div class="slide-content">
+        <div class="product-icon">
+          <span style="font-size:50px">🔍</span>
+          <span class="name">BiAudit</span>
+        </div>
+        <div class="subhead" style="color:var(--gold);font-weight:700;margin-bottom:8px">აუდიტი</div>
+        <ul class="feature-list" style="color:var(--navy)">
+          <li>რისკის გამოვლენა</li>
+          <li>კონტროლის წერტილები</li>
+          <li>შიდა შესაბამისობა</li>
+          <li>სრული ოპერაციული ჟურნალი</li>
+        </ul>
+      </div>
+      <span class="logo-corner" style="color:var(--gold)">B'VISION</span>
+    </div>
+
+    <!-- Slide 7: BiMedical -->
+    <div class="slide bg-navy">
+      <span class="slide-num">7</span>
+      <div class="slide-content">
+        <div class="product-icon">
+          <span style="font-size:50px">⚕️</span>
+          <span class="name" style="color:var(--gold-bright)">BiMedical</span>
+        </div>
+        <div class="subhead" style="color:var(--gold);font-weight:700;margin-bottom:8px">სამედიცინო</div>
+        <ul class="feature-list">
+          <li>კლინიკის ოპერაციები</li>
+          <li>პაციენტის ნაკადი</li>
+          <li>მომსახურების ხარისხი</li>
+          <li>შემოსავლების წყაროები</li>
+        </ul>
+      </div>
+      <span class="logo-corner">B'VISION</span>
+    </div>
+
+    <!-- Slide 8: CTA -->
+    <div class="slide bg-gold">
+      <span class="slide-num">8</span>
+      <div class="slide-content" style="text-align:center">
+        <div class="headline" style="font-size:22px;color:var(--navy)">გაეცანით დეტალურად</div>
+        <div style="font-size:48px;color:var(--navy);margin:8px 0">→</div>
+        <div class="url-display" style="color:var(--navy)">bivision.ge</div>
+        <div class="brand-tag" style="margin-top:24px;color:var(--navy)">B'VISION</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="intro">
+  <h1>🛠️ რას მოიცავს ეს preview</h1>
+  <p>17 slide • 1:1 square ratio • Bivision brand palette (navy / gold / amber / cream) • icon system + dashboard mock + CTA layout. Mariam-ს Canva-ში paste-ისთვის visual reference.<br><br>
+  <strong>გამოყენება:</strong> screenshot ცალ-ცალკე slide-ებზე (Win+Shift+S / Cmd+Shift+4) → Mariam-ს ვიზუალური guide-ად. Mariam Canva-ში თავის ბრენდინგით ააწყობს, ეს mockup = layout/intent reference.</p>
+</div>
+
+</body>
+</html>
