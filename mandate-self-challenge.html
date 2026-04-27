@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ka-GE">
+<head>
+<meta charset="utf-8">
+<title>Gurafa Mandate Self-Challenge — 2026-04-28</title>
+<style>
+body{font-family:-apple-system,system-ui,"Segoe UI",sans-serif;max-width:920px;margin:2rem auto;padding:0 1.2rem;color:#1a1a1a;line-height:1.55;font-size:14.5px}
+h1{font-size:1.55rem;margin:0 0 .3rem;border-bottom:2px solid #333;padding-bottom:.3em}
+h2{font-size:1.18rem;margin:1.6rem 0 .5rem;color:#1a4d80;border-left:4px solid #1a4d80;padding-left:.5rem}
+.meta{color:#666;font-size:.85rem;margin-bottom:1.2rem}
+.high{background:#fde7e9;border-left:4px solid #c0392b;padding:.6rem 1rem;margin:.4rem 0;border-radius:4px}
+.med{background:#fff8e1;border-left:4px solid #f5a623;padding:.6rem 1rem;margin:.4rem 0;border-radius:4px}
+.low{background:#f4f7fb;border-left:4px solid #6c757d;padding:.6rem 1rem;margin:.4rem 0;border-radius:4px}
+table{border-collapse:collapse;width:100%;margin:.6rem 0;font-size:.92rem}
+th,td{border:1px solid #ccc;padding:.4rem .55rem;text-align:left;vertical-align:top}
+th{background:#1a4d80;color:#fff}
+.tag{display:inline-block;padding:.1rem .45rem;border-radius:3px;font-size:.72rem;font-weight:700}
+.t-fact{background:#10b981;color:#fff}
+.t-inf{background:#2563eb;color:#fff}
+.t-asm{background:#f5a623;color:#fff}
+ul,ol{margin:.3rem 0 .5rem 1.4rem}
+hr{border:none;border-top:1px solid #ddd;margin:1.5rem 0}
+</style>
+</head>
+<body>
+
+<h1>Gurafa Mandate Self-Challenge</h1>
+<div class="meta">2026-04-28 · Gurafa · target: GURAFA_CHARTER_2026-04-27.md (owner-authored Apr 27) · cycle: self-challenge → Viktor peer → cleanup → execute → 8h ship</div>
+
+<h2>EP0: 8/10 (O)</h2>
+
+owner-trigger ვალიდი per Mandate §3F. self-challenge = MUST per Validation v2 HEAVY tier (charter = strategic SSOT).
+
+<h2>10 challenge point — confidence-tagged</h2>
+
+<h3>HIGH confidence (5 — real gaps)</h3>
+
+<div class="high">
+<b>1. სპეციფიკური კონკურენტი ჩამონათვალი მანდატში არაა.</b> [INFERENCE]
+Mandate §3B describes monitoring approach; <b>7+ player owner-validated list (Amadeo, Dastafe, Afinwise, DataMind, DataStudio, Fina, Loialte, Gegidze, Widgera) ცხოვრობს მხოლოდ archive-ში</b>. შედეგი: agent disk-recall-ის გარეშე ვერ ცნობს ვის უნდა აკვირდებოდეს. Apr 27 incident exact reproduction.<br>
+<b>Recommendation:</b> Mandate Annex A — explicit pointer ან inline list (`archive/COMPETITOR_DEEP_RESEARCH.md` + `BI_C-Suite/docs/VICTOR_COMPETITOR_INTEL.md` SSOT links).
+</div>
+
+<div class="high">
+<b>2. Sources concrete URL list მანდატში არაა.</b> [INFERENCE]
+§3A-D ენუმერაცია (Anthropic, OpenAI, LinkedIn, etc.), მაგრამ <b>concrete URL + tracking cadence</b> არ არის. შედეგი: ad-hoc source-picking, drift to fresh searches.<br>
+<b>Recommendation:</b> Annex B — 9 source map (Mandate-ში მიწერა ან pointer to MONITORING_INTAKE.md).
+</div>
+
+<div class="high">
+<b>3. Daily MUST vs silence-valid conflict.</b> [FACT — 2 memory rule კონფლიქტი]
+Mandate §6: "no signal = no forced report" + "silence valid".<br>
+Memory `feedback_daily_value_must` Apr 18 owner: "ყოველდღე 1+ completed deliverable, არა draft. თუ არაფერი = FAIL".<br>
+ორი rule directly conflict. Mandate Apr 27 owner-authored, but Apr 18 daily MUST also owner-authored. <b>რომელი wins?</b><br>
+<b>Recommendation:</b> Mandate §6 explicit clause — "Daily MUST = research/improvement activity floor (silent OK), არა forced intel-noise. Intel output = signal-driven; activity output (improvements, research updates) = daily floor."
+</div>
+
+<div class="high">
+<b>4. "Done" verification criterion implicit.</b> [INFERENCE]
+Mandate §8 lists "good output" but no explicit verification criterion. Memory `feedback_no_fabrication` covers facts; "done" disk-verify implicit only.<br>
+<b>Recommendation:</b> Mandate §8 add 1 line — "Done = disk artifact + curl/grep/Read-back verified + EP0 + footer present."
+</div>
+
+<div class="high">
+<b>5. Coaching threshold (when alert) absent.</b> [INFERENCE]
+§3C lists burnout signals (12+h session, hyperfocus, etc.) but <b>numeric threshold for ALERT</b> არ არის. შედეგი: under-alert (lose moment) ან over-alert (motivational lecture trap §9 forbids).<br>
+<b>Recommendation:</b> §3C explicit — "≥3 burnout signals OR 12+h continuous session = trigger 1-line non-dramatic alert. <3 signals = silent observation."
+</div>
+
+<h3>MEDIUM confidence (3 — could be by-design but worth surfacing)</h3>
+
+<div class="med">
+<b>6. Mariam/Geo/Inga lane gap.</b> [ASSUMPTION — could be intentional]
+§7 covers Mentari/Viktor/Owner only. Mariam (marketing exec), Geo (site exec), Inga (sales) — სამივე ჩემი touchpoint per other memory rules.<br>
+<b>Recommendation:</b> §7 add 3 short lanes OR explicit "non-Mentari/Viktor/Owner = via Mentari only" rule.
+</div>
+
+<div class="med">
+<b>7. Improvement proposal §3F self-trigger risk.</b> [INFERENCE]
+§3F criteria (process gap / measurable damage) — but agent self-decides. Apr 26-27 drift exact pattern — agent thinks "real gap" when it's self-justified loop.<br>
+<b>Recommendation:</b> §3F add "improvement proposal requires Viktor pre-validation OR owner explicit ask" gate.
+</div>
+
+<div class="med">
+<b>8. EP/GP principle redundancy audit.</b> [ASSUMPTION]
+9 principles (EP1-5 + GP1-4). EP5 (one mission/session) overlaps GP2 (autonomy respect). EP2 (new value) overlaps EP1 (epistemic). GP1 (Level 4 filter) overlaps EP2.<br>
+<b>Recommendation:</b> consolidate to 5 distinct: epistemic-tagging / new-value-test / research-before-ask / level-4-filter / confidence-action. (NOT a new rule, simplification of existing 9.)
+</div>
+
+<h3>LOW confidence (2 — possibly over-reach)</h3>
+
+<div class="low">
+<b>9. Session start file checklist absent in Mandate.</b> [ASSUMPTION]
+CLAUDE.md handles this (just updated to read mandate first). Mandate-ში explicit checklist redundant — CLAUDE.md responsibility. <b>Possibly low priority, current CLAUDE.md sufficient.</b>
+</div>
+
+<div class="low">
+<b>10. Weekly minimum signal output absent.</b> [ASSUMPTION]
+Mandate §6 silence-valid + §8 "ერთი ღირებული insight > 10 სუსტი" implies quality not quantity. <b>Weekly minimum could undermine that — possibly intentional gap.</b>
+</div>
+
+<h2>Self-verdict per challenge category</h2>
+
+| Category | Count | Action |
+|---|---|---|
+| HIGH (real gap, recommend mandate update) | 5 | request owner approve §3B/§3C/§6/§8 + Annex A/B addenda |
+| MEDIUM (surface, owner decide) | 3 | flag — owner accept/reject |
+| LOW (possibly over-reach) | 2 | skip unless owner triggers |
+
+<h2>Cycle next step</h2>
+
+<ol>
+<li>Viktor peer challenge invite — `BI_C-Suite/docs/AUDIT_REQUEST.md` append (this artifact)</li>
+<li>Viktor responds (peer recommendation, not commander per owner Apr 28)</li>
+<li>Mandate cleanup: integrate Viktor's points + 5 HIGH self-points (only owner-approved)</li>
+<li>Cleanup: delete obstructing files/configs</li>
+<li>Execute: concrete mission deliverable</li>
+<li>8h target ship: 1 actionable insight ან real artifact</li>
+</ol>
+
+<p style="font-size:.82rem;color:#666">
+Memory rules applied: [EP0 ✓ / readable-Georgian ✓ / 4-block ✓ /
+visibility-not-urgency ✓ /
+no-fabrication ✓ (FACT/INFERENCE/ASSUMPTION tagged per challenge point) /
+probe-discipline ✓ (own-mandate-self-audit not external claim) /
+HTML-policy ✓]
+</p>
+
+</body>
+</html>
