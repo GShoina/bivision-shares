@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ka-GE">
+<head>
+<meta charset="utf-8">
+<title>9 რეპო — კონსოლიდირებული გეგმა (Mentari + Viktor) — 2026-04-27</title>
+<style>
+body{font-family:-apple-system,system-ui,"Segoe UI",sans-serif;max-width:920px;margin:2rem auto;padding:0 1.2rem;color:#1a1a1a;line-height:1.55;font-size:14.5px}
+h1{font-size:1.55rem;margin:0 0 .3rem;border-bottom:2px solid #333;padding-bottom:.3em}
+h2{font-size:1.18rem;margin:1.6rem 0 .5rem;color:#1a4d80;border-left:4px solid #1a4d80;padding-left:.5rem}
+h3{font-size:1rem;margin:1rem 0 .4rem}
+.meta{color:#666;font-size:.85rem;margin-bottom:1.2rem}
+.signal{background:#eefbe6;border-left:4px solid #10b981;padding:.7rem 1rem;margin:.5rem 0;border-radius:4px}
+.warn{background:#fde7e9;border-left:4px solid #c0392b;padding:.7rem 1rem;margin:.5rem 0;border-radius:4px}
+.note{background:#fff8e1;border-left:4px solid #f5a623;padding:.7rem 1rem;margin:.5rem 0;border-radius:4px}
+table{border-collapse:collapse;width:100%;margin:.6rem 0;font-size:.92rem}
+th,td{border:1px solid #ccc;padding:.4rem .55rem;text-align:left;vertical-align:top}
+th{background:#1a4d80;color:#fff}
+.tag{display:inline-block;padding:.15rem .55rem;border-radius:3px;font-size:.78rem;font-weight:700}
+.t-vh{background:#10b981;color:#fff}
+.t-h{background:#2563eb;color:#fff}
+.t-m{background:#f5a623;color:#fff}
+.t-skip{background:#9aa0a6;color:#fff}
+.t-hyp{background:#c0392b;color:#fff}
+ul,ol{margin:.3rem 0 .5rem 1.4rem}
+hr{border:none;border-top:1px solid #ddd;margin:1.5rem 0}
+</style>
+</head>
+<body>
+
+<h1>9 რეპო — კონსოლიდირებული სამოქმედო გეგმა</h1>
+<div class="meta">2026-04-27 · Gurafa სინთეზი · Mentari (PASS verdict) + Viktor (3 challenge points + 5/8 accept) ერთად · შენი ნებართვა საჭირო</div>
+
+<h2>ძირითადი ცვლილებები ვიქტორის challenge-დან</h2>
+
+<div class="warn">
+<b>1. მწარმოებლის რიცხობრივი აცხადებები — ჰიპოთეზად დატაგვა</b><br>
+Context Mode "98% context reduction, 315 KB → 5.4 KB" + "30 წთ → 3 სთ" სესია = მწარმოებლის სიტყვა, არა Bivision-ზე ტესტი. <span class="tag t-hyp">[HYPOTHESIS]</span> tag მიწერია; პილოტი = ვერიფიკაცია, არა აპრიორი ფაქტი.
+</div>
+
+<div class="warn">
+<b>2. Toprank — "წაკითხვა" და "წერა" ცალკე-ცალკე ნებართვა</b><br>
+"~100 Google Ads tool (read + write)" — write tools პროდუქშენ Google Ads ანგარიშზე = მაღალი რისკი. პილოტი მხოლოდ <b>read-only</b> ჯანდრტო (audit, არა pause/budget change). Write ნებართვა = ცალკე ცალკე owner-gate, შემდეგ ეტაპზე.
+</div>
+
+<div class="warn">
+<b>3. თარიღი არ ვიგონებ — "Apr 28" ბანი</b><br>
+"Apr 28 sample" = agent-invented date, banned per `feedback_no_fake_deadlines.md`. ცვლილება: სიკვენცია "ჩასმა → read-only audit → owner review → write capability decision". თარიღს შენ აყენებ.
+</div>
+
+<h2>კონსოლიდირებული verdict ცხრილი</h2>
+
+<table>
+<tr><th>#</th><th>რეპო</th><th>Mentari</th><th>Viktor</th><th>კონსოლიდაცია</th></tr>
+<tr><td>1</td><td>AutoHedge</td><td>SKIP ✓</td><td>SKIP ✓</td><td><span class="tag t-skip">SKIP</span> არასწორი დარგი</td></tr>
+<tr><td>2</td><td>Vibe-Trading</td><td>SKIP ✓</td><td>SKIP ✓</td><td><span class="tag t-skip">SKIP</span> არასწორი დარგი</td></tr>
+<tr><td>3</td><td>Claude Ads</td><td>HIGH endorsed</td><td>(no specific verdict)</td><td><span class="tag t-h">HIGH</span> read-only audit pilot, paste-driven</td></tr>
+<tr><td>4</td><td>Toprank</td><td>VERY HIGH first</td><td>VERY HIGH (read-only)</td><td><span class="tag t-vh">VERY HIGH</span> პირველი პილოტი, READ-ONLY scope, write = ცალკე გადაწყვეტილება</td></tr>
+<tr><td>6</td><td>Agentic Inbox</td><td>MEDIUM backlog</td><td>MEDIUM ✓</td><td><span class="tag t-m">MEDIUM</span> ლოდინში</td></tr>
+<tr><td>7</td><td>Context Mode</td><td>VERY HIGH</td><td>VERY HIGH (vendor disclaimer)</td><td><span class="tag t-vh">VERY HIGH</span> vendor numbers <span class="tag t-hyp">[HYPOTHESIS]</span>; pilot = ვერიფიკაცია</td></tr>
+<tr><td>8</td><td>Camofox</td><td>(no specific)</td><td>(no specific)</td><td><span class="tag t-m">MEDIUM</span> ლოდინში, ToS-clarity owner-side</td></tr>
+<tr><td>9</td><td>Open Generative AI</td><td>(no specific)</td><td>(no specific)</td><td><span class="tag t-m">MEDIUM</span> ლოდინში, sequence post-HyperFrames</td></tr>
+</table>
+
+<h2>3-პილოტის გადახედილი სცენარი (read-only, owner-trigger, თარიღის გარეშე)</h2>
+
+<div class="signal">
+<b>თანმიმდევრობა (sequential, არა parallel):</b><br>
+1. <b>Toprank</b> — ჩასმა + GSC read-only connect → 1 audit bivision.ge-ზე → შენი review → write capability decision (ცალკე)<br>
+2. <b>Context Mode</b> — Gurafa-ზე ჩასმა → 7-დღიანი passive measure → vendor "98%" claim ვერიფიკაცია → შენი decision adoption-ზე<br>
+3. <b>Claude Ads</b> — paste-driven 1 audit (FB + LinkedIn screenshots) → შენი review → roll-out decision
+</div>
+
+<h3>ყოველი პილოტის pass criteria</h3>
+
+<table>
+<tr><th>პილოტი</th><th>Pass criteria</th><th>Verification</th></tr>
+<tr><td>Toprank</td><td>(a) ჩასმა მუშაობს · (b) GSC read მონაცემი ბრუნდება · (c) audit დეპს უტოლდება ან აღემატება Apr 26 Nino manual baseline (5.25/10)</td><td>Gurafa demo-შეცვლა შენთან</td></tr>
+<tr><td>Context Mode</td><td>(a) ჩასმა stable · (b) actual context-reduction % Bivision sessions-ში — vendor 98% claim ჰიპოთეზის verify · (c) session-length delta მნიშვნელოვანი</td><td>7-დღიანი ლოგი + 3-სესიის შედარება</td></tr>
+<tr><td>Claude Ads</td><td>(a) paste workflow მუშაობს · (b) 250+ checks reasonable findings · (c) prioritized fix list actionable</td><td>1 audit output review შენთან</td></tr>
+</table>
+
+<h3>Fail-mode actions</h3>
+<ul>
+<li>Toprank — write capability NEVER auto-adopt; ცალკე გადაწყვეტილება post-pilot</li>
+<li>Context Mode — vendor claim &lt;50% verified → reject for Bivision; full claim = adopt 1 agent first</li>
+<li>Claude Ads — სუსტი findings → defer; quality findings → expand to monthly cadence</li>
+</ul>
+
+<h2>რა ამახინჯა ამ session-ზე ჩემი original audit-ი</h2>
+
+<table>
+<tr><th>ცდომილება</th><th>ვიქტორის flag</th><th>ფიქსი</th></tr>
+<tr><td>"98% context reduction" — vendor claim მე როგორც ფაქტი წარვადგინე</td><td>per `feedback_no_fabrication.md`</td><td>HYPOTHESIS tag მიწერია, ვერიფიცირებად მონიშნული</td></tr>
+<tr><td>Toprank pilot scope read+write bundled</td><td>write production Google Ads = HIGH risk</td><td>read-only ჯანდრტო, write = ცალკე გადაწყვეტილება</td></tr>
+<tr><td>"Apr 28 sample" agent-invented</td><td>per `feedback_no_fake_deadlines.md`</td><td>თარიღი ამოვიღე, sequence-only</td></tr>
+</table>
+
+<h2>თქვენი ნებართვის ვარიანტები</h2>
+
+<ol>
+<li><b>"სცენარი 1+2+3 sequential"</b> — სამივე read-only პილოტი თანმიმდევრობით; მე ვიწყებ Toprank-ს, შემდეგ Context Mode, შემდეგ Claude Ads</li>
+<li><b>"მხოლოდ #1"</b> — Toprank read-only პილოტი ერთი (lowest risk first)</li>
+<li><b>"მხოლოდ #2"</b> — Context Mode passive measure (cross-agent infra benefit)</li>
+<li><b>"მხოლოდ #3"</b> — Claude Ads paste-driven (quickest)</li>
+<li><b>"მოვიცადოთ"</b> — backlog, current OKR work გრძელდება</li>
+</ol>
+
+<h2>დღევანდელი dashboard</h2>
+
+<table>
+<tr><th>Thread</th><th>სტატუსი</th></tr>
+<tr><td>9-repo audit</td><td>✅ Mentari + Viktor responses-ით closed; consolidated plan ship-ი (ეს ფაილი)</td></tr>
+<tr><td>HyperFrames pilot</td><td>Mentari → Mariam content briefing path; შენი ნებართვა Mariam pilot-სთვის ცალკე</td></tr>
+<tr><td>Tracker triage 17 items</td><td>✅ closed Apr 27 — `BI_gurafa/docs/TRACKER_TRIAGE_2026-04-27.md`</td></tr>
+<tr><td>Connector deepdive</td><td>Mentari pickup pending</td></tr>
+<tr><td>Accounting DB test</td><td>owner data provision pending</td></tr>
+<tr><td>3 პილოტი (this plan)</td><td>HOLD — შენი ნებართვა ერთი ვარიანტიდან</td></tr>
+</table>
+
+<hr>
+<p style="font-size:.82rem;color:#666">
+წყაროები: Mentari cross-agent responses Apr 27 15:45 · Viktor 3-challenge response (owner-relayed Apr 27) · Gurafa 9-repo audit Apr 27 15:07
+</p>
+
+<p style="font-size:.82rem;color:#666">
+Memory rules applied: [EP0 ✓ / readable-Georgian ✓ / 4-block ✓ /
+visibility-not-urgency ✓ (owner-trigger required, no agent-set date) /
+no-fabrication ✓ (vendor claims [HYPOTHESIS] tagged) /
+probe-discipline ✓ (read-only vs write separated) /
+HTML-policy ✓]
+</p>
+
+</body>
+</html>
