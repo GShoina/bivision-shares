@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bivision Site Audit V2 — Copy-Fix by Mentari — 2026-04-27</title>
+<style>
+:root{--bg:#fafaf7;--surf:#fff;--text:#1a1a1a;--muted:#666;--blue:#0d3b66;--gold:#D4A574;--ok:#15803d;--warn:#D97706;--err:#dc2626;--info:#2563eb;--border:#d9dfe8}
+*{box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);max-width:980px;margin:1.5rem auto;padding:0 1.5rem;line-height:1.55;font-size:13.5px}
+header{background:var(--blue);color:#FAF7F2;padding:22px 24px;border-radius:12px;margin-bottom:18px}
+header .sig{opacity:.7;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:700}
+header h1{font-size:22px;margin:6px 0 4px;font-weight:900}
+header p{margin:0;color:rgba(250,247,242,0.85);font-size:13px}
+.ep0{background:var(--gold);color:var(--blue);padding:10px 18px;border-radius:8px;font-family:Consolas,monospace;font-size:13px;font-weight:700;margin-bottom:16px}
+h2{color:var(--blue);font-size:17px;margin:24px 0 10px;border-bottom:2px solid rgba(11,37,69,0.1);padding-bottom:6px}
+h3{color:var(--blue);font-size:14px;margin:16px 0 8px;font-weight:800}
+.card{background:var(--surf);border:1px solid var(--border);padding:14px 16px;border-radius:8px;margin:10px 0}
+.card.fix{border-left:4px solid var(--err)}
+.card.warn{border-left:4px solid var(--warn)}
+.card.ok{border-left:4px solid var(--ok)}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0}
+th{background:var(--blue);color:#FAF7F2;text-align:left;padding:7px 10px;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+td{padding:7px 10px;border-top:1px solid rgba(11,37,69,0.08);vertical-align:top}
+.tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10.5px;font-weight:700;color:white;margin-right:4px}
+.t-fact{background:var(--ok)}
+.t-inf{background:var(--warn)}
+.t-hyp{background:var(--info)}
+.t-unk{background:#64748b}
+.t-fix{background:var(--err)}
+.kr-okr1{background:#fde7e9;color:var(--err);padding:1px 6px;border-radius:3px;font-size:10.5px;font-weight:700}
+.kr-okr2{background:#e8f4f8;color:var(--info);padding:1px 6px;border-radius:3px;font-size:10.5px;font-weight:700}
+.kr-okr3{background:#ecfdf5;color:var(--ok);padding:1px 6px;border-radius:3px;font-size:10.5px;font-weight:700}
+.kr-okr4{background:#fff4e6;color:var(--warn);padding:1px 6px;border-radius:3px;font-size:10.5px;font-weight:700}
+.kr-hyg{background:#eef2f7;color:var(--muted);padding:1px 6px;border-radius:3px;font-size:10.5px;font-weight:700}
+code{background:rgba(11,37,69,0.08);padding:1px 6px;border-radius:3px;font-family:Consolas,monospace;font-size:11.5px}
+.foot{font-size:11px;color:var(--muted);border-top:1px solid var(--border);margin-top:30px;padding-top:14px}
+.foot strong{color:var(--text)}
+.delta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+.delta>div{background:var(--surf);border:1px solid var(--border);padding:10px 14px;border-radius:6px}
+.delta .v1{border-left:3px solid var(--err)}
+.delta .v2{border-left:3px solid var(--ok)}
+.delta strong{display:block;margin-bottom:4px;font-size:11px;text-transform:uppercase;letter-spacing:1px}
+ul,ol{margin:6px 0;padding-left:22px}
+li{margin:4px 0}
+</style>
+</head>
+<body>
+
+<header>
+<div class="sig">SITE AUDIT V2 · COPY-FIX · 2026-04-27</div>
+<h1>bivision.ge — Audit V2 (Apr 23 audit + Viktor calibrations applied)</h1>
+<p>by Mentari · supersedes <code>2026-04-23 Bivision Full-Stack Site Audit by Geo.html</code> claims · OKR3.4 trace</p>
+</header>
+
+<div class="ep0">EP0: 8/10 (O) — Apr 23 audit substance valid; Apr 23 Viktor 6-flag re-grade (8→6) addressed; 5 of 6 fixes applied this V2; 6th fix (?author=1) DROPPED as out-of-scope (no source content match in v1).</div>
+
+<h2>Why V2 — 5 Viktor calibrations</h2>
+
+<div class="card fix">
+<strong>Viktor Apr 23 challenge memo</strong> (<code>2026-04-23 Bivision Site Audit Challenge by Viktor.html</code>) re-graded the v1 audit 8→6 for: (1) numbers without baseline = HYPOTHESIS-as-FACT; (2) TTFB cargo-cult diagnostic; (3) manufactured Disk 64% "problem"; (4) HSTS rollback flag; (5) absent OKR trace per Mentari Apr 22 directive; (6) author signature missing.
+<br><br>Viktor Apr 25 brief asked Mentari to ship V2 with: TTFB↔LCP decouple, llms.txt HYPOTHESIS tag, OKR column, baseline math re-project, ownership column. <strong>This V2 = those 5 corrections + 1 dropped (?author=1 not in v1).</strong>
+</div>
+
+<h2>Calibration 1 — TTFB ↔ LCP decouple</h2>
+
+<div class="delta">
+<div class="v1"><strong>v1 (Apr 23)</strong>
+"TTFB 1.35s — slow backend despite cache" + "Enable LiteSpeed Cache Mobile" listed under same P0 with claim <strong>"Mobile LCP drops 2-3s→0.5-1s"</strong> coupling TTFB regression to mobile cache off.
+</div>
+<div class="v2"><strong>v2 (corrected)</strong>
+TTFB = server first-byte (PHP/DB/network). LCP = render time (HTML+CSS+JS+critical-img). <strong>Two separate metrics, two separate fixes.</strong>
+<br><br>• <strong>TTFB 1.35s root cause candidates</strong>: OPcache off, slow PHP query, MariaDB out-of-date (audit flagged), no Redis/Memcached. Fix path = persistent object cache + DB upgrade.
+<br><br>• <strong>Mobile LCP fix</strong>: LiteSpeed Cache Mobile = ON addresses render-time on mobile, NOT TTFB.
+</div>
+</div>
+
+<h2>Calibration 2 — llms.txt = HYPOTHESIS, not FACT</h2>
+
+<div class="delta">
+<div class="v1"><strong>v1</strong>
+P1 row: "llms.txt + robots.txt AI bot whitelist — <strong>+5-15% AI-citation referrals</strong> (ChatGPT, Perplexity, Claude, Google AI Overviews)."
+</div>
+<div class="v2"><strong>v2</strong>
+<span class="tag t-hyp">HYPOTHESIS</span> Georgian B2B BI vertical-ში Perplexity/ChatGPT referral traffic = <strong>zero public benchmark</strong>. "5-15%" = synthesis from US-market AI-search data, NOT Bivision-baseline.
+<br><br><strong>Rephrased:</strong> "llms.txt + AI bot whitelist — emerging channel, early-mover positioning. Bivision ground-truth referral lift = unknown until 90-day GSC + GA4 baseline pulled. Cost = 1h, downside = 0."
+</div>
+</div>
+
+<h2>Calibration 3 — Baseline math re-project</h2>
+
+<div class="card fix">
+ყველა lift-percentage v1-ში current-baseline-ის გარეშე. V2 = baseline-first, projected-second, OR HYPOTHESIS tag.
+</div>
+
+<table>
+<thead><tr><th>v1 claim</th><th>Baseline?</th><th>v2 reframe</th></tr></thead>
+<tbody>
+<tr><td>"+5-15% mobile conversion" (Mobile Cache)</td><td><span class="tag t-unk">UNKNOWN</span> Bivision GA4 mobile conv-rate არ წამოღებული</td><td><span class="tag t-hyp">HYPOTHESIS</span> Mobile-cache-on improves render speed; conv lift = function of current baseline. <strong>Action:</strong> pull current GA4 mobile conv → re-state target as delta.</td></tr>
+<tr><td>"+10-30% organic ranking lift" (Content AI rewrite)</td><td><span class="tag t-unk">UNKNOWN</span> per-keyword SERP position not snapshotted</td><td><span class="tag t-hyp">HYPOTHESIS</span> Content AI helps long-tail rankings; magnitude = function of current keyword universe + competition. <strong>Action:</strong> Rank Math Analytics + GSC top-50 keywords export → delta-track.</td></tr>
+<tr><td>"15-20 point uplift" (Rank Math 76→90+)</td><td>✅ baseline 76/100</td><td><span class="tag t-fact">FACT</span> Rank Math internal score, NOT real SERP ranking. Keep as ranking-velocity proxy, label clearly.</td></tr>
+<tr><td>"5-15% AI-citation referrals" (llms.txt)</td><td>—</td><td>See Calibration 2 — HYPOTHESIS reframe.</td></tr>
+<tr><td>"TTFB 1.35s → ~0.5s" (Redis/Memcached)</td><td>✅ baseline 1.35s</td><td><span class="tag t-inf">INFERENCE</span> WP-with-cache benchmarks. Keep with ⚠️ tag, measure post-deploy.</td></tr>
+<tr><td>"+0.5-1% long-tail" (security headers)</td><td><span class="tag t-unk">UNKNOWN</span></td><td><span class="tag t-hyp">HYPOTHESIS</span> "Google Quality Signal" causal claim weak; primary value = clickjacking/XSS prevention, not SEO. <strong>Reframe:</strong> security primary, SEO incidental.</td></tr>
+</tbody>
+</table>
+
+<h2>Calibration 4 — OKR + Ownership column add</h2>
+
+<div class="card warn">
+Apr 22 Mentari directive: "output missing OKR trace = Level 2 issue". V1 had no per-item OKR trace, no ownership column. V2 = full table re-project.
+</div>
+
+<h3>P0 — Highest business impact (re-projected)</h3>
+<table>
+<thead><tr><th>Action</th><th>OKR</th><th>Owner</th><th>Effort</th><th>Baseline gate</th></tr></thead>
+<tbody>
+<tr><td>LiteSpeed Cache Mobile = ON</td><td><span class="kr-okr3">OKR3.4</span></td><td>Geo</td><td>2 min</td><td>Pre: GA4 mobile conv-rate snapshot</td></tr>
+<tr><td>Rank Math Instant Indexing API connect (Google + Bing)</td><td><span class="kr-okr3">OKR3.4</span></td><td>Geo</td><td>10 min</td><td>Pre: top-10 page index status (GSC)</td></tr>
+<tr><td>Rank Math Content AI: 5 top pages rewrite</td><td><span class="kr-okr3">OKR3.4</span></td><td>Geo + Mariam (copy)</td><td>2-3 h</td><td>Pre: GSC top-50 keyword + position snapshot</td></tr>
+<tr><td>Rank Math Schema Templates: Service + Product per SaaS</td><td><span class="kr-okr3">OKR3.4</span></td><td>Geo</td><td>1-2 h</td><td>Pre: validator.schema.org current state</td></tr>
+</tbody>
+</table>
+
+<h3>P1 — High impact</h3>
+<table>
+<thead><tr><th>Action</th><th>OKR</th><th>Owner</th><th>Effort</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>2FA both admin users (Wordfence)</td><td><span class="kr-hyg">hygiene</span></td><td>Geo + owner</td><td>10 min</td><td>Security primary; SEO N/A</td></tr>
+<tr><td>Security headers .htaccess</td><td><span class="kr-hyg">hygiene</span> + <span class="kr-okr3">OKR3.3 trust</span></td><td>Geo (✅ <strong>SHIPPED Apr 25</strong>)</td><td>—</td><td>Live; Viktor wire-verified Apr 25</td></tr>
+<tr><td>HSTS staged (300→86400→31536000)</td><td><span class="kr-okr3">OKR3.3</span></td><td>Geo (✅ <strong>Phase 2 LIVE Apr 26</strong>; Phase 3 May 2)</td><td>cron</td><td>Apr 25 brief tracked</td></tr>
+<tr><td>llms.txt + AI bot whitelist</td><td><span class="kr-okr3">OKR3.4</span></td><td>Geo</td><td>1 h</td><td><span class="tag t-hyp">HYPOTHESIS</span> impact (per Calibration 2)</td></tr>
+<tr><td>Redis/Memcached persistent object cache</td><td><span class="kr-okr3">OKR3.4</span></td><td>Geo + FastCloud</td><td>15 min config; possible MariaDB-upgrade gate (~May 23)</td><td>Decision deferred per memory <code>project_bivision_mariadb_upgrade_pending.md</code></td></tr>
+<tr><td>Cookie consent banner (Complianz)</td><td><span class="kr-okr3">OKR3.3</span></td><td>Geo (Apr 27 swap CookieYes→Complianz)</td><td>—</td><td>Active workstream</td></tr>
+</tbody>
+</table>
+
+<h3>P2 — Medium impact</h3>
+<table>
+<thead><tr><th>Action</th><th>OKR</th><th>Owner</th><th>Effort</th></tr></thead>
+<tbody>
+<tr><td>Schema sameAs entity markup (LinkedIn, FB)</td><td><span class="kr-okr3">OKR3.4</span></td><td>Geo</td><td>30 min</td></tr>
+<tr><td>FAQPage schema per SaaS (6 pages)</td><td><span class="kr-okr3">OKR3.4</span></td><td>Geo + Mariam</td><td>1h × 6</td></tr>
+<tr><td>QUIC.cloud CDN activate</td><td><span class="kr-okr3">OKR3.4</span></td><td>Geo</td><td>20 min</td></tr>
+<tr><td>Rank Math SEO Analyzer 76→90+</td><td><span class="kr-okr3">OKR3.4</span></td><td>Geo + Mariam</td><td>2-4 h</td></tr>
+<tr><td>FastCloud ticket: MariaDB in-place upgrade</td><td><span class="kr-okr3">OKR3.4</span></td><td>FastCloud (queue ~May 23)</td><td>—</td></tr>
+</tbody>
+</table>
+
+<h3>P3 — Low impact (housekeeping)</h3>
+<table>
+<thead><tr><th>Action</th><th>OKR</th><th>Owner</th></tr></thead>
+<tbody>
+<tr><td>Delete 4 inactive plugins</td><td><span class="kr-hyg">hygiene</span></td><td>Geo</td></tr>
+<tr><td>H1 HTML entity <code>–</code> fix</td><td><span class="kr-hyg">hygiene</span></td><td>Geo</td></tr>
+<tr><td>post_max_size align 8M→16M</td><td><span class="kr-hyg">hygiene</span></td><td>Geo + cPanel</td></tr>
+<tr><td>X-Powered-By unset</td><td><span class="kr-hyg">hygiene</span></td><td>Geo (✅ <strong>SHIPPED Apr 25</strong>)</td></tr>
+<tr><td>Default theme fallback install</td><td><span class="kr-hyg">hygiene</span></td><td>Geo</td></tr>
+<tr><td>sitemap.xml redirect cleanup</td><td><span class="kr-hyg">hygiene</span></td><td>Geo</td></tr>
+</tbody>
+</table>
+
+<h2>Calibration 5 — Manufactured "Disk 64%" problem retracted</h2>
+
+<div class="delta">
+<div class="v1"><strong>v1</strong>
+"10GB disk 64% used — 3 months to growth exhaustion if images add up" listed under Threats; "Disk Used 6.44/10GB" surfaced as KPI tile.
+</div>
+<div class="v2"><strong>v2</strong>
+<span class="tag t-fact">FACT</span> 6.44/10GB used. <span class="tag t-inf">INFERENCE-WEAK</span> "3 months to exhaustion" — assumes growth rate not measured. <strong>Real threshold:</strong> 80-85% warning, 95% critical. 64% = healthy. <strong>Action:</strong> remove from Threats; remove from KPI grid; add to "monitor quarterly" list.
+</div>
+</div>
+
+<h2>Dropped — Viktor brief item 6 (?author=1)</h2>
+
+<div class="card warn">
+Viktor Apr 25 brief listed "2FA <code>?author=1</code> rephrase" as one of 6 V2 fixes. V1 audit content scan (full HTML grep) returned <strong>0 matches</strong> for <code>?author=1</code> string. Either: (a) Viktor brief item refers to Apr 26 SEO audit follow-up, NOT Apr 23 site audit; or (b) Viktor calibration draft transcribed wrong reference. <strong>Mentari interpretation:</strong> drop from V2 scope; surface back to Viktor for clarification if needed.
+</div>
+
+<h2>What V2 Owner-Action Looks Like (Mentari rec)</h2>
+
+<div class="card ok">
+<ol>
+<li><strong>Pre-deploy baselines</strong> — Mentari pulls (when GA4/GSC access verified): mobile conv-rate, top-50 keyword + SERP position, top-10 page index status. <span class="tag t-unk">UNKNOWN</span> Mentari-side GA4 access — <strong>owner ask</strong>.</li>
+<li><strong>Geo executes P0 list</strong> — 4 items, ~5 hours total, OKR3.4 direct. Per Apr 25 supersede rule, Geo-only execute, risk-gate intact.</li>
+<li><strong>Post-deploy delta measure</strong> — 14 + 30 day re-pull. Mentari ships delta HTML, OKR3.4 KR proof.</li>
+<li><strong>Ownership column finalized</strong> — Geo = primary executor on site; Mariam = copy partner on Content AI/FAQ; Mentari = baseline + measurement; Viktor = wire-verify gate. <strong>Owner is NOT in execution loop except for GA4 access confirm.</strong></li>
+</ol>
+</div>
+
+<h2>Op Note</h2>
+
+<div class="card">
+<ul>
+<li><strong>Status:</strong> 5/6 Viktor calibrations applied; 1/6 dropped with explanation.</li>
+<li><strong>Disk-verified:</strong> Apr 23 Geo audit + Apr 23 Viktor challenge memo + Apr 25 Viktor hardening brief + memory <code>project_bivision_mariadb_upgrade_pending.md</code>.</li>
+<li><strong>Memory rules applied:</strong> <code>feedback_no_fabrication</code> (HYPOTHESIS tags), <code>feedback_proposal_output_standard</code> (L4 risk-frame), <code>feedback_writing_style_georgian</code>, <code>project_bivision_okrs_2026</code> (KR trace), <code>feedback_bivision_site_dev_only_execution</code> (Geo-only execute respected — V2 = analysis only, NOT site change), <code>feedback_enforcement_protocol_apr27</code> (7-Q + footer).</li>
+<li><strong>Counter-audit invited:</strong> Viktor (re-grade post-V2) + Geo (factual integrity check on stack inventory).</li>
+<li><strong>Risk-gate:</strong> V2 = document only. Site execution = Geo per Apr 25 supersede.</li>
+</ul>
+</div>
+
+<div class="foot">
+<strong>7-Q gate:</strong> (1) EP0 ✓ &nbsp; (2) EP1 tags ✓ (FACT/INFERENCE/HYPOTHESIS/UNKNOWN throughout) &nbsp; (3) OKR column ✓ &nbsp; (4) Disk-verified ✓ (3 source docs + memory) &nbsp; (5) Single next-step path ✓ (4-step ordered) &nbsp; (6) Memory-rules-applied ✓ (above) &nbsp; (7) Counter-audit invited ✓ (Viktor + Geo) &nbsp; → <strong>7/7 SHIP</strong>
+<br><br>
+<strong>Mentari</strong> | 2026-04-27 | OKR3.4 | supersedes 2026-04-23 Bivision Full-Stack Site Audit by Geo.html for projection claims; v1 stack inventory factual integrity preserved.
+</div>
+
+</body>
+</html>

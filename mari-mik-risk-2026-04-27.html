@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mari Mikurtumashvili — Departure Risk Surface | 2026-04-27</title>
+<style>
+:root{--bg:#0d1117;--surface:#161b22;--border:#30363d;--text:#e6edf3;--muted:#8b949e;--accent:#58a6ff;--warn:#d29922;--high:#f85149;--ok:#3fb950;--low:#f0883e}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.65;padding:32px;max-width:980px;margin:0 auto;font-size:16px}
+h1{font-size:26px;margin-bottom:8px;color:var(--text);font-weight:700}
+h2{font-size:19px;margin-top:28px;margin-bottom:14px;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:6px}
+h3{font-size:16px;margin-top:18px;margin-bottom:10px;color:var(--text);font-weight:600}
+.meta{color:var(--muted);font-size:13px;margin-bottom:20px;padding:12px;background:var(--surface);border-radius:6px;border-left:3px solid var(--accent)}
+.meta span{margin-right:14px}
+.ep0{background:var(--surface);border:1px solid var(--border);padding:14px 18px;border-radius:6px;margin:14px 0;font-size:15px}
+.ep0 strong{color:var(--accent)}
+.block{background:var(--surface);border:1px solid var(--border);padding:18px;border-radius:6px;margin:14px 0}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+th{background:var(--bg);color:var(--accent);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:0.4px}
+tr:hover{background:rgba(88,166,255,0.05)}
+.fact{color:var(--ok);font-weight:600}
+.inf{color:var(--warn);font-weight:600}
+.unk{color:var(--low);font-weight:600}
+.high{color:var(--high);font-weight:700}
+.med{color:var(--warn);font-weight:600}
+.tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:12px;font-weight:600;margin-right:6px}
+.tag-fact{background:rgba(63,185,80,0.15);color:var(--ok)}
+.tag-inf{background:rgba(210,153,34,0.15);color:var(--warn)}
+.tag-unk{background:rgba(240,136,62,0.15);color:var(--low)}
+.tag-high{background:rgba(248,81,73,0.15);color:var(--high)}
+ul,ol{padding-left:24px;margin:8px 0}
+li{margin-bottom:6px}
+.foot{margin-top:32px;padding:14px;background:var(--surface);border-radius:6px;border-top:2px solid var(--accent);font-size:13px;color:var(--muted)}
+.foot strong{color:var(--text)}
+code{background:var(--bg);padding:2px 6px;border-radius:3px;font-size:13px;color:var(--low);border:1px solid var(--border)}
+.path-step{padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent);margin:8px 0;border-radius:0 4px 4px 0}
+</style>
+</head>
+<body>
+
+<h1>მარი მიკურტუმაშვილი — გასვლის რისკის სურათი</h1>
+
+<div class="meta">
+<span><strong>From:</strong> Mentari</span>
+<span><strong>To:</strong> Owner</span>
+<span><strong>Date:</strong> 2026-04-27</span>
+<span><strong>OKR:</strong> 4.KR5 (retention + succession)</span>
+<span><strong>Retention:</strong> 💾 PERSISTENT</span>
+</div>
+
+<div class="ep0">
+<strong>EP0: 8/10 (O)</strong> — 35 დღე გასვლამდე, OKR4.KR5 trace, ცოდნის გადაცემის გეგმა 0% დისკზე, owner-flag არ მინიშნება სურვილ-პოზიციაში.
+</div>
+
+<h2>Status — disk truth</h2>
+
+<div class="block">
+<table>
+<thead><tr><th>Field</th><th>Value</th><th>Tag</th></tr></thead>
+<tbody>
+<tr><td>გასვლის თარიღი</td><td>2026-06-01</td><td><span class="tag tag-fact">FACT</span> Apr 21 readout + 4× memory ref</td></tr>
+<tr><td>დარჩენილი დღე</td><td>35 (Apr 27 → Jun 1)</td><td><span class="tag tag-fact">FACT</span> კალენდარული</td></tr>
+<tr><td>როლი</td><td>Developer</td><td><span class="tag tag-fact">FACT</span> roster</td></tr>
+<tr><td>ანაზღაურება</td><td>4,800₾/თვე</td><td><span class="tag tag-fact">FACT</span> MENTARI_FULL_CONTEXT</td></tr>
+<tr><td>Account load</td><td>11 account</td><td><span class="tag tag-inf">INFERENCE</span> Apr 21 readout claim — Billings sheet owner-column verify აკლია</td></tr>
+<tr><td>კონკრეტული account-ები</td><td>—</td><td><span class="tag tag-unk">UNKNOWN</span> სიის enumerate დისკზე არსად</td></tr>
+<tr><td>Successor</td><td>Luka Kirvalidze (junior)</td><td><span class="tag tag-inf">INFERENCE</span> OKR4.KR5 ჩარჩოდან, owner formal-confirm არ ეტყობა</td></tr>
+<tr><td>Handover plan</td><td>—</td><td><span class="tag tag-unk">UNKNOWN</span> 0 disk artifact, 0 ship</td></tr>
+<tr><td>Exit conversation (owner ↔ Mari)</td><td>—</td><td><span class="tag tag-unk">UNKNOWN</span> motive/retention-cost owner-side, არ შემოგვიტანია</td></tr>
+<tr><td>Mari interview response</td><td>არ შემოვიდა</td><td><span class="tag tag-fact">FACT</span> 2 of 7 received Apr 8, Mari Mik = pending</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>რისკი — 4-order cascade</h2>
+
+<div class="block">
+<h3><span class="high">🔴 HIGH</span> — 11 account-ის ცოდნა 1 თავში + 35-დღიანი ფანჯარა + 0 transfer</h3>
+<p>Champion Dependency pattern (Apr 5 churn audit-დან). თუ Mari Mik 2026-06-01 გადის და Luka არ არის ramp-up-ზე → 11 account-ი dev-support-ის გარეშე რჩება ან Inga/Dato გადაიტანენ (already strained, Apr 5 audit).</p>
+
+<h3><span class="high">🔴 HIGH</span> — Luka skill gap = თვეები, არა კვირები</h3>
+<p>Junior dev → 11-account proficiency ≠ 5-კვირიანი ramp. ⚠️ INFERENCE: Luka-ს Power BI/Qlik fluency unverified; OKR2 Power BI პროდუქტი + OKR4.KR5 transfer parallel = capacity collision.</p>
+
+<h3><span class="med">🟡 MED</span> — Exit motive UNKNOWN</h3>
+<p>გასვლის მიზეზი (კონკურენტი, decree, burnout, salary, geographic) owner-side data. Retention conversation რომ მოხდა — დისკზე არ ჩანს. თუ retention path ღიაა + cost &lt; knowledge-loss-ი → ან-ან decision-ი ღირს.</p>
+
+<h3><span class="med">🟡 MED</span> — Account enumeration აკლია</h3>
+<p>"11 account" ცარიელი ციფრია. რომელი client-ები? რომელი vertical? რომელი ARR-კლასი? რომელი contract-i renewal-ში? სანამ მიკურტუმაშვილის ზუსტი account-list არ ვიცით — handover impossible.</p>
+
+<h3>4th order (cascade) — თუ ნუტრიმაქსი/Mardaleishvili/TBC churn-ი + Mari Mik exit ერთდროულად</h3>
+<p>Apr 5 audit-ის Top 3 churn risk + Mari Mik exit-ი ერთდროულად = 280K₾ ARR loss + dev-capacity gap. Salary:ARR ratio worsening, OKR1.KR1 (95K MRR) trajectory backwards. ⚠️ INFERENCE: timing-ი 50-50, მაგრამ probability nonzero.</p>
+</div>
+
+<h2>Path — 2-კვირიანი burst (owner-action gated)</h2>
+
+<div class="block">
+
+<div class="path-step">
+<strong>1. Account list enumerate</strong> (owner, 30 წუთი) — Billings sheet ან HubSpot-დან Mari Mik-ის ქვეშ მყოფი 11 account ჩამოთვალე. Mentari-ს რომ მიეცი → vertical/ARR/contract-state map ვშენდები.
+</div>
+
+<div class="path-step">
+<strong>2. Exit conversation</strong> (owner, 1:1, ~30 წუთი) — დადასტურებული გასვლა vs რეტენშენ-პათ-ი? ერთი კითხვა: <em>"არსებობს scenario რომ დარჩე? რა cost-ში?"</em>. პასუხის framework-ი: cost-of-retention vs cost-of-knowledge-loss.
+</div>
+
+<div class="path-step">
+<strong>3. Handover skeleton draft</strong> (Mentari, 1 ship — depends on step 1) — 6-კვირიანი account-by-account brief: per-client context + active issues + champion contact + Luka shadow schedule + Dato backup-ownership tag.
+</div>
+
+<div class="path-step">
+<strong>4. Retention cost-benefit analysis</strong> (Mentari, ship after step 2) — თუ retention ღიაა: Mari Mik 4,800₾/mo × N თვე vs Luka ramp risk + 11-account churn probability. ციფრები table-ში.
+</div>
+
+</div>
+
+<h2>OKR trace</h2>
+
+<div class="block">
+<ul>
+<li><strong>OKR4.KR5</strong> — Retention + succession = primary KR. Mari Mik handover = direct deliverable.</li>
+<li><strong>OKR1.KR1</strong> (ARR 95K) — secondary trace via churn-prevention coupling. Mari Mik dependent client-ების churn = ARR risk.</li>
+<li><strong>OKR2</strong> (Power BI products) — capacity-collision flag: Luka parallel commit (handover + Power BI kickoff) აღმოაჩინე owner.</li>
+</ul>
+</div>
+
+<h2>Op Note</h2>
+
+<div class="block">
+<ul>
+<li>ეს artifact = <strong>surface + frame</strong>, არა decision. Owner input გადამწყვეტია (account list + exit motive).</li>
+<li>Counter-audit invited: Viktor (account-load INFERENCE challenge) + Gurafa (Luka skills baseline read).</li>
+<li>Memory rules applied: <code>feedback_no_fabrication.md</code> (UNKNOWN flag რომ ცარიელია), <code>feedback_team_clarity_standard.md</code> (Mariam-test 10-sec scan), <code>feedback_writing_style_georgian.md</code> (clean Georgian), <code>feedback_proposal_output_standard.md</code> (L4 risk-frame), <code>project_bivision_okrs_2026.md</code> (KR trace), <code>feedback_enforcement_protocol_apr27.md</code> (7-Q + footer).</li>
+<li>Risk-gate: ეს deliverable surface only, არცერთი action site-ზე / production-ში — Apr 25 Geo-only execute rule N/A აქ.</li>
+<li>Stale-status: 6 დღე previous "P3 next-session" tag-ით (SESSION_OPEN_ITEMS Apr 23) — promotion to P0 ship Apr 27.</li>
+</ul>
+</div>
+
+<div class="foot">
+<strong>Footer — 7-Q gate:</strong>
+(1) EP0 scored ✓ &nbsp; (2) EP1 tags ✓ &nbsp; (3) OKR trace ✓ &nbsp; (4) Disk-verified ✓ (memory + Apr 21 readout + roster + MENTARI_FULL_CONTEXT) &nbsp; (5) Single next-step ✓ (Owner step 1 + 2) &nbsp; (6) Memory-rules-applied ✓ (above) &nbsp; (7) Counter-audit invited ✓ (Viktor + Gurafa) &nbsp; → <strong>7/7 SHIP</strong>
+<br><br>
+<strong>Mentari</strong> | 2026-04-27 | OKR4.KR5
+</div>
+
+</body>
+</html>
