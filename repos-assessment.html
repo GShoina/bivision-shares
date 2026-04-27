@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ka-GE">
+<head>
+<meta charset="utf-8">
+<title>2 GitHub Repos — Bivision-სთვის შეფასება — 2026-04-27</title>
+<style>
+body{font-family:-apple-system,system-ui,"Segoe UI",sans-serif;max-width:920px;margin:2rem auto;padding:0 1.2rem;color:#1a1a1a;line-height:1.55;font-size:14.5px}
+h1{font-size:1.55rem;margin:0 0 .3rem;border-bottom:2px solid #333;padding-bottom:.3em}
+h2{font-size:1.18rem;margin:1.6rem 0 .5rem;color:#1a4d80;border-left:4px solid #1a4d80;padding-left:.5rem}
+h3{font-size:1rem;margin:1rem 0 .4rem}
+.meta{color:#666;font-size:.85rem;margin-bottom:1.2rem}
+.adopt{background:#eefbe6;border-left:4px solid #10b981;padding:.7rem 1rem;margin:.7rem 0;border-radius:4px}
+.reject{background:#fde7e9;border-left:4px solid #c0392b;padding:.7rem 1rem;margin:.7rem 0;border-radius:4px}
+.note{background:#fff8e1;border-left:4px solid #f5a623;padding:.7rem 1rem;margin:.7rem 0;border-radius:4px}
+table{border-collapse:collapse;width:100%;margin:.6rem 0;font-size:.92rem}
+th,td{border:1px solid #ccc;padding:.4rem .55rem;text-align:left}
+th{background:#1a4d80;color:#fff}
+.tag{display:inline-block;padding:.15rem .55rem;border-radius:3px;font-size:.78rem;font-weight:700}
+.adopt-t{background:#10b981;color:#fff}
+.reject-t{background:#c0392b;color:#fff}
+ul,ol{margin:.3rem 0 .6rem 1.4rem}
+</style>
+</head>
+<body>
+
+<h1>2 GitHub Repos — Bivision Applicability</h1>
+<div class="meta">2026-04-27 · Gurafa · per Validation Master Prompt v2 (MINI tier)</div>
+
+<h2>1. forrestchang/andrej-karpathy-skills <span class="tag adopt-t">ADOPT</span></h2>
+
+<div class="adopt">
+<b>Verdict: ADOPT immediately.</b> 4 skills (Think Before Coding · Simplicity First · Surgical Changes · Goal-Driven Execution) — discipline rules drop-in for Mentari + Viktor + Geo + Gurafa code work. MIT license. Already overlaps with owner's `feedback_efficiency_directive` 10 rules — formal codification.
+</div>
+
+<table>
+<tr><th>Skill</th><th>Bivision use</th><th>Already in memory?</th></tr>
+<tr><td><b>Think Before Coding</b></td><td>Connector dev / Geo-Metri site / agent code — surface assumptions before implementing</td><td>partial — `feedback_challenge_posture` covers strategy, not code</td></tr>
+<tr><td><b>Simplicity First</b></td><td>Mentari/Geo/Gurafa code outputs — write minimal solving requested only</td><td>aligned with `feedback_no_meta_work`</td></tr>
+<tr><td><b>Surgical Changes</b></td><td>Edit only what's necessary, preserve existing — Geo bivision.ge changes critical</td><td>aligned with `feedback_efficiency_directive_apr22` rule "disk-gated verify"</td></tr>
+<tr><td><b>Goal-Driven Execution</b></td><td>Verifiable success criteria + loop until met — Validation v2 BML slot direct fit</td><td>aligned with `VALIDATION_MASTER_PROMPT.md` v2 BML</td></tr>
+</table>
+
+<h3>Adoption path</h3>
+<ol>
+<li>Append 4 skills to `Mentari_Virtual-C-Suite/docs/core/execution-gates.md` § "Code Discipline" (new section) — referenced by all agents</li>
+<li>Mentari + Viktor + Geo + Gurafa next session — pickup via session-start file read</li>
+<li>No code changes to repos required (just discipline applied during code work)</li>
+</ol>
+
+<h3>Cost-of-not-doing (Pre-mortem Side B)</h3>
+<ul>
+<li>Agents continue overcomplicating, orthogonal edits, scope-drift coding sessions (recurring pattern Apr 2026)</li>
+<li>Karpathy validated framework — Bivision reinventing weakly without adoption</li>
+</ul>
+
+<h2>2. Alishahryar1/free-claude-code <span class="tag reject-t">REJECT</span></h2>
+
+<div class="reject">
+<b>Verdict: REJECT.</b> Proxy redirects Claude Code to NVIDIA NIM / OpenRouter / DeepSeek / local LLMs. **Anthropic ToS prohibits API proxying for other services** — gray-zone use that risks account suspension. Bivision = $100/mo Claude Code Max subscription (paid, in good standing) → cost-of-doing-wrong &gt;&gt; cost-of-not-doing.
+</div>
+
+<h3>Why reject</h3>
+<table>
+<tr><th>Risk</th><th>Magnitude</th></tr>
+<tr><td>ToS violation → Anthropic account suspension</td><td>HIGH (production accounts: Mentari/Viktor/Gurafa/Geo all on this account)</td></tr>
+<tr><td>Quality degradation (NIM/DeepSeek &lt; Claude 4.x for agent reasoning)</td><td>HIGH for strategic agents (Viktor audit / Mentari orchestration)</td></tr>
+<tr><td>Data privacy gap (third-party providers handle requests)</td><td>HIGH for client data work (Bivision financial data through NVIDIA/OpenRouter = GDPR risk)</td></tr>
+<tr><td>Infrastructure complexity (proxy server maintenance)</td><td>MEDIUM — adds failure surface</td></tr>
+</table>
+
+<h3>Cost-of-not-doing (Pre-mortem Side B)</h3>
+<ul>
+<li>Continue paying $100/mo Claude Code Max — sunk cost, no concern</li>
+<li>Miss out on free experimentation — possible local-LLM dev sandbox separate from Bivision production agents</li>
+</ul>
+
+<h3>Conditional acceptance (narrow)</h3>
+<p>OK for owner's <b>personal exploration sandbox</b> only — separate from Bivision agent infrastructure. Local Ollama/LM Studio for code experiments. Never production. Never client data.</p>
+
+<h2>Action plan</h2>
+
+<table>
+<tr><th>#</th><th>Action</th><th>Owner</th><th>Status</th></tr>
+<tr><td>1</td><td>Append Karpathy 4 skills → `execution-gates.md` § Code Discipline</td><td>Gurafa</td><td>this session ✓</td></tr>
+<tr><td>2</td><td>Notify Mentari + Viktor → `MENTARI_VIKTOR_KARPATHY_ADOPTION.md`</td><td>Gurafa</td><td>this session ✓</td></tr>
+<tr><td>3</td><td>Rejection notice for free-claude-code → `BI_gurafa/docs/REPO_REJECT_FREE_CLAUDE_CODE.md`</td><td>Gurafa</td><td>this session ✓</td></tr>
+<tr><td>4</td><td>Owner sandbox option (free-claude-code local experiment) — separate machine/account</td><td>Owner</td><td>optional, owner-side</td></tr>
+</table>
+
+<hr>
+<p style="font-size:.82rem;color:#666">
+Recommendation: 1 ADOPT (Karpathy skills, immediate), 1 REJECT (free-claude-code, ToS risk).<br>
+Validation tier: MINI per Validation Master Prompt v2 — Pre-mortem Side B clear in both cases.
+</p>
+
+</body>
+</html>
