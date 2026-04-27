@@ -6,17 +6,21 @@
 <title>Bivision Status v2 — 2026-04-27</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI','BPG Nino Mkhedruli','Sylfaen',Arial,sans-serif;background:#faf9f4;color:#1a1a1a;line-height:1.55;max-width:1100px;margin:0 auto;padding:22px 18px;font-size:14.5px}
+body{font-family:'Segoe UI','BPG Nino Mkhedruli','Sylfaen',Arial,sans-serif;background:#faf9f4;color:#1a1a1a;line-height:1.45;max-width:1480px;margin:0 auto;padding:22px 24px;font-size:13.5px}
 header{background:linear-gradient(135deg,#1a2a44 0%,#2a3e5a 100%);color:#fff;padding:20px 24px;border-radius:10px;margin-bottom:14px;border-left:6px solid #c9a227}
 header h1{font-size:22px;color:#ffd966;margin-bottom:4px}
 header .sub{color:#d8dee9;font-size:13px}
 .ep0{background:#ffd966;color:#1a2a44;padding:10px 18px;border-radius:8px;font-family:Consolas,monospace;font-size:13px;font-weight:700;margin-bottom:14px;text-align:center}
-section{background:#fff;border:1px solid #e5e2d9;border-radius:10px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+section{background:#fff;border:1px solid #e5e2d9;border-radius:10px;padding:16px 22px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
 h2{font-size:17px;color:#1a2a44;margin-bottom:10px;padding-bottom:5px;border-bottom:2px solid #c9a227}
 h3{font-size:14.5px;margin:10px 0 6px;color:#8b6914;font-weight:700}
-table{width:100%;border-collapse:collapse;font-size:13.5px;margin:6px 0}
-th,td{padding:6px 9px;text-align:left;border-bottom:1px solid #e5e2d9;vertical-align:top}
-th{background:#faf7ee;color:#8b6914;font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0;table-layout:auto}
+th,td{padding:5px 10px;text-align:left;border-bottom:1px dashed #ece9df;vertical-align:top}
+th{background:#faf7ee;color:#8b6914;font-size:11px;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid #e5e2d9;white-space:nowrap}
+.kr-table td,.kr-table th{white-space:nowrap}
+.kr-table td{font-size:12.5px}
+.kr-table td:first-child{font-weight:600;color:#1a2a44}
+tr:hover{background:#fafaf2}
 .kr{display:inline-block;background:#1a2a44;color:#fff;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600;margin-right:5px}
 .t{font-weight:600;color:#2d7a3e}
 .c{font-weight:600;color:#8b6914}
@@ -55,7 +59,7 @@ footer{background:#1a2a44;color:#fff;padding:12px 18px;border-radius:10px;margin
 
 <div class="okr-card">
 <div class="okr-title">OKR1 — Commercially successful, product-centric (north star)</div>
-<table>
+<table class="kr-table">
 <tr><th>KR</th><th>Current</th><th>Target</th><th>Owner</th><th>Cadence</th></tr>
 <tr><td><span class="kr">KR1</span> ARR</td><td><span class="c">68K ₾</span></td><td><span class="t">95K ₾</span> (+40%)</td><td><span class="ow">გელა</span></td><td><span class="cad">monthly + weekly delta</span></td></tr>
 <tr><td><span class="kr">KR2</span> New customers</td><td><span class="c">0 (Apr 1 base)</span></td><td><span class="t">+12</span></td><td><span class="ow">გელა + ინგა</span></td><td><span class="cad">monthly</span></td></tr>
@@ -65,7 +69,7 @@ footer{background:#1a2a44;color:#fff;padding:12px 18px;border-radius:10px;margin
 
 <div class="okr-card">
 <div class="okr-title">OKR2 — Vendor-agnostic platform (Qlik + Power BI vertical + AI)</div>
-<table>
+<table class="kr-table">
 <tr><th>KR</th><th>Current</th><th>Target</th><th>Owner</th><th>Cadence</th></tr>
 <tr><td><span class="kr">KR1</span> Vertical PowerBI templates + SaaS</td><td><span class="c">0</span></td><td><span class="t">2 (BiFinance-energy + BiMedical)</span> in 2 თვე</td><td><span class="ow">გაბო + ლუკა + Mari Magh</span></td><td><span class="cad">bi-monthly milestone</span></td></tr>
 <tr><td><span class="kr">KR2</span> AI products launched</td><td><span class="c">0 (Qlik+Claude MCP pilot stage)</span></td><td><span class="t">2</span> in 2 თვე</td><td><span class="ow">გაბო + ლუკა + Gurafa R&D</span></td><td><span class="cad">bi-monthly milestone</span></td></tr>
@@ -78,7 +82,7 @@ footer{background:#1a2a44;color:#fff;padding:12px 18px;border-radius:10px;margin
 <div class="okr-title">OKR3 — Brand + Lead Generation</div>
 
 <h3>OKR3.1 ჩართულობა</h3>
-<table>
+<table class="kr-table">
 <tr><th>KR</th><th>Current</th><th>Target</th><th>Owner</th><th>Cadence</th></tr>
 <tr><td>1.1 Engagement rate</td><td><span class="c">1.25%</span> (LinkedIn 30d)</td><td><span class="t">3%</span> (industry median)</td><td><span class="ow">Mariam + Mentari</span></td><td><span class="cad">weekly</span></td></tr>
 <tr><td>1.2 Link clicks/post</td><td><span class="c">3</span></td><td><span class="t">6+</span></td><td><span class="ow">Mariam</span></td><td><span class="cad">weekly</span></td></tr>
@@ -86,7 +90,7 @@ footer{background:#1a2a44;color:#fff;padding:12px 18px;border-radius:10px;margin
 </table>
 
 <h3>OKR3.2 კონტენტი</h3>
-<table>
+<table class="kr-table">
 <tr><th>KR</th><th>Current</th><th>Target</th><th>Owner</th><th>Cadence</th></tr>
 <tr><td>2.1 LinkedIn post freq</td><td><span class="c">~1/week</span></td><td><span class="t">3-4/week</span></td><td><span class="ow">Mariam</span></td><td><span class="cad">weekly</span></td></tr>
 <tr><td>2.2 Native video + YouTube</td><td><span class="c">0/week</span></td><td><span class="t">≥2/week</span></td><td><span class="ow">Mariam</span></td><td><span class="cad">weekly</span></td></tr>
@@ -105,7 +109,7 @@ footer{background:#1a2a44;color:#fff;padding:12px 18px;border-radius:10px;margin
 </ul>
 KPI Framework v3 reference: <a href="https://gshoina.github.io/bivision-shares/kpi-framework-v3.html">kpi-framework-v3</a>. KR3 baseline + targets now derivable per locked scenario.
 </div>
-<table>
+<table class="kr-table">
 <tr><th>KR</th><th>Current</th><th>Target</th><th>Owner</th><th>Cadence</th></tr>
 <tr><td>3.1 Qualified leads/month from social</td><td><span class="c">Apr 1 baseline pull-pending</span> (FB Leads Center)</td><td><span class="t">TBD post Scenario pick</span></td><td><span class="ow">Mariam + Mentari</span></td><td><span class="cad">monthly</span></td></tr>
 <tr><td>3.2 SQL rate (lead → qualified)</td><td><span class="c">unknown</span></td><td><span class="t">≥30%</span></td><td><span class="ow">გელა + ინგა</span></td><td><span class="cad">monthly</span></td></tr>
@@ -116,7 +120,7 @@ KPI Framework v3 reference: <a href="https://gshoina.github.io/bivision-shares/k
 </table>
 
 <h3>OKR3.4 ოპერაციული ეფექტურობა (საიტი + სექიურითი)</h3>
-<table>
+<table class="kr-table">
 <tr><th>KR</th><th>Current</th><th>Target</th><th>Owner</th><th>Cadence</th></tr>
 <tr><td>4.1 bivision.ge TTFB</td><td><span class="c">1.35s</span></td><td><span class="t">&lt;0.6s</span></td><td><span class="ow">Geo + FastCloud</span></td><td><span class="cad">monthly</span></td></tr>
 <tr><td>4.2 Rank Math: Instant Index + Content AI + Schema 6 page</td><td><span class="c">~30% deployed</span></td><td><span class="t">100%</span></td><td><span class="ow">Geo</span></td><td><span class="cad">post-Phase-A</span></td></tr>
@@ -131,7 +135,7 @@ KPI Framework v3 reference: <a href="https://gshoina.github.io/bivision-shares/k
 
 <div class="okr-card">
 <div class="okr-title">OKR4 — R&D + Team Growth</div>
-<table>
+<table class="kr-table">
 <tr><th>KR</th><th>Current</th><th>Target</th><th>Owner</th><th>Cadence</th></tr>
 <tr><td><span class="kr">KR1</span> Weekly competitor intel</td><td><span class="c">~1/week (4 in Apr)</span></td><td><span class="t">1+/week with action plan</span></td><td><span class="ow">Gurafa</span></td><td><span class="cad">weekly</span></td></tr>
 <tr><td><span class="kr">KR2</span> Daily AI scout — features adopted</td><td><span class="c">~3/week trend</span></td><td><span class="t">≥1 adopted/week (in workflow)</span></td><td><span class="ow">Gurafa</span></td><td><span class="cad">weekly</span></td></tr>
