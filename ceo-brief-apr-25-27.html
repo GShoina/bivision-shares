@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ka-GE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CEO Brief — Apr 25-27 Sprint by Viktor</title>
+<style>
+body{font-family:'BPG Nino Mkhedruli','Sylfaen','Segoe UI',sans-serif;max-width:920px;margin:2rem auto;padding:0 1.2rem;color:#1a1a1a;line-height:1.55;font-size:14px}
+h1{font-size:1.5rem;border-bottom:3px solid #0B2545;padding-bottom:.3em;color:#0B2545;margin-bottom:.4rem}
+h2{font-size:1.15rem;margin:1.5rem 0 .5rem;color:#0B2545;border-left:4px solid #0B2545;padding-left:.5rem}
+.meta{color:#666;font-size:.85rem;margin-bottom:1.2rem}
+.summary{background:#fff8e1;border:2px solid #d49a3a;padding:.8rem 1rem;border-radius:6px;font-weight:600;margin:.8rem 0}
+.shipped{background:#ecfdf5;border-left:4px solid #15803d;padding:.6rem 1rem;border-radius:4px;margin:.5rem 0}
+.queue{background:#fffbeb;border-left:4px solid #d97706;padding:.6rem 1rem;border-radius:4px;margin:.5rem 0}
+.skip{background:#fef2f2;border-left:4px solid #c0392b;padding:.6rem 1rem;border-radius:4px;margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.92rem;margin:.6rem 0}
+th{background:#0B2545;color:#FAF7F2;text-align:left;padding:.5rem .65rem;font-weight:600}
+td{padding:.5rem .65rem;border-top:1px solid rgba(11,37,69,.1);vertical-align:top}
+.tag{display:inline-block;padding:.1rem .4rem;border-radius:3px;font-size:.78rem;font-weight:700;color:white}
+.t-shipped{background:#15803d}
+.t-active{background:#d97706}
+.t-queue{background:#2563eb}
+ul,ol{margin:.3rem 0 .6rem 1.4rem}
+li{margin:.2rem 0}
+code{background:#eef2f7;padding:.05rem .35rem;border-radius:3px;font-family:Consolas,monospace;font-size:.86rem}
+.foot{font-size:.82rem;color:#666;border-top:1px solid #ddd;margin-top:2rem;padding-top:.6rem}
+</style>
+</head>
+<body>
+
+<h1>CEO Brief — Bivision Sprint Apr 25-27</h1>
+<div class="meta">2026-04-27 · Viktor · 3-day execution + plans</div>
+
+<div class="summary">
+<strong>1-line:</strong> Bivision.ge security posture + cookie consent + HSTS phase 2 ✓ shipped. SEO audit Phase A draft live. 2 strategic prompts (Validation v2, GEO Portable) iterated. 2 P0 Geo directives queued (pashagaming security + Complianz swap). HSTS phase 3 May 2.
+</div>
+
+<h2>რა გავაკეთეთ — Apr 25-27</h2>
+
+<table>
+<tr><th>თარიღი</th><th>Action</th><th>Status</th></tr>
+<tr><td>Apr 25</td><td>Security headers ship live (5 headers + X-Powered-By unset)</td><td><span class="tag t-shipped">SHIPPED</span></td></tr>
+<tr><td>Apr 25</td><td>Cookie banner Phase 1 (CookieYes free, English)</td><td><span class="tag t-shipped">SHIPPED</span></td></tr>
+<tr><td>Apr 25</td><td>Cross-agent style rule — Readable Georgian (memory)</td><td><span class="tag t-shipped">SHIPPED</span></td></tr>
+<tr><td>Apr 25</td><td>Bivision.ge execution scope — Geo-only + risk-gate (Apr 23 dev-only revoked)</td><td><span class="tag t-shipped">SHIPPED</span></td></tr>
+<tr><td>Apr 26</td><td>HSTS Phase 2 promote (max-age 300 → 86400) wire-verified</td><td><span class="tag t-shipped">SHIPPED</span></td></tr>
+<tr><td>Apr 26</td><td>SEO Audit Phase A draft 1 (Geo, 8 sections + severity inventory)</td><td><span class="tag t-shipped">SHIPPED</span></td></tr>
+<tr><td>Apr 26</td><td>Validation Master Prompt v2 (Gurafa, 6/6 Viktor recs adopted)</td><td><span class="tag t-shipped">SHIPPED</span></td></tr>
+<tr><td>Apr 26</td><td>GEO/SEO Master Prompt Portable v0.2 (Gurafa, Viktor 7-point fixes applied)</td><td><span class="tag t-shipped">SHIPPED</span></td></tr>
+<tr><td>Apr 26</td><td>Mariam = human team member (memory correction across legacy entries)</td><td><span class="tag t-shipped">SHIPPED</span></td></tr>
+<tr><td>Apr 26</td><td>Mentari results-only protocol (no bureaucracy directive)</td><td><span class="tag t-shipped">SHIPPED</span></td></tr>
+<tr><td>Apr 27</td><td>GitHub Repos Assessment (Karpathy skills ADOPT, free-claude-code REJECT)</td><td><span class="tag t-shipped">SHIPPED</span></td></tr>
+<tr><td>Apr 25-27</td><td>Memory rules: probe-discipline, visibility-not-urgency, geo-to-viktor counter-audit, no-fabrication, no-idle-on-yes</td><td><span class="tag t-shipped">8+ rules</span></td></tr>
+</table>
+
+<h2>აქტიური queue</h2>
+
+<div class="queue">
+<strong>Geo P0 directives</strong> (~16h queued, Geo session-pickup pending):
+<ul>
+<li><strong>Pashagaming security probe</strong> — Wordfence scan + WP DB search + GSC URL removal + .htaccess 410 Gone hardening (recurring scam attack pattern)</li>
+<li><strong>CookieYes → Complianz swap</strong> — Georgian primary banner + Reject All equal-prominent + auto-scan tracker categorize (owner Apr 26 reverse Apr 25 defer)</li>
+<li><strong>Geo Phase A continuation</strong> — A.2 Rank Math per-page, A.4 internal linking, A.5 CWV, A.6 backlinks, A.7 GSC queries</li>
+</ul>
+</div>
+
+<h2>რას ვგეგმავთ — Apr 27 → May</h2>
+
+<table>
+<tr><th>თარიღი</th><th>Item</th><th>Owner</th></tr>
+<tr><td>Apr 27 evening</td><td>Geo session pickup → P0 directives execute (security + Complianz)</td><td>Geo</td></tr>
+<tr><td>Apr 28</td><td>Geo Phase A continuation (A.2-A.7) WP admin work</td><td>Geo</td></tr>
+<tr><td>Apr 28</td><td>Geo Phase B SEO recommendations ship (post Phase A complete)</td><td>Geo</td></tr>
+<tr><td>~May 2</td><td>HSTS Phase 3 promote (max-age 86400 → 31536000, 1 year)</td><td>Geo</td></tr>
+<tr><td>~May 23</td><td>MariaDB in-place upgrade (FastCloud queue) → TTFB re-measure</td><td>FastCloud + Owner ticket</td></tr>
+<tr><td>~Jul 25</td><td>HSTS preload submission re-evaluate (90-day stability gate)</td><td>Decision-time</td></tr>
+</table>
+
+<h2>OKR3 cascade — Apr 25-27 work</h2>
+
+<table>
+<tr><th>Action</th><th>OKR3 mechanism</th></tr>
+<tr><td>Security headers + HSTS</td><td>Trust signal SERP + browser padlock + clickjacking protection</td></tr>
+<tr><td>Cookie consent + privacy compliance</td><td>Marketing tracker legitimacy unblock (FB Pixel + LinkedIn + Clarity legal)</td></tr>
+<tr><td>SEO audit Phase A</td><td>76→90+ Rank Math score path + AI-citation gap identification</td></tr>
+<tr><td>Validation v2 + GEO Portable</td><td>Strategic discipline floor + AI-search positioning</td></tr>
+<tr><td>Schema language fix M1 (queued)</td><td>AI-crawler language tagging + Bivision external prompt distribution unblock</td></tr>
+</table>
+
+<h2>3 ცხრილი — owner attention</h2>
+
+<div class="shipped">
+<strong>1. Site healthy:</strong> wire 27/27 ticks 200 OK, HSTS 86400 stable 17h+, cert Let's Encrypt R12 valid Jun 20.
+</div>
+
+<div class="queue">
+<strong>2. Geo P0 unstuck:</strong> 2 directives + Phase A continuation = Geo session needs launch. Owner action ≈ 1 click <code>nikacho</code> ან Geo terminal.
+</div>
+
+<div class="skip">
+<strong>3. Phase 3 HSTS gate:</strong> May 2 target. 7-day stability window from Apr 25 phase 1. Premature promote risk avoided per Geo-Metri Apr 22-24 cert lesson.
+</div>
+
+<h2>Memory state</h2>
+
+<ul>
+<li>120 memory files, MEMORY.md 110-line index — weekly cleanup ცოცხალი</li>
+<li>Cross-agent rules updated Apr 25-26: 8+ new (cross-agent style, Geo-only execute, visibility-not-urgency, counter-audit, Mariam-human, no-fabrication, no-idle-on-yes, results-only)</li>
+<li>Self-violation pattern monitored — Viktor 3+ self-corrections Apr 23-26 (calibrated)</li>
+</ul>
+
+<div class="foot">
+Viktor · CEO Brief 3-day Sprint · 2026-04-27 · disk-evidence + wire-verified · single artifact owner-readable<br>
+Hosted: <code>https://gshoina.github.io/bivision-shares/ceo-brief-apr-25-27.html</code>
+</div>
+
+</body>
+</html>
