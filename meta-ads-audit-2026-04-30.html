@@ -319,62 +319,58 @@
 
 <hr>
 
-<h2>12. Landing-fix detailed spec (no questions, alternatives)</h2>
+<h2>12. Landing-fix detailed spec (corrected May 1)</h2>
 
-<h3>Task 12.1 — Demo CTA destination</h3>
-<p><strong>გასაკეთებელი (3 ალტერნატივა, recommended დაიჭერი):</strong></p>
+<h3>Task 12.1 — Demo CTA + Calendly (UPDATED post-owner-verify)</h3>
+
+<p><strong>Challenge:</strong> ad-traffic landing-page-ზე bounce-on-load (fb/paid 0s avg time, GA4).<br>
+<strong>Solution:</strong> Calendly link უკვე live + HubSpot BCC sync ✅. გასაკეთებელია მხოლოდ CTA copy + WP form href update.</p>
 
 <details class="step-tab" open>
-<summary><strong>A. Calendly link (recommended) — 1 საათი</strong></summary>
-<ul>
-<li>Calendly-ში "Demo Bivision" 30-min event create (free tier OK)</li>
-<li>WP form-ში "გაიგე მეტი" / "მოითხოვე დემო" CTA-ის href → Calendly link</li>
-<li>Calendly-ის redirect post-booking → /thank-you ან HubSpot ფორმის successful submission page</li>
-<li>HubSpot-Calendly native integration: lead auto-creates HubSpot contact + deal</li>
-<li>Cost: 0₾ Calendly free, 1 საათი setup</li>
-</ul>
-</details>
+<summary><strong>გადასამოწმებელი / გასაკეთებელი state (May 1)</strong></summary>
 
-<details class="step-tab">
-<summary>B. HubSpot Meeting Scheduler — 2 საათი</summary>
-<ul>
-<li>HubSpot CRM Free → Meetings → Create personal link</li>
-<li>WP CTA → HubSpot meeting URL</li>
-<li>Native HubSpot booking + auto-deal creation</li>
-<li>Cost: 0₾ (HubSpot Free), 2 საათი setup + form connect</li>
-</ul>
-</details>
+<table>
+<thead><tr><th>Element</th><th>Status</th><th>Action needed</th></tr></thead>
+<tbody>
+<tr><td>Calendly link</td><td class="grn">✅ live: <code>calendly.com/bivision/courtest-meeting</code></td><td>copy text update — "courtest" likely typo "courtesy", owner-decide</td></tr>
+<tr><td>HubSpot CRM (free tier)</td><td class="grn">✅ live</td><td>—</td></tr>
+<tr><td>HubSpot BCC integration</td><td class="grn">✅ live: <code>147341634@bcc.eu1.hubspot.com</code></td><td>email-correspondence auto-sync confirmed</td></tr>
+<tr><td>WP form CTA href</td><td class="amb">🟡 custom objects, manual update needed</td><td>"გაიგე მეტი" / "მოითხოვე დემო" → href = Calendly link</td></tr>
+<tr><td>Calendly post-booking redirect</td><td class="amb">🟡 currently manual</td><td>auto-redirect to /thank-you OR HubSpot form success page</td></tr>
+<tr><td>Calendly → HubSpot native sync</td><td class="amb">🟡 free-tier limitation</td><td>BCC workaround active, native integration = paid feature, optional</td></tr>
+</tbody>
+</table>
 
-<details class="step-tab">
-<summary>C. Custom WP form + email-CTA — 4 საათი</summary>
-<ul>
-<li>WP custom form expand: name + email + phone + company + need</li>
-<li>Submit → email to info@bivision.ge + auto-confirmation to lead</li>
-<li>Manual booking follow-up</li>
-<li>Cost: 0₾ tool, 4 საათი dev + tradeoff: manual workload</li>
-</ul>
-</details>
-
-<p><strong>recommended A (Calendly).</strong> ვაკეთებ Phase 1: Calendly account create + form link draft + WP edit instructions. Owner ეჭვი → B switch ერთი პასუხი.</p>
-
-<h3>Task 12.2 — HubSpot status="closed" auto-bug</h3>
-<p><strong>დიაგნოზი (need scope-ი ინგა / დათო-გაბოს კომპეტენცია გადაკვეთთ):</strong></p>
-
-<ul>
-<li>WP form submit → ცდილობს HubSpot-ში lead-ი submit-ოს</li>
-<li>API connection ან webhook ფლანგვის გამო deal stage = "closed lost" auto-set</li>
-<li>Lead form-ი მიდის wp-admin-ში მიდის (per Mentari Apr 9 finding) — HubSpot-ში არა</li>
-</ul>
-
-<p><strong>გასაკეთებელი (4-step audit):</strong></p>
+<p><strong>Real fix-list (priority):</strong></p>
 <ol>
-<li>WP plugin "HubSpot Forms" version check (current vs latest) — outdated plugin = top cause</li>
-<li>HubSpot API key/Private App token valid? .env-ში HUBSPOT_API_KEY blank — generate-ი ხდება</li>
-<li>Form submission log inspect — Last 10 submission stage history</li>
-<li>Workflow audit — "Created" → "Closed lost" trigger-ი ყველაზე პოპულარული HubSpot Workflow misconfiguration</li>
+<li><strong>WP form CTA href update</strong> — "მოითხოვე დემო" button → `https://calendly.com/bivision/courtest-meeting`. Custom-objects work, owner / dev pair-task.</li>
+<li><strong>Calendly post-booking redirect</strong> — Calendly settings → Event type → Confirmation page → custom URL `https://bivision.ge/thank-you/`. Calendly-side, 5-min owner-task.</li>
+<li><strong>CTA copy review</strong> — "courtest" → "courtesy" check; CTA Georgian text more organic ("უფასო კონსულტაცია 30 წუთი" vs "მოითხოვე დემო").</li>
+<li><strong>HubSpot lead-deduplication</strong> — Calendly booking + WP form submit both create contact → BCC email sync fires duplicate. Workflow rule: dedupe by email, latest source wins.</li>
 </ol>
 
-<p><strong>me-cover ვარიანტი:</strong> ჩემი ჩასაბანებელი — HubSpot API token-ი მოგვცეს და wp-admin access (WP_APP_PASSWORD .env-ში), workflow audit-ი + bug-fix 2-3 საათში.</p>
+</details>
+
+<details class="step-tab">
+<summary>Alternative B (paid HubSpot upgrade — IF lead-volume justifies)</summary>
+<p>HubSpot Sales Hub Starter ($20/mo) → native Calendly meetings → auto-deal creation, no BCC workaround. Trigger: when leads/mo > 30 (BCC manual sort burden). მცდელობა now = no, lead-volume current 5/7-month.</p>
+</details>
+
+<h3>Task 12.2 — HubSpot status="closed" auto-bug (corrected May 1)</h3>
+
+<p><strong>Challenge:</strong> WP form lead → HubSpot ვარდება closed-status-ით.<br>
+<strong>Solution:</strong> HubSpot config + WP plugin audit. <strong>არ-ეხება</strong> Inga / Dato-Gabo (Qlik dev / PM). Owner-ის (HubSpot admin) ან ჩემი (Private App token-ით) ხელი.</p>
+
+<details class="step-tab" open>
+<summary><strong>გასაკეთებელი (4-step audit) — 2 საათი my-cover</strong></summary>
+<ol>
+<li>WP plugin "HubSpot Forms" version check (outdated plugin = top cause)</li>
+<li>HubSpot Private App token generate (.env-ში HUBSPOT_API_KEY blank → owner generate via HubSpot Settings → Integrations → Private Apps)</li>
+<li>Form submission history inspect — Last 10 submission stage transitions</li>
+<li>HubSpot Workflow audit — "Created" → "Closed lost" auto-trigger = most common misconfig</li>
+</ol>
+<p><strong>Owner-action (5 min):</strong> HubSpot Private App token generate + paste; me-cover-ი workflow + plugin audit + bug-fix.</p>
+</details>
 
 <hr>
 
@@ -544,9 +540,20 @@
 
 <hr>
 
-<h2>18. GA4 + Clarity integrated reality (May 1 update)</h2>
+<h2>18. GA4 + Clarity integrated reality — May 1 2026</h2>
 
-<h3>18.1 GA4 7-month traffic acquisition (Oct 1 2025 → Apr 30 2026)</h3>
+<div class="tldr">
+<strong>Challenge → Solution (CEO 5-sec scan):</strong>
+<ul>
+<li><strong>Meta clicks 6,265 → GA4 sessions 870 (delta −86%)</strong> → UTM tagging strategy missing → fix every ad URL with UTM (immediate).</li>
+<li><strong>fb/paid 100% engagement + 0s avg time</strong> → bounce-on-load → Demo CTA above-the-fold + value-prop visible &lt;3s.</li>
+<li><strong>google/organic 51s avg time (best of all)</strong> → SEO is the underused goldmine → keyword library activate, content cluster sprint.</li>
+<li><strong>Last 28-day Key events = 1 (Apr 3-30 2026)</strong> → real funnel collapse confirmed (independent of GA4 misconfig noise).</li>
+<li><strong>Direct/(none) = 1,134 sessions / 37%</strong> → likely Meta paid traffic with stripped UTMs → attribution invisible without fix #1.</li>
+</ul>
+</div>
+
+<h3>18.1 GA4 7-month traffic acquisition (data period: 2025-10-01 → 2026-04-30, pulled 2026-05-01)</h3>
 
 <div class="grid">
   <div class="card"><div class="lbl">Total sessions</div><div class="val">3,046</div></div>
