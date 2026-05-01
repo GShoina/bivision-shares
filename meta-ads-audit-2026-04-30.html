@@ -50,7 +50,7 @@
 <body>
 
 <h1>Meta Ads — 7-თვიანი აუდიტი + წინა-ნაბიჯები</h1>
-<div class="meta">Apr 30 2026 · OpenClaw (DonotUseMe) · Bivision · პერიოდი 2025-10-01 → 2026-04-30 · წყარო Meta Marketing API</div>
+<div class="meta">Apr 30 2026 (extended May 1) · OpenClaw (DonotUseMe) · Bivision · პერიოდი 2025-10-01 → 2026-04-30 · წყარო Meta Marketing API + Microsoft Clarity + GA4</div>
 
 <div class="tldr">
 <strong>მოკლედ.</strong> 7 თვის მანძილზე $418.21 დახარჯე, 668 ათასი impression-ი მიიღე, 6,265 click გაჩნდა — და მხოლოდ <strong>5 lead</strong>. პრობლემა არ არის reklamis ფასი (CPC $0.07 = იაფი). პრობლემა არის ის რომ click-ის შემდეგ landing page-ზე ფანელი იშლება. Ad scale-ი ფანელის შეკეთებამდე = ფული ქარს მიჰყვება. ორი waste-campaign უკვე autopause-ით გამოვართვით (decision Apr 30). მომდევნო 30 დღის გეგმა: ჯერ ფანელი (Demo CTA + HubSpot bug), შემდეგ scale.
@@ -122,10 +122,38 @@
 <h3>1.5.4 Forward plan</h3>
 <ol>
 <li>Mariam-creative review → AI evaluation → audience-pick (Pixel-LAL OR HubSpot-LAL) → 1-2 day test</li>
-<li>Auto-pause rule active (Section 14): CTR &lt; 0.3% / 0 conv $5+ / CPC 3× → PAUSE</li>
-<li>Parallel: Funnel collapse landing-page deep dive (Section 6)</li>
-<li>UTM tagging strategy MANDATORY pre-launch (Section 18.6.1)</li>
+<li>Auto-pause rule active (Section 13): CTR &lt; 0.3% / 0 conv $5+ / CPC 3× → PAUSE</li>
+<li>Parallel: Funnel collapse landing-page deep dive (Section 6) — owner deliberate Calendly-direct strategy preserved (high-intent filter); 1-2 ad site-landing for retargeting fuel</li>
+<li>UTM tagging v1 (owner schema) MANDATORY auto-execute (Section 17.6.1)</li>
 </ol>
+
+<hr>
+
+<details class="step-tab">
+<summary><h2 style="display:inline;font-size:1.2rem">📜 History (Last 30 Days) — რა გაკეთდა</h2></summary>
+
+<table>
+<thead><tr><th>თარიღი</th><th>აქცია</th><th>შედეგი</th></tr></thead>
+<tbody>
+<tr><td>2026-04-29</td><td>OpenClaw / DonotUseMe agent activated</td><td>Bivision OKR + bottom-up funnel math + team portrait shipped</td></tr>
+<tr><td>2026-04-30</td><td>Meta System User token generated, Bivision OpenClaw CLI app live</td><td>Meta Marketing API direct access — campaign/audience/insights all programmatic</td></tr>
+<tr><td>2026-04-30</td><td>7-month audit pulled (Oct 2025 → Apr 2026)</td><td>$418 spend / 668K imp / 6,265 clicks / 5 leads — funnel collapse confirmed</td></tr>
+<tr><td>2026-04-30</td><td>2 waste campaigns paused ("awar. dev. fin", "partnership Balance")</td><td>spend save ~$15/mo</td></tr>
+<tr><td>2026-04-30</td><td>5 additional campaigns paused (Bifinance + Traffic + Landing)</td><td>baseline freeze pre-audience reform</td></tr>
+<tr><td>2026-04-30</td><td>Active adset-ების interest seed audit</td><td>9/14 active adset "Real estate" interest seed-ით — root cause off-ICP traffic identified</td></tr>
+<tr><td>2026-05-01</td><td>4 new audiences built (Pixel-Custom + Pixel-LAL + HubSpot-Custom-86 + HubSpot-LAL)</td><td>B2B-fit ICP audience pool ready for new campaign launch</td></tr>
+<tr><td>2026-05-01</td><td>"Arttime / ართთაიმი" custom audience deleted</td><td>119,500 reach foreign-brand audience cleanup</td></tr>
+<tr><td>2026-05-01</td><td>Microsoft Clarity API token live + tested</td><td>behavioral data integrated; 3-day sample post-pause = 2 sessions confirms ad-only traffic baseline</td></tr>
+<tr><td>2026-05-01</td><td>GA4 7-month data pulled via Playwright (T1 owner-session)</td><td>3,046 sessions, fb/paid 870 (delta vs 6,265 Meta clicks = −86%), 28-day Key Events = 1</td></tr>
+<tr><td>2026-05-01</td><td>Calendly link verified live (calendly.com/bivision/courtest-meeting), HubSpot BCC sync confirmed</td><td>landing-fix infrastructure validated; 4 typo found, owner-fix in progress</td></tr>
+<tr><td>2026-05-01</td><td>Auto-pause precise criteria documented (Section 13)</td><td>cross-channel rule: CTR&lt;0.3%/0 conv $5+/CPC 3× → PAUSE; daily 10:00 chat report</td></tr>
+<tr><td>2026-05-01</td><td>Self-improvement loop active (tasks/lessons.md, 20+ patterns)</td><td>verbose response → 5-block, validate-first, T1-T5 tier hierarchy, no-A/B/C-menu, etc</td></tr>
+<tr><td>2026-05-01</td><td>Data-source connection protocol shipped (T1-T5)</td><td>all integrations follow tier hierarchy; T2 CSV / T4 API key / T5 SA-last-resort</td></tr>
+<tr><td>2026-05-01</td><td>Meta API direct integration v22.0 live</td><td>System User token + 8 .env values populated; ready for UTM batch update</td></tr>
+</tbody>
+</table>
+
+</details>
 
 <hr>
 
@@ -173,17 +201,17 @@
 </tbody>
 </table>
 
-<h3>გამარჯვებული ფორმულა (replicate candidate):</h3>
+<h3>რომელი მუშაობდა (replicate candidate):</h3>
 <ul>
-  <li><strong class="grn">"New Traffic Campaign"</strong> — CTR 4.88% (5x საშუალო), CPC $0.03 (იაფი). მცირე spend $17. <em>რატომ მუშაობს?</em> — ICP-ფიტი ან creative angle. ეს campaign უნდა გავუჭიროთ რა აუდიტორიას, რა creative, რა CTA, ცვლადებად დავყოთ.</li>
-  <li><strong class="grn">"eng cam dev"</strong> — CTR 3.42%, dev/development სიმძიმის თემა. B2B-ი ფიტი ეტყობა.</li>
-  <li><strong class="grn">"tr camp energ"</strong> — CTR 2.10%, ენერგეტიკა vertical. პრო-pain pattern.</li>
+  <li><strong class="grn">"New Traffic Campaign"</strong> — CTR 4.88% ანუ ყოველ 100 ნახულობიდან 5 დააჭერდა. ფასი ყოველ click-ზე $0.03 (5-ჯერ იაფი საშუალოზე). სულ $17 დახარჯა. <em>რატომ მუშაობდა?</em> — ან აუდიტორია უფრო ICP-ში მოვიდა, ან creative-ი უფრო რესონანსული. ეს ერთი ფორმულა გვინდა ცალცალკე გავშალოთ — რა აუდიტორია, რა ვიდეო/ფოტო, რა ღილაკი — და ვიცოდეთ რომელი მუშაობდა.</li>
+  <li><strong class="grn">"eng cam dev"</strong> — CTR 3.42%, dev/IT თემაზე — B2B-ფიტი ფაქტობრივად ცხადია.</li>
+  <li><strong class="grn">"tr camp energ"</strong> — CTR 2.10%, ენერგეტიკის სექტორი — Bivision-ის pain-point ხვდება.</li>
 </ul>
 
-<h3>დამარცხებული (waste pattern):</h3>
+<h3>რომელი არ მუშაობდა (waste pattern):</h3>
 <ul>
-  <li><strong class="red">"awar. dev. fin"</strong> — CTR 0.10%, CPC $0.23 (3x average), 69K impression-ი 66 click-ით. Awareness campaign-ი არ მუშაობს ICP-ზე.</li>
-  <li><strong class="red">"partnership Balance"</strong> — CTR 0.06%, 47K impression-ი 30 click-ით. Brand-partnership creative-ი resonate არ ხდება.</li>
+  <li><strong class="red">"awar. dev. fin"</strong> — CTR 0.10%, ფასი click-ზე $0.23 (3-ჯერ ძვირი). 69K-ი ნახა, მხოლოდ 66 დააჭირა. Awareness campaign-ი ICP-ზე ცარიელი იყო.</li>
+  <li><strong class="red">"partnership Balance"</strong> — CTR 0.06%, 47K-ი ნახა, 30 დააჭირა. Balance-ის თანამშრომლობის creative-ი არ რეზონანსდა.</li>
 </ul>
 
 <hr>
@@ -263,28 +291,14 @@
 </div>
 
 <div class="impact-card grn">
-<div><span class="impact-num">5</span><strong class="grn">Winner pattern არსებობს (LOW რისკი, HIGH უპირა)</strong></div>
-<p>3 campaign CTR > 2% (eng cam dev 3.42%, New Traffic 4.88%, tr camp energ 2.10%, fin x dev 1.90%, Landing Page 1.95%). ეს pattern-ი თუ replicate ყველა ვერტიკალზე, baseline CTR 1% → 2.5%, click-volume 2.5x.</p>
-<p><strong>Impact:</strong> winner-ის aggregating analysis (audience overlap, creative pattern, CTA copy) → playbook → 4 ახალ campaign-ში replicate.</p>
+<div><span class="impact-num">5</span><strong class="grn">წარმატებული ფორმულა გვაქვს (LOW რისკი, HIGH potential)</strong></div>
+<p>3 campaign CTR > 2% — "eng cam dev" 3.42%, "New Traffic" 4.88%, "tr camp energ" 2.10%, "fin x dev" 1.90%, "Landing Page" 1.95%. ანუ ეს ფორმულები მუშაობდა — სხვებზე უკეთ. რომ ეს იგივე ფორმულა (აუდიტორია + creative + CTA) ყველა ვერტიკალზე გავუშვათ, საშუალო CTR 1%-დან 2.5%-მდე ავა, click-volume 2.5x.</p>
+<p><strong>რას ვაკეთებთ:</strong> სამი წარმატებული campaign-ი ცალცალკე ვშლით ცვლადებად (აუდიტორია, ვიდეო/ფოტო, ღილაკის ტექსტი) → playbook ვაწერთ → 4 ახალ campaign-ში ვამეორებთ.</p>
 </div>
 
 <hr>
 
-<h2>7. Mentari/Mariam material რატომ ვერ ჯდება ციფრებში (challenger)</h2>
-
-<p class="quote">Mariam Apr 23 brief: "Marketing(salary): 3,189₾/თვე ... Ad spend 69₾/თვე." → ad spend 69₾/mo დაშვებულია, რეალური Apr-მონაცემი = $56.77 ≈ <strong>156₾/თვე</strong> ანუ 2.3x ნათქვამი. Apr-ში recovery წარმოიქმნა, owner-ისთვის invisible-ად.</p>
-
-<p class="quote">Mariam brief: "Reel #1 — 23 თებერვლის ფორმულით ... 26K reach, 40 like" → ეს organic reach-ია (LinkedIn). Paid ad-ის reach 7 თვეში 395K = ღირს, მაგრამ <strong>5 lead</strong>. Brief-ში ad-ROI ფიქსაცია არცერთი ციფრით.</p>
-
-<p class="quote">Mentari dashboard verdict Apr 9: "0 qualified leads from digital." → <strong>ეს ნახევრად სწორი ანალიზია</strong>. Click-level traffic გვაქვს, lead-funnel იშლება. Mentari-ს "marketing არ-არსებობს" verdict-ი ad-acquisition-ს ბრალს სდებს, რეალური ბრალი = lead-pipeline + landing.</p>
-
-<p class="quote">Mariam Reel-pattern recommendation Mentari-სგან: "Reel #1 23 თებერვლის ფორმულით". → Paid ad-ის CTR-ის მონაცემები აჩვენებს, რომ Reel placement (paid) CTR 0.94% არის. Organic Reel მუშაობს, paid Reel ფანი-ფურცელი. Brief-ში ეს განცალკევება არ ჩანს.</p>
-
-<p><strong>Challenger შეჯამება:</strong> Mentari/Mariam content-ი organic + perception-based. Paid ad-ის ციფრი პირდაპირ API-დან ვერავინ აიღო. ანალიზში ფანელის collapsing-ი (landing → lead) არ არის highlighted. ეს მონაცემი მოგვცემს უფრო ზუსტ priority-ს ვიდრე "post cadence გავზარდოთ".</p>
-
-<hr>
-
-<h2>8. წინა-30-დღე გეგმა (priority sorted by impact)</h2>
+<h2>7. წინა-30-დღე გეგმა (priority sorted by impact)</h2>
 
 <h3>კვირა 1 (May 1-7) — Foundation fix, ad-spend freeze</h3>
 <table>
@@ -323,7 +337,7 @@
 
 <hr>
 
-<h2>9. გადასაწყვეტი (owner input)</h2>
+<h2>8. გადასაწყვეტი (owner input)</h2>
 
 <ol>
 <li><strong>Landing-fix ownership</strong> — tech-ი ვინ წაიყვანს? Demo CTA + HubSpot bug. (me-cover ვარიანტი ხელმისაწვდომი)</li>
@@ -336,7 +350,7 @@
 
 <hr>
 
-<h2>10. რას ვაკეთებ ავტონომიურად (no-ask)</h2>
+<h2>9. რას ვაკეთებ ავტონომიურად (no-ask)</h2>
 
 <ul>
 <li>✅ Apr 30 — paused 2 waste campaign ("awar. dev. fin", "partnership Balance")</li>
@@ -353,7 +367,7 @@
 
 <hr>
 
-<h2>11. ICP-misalignment root cause — Real estate seed</h2>
+<h2>10. ICP-misalignment root cause — Real estate seed</h2>
 
 <p><strong>Apr 30 ფინდინგი (API-დან active adset 14 პირდაპირ პულდა):</strong></p>
 
@@ -377,12 +391,23 @@
 
 <hr>
 
-<h2>12. Landing-fix detailed spec (corrected May 1)</h2>
+<h2>11. Landing-fix detailed spec (corrected May 1)</h2>
 
-<h3>Task 12.1 — Demo CTA + Calendly (UPDATED post-owner-verify)</h3>
+<h3>Task 11.1 — Calendly-direct strategy (owner-deliberate, May 1 reframe)</h3>
 
-<p><strong>Challenge:</strong> ad-traffic landing-page-ზე bounce-on-load (fb/paid 0s avg time, GA4).<br>
-<strong>Solution:</strong> Calendly link უკვე live + HubSpot BCC sync ✅. გასაკეთებელია მხოლოდ CTA copy + WP form href update.</p>
+<div class="tldr">
+<strong>Owner clarification (May 1):</strong> ad-ების უმეტესობა Calendly-ზე პირდაპირ მიდის — ეს deliberate strategy იყო. რა ხდებოდა: საიტზე visit-ი იყო, მაგრამ Demo-ს ღილაკზე არავინ აჭერდა (funnel-leak საიტში). Solution = ad-ი პირდაპირ Calendly-ზე — high-intent filter, site friction-ი rem.<br>
+ეს ხსნის GA4-ის anomaly-ს — fb/paid 870 sessions = მხოლოდ ის visitors რომლებიც site-ზე მისულან (1 ad მხოლოდ). 5,395 click პირდაპირ Calendly-ზე → GA4-ში არ ჩანს (calendly subdomain). არა funnel collapse — strategy choice.
+</div>
+
+<p><strong>ჩემი თავდაპირველი rec (site-bound + UTM) reversed:</strong> Calendly-direct ნამდვილად ბევრად უკეთესი filter-ია (booking-intent-ით click-ი = თვითდაკონვერტირება). მაგრამ ბრმა-spot-ი არსებობს: Pixel events (retargeting pool-ისთვის) ვერ დავიჭირეთ, attribution ცარიელი.</p>
+
+<p><strong>Hybrid recommendation (compromise):</strong></p>
+<ul>
+<li>8/10 ad — Calendly-direct (preserve high-intent strategy)</li>
+<li>1-2 ad — site-landing UTM-ით (retargeting fuel + Pixel ICP signal + GA4 attribution)</li>
+<li>30-day review: site-landing variant-ის CPA vs Calendly-direct CPA შევადარო</li>
+</ul>
 
 <details class="step-tab" open>
 <summary><strong>გადასამოწმებელი / გასაკეთებელი state (May 1)</strong></summary>
@@ -414,7 +439,7 @@
 <p>HubSpot Sales Hub Starter ($20/mo) → native Calendly meetings → auto-deal creation, no BCC workaround. Trigger: when leads/mo > 30 (BCC manual sort burden). მცდელობა now = no, lead-volume current 5/7-month.</p>
 </details>
 
-<h3>Task 12.2 — HubSpot status="closed" auto-bug (corrected May 1)</h3>
+<h3>Task 11.2 — HubSpot status="closed" auto-bug (corrected May 1)</h3>
 
 <p><strong>Challenge:</strong> WP form lead → HubSpot ვარდება closed-status-ით.<br>
 <strong>Solution:</strong> HubSpot config + WP plugin audit. <strong>არ-ეხება</strong> Inga / Dato-Gabo (Qlik dev / PM). Owner-ის (HubSpot admin) ან ჩემი (Private App token-ით) ხელი.</p>
@@ -432,9 +457,9 @@
 
 <hr>
 
-<h2>13. Audience reform spec — B2B-fit replacement</h2>
+<h2>12. Audience reform spec — B2B-fit replacement</h2>
 
-<h3>13.1 — გასათიშე ინტერესები (immediate):</h3>
+<h3>12.1 — გასათიშე ინტერესები (immediate):</h3>
 <ul>
 <li class="red">Real estate</li>
 <li class="red">Real estate development</li>
@@ -444,7 +469,7 @@
 <li class="red">"look like da georgia" Lookalike — real-estate-seed</li>
 </ul>
 
-<h3>13.2 — შესაცვლელი interests (B2B replacement, recommended):</h3>
+<h3>12.2 — შესაცვლელი interests (B2B replacement, recommended):</h3>
 <table>
 <thead><tr><th>Interest</th><th>რატომ</th><th>Audience size GE</th></tr></thead>
 <tbody>
@@ -461,7 +486,7 @@
 </tbody>
 </table>
 
-<h3>13.3 — Custom Audiences (Lookalike seed, recommended):</h3>
+<h3>12.3 — Custom Audiences (Lookalike seed, recommended):</h3>
 <ol>
 <li><strong>Existing customer list upload</strong> — HubSpot CRM-ში ბივიჟენის 86-row customer-list email-ით → Meta-ში custom audience → Lookalike 1-3% Georgia. ეს არის ყველაზე ძლიერი audience seed (real customer pattern).</li>
 <li><strong>Website visitors (last 90d)</strong> — Pixel-ი მუშაობს (Bivision-Ads's Pixel ID 24993373220352719). Visitor-list audience → Lookalike.</li>
@@ -469,14 +494,14 @@
 <li><strong>Video viewers</strong> — 23 თებ Reel-ი 26K reach. Reel-watchers (75%+ video view) audience.</li>
 </ol>
 
-<h3>13.4 — Geo + age refinement:</h3>
+<h3>12.4 — Geo + age refinement:</h3>
 <ul>
 <li>Geo: Tbilisi + Batumi (business density) + Kutaisi (mfg/retail SMB). Drop "GE all" → 60% spend wasted on rural decision-maker-ი.</li>
 <li>Age: <strong>30-55</strong> (decision-maker B2B). 18-29 = junior staff. 65+ = retired. 55-65 = decision-maker subset OK.</li>
 <li>Gender: ალბათ ფლექს, არა lock — owner-pick post-baseline.</li>
 </ul>
 
-<h3>13.5 — Vertical-targeted ad sets (per Bi-suite SKU):</h3>
+<h3>12.5 — Vertical-targeted ad sets (per Bi-suite SKU):</h3>
 <table>
 <thead><tr><th>Vertical</th><th>Interest stack</th><th>Geo</th></tr></thead>
 <tbody>
@@ -493,7 +518,7 @@
 
 <hr>
 
-<h2>14. Auto-pause precise criteria</h2>
+<h2>13. Auto-pause precise criteria</h2>
 
 <p>Apr 30 owner-grant ფიქსაცია, ზუსტი threshold-ებით:</p>
 
@@ -515,7 +540,7 @@
 
 <hr>
 
-<h2>15. Bifinance + December post-mortem (data what we have)</h2>
+<h2>14. Bifinance + December post-mortem (data what we have)</h2>
 
 <h3>Bifinance_New Engagement Campaign</h3>
 <table>
@@ -545,7 +570,7 @@
 
 <hr>
 
-<h2>16. Mariam pre-evaluation framework (winner replicate gate)</h2>
+<h2>15. Mariam pre-evaluation framework (winner replicate gate)</h2>
 
 <p>Owner-directive Apr 30: Mariam-ი ქმნის material → მე ვიწინასწარწიგებ → თუ არ მუშაობს, kill.</p>
 
@@ -576,7 +601,7 @@
 
 <hr>
 
-<h2>17. Site-analytics integration (Clarity + GA4)</h2>
+<h2>16. Site-analytics integration (Clarity + GA4)</h2>
 
 <p><strong>Status:</strong> .env-ში GA4_PROPERTY_ID + Clarity API token blank. Without API access, blind to landing-page funnel.</p>
 
@@ -598,7 +623,7 @@
 
 <hr>
 
-<h2>18. GA4 + Clarity integrated reality — May 1 2026</h2>
+<h2>17. GA4 + Clarity integrated reality — May 1 2026</h2>
 
 <div class="tldr">
 <strong>Challenge → Solution (CEO 5-sec scan):</strong>
@@ -611,7 +636,7 @@
 </ul>
 </div>
 
-<h3>18.1 GA4 7-month traffic acquisition (data period: 2025-10-01 → 2026-04-30, pulled 2026-05-01)</h3>
+<h3>17.1 GA4 7-month traffic acquisition (data period: 2025-10-01 → 2026-04-30, pulled 2026-05-01)</h3>
 
 <div class="grid">
   <div class="card"><div class="lbl">Total sessions</div><div class="val">3,046</div></div>
@@ -626,7 +651,7 @@
 
 <p class="small"><strong>GA4 misconfig flag:</strong> "Key events 11,481" in 7-month view inflated by engagement events configured as key. Home view 28-day key events = <strong>1</strong>. Real conversion-event setup needed.</p>
 
-<h3>18.2 Source / Medium breakdown (7-month)</h3>
+<h3>17.2 Source / Medium breakdown (7-month)</h3>
 
 <table>
 <thead><tr><th>Source / Medium</th><th class="num">Sessions</th><th class="num">% total</th><th class="num">Engagement</th><th class="num">Avg time</th><th>კომენტარი</th></tr></thead>
@@ -644,7 +669,7 @@
 </tbody>
 </table>
 
-<h3>18.3 Cross-source funnel reconciliation (NEW critical finding)</h3>
+<h3>17.3 Cross-source funnel reconciliation (NEW critical finding)</h3>
 
 <div class="impact-card">
 <div><span class="impact-num">6</span><strong class="red">Meta clicks vs GA4 sessions delta — 86% loss (HIGH)</strong></div>
@@ -672,13 +697,13 @@
 <p><strong>Action:</strong> SEO strategy — keyword library (memory) → on-page SEO → content cluster → +50-100 organic sessions/mo at 0₾ paid spend.</p>
 </div>
 
-<h3>18.4 Clarity behavioral data (last 3-day post-pause)</h3>
+<h3>17.4 Clarity behavioral data (last 3-day post-pause)</h3>
 
 <p>Ad-pause-შემდგომი 3-დღე: 2 sessions, 1.5 pages/session, 71.67% scroll depth, 43s total / 15s active time. Top page: hp + BiFinance product. Country split GE+NL. Zero rage clicks, zero dead clicks, zero excessive scroll → site UX clean, traffic ცარიელი.</p>
 
 <p><strong>Translation:</strong> ad-traffic-ი ჩვენი ერთადერთი visit-driver-ი იყო. Pause = traffic almost zero. SEO + organic-channel = mandatory build (ad-pause periods-ისთვის survival).</p>
 
-<h3>18.5 Updated funnel picture (3-source integrated)</h3>
+<h3>17.5 Updated funnel picture (3-source integrated)</h3>
 
 <table>
 <thead><tr><th>Stage</th><th class="num">Number</th><th>Source</th><th class="num">Drop %</th></tr></thead>
@@ -693,22 +718,23 @@
 </tbody>
 </table>
 
-<h3>18.6 Forward priority (UPDATED post-integration)</h3>
+<h3>17.6 Forward priority (UPDATED post-integration)</h3>
 
 <ol>
-<li><strong>UTM tagging</strong> EVERY ad URL: <code>?utm_source=facebook&utm_medium=paid&utm_campaign=&lt;name&gt;&utm_content=&lt;creative&gt;</code>. ეს გვინდა მაშინვე — ცარიელი Meta URL პარამეტრიანი URL-ით ჩაცვლა.</li>
-<li><strong>GA4 Key Event reconfigure</strong> — current "key events" includes engagement noise. Set: <code>generate_lead</code>, <code>form_submit</code>, <code>book_demo</code> events ONLY. Owner-clarify-required event-list.</li>
-<li><strong>Demo CTA above-the-fold</strong> — fb/paid 0s avg time signal = visitor საიტს ხედავს, value-prop ვერ პოულობს. CTA ერთი გადახედვით ცხადი, button visible.</li>
-<li><strong>SEO investment</strong> (parallel) — google/organic 51s avg time = quality channel. Keyword library-ი (memory) → 30-day content + on-page sprint.</li>
-<li><strong>Audience reform</strong> (Section 13) — "Real estate" interest seed → B2B targeting unchanged priority.</li>
+<li><strong>UTM tagging v1 (owner-doc'd schema)</strong> — ყოველი live ad URL Meta API batch-update. სქემა: <code>?utm_source=facebook&utm_medium=paid_social&utm_campaign=&lt;product&gt;-&lt;objective&gt;-&lt;audience&gt;-&lt;period&gt;&utm_content=&lt;placement&gt;-&lt;asset&gt;-&lt;message&gt;-&lt;version&gt;</code>. ცარიელი URL → ფარული Meta-traffic GA4-ში. Auto-execute.</li>
+<li><strong>Calendly-direct strategy preserved (owner deliberate)</strong> — ad-ების უმეტესობა Calendly-ზე პირდაპირ მიდის (high-intent filter; site demos ვერ კონვერტდებოდა). 1-2 ad site-landing-ზე UTM-ით — retargeting fuel + Pixel ICP signal. Hybrid, არა replace.</li>
+<li><strong>GA4 Key Event reconfigure</strong> — current "key events" includes engagement noise. Set: <code>generate_lead</code>, <code>form_submit</code>, <code>book_demo</code> events ONLY.</li>
+<li><strong>SEO investment</strong> (parallel) — google/organic 51s avg time = quality channel. Keyword library activate, content cluster.</li>
+<li><strong>Audience reform</strong> (Section 12) — "Real estate" seed → B2B priority unchanged.</li>
 </ol>
 
 <hr>
 
-<p class="small">📁 <code>BI_DonotUseMe/outputs/2026-04-30 Meta Ads 7-month Audit + Forward Plan by DonotUseMe.html</code> (extended May 1)<br>
+<p class="small">📁 <code>BI_DonotUseMe/outputs/2026-04-30 Meta Ads 7-month Audit + Forward Plan by DonotUseMe.html</code> (extended May 1, restructured)<br>
 🔗 <strong>Mariam URL (GitHub Pages):</strong> <code>https://gshoina.github.io/bivision-shares/meta-ads-audit-2026-04-30.html</code><br>
 🔒 info isolation HARD — owner-direct + per-instance Mariam approval (Apr 30) for share.<br>
-📊 დანართები: Meta API + Clarity API + GA4 (browser-session) — all source-tagged inline.</p>
+📊 დანართები: Meta API + Clarity API + GA4 (browser-session) — all source-tagged inline.<br>
+📜 May 1 changes: §7 challenger removed · History collapsible added · Winner pattern plain Georgian · UTM v1 schema verbatim · Calendly-direct strategy reframe (owner deliberate)</p>
 
 </body>
 </html>
