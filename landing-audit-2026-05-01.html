@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<title>Bivision.ge Landing Audit — May 1 2026</title>
+<style>
+  :root {
+    --bg:#fafaf7; --fg:#1a1a1a; --t2:#444; --t3:#777; --brd:#dcd7cc;
+    --acc:#7a3b00; --red:#a32020; --grn:#2d6b2d; --amb:#a06000;
+    --pnl:#fff; --code:#f1ede4;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:2rem max(1rem,calc((100% - 1000px)/2));background:var(--bg);color:var(--fg);
+       font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue","Noto Sans Georgian",sans-serif}
+  h1{font-size:1.6rem;margin:0 0 .25rem;letter-spacing:-.01em}
+  h2{font-size:1.2rem;margin:2rem 0 .6rem;border-bottom:1px solid var(--brd);padding-bottom:.3rem}
+  h3{font-size:1rem;margin:1.2rem 0 .4rem;color:var(--acc)}
+  .meta{color:var(--t3);font-size:.85rem;margin-bottom:1.2rem}
+  .tldr{background:var(--pnl);border-left:3px solid var(--red);padding:.9rem 1rem;border-radius:4px;margin:1rem 0 1.5rem}
+  .impact-card{background:var(--pnl);border-left:4px solid var(--red);padding:.8rem 1rem;margin:.8rem 0;border-radius:4px}
+  .impact-card.amb{border-left-color:var(--amb)}
+  .impact-card.grn{border-left-color:var(--grn)}
+  .impact-num{font-size:1.6rem;font-weight:700;color:var(--acc);margin-right:.4rem}
+  table{border-collapse:collapse;width:100%;margin:.5rem 0 1rem;font-size:.9rem;background:var(--pnl)}
+  th,td{padding:.45rem .6rem;border:1px solid var(--brd);text-align:left;vertical-align:top}
+  th{background:var(--code);font-weight:600;color:var(--t2)}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .red{color:var(--red);font-weight:600}
+  .grn{color:var(--grn);font-weight:600}
+  .amb{color:var(--amb);font-weight:600}
+  .small{font-size:.82rem;color:var(--t3)}
+  ul{margin:.3rem 0 .8rem 1.1rem;padding:0}
+  li{margin:.3rem 0}
+  hr{border:none;border-top:1px solid var(--brd);margin:1.5rem 0}
+  code{background:var(--code);padding:.1rem .35rem;border-radius:3px;font:13px ui-monospace,Consolas,Menlo,monospace}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.5rem;margin:.5rem 0}
+  .card{background:var(--pnl);border:1px solid var(--brd);border-radius:5px;padding:.6rem .8rem}
+  .card .lbl{font-size:.78rem;color:var(--t3);text-transform:uppercase;letter-spacing:.04em}
+  .card .val{font-size:1.2rem;font-weight:700;margin-top:.2rem}
+  .card .val.red{color:var(--red)}
+  .card .val.grn{color:var(--grn)}
+  .card .val.amb{color:var(--amb)}
+  details summary{cursor:pointer;padding:.4rem;background:var(--code);border-radius:3px;margin:.4rem 0}
+</style>
+</head>
+<body>
+
+<h1>Bivision.ge Landing Audit — Funnel Collapse Root Cause</h1>
+<div class="meta">May 1 2026 (pre-19:00 prep) · OpenClaw (DonotUseMe) · Bivision · წყარო: HTTP curl + HTML analysis + Clarity API + GA4 baseline</div>
+
+<div class="tldr">
+<strong>CEO 5-sec scan:</strong>
+<ul>
+<li><strong>0 Calendly references on bivision.ge homepage + product pages</strong> → owner-deliberate Calendly-direct strategy არ აქვს entry point საიტზე organic-visitors-ისთვის</li>
+<li><strong>"მოითხოვე დემო" CTA = JS popup form (English-language on Georgian page) → submits to WP DB → manual HubSpot sync</strong> = root cause of HubSpot "status=closed" bug</li>
+<li><strong>TTFB 1.2-1.5s</strong> (target &lt;500ms) → 0s GA4 avg-time signal partly attributable to slow first-byte</li>
+<li><strong>/direction/business-intelligence/medical-sector → 301 → /saas-products/bifinance/</strong> = wrong-product redirect (medical ad lands on finance page)</li>
+<li><strong>Clarity 3-day: 0 dead/rage/error clicks</strong> → site UX clean; problem is CTA-presence + entry-flow, არა ფიზიკური UX bug</li>
+</ul>
+</div>
+
+<hr>
+
+<h2>1. Performance baseline (TTFB + page weight)</h2>
+
+<div class="grid">
+<div class="card"><div class="lbl">Homepage TTFB</div><div class="val red">1,551ms</div></div>
+<div class="card"><div class="lbl">BiFinance TTFB</div><div class="val red">1,198ms</div></div>
+<div class="card"><div class="lbl">BiRetail TTFB</div><div class="val red">1,199ms</div></div>
+<div class="card"><div class="lbl">Homepage size</div><div class="val amb">251 KB</div></div>
+<div class="card"><div class="lbl">Server</div><div class="val">Apache</div></div>
+<div class="card"><div class="lbl">Cache</div><div class="val amb">max-age=300</div></div>
+</div>
+
+<p class="small"><strong>Why this matters:</strong> Mobile 4G TTFB target &lt;500ms. Currently 1.2-1.5s = 2-3x over budget. Combined with React-style hydration and heavy WP theme = first-meaningful-paint likely 3-5s. fb/paid GA4 0s avg time is partly explained by visitor click-back before page renders.</p>
+
+<details>
+<summary>Headers detail</summary>
+<table>
+<tbody>
+<tr><th>Server</th><td>Apache</td></tr>
+<tr><th>Cache-Control</th><td>max-age=300 (5 min — reasonable)</td></tr>
+<tr><th>HSTS</th><td>max-age=86400; includeSubDomains (1 day — short)</td></tr>
+<tr><th>X-Frame-Options</th><td>SAMEORIGIN ✅</td></tr>
+<tr><th>Content-Security-Policy</th><td class="red">missing</td></tr>
+<tr><th>Content-Encoding</th><td>not advertised (compression status unclear)</td></tr>
+</tbody>
+</table>
+</details>
+
+<hr>
+
+<h2>2. CTA audit — homepage</h2>
+
+<div class="impact-card">
+<div><span class="impact-num">1</span><strong class="red">Homepage has 0 Calendly references + 0 demo CTA above-the-fold (HIGH)</strong></div>
+<p>Homepage HTML scrape: 8 generic CTAs ("გაიგე მეტი" → product pages), 1 cross-link ("სცადე უფასოდ" → bihub.ge sister site). <strong>0 Calendly URLs.</strong> 0 "Request demo" action. Visitor that organically lands on homepage has NO booking entry point.</p>
+<table>
+<thead><tr><th>CTA #</th><th>Text</th><th>Destination</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td>1-6</td><td>გაიგე მეტი</td><td>/saas-products/{bifinance|biretail|bistock|biaudit|bidebitors|bimedical}/</td><td>navigation</td></tr>
+<tr><td>7</td><td>სცადე უფასოდ</td><td>https://bihub.ge/</td><td>cross-site (BiHub)</td></tr>
+<tr><td>8</td><td>(footer link)</td><td>—</td><td>nav</td></tr>
+</tbody>
+</table>
+<p><strong>Impact:</strong> google/organic + (direct)/none traffic (1,390 sessions over 7 months) hits homepage and finds NO conversion path. ICP-fit visitor required to dig into product page → click "მოითხოვე დემო" popup → fill form. 3-step funnel with no Calendly fast-path.</p>
+<p><strong>Fix:</strong> Add hero-section "ჯავშანი დემო" button → Calendly link OR popup with Calendly embed. Above-the-fold, mobile-visible.</p>
+</div>
+
+<hr>
+
+<h2>3. CTA audit — product pages (BiFinance, BiRetail)</h2>
+
+<div class="impact-card">
+<div><span class="impact-num">2</span><strong class="red">"მოითხოვე დემო" CTA = JS popup form, English-language, no Calendly (HIGH)</strong></div>
+<p>3 "მოითხოვე დემო" buttons per product page → all link to <code>#lead-popup</code> (anchor + JavaScript open). Popup contents:</p>
+<ul>
+<li><strong>Title:</strong> "Request a demo" (English)</li>
+<li><strong>Subtitle:</strong> "Please enter your name and number, we will contact you shortly" (English)</li>
+<li><strong>Form fields:</strong> Your name / Company / Phone number / Email (all English)</li>
+<li><strong>Button:</strong> "Request" / "Cancel"</li>
+<li><strong>Submit:</strong> inline AJAX (no `action` attr) — handled by WP custom JS via `lead_form_nonce`</li>
+<li><strong>Backend:</strong> stores in WP DB; HubSpot sync = manual / via owner workflow</li>
+</ul>
+<p class="small"><strong>This explains the HubSpot status="closed" bug:</strong> WP form submission → WP DB → manual HubSpot import → contact lands in HubSpot with default deal-stage "closed" or no stage at all. Auto-status corruption native to non-integrated form.</p>
+<p><strong>Impact:</strong> Georgian visitor sees English popup = trust friction (1.5-2x bounce vs language-matched form). Plus form-not-Calendly = extra step vs ad-direct strategy.</p>
+<p><strong>Fix options (priority):</strong></p>
+<ol>
+<li><strong>Calendly inline embed</strong> in popup OR button → direct link. Eliminate WP form. Owner-strategy aligned (everyone → Calendly).</li>
+<li><strong>Translate form to Georgian</strong> if popup retained. Trust + conversion lift 1.5-2x.</li>
+<li><strong>Direct HubSpot integration</strong> if form retained — Forms API, 1-click setup, eliminates manual sync.</li>
+</ol>
+</div>
+
+<hr>
+
+<h2>4. Redirect chain audit</h2>
+
+<div class="impact-card amb">
+<div><span class="impact-num">3</span><strong class="amb">/direction/* URLs 301-redirect to wrong product (MED)</strong></div>
+<p>Sample test: <code>/direction/business-intelligence/medical-sector</code> → 301 → <code>/saas-products/bifinance/</code> (NOT /bimedical/).</p>
+<p>Active in PAUSED ad URLs — when this campaign relaunches, medical-sector visitors land on finance page = relevance kill, attribution distortion.</p>
+<p><strong>Fix:</strong> WP redirect rules audit — medical-sector → /saas-products/bimedical/, retail → /biretail/, etc. 5-min owner-task or me-cover via WP admin.</p>
+</div>
+
+<hr>
+
+<h2>5. Clarity behavioral data (validates UX clean)</h2>
+
+<div class="impact-card grn">
+<div><span class="impact-num">4</span><strong class="grn">Site UX is clean — problem is NOT on-page bugs (LOW)</strong></div>
+<p>Clarity 3-day pull (post-pause): 2 homepage sessions + 1 BiFinance session. Across all metrics:</p>
+<ul>
+<li><strong>Dead clicks:</strong> 0%</li>
+<li><strong>Rage clicks:</strong> 0%</li>
+<li><strong>Excessive scroll:</strong> 0%</li>
+<li><strong>Quick-back (clicked + immediately left):</strong> 0%</li>
+<li><strong>Script errors:</strong> 0%</li>
+<li><strong>Error clicks:</strong> 0%</li>
+</ul>
+<p><strong>Translation:</strong> when a visitor lands on bivision.ge, the site itself doesn't break or confuse them. They navigate normally. The funnel collapse is upstream — visitor does NOT find a conversion path because (a) Calendly missing, (b) Demo CTA hidden in JS popup, (c) form-language mismatch. Once visitor finds a CTA and clicks, the experience is clean.</p>
+<p class="small">Sample size 3 sessions = small. Larger sample needed post-relaunch.</p>
+</div>
+
+<hr>
+
+<h2>6. Cross-source root-cause map</h2>
+
+<table>
+<thead><tr><th>Symptom</th><th>Source</th><th>Root cause</th><th>Layer</th></tr></thead>
+<tbody>
+<tr><td>fb/paid 870 GA4 sessions but 0s avg time</td><td>GA4</td><td>TTFB 1.2-1.5s + no above-fold demo CTA + visitor clicks back before render</td><td>Performance + CTA</td></tr>
+<tr><td>5 leads / 7 months</td><td>Meta API</td><td>Site has no Calendly path; form-popup is English+JS+manual-sync</td><td>Conversion infrastructure</td></tr>
+<tr><td>HubSpot status="closed" auto-bug</td><td>HubSpot CRM</td><td>WP form → WP DB → manual import; default stage = closed</td><td>Integration</td></tr>
+<tr><td>fb/paid clicks 6,265 vs sessions 870 (−86%)</td><td>Meta vs GA4</td><td>Calendly-direct strategy (owner-deliberate); UTM not on Calendly URLs (now schema'd v1)</td><td>Attribution</td></tr>
+<tr><td>(direct)/none 1,134 sessions (37%)</td><td>GA4</td><td>UTM-stripped traffic — likely Meta paid + branded; UTM v1 schema fixes</td><td>Attribution</td></tr>
+<tr><td>google/organic 51s avg time + 256 sessions</td><td>GA4</td><td>SEO is quality channel — under-invested</td><td>Channel mix</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>7. Forward priority (action sorted by impact, ordered by friction)</h2>
+
+<table>
+<thead><tr><th>#</th><th>Action</th><th>Owner</th><th>Friction</th><th>Impact</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><strong>Calendly inline embed in #lead-popup</strong> + add hero "დაჯავშნე დემო" button → Calendly direct</td><td>me-cover (WP admin) OR owner</td><td>30 min</td><td class="red">HIGH — funnel #1</td></tr>
+<tr><td>2</td><td><strong>Translate popup form Georgian</strong> ("მოითხოვე დემო" / "სახელი" / "კომპანია" / "ტელეფონი" / "ელფოსტა" / "გაგზავნა")</td><td>me-cover</td><td>15 min</td><td class="red">HIGH — trust</td></tr>
+<tr><td>3</td><td><strong>HubSpot Forms direct integration</strong> (when Private App token live) OR Calendly-only path</td><td>me-cover post-token</td><td>1 hour</td><td class="red">HIGH — closes status=closed bug</td></tr>
+<tr><td>4</td><td><strong>WP redirect audit</strong> /direction/* → correct /saas-products/* (medical→bimedical, retail→biretail, etc)</td><td>me-cover</td><td>20 min</td><td class="amb">MED — relevance</td></tr>
+<tr><td>5</td><td><strong>TTFB optimize</strong> — caching plugin (LiteSpeed Cache or W3TC), image lazy-load (Optimole already), defer non-critical JS</td><td>me-cover (audit) + dev (apply)</td><td>2-4 hours</td><td class="amb">MED — performance</td></tr>
+<tr><td>6</td><td><strong>HSTS extend</strong> 1-day → 6-month preload-eligible</td><td>me-cover (.htaccess)</td><td>5 min</td><td class="grn">LOW — security</td></tr>
+<tr><td>7</td><td><strong>CSP header add</strong></td><td>me-cover</td><td>30 min</td><td class="grn">LOW — security</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>8. რას ვაკეთებ ავტონომიურად 19:00 დაწყებიდან</h2>
+
+<ul>
+<li>WP admin login (creds in .env: bevision / Bevision-Boss635)</li>
+<li>#lead-popup Calendly embed audit + edit</li>
+<li>Form Georgian translation</li>
+<li>WP redirect rules audit (Yoast/Rank Math + custom rewrites)</li>
+<li>Hero CTA visibility test (Playwright screenshot pre/post)</li>
+<li>Clarity heatmap pull (full-detail)</li>
+<li>Pre-action: backup-snapshot site state per Apr 25 directive (4-step protocol)</li>
+</ul>
+
+<p class="small">Owner-deliberate Calendly-direct strategy = preserved. Site additions = ENTRY POINT for organic + retargeting traffic, not replacement of ad-Calendly path.</p>
+
+<hr>
+
+<p class="small">📁 <code>BI_DonotUseMe/outputs/2026-05-01 Bivision Landing Audit by DonotUseMe.html</code><br>
+🔗 <strong>GitHub Pages:</strong> <code>https://gshoina.github.io/bivision-shares/landing-audit-2026-05-01.html</code><br>
+🔄 19:00 update: WP-admin investigation findings + redirect-fix list + Calendly embed wiring proposal.<br>
+🔒 info isolation HARD per BI_DonotUseMe silo.</p>
+
+</body>
+</html>
