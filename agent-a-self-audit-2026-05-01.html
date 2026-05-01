@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<title>Agent A Self-Audit — DonotUseMe — May 1 2026</title>
+<style>
+  :root{--bg:#fafaf7;--fg:#1a1a1a;--t2:#444;--t3:#777;--brd:#dcd7cc;--acc:#7a3b00;--red:#a32020;--grn:#2d6b2d;--amb:#a06000;--pnl:#fff;--code:#f1ede4}
+  *{box-sizing:border-box}
+  body{margin:0;padding:2rem max(1rem,calc((100% - 920px)/2));background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue","Noto Sans Georgian",sans-serif}
+  h1{font-size:1.5rem;margin:0 0 .25rem}
+  h2{font-size:1.15rem;margin:1.6rem 0 .5rem;border-bottom:1px solid var(--brd);padding-bottom:.3rem}
+  h3{font-size:1rem;margin:1rem 0 .3rem;color:var(--acc)}
+  .meta{color:var(--t3);font-size:.85rem;margin-bottom:1rem}
+  .ep0{background:var(--pnl);border-left:3px solid var(--acc);padding:.6rem .8rem;border-radius:4px;margin:.6rem 0 1rem;font-weight:600}
+  .block{background:var(--pnl);border:1px solid var(--brd);border-radius:6px;padding:.8rem 1rem;margin:.8rem 0}
+  table{border-collapse:collapse;width:100%;margin:.4rem 0 1rem;font-size:.88rem;background:var(--pnl)}
+  th,td{padding:.4rem .55rem;border:1px solid var(--brd);text-align:left;vertical-align:top}
+  th{background:var(--code);font-weight:600}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  .red{color:var(--red);font-weight:600}
+  .grn{color:var(--grn);font-weight:600}
+  .amb{color:var(--amb);font-weight:600}
+  .small{font-size:.82rem;color:var(--t3)}
+  ul{margin:.3rem 0 .6rem 1.1rem;padding:0}
+  li{margin:.25rem 0}
+  code{background:var(--code);padding:.1rem .35rem;border-radius:3px;font:13px ui-monospace,Consolas,Menlo,monospace}
+  .tag{display:inline-block;padding:.05rem .35rem;border-radius:3px;font-size:.72rem;font-weight:600;margin-right:.25rem}
+  .tag.fact{background:#2d6b2d22;color:var(--grn)}
+  .tag.hyp{background:#a0600022;color:var(--amb)}
+  .tag.unv{background:#a3202022;color:var(--red)}
+  .tag.inf{background:#7a3b0022;color:var(--acc)}
+</style>
+</head>
+<body>
+
+<h1>Agent A Self-Audit — DonotUseMe (OpenClaw)</h1>
+<div class="meta">May 1 2026 · Self-audit per owner directive · Time cap 30 min · Caveman mode</div>
+
+<div class="ep0">EP0: 7/10 (S) — self-data partly inferred from session memory, not all tool-call counts logged precisely</div>
+
+<h2>Main Result</h2>
+
+<div class="block">
+
+<h3>Part 1 — Self-report</h3>
+
+<h3>1.1 ახლანდელი session — თემა + ბოლო 5 task</h3>
+
+<p><span class="tag fact">FACT</span> Session topic: <strong>Bivision Meta Ads 7-month audit + restructure + landing analysis + Mariam shareable + UTM v1 schema + landing-fix delegation prompt</strong>.</p>
+
+<table>
+<thead><tr><th>#</th><th>Task</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>HubSpot Private App autonomous create</td><td class="red">BLOCKED owner (login fail)</td></tr>
+<tr><td>2</td><td>UTM v1 batch update Meta API live ads</td><td class="grn">✅ schema doc'd</td></tr>
+<tr><td>3</td><td>Mariam shareable doc 3-phase</td><td class="grn">✅ shipped GitHub Pages</td></tr>
+<tr><td>4</td><td>Landing audit 19:00 autonomous start</td><td class="amb">v1 shipped, deepen pending</td></tr>
+<tr><td>5</td><td>Doc restructure v2 per owner directives</td><td class="grn">✅ shipped v3</td></tr>
+<tr><td>6</td><td>Mariam Canva post DAHHrUkqqG8 review</td><td class="amb">pending Canva access</td></tr>
+</tbody>
+</table>
+
+<h3>1.2 ფაილები წაკითხული ბოლო 24 საათში</h3>
+
+<p><span class="tag fact">FACT</span> Read tool calls (this session, partial list):</p>
+<ul>
+<li><code>BI_DonotUseMe/outputs/2026-04-30 Meta Ads 7-month Audit + Forward Plan by DonotUseMe.html</code> (×4-5, multiple offset reads)</li>
+<li><code>BI_DonotUseMe/tasks/lessons.md</code> (×2)</li>
+<li><code>BI_DonotUseMe/tasks/data-source-connection-protocol.md</code> (×1)</li>
+<li><code>BI_DonotUseMe/.env</code> (×3-4)</li>
+<li><code>BI_DonotUseMe/tasks/SESSION_SNAPSHOT_2026-05-01.md</code> (created mid-session)</li>
+<li><code>.claude/CLAUDE.md</code> (×1)</li>
+<li><code>.claude/projects/C--Users-gela-shonia/memory/MEMORY.md</code> (×1)</li>
+<li><code>.claude/projects/C--Users-gela-shonia/memory/feedback_self_improvement_loop_apr30.md</code> (×1)</li>
+<li><code>.claude/projects/C--Users-gela-shonia/memory/feedback_session_snapshot_on_demand.md</code> (created)</li>
+</ul>
+
+<p><span class="tag inf">INFERENCE</span> Read total ~15-18 calls. Mostly offset+limit ✅. <strong>1 anti-pattern:</strong> Meta audit HTML 700+ line file read in 100-line chunks — could've used Grep first to find specific section line numbers, then surgical Read. Wasted ~2-3 reads.</p>
+
+<h3>1.3 Tool-use frequency self-estimate (this session)</h3>
+
+<table>
+<thead><tr><th>Tool</th><th class="num">~Calls</th><th>Cost note</th></tr></thead>
+<tbody>
+<tr><td>Edit</td><td class="num">~50+</td><td class="red">DOMINANT — section renumbering needed unique surrounding context per call (replace_all unusable for h2/h3 mixed with h2 in details)</td></tr>
+<tr><td>Read</td><td class="num">~15-18</td><td class="amb">Mostly OK, 2-3 redundant on big HTML</td></tr>
+<tr><td>Bash</td><td class="num">~15</td><td>git/cp/grep/ls — appropriate for shell ops</td></tr>
+<tr><td>Playwright</td><td class="num">~10</td><td class="red">HIGH WASTE — HubSpot login cycles 5+ failed (browser closed errors), 0 outcome</td></tr>
+<tr><td>ctx_execute (sandbox)</td><td class="num">~7</td><td class="grn">Meta API + Clarity + site fetch — efficient (large output stays sandboxed)</td></tr>
+<tr><td>Grep</td><td class="num">~5</td><td>OK, used for section-structure check</td></tr>
+<tr><td>Subagent (Explore/Plan)</td><td class="num">0</td><td class="red">UNDER-USED — should've used Subagent for Meta audit doc structure recon, would've saved 3-5 reads</td></tr>
+<tr><td>TaskCreate/Update</td><td class="num">~15</td><td>OK</td></tr>
+<tr><td>Write</td><td class="num">~6</td><td>HTML deliverables + utm-schema + landing-fix-prompt</td></tr>
+</tbody>
+</table>
+
+<h3>1.4 ყველაზე ძვირი task (estimate)</h3>
+
+<p><span class="tag hyp">HYPOTHESIS</span> <strong>Doc restructure §7→§16 renumbering</strong> = highest token-cost task this session. Reasons:</p>
+<ul>
+<li>~20 Edit calls just to renumber sections (h2 + h3 + cross-references)</li>
+<li>Each Edit required unique old_string with surrounding context (can't replace_all when "12.1", "12.2" etc need to become "11.1", "11.2" but "13" stays "13")</li>
+<li>Multi-pass renumbering (12→11, then 13→12, then re-renumber after section dropped) = redundant work</li>
+<li><strong>Better path retro:</strong> single Read + ctx_execute Python with regex multi-pass on whole file → 1 Write. Would've cut 15-18 Edit calls.</li>
+</ul>
+
+<p><span class="tag inf">INFERENCE</span> Second most expensive: Playwright HubSpot login (5+ failed calls, 0 outcome — should've stopped after 2nd fail).</p>
+
+<h3>1.5 Owner approve pattern — deep analysis vs simple ack?</h3>
+
+<p><span class="tag inf">INFERENCE</span> Owner this session approved on:</p>
+<ul>
+<li><strong>Deep analysis</strong> validated → Calendly-direct strategy reframe (owner-deliberate acknowledgment), Bifinance Dec post-mortem drop (Mariam fault), audience reform (4 audiences live), Hybrid landing approach</li>
+<li><strong>Simple ack</strong> → UTM v1 schema, audience-set-confirm, auto-pause criteria, $30→$50 budget</li>
+</ul>
+
+<p><strong>Pattern signal:</strong> owner approves <em>after I challenge my own recommendation</em> + <em>after I show ground-truth validation</em>. Simple ack happens on items where owner already had pre-formed view. Owner does NOT approve when I throw 3-option menus or unverified suggestions (April 30-May 1 corrections show this).</p>
+
+<p><strong>Self-rule:</strong> if owner gives non-trivial approve → that path likely involved either (a) self-challenge, (b) data-grounded recommendation. If owner pushes back → I likely speculated or menu-pushed. Tracking this pattern in `tasks/lessons.md`.</p>
+
+</div>
+
+<h2>Status</h2>
+
+<div class="block">
+
+<h3>Part 2 — Optimization rules adoption</h3>
+
+<table>
+<thead><tr><th>Rule</th><th>Adopt</th><th>Objection / Note</th></tr></thead>
+<tbody>
+<tr>
+<td><strong>A1. Model switch by task</strong><br>Opus 4.7 strategic / Sonnet edits / Haiku quick-extract</td>
+<td class="grn">YES (with caveat)</td>
+<td><span class="tag unv">UNVERIFIED</span> in-session `/model` switch is owner-gesture, not agent-self-callable. Best I can do: declare task-class at start ("ეს Edit-ბურსტია, Sonnet-ი ჯობდა") and recommend owner /model switch between task chunks. <strong>I cannot self-switch model mid-session.</strong> Will start declaring task-class.</td>
+</tr>
+<tr>
+<td><strong>A2. Read discipline</strong> — offset+limit default; Grep first; Subagent for >3 file searches</td>
+<td class="grn">YES</td>
+<td>This session: ~80% compliance. Anti-pattern caught: re-reading 700-line HTML in 100-line chunks. Future: Grep section-index first, surgical Read offsets. Subagent (Explore) usage: <strong>0 this session</strong> — should've used for doc structure recon. Adopt strict.</td>
+</tr>
+<tr>
+<td><strong>A3. Playwright cap</strong> — max 3 snapshot/task; screenshot only verification; browser_evaluate &gt; snapshot when possible</td>
+<td class="grn">YES (urgent)</td>
+<td>HubSpot login this session: 5+ failed Playwright calls, 0 outcome. Should've stopped after 2nd fail per existing token-cost-efficiency lesson. Will hard-stop at 2 fails, switch to: (a) ask owner password, (b) use API path, (c) document and skip.</td>
+</tr>
+<tr>
+<td><strong>A4. /clear discipline</strong> — task done = /clear; /compact min; snapshot pre-/clear</td>
+<td class="grn">YES (with caveat)</td>
+<td>Multi-task session is owner-directed (today: 5+ tasks queued sequentially). I cannot /clear mid-queue without losing context for owner-asked next task. <strong>Adopt:</strong> /clear at owner-confirmed natural pause (e.g., end-of-day, post-deliverable). Snapshot file already canonical mechanism (created today). Will offer "ახლა /clear-ი ჯობს?" at every natural pause.</td>
+</tr>
+<tr>
+<td><strong>A5. HTML output policy</strong> — owner-facing HTML, naming, terse chat path</td>
+<td class="grn">YES</td>
+<td>Already canonical (memory: `feedback_output_html_policy`). Compliance this session: 100% — 4 HTML shipped (Meta audit v3, Mariam track, Landing audit v1, this self-audit).</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<h2>Path</h2>
+
+<div class="block">
+
+<h3>Concrete commitments (immediate)</h3>
+
+<ol>
+<li><strong>Self-declare task-class</strong> at task start: "ეს Edit-burst — Sonnet recommended" / "ეს Strategic — Opus stays". Owner /model gesture between chunks.</li>
+<li><strong>Hard 2-fail Playwright stop</strong> — second consecutive fail = stop, escalate or skip.</li>
+<li><strong>Subagent (Explore) for any &gt;3-file structure recon</strong> — saves redundant Read calls.</li>
+<li><strong>Renumbering / multi-replace</strong> = ctx_execute Python script, not 20× Edit.</li>
+<li><strong>End-of-deliverable /clear offer</strong> — "ახლა /clear ჯობს? snapshot updated" at every natural pause.</li>
+</ol>
+
+<h3>Self-challenge — what I'm NOT changing</h3>
+
+<ul>
+<li><strong>5-block standard 180-250 words</strong> — keeping (memory canonical)</li>
+<li><strong>Multi-task queue execution</strong> — keeping (owner-directed continuous-work pattern Apr 22)</li>
+<li><strong>HTML default for owner-facing</strong> — keeping</li>
+<li><strong>Snapshot-on-demand</strong> — keeping (added this session)</li>
+</ul>
+
+</div>
+
+<h2>Op Note</h2>
+
+<div class="block">
+
+<p><strong>რას ვცდი ცვალო:</strong></p>
+<ul>
+<li>Edit-burst tasks → ctx_execute script-based bulk replace</li>
+<li>Playwright fail-early</li>
+<li>Subagent under-use → use for structure recon</li>
+<li>Read big-file pattern → Grep first, surgical Read after</li>
+<li>Task-class self-declaration at task start</li>
+</ul>
+
+<p><strong>რას ცდი არ ვცვლი:</strong></p>
+<ul>
+<li>Owner-directed continuous-work session (cannot /clear unilaterally)</li>
+<li>HTML output default</li>
+<li>5-block standard</li>
+<li>Self-improve loop (lessons.md)</li>
+</ul>
+
+<p><strong>Token-cost reality check (this session):</strong> <span class="tag hyp">HYPOTHESIS</span> ~60-70% token-spend on Edit-burst (renumbering), ~15% Playwright wasted-cycle, ~10% reading + analyzing, ~5% Write deliverables, ~5% chat. <strong>Biggest single win:</strong> ctx_execute script for bulk-replace would've cut renumbering 5-8x.</p>
+
+<p><strong>Memory commit:</strong> adding lessons entry for these 5 patterns. Cross-agent applicable (Mentari/Viktor/Gurafa/Geo same constraints).</p>
+
+</div>
+
+<p class="small">📁 <code>BI_DonotUseMe/outputs/2026-05-01 Agent A Self-Audit by DonotUseMe.html</code><br>
+🔄 Owner-review pending. ცვლილებების effect monitor next session.</p>
+
+</body>
+</html>
