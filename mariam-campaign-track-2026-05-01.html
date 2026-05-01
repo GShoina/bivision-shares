@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<title>Mariam Campaign Track — May 1 2026</title>
+<style>
+  :root {
+    --bg:#fafaf7; --fg:#1a1a1a; --t2:#444; --t3:#777; --brd:#dcd7cc;
+    --acc:#7a3b00; --red:#a32020; --grn:#2d6b2d; --amb:#a06000;
+    --pnl:#fff; --code:#f1ede4;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:2rem max(1rem,calc((100% - 1000px)/2));background:var(--bg);color:var(--fg);
+       font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue","Noto Sans Georgian",sans-serif}
+  h1{font-size:1.6rem;margin:0 0 .25rem;letter-spacing:-.01em}
+  h2{font-size:1.2rem;margin:2rem 0 .6rem;border-bottom:1px solid var(--brd);padding-bottom:.3rem}
+  h3{font-size:1rem;margin:1.2rem 0 .4rem;color:var(--acc)}
+  .meta{color:var(--t3);font-size:.85rem;margin-bottom:1.2rem}
+  .phase{background:var(--pnl);border:1px solid var(--brd);border-radius:6px;padding:1rem 1.2rem;margin:1rem 0}
+  .phase.ph1{border-left:4px solid var(--acc)}
+  .phase.ph2{border-left:4px solid var(--amb)}
+  .phase.ph3{border-left:4px solid var(--grn)}
+  .placeholder{background:#fff8e6;border:1px dashed var(--amb);padding:.6rem .8rem;border-radius:4px;color:var(--amb);font-style:italic;margin:.4rem 0}
+  table{border-collapse:collapse;width:100%;margin:.5rem 0 1rem;font-size:.9rem;background:var(--pnl)}
+  th,td{padding:.45rem .6rem;border:1px solid var(--brd);text-align:left;vertical-align:top}
+  th{background:var(--code);font-weight:600;color:var(--t2)}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .red{color:var(--red);font-weight:600}
+  .grn{color:var(--grn);font-weight:600}
+  .amb{color:var(--amb);font-weight:600}
+  .small{font-size:.82rem;color:var(--t3)}
+  ul{margin:.3rem 0 .8rem 1.1rem;padding:0}
+  li{margin:.3rem 0}
+  hr{border:none;border-top:1px solid var(--brd);margin:1.5rem 0}
+  code{background:var(--code);padding:.1rem .35rem;border-radius:3px;font:13px ui-monospace,Consolas,Menlo,monospace}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.5rem;margin:.5rem 0}
+  .card{background:var(--pnl);border:1px solid var(--brd);border-radius:5px;padding:.6rem .8rem}
+  .card .lbl{font-size:.78rem;color:var(--t3);text-transform:uppercase;letter-spacing:.04em}
+  .card .val{font-size:1.2rem;font-weight:700;margin-top:.2rem}
+  .pill{display:inline-block;padding:.15rem .5rem;border-radius:10px;font-size:.78rem;font-weight:600}
+  .pill.live{background:var(--grn);color:white}
+  .pill.pend{background:var(--amb);color:white}
+  .pill.fact{background:var(--code);color:var(--t2)}
+</style>
+</head>
+<body>
+
+<h1>Mariam Campaign Track — May 1-7 Sprint</h1>
+<div class="meta">May 1 2026 · OpenClaw (DonotUseMe) · Bivision · Mariam-creative + AI-evaluation + audience-pick + result-prediction → live tracking</div>
+
+<div class="phase ph1">
+<strong>📋 ეს დოკუმენტი 3 ფაზიანია:</strong>
+<ul>
+<li>(a) <strong>Final approved copy v1</strong> — Mariam-მა შექმნა, AI-მ შეაფასა, owner-მა approve-ი მისცა</li>
+<li>(b) <strong>Predicted results</strong> — gateway baseline + winner-pattern target (CTR/CPC/lead)</li>
+<li>(c) <strong>Post-launch fact tracking</strong> — Meta API daily pull, prediction vs reality</li>
+</ul>
+<p class="small">URL ფიქსირებული, content live — ფაქტებს ავტომატურად ვამატებ ამ-ფ-ი-ლ-ი-ს. Mariam-ი სამივე ფაზას ერთ ადგილას ხედავს.</p>
+</div>
+
+<hr>
+
+<h2>Phase A — Final approved copy v1 <span class="pill pend">PENDING owner-approve</span></h2>
+
+<div class="phase ph1">
+
+<h3>A.1 Campaign metadata</h3>
+<table>
+<tbody>
+<tr><th>Product</th><td><span class="placeholder">[BiFinance / BiRetail / BiMedical / etc — Mariam-ი ირჩევს]</span></td></tr>
+<tr><th>Objective</th><td>Traffic (recommended) — page click → site-landing OR Calendly-direct</td></tr>
+<tr><th>Launch period</th><td>2026-05 (May 1-7)</td></tr>
+<tr><th>Budget</th><td>$30 split 3-way × creative variant → 3-day baseline → $50 winner extension</td></tr>
+<tr><th>Duration</th><td>3 day baseline + 7 day extended (top winner)</td></tr>
+</tbody>
+</table>
+
+<h3>A.2 Audience set (4 combos available, owner-confirmed Apr 30)</h3>
+<table>
+<thead><tr><th>Audience</th><th>Type</th><th>Reach</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td><strong>Bivision_HubSpot_Customers_86</strong></td><td>Custom (real customer seed)</td><td>~86 hashed emails</td><td class="grn">✅ live</td></tr>
+<tr><td><strong>Bivision_LAL_1pct_GE_HubSpotSeed</strong></td><td>Lookalike 1% GE</td><td>~30K</td><td class="grn">✅ live</td></tr>
+<tr><td><strong>Bivision_Pixel_Visitors_90d</strong></td><td>Custom (website)</td><td>variable</td><td class="grn">✅ live</td></tr>
+<tr><td><strong>Bivision_LAL_1pct_GE_PixelSeed</strong></td><td>Lookalike 1% GE</td><td>~30K</td><td class="grn">✅ live</td></tr>
+</tbody>
+</table>
+<p class="small"><strong>Audience pick logic:</strong> Phase A — HubSpot-LAL primary (real-customer seed = strongest), Pixel-LAL secondary. Existing customers (86) excluded from acquisition campaigns (already-customer).</p>
+
+<h3>A.3 Creative copy v1 <span class="pill pend">Mariam-pending</span></h3>
+
+<div class="placeholder">
+<strong>📝 Mariam-ი იკეთებს:</strong> primary text (Georgian, hook-first 3 წამში), CTA, headline. Format: 9:16 Reel OR Feed video. Vertical-pain framework (Section 16 in Meta audit).
+</div>
+
+<h4>Pre-eval checklist (AI-validation gate):</h4>
+<table>
+<thead><tr><th>Test</th><th>Pass criteria</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>3-second hook</td><td>scroll-stop trigger ცხადი</td><td><span class="pill pend">pending</span></td></tr>
+<tr><td>Value-prop clarity</td><td>5 წამში ცხადი ვინ რას იღებს</td><td><span class="pill pend">pending</span></td></tr>
+<tr><td>Single CTA</td><td>ერთი action (book demo / call)</td><td><span class="pill pend">pending</span></td></tr>
+<tr><td>ICP-fit</td><td>5-7M₾ Georgian SMB CFO რეზონანსი</td><td><span class="pill pend">pending</span></td></tr>
+<tr><td>Mobile vertical 9:16</td><td>Reel format compatible</td><td><span class="pill pend">pending</span></td></tr>
+<tr><td>Vertical match</td><td>fits one of 6 Bi-products</td><td><span class="pill pend">pending</span></td></tr>
+</tbody>
+</table>
+
+<h3>A.4 UTM tagging (auto-applied)</h3>
+<p class="small">Per <code>BI_DonotUseMe/tasks/utm-v1-schema.md</code> — Meta runtime template:</p>
+<code>?utm_source=facebook&utm_medium=paid_social&utm_campaign={{campaign.name}}&utm_content={{ad.name}}&utm_term={{adset.name}}</code>
+
+<h3>A.5 Landing destination (hybrid per owner-strategy)</h3>
+<ul>
+<li><strong>Variant A (8/10 ad weight):</strong> <code>calendly.com/bivision/courtest-meeting</code> — high-intent filter, owner-deliberate strategy</li>
+<li><strong>Variant B (1-2 ad weight):</strong> <code>bivision.ge/landing-X</code> — site retargeting fuel + Pixel ICP signal</li>
+</ul>
+
+</div>
+
+<hr>
+
+<h2>Phase B — Predicted results <span class="pill fact">baseline-derived</span></h2>
+
+<div class="phase ph2">
+
+<h3>B.1 7-month baseline (Meta Ads aggregate)</h3>
+
+<div class="grid">
+<div class="card"><div class="lbl">Avg CTR</div><div class="val">0.94%</div></div>
+<div class="card"><div class="lbl">Avg CPC</div><div class="val">$0.07</div></div>
+<div class="card"><div class="lbl">Click → Lead</div><div class="val red">0.08%</div></div>
+<div class="card"><div class="lbl">Lead/$ spend</div><div class="val red">1 / $84</div></div>
+</div>
+
+<h3>B.2 Winner pattern (3 best campaigns)</h3>
+
+<table>
+<thead><tr><th>Campaign</th><th class="num">CTR</th><th class="num">CPC</th><th>Lessons</th></tr></thead>
+<tbody>
+<tr><td>"New Traffic Campaign"</td><td class="num grn">4.88%</td><td class="num grn">$0.03</td><td>5x average CTR — replicate target</td></tr>
+<tr><td>"eng cam dev"</td><td class="num grn">3.42%</td><td class="num">$0.12</td><td>dev/IT pain B2B fit</td></tr>
+<tr><td>"tr camp energ"</td><td class="num grn">2.10%</td><td class="num grn">$0.05</td><td>energy vertical pain</td></tr>
+</tbody>
+</table>
+
+<h3>B.3 Predicted targets (Mariam launch May 1-7)</h3>
+
+<table>
+<thead><tr><th>Metric</th><th class="num">Conservative (60% conf)</th><th class="num">Target (40% conf)</th><th class="num">Stretch (20% conf)</th></tr></thead>
+<tbody>
+<tr><td>CTR</td><td class="num">1.5%</td><td class="num grn">2.5%</td><td class="num grn">4%</td></tr>
+<tr><td>CPC</td><td class="num">$0.08</td><td class="num">$0.05</td><td class="num grn">$0.03</td></tr>
+<tr><td>Click → Site session (UTM-attribution)</td><td class="num">60%</td><td class="num">75%</td><td class="num">85%</td></tr>
+<tr><td>Click → Calendly book (Variant A)</td><td class="num">0.5%</td><td class="num">1.5%</td><td class="num grn">3%</td></tr>
+<tr><td>Total leads (3-day, $30 spend)</td><td class="num">2</td><td class="num grn">5</td><td class="num grn">10</td></tr>
+<tr><td>Total leads (7-day, $50 spend)</td><td class="num">5</td><td class="num grn">12</td><td class="num grn">25</td></tr>
+</tbody>
+</table>
+
+<h3>B.4 Kill criteria (auto-pause)</h3>
+<ul>
+<li>1-day CTR &lt; 0.3% with ≥ 1K impression → PAUSE</li>
+<li>3-day 0 lead with $15 spend → PAUSE</li>
+<li>CPC &gt; $0.20 (3x baseline) → PAUSE</li>
+</ul>
+<p class="small">Per Section 13 of Meta Ads audit — cross-channel rule.</p>
+
+<h3>B.5 Hypothesis being tested</h3>
+<p><strong>H1:</strong> ICP-fit audience (HubSpot-LAL) + B2B creative + Calendly-direct = 3-5x conversion vs Apr baseline.<br>
+<strong>H2:</strong> Site-bound 1-2 variant (UTM-tagged) generates Pixel retargeting pool 3x faster than current.<br>
+<strong>H3:</strong> Mariam vertical-specific creative outperforms general Bivision-corporate creative by 2x CTR.</p>
+
+</div>
+
+<hr>
+
+<h2>Phase C — Post-launch fact tracking <span class="pill pend">PENDING launch</span></h2>
+
+<div class="phase ph3">
+
+<h3>C.1 Daily pull (auto, Meta API)</h3>
+
+<div class="placeholder">
+🔄 <strong>Auto-update mechanism:</strong> daily 10:00 AM Meta API pull → this section auto-refreshes. Currently waiting for campaign launch.
+</div>
+
+<table>
+<thead><tr><th>Date</th><th class="num">Spend</th><th class="num">Impressions</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">CPC</th><th class="num">Leads</th><th class="num">Cost/Lead</th></tr></thead>
+<tbody>
+<tr><td colspan="8" class="placeholder">Awaiting launch...</td></tr>
+</tbody>
+</table>
+
+<h3>C.2 Variant A vs B comparison (hybrid strategy validation)</h3>
+
+<table>
+<thead><tr><th>Variant</th><th>Destination</th><th class="num">Clicks</th><th class="num">CPA</th><th class="num">Leads</th></tr></thead>
+<tbody>
+<tr><td>A (8/10 weight)</td><td>Calendly direct</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+<tr><td>B (1-2 weight)</td><td>Site landing</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+</tbody>
+</table>
+
+<h3>C.3 Prediction vs reality</h3>
+
+<table>
+<thead><tr><th>Metric</th><th class="num">Predicted (target)</th><th class="num">Actual (3-day)</th><th class="num">Actual (7-day)</th><th>Delta</th></tr></thead>
+<tbody>
+<tr><td>CTR</td><td class="num">2.5%</td><td class="num">—</td><td class="num">—</td><td>—</td></tr>
+<tr><td>CPC</td><td class="num">$0.05</td><td class="num">—</td><td class="num">—</td><td>—</td></tr>
+<tr><td>Leads (3-day)</td><td class="num">5</td><td class="num">—</td><td class="num">—</td><td>—</td></tr>
+<tr><td>Leads (7-day)</td><td class="num">12</td><td class="num">—</td><td class="num">—</td><td>—</td></tr>
+<tr><td>Cost/Lead</td><td class="num">$4</td><td class="num">—</td><td class="num">—</td><td>—</td></tr>
+</tbody>
+</table>
+
+<h3>C.4 Lessons captured</h3>
+<div class="placeholder">
+🧠 Post-launch reflection: which hypothesis confirmed/rejected? winner-pattern replicate working? next-iteration guidance for Mariam?
+</div>
+
+</div>
+
+<hr>
+
+<h2>Quick links</h2>
+<ul>
+<li>📊 <strong>Meta Ads 7-month audit:</strong> <code>https://gshoina.github.io/bivision-shares/meta-ads-audit-2026-04-30.html</code></li>
+<li>📜 <strong>UTM v1 schema:</strong> <code>BI_DonotUseMe/tasks/utm-v1-schema.md</code></li>
+<li>📝 <strong>Lessons file:</strong> <code>BI_DonotUseMe/tasks/lessons.md</code></li>
+<li>🔒 <strong>Snapshot:</strong> <code>BI_DonotUseMe/tasks/SESSION_SNAPSHOT_2026-05-01.md</code></li>
+</ul>
+
+<p class="small">📁 <code>BI_DonotUseMe/outputs/2026-05-01 Mariam Campaign Track by DonotUseMe.html</code><br>
+🔗 <strong>Mariam URL:</strong> <code>https://gshoina.github.io/bivision-shares/mariam-campaign-track-2026-05-01.html</code><br>
+🔄 Live document — Phase C populates daily on launch.</p>
+
+</body>
+</html>
