@@ -71,6 +71,64 @@
 
 <p class="small">Click → Landing view = 22%. Landing → Lead = <strong class="red">0.36%</strong>. Click → Lead overall = <strong class="red">0.08%</strong>. ყოველ 1,250-ე click-ზე 1 lead.</p>
 
+<hr>
+
+<h2>1.5 Next Marketing activities led by AI <span class="small">(May 1 2026)</span></h2>
+
+<div class="tldr">
+<strong>Challenge → Solution:</strong> არსებული audience-config "Real estate" interest seed-ით საიტზე B2B-traffic-ს არ მოიცავს. → AI-built audience set (Pixel-LAL + HubSpot-customer-LAL) ICP-fit, immediate use ad-set-ებში.
+</div>
+
+<h3>1.5.1 Built audiences (live, May 1)</h3>
+
+<table>
+<thead><tr><th>Audience name</th><th>ID</th><th>Type</th><th>Seed / Source</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td><strong>Bivision_Pixel_Visitors_90d</strong></td><td><code>120245324427490598</code></td><td>Custom (website)</td><td>bivision.ge pixel, last 90 days</td><td class="grn">✅ live</td></tr>
+<tr><td><strong>Bivision_LAL_1pct_GE_PixelSeed</strong></td><td><code>120245324443150598</code></td><td>Lookalike 1% GE</td><td>Pixel_Visitors_90d seed</td><td class="grn">✅ live</td></tr>
+<tr><td><strong>Bivision_HubSpot_Customers_86</strong></td><td><code>120245324863670598</code></td><td>Custom (hashed email)</td><td>HubSpot CRM 86 contacts SHA256, 0 invalid</td><td class="grn">✅ live</td></tr>
+<tr><td><strong>Bivision_LAL_1pct_GE_HubSpotSeed</strong></td><td><code>120245324868600598</code></td><td>Lookalike 1% GE</td><td>HubSpot customer seed</td><td class="grn">✅ live</td></tr>
+</tbody>
+</table>
+
+<p class="small">Lookalike audience-ები ~24h Meta processing pre-delivery-ready. Custom audience-ები populate within hours.</p>
+
+<h3>1.5.2 Cleanup actions (May 1)</h3>
+<ul>
+<li>✅ "Arttime / ართთაიმი" Custom Audience (119,500 reach, foreign brand) — DELETED</li>
+<li>🟡 7 existing Saved Audiences (review pending) — "Bivision-CEO არ გამოიყენო შემცირების გარეშე!" (1.6M reach) flagged-old, owner-review</li>
+</ul>
+
+<h3>1.5.3 Inline targeting spec for new ad sets <span class="small">(per Section 13)</span></h3>
+
+<details class="step-tab" open>
+<summary><strong>Recommended ad-set targeting (B2B-fit)</strong></summary>
+<table>
+<thead><tr><th>Field</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Geo</td><td>Tbilisi + Batumi + Kutaisi (drop "GE all")</td></tr>
+<tr><td>Age</td><td>30-55</td></tr>
+<tr><td>Gender</td><td>All</td></tr>
+<tr><td>Custom Audience (priority 1)</td><td>Bivision_LAL_1pct_GE_HubSpotSeed</td></tr>
+<tr><td>Custom Audience (priority 2)</td><td>Bivision_LAL_1pct_GE_PixelSeed</td></tr>
+<tr><td>Interests INCLUDE</td><td>Senior management, Business intelligence, Data analysis, ERP, Power BI, Small business owners</td></tr>
+<tr><td>Interests EXCLUDE</td><td>Real estate, Construction, Real estate development/investing</td></tr>
+<tr><td>Detailed targeting expansion</td><td><strong>OFF</strong> (prevents Meta auto-creep into off-ICP)</td></tr>
+<tr><td>Placement</td><td>Manual: Feed + Stories (drop Reels overlay)</td></tr>
+</tbody>
+</table>
+</details>
+
+<h3>1.5.4 Forward plan</h3>
+<ol>
+<li>Mariam-creative review → AI evaluation → audience-pick (Pixel-LAL OR HubSpot-LAL) → 1-2 day test</li>
+<li>Auto-pause rule active (Section 14): CTR &lt; 0.3% / 0 conv $5+ / CPC 3× → PAUSE</li>
+<li>Parallel: Funnel collapse landing-page deep dive (Section 6)</li>
+<li>UTM tagging strategy MANDATORY pre-launch (Section 18.6.1)</li>
+</ol>
+
+<hr>
+
 <h2>2. თვიური დინამიკა</h2>
 
 <table>
