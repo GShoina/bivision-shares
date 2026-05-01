@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<title>Meta Ads — 7-თვიანი აუდიტი + წინა-ნაბიჯები — Apr 30 2026</title>
+<style>
+  :root {
+    --bg:#fafaf7; --fg:#1a1a1a; --t2:#444; --t3:#777; --brd:#dcd7cc;
+    --acc:#7a3b00; --red:#a32020; --grn:#2d6b2d; --amb:#a06000;
+    --pnl:#fff; --code:#f1ede4;
+    --redbg:#a3202012; --grnbg:#2d6b2d12; --ambbg:#a0600012;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:2rem max(1rem,calc((100% - 1000px)/2));background:var(--bg);color:var(--fg);
+       font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue","Noto Sans Georgian",sans-serif}
+  h1{font-size:1.6rem;margin:0 0 .25rem;letter-spacing:-.01em}
+  h2{font-size:1.2rem;margin:2.2rem 0 .6rem;border-bottom:1px solid var(--brd);padding-bottom:.3rem}
+  h3{font-size:1rem;margin:1.4rem 0 .4rem;color:var(--acc)}
+  .meta{color:var(--t3);font-size:.85rem;margin-bottom:1.2rem}
+  .tldr{background:var(--pnl);border-left:3px solid var(--acc);padding:.9rem 1rem;border-radius:4px;margin:1rem 0 1.5rem}
+  table{border-collapse:collapse;width:100%;margin:.5rem 0 1rem;font-size:.9rem;background:var(--pnl)}
+  th,td{padding:.45rem .6rem;border:1px solid var(--brd);text-align:left;vertical-align:top}
+  th{background:var(--code);font-weight:600;color:var(--t2)}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .red{color:var(--red);font-weight:600}
+  .grn{color:var(--grn);font-weight:600}
+  .amb{color:var(--amb);font-weight:600}
+  .small{font-size:.82rem;color:var(--t3)}
+  ul{margin:.3rem 0 .8rem 1.1rem;padding:0}
+  li{margin:.3rem 0}
+  hr{border:none;border-top:1px solid var(--brd);margin:1.6rem 0}
+  .panel{background:var(--pnl);border:1px solid var(--brd);border-radius:6px;padding:.8rem 1rem;margin:.6rem 0}
+  .impact-card{background:var(--pnl);border-left:4px solid var(--red);padding:.8rem 1rem;margin:.8rem 0;border-radius:4px}
+  .impact-card.amb{border-left-color:var(--amb)}
+  .impact-card.grn{border-left-color:var(--grn)}
+  .impact-num{font-size:1.6rem;font-weight:700;color:var(--acc);margin-right:.4rem}
+  code{background:var(--code);padding:.1rem .35rem;border-radius:3px;font:13px ui-monospace,Consolas,Menlo,monospace}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.6rem;margin:.6rem 0}
+  .card{background:var(--pnl);border:1px solid var(--brd);border-radius:5px;padding:.7rem .9rem}
+  .card .lbl{font-size:.78rem;color:var(--t3);text-transform:uppercase;letter-spacing:.04em}
+  .card .val{font-size:1.3rem;font-weight:700;margin-top:.2rem}
+  .card .val.red{color:var(--red)}
+  .card .val.grn{color:var(--grn)}
+  .card .val.amb{color:var(--amb)}
+  .quote{font-size:.85rem;color:var(--t3);border-left:2px solid var(--brd);padding-left:.8rem;margin:.4rem 0}
+  .step-tab{margin:.5rem 0}
+  .step-tab summary{cursor:pointer;padding:.4rem;background:var(--code);border-radius:3px}
+</style>
+</head>
+<body>
+
+<h1>Meta Ads — 7-თვიანი აუდიტი + წინა-ნაბიჯები</h1>
+<div class="meta">Apr 30 2026 · OpenClaw (DonotUseMe) · Bivision · პერიოდი 2025-10-01 → 2026-04-30 · წყარო Meta Marketing API</div>
+
+<div class="tldr">
+<strong>მოკლედ.</strong> 7 თვის მანძილზე $418.21 დახარჯე, 668 ათასი impression-ი მიიღე, 6,265 click გაჩნდა — და მხოლოდ <strong>5 lead</strong>. პრობლემა არ არის reklamis ფასი (CPC $0.07 = იაფი). პრობლემა არის ის რომ click-ის შემდეგ landing page-ზე ფანელი იშლება. Ad scale-ი ფანელის შეკეთებამდე = ფული ქარს მიჰყვება. ორი waste-campaign უკვე autopause-ით გამოვართვით (decision Apr 30). მომდევნო 30 დღის გეგმა: ჯერ ფანელი (Demo CTA + HubSpot bug), შემდეგ scale.
+</div>
+
+<h2>1. რა გვეუბნება მონაცემი (FACT)</h2>
+
+<div class="grid">
+  <div class="card"><div class="lbl">Spend (7 თვე)</div><div class="val">$418.21</div></div>
+  <div class="card"><div class="lbl">Impressions</div><div class="val">668,381</div></div>
+  <div class="card"><div class="lbl">Reach (unique)</div><div class="val">394,808</div></div>
+  <div class="card"><div class="lbl">Clicks</div><div class="val">6,265</div></div>
+  <div class="card"><div class="lbl">CTR</div><div class="val grn">0.94%</div></div>
+  <div class="card"><div class="lbl">CPC</div><div class="val grn">$0.07</div></div>
+  <div class="card"><div class="lbl">Landing views</div><div class="val amb">1,389</div></div>
+  <div class="card"><div class="lbl">Leads</div><div class="val red">5</div></div>
+</div>
+
+<p class="small">Click → Landing view = 22%. Landing → Lead = <strong class="red">0.36%</strong>. Click → Lead overall = <strong class="red">0.08%</strong>. ყოველ 1,250-ე click-ზე 1 lead.</p>
+
+<h2>2. თვიური დინამიკა</h2>
+
+<table>
+<thead><tr><th>თვე</th><th class="num">Spend</th><th class="num">Impressions</th><th class="num">Clicks</th><th class="num">CTR</th><th>კომენტარი</th></tr></thead>
+<tbody>
+<tr><td>2025-10</td><td class="num">$27.94</td><td class="num">40,369</td><td class="num">370</td><td class="num">0.92%</td><td>warm-up</td></tr>
+<tr><td>2025-11</td><td class="num">$75.37</td><td class="num">110,301</td><td class="num">1,209</td><td class="num">1.10%</td><td>scale</td></tr>
+<tr><td>2025-12</td><td class="num">$213.27</td><td class="num">343,177</td><td class="num">3,010</td><td class="num">0.88%</td><td><strong>peak</strong> — Bifinance ძირითადი</td></tr>
+<tr><td>2026-01</td><td class="num red">$0.00</td><td class="num red">0</td><td class="num red">0</td><td class="num">—</td><td><strong class="red">gap month</strong> — არცერთი campaign აქტიური</td></tr>
+<tr><td>2026-02</td><td class="num">$14.94</td><td class="num">69,421</td><td class="num">66</td><td class="num red">0.10%</td><td>"awar. dev. fin" — broken</td></tr>
+<tr><td>2026-03</td><td class="num">$29.92</td><td class="num">55,957</td><td class="num">209</td><td class="num red">0.37%</td><td>"partnership Balance" + სხვ.</td></tr>
+<tr><td>2026-04</td><td class="num">$56.77</td><td class="num">49,156</td><td class="num">1,401</td><td class="num grn">2.85%</td><td><strong class="grn">recovery</strong> — "tr camp energ" + "fin x dev" + "calendly"</td></tr>
+</tbody>
+</table>
+
+<h3>3 შენიშვნა გასაგებად:</h3>
+<ul>
+  <li><strong>იანვარი 0$ = მენეჯმენტ-ფლაგი.</strong> ყოველი თვის spend-ის გრაფიკი ცარიელი თვის გარეშე გვექნება — ეს ისეთი თვეა როდესაც ფიზიკურად არ ვმუშაობდით ადს-ზე.</li>
+  <li><strong>დეკემბერში peak ($213) მოულოდნელი ფაქტია</strong> — ეს ერთი თვე მთლიანი 7-თვის 51% spend-ია. რა motiv-ით? ვინ გადაწყვიტა scale? owner-perception-ში "$60/mo" იყო, აქ კი $213 მოვიდა.</li>
+  <li><strong>აპრილი = recovery</strong>. CTR 2.85% (3x საშუალო). თუ ეს ფორმულა გრძელდება და landing fix მზად იქნება, scale candidate.</li>
+</ul>
+
+<hr>
+
+<h2>3. Campaign-per-campaign breakdown</h2>
+
+<table>
+<thead><tr><th>Campaign</th><th class="num">Spend</th><th class="num">Imp</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">CPC</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Bifinance_New Engagement</td><td class="num">$193.39</td><td class="num">327,883</td><td class="num">2,712</td><td class="num">0.83%</td><td class="num">$0.07</td><td class="amb">PAUSED (Dec)</td></tr>
+<tr><td>New Traffic Campaign ტესტ</td><td class="num">$44.45</td><td class="num">75,205</td><td class="num">680</td><td class="num">0.90%</td><td class="num">$0.07</td><td class="amb">PAUSED</td></tr>
+<tr><td>1 Traffic Campaign</td><td class="num">$30.00</td><td class="num">43,942</td><td class="num">393</td><td class="num">0.89%</td><td class="num">$0.08</td><td class="amb">PAUSED</td></tr>
+<tr><td>Bifinance Traffic</td><td class="num">$28.81</td><td class="num">31,459</td><td class="num">504</td><td class="num grn">1.60%</td><td class="num">$0.06</td><td class="amb">PAUSED</td></tr>
+<tr><td><strong class="grn">tr camp energ</strong></td><td class="num">$24.98</td><td class="num">23,527</td><td class="num">494</td><td class="num grn">2.10%</td><td class="num">$0.05</td><td class="grn">ACTIVE</td></tr>
+<tr><td>Landing Page</td><td class="num">$19.88</td><td class="num">15,294</td><td class="num">298</td><td class="num grn">1.95%</td><td class="num">$0.07</td><td class="amb">PAUSED</td></tr>
+<tr><td><strong class="grn">fin x dev</strong></td><td class="num">$19.80</td><td class="num">18,466</td><td class="num">351</td><td class="num grn">1.90%</td><td class="num">$0.06</td><td class="grn">ACTIVE</td></tr>
+<tr><td><strong class="grn">New Traffic Campaign</strong></td><td class="num">$17.03</td><td class="num">12,414</td><td class="num">606</td><td class="num grn">4.88%</td><td class="num">$0.03</td><td class="grn">ACTIVE</td></tr>
+<tr><td><strong class="red">awar. dev. fin</strong></td><td class="num">$14.94</td><td class="num">69,421</td><td class="num">66</td><td class="num red">0.10%</td><td class="num red">$0.23</td><td class="red">PAUSED today (Apr 30)</td></tr>
+<tr><td>eng cam dev</td><td class="num">$14.92</td><td class="num">3,770</td><td class="num">129</td><td class="num grn">3.42%</td><td class="num">$0.12</td><td class="grn">ACTIVE</td></tr>
+<tr><td><strong class="red">partnership Balance</strong></td><td class="num">$9.96</td><td class="num">46,936</td><td class="num">30</td><td class="num red">0.06%</td><td class="num red">$0.33</td><td class="red">PAUSED today (Apr 30)</td></tr>
+<tr><td>calendly</td><td class="num">$0.05</td><td class="num">64</td><td class="num">2</td><td class="num">3.13%</td><td class="num">$0.03</td><td class="grn">ACTIVE</td></tr>
+</tbody>
+</table>
+
+<h3>გამარჯვებული ფორმულა (replicate candidate):</h3>
+<ul>
+  <li><strong class="grn">"New Traffic Campaign"</strong> — CTR 4.88% (5x საშუალო), CPC $0.03 (იაფი). მცირე spend $17. <em>რატომ მუშაობს?</em> — ICP-ფიტი ან creative angle. ეს campaign უნდა გავუჭიროთ რა აუდიტორიას, რა creative, რა CTA, ცვლადებად დავყოთ.</li>
+  <li><strong class="grn">"eng cam dev"</strong> — CTR 3.42%, dev/development სიმძიმის თემა. B2B-ი ფიტი ეტყობა.</li>
+  <li><strong class="grn">"tr camp energ"</strong> — CTR 2.10%, ენერგეტიკა vertical. პრო-pain pattern.</li>
+</ul>
+
+<h3>დამარცხებული (waste pattern):</h3>
+<ul>
+  <li><strong class="red">"awar. dev. fin"</strong> — CTR 0.10%, CPC $0.23 (3x average), 69K impression-ი 66 click-ით. Awareness campaign-ი არ მუშაობს ICP-ზე.</li>
+  <li><strong class="red">"partnership Balance"</strong> — CTR 0.06%, 47K impression-ი 30 click-ით. Brand-partnership creative-ი resonate არ ხდება.</li>
+</ul>
+
+<hr>
+
+<h2>4. ვინ ხედავს ამ რეკლამას? (Audience reality)</h2>
+
+<table>
+<thead><tr><th>Audience cut</th><th class="num">Spend</th><th class="num">Impressions</th><th class="num">Clicks</th><th class="num">CTR</th><th>ICP-fit</th></tr></thead>
+<tbody>
+<tr><td><strong>65+ female</strong></td><td class="num">$77.76</td><td class="num">113,302</td><td class="num">1,240</td><td class="num">1.09%</td><td class="red">❌ off-ICP</td></tr>
+<tr><td>25-34 male</td><td class="num">$45.47</td><td class="num">66,641</td><td class="num">701</td><td class="num">1.05%</td><td class="grn">✅ partial</td></tr>
+<tr><td>25-34 female</td><td class="num">$43.93</td><td class="num">65,858</td><td class="num">594</td><td class="num">0.90%</td><td class="grn">✅ partial</td></tr>
+<tr><td>55-64 female</td><td class="num">$40.31</td><td class="num">68,474</td><td class="num">688</td><td class="num">1.00%</td><td class="amb">⚠️ borderline (decision-maker?)</td></tr>
+<tr><td>65+ male</td><td class="num">$33.91</td><td class="num">50,443</td><td class="num">588</td><td class="num">1.17%</td><td class="red">❌ off-ICP</td></tr>
+<tr><td>35-44 male</td><td class="num">$32.22</td><td class="num">48,631</td><td class="num">535</td><td class="num">1.10%</td><td class="grn">✅ ICP-core</td></tr>
+<tr><td>35-44 female</td><td class="num">$28.81</td><td class="num">47,664</td><td class="num">347</td><td class="num">0.73%</td><td class="grn">✅ ICP-core</td></tr>
+<tr><td>55-64 male</td><td class="num">$28.16</td><td class="num">47,072</td><td class="num">440</td><td class="num">0.93%</td><td class="amb">⚠️ borderline</td></tr>
+<tr><td>45-54 male</td><td class="num">$23.53</td><td class="num">40,702</td><td class="num">316</td><td class="num">0.78%</td><td class="grn">✅ ICP-core</td></tr>
+<tr><td>45-54 female</td><td class="num">$22.56</td><td class="num">42,533</td><td class="num">318</td><td class="num">0.75%</td><td class="grn">✅ ICP-core</td></tr>
+</tbody>
+</table>
+
+<p><strong class="red">Top spend = 65+ female ($77.76).</strong> ეს 4-7 მილიონ ლარიანი კომპანიის CFO/IT-Director-ი არ არის. ან Meta-ს auto-targeting-ი უძველეს აუდიტორიას ცხოვრების სტადიის-მიხედვით სრულდება, ან ICP-არასოდეს დაკონფიგურდა. <strong>ICP-core (25-54 male/female) = $200 spend (48%)</strong>, დანარჩენი 52% off-target ან border.</p>
+
+<hr>
+
+<h2>5. სად ჩანს რეკლამა? (Placement reality)</h2>
+
+<table>
+<thead><tr><th>Placement</th><th class="num">Spend</th><th class="num">% of total</th><th class="num">Impressions</th><th class="num">CTR</th><th>კომენტარი</th></tr></thead>
+<tbody>
+<tr><td><strong class="red">facebook reels_overlay</strong></td><td class="num">$251.98</td><td class="num">60%</td><td class="num">440,753</td><td class="num">0.77%</td><td class="red">low-intent surface; auto-placement</td></tr>
+<tr><td><strong class="grn">facebook feed</strong></td><td class="num">$69.20</td><td class="num">17%</td><td class="num">69,244</td><td class="num grn">2.62%</td><td class="grn">best CTR — scale candidate</td></tr>
+<tr><td>facebook reels</td><td class="num">$28.30</td><td class="num">7%</td><td class="num">38,420</td><td class="num">0.94%</td><td>OK</td></tr>
+<tr><td>instagram reels</td><td class="num">$21.64</td><td class="num">5%</td><td class="num">65,767</td><td class="num red">0.19%</td><td class="red">low CTR</td></tr>
+<tr><td>instagram stories</td><td class="num">$8.57</td><td class="num">2%</td><td class="num">12,026</td><td class="num">0.82%</td><td>mid</td></tr>
+<tr><td>facebook stories</td><td class="num">$10.68</td><td class="num">3%</td><td class="num">7,752</td><td class="num">1.24%</td><td>OK</td></tr>
+<tr><td>facebook instream_video</td><td class="num">$12.49</td><td class="num">3%</td><td class="num">12,832</td><td class="num">1.47%</td><td>OK</td></tr>
+<tr><td>facebook notification</td><td class="num">$6.49</td><td class="num">2%</td><td class="num">1,731</td><td class="num grn">4.45%</td><td class="grn">small-volume gem</td></tr>
+</tbody>
+</table>
+
+<p><strong class="red">Reels overlay-ი 60% spend-ი — ეს განსაცვიფრებელი misalignment-ია.</strong> Reels overlay = სხვა creator-ის Reel-ის ქვემოთ გამოსული პატარა sponsored card. ვინც ჩვენს რეკლამას ხედავს, მას ჩვენთან არაფერი აქვს, ის Reel-ის შინაარსს უყურებს. ეს არის "auto-placement"-ის default. Manual placement-ით ფიდი + Stories იქნებოდა მთავარი — ფიდს CTR 2.62% გვაქვს, რეელს overlay-ს 0.77%.</p>
+
+<hr>
+
+<h2>6. რა გვეუბნება ცარიელი ფანელი (#1 ბოტ-ლენკი)</h2>
+
+<div class="impact-card">
+<div><span class="impact-num">1</span><strong class="red">Funnel collapse on landing page (HIGH)</strong></div>
+<p>6,265 click → 1,389 landing view (22% — normal) → <strong>5 lead</strong> (0.36% — catastrophic). ad მუშაობს, საიტი არ აკონვერტირებს.</p>
+<p><strong>გამომწვევი:</strong></p>
+<ul>
+<li>Demo CTA → არ მიდის booking page-ზე (Mariam-dashboard ფლაგი — "CTA → nowhere")</li>
+<li>HubSpot status="closed" auto bug — lead form-ის შევსებული ფორმები wp-admin-ში იკარგება</li>
+<li>Landing-page copy — visit-ი ხდება, action არა</li>
+</ul>
+<p><strong>Impact 30 დღეში:</strong> ეხლა 0.36% landing → lead. Conservative fix → 2-3%. ეს იგივე spend-ით 25-40 lead-ი თვეში — vs მიმდინარე ~1.</p>
+</div>
+
+<div class="impact-card">
+<div><span class="impact-num">2</span><strong class="red">Audience misalignment 65+ + auto-target (HIGH)</strong></div>
+<p>$112 (27%) დახარჯული 65+ აუდიტორიაზე — Bivision ICP არ არის. Meta Advantage+ ან broad-targeting-ი თავად დაიჭირა. Decision-maker B2B = 30-55. 65+ female #1 spend = ალგორითმი ვერც-რომ-ვერ გვჭრის.</p>
+<p><strong>Impact:</strong> reallocate $112 → ICP-core (25-54). თუ CTR 1% შენარჩუნდება, იგივე spend-ით 1.5x click-pool, ყველა მათგანი შესაძლო lead.</p>
+</div>
+
+<div class="impact-card">
+<div><span class="impact-num">3</span><strong class="red">Reels overlay placement waste (HIGH)</strong></div>
+<p>$252 (60%) Reels overlay surface-ზე — auto-placement default. CTR 0.77% vs Feed 2.62%. სამიდან-ერთი click-ის ფასი ფიდთან შედარებით.</p>
+<p><strong>Impact:</strong> manual placement Feed + Stories-ით reallocate $252 → CTR 2.62% baseline → ~3.4x click-volume იგივე spend-ით.</p>
+</div>
+
+<div class="impact-card amb">
+<div><span class="impact-num">4</span><strong class="amb">Bifinance campaign domination $193 = 46% (MED)</strong></div>
+<p>1 campaign-ი 7-თვის ნახევარი spend-ი. CTR 0.83% — საშუალო. რა outcome გამოვიდა? lead-ები? იცი ვერავინ. Campaign-მა creative-დანაც უფრო ცუდი ვერსია გამოიგდო (saqartvelo-სპეციფიკური creative არ ჩანს).</p>
+<p><strong>Impact:</strong> Bifinance vertical post-mortem — სცენარი/creative/audience რომელი ცვლადი მუშაობდა.</p>
+</div>
+
+<div class="impact-card grn">
+<div><span class="impact-num">5</span><strong class="grn">Winner pattern არსებობს (LOW რისკი, HIGH უპირა)</strong></div>
+<p>3 campaign CTR > 2% (eng cam dev 3.42%, New Traffic 4.88%, tr camp energ 2.10%, fin x dev 1.90%, Landing Page 1.95%). ეს pattern-ი თუ replicate ყველა ვერტიკალზე, baseline CTR 1% → 2.5%, click-volume 2.5x.</p>
+<p><strong>Impact:</strong> winner-ის aggregating analysis (audience overlap, creative pattern, CTA copy) → playbook → 4 ახალ campaign-ში replicate.</p>
+</div>
+
+<hr>
+
+<h2>7. Mentari/Mariam material რატომ ვერ ჯდება ციფრებში (challenger)</h2>
+
+<p class="quote">Mariam Apr 23 brief: "Marketing(salary): 3,189₾/თვე ... Ad spend 69₾/თვე." → ad spend 69₾/mo დაშვებულია, რეალური Apr-მონაცემი = $56.77 ≈ <strong>156₾/თვე</strong> ანუ 2.3x ნათქვამი. Apr-ში recovery წარმოიქმნა, owner-ისთვის invisible-ად.</p>
+
+<p class="quote">Mariam brief: "Reel #1 — 23 თებერვლის ფორმულით ... 26K reach, 40 like" → ეს organic reach-ია (LinkedIn). Paid ad-ის reach 7 თვეში 395K = ღირს, მაგრამ <strong>5 lead</strong>. Brief-ში ad-ROI ფიქსაცია არცერთი ციფრით.</p>
+
+<p class="quote">Mentari dashboard verdict Apr 9: "0 qualified leads from digital." → <strong>ეს ნახევრად სწორი ანალიზია</strong>. Click-level traffic გვაქვს, lead-funnel იშლება. Mentari-ს "marketing არ-არსებობს" verdict-ი ad-acquisition-ს ბრალს სდებს, რეალური ბრალი = lead-pipeline + landing.</p>
+
+<p class="quote">Mariam Reel-pattern recommendation Mentari-სგან: "Reel #1 23 თებერვლის ფორმულით". → Paid ad-ის CTR-ის მონაცემები აჩვენებს, რომ Reel placement (paid) CTR 0.94% არის. Organic Reel მუშაობს, paid Reel ფანი-ფურცელი. Brief-ში ეს განცალკევება არ ჩანს.</p>
+
+<p><strong>Challenger შეჯამება:</strong> Mentari/Mariam content-ი organic + perception-based. Paid ad-ის ციფრი პირდაპირ API-დან ვერავინ აიღო. ანალიზში ფანელის collapsing-ი (landing → lead) არ არის highlighted. ეს მონაცემი მოგვცემს უფრო ზუსტ priority-ს ვიდრე "post cadence გავზარდოთ".</p>
+
+<hr>
+
+<h2>8. წინა-30-დღე გეგმა (priority sorted by impact)</h2>
+
+<h3>კვირა 1 (May 1-7) — Foundation fix, ad-spend freeze</h3>
+<table>
+<thead><tr><th>Action</th><th>Owner</th><th>Cost</th><th>Impact</th></tr></thead>
+<tbody>
+<tr><td>1. <strong>Demo CTA destination ფიქსი</strong> — landing page-ზე "Calendly" ან booking form პირდაპირ</td><td>tech (TBD) + me</td><td>0₾</td><td class="red">HIGH — funnel #1</td></tr>
+<tr><td>2. <strong>HubSpot status="closed" bug fix</strong> — lead form WP → HubSpot manual import gap</td><td>tech (TBD)</td><td>0₾</td><td class="red">HIGH — leak #1</td></tr>
+<tr><td>3. <strong>Ad-spend freeze</strong> — Bifinance + recovery campaigns paused while landing-fix</td><td>me</td><td>spend save ~$15</td><td class="amb">MED — preserve budget</td></tr>
+<tr><td>4. Landing page copy + speed audit</td><td>me</td><td>0₾</td><td class="amb">MED</td></tr>
+<tr><td>5. UTM tagging strategy → ad-source attribution</td><td>me</td><td>0₾</td><td class="amb">MED — measurement</td></tr>
+</tbody>
+</table>
+
+<h3>კვირა 2 (May 8-14) — Test relaunch</h3>
+<table>
+<thead><tr><th>Action</th><th>Owner</th><th>Cost</th><th>Impact</th></tr></thead>
+<tbody>
+<tr><td>6. <strong>Manual placement ad-set</strong> — Feed + Stories მხოლოდ, drop Reels overlay</td><td>me</td><td>0₾</td><td class="grn">HIGH — placement reallocation</td></tr>
+<tr><td>7. <strong>ICP audience build</strong> — 25-54 male/female, B2B job titles (CFO/CEO/IT-Director), Georgian SMB pages</td><td>me</td><td>0₾</td><td class="grn">HIGH — audience reallocation</td></tr>
+<tr><td>8. Winner-pattern campaign replicate — "New Traffic Campaign" formula × 2 vertical</td><td>me</td><td>$30 test</td><td class="grn">HIGH — proof scale</td></tr>
+<tr><td>9. Daily auto-pause check (Apr 30 rule) — CTR &lt; 0.3% / 0 conv $5+ / CPC 3x = pause</td><td>me</td><td>—</td><td class="grn">HIGH — waste prevention</td></tr>
+</tbody>
+</table>
+
+<h3>კვირა 3-4 (May 15-31) — Scale provenance + measure</h3>
+<table>
+<thead><tr><th>Action</th><th>Owner</th><th>Cost</th><th>Impact</th></tr></thead>
+<tbody>
+<tr><td>10. Pre/post landing-fix audit — funnel rate ცვლილება</td><td>me</td><td>0₾</td><td class="grn">HIGH — proof</td></tr>
+<tr><td>11. Top-performer scale — winner CTR > 2% campaign budget × 2</td><td>me + owner approve</td><td>$100-200</td><td class="grn">HIGH — ROI scale</td></tr>
+<tr><td>12. LinkedIn Waalaxy parallel — outbound channel test</td><td>Mariam + me</td><td>86₾</td><td class="amb">MED — channel diversification</td></tr>
+<tr><td>13. Email campaign launch — owner directive Apr 30</td><td>Mariam + me</td><td>0-50₾</td><td class="amb">MED</td></tr>
+<tr><td>14. Cold-call list (Mariam) — 57 trade-fair contact reactivation</td><td>Mariam</td><td>0₾</td><td class="amb">MED</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>9. გადასაწყვეტი (owner input)</h2>
+
+<ol>
+<li><strong>Landing-fix ownership</strong> — tech-ი ვინ წაიყვანს? Demo CTA + HubSpot bug. (me-cover ვარიანტი ხელმისაწვდომი)</li>
+<li><strong>Spend freeze approve</strong> — ad-pause 1 კვირა landing-fix-ის სანამ?</li>
+<li><strong>ICP audience definition</strong> — 25-54 + Georgian SMB-ი ფიტი? B2B job-title list მინდა dictate.</li>
+<li><strong>Bifinance post-mortem</strong> — ვინ აწარმოებდა creative-ს? რა კალენდარი იყო?</li>
+<li><strong>დეკემბრის $213 spend</strong> — ვინ გადაწყვიტა scale? რას ემოყვა?</li>
+<li><strong>Winner replicate budget</strong> — May $30 test → $100-200 scale, OK?</li>
+</ol>
+
+<hr>
+
+<h2>10. რას ვაკეთებ ავტონომიურად (no-ask)</h2>
+
+<ul>
+<li>✅ Apr 30 — paused 2 waste campaign ("awar. dev. fin", "partnership Balance")</li>
+<li>კვირაში 1× ანგარიშის insights pull → trend-update</li>
+<li>1-day no-result rule autopause cross-campaign</li>
+<li>Landing-fix script-დრაფტი (HubSpot status="closed" automation + Calendly link wp_form-ში)</li>
+<li>UTM tagging proposal owner-review</li>
+<li>Manual placement campaign-template</li>
+<li>ICP audience build draft (Meta interests + custom audience seed-list)</li>
+<li>Winner-pattern playbook documentation</li>
+</ul>
+
+<hr>
+
+<hr>
+
+<h2>11. ICP-misalignment root cause — Real estate seed</h2>
+
+<p><strong>Apr 30 ფინდინგი (API-დან active adset 14 პირდაპირ პულდა):</strong></p>
+
+<table>
+<thead><tr><th>Active Ad Set Name</th><th>Geo</th><th>Age</th><th>Interest seed</th></tr></thead>
+<tbody>
+<tr><td>"New Traffic Ad Set" × 5</td><td>Georgia</td><td>20-65</td><td class="red">Real estate</td></tr>
+<tr><td>"look like da georgia" (Lookalike)</td><td>Georgia</td><td>20-65</td><td class="red">Real estate</td></tr>
+<tr><td>"look like da batumi" (Lookalike)</td><td>Georgia</td><td>20-65</td><td class="red">Real estate</td></tr>
+<tr><td>"aud: fin & dev"</td><td>Georgia</td><td>20-65</td><td class="red">Real estate</td></tr>
+<tr><td>"New Awareness Ad Set"</td><td>Georgia</td><td>18-65</td><td>Real estate development, Construction, Real estate investing</td></tr>
+<tr><td>"New Traffic Ad Set" (Bifinance Engagement)</td><td>Georgia</td><td>18-65</td><td class="grn">Business analytics + Small business owners + Retail page admins</td></tr>
+<tr><td>"New Engagement Ad Set"</td><td>Georgia</td><td>18-65</td><td class="grn">Business analytics + Small business owners</td></tr>
+<tr><td>"New Traffic with recommended" (Tbilisi-only)</td><td>Tbilisi</td><td>18-65</td><td class="grn">Senior management, Business intelligence, Data analysis, Big data, BI, Management, Software</td></tr>
+</tbody>
+</table>
+
+<p><strong class="red">Root cause:</strong> 9 active adset-დან 7 "Real estate" interest seed-ით ხდება targeted. ეს ხსნის: (1) Batumi-ი ავტომატურად ფიდში მოდის (Lookalike "look like da batumi" — Real-estate-buyer audience-ი ბათუმში დიდია), (2) 65+ female peak (real-estate-investor demographic skew), (3) low CTR + 0 lead (real-estate-buyer-ი არა Bivision ICP).</p>
+
+<p><strong class="grn">საინტერესო:</strong> Bifinance + Awareness campaign-ები (3 adset) უკვე B2B-targeted ("Senior management", "Business analytics", "Data analysis", "Small business owners") — ეს correct seed-ი. ამას უნდა გაფართოვება.</p>
+
+<hr>
+
+<h2>12. Landing-fix detailed spec (no questions, alternatives)</h2>
+
+<h3>Task 12.1 — Demo CTA destination</h3>
+<p><strong>გასაკეთებელი (3 ალტერნატივა, recommended დაიჭერი):</strong></p>
+
+<details class="step-tab" open>
+<summary><strong>A. Calendly link (recommended) — 1 საათი</strong></summary>
+<ul>
+<li>Calendly-ში "Demo Bivision" 30-min event create (free tier OK)</li>
+<li>WP form-ში "გაიგე მეტი" / "მოითხოვე დემო" CTA-ის href → Calendly link</li>
+<li>Calendly-ის redirect post-booking → /thank-you ან HubSpot ფორმის successful submission page</li>
+<li>HubSpot-Calendly native integration: lead auto-creates HubSpot contact + deal</li>
+<li>Cost: 0₾ Calendly free, 1 საათი setup</li>
+</ul>
+</details>
+
+<details class="step-tab">
+<summary>B. HubSpot Meeting Scheduler — 2 საათი</summary>
+<ul>
+<li>HubSpot CRM Free → Meetings → Create personal link</li>
+<li>WP CTA → HubSpot meeting URL</li>
+<li>Native HubSpot booking + auto-deal creation</li>
+<li>Cost: 0₾ (HubSpot Free), 2 საათი setup + form connect</li>
+</ul>
+</details>
+
+<details class="step-tab">
+<summary>C. Custom WP form + email-CTA — 4 საათი</summary>
+<ul>
+<li>WP custom form expand: name + email + phone + company + need</li>
+<li>Submit → email to info@bivision.ge + auto-confirmation to lead</li>
+<li>Manual booking follow-up</li>
+<li>Cost: 0₾ tool, 4 საათი dev + tradeoff: manual workload</li>
+</ul>
+</details>
+
+<p><strong>recommended A (Calendly).</strong> ვაკეთებ Phase 1: Calendly account create + form link draft + WP edit instructions. Owner ეჭვი → B switch ერთი პასუხი.</p>
+
+<h3>Task 12.2 — HubSpot status="closed" auto-bug</h3>
+<p><strong>დიაგნოზი (need scope-ი ინგა / დათო-გაბოს კომპეტენცია გადაკვეთთ):</strong></p>
+
+<ul>
+<li>WP form submit → ცდილობს HubSpot-ში lead-ი submit-ოს</li>
+<li>API connection ან webhook ფლანგვის გამო deal stage = "closed lost" auto-set</li>
+<li>Lead form-ი მიდის wp-admin-ში მიდის (per Mentari Apr 9 finding) — HubSpot-ში არა</li>
+</ul>
+
+<p><strong>გასაკეთებელი (4-step audit):</strong></p>
+<ol>
+<li>WP plugin "HubSpot Forms" version check (current vs latest) — outdated plugin = top cause</li>
+<li>HubSpot API key/Private App token valid? .env-ში HUBSPOT_API_KEY blank — generate-ი ხდება</li>
+<li>Form submission log inspect — Last 10 submission stage history</li>
+<li>Workflow audit — "Created" → "Closed lost" trigger-ი ყველაზე პოპულარული HubSpot Workflow misconfiguration</li>
+</ol>
+
+<p><strong>me-cover ვარიანტი:</strong> ჩემი ჩასაბანებელი — HubSpot API token-ი მოგვცეს და wp-admin access (WP_APP_PASSWORD .env-ში), workflow audit-ი + bug-fix 2-3 საათში.</p>
+
+<hr>
+
+<h2>13. Audience reform spec — B2B-fit replacement</h2>
+
+<h3>13.1 — გასათიშე ინტერესები (immediate):</h3>
+<ul>
+<li class="red">Real estate</li>
+<li class="red">Real estate development</li>
+<li class="red">Real estate investing</li>
+<li class="red">Construction</li>
+<li class="red">"look like da batumi" Lookalike — real-estate-seed</li>
+<li class="red">"look like da georgia" Lookalike — real-estate-seed</li>
+</ul>
+
+<h3>13.2 — შესაცვლელი interests (B2B replacement, recommended):</h3>
+<table>
+<thead><tr><th>Interest</th><th>რატომ</th><th>Audience size GE</th></tr></thead>
+<tbody>
+<tr><td>Senior management</td><td>CFO/CEO/Director-ი</td><td>medium</td></tr>
+<tr><td>Business intelligence</td><td>BI software-ი ICP-core</td><td>small (good)</td></tr>
+<tr><td>Data analysis / Data analytics</td><td>analyst-ი, data-team head</td><td>medium</td></tr>
+<tr><td>Business analysis</td><td>biz-process</td><td>medium</td></tr>
+<tr><td>Enterprise resource planning (ERP)</td><td>Bivision integrate-ის core</td><td>small (sharp)</td></tr>
+<tr><td>Small business owners (behavior)</td><td>1-7M₾ ICP-decision-maker</td><td>medium</td></tr>
+<tr><td>Retail page admins (behavior)</td><td>e-commerce / retail SMB</td><td>medium</td></tr>
+<tr><td>Microsoft Power BI</td><td>BI-tool-აქტიური company</td><td>small (sharp)</td></tr>
+<tr><td>SAP / Oracle / NetSuite</td><td>ERP-აქტიური enterprise</td><td>small</td></tr>
+<tr><td>Tableau / Qlik / Looker</td><td>BI-aware decision-maker</td><td>small (sharp)</td></tr>
+</tbody>
+</table>
+
+<h3>13.3 — Custom Audiences (Lookalike seed, recommended):</h3>
+<ol>
+<li><strong>Existing customer list upload</strong> — HubSpot CRM-ში ბივიჟენის 86-row customer-list email-ით → Meta-ში custom audience → Lookalike 1-3% Georgia. ეს არის ყველაზე ძლიერი audience seed (real customer pattern).</li>
+<li><strong>Website visitors (last 90d)</strong> — Pixel-ი მუშაობს (Bivision-Ads's Pixel ID 24993373220352719). Visitor-list audience → Lookalike.</li>
+<li><strong>Engaged Page-fans</strong> — 755 follower-ი. Engaged subset (90d-ში like/comment) → audience.</li>
+<li><strong>Video viewers</strong> — 23 თებ Reel-ი 26K reach. Reel-watchers (75%+ video view) audience.</li>
+</ol>
+
+<h3>13.4 — Geo + age refinement:</h3>
+<ul>
+<li>Geo: Tbilisi + Batumi (business density) + Kutaisi (mfg/retail SMB). Drop "GE all" → 60% spend wasted on rural decision-maker-ი.</li>
+<li>Age: <strong>30-55</strong> (decision-maker B2B). 18-29 = junior staff. 65+ = retired. 55-65 = decision-maker subset OK.</li>
+<li>Gender: ალბათ ფლექს, არა lock — owner-pick post-baseline.</li>
+</ul>
+
+<h3>13.5 — Vertical-targeted ad sets (per Bi-suite SKU):</h3>
+<table>
+<thead><tr><th>Vertical</th><th>Interest stack</th><th>Geo</th></tr></thead>
+<tbody>
+<tr><td>BiFinance</td><td>Senior mgmt + Finance + ERP + Power BI/Qlik + CFO interests</td><td>Tbilisi + Batumi</td></tr>
+<tr><td>BiRetail</td><td>Retail SMB + Small business owners + e-commerce + POS</td><td>Tbilisi + Kutaisi + Batumi</td></tr>
+<tr><td>BiMedical</td><td>Healthcare admin + Hospital management + Senior mgmt</td><td>Tbilisi</td></tr>
+<tr><td>BiDistribution</td><td>Logistics + Supply chain + Wholesale + ERP</td><td>Tbilisi + ports</td></tr>
+<tr><td>BiAudit</td><td>Audit + Compliance + Senior mgmt + Big-4 alumni</td><td>Tbilisi</td></tr>
+<tr><td>BiPriceMonitoring</td><td>Retail + Pricing + Competitive intel + Trade marketing</td><td>Tbilisi + Batumi</td></tr>
+</tbody>
+</table>
+
+<p><strong>Why this works:</strong> 6 sharp adset × 3-5 interests each = 18-30 targeting combinations. CTR pattern შემიდგენე 2-week test-ში: ხანდახან 1 vertical × 1 interest × 1 creative wins, dominate. Auto-pause kills loser early.</p>
+
+<hr>
+
+<h2>14. Auto-pause precise criteria</h2>
+
+<p>Apr 30 owner-grant ფიქსაცია, ზუსტი threshold-ებით:</p>
+
+<table>
+<thead><tr><th>Trigger</th><th>Action</th><th>Reason</th></tr></thead>
+<tbody>
+<tr><td>CTR &lt; 0.3% &amp; impressions ≥ 1,000</td><td class="red">PAUSE</td><td>creative-audience mismatch confirmed</td></tr>
+<tr><td>0 conversion &amp; spend ≥ $5.00</td><td class="red">PAUSE</td><td>funnel-level reject signal</td></tr>
+<tr><td>CPC ≥ $0.30 (3x average $0.10)</td><td class="red">PAUSE</td><td>auction over-paying, audience too cold</td></tr>
+<tr><td>Frequency &gt; 4.0 with no conv lift</td><td class="amb">REVIEW</td><td>ad fatigue — refresh creative</td></tr>
+<tr><td>Spend rate 200% of daily budget unexpected</td><td class="red">PAUSE + flag</td><td>billing anomaly, owner notify</td></tr>
+<tr><td>impressions 0 for 24h on ACTIVE</td><td class="amb">REVIEW</td><td>delivery issue / disapproval</td></tr>
+</tbody>
+</table>
+
+<p><strong>Override:</strong> owner-flag ("ეს campaign 3 დღე ცადე") = honor. Default = above rules.</p>
+
+<p><strong>Reporting:</strong> daily 10:00 chat report (auto-paused list + reason + spend saved + recommendation next).</p>
+
+<hr>
+
+<h2>15. Bifinance + December post-mortem (data what we have)</h2>
+
+<h3>Bifinance_New Engagement Campaign</h3>
+<table>
+<tr><th>Created</th><td>2025-12-09 17:59</td></tr>
+<tr><th>Lifetime budget</th><td>$35,000.00 (planned, not spent)</td></tr>
+<tr><th>Actual spend</th><td>$193.39 (Oct 2025-Apr 2026)</td></tr>
+<tr><th>CTR</th><td>0.83% (mid)</td></tr>
+<tr><th>Impressions</th><td>327,883</td></tr>
+<tr><th>Clicks</th><td>2,712</td></tr>
+<tr><th>Adset interest</th><td>Business analytics + Small business owners (B2B-fit ✅)</td></tr>
+<tr><th>Status</th><td>PAUSED</td></tr>
+</table>
+
+<p><strong>Lessons:</strong> targeting კარგი (B2B-aligned), creative-ი როგორც ჩანს არ aligned (CTR 0.83% — ICP-fit-ისთვის უნდა იყოს 1.5-3%). ან creative-ი არ ხსნიდა value prop-ს, ან CTA არ მუშაობდა, ან ფანელი "click landing → leak" აქაც გამოჩნდა.</p>
+
+<p><strong>Forward action:</strong> წინ Bifinance-ის რესტარტ — იგივე targeting, ახალი creative (ვერტიკალური pain + 1 ანონიმური ციფრი formula per Mariam-ის Apr 23 brief).</p>
+
+<h3>December $213.27 spend post-mortem</h3>
+<p>December peak spend — campaigns active იმ პერიოდში:</p>
+<ul>
+<li>Bifinance_New Engagement Campaign — $193.39 (90% of Dec spend)</li>
+<li>Bifinance_New Engagement Campaign (#2) — created Dec 9</li>
+<li>New Sales Campaign — created Dec 9</li>
+<li>Landing Page — Dec activity</li>
+</ul>
+<p><strong>Pattern:</strong> Dec 9 = "Bifinance launch" date ერთბაშად 3 campaign-ი. ვინ გადაწყვიტა — owner-clarify pending. Lessons: launch-event-ი ხშირად peak-spend-ი → ფლანგვა თუ landing-fix არ-მზად, scale-აღარ გავაკეთოთ.</p>
+
+<hr>
+
+<h2>16. Mariam pre-evaluation framework (winner replicate gate)</h2>
+
+<p>Owner-directive Apr 30: Mariam-ი ქმნის material → მე ვიწინასწარწიგებ → თუ არ მუშაობს, kill.</p>
+
+<h3>Pre-launch checklist (Mariam material → mine pre-eval):</h3>
+<ol>
+<li><strong>Creative match-test:</strong> Mariam-ის Reel/Photo/Carousel-ი fit რომელიმე vertical-ს (BiFinance/BiMedical/BiRetail/BiDist/BiAudit/BiPriceMon)? თუ "general" = vertical-ი დავიჭერ, არ launch-ი.</li>
+<li><strong>Hook-test:</strong> 3-second hook არსებობს? თუ არა — Reel ვერ scroll-ის-სტოპი ხდება.</li>
+<li><strong>Value-prop clarity:</strong> 5 წამში ვინ რას იღებს ჩანს? თუ არა — re-cut.</li>
+<li><strong>CTA test:</strong> ერთი ცხადი action (book demo / download / call). თუ ანდა-ანდა CTA = ნული.</li>
+<li><strong>ICP-fit:</strong> 5-7M₾ Georgian SMB CFO ხედავს ამას — relevant? თუ არა — re-target.</li>
+<li><strong>Mobile-vertical-format:</strong> 9:16 Reel formula? თუ არა — re-edit.</li>
+</ol>
+
+<h3>Post-launch kill criteria (Mariam material × paid):</h3>
+<ul>
+<li>1-day CTR &lt; 0.3% with ≥ 1K impression → PAUSE</li>
+<li>3-day 0 lead with $15 spend → PAUSE</li>
+<li>If passes 3-day → continue 14-day test, 5-7 lead target</li>
+</ul>
+
+<h3>Budget gate (May $30 test → $50 scale):</h3>
+<ol>
+<li>Phase 1: $30 split 3-way × Mariam material variant (Reel-current + Photo-Balance-format + V3-vertical-Reel) → 3-day baseline</li>
+<li>Phase 2: top-1 winner unlock to $50 over 7-day extended</li>
+<li>Phase 3: if $50 yields 3+ lead → unlock to $100/wk scale</li>
+<li>Owner-decision gate at each phase (chat report)</li>
+</ol>
+
+<hr>
+
+<h2>17. Site-analytics integration (Clarity + GA4)</h2>
+
+<p><strong>Status:</strong> .env-ში GA4_PROPERTY_ID + Clarity API token blank. Without API access, blind to landing-page funnel.</p>
+
+<p><strong>Required from owner (5-min):</strong></p>
+<ul>
+<li><strong>GA4 Service Account JSON:</strong> Google Cloud Console → IAM → Service Account create → JSON key → grant Viewer to GA4 property 302944682. ფაილი save-ეთ <code>BI_DonotUseMe/.creds/ga4-sa.json</code>. .env-ში <code>GOOGLE_SERVICE_ACCOUNT_PATH</code> populate.</li>
+<li><strong>Clarity Data Export API:</strong> clarity.microsoft.com → Settings → Data Export → API Token. .env-ში <code>CLARITY_API_TOKEN=...</code> add.</li>
+</ul>
+
+<p><strong>What I'll pull when access granted:</strong></p>
+<ul>
+<li>GA4: traffic source × landing page × bounce + session-duration × conversion event (last 7 month)</li>
+<li>GA4: ad-traffic ↓ form-fill funnel breakdown</li>
+<li>Clarity: heatmap + scroll-depth + rage-click + dead-click on key landing pages</li>
+<li>Clarity: session recording sample of ad-clicked visitors → exit-pattern</li>
+</ul>
+
+<p>ეს მონაცემი + Meta Ads insight = full funnel transparency. Click → Site → Drop-point known.</p>
+
+<hr>
+
+<p class="small">📁 <code>BI_DonotUseMe/outputs/2026-04-30 Meta Ads 7-month Audit + Forward Plan by DonotUseMe.html</code><br>
+🔗 <strong>Mariam URL (GitHub Pages):</strong> <code>https://gshoina.github.io/bivision-shares/meta-ads-audit-2026-04-30.html</code> (deploy in progress)<br>
+🔒 info isolation HARD — owner-direct + per-instance Mariam approval (Apr 30) for share.<br>
+📊 დანართი: insights JSON sandbox-ში, full re-pull ნებისმიერ დროს.</p>
+
+</body>
+</html>
