@@ -544,10 +544,106 @@
 
 <hr>
 
-<p class="small">📁 <code>BI_DonotUseMe/outputs/2026-04-30 Meta Ads 7-month Audit + Forward Plan by DonotUseMe.html</code><br>
-🔗 <strong>Mariam URL (GitHub Pages):</strong> <code>https://gshoina.github.io/bivision-shares/meta-ads-audit-2026-04-30.html</code> (deploy in progress)<br>
+<h2>18. GA4 + Clarity integrated reality (May 1 update)</h2>
+
+<h3>18.1 GA4 7-month traffic acquisition (Oct 1 2025 → Apr 30 2026)</h3>
+
+<div class="grid">
+  <div class="card"><div class="lbl">Total sessions</div><div class="val">3,046</div></div>
+  <div class="card"><div class="lbl">Engaged sessions</div><div class="val">2,534</div></div>
+  <div class="card"><div class="lbl">Engagement rate</div><div class="val grn">83.19%</div></div>
+  <div class="card"><div class="lbl">Avg time/session</div><div class="val red">23s</div></div>
+  <div class="card"><div class="lbl">Events/session</div><div class="val">6.07</div></div>
+  <div class="card"><div class="lbl">Total event count</div><div class="val">18,497</div></div>
+  <div class="card"><div class="lbl">Key events (28d)</div><div class="val red">1</div></div>
+  <div class="card"><div class="lbl">Revenue tracking</div><div class="val red">$0.00</div></div>
+</div>
+
+<p class="small"><strong>GA4 misconfig flag:</strong> "Key events 11,481" in 7-month view inflated by engagement events configured as key. Home view 28-day key events = <strong>1</strong>. Real conversion-event setup needed.</p>
+
+<h3>18.2 Source / Medium breakdown (7-month)</h3>
+
+<table>
+<thead><tr><th>Source / Medium</th><th class="num">Sessions</th><th class="num">% total</th><th class="num">Engagement</th><th class="num">Avg time</th><th>კომენტარი</th></tr></thead>
+<tbody>
+<tr><td><strong>(direct) / (none)</strong></td><td class="num">1,134</td><td class="num">37.23%</td><td class="num">71.25%</td><td class="num">29s</td><td class="amb">UTM-stripped — likely Meta paid + branded</td></tr>
+<tr><td><strong>fb / paid</strong></td><td class="num">870</td><td class="num">28.56%</td><td class="num grn">100%</td><td class="num red">0s</td><td class="red">100% engagement + 0s = bounce-on-load</td></tr>
+<tr><td>m.facebook.com / referral</td><td class="num">296</td><td class="num">9.72%</td><td class="num">92.23%</td><td class="num red">2s</td><td class="amb">organic FB share, low time</td></tr>
+<tr><td><strong>google / organic</strong></td><td class="num">256</td><td class="num">8.40%</td><td class="num">77.34%</td><td class="num grn">51s</td><td class="grn">best engagement quality</td></tr>
+<tr><td>linkedin / paid_social</td><td class="num">54</td><td class="num">1.77%</td><td class="num">66.67%</td><td class="num">15s</td><td class="amb">historical / external — verify</td></tr>
+<tr><td>search.google.com / referral</td><td class="num">54</td><td class="num">1.77%</td><td class="num">72.22%</td><td class="num">40s</td><td>SERP referral</td></tr>
+<tr><td>facebook.com / referral</td><td class="num">52</td><td class="num">1.71%</td><td class="num">94.23%</td><td class="num red">3s</td><td>desktop FB share</td></tr>
+<tr><td>tagassistant.google.com</td><td class="num">49</td><td class="num">1.61%</td><td class="num">91.84%</td><td class="num">2m 56s</td><td class="grn">test traffic (debug, exclude)</td></tr>
+<tr><td>bihub.ge / referral</td><td class="num">48</td><td class="num">1.58%</td><td class="num">72.92%</td><td class="num">32s</td><td>sister site</td></tr>
+<tr><td>l.facebook.com / referral</td><td class="num">44</td><td class="num">1.44%</td><td class="num">43.18%</td><td class="num">10s</td><td class="red">FB link-redirector, low engagement</td></tr>
+</tbody>
+</table>
+
+<h3>18.3 Cross-source funnel reconciliation (NEW critical finding)</h3>
+
+<div class="impact-card">
+<div><span class="impact-num">6</span><strong class="red">Meta clicks vs GA4 sessions delta — 86% loss (HIGH)</strong></div>
+<table>
+<thead><tr><th>Metric</th><th class="num">Meta API</th><th class="num">GA4</th><th class="num">Δ</th></tr></thead>
+<tbody>
+<tr><td>fb/paid clicks</td><td class="num">6,265</td><td class="num">—</td><td class="num">—</td></tr>
+<tr><td>fb/paid sessions</td><td class="num">—</td><td class="num">870</td><td class="num red">−86%</td></tr>
+<tr><td>Landing-page-views (Meta)</td><td class="num">1,389</td><td class="num">—</td><td class="num">—</td></tr>
+<tr><td>(direct) GA4 sessions</td><td class="num">—</td><td class="num">1,134</td><td class="num amb">UTM-stripped Meta?</td></tr>
+</tbody>
+</table>
+<p><strong>3 ჰიპოთეზა:</strong> (a) UTM tagging missing/stripped — direct/none = orphan Meta-traffic, (b) bot click inflation in Meta (5-15% normal), (c) page-load failure rate. <strong>Action:</strong> UTM strategy fix #1 priority — `?utm_source=facebook&utm_medium=paid&utm_campaign=NAME` ყოველ ad URL-ში.</p>
+</div>
+
+<div class="impact-card">
+<div><span class="impact-num">7</span><strong class="red">fb/paid 100% engagement + 0s avg time = bounce-on-load (HIGH)</strong></div>
+<p>fb/paid = 870 sessions, ALL engaged (100%), but 0 second average. Translation: visitor hit page, GA4-ის "engaged" definition triggered (10s+ OR 2+ pages OR conversion), მერე immediate bounce. Page დატვირთვის შემდეგ, ღილაკი არ-ხილვადი / value არ-ცხადი.</p>
+<p><strong>Action:</strong> Calendly button / Demo CTA above-the-fold + sub-second visible. Heatmap (Clarity) confirms post-fix.</p>
+</div>
+
+<div class="impact-card grn">
+<div><span class="impact-num">8</span><strong class="grn">google/organic = quality channel (LOW spend, HIGH retention)</strong></div>
+<p>256 sessions, 77.34% engagement, <strong>51s avg time</strong> (longest of all sources except tagassistant test). Organic search = ICP-aligned, intent-driven. SEO investment ROI signal.</p>
+<p><strong>Action:</strong> SEO strategy — keyword library (memory) → on-page SEO → content cluster → +50-100 organic sessions/mo at 0₾ paid spend.</p>
+</div>
+
+<h3>18.4 Clarity behavioral data (last 3-day post-pause)</h3>
+
+<p>Ad-pause-შემდგომი 3-დღე: 2 sessions, 1.5 pages/session, 71.67% scroll depth, 43s total / 15s active time. Top page: hp + BiFinance product. Country split GE+NL. Zero rage clicks, zero dead clicks, zero excessive scroll → site UX clean, traffic ცარიელი.</p>
+
+<p><strong>Translation:</strong> ad-traffic-ი ჩვენი ერთადერთი visit-driver-ი იყო. Pause = traffic almost zero. SEO + organic-channel = mandatory build (ad-pause periods-ისთვის survival).</p>
+
+<h3>18.5 Updated funnel picture (3-source integrated)</h3>
+
+<table>
+<thead><tr><th>Stage</th><th class="num">Number</th><th>Source</th><th class="num">Drop %</th></tr></thead>
+<tbody>
+<tr><td>Meta ad impressions</td><td class="num">668,381</td><td>Meta API</td><td class="num">—</td></tr>
+<tr><td>Meta ad clicks</td><td class="num">6,265</td><td>Meta API</td><td class="num">−99.06%</td></tr>
+<tr><td>fb/paid GA4 sessions</td><td class="num">870</td><td>GA4</td><td class="num red">−86.11% (vs clicks)</td></tr>
+<tr><td>Engaged session</td><td class="num">870</td><td>GA4 (100% all)</td><td class="num">0%</td></tr>
+<tr><td>Avg time on site</td><td class="num">0s</td><td>GA4</td><td class="num red">bounce-on-load</td></tr>
+<tr><td>Real conversion (last 28d)</td><td class="num">1</td><td>GA4 home</td><td class="num red">funnel collapse</td></tr>
+<tr><td>Real lead (Meta API conv)</td><td class="num">5</td><td>Meta API</td><td class="num">7-month total</td></tr>
+</tbody>
+</table>
+
+<h3>18.6 Forward priority (UPDATED post-integration)</h3>
+
+<ol>
+<li><strong>UTM tagging</strong> EVERY ad URL: <code>?utm_source=facebook&utm_medium=paid&utm_campaign=&lt;name&gt;&utm_content=&lt;creative&gt;</code>. ეს გვინდა მაშინვე — ცარიელი Meta URL პარამეტრიანი URL-ით ჩაცვლა.</li>
+<li><strong>GA4 Key Event reconfigure</strong> — current "key events" includes engagement noise. Set: <code>generate_lead</code>, <code>form_submit</code>, <code>book_demo</code> events ONLY. Owner-clarify-required event-list.</li>
+<li><strong>Demo CTA above-the-fold</strong> — fb/paid 0s avg time signal = visitor საიტს ხედავს, value-prop ვერ პოულობს. CTA ერთი გადახედვით ცხადი, button visible.</li>
+<li><strong>SEO investment</strong> (parallel) — google/organic 51s avg time = quality channel. Keyword library-ი (memory) → 30-day content + on-page sprint.</li>
+<li><strong>Audience reform</strong> (Section 13) — "Real estate" interest seed → B2B targeting unchanged priority.</li>
+</ol>
+
+<hr>
+
+<p class="small">📁 <code>BI_DonotUseMe/outputs/2026-04-30 Meta Ads 7-month Audit + Forward Plan by DonotUseMe.html</code> (extended May 1)<br>
+🔗 <strong>Mariam URL (GitHub Pages):</strong> <code>https://gshoina.github.io/bivision-shares/meta-ads-audit-2026-04-30.html</code><br>
 🔒 info isolation HARD — owner-direct + per-instance Mariam approval (Apr 30) for share.<br>
-📊 დანართი: insights JSON sandbox-ში, full re-pull ნებისმიერ დროს.</p>
+📊 დანართები: Meta API + Clarity API + GA4 (browser-session) — all source-tagged inline.</p>
 
 </body>
 </html>
