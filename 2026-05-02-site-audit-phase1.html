@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bivision.ge — Site Audit Phase 1 | 2026-05-02</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f6fa; color: #2d3436; font-size: 15px; }
+  .header { background: #221A4C; color: white; padding: 28px 40px; }
+  .header h1 { font-size: 22px; font-weight: 700; }
+  .header .meta { color: #a29dd4; font-size: 13px; margin-top: 6px; }
+  .container { max-width: 960px; margin: 0 auto; padding: 32px 20px; }
+  .ep0 { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; margin-bottom: 24px; font-weight: 600; border-radius: 0 6px 6px 0; }
+  .section { background: white; border-radius: 10px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+  .section h2 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: #221A4C; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { background: #f8f9fa; text-align: left; padding: 9px 12px; font-weight: 600; color: #555; border-bottom: 2px solid #eee; }
+  td { padding: 9px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .red { color: #d63031; font-weight: 700; }
+  .yellow { color: #e17055; font-weight: 600; }
+  .green { color: #00b894; font-weight: 600; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+  .badge-red { background: #ffe0e0; color: #d63031; }
+  .badge-yellow { background: #fff3e0; color: #e17055; }
+  .badge-green { background: #e0f5ee; color: #00b894; }
+  .badge-blue { background: #e8eaf6; color: #3949ab; }
+  code { background: #f4f4f4; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 13px; color: #e84393; }
+  .fix-box { background: #f8f9fa; border-left: 3px solid #6C5CE7; padding: 12px 16px; border-radius: 0 6px 6px 0; margin-top: 8px; font-size: 13px; }
+  .fix-box code { color: #2d3436; }
+  .priority-1 { border-left-color: #d63031; }
+  .priority-2 { border-left-color: #e17055; }
+  .priority-3 { border-left-color: #fdcb6e; }
+  .ttfb-bar { height: 12px; background: #eee; border-radius: 6px; overflow: hidden; margin: 8px 0; }
+  .ttfb-fill { height: 100%; background: #d63031; border-radius: 6px; width: 100%; }
+  .ttfb-target { height: 100%; background: #00b894; border-radius: 6px; width: 20%; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+  .scout-item { background: #e8f4fd; border-radius: 8px; padding: 14px; margin-bottom: 10px; }
+  .scout-item h3 { font-size: 14px; color: #0984e3; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>bivision.ge — Site Audit Phase 1</h1>
+  <div class="meta">აგენტი: Gela &nbsp;|&nbsp; 2026-05-02 &nbsp;|&nbsp; KR3.2 &nbsp;|&nbsp; curl + headers + schema + WP signals</div>
+</div>
+
+<div class="container">
+
+  <div class="ep0">EP0: 8/10 (O) — live curl data, 9 commands. TTFB კრიტიკულია. CSP სრულიად აკლია. LiteSpeed active მაგრამ cache არ ურტყამს.</div>
+
+  <!-- TTFB -->
+  <div class="section">
+    <h2>⚡ Performance — TTFB</h2>
+    <div class="two-col">
+      <div>
+        <table>
+          <tr><th>Metric</th><th>Value</th><th>Status</th></tr>
+          <tr>
+            <td>TTFB</td>
+            <td class="red">1.505s</td>
+            <td><span class="badge badge-red">CRITICAL</span></td>
+          </tr>
+          <tr>
+            <td>Total Load</td>
+            <td class="red">1.507s</td>
+            <td><span class="badge badge-red">CRITICAL</span></td>
+          </tr>
+          <tr>
+            <td>HTTP Status</td>
+            <td class="green">200 OK</td>
+            <td><span class="badge badge-green">OK</span></td>
+          </tr>
+          <tr>
+            <td>Target TTFB</td>
+            <td>&lt;300ms</td>
+            <td><span class="badge badge-blue">5× faster needed</span></td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <p style="font-size:13px;color:#636e72;margin-bottom:8px;">1.5s vs 300ms target</p>
+        <div class="ttfb-bar"><div class="ttfb-fill"></div></div>
+        <p style="font-size:12px;color:#d63031;margin-top:4px;">Current: 1505ms</p>
+        <div class="ttfb-bar" style="margin-top:6px;"><div class="ttfb-target"></div></div>
+        <p style="font-size:12px;color:#00b894;margin-top:4px;">Target: &lt;300ms</p>
+        <div class="fix-box priority-1" style="margin-top:12px;">
+          <strong>Root cause hypothesis:</strong> LiteSpeed cache active (<code>X-LiteSpeed-Tag</code> seen) მაგრამ homepage-ს cache-hit header არ დაბრუნება. შესაძლო: cache exclusion rule for cookies/session, ან cache not warmed.<br><br>
+          <strong>Fix (Phase 2):</strong> WP Admin → LiteSpeed Cache → Page Optimization → Exclude URLs audit. Cache preloader enable.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Security Headers -->
+  <div class="section">
+    <h2>🔒 Security Headers</h2>
+    <table>
+      <tr><th>Header</th><th>Current Value</th><th>Status</th><th>Required Fix</th></tr>
+      <tr>
+        <td>Content-Security-Policy</td>
+        <td class="red">MISSING</td>
+        <td><span class="badge badge-red">HIGH RISK</span></td>
+        <td>Add CSP header via Apache <code>.htaccess</code> or WP plugin</td>
+      </tr>
+      <tr>
+        <td>Strict-Transport-Security</td>
+        <td class="yellow"><code>max-age=86400; includeSubDomains</code></td>
+        <td><span class="badge badge-yellow">WEAK</span></td>
+        <td>Upgrade to <code>max-age=31536000; includeSubDomains; preload</code></td>
+      </tr>
+      <tr>
+        <td>X-Frame-Options</td>
+        <td><code>SAMEORIGIN</code></td>
+        <td><span class="badge badge-green">OK</span></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>X-Content-Type-Options</td>
+        <td><code>nosniff</code></td>
+        <td><span class="badge badge-green">OK</span></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Referrer-Policy</td>
+        <td><code>strict-origin-when-cross-origin</code></td>
+        <td><span class="badge badge-green">OK</span></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Permissions-Policy</td>
+        <td><code>camera=(), microphone=(), geolocation=()...</code></td>
+        <td><span class="badge badge-green">OK</span></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Server Header</td>
+        <td><code>Apache</code> (exposed)</td>
+        <td><span class="badge badge-yellow">MINOR</span></td>
+        <td>Hide via <code>ServerTokens Prod</code> in Apache config</td>
+      </tr>
+    </table>
+    <div class="fix-box priority-1" style="margin-top:14px;">
+      <strong>CSP Minimum (add to .htaccess):</strong><br>
+      <code>Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.googleapis.com *.gstatic.com; img-src 'self' data: *.optimole.com *.gravatar.com; style-src 'self' 'unsafe-inline' *.googleapis.com; connect-src 'self' *.calendly.com *.hubspot.com; frame-src *.calendly.com *.youtube.com"</code>
+    </div>
+  </div>
+
+  <!-- Schema -->
+  <div class="section">
+    <h2>📊 Schema.org Markup</h2>
+    <table>
+      <tr><th>Type</th><th>Count</th><th>Status</th><th>Note</th></tr>
+      <tr><td>Organization</td><td>1</td><td><span class="badge badge-green">OK</span></td><td>Present</td></tr>
+      <tr><td>WebSite + SearchAction</td><td>1+1</td><td><span class="badge badge-green">OK</span></td><td>Sitelinks searchbox ready</td></tr>
+      <tr><td>WebPage</td><td>1</td><td><span class="badge badge-green">OK</span></td><td>Standard</td></tr>
+      <tr><td>PostalAddress + GeoCoordinates</td><td>2+1</td><td><span class="badge badge-green">OK</span></td><td>Local SEO present</td></tr>
+      <tr><td><strong>SoftwareApplication</strong></td><td class="red">0</td><td><span class="badge badge-red">MISSING</span></td><td>Critical for BI tool visibility in Google</td></tr>
+      <tr><td><strong>Service / Offer</strong></td><td class="red">0</td><td><span class="badge badge-red">MISSING</span></td><td>Product pages need this for rich snippets</td></tr>
+      <tr><td>Article (homepage)</td><td>1</td><td><span class="badge badge-yellow">REVIEW</span></td><td>Article on homepage unusual — likely from Rank Math default</td></tr>
+    </table>
+    <div class="fix-box priority-2" style="margin-top:14px;">
+      <strong>Add to homepage via Rank Math → Schema:</strong> SoftwareApplication type with <code>operatingSystem</code>, <code>applicationCategory: "BusinessApplication"</code>, <code>offers</code> block. Phase 2 deliverable.
+    </div>
+  </div>
+
+  <!-- WP Stack Detected -->
+  <div class="section">
+    <h2>🔌 WP Stack (Detected via Signals)</h2>
+    <table>
+      <tr><th>Plugin / Component</th><th>Detection Signal</th><th>Role</th></tr>
+      <tr><td>Rank Math SEO</td><td><code>X-Redirect-By: Rank Math</code> in sitemap redirect</td><td>SEO + Schema + Redirects</td></tr>
+      <tr><td>LiteSpeed Cache</td><td><code>X-LiteSpeed-Tag: a3f_HTTP.404</code> in sitemap 404 response</td><td>Caching layer</td></tr>
+      <tr><td>Optimole</td><td><code>mla1pamiitby.i.optimole.com</code> in image URLs</td><td>Image CDN + WebP</td></tr>
+      <tr><td>Custom Gutenberg Blocks</td><td><code>wp-block-bevision-*</code> class prefix throughout</td><td>Site-specific blocks</td></tr>
+    </table>
+    <p style="font-size:13px;color:#636e72;margin-top:10px;">Phase 2: WP Admin access needed for full plugin list, LiteSpeed config, DB query time.</p>
+  </div>
+
+  <!-- Homepage S1 Readiness -->
+  <div class="section">
+    <h2>🎯 Homepage — S1 CTA Readiness</h2>
+    <table>
+      <tr><th>Item</th><th>Finding</th></tr>
+      <tr><td>Homepage WP Page ID</td><td><code>432</code> (from Link header: <code>/wp-json/wp/v2/pages/432</code>)</td></tr>
+      <tr><td>Current Hero CTA</td><td><code>&lt;button onclick="javascript:void(0)"&gt;მოითხოვე დემო&lt;/button&gt;</code> — opens #lead-popup</td></tr>
+      <tr><td>Hero Block Type</td><td><code>wp-block-bevision-hero-section</code> — custom Gutenberg block</td></tr>
+      <tr><td>S1 Action (May 4)</td><td>GET page 432 raw → add Calendly button adjacent to existing → PUT back via REST API</td></tr>
+      <tr><td>Calendly URL</td><td><code>https://calendly.com/bivision/courtest-meeting</code> (owner confirmed correct)</td></tr>
+    </table>
+  </div>
+
+  <!-- Ranked Fix List -->
+  <div class="section">
+    <h2>🏆 Ranked Action List (Phase 2)</h2>
+    <table>
+      <tr><th>#</th><th>Action</th><th>Impact</th><th>Effort</th><th>KR</th></tr>
+      <tr>
+        <td>1</td>
+        <td>LiteSpeed cache config — enable preloader, remove cookie exclusions for anonymous visitors</td>
+        <td class="red">CRITICAL — TTFB 1.5s → &lt;300ms</td>
+        <td>30 min WP Admin</td>
+        <td>KR3.2</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>CSP header add to .htaccess</td>
+        <td class="red">HIGH — security gap, Google ranking signal</td>
+        <td>20 min</td>
+        <td>KR3.2</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>HSTS upgrade: 86400 → 31536000 + preload</td>
+        <td class="yellow">MED — A+ SSL grade</td>
+        <td>5 min .htaccess</td>
+        <td>KR3.2</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>SoftwareApplication schema on homepage + product pages</td>
+        <td class="yellow">MED — Google rich snippets for BI tool searches</td>
+        <td>45 min Rank Math</td>
+        <td>KR3.3</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Hide Apache Server header (<code>ServerTokens Prod</code>)</td>
+        <td>LOW — minor security hardening</td>
+        <td>5 min Apache config</td>
+        <td>KR3.2</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Daily Scout R1 -->
+  <div class="section">
+    <h2>🔍 R1 — Daily Claude/Tool Scout (2026-05-02)</h2>
+    <div class="scout-item">
+      <h3>🚀 Superpowers — Claude Code Plugin (Official Marketplace)</h3>
+      <p style="font-size:13px;margin-bottom:8px;"><strong>What:</strong> Complete software development methodology as Claude Code plugin. Spec-first → TDD plan → subagent-driven autonomous implementation (can run hours without deviation).</p>
+      <p style="font-size:13px;margin-bottom:8px;"><strong>Install:</strong> <code>/plugin install superpowers@claude-plugins-official</code></p>
+      <p style="font-size:13px;margin-bottom:8px;"><strong>Bivision use:</strong> S1+S2+S3 site work Monday — instead of manually writing each REST API call, Superpowers spec-first approach prevents scope drift. Subagent loop = multi-hour autonomous WP editing without manual oversight.</p>
+      <p style="font-size:13px;"><strong>Verdict:</strong> <span class="badge badge-blue">INSTALL Monday pre-sprint</span></p>
+    </div>
+  </div>
+
+  <!-- Status -->
+  <div class="section">
+    <h2>📋 Status / Path</h2>
+    <table>
+      <tr><th>Item</th><th>Status</th></tr>
+      <tr><td>Phase 1 data gather</td><td><span class="badge badge-green">DONE ✅</span></td></tr>
+      <tr><td>Phase 2 report (ranked tech debt)</td><td><span class="badge badge-yellow">May 6 — needs WP Admin access</span></td></tr>
+      <tr><td>LiteSpeed fix</td><td><span class="badge badge-yellow">May 5 — after WP Admin confirmed</span></td></tr>
+      <tr><td>CSP header</td><td><span class="badge badge-yellow">May 5 — .htaccess edit via SFTP/WP</span></td></tr>
+      <tr><td>S1 (homepage hero CTA)</td><td><span class="badge badge-blue">May 4 — page 432 REST API ready</span></td></tr>
+    </table>
+  </div>
+
+  <p style="font-size:12px;color:#b2bec3;margin-top:20px;text-align:center;">Gela &nbsp;|&nbsp; KR3.2 &nbsp;|&nbsp; 2026-05-02 &nbsp;|&nbsp; Sprint May 4–8</p>
+</div>
+
+</body>
+</html>
