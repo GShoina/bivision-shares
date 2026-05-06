@@ -8,24 +8,24 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f3f2ef; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
   .card { background: #fff; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); max-width: 780px; width: 100%; overflow: hidden; }
-  .header { background: #0a66c2; padding: 20px 24px; display: flex; align-items: center; gap: 14px; }
+  .header { background: #0a66c2; padding: 20px 28px; display: flex; align-items: center; gap: 14px; }
   .avatar { width: 44px; height: 44px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #0a66c2; font-size: 16px; flex-shrink: 0; }
   .header-text h1 { color: #fff; font-size: 15px; font-weight: 700; }
   .header-text p { color: rgba(255,255,255,0.7); font-size: 12px; margin-top: 2px; }
-  .signal { background: #f0f7ff; border-left: 3px solid #0a66c2; margin: 20px 24px 0; padding: 10px 14px; border-radius: 0 4px 4px 0; }
+  .signal { background: #f0f7ff; border-left: 3px solid #0a66c2; margin: 20px 28px 0; padding: 10px 14px; border-radius: 0 4px 4px 0; }
   .signal-label { font-size: 10px; font-weight: 700; color: #0a66c2; text-transform: uppercase; letter-spacing: 0.8px; }
   .signal-text { font-size: 12px; color: #444; margin-top: 4px; line-height: 1.5; }
-  .post-wrap { margin: 20px 24px; }
+  .post-wrap { margin: 20px 28px; }
   .post-text { font-size: 16px; color: #1a1a1a; line-height: 1.8; white-space: pre-line; }
-  .hashtags { color: #0a66c2; margin-top: 14px; font-size: 14px; line-height: 1.8; }
-  .credit { color: #aaa; font-size: 11px; font-style: italic; margin-top: 10px; }
-  .divider { height: 1px; background: #eee; margin: 20px 24px; }
-  .actions { padding: 0 24px 24px; display: flex; gap: 10px; }
+  .signature { margin-top: 16px; padding-top: 12px; border-top: 1px solid #eee; color: #555; font-size: 14px; }
+  .hashtags { color: #0a66c2; margin-top: 10px; font-size: 14px; line-height: 1.8; }
+  .divider { height: 1px; background: #eee; margin: 20px 28px; }
+  .actions { padding: 0 28px 24px; display: flex; gap: 10px; }
   .btn { flex: 1; padding: 11px; border-radius: 6px; font-size: 13px; font-weight: 600; text-align: center; cursor: pointer; border: none; }
   .btn-approve { background: #0a66c2; color: #fff; }
   .btn-edit { background: #f0f0f0; color: #333; }
   .btn-drop { background: #fff; color: #999; border: 1px solid #ddd; }
-  .footer { background: #f8f9fa; padding: 11px 24px; font-size: 11px; color: #aaa; text-align: center; border-top: 1px solid #eee; }
+  .footer { background: #f8f9fa; padding: 11px 28px; font-size: 11px; color: #aaa; text-align: center; border-top: 1px solid #eee; }
 </style>
 </head>
 <body>
@@ -44,24 +44,26 @@
   </div>
 
   <div class="post-wrap">
-    <div class="post-text">Goldman Sachs-მა და Blackstone-მა Anthropic-თან ერთად ახალი AI კომპანია დააფუძნეს.
+    <div class="post-text">Goldman Sachs-მა და Blackstone-მა Anthropic-თან ერთად ახალი AI კომპანია დააფუძნეს. 💡
+
 მიზანი კონკრეტულია: ფინანსურ რეპორტინგში Excel-ის ხელით მუშაობის სრულად ჩანაცვლება.
 
 ეს ტკივილი ქართული ბიზნესისთვისაც კარგად ნაცნობია. კომპანიების უმეტესობაში ანგარიშგების ციკლი დღეს ასე გამოიყურება:
 
-▸ მონაცემების ექსპორტი ERP-დან
-▸ ექსელში ხელით ფორმატირება
-▸ PDF რეპორტების აწყობა
-▸ მენეჯმენტთან შეხვედრა
-ამ რუტინას საშუალოდ 3-5 დღე მიაქვს.
+📉 მონაცემების ექსპორტი ERP-დან
+⚙️ ექსელში ხელით ფორმატირება
+📄 PDF რეპორტების აწყობა
+🤝 მენეჯმენტთან შეხვედრა
 
-Goldman-ი ამ პრობლემას ათეულობით მილიონი დოლარით წყვეტს. ჩვენ Bivision-ში ზუსტად ამ სისტემას ვაშენებთ ლოკალური ბაზრისთვის — ვაკავშირებთ ქართულ სააღრიცხვო სისტემებს (Oris, Fina, Balance, 1C) ერთიან ანალიტიკასთან.
+ამ რუტინას საშუალოდ 3-5 დღე მიაქვს. ⏳
+
+Goldman-ი ამ პრობლემას ათეულობით მილიონი დოლარით წყვეტს. ჩვენ Bivision-ში ზუსტად ამ სისტემას ვაშენებთ ლოკალური ბაზრისთვის — ვაკავშირებთ ქართულ სააღრიცხვო სისტემებს (Oris, Fina, Balance, 1C) ერთიან ანალიტიკასთან. 📊
 
 პროცესი ჯერ კიდევ მუშავდება და ყველაფერი იდეალურად არ არის, მაგრამ დაზოგილი საათები და ზუსტი შედეგი უკვე რეალობაა.
 
 თქვენს კომპანიაში რამდენად ნაცნობია თვის დახურვის ეს 3-5 დღიანი ექსელ-რუტინა?</div>
-    <div class="hashtags">#bivision #bifinance #bi #ai #საქართველო</div>
-    <div class="credit">შექმნილია Bivision Marketing AI Team-ის მიერ</div>
+    <div class="signature">—<br>🤖 შექმნილია Bivision Marketing AI Agent-ის მიერ.</div>
+    <div class="hashtags">#BusinessIntelligence #PowerBI #AI #Bivision #საქართველო</div>
   </div>
 
   <div class="divider"></div>
