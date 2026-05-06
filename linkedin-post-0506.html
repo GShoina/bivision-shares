@@ -7,43 +7,43 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f3f2ef; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
-  .card { background: #fff; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); max-width: 560px; width: 100%; overflow: hidden; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); max-width: 580px; width: 100%; overflow: hidden; }
   .header { background: #0a66c2; padding: 20px 24px; }
   .header h1 { color: #fff; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; opacity: 0.85; }
   .header p { color: #fff; font-size: 12px; opacity: 0.65; margin-top: 4px; }
   .signal { background: #f8f9fa; border-left: 3px solid #0a66c2; margin: 20px 24px 0; padding: 10px 14px; border-radius: 0 4px 4px 0; }
   .signal-label { font-size: 10px; font-weight: 700; color: #0a66c2; text-transform: uppercase; letter-spacing: 0.8px; }
   .signal-text { font-size: 12px; color: #444; margin-top: 4px; line-height: 1.5; }
-  .version-tabs { display: flex; gap: 0; margin: 16px 24px 0; border-radius: 6px; overflow: hidden; border: 1px solid #e0e0e0; }
-  .tab { flex: 1; padding: 8px; text-align: center; font-size: 12px; font-weight: 600; cursor: pointer; background: #f5f5f5; color: #888; border: none; }
+  .version-tabs { display: flex; margin: 16px 24px 0; border-radius: 6px; overflow: hidden; border: 1px solid #e0e0e0; }
+  .tab { flex: 1; padding: 8px; text-align: center; font-size: 12px; font-weight: 600; cursor: pointer; background: #f5f5f5; color: #888; border: none; border-right: 1px solid #e0e0e0; }
+  .tab:last-child { border-right: none; }
   .tab.active { background: #0a66c2; color: #fff; }
   .post-box { margin: 16px 24px; }
-  .post-label { font-size: 10px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
   .version { display: none; }
   .version.active { display: block; }
-  .post-text { font-size: 15px; color: #1a1a1a; line-height: 1.7; white-space: pre-line; }
-  .post-text .strikethrough { text-decoration: line-through; color: #aaa; font-size: 13px; }
-  .hashtags { margin-top: 12px; font-size: 14px; color: #0a66c2; }
-  .ai-credit { margin-top: 10px; font-size: 11px; color: #aaa; font-style: italic; }
-  .critique { background: #fff8e1; border-left: 3px solid #f59e0b; padding: 10px 14px; border-radius: 0 4px 4px 0; margin: 0 24px 12px; font-size: 12px; color: #555; line-height: 1.6; }
+  .critique { background: #fff8e1; border-left: 3px solid #f59e0b; padding: 10px 14px; border-radius: 0 4px 4px 0; margin-bottom: 14px; font-size: 12px; color: #555; line-height: 1.6; }
   .critique-label { font-size: 10px; font-weight: 700; color: #f59e0b; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+  .post-preview { background: #f9f9f9; border: 1px solid #e8e8e8; border-radius: 8px; padding: 16px; font-size: 15px; color: #1a1a1a; line-height: 1.75; white-space: pre-line; }
+  .post-preview .hashtags { color: #0a66c2; margin-top: 12px; display: block; }
+  .post-preview .credit { color: #aaa; font-size: 11px; font-style: italic; margin-top: 8px; display: block; }
+  .recommended { background: #e8f5e9; border-left: 3px solid #2e7d32; padding: 6px 12px; border-radius: 0 4px 4px 0; font-size: 11px; font-weight: 700; color: #2e7d32; margin-bottom: 12px; }
   .divider { height: 1px; background: #e8e8e8; margin: 16px 24px; }
   .meta { padding: 0 24px 16px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
   .badge { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; }
   .badge-ep { background: #e8f5e9; color: #2e7d32; }
   .badge-v { background: #ede7f6; color: #4527a0; }
   .actions { padding: 0 24px 24px; display: flex; gap: 10px; }
-  .btn { flex: 1; padding: 10px; border-radius: 6px; font-size: 13px; font-weight: 600; text-align: center; cursor: pointer; border: none; }
+  .btn { flex: 1; padding: 10px; border-radius: 6px; font-size: 13px; font-weight: 600; text-align: center; border: none; cursor: pointer; }
   .btn-approve { background: #0a66c2; color: #fff; }
   .btn-edit { background: #f0f0f0; color: #333; }
   .btn-drop { background: #fff; color: #999; border: 1px solid #ddd; }
-  .footer { background: #f8f9fa; padding: 12px 24px; font-size:11px; color: #aaa; text-align: center; border-top: 1px solid #eee; }
+  .footer { background: #f8f9fa; padding: 12px 24px; font-size: 11px; color: #aaa; text-align: center; border-top: 1px solid #eee; }
 </style>
 </head>
 <body>
 <div class="card">
   <div class="header">
-    <h1>LinkedIn Post Draft — v2</h1>
+    <h1>LinkedIn Post Draft — v3 ✓</h1>
     <p>Gurafa · 2026-05-06 · მარიამი, დაამტკიცე ან შეასწორე</p>
   </div>
 
@@ -53,71 +53,96 @@
   </div>
 
   <div class="version-tabs">
-    <button class="tab" onclick="show('v1')">v1 — ორიგინალი</button>
-    <button class="tab active" onclick="show('v2')">v2 — გადახედული ✓</button>
+    <button class="tab" onclick="show('v1', this)">v1</button>
+    <button class="tab" onclick="show('v2', this)">v2</button>
+    <button class="tab active" onclick="show('v3', this)">v3 ✓</button>
   </div>
 
   <div class="post-box">
-    <div class="post-label">Post ტექსტი</div>
 
     <div class="version" id="v1">
       <div class="critique">
-        <div class="critique-label">⚠️ პრობლემები v1-ში</div>
-        Goldman Sachs-თან შედარება — არავინ დაიჯერებს. "2 კვირაში" — proof არ არის. "AI BI-ში კი არ მოდის" — ყველა ამბობს. CTA = ხმამაღალი, სიცარიელეში.
+        <div class="critique-label">⚠️ პრობლემები</div>
+        Goldman-თან შედარება = arrogant. "2 კვირაში" = proof-less. Generic AI hype. ემოჯი არ არის. ფორმატი არ არის.
       </div>
-      <div class="post-text">Goldman Sachs-ი და Blackstone-ი Anthropic-ს ერთად ქმნიან AI კომპანიას.
+      <div class="post-preview">Goldman Sachs-ი და Blackstone-ი Anthropic-ს ერთად ქმნიან AI კომპანიას.
 
 მიზანი: ფინანსური ანგარიშების, pitch book-ების და Excel-ის ავტომატიზაცია AI-ით.
 
 ეს ტრენდი ჩვენამდე მოვა — კითხვა მხოლოდ ის არის, ვინ იქნება მზად.
 
-ქართული კომპანიების ხელმძღვანელებმა იციან: ERP-დან Excel-ში ექსპორტი, ხელით ფორმატირება, კვირაში 10 საათი დაკარგული — ეს არის ჩვენი ყოველდღიური რეალობა.
+ქართული კომპანიების ხელმძღვანელებმა იციან: ERP-დან Excel-ში ექსპორტი, ხელით ფორმატირება, კვირაში 10 საათი დაკარგული.
 
-Goldman-ი ამ პრობლემას $100M-ით წყვეტს. Bivision — 2 კვირაში, ქართული სისტემებიდან (Oris, Fina, Balance, 1C) პირდაპირ.
+Goldman-ი ამ პრობლემას $100M-ით წყვეტს. Bivision — 2 კვირაში.
 
-AI BI-ში კი არ მოდის — უკვე არის. კითხვა: გაქვს თუ არა?</div>
-      <div class="hashtags">#BusinessIntelligence #AI #საქართველო #Bivision</div>
+AI BI-ში კი არ მოდის — უკვე არის. კითხვა: გაქვს თუ არა?
+<span class="hashtags">#BusinessIntelligence #AI #საქართველო #Bivision</span></div>
     </div>
 
-    <div class="version active" id="v2">
-      <div class="post-text">Goldman Sachs-მა და Blackstone-მა გასულ კვირას Anthropic-თან ახალი AI კომპანია ჩამოაყალიბეს.
+    <div class="version" id="v2">
+      <div class="critique">
+        <div class="critique-label">⚠️ პრობლემები</div>
+        Tone სწორია. მაგრამ: ქართული ნაკლებად გამართული. ემოჯი არ არის. ფორმატი არ არის. Hashtag-ები არასრული.
+      </div>
+      <div class="post-preview">Goldman Sachs-მა და Blackstone-მა გასულ კვირას Anthropic-თან ახალი AI კომპანია ჩამოაყალიბეს.
 
-მიზნებს შორის: Excel-ში ხელით მუშაობის ავტომატიზაცია ფინანსური ანგარიშებისთვის.
+ეს პრობლემა კარგად ვიცნობთ. ქართული კომპანიების უმეტესობაში ანგარიშგება ასე გამოიყურება: ERP → Excel → ხელით → PDF → შეხვედრა. ციკლი 3-5 დღე.
 
-ეს პრობლემა კარგად ვიცნობთ. ქართული კომპანიების უმეტესობაში ანგარიშგება ასე გამოიყურება — ERP → Excel → ხელით დამუშავება → PDF → შეხვედრა. ციკლი 3-5 დღე.
-
-Goldman-ი ამ პრობლემას ათეულობით მილიონით წყვეტს. ჩვენ ვცდილობთ ქართული რეალობისთვის — Oris, Fina, Balance, 1C — ეს ციკლი შევამციროთ.
+Goldman-ი ამ პრობლემას ათეულობით მილიონით წყვეტს. ჩვენ ვცდილობთ ქართული სისტემებისთვის — Oris, Fina, Balance, 1C.
 
 მუშავდება. ჯერ ყველგან არ გვიმუშავია.
 
-თქვენთვის ეს პრობლემა რამდენად ნაცნობია?</div>
-      <div class="hashtags">#BusinessIntelligence #PowerBI #AI #საქართველო</div>
-      <div class="ai-credit">შექმნილია Bivision Marketing AI Team-ის მიერ</div>
+თქვენთვის ეს პრობლემა რამდენად ნაცნობია?
+<span class="hashtags">#BusinessIntelligence #PowerBI #AI #საქართველო</span>
+<span class="credit">შექმნილია Bivision Marketing AI Team-ის მიერ</span></div>
     </div>
+
+    <div class="version active" id="v3">
+      <div class="recommended">✅ რეკომენდებული — v3</div>
+      <div class="post-preview">Goldman Sachs-მა და Blackstone-მა Anthropic-თან ახალი AI კომპანია ჩამოაყალიბეს.
+
+🎯 მიზანი — Excel-ის ხელით მუშაობის ავტომატიზაცია.
+
+ეს ქართულ ბიზნესშიც ნაცნობი სიტუაციაა.
+
+ანგარიშგება ხშირად ასე გამოიყურება:
+
+▸ ERP-დან Excel ექსპორტი
+▸ ხელით ფორმატირება
+▸ PDF → ხელმძღვანელობა
+▸ 3–5 დღის ლოდინი
+
+Goldman-ი ამ ციკლს ათეულობით მილიონით ჭრის.
+ჩვენ ვცდილობთ ქართული სისტემებისთვის — Oris, Fina, Balance, 1C.
+
+ჯერ ყველგან არ გვიმუშავია. მაგრამ შედეგი ჩანს. ✅
+
+💬 თქვენთანაც ასეა?
+<span class="hashtags">#bivision #bifinance #bi #ai #საქართველო</span>
+<span class="credit">შექმნილია Bivision Marketing AI Team-ის მიერ</span></div>
+    </div>
+
   </div>
 
   <div class="divider"></div>
-
   <div class="meta">
     <span class="badge badge-ep">EP0: 9/10</span>
-    <span class="badge badge-v">v2 recommended</span>
+    <span class="badge badge-v">v3 — final candidate</span>
   </div>
-
   <div class="actions">
-    <div class="btn btn-approve">✅ Approve v2</div>
+    <div class="btn btn-approve">✅ Approve v3</div>
     <div class="btn btn-edit">✏️ Edit</div>
     <div class="btn btn-drop">❌ Drop</div>
   </div>
-
   <div class="footer">Bivision · Gurafa Intelligence Agent · ყოველდღიური სიგნალი</div>
 </div>
 
 <script>
-function show(v) {
-  document.querySelectorAll('.version').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+function show(v, el) {
+  document.querySelectorAll('.version').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
   document.getElementById(v).classList.add('active');
-  event.target.classList.add('active');
+  el.classList.add('active');
 }
 </script>
 </body>
