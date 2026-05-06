@@ -14,16 +14,24 @@
   .signal { background: #f8f9fa; border-left: 3px solid #0a66c2; margin: 20px 24px 0; padding: 10px 14px; border-radius: 0 4px 4px 0; }
   .signal-label { font-size: 10px; font-weight: 700; color: #0a66c2; text-transform: uppercase; letter-spacing: 0.8px; }
   .signal-text { font-size: 12px; color: #444; margin-top: 4px; line-height: 1.5; }
+  .version-tabs { display: flex; gap: 0; margin: 16px 24px 0; border-radius: 6px; overflow: hidden; border: 1px solid #e0e0e0; }
+  .tab { flex: 1; padding: 8px; text-align: center; font-size: 12px; font-weight: 600; cursor: pointer; background: #f5f5f5; color: #888; border: none; }
+  .tab.active { background: #0a66c2; color: #fff; }
   .post-box { margin: 16px 24px; }
   .post-label { font-size: 10px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
-  .post-text { font-size: 15px; color: #1a1a1a; line-height: 1.65; white-space: pre-line; }
+  .version { display: none; }
+  .version.active { display: block; }
+  .post-text { font-size: 15px; color: #1a1a1a; line-height: 1.7; white-space: pre-line; }
+  .post-text .strikethrough { text-decoration: line-through; color: #aaa; font-size: 13px; }
   .hashtags { margin-top: 12px; font-size: 14px; color: #0a66c2; }
-  .divider { height: 1px; background: #e8e8e8; margin: 20px 24px; }
-  .meta { padding: 0 24px 20px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .ai-credit { margin-top: 10px; font-size: 11px; color: #aaa; font-style: italic; }
+  .critique { background: #fff8e1; border-left: 3px solid #f59e0b; padding: 10px 14px; border-radius: 0 4px 4px 0; margin: 0 24px 12px; font-size: 12px; color: #555; line-height: 1.6; }
+  .critique-label { font-size: 10px; font-weight: 700; color: #f59e0b; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+  .divider { height: 1px; background: #e8e8e8; margin: 16px 24px; }
+  .meta { padding: 0 24px 16px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
   .badge { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; }
   .badge-ep { background: #e8f5e9; color: #2e7d32; }
-  .badge-date { background: #e3f2fd; color: #1565c0; }
-  .action-label { font-size: 11px; color: #888; margin-left: auto; }
+  .badge-v { background: #ede7f6; color: #4527a0; }
   .actions { padding: 0 24px 24px; display: flex; gap: 10px; }
   .btn { flex: 1; padding: 10px; border-radius: 6px; font-size: 13px; font-weight: 600; text-align: center; cursor: pointer; border: none; }
   .btn-approve { background: #0a66c2; color: #fff; }
@@ -35,18 +43,29 @@
 <body>
 <div class="card">
   <div class="header">
-    <h1>LinkedIn Post Draft</h1>
+    <h1>LinkedIn Post Draft — v2</h1>
     <p>Gurafa · 2026-05-06 · მარიამი, დაამტკიცე ან შეასწორე</p>
   </div>
 
   <div class="signal">
     <div class="signal-label">სიგნალი</div>
-    <div class="signal-text">May 4 — Anthropic-მა Goldman Sachs-თან და Blackstone-თან ახალი enterprise AI company ჩამოაყალიბა. May 5 — Claude Agents for Financial Services (pitch book, credit memo, Excel integration) გამოვიდა.</div>
+    <div class="signal-text">May 4 — Anthropic + Goldman Sachs + Blackstone → ახალი enterprise AI company. May 5 — Claude Agents for Financial Services (pitch book, credit memo, Excel).</div>
+  </div>
+
+  <div class="version-tabs">
+    <button class="tab" onclick="show('v1')">v1 — ორიგინალი</button>
+    <button class="tab active" onclick="show('v2')">v2 — გადახედული ✓</button>
   </div>
 
   <div class="post-box">
     <div class="post-label">Post ტექსტი</div>
-    <div class="post-text">Goldman Sachs-ი და Blackstone-ი Anthropic-ს ერთად ქმნიან AI კომპანიას.
+
+    <div class="version" id="v1">
+      <div class="critique">
+        <div class="critique-label">⚠️ პრობლემები v1-ში</div>
+        Goldman Sachs-თან შედარება — არავინ დაიჯერებს. "2 კვირაში" — proof არ არის. "AI BI-ში კი არ მოდის" — ყველა ამბობს. CTA = ხმამაღალი, სიცარიელეში.
+      </div>
+      <div class="post-text">Goldman Sachs-ი და Blackstone-ი Anthropic-ს ერთად ქმნიან AI კომპანიას.
 
 მიზანი: ფინანსური ანგარიშების, pitch book-ების და Excel-ის ავტომატიზაცია AI-ით.
 
@@ -57,24 +76,49 @@
 Goldman-ი ამ პრობლემას $100M-ით წყვეტს. Bivision — 2 კვირაში, ქართული სისტემებიდან (Oris, Fina, Balance, 1C) პირდაპირ.
 
 AI BI-ში კი არ მოდის — უკვე არის. კითხვა: გაქვს თუ არა?</div>
-    <div class="hashtags">#BusinessIntelligence #AI #საქართველო #Bivision</div>
+      <div class="hashtags">#BusinessIntelligence #AI #საქართველო #Bivision</div>
+    </div>
+
+    <div class="version active" id="v2">
+      <div class="post-text">Goldman Sachs-მა და Blackstone-მა გასულ კვირას Anthropic-თან ახალი AI კომპანია ჩამოაყალიბეს.
+
+მიზნებს შორის: Excel-ში ხელით მუშაობის ავტომატიზაცია ფინანსური ანგარიშებისთვის.
+
+ეს პრობლემა კარგად ვიცნობთ. ქართული კომპანიების უმეტესობაში ანგარიშგება ასე გამოიყურება — ERP → Excel → ხელით დამუშავება → PDF → შეხვედრა. ციკლი 3-5 დღე.
+
+Goldman-ი ამ პრობლემას ათეულობით მილიონით წყვეტს. ჩვენ ვცდილობთ ქართული რეალობისთვის — Oris, Fina, Balance, 1C — ეს ციკლი შევამციროთ.
+
+მუშავდება. ჯერ ყველგან არ გვიმუშავია.
+
+თქვენთვის ეს პრობლემა რამდენად ნაცნობია?</div>
+      <div class="hashtags">#BusinessIntelligence #PowerBI #AI #საქართველო</div>
+      <div class="ai-credit">შექმნილია Bivision Marketing AI Team-ის მიერ</div>
+    </div>
   </div>
 
   <div class="divider"></div>
 
   <div class="meta">
     <span class="badge badge-ep">EP0: 9/10</span>
-    <span class="badge badge-date">2026-05-06</span>
-    <span class="action-label">მარიამი, შენი გადაწყვეტილება →</span>
+    <span class="badge badge-v">v2 recommended</span>
   </div>
 
   <div class="actions">
-    <div class="btn btn-approve">✅ Approve</div>
+    <div class="btn btn-approve">✅ Approve v2</div>
     <div class="btn btn-edit">✏️ Edit</div>
     <div class="btn btn-drop">❌ Drop</div>
   </div>
 
   <div class="footer">Bivision · Gurafa Intelligence Agent · ყოველდღიური სიგნალი</div>
 </div>
+
+<script>
+function show(v) {
+  document.querySelectorAll('.version').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById(v).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
 </body>
 </html>
