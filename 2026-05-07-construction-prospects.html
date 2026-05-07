@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Construction Sector — Prospect Analysis</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f4f4; padding: 24px 16px; }
+  h1 { font-size: 17px; color: #1a1a1a; margin-bottom: 4px; }
+  .meta { font-size: 12px; color: #888; margin-bottom: 24px; }
+  .summary-table { background: #fff; border-radius: 8px; padding: 16px 20px; margin-bottom: 28px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .summary-table h2 { font-size: 13px; font-weight: 700; margin-bottom: 12px; color: #333; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { text-align: left; padding: 7px 10px; background: #f8f8f8; font-weight: 600; color: #555; border-bottom: 2px solid #e8e8e8; }
+  td { padding: 7px 10px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+  .score { font-weight: 700; font-size: 14px; }
+  .grade-a { color: #1b7e3e; }
+  .grade-b { color: #e67e22; }
+  .grade-c { color: #888; }
+  .tag { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+  .tag-a { background: #e8f5e9; color: #1b7e3e; }
+  .tag-b { background: #fef3e2; color: #e67e22; }
+  .tag-c { background: #f5f5f5; color: #888; }
+  .tag-red { background: #fde8e8; color: #c0392b; }
+  .card { background: #fff; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,.08); overflow: hidden; }
+  .card-header { padding: 14px 18px; background: #f8f9fa; border-bottom: 1px solid #e8e8e8; display: flex; justify-content: space-between; align-items: flex-start; }
+  .card-header .co-name { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+  .card-header .co-meta { font-size: 11px; color: #666; margin-top: 3px; }
+  .score-badge { text-align: right; }
+  .score-num { font-size: 22px; font-weight: 800; }
+  .score-label { font-size: 10px; color: #888; }
+  .card-body { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .icp-section { padding: 14px 18px; border-right: 1px solid #f0f0f0; }
+  .email-section { padding: 14px 18px; }
+  .section-title { font-size: 11px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+  .icp-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 12px; }
+  .icp-label { color: #666; }
+  .icp-val { font-weight: 600; color: #1a1a1a; }
+  .icp-bar-wrap { height: 4px; background: #eee; border-radius: 2px; margin-top: 3px; margin-bottom: 10px; }
+  .icp-bar { height: 4px; border-radius: 2px; background: #1a73e8; }
+  .contact-box { background: #f8f9fa; border-radius: 6px; padding: 10px 12px; margin-bottom: 10px; font-size: 12px; }
+  .contact-name { font-weight: 600; color: #1a1a1a; }
+  .contact-role { color: #666; font-size: 11px; }
+  .contact-email { color: #1a73e8; font-size: 11px; margin-top: 2px; word-break: break-all; }
+  .pain-list { font-size: 12px; color: #333; }
+  .pain-list li { margin-bottom: 4px; padding-left: 12px; position: relative; }
+  .pain-list li::before { content: '▸'; position: absolute; left: 0; color: #1a73e8; }
+  .email-subj { font-size: 11px; font-weight: 600; color: #555; margin-bottom: 4px; }
+  .email-subj span { color: #1a1a1a; font-weight: 700; }
+  .email-body-text { font-size: 13px; line-height: 1.7; color: #1a1a1a; white-space: pre-line; background: #fafafa; border-radius: 6px; padding: 12px; margin-top: 6px; }
+  .copy-btn { display: block; width: 100%; margin-top: 8px; padding: 8px; background: #1a73e8; color: #fff; border: none; border-radius: 5px; font-size: 12px; font-weight: 600; cursor: pointer; }
+  .warn-box { background: #fff8e1; border-left: 3px solid #f0b429; padding: 6px 10px; font-size: 11px; color: #7b5a00; margin-bottom: 8px; border-radius: 0 4px 4px 0; }
+  @media (max-width: 700px) { .card-body { grid-template-columns: 1fr; } .icp-section { border-right: none; border-bottom: 1px solid #f0f0f0; } }
+</style>
+</head>
+<body>
+
+<h1>Construction Sector — Prospect Analysis</h1>
+<p class="meta">Source: Developers-email.xlsx (465 კომპანია) | Scored vs Bivision ICP | May 7, 2026</p>
+
+<!-- SUMMARY TABLE -->
+<div class="summary-table">
+  <h2>Pipeline Summary — Top 8 Prospects</h2>
+  <table>
+    <tr><th>კომპანია</th><th>კონტაქტი</th><th>როლი</th><th>ICP Score</th><th>Grade</th><th>Priority</th></tr>
+    <tr>
+      <td><strong>ვივა ჯგუფი</strong></td>
+      <td>ნიკა ბულია</td>
+      <td>ფინანსური დირექტორი</td>
+      <td class="score grade-a">82/100</td>
+      <td><span class="tag tag-a">A</span></td>
+      <td>P0 — CFO, multi-sector</td>
+    </tr>
+    <tr>
+      <td><strong>ელთ ბილდინგი</strong></td>
+      <td>ელგუჯა თურმანიძე + გიორგი გოგიჩაიშვილი</td>
+      <td>დირექტორი + ფინანსური მენეჯ.</td>
+      <td class="score grade-a">78/100</td>
+      <td><span class="tag tag-a">A</span></td>
+      <td>P0 — finance@ email</td>
+    </tr>
+    <tr>
+      <td><strong>ლაგი კაპიტალი</strong></td>
+      <td>ლაშა გრიგალავა</td>
+      <td>დირექტორი</td>
+      <td class="score grade-b">72/100</td>
+      <td><span class="tag tag-b">B+</span></td>
+      <td>P1</td>
+    </tr>
+    <tr>
+      <td><strong>ინდეკო</strong></td>
+      <td>ნინო სირბილაძე</td>
+      <td>ფინანსური დირექტორი</td>
+      <td class="score grade-b">70/100</td>
+      <td><span class="tag tag-b">B+</span></td>
+      <td>P1 — too small?</td>
+    </tr>
+    <tr>
+      <td><strong>გალაქსი კონსტრაქშენ</strong></td>
+      <td>მანანა კუპატაძე</td>
+      <td>მარკეტინგის მენეჯ.</td>
+      <td class="score grade-b">65/100</td>
+      <td><span class="tag tag-b">B</span></td>
+      <td>P1 — marketing contact, need CFO</td>
+    </tr>
+    <tr>
+      <td><strong>ბინადარი</strong></td>
+      <td>თეო გოგობერიშვილი</td>
+      <td>კომერციული დირექტორი</td>
+      <td class="score grade-b">64/100</td>
+      <td><span class="tag tag-b">B</span></td>
+      <td>P1</td>
+    </tr>
+    <tr>
+      <td><strong>ბრიტიშ აპარტმენტი</strong></td>
+      <td>ირაკლი კვერღელიძე</td>
+      <td>დირექტორი (Orbi Group)</td>
+      <td class="score grade-b">60/100</td>
+      <td><span class="tag tag-b">B</span></td>
+      <td>P2 — Orbi = enterprise risk</td>
+    </tr>
+    <tr>
+      <td><strong>ზენა დეველოპმენტი</strong></td>
+      <td>გიორგი რუხაძე</td>
+      <td>დირექტორი</td>
+      <td class="score grade-b">58/100</td>
+      <td><span class="tag tag-b">B</span></td>
+      <td>P2</td>
+    </tr>
+  </table>
+</div>
+
+<!-- CARD 1: Viva Group — A -->
+<div class="card">
+  <div class="card-header">
+    <div>
+      <div class="co-name">ვივა ჯგუფი — Viva Group</div>
+      <div class="co-meta">vivagroup.ge · Real estate + Healthcare + Retail · 20+ years · 7 country offices</div>
+    </div>
+    <div class="score-badge">
+      <div class="score-num grade-a">82</div>
+      <div class="score-label">ICP Score · <span class="tag tag-a">A</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="icp-section">
+      <div class="section-title">ICP Breakdown</div>
+      <div class="icp-row"><span class="icp-label">Firmographic</span><span class="icp-val">21/25</span></div>
+      <div class="icp-bar-wrap"><div class="icp-bar" style="width:84%"></div></div>
+      <div class="icp-row"><span class="icp-label">Contact Quality</span><span class="icp-val">18/20</span></div>
+      <div class="icp-bar-wrap"><div class="icp-bar" style="width:90%"></div></div>
+      <div class="icp-row"><span class="icp-label">Pain Alignment</span><span class="icp-val">22/25</span></div>
+      <div class="icp-bar-wrap"><div class="icp-bar" style="width:88%"></div></div>
+      <div class="icp-row"><span class="icp-label">Budget Signal</span><span class="icp-val">14/20</span></div>
+      <div class="icp-bar-wrap"><div class="icp-bar" style="width:70%"></div></div>
+      <div class="icp-row"><span class="icp-label">Timing</span><span class="icp-val">7/10</span></div>
+      <div class="icp-bar-wrap"><div class="icp-bar" style="width:70%"></div></div>
+
+      <div class="section-title" style="margin-top:12px">კონტაქტი</div>
+      <div class="contact-box">
+        <div class="contact-name">ნიკა ბულია</div>
+        <div class="contact-role">ფინანსური დირექტორი</div>
+        <div class="contact-email">nikabulia@gmail.com</div>
+      </div>
+      <div class="contact-box">
+        <div class="contact-name">თამარ პარასკებაშვილი</div>
+        <div class="contact-role">PR მენეჯერი</div>
+        <div class="contact-email">t.paraskebashvili@vivagroup.ge</div>
+      </div>
+
+      <div class="section-title" style="margin-top:12px">Pain Points</div>
+      <ul class="pain-list">
+        <li>5 სექტორი (real estate, healthcare, retail, agri, hospitality) — P&L კონსოლიდაცია ერთ ადგილას</li>
+        <li>7 ქვეყანა — cross-currency reporting</li>
+        <li>CFO Gmail-ზე — ERP integration ალბათ 1C ან Balance</li>
+        <li>მშენებლობა + ოპერაცია ერთდროულად — project-level vs company-level analytics</li>
+      </ul>
+    </div>
+    <div class="email-section">
+      <div class="section-title">Outreach Email</div>
+      <div class="warn-box">CFO ემეილი Gmail-ზეა — personalization კრიტიკული, generic = trash</div>
+      <div class="email-subj">Subject: <span>Viva Group — P&amp;L 5 მიმართულებით ერთ dashboard-ში</span></div>
+      <div class="email-body-text" id="viva-email">ნიკა, გამარჯობა.
+
+Bivision-ი ვარ — BI და analytics Qlik Sense-ზე. ვმუშაობ ქართული კომპანიების CFO-ებთან, რომლებსაც 3+ ბიზნეს მიმართულება აქვთ.
+
+Viva Group-ის შემთხვევაში ვხედავ კონკრეტულ challenge-ს: real estate, healthcare, retail და hospitality — თითოეული საკუთარი P&L-ით. კონსოლიდირებული სურათი CFO-ს ხელში — ალბათ ყოველ პარასკევს Excel-ში.
+
+ჩვენ ეს ავტომატიზებული გვაქვს: ERP (1C, Balance, Fina, Oris) → Qlik → group-level dashboard. Cross-sector P&L, project-level margin, cash flow forecast — ერთ ეკრანზე.
+
+15 წუთი გაქვთ ამ კვირაში? გაჩვენებ, Viva-ს სტრუქტურით კონკრეტულად.
+
+გელა შონია
+Bivision | gela.shonia@bivision.ge | +995 XXX XXX XXX</div>
+      <button class="copy-btn" onclick="copyEl('viva-email', this)">Copy</button>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 2: ELT Building — A -->
+<div class="card">
+  <div class="card-header">
+    <div>
+      <div class="co-name">ელთ ბილდინგი</div>
+      <div class="co-meta">eltbuilding.ge · სამშენებლო კომპანია · Tbilisi</div>
+    </div>
+    <div class="score-badge">
+      <div class="score-num grade-a">78</div>
+      <div class="score-label">ICP Score · <span class="tag tag-a">A</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="icp-section">
+      <div class="section-title">ICP Breakdown</div>
+      <div class="icp-row"><span class="icp-label">Firmographic</span><span class="icp-val">19/25</span></div>
+      <div class="icp-bar-wrap"><div class="icp-bar" style="width:76%"></div></div>
+      <div class="icp-row"><span class="icp-label">Contact Quality</span><span class="icp-val">17/20</span></div>
+      <div class="icp-bar-wrap"><div class="icp-bar" style="width:85%"></div></div>
+      <div class="icp-row"><span class="icp-label">Pain Alignment</span><span class="icp-val">20/25</span></div>
+      <div class="icp-bar-wrap"><div class="icp-bar" style="width:80%"></div></div>
+      <div class="icp-row"><span class="icp-label">Budget Signal</span><span class="icp-val">14/20</span></div>
+      <div class="icp-bar-wrap"><div class="icp-bar" style="width:70%"></div></div>
+      <div class="icp-row"><span class="icp-label">Timing</span><span class="icp-val">8/10</span></div>
+      <div class="icp-bar-wrap"><div class="icp-bar" style="width:80%"></div></div>
+
+      <div class="section-title" style="margin-top:12px">კონტაქტი</div>
+      <div class="contact-box">
+        <div class="contact-name">გიორგი გოგიჩაიშვილი</div>
+        <div class="contact-role">ფინანსური მენეჯერი</div>
+        <div class="contact-email">finance@eltbuilding.ge</div>
+      </div>
+      <div class="contact-box">
+        <div class="contact-name">ელგუჯა თურმანიძე</div>
+        <div class="contact-role">დირექტორი</div>
+        <div class="contact-email">finance@eltbuilding.ge (shared)</div>
+      </div>
+
+      <div class="section-title" style="margin-top:12px">Pain Points</div>
+      <ul class="pain-list">
+        <li>სამშენებლო კომპანია — project-level cost tracking critical</li>
+        <li>finance@ email = ბუღალტერია → director ხელში ვარ</li>
+        <li>material cost + labor + subcontractor analytics</li>
+        <li>ERP likely 1C ან Balance (Georgian construction standard)</li>
+      </ul>
+    </div>
+    <div class="email-section">
+      <div class="section-title">Outreach Email</div>
+      <div class="email-subj">Subject: <span>ელთ ბილდინგი — პროექტების P&amp;L ავტომატურად</span></div>
+      <div class="email-body-text" id="elt-email">გიორგი / ელგუჯა, გამარჯობა.
+
+Bivision — BI analytics ქართული სამშენებლო კომპანიებისთვის.
+
+სამშენებლო სექტორში ყველაზე ხშირი კომენტარი, რომელსაც ვისმენ CFO-ებისგან: "პროექტის cost-ი და revenue ნათელია ბოლოს, მაგრამ რეალურ დროში — არა."
+
+ელთ ბილდინგისთვის კონკრეტულად: 1C ან Balance-ის მონაცემებიდან პირდაპირ — project-level margin, material vs labor split, cash position — ერთ dashboard-ში.
+
+25 წუთი გაქვთ ამ კვირაში live demo-სთვის?
+
+გელა შონია
+Bivision | gela.shonia@bivision.ge</div>
+      <button class="copy-btn" onclick="copyEl('elt-email', this)">Copy</button>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 3: Lagi Capital — B+ -->
+<div class="card">
+  <div class="card-header">
+    <div>
+      <div class="co-name">ლაგი კაპიტალი</div>
+      <div class="co-meta">lagi-group.ge · Developer + Property Management · Tbilisi</div>
+    </div>
+    <div class="score-badge">
+      <div class="score-num grade-b">72</div>
+      <div class="score-label">ICP Score · <span class="tag tag-b">B+</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="icp-section">
+      <div class="section-title">კონტაქტი</div>
+      <div class="contact-box">
+        <div class="contact-name">ლაშა გრიგალავა</div>
+        <div class="contact-role">დირექტორი</div>
+        <div class="contact-email">l.grigalava@lagi-group.ge</div>
+      </div>
+      <div class="contact-box">
+        <div class="contact-name">გიორგი ლომიტაშვილი</div>
+        <div class="contact-role">აღმასრულებელი დირექტორი</div>
+        <div class="contact-email">g.lomitashvili@yahoo.com</div>
+      </div>
+      <div class="section-title" style="margin-top:12px">Pain Points</div>
+      <ul class="pain-list">
+        <li>Capital + Property Mgmt = dual P&L structure</li>
+        <li>Development pipeline vs rental income tracking</li>
+        <li>Exec Director + Director = fast decision potential</li>
+      </ul>
+    </div>
+    <div class="email-section">
+      <div class="section-title">Outreach Email</div>
+      <div class="email-subj">Subject: <span>ლაგი კაპიტალი — development + property P&amp;L ერთ სურათში</span></div>
+      <div class="email-body-text" id="lagi-email">ლაშა, გამარჯობა.
+
+Bivision — BI analytics Qlik Sense-ზე, ქართული developer კომპანიებისთვის.
+
+Developer კომპანიებს ორი სურათი სჭირდებათ ერთდროულად: active project-ების cost-tracking და property portfolio-ს performance. Excel-ში ეს ორი ფაილია, BI-ში — ერთი dashboard.
+
+15 წუთი გაქვთ ამ კვირაში? Lagi Group-ის სტრუქტურაზე კონკრეტულ demo-ს გაჩვენებ.
+
+გელა შონია
+Bivision | gela.shonia@bivision.ge</div>
+      <button class="copy-btn" onclick="copyEl('lagi-email', this)">Copy</button>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 4: INDECO — B+ -->
+<div class="card">
+  <div class="card-header">
+    <div>
+      <div class="co-name">ინდეკო — INDECO</div>
+      <div class="co-meta">indeco.ge · Housing + Office + Hospitality projects · Tbilisi · est. 2007</div>
+    </div>
+    <div class="score-badge">
+      <div class="score-num grade-b">70</div>
+      <div class="score-label">ICP Score · <span class="tag tag-b">B+</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="icp-section">
+      <div class="section-title">კონტაქტი</div>
+      <div class="contact-box">
+        <div class="contact-name">ნინო სირბილაძე</div>
+        <div class="contact-role">ფინანსური დირექტორი</div>
+        <div class="contact-email">nino.sirbiladze@indeco.ge</div>
+      </div>
+      <div class="warn-box" style="margin-top:8px">⚠ Company size ~10-20 emp (per web). Verify before deep investment.</div>
+      <div class="section-title" style="margin-top:8px">Pain Points</div>
+      <ul class="pain-list">
+        <li>3 sector (housing/office/hospitality) = 3 P&L streams</li>
+        <li>Financial Director = direct budget authority</li>
+        <li>19 years in market = mature ERP usage likely</li>
+      </ul>
+    </div>
+    <div class="email-section">
+      <div class="section-title">Outreach Email</div>
+      <div class="email-subj">Subject: <span>INDECO — residential + office + hospitality P&amp;L ერთ dashboard-ში</span></div>
+      <div class="email-body-text" id="indeco-email">ნინო, გამარჯობა.
+
+Bivision — BI analytics Qlik Sense-ზე, ქართული developer კომპანიებისთვის.
+
+INDECO-ს სამი მიმართულება — residential, office, hospitality — ყოველი საკუთარი ფინანსური ლოგიკით. ვიცი, რომ Financial Director-ის მთავარი challenge ხშირად ეს არის: segment-ებს შორის კაპიტალის განაწილება და cross-segment profitability.
+
+Bivision ამ სურათს ავტომატიზებს ERP-იდან პირდაპირ.
+
+20 წუთი გაქვთ demo-სთვის?
+
+გელა შონია
+Bivision | gela.shonia@bivision.ge</div>
+      <button class="copy-btn" onclick="copyEl('indeco-email', this)">Copy</button>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 5: Galaxy Construction — B -->
+<div class="card">
+  <div class="card-header">
+    <div>
+      <div class="co-name">გალაქსი კონსტრაქშენ</div>
+      <div class="co-meta">galaxygroup.ge · Large developer · Multiple active projects</div>
+    </div>
+    <div class="score-badge">
+      <div class="score-num grade-b">65</div>
+      <div class="score-label">ICP Score · <span class="tag tag-b">B</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="icp-section">
+      <div class="section-title">კონტაქტი</div>
+      <div class="contact-box">
+        <div class="contact-name">მანანა კუპატაძე</div>
+        <div class="contact-role">მარკეტინგის და გაყიდვების მენეჯერი</div>
+        <div class="contact-email">mkupatadze@galaxygroup.ge</div>
+      </div>
+      <div class="warn-box" style="margin-top:8px">⚠ Marketing contact — BI pitch needs CFO/Finance Director. Use as warm intro only.</div>
+      <div class="section-title" style="margin-top:8px">Pain Points</div>
+      <ul class="pain-list">
+        <li>Large developer = complex project portfolio tracking</li>
+        <li>Sales analytics (apartments sold/remaining/pipeline) = marketing pain</li>
+        <li>Use marketing contact → ask who handles financial reporting</li>
+      </ul>
+    </div>
+    <div class="email-section">
+      <div class="section-title">Outreach Email — Referral Approach</div>
+      <div class="email-subj">Subject: <span>გალაქსი — BI analytics · კითხვა</span></div>
+      <div class="email-body-text" id="galaxy-email">მანანა, გამარჯობა.
+
+Bivision — BI analytics developer კომპანიებისთვის. Galaxy Group-ის სკალაზე კარგ use case-ს ვხედავ — project-level sales analytics და cost tracking.
+
+შეგიძლიათ მითხრათ, ვინ არის responsible financial/management reporting-ისთვის Galaxy-ში? უშუალოდ იმ ადამიანთან მინდა ვისაუბრო.
+
+გელა შონია
+Bivision | gela.shonia@bivision.ge</div>
+      <button class="copy-btn" onclick="copyEl('galaxy-email', this)">Copy</button>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 6: Binadari — B -->
+<div class="card">
+  <div class="card-header">
+    <div>
+      <div class="co-name">ბინადარი</div>
+      <div class="co-meta">binadari.com · Residential developer · Tbilisi</div>
+    </div>
+    <div class="score-badge">
+      <div class="score-num grade-b">64</div>
+      <div class="score-label">ICP Score · <span class="tag tag-b">B</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="icp-section">
+      <div class="section-title">კონტაქტი</div>
+      <div class="contact-box">
+        <div class="contact-name">თეო გოგობერიშვილი</div>
+        <div class="contact-role">კომერციული დირექტორი</div>
+        <div class="contact-email">t.gogoberishvili@binadari.com</div>
+      </div>
+      <div class="section-title" style="margin-top:8px">Pain Points</div>
+      <ul class="pain-list">
+        <li>Residential sales pipeline visibility</li>
+        <li>Apartment inventory + presale analytics</li>
+        <li>Commercial Director = sales-side entry point</li>
+      </ul>
+    </div>
+    <div class="email-section">
+      <div class="section-title">Outreach Email</div>
+      <div class="email-subj">Subject: <span>ბინადარი — sales pipeline analytics · Bivision</span></div>
+      <div class="email-body-text" id="binadari-email">თეო, გამარჯობა.
+
+Bivision — BI analytics ქართული developer კომპანიებისთვის.
+
+Residential developer-ებისთვის ყველაზე მაღალი ღირებულების analytics: apartments sold vs available vs reserved — real-time, project-by-project. Sales team ხედავს pipeline-ს, CFO ხედავს revenue forecast.
+
+20 წუთი გაქვთ demo-სთვის?
+
+გელა შონია
+Bivision | gela.shonia@bivision.ge</div>
+      <button class="copy-btn" onclick="copyEl('binadari-email', this)">Copy</button>
+    </div>
+  </div>
+</div>
+
+<!-- CARDS 7-8 compact -->
+<div class="card">
+  <div class="card-header">
+    <div>
+      <div class="co-name">ბრიტიშ აპარტმენტი (Orbi Group)</div>
+      <div class="co-meta">orbi.ge · Luxury hospitality + real estate · P2 — enterprise risk</div>
+    </div>
+    <div class="score-badge">
+      <div class="score-num grade-b">60</div>
+      <div class="score-label">ICP Score · <span class="tag tag-b">B</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="icp-section">
+      <div class="contact-box">
+        <div class="contact-name">ირაკლი კვერღელიძე</div>
+        <div class="contact-role">დირექტორი</div>
+        <div class="contact-email">irakli@orbi.ge</div>
+      </div>
+      <div class="warn-box">⚠ Orbi = very large group. May already use enterprise BI (Power BI / Tableau). Qualify size before invest.</div>
+    </div>
+    <div class="email-section">
+      <div class="section-title">Outreach Email</div>
+      <div class="email-body-text" id="orbi-email">ირაკლი, გამარჯობა.
+
+Bivision — Qlik Sense-ზე BI analytics. Orbi-ს სკალაზე hospitality + real estate P&L კონსოლიდაციას ვაკეთებ.
+
+ინტერესი გაქვთ 20-წუთიანი ზარისთვის, სად ვდგავართ BI-ს მხრივ?
+
+გელა შონია
+Bivision | gela.shonia@bivision.ge</div>
+      <button class="copy-btn" onclick="copyEl('orbi-email', this)">Copy</button>
+    </div>
+  </div>
+</div>
+
+<div class="summary-table" style="margin-top:8px">
+  <h2>Next Steps</h2>
+  <table>
+    <tr><th>#</th><th>Action</th><th>Owner</th><th>Deadline</th></tr>
+    <tr><td>1</td><td>ვივა ჯგუფი — ნიკა ბულია CFO email გაგზავნა</td><td>გელა</td><td>ხვალ</td></tr>
+    <tr><td>2</td><td>ელთ ბილდინგი — finance@ email გაგზავნა</td><td>გელა</td><td>ხვალ</td></tr>
+    <tr><td>3</td><td>ლაგი კაპიტალი — ლაშა გრიგალავა</td><td>გელა</td><td>ამ კვირაში</td></tr>
+    <tr><td>4</td><td>ინდეკო — verify company size before send</td><td>გელა</td><td>ამ კვირაში</td></tr>
+    <tr><td>5</td><td>197 კომპანიის სრული batch — HubSpot import</td><td>Mentari/Mariam</td><td>შემდეგი კვირა</td></tr>
+  </table>
+</div>
+
+<p style="font-size:11px;color:#aaa;margin-top:16px;text-align:center">Source: Developers-email.xlsx · 465 Georgian developer companies · Scored vs Bivision ICP | May 7, 2026</p>
+
+<script>
+function copyEl(id, btn) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ კოპირდა!';
+    setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>
