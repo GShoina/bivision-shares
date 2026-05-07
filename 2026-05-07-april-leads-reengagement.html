@@ -3,261 +3,206 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>April Leads — Re-engagement Drafts v2</title>
+<title>April Leads — Re-engagement v3</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f4f4; padding: 32px 16px; }
-  h1 { font-size: 18px; color: #1a1a1a; margin-bottom: 8px; }
-  .meta { font-size: 12px; color: #888; margin-bottom: 32px; }
-  .diagnosis { background: #fff; border-radius: 8px; padding: 20px; margin-bottom: 32px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
-  .diagnosis h2 { font-size: 14px; font-weight: 700; color: #333; margin-bottom: 12px; }
-  table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  th { text-align: left; padding: 8px 10px; background: #f8f8f8; font-weight: 600; color: #555; border-bottom: 2px solid #e8e8e8; }
-  td { padding: 8px 10px; border-bottom: 1px solid #f0f0f0; color: #333; vertical-align: top; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f4f4; padding: 28px 16px; }
+  h1 { font-size: 17px; color: #1a1a1a; margin-bottom: 4px; }
+  .meta { font-size: 12px; color: #888; margin-bottom: 28px; }
+  .strategy-box { background: #e8f0fe; border-left: 3px solid #1a73e8; padding: 12px 16px; border-radius: 0 6px 6px 0; margin-bottom: 28px; font-size: 13px; color: #1a1a1a; }
+  .strategy-box strong { display: block; margin-bottom: 6px; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; color: #1a73e8; }
+  .email-card { background: #fff; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,.08); overflow: hidden; }
+  .email-header { padding: 14px 18px; background: #f8f9fa; border-bottom: 1px solid #e8e8e8; }
+  .lead-name { font-size: 15px; font-weight: 700; color: #1a1a1a; display: flex; justify-content: space-between; align-items: center; }
+  .lead-meta { font-size: 11px; color: #666; margin-top: 3px; }
   .tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; }
-  .tag-red { background: #fde8e8; color: #c0392b; }
-  .tag-orange { background: #fef3e2; color: #e67e22; }
-  .tag-blue { background: #e8f0fe; color: #1a73e8; }
-  .tag-green { background: #e8f5e9; color: #2e7d32; }
-  .email-card { background: #fff; border-radius: 8px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,.08); overflow: hidden; }
-  .email-header { padding: 16px 20px; background: #f8f9fa; border-bottom: 1px solid #e8e8e8; }
-  .email-header .lead-name { font-size: 15px; font-weight: 700; color: #1a1a1a; }
-  .email-header .lead-meta { font-size: 12px; color: #666; margin-top: 4px; }
-  .stuck-reason { font-size: 11px; font-weight: 600; color: #c0392b; margin-top: 6px; }
-  .notes-context { font-size: 11px; background: #fffbea; border-left: 3px solid #f0b429; padding: 8px 12px; margin: 0 20px 0; border-radius: 0 4px 4px 0; }
-  .notes-context strong { color: #7b5a00; }
-  .email-fields { padding: 16px 20px; border-bottom: 1px solid #f0f0f0; }
-  .field-row { display: flex; gap: 8px; margin-bottom: 6px; font-size: 12px; }
-  .field-label { color: #888; min-width: 60px; }
-  .field-value { color: #1a1a1a; font-weight: 500; }
-  .email-body { padding: 20px; font-size: 14px; line-height: 1.8; color: #1a1a1a; white-space: pre-line; }
-  .copy-btn { display: block; width: calc(100% - 40px); margin: 0 20px 16px; padding: 10px; background: #1a73e8; color: #fff; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
-  .priority-badge { float: right; }
-  .section-divider { margin: 12px 0 0; padding: 12px 20px 0; border-top: 1px solid #f0f0f0; }
+  .p0 { background: #fde8e8; color: #c0392b; }
+  .p1 { background: #fef3e2; color: #e67e22; }
+  .p2 { background: #e8f0fe; color: #1a73e8; }
+  .ok { background: #e8f5e9; color: #1b7e3e; }
+  .note-box { margin: 0 18px; margin-top: 10px; background: #fffbea; border-left: 3px solid #f0b429; padding: 7px 11px; font-size: 11px; color: #7b5a00; border-radius: 0 4px 4px 0; }
+  .note-box strong { color: #7b5a00; }
+  .fields { padding: 12px 18px 0; }
+  .field { display: flex; gap: 8px; font-size: 12px; margin-bottom: 5px; }
+  .fl { color: #888; min-width: 56px; }
+  .fv { font-weight: 500; color: #1a1a1a; }
+  .body { padding: 16px 18px; font-size: 14px; line-height: 1.8; color: #1a1a1a; white-space: pre-line; background: #fff; }
+  .gemini-flag { font-size: 10px; background: #f3e8ff; color: #6b21a8; padding: 3px 8px; border-radius: 10px; font-weight: 600; margin-left: 6px; }
+  .copy-btn { display: block; width: calc(100% - 36px); margin: 0 18px 14px; padding: 9px; background: #1a73e8; color: #fff; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .delta { font-size: 11px; color: #555; background: #f0f7ff; border-radius: 4px; padding: 4px 8px; margin: 0 18px 12px; }
+  .delta span { font-weight: 700; color: #1a73e8; }
 </style>
 </head>
 <body>
 
-<h1>April Leads — Re-engagement Email Drafts <span style="color:#888;font-weight:400">v2 — notes-grounded</span></h1>
-<p class="meta">Gela → gela.shonia@bivision.ge review | May 7, 2026 | Based on actual HubSpot notes</p>
+<h1>April Leads — Re-engagement v3 <span style="font-weight:400;color:#888">სტრატეგიურად გადაწერილი</span></h1>
+<p class="meta">gela.shonia@bivision.ge | May 7, 2026 | Gemini polish pending on marked emails</p>
 
-<div class="diagnosis">
-  <h2>Pipeline Diagnosis — April 2026 (notes-based)</h2>
-  <table>
-    <tr>
-      <th>სახელი</th><th>კომპანია</th><th>ბოლო ნოუთი</th><th>რეალური მიზეზი</th><th>სტრატეგია</th>
-    </tr>
-    <tr>
-      <td><strong>Vera Kirtadze</strong></td>
-      <td>Horeca</td>
-      <td>Apr 2</td>
-      <td><span class="tag tag-orange">1C+Balance demo — კომ. დირექტორი ჯერ არ ჩართულა</span></td>
-      <td>3-თვიანი pilot + joint meeting</td>
-    </tr>
-    <tr>
-      <td><strong>Petre Chkheidze</strong></td>
-      <td>Crypto mining</td>
-      <td>Apr 27</td>
-      <td><span class="tag tag-orange">CEO — სხვა კომპანიებს ადარებს (თვითონ დაადასტურა)</span></td>
-      <td>Low-pressure — კრიტერიუმები გამოვთხოვო</td>
-    </tr>
-    <tr>
-      <td><strong>Shmagi Londaridze</strong></td>
-      <td>Elgromotors</td>
-      <td>Apr 23</td>
-      <td><span class="tag tag-red">Amadeo-სთან შეხვედრა იმავე დღეს — კონკურენტი აქტიურია</span></td>
-      <td>FIFO debtors სპეციფიკით — GeoCord precedent</td>
-    </tr>
-    <tr>
-      <td><strong>Gvanca Tetrashvili</strong></td>
-      <td>Julius Meinl</td>
-      <td>Apr 7</td>
-      <td><span class="tag tag-orange">4 კითხვა გავუგზავნე — 30 დღე პასუხი არ არის</span></td>
-      <td>4 კითხვა → 1 კითხვა. ბარიერი შევამცირო.</td>
-    </tr>
-    <tr>
-      <td><strong>გიორგი გიქორაშვილი</strong></td>
-      <td>Ollivander</td>
-      <td>Apr 27</td>
-      <td><span class="tag tag-blue">CEO — Q4 გადაწყვეტილება. რესურსები ამოწურულია.</span></td>
-      <td>Keep-warm — სექტემბრის ბოლოს ვუბრუნდები</td>
-    </tr>
-    <tr>
-      <td><strong>Oto Jailava</strong></td>
-      <td>—</td>
-      <td>—</td>
-      <td><span class="tag tag-green">Apr 30 — პირველი კონტაქტი არ ყოფილა</span></td>
-      <td>First touch — Shareholder ICP</td>
-    </tr>
-  </table>
+<div class="strategy-box">
+  <strong>სტრატეგია — v3 წესები</strong>
+  1. გახსნა = მათი ტკივილი, არა ჩვენი პროდუქტი<br>
+  2. 1 proof point — კომპანიის სახელი ან კონკრეტული შედეგი<br>
+  3. CTA = "გამოგიგზავნო 2-წუთიანი demo?" — არა "15 წუთი?"<br>
+  4. max 4-5 წინადადება<br>
+  5. ქართული — ბუნებრივი, ტექნიკური ტერმინი = minimum
 </div>
 
-<!-- EMAIL 1: Vera Kirtadze / Horeca -->
+<!-- EMAIL 1: Vera / Horeca -->
 <div class="email-card">
   <div class="email-header">
-    <div class="lead-name">Vera Kirtadze <span class="priority-badge"><span class="tag tag-orange">P1 — demo Apr 2, 35d silent</span></span></div>
-    <div class="lead-meta">Head of Finance · Horeca · vkirtadze@horeca.ge</div>
-    <div class="stuck-reason">⚠ Demo გავლილია, 1C+Balance ჩვენა — კომ. დირექტორი + დირექტორი ჩართული არ ყოფილა. გადაწყვეტილება ჩაიჭედა.</div>
+    <div class="lead-name">Vera Kirtadze <span class="tag p1">P1 — 35d silent</span></div>
+    <div class="lead-meta">Head of Finance · Horeca · Demo Apr 2 · Commercial dir + Director = DMs</div>
   </div>
-  <div class="notes-context" style="margin-top:12px;"><strong>HubSpot notes:</strong> Demo Apr 2 · 1C + Balance stack · P&L + cost allocation by dept = main pain · Commercial director + Director = decision makers · 3-month trial discussed · Retail direction data still pending</div>
-  <div class="email-fields" style="margin-top:0; padding-top:12px;">
-    <div class="field-row"><span class="field-label">From:</span><span class="field-value">gela.shonia@bivision.ge</span></div>
-    <div class="field-row"><span class="field-label">To:</span><span class="field-value">vkirtadze@horeca.ge</span></div>
-    <div class="field-row"><span class="field-label">Subject:</span><span class="field-value">Bivision / Horeca — P&amp;L ავტომატიზაცია 1C+Balance-დან</span></div>
+  <div class="note-box"><strong>HubSpot context:</strong> Demo Apr 2 · 1C + Balance · P&L by dept · 3-month trial discussed · Decision needs commercial dir + director joint buy-in</div>
+  <div class="delta">v3 change: <span>opens with their pain (not "2 აპრილს ვნახეთ") · joint meeting ask more direct · CTA = "შეიძლება?"</span></div>
+  <div class="fields">
+    <div class="field"><span class="fl">From:</span><span class="fv">gela.shonia@bivision.ge</span></div>
+    <div class="field"><span class="fl">To:</span><span class="fv">vkirtadze@horeca.ge</span></div>
+    <div class="field"><span class="fl">Subject:</span><span class="fv">Horeca — P&L სურათი სანამ თვე დაიხურება</span></div>
   </div>
-  <div class="email-body" id="email1">ვერა, გამარჯობა.
+  <div class="body" id="e1">ვერა, გამარჯობა.
 
-2 აპრილს ვნახეთ, როგორ ჩაიტვირთება 1C-ისა და Balance-ის მონაცემები და ავტომატიზდება P&L — განყოფილებებზე დანაწილებით.
+Horeca-ს მასშტაბის კომპანიაში ყველაზე ძვირი ნაწილი ხშირად ეს არის: P&L ნათელია ბოლოს. 1C-სა და Balance-ს მონაცემები ინახავს, სურათი — ბუღალტრიდან, კვირაში ერთხელ.
 
-მას შემდეგ ჩუმობა. ვხვდები, რომ ასეთი გადაწყვეტილება ერთ ადამიანზე არ ჩერდება — კომერციული დირექტორი და დირექტორი ჩართულები არიან.
+2 აპრილს სწორედ ამაზე ვისაუბრეთ. ჩვენ 3-თვიანი pilot გვაქვს — კომერციული დირექტორი და დირექტორი ამ სურათს ცოცხლად ხედავს, სანამ გადაწყვეტილებას იღებს.
 
-შემდეგი ნაბიჯი, რომელსაც ვთავაზობ: 30-წუთიანი demo სწორედ იმ სამი ადამიანისთვის — Horeca-ს P&L ჩვენს სისტემაში, ცოცხლად, თქვენი 1C/Balance-ის სტრუქტურით. შემდეგ — 3-თვიანი pilot, პარალელურად ძველ სისტემასთან.
-
-ეს ფორმატი შესაძლებელია?
+შეიძლება ასეთი შეხვედრა?
 
 გელა შონია
-Bivision | gela.shonia@bivision.ge | +995 XXX XXX XXX</div>
-  <button class="copy-btn" onclick="copyEmail('email1', this)">Copy</button>
+Bivision | gela.shonia@bivision.ge</div>
+  <button class="copy-btn" onclick="cp('e1',this)">Copy</button>
 </div>
 
 <!-- EMAIL 2: Petre Chkheidze -->
 <div class="email-card">
   <div class="email-header">
-    <div class="lead-name">Petre Chkheidze <span class="priority-badge"><span class="tag tag-orange">P1 — CEO, 10d since last call</span></span></div>
-    <div class="lead-meta">CEO · Crypto mining · petre.chkheidze@outlook.com</div>
-    <div class="stuck-reason">⚠ Apr 27 call: CEO-მ თვითონ განაცხადა — "სხვა კომპანიებსაც ვადარებ". კომპარაციის სტადიაში.</div>
+    <div class="lead-name">Petre Chkheidze <span class="tag p1">P1 — CEO comparing</span></div>
+    <div class="lead-meta">CEO · Crypto mining · Apr 27 call · confirmed shopping competitors</div>
   </div>
-  <div class="notes-context" style="margin-top:12px;"><strong>HubSpot notes:</strong> Apr 27 call · CEO confirmed evaluating competitors · crypto mining sector · Low-pressure approach needed</div>
-  <div class="email-fields" style="margin-top:0; padding-top:12px;">
-    <div class="field-row"><span class="field-label">From:</span><span class="field-value">gela.shonia@bivision.ge</span></div>
-    <div class="field-row"><span class="field-label">To:</span><span class="field-value">petre.chkheidze@outlook.com</span></div>
-    <div class="field-row"><span class="field-label">Subject:</span><span class="field-value">Bivision — კომპარაციაში დახმარება</span></div>
+  <div class="note-box"><strong>HubSpot context:</strong> Apr 27 call · CEO himself said evaluating other companies · low-pressure critical · specific crypto/data analytics need</div>
+  <div class="delta">v3 change: <span>peer tone · 1 specific question · no pitch · no time-ask</span></div>
+  <div class="fields">
+    <div class="field"><span class="fl">From:</span><span class="fv">gela.shonia@bivision.ge</span></div>
+    <div class="field"><span class="fl">To:</span><span class="fv">petre.chkheidze@outlook.com</span></div>
+    <div class="field"><span class="fl">Subject:</span><span class="fv">BI კომპარაცია — 1 კითხვა</span></div>
   </div>
-  <div class="email-body" id="email2">პეტრე, გამარჯობა.
+  <div class="body" id="e2">პეტრე, გამარჯობა.
 
-27 აპრილს მითხარი, რომ BI სისტემებს ადარებ. ეს სწორი მიდგომაა.
+27 აპრილს BI სისტემებს ადარებდი — ეს სწორი გადაწყვეტილება CEO-სგან.
 
-ერთი კითხვა, რომელიც გამიმარტივებს: რა კრიტერიუმებს ადარებ? ფასი, ინტეგრაცია, ვიზუალიზაცია, მხარდაჭერა?
-
-გეკითხები, რადგან კომპარაციაში პირდაპირ ვისაუბრო — სად ვჯობივართ, სად — ვცდებით. CEO-ს ეს ინფორმაცია სჭირდება, არა სლაიდები.
+1 კითხვა, რომ სწორი ინფო მოგაწოდო: რა კრიტერიუმი ყველაზე მნიშვნელოვანია — ფასი, ERP-თან ინტეგრაცია, ანალიტიკის სიღრმე?
 
 გელა შონია
 Bivision | gela.shonia@bivision.ge</div>
-  <button class="copy-btn" onclick="copyEmail('email2', this)">Copy</button>
+  <button class="copy-btn" onclick="cp('e2',this)">Copy</button>
 </div>
 
-<!-- EMAIL 3: Shmagi Londaridze / Elgromotors -->
+<!-- EMAIL 3: Shmagi / Elgromotors -->
 <div class="email-card">
   <div class="email-header">
-    <div class="lead-name">Shmagi Londaridze <span class="priority-badge"><span class="tag tag-red">P0 — Amadeo active risk</span></span></div>
-    <div class="lead-meta">Director Commerce · Elgromotors · shmagi.londaridze@gmail.com</div>
-    <div class="stuck-reason">⚠ ᲙᲠᲘᲢᲘᲙᲣᲚᲘ: 23 აპრილს Amadeo-სთან შეხვედრა იმავე დღეს. FIFO debtors შეთანხმებული, მაგრამ ვინ განახორციელებს — ღიაა.</div>
+    <div class="lead-name">Shmagi Londaridze <span class="tag p0">P0 — Amadeo active risk</span></div>
+    <div class="lead-meta">Director Commerce · Elgromotors · Apr 23 · met Amadeo same day · FIFO debtors agreed</div>
   </div>
-  <div class="notes-context" style="margin-top:12px;"><strong>HubSpot notes:</strong> Apr 23 · Met Amadeo (competitor) same day · Debtor FIFO analytics discussed · SMS automation discussed · FIFO debtor calculation agreed as priority</div>
-  <div class="email-fields" style="margin-top:0; padding-top:12px;">
-    <div class="field-row"><span class="field-label">From:</span><span class="field-value">gela.shonia@bivision.ge</span></div>
-    <div class="field-row"><span class="field-label">To:</span><span class="field-value">shmagi.londaridze@gmail.com</span></div>
-    <div class="field-row"><span class="field-label">Subject:</span><span class="field-value">Bivision / Elgromotors — FIFO debtor ანალიტიკა</span></div>
+  <div class="note-box"><strong>HubSpot context:</strong> Apr 23 meeting · Amadeo (competitor) same day · FIFO debtor analytics = agreed priority · SMS automation discussed · GeoCord = relevant proof</div>
+  <div class="delta">v3 change: <span>opens with the agreed item (FIFO) · GeoCord proof · ultra-short · Amadeo urgency implicit</span></div>
+  <div class="fields">
+    <div class="field"><span class="fl">From:</span><span class="fv">gela.shonia@bivision.ge</span></div>
+    <div class="field"><span class="fl">To:</span><span class="fv">shmagi.londaridze@gmail.com</span></div>
+    <div class="field"><span class="fl">Subject:</span><span class="fv">Elgromotors — FIFO debtor ანალიტიკა</span></div>
   </div>
-  <div class="email-body" id="email3">შმაგი, გამარჯობა.
+  <div class="body" id="e3">შმაგი, გამარჯობა.
 
-23 აპრილს ვისაუბრეთ debtor-ების FIFO ანალიტიკაზე. ეს გამოეყო, როგორც პრიორიტეტი.
+23 აპრილს FIFO debtor-ების ანალიტიკა პირველ პრიორიტეტად შეთანხმდა.
 
-ვიცი, რომ ამ გადაწყვეტილებაში სხვა ვარიანტებსაც განიხილავ.
-
-კონკრეტულად FIFO debtor-ებზე — GeoCord-ში ეს მოდული 2 კვირაში ჩავდეთ Qlik Sense-ზე. ფასი, ვადა, შედეგი — ყველაფერი ქაღალდზეა. გამოგიგზავნო?
+GeoCord-ში ეს მოდული 2 კვირაში ჩავდეთ — ვაჩვენო, კონკრეტულად?
 
 გელა შონია
 Bivision | gela.shonia@bivision.ge</div>
-  <button class="copy-btn" onclick="copyEmail('email3', this)">Copy</button>
+  <button class="copy-btn" onclick="cp('e3',this)">Copy</button>
 </div>
 
-<!-- EMAIL 4: Gvanca Tetrashvili / Julius Meinl -->
+<!-- EMAIL 4: Gvanca / Julius Meinl -->
 <div class="email-card">
   <div class="email-header">
-    <div class="lead-name">Gvanca Tetrashvili <span class="priority-badge"><span class="tag tag-orange">P1 — 30d no reply</span></span></div>
-    <div class="lead-meta">Chief Accountant · Julius Meinl · gvantsameinlgeo@gmail.com</div>
-    <div class="stuck-reason">⚠ 7 აპრილს ოთხი კითხვა გავუგზავნე — 30 დღე პასუხი არ არის. 4 კითხვა = ბარიერი.</div>
+    <div class="lead-name">Gvanca Tetrashvili <span class="tag p1">P1 — 30d no reply</span></div>
+    <div class="lead-meta">Chief Accountant · Julius Meinl · Apr 7 email unanswered (4 questions)</div>
   </div>
-  <div class="notes-context" style="margin-top:12px;"><strong>HubSpot notes:</strong> Apr 7 — email sent with 4 questions: (1) data source, (2) user count, (3) cost allocation logic, (4) historical data depth. Zero response since. 30 days elapsed.</div>
-  <div class="email-fields" style="margin-top:0; padding-top:12px;">
-    <div class="field-row"><span class="field-label">From:</span><span class="field-value">gela.shonia@bivision.ge</span></div>
-    <div class="field-row"><span class="field-label">To:</span><span class="field-value">gvantsameinlgeo@gmail.com</span></div>
-    <div class="field-row"><span class="field-label">Subject:</span><span class="field-value">Bivision / Julius Meinl — ერთი კითხვა</span></div>
+  <div class="note-box"><strong>HubSpot context:</strong> Apr 7 — sent 4 questions: data source, user count, cost allocation logic, historical data. Zero response. 30 days. Barrier = too many questions at once.</div>
+  <div class="delta">v3 change: <span>4 questions → 1 · acknowledge the barrier · no pressure</span></div>
+  <div class="fields">
+    <div class="field"><span class="fl">From:</span><span class="fv">gela.shonia@bivision.ge</span></div>
+    <div class="field"><span class="fl">To:</span><span class="fv">gvantsameinlgeo@gmail.com</span></div>
+    <div class="field"><span class="fl">Subject:</span><span class="fv">Julius Meinl — ერთი კითხვა</span></div>
   </div>
-  <div class="email-body" id="email4">გვანცა, გამარჯობა.
+  <div class="body" id="e4">გვანცა, გამარჯობა.
 
-7 აპრილს ოთხი კითხვა გამოგზავნე Julius Meinl-ის სპეციფიკასთან დაკავშირებით. ეს ბევრი იყო ერთდროულად — გასაგებია, რომ ჩარჩა.
+7 აპრილს ოთხი კითხვა გამოგიგზავნე — ბევრი ერთდროულად, ვიცი.
 
-ყველაზე მნიშვნელოვანი ერთი: Balance იყენებთ, Fina, თუ 1C?
-
-ეს ამოსავალი წერტილია — დანარჩენი ავტომატურად ხდება.
+ერთი: Balance გაქვთ, Fina, თუ 1C?
 
 გელა შონია
 Bivision | gela.shonia@bivision.ge</div>
-  <button class="copy-btn" onclick="copyEmail('email4', this)">Copy</button>
+  <button class="copy-btn" onclick="cp('e4',this)">Copy</button>
 </div>
 
-<!-- EMAIL 5: გიორგი გიქორაშვილი / Ollivander -->
+<!-- EMAIL 5: Ollivander -->
 <div class="email-card">
   <div class="email-header">
-    <div class="lead-name">გიორგი გიქორაშვილი <span class="priority-badge"><span class="tag tag-blue">Keep warm — Q4</span></span></div>
-    <div class="lead-meta">Director · Ollivander Group · giorgi@ollivandergroup.com</div>
-    <div class="stuck-reason">Apr 27: CEO თავად განაცხადა — Q4, რესურსები ახლა სხვა პროექტებზე. Re-entry: სექტემბ. ბოლო / ოქტომბ. დასაწყ.</div>
+    <div class="lead-name">გიორგი გიქორაშვილი <span class="tag p2">Keep warm — Q4</span></div>
+    <div class="lead-meta">Director · Ollivander Group · Apr 27: CEO said Q4, resource-heavy</div>
   </div>
-  <div class="notes-context" style="margin-top:12px;"><strong>HubSpot notes:</strong> Apr 27 CEO memo · Q4 decision after resource-heavy projects complete · Re-entry window: late September / early October · Keep low-pressure — no urgency from our side</div>
-  <div class="email-fields" style="margin-top:0; padding-top:12px;">
-    <div class="field-row"><span class="field-label">From:</span><span class="field-value">gela.shonia@bivision.ge</span></div>
-    <div class="field-row"><span class="field-label">To:</span><span class="field-value">giorgi@ollivandergroup.com</span></div>
-    <div class="field-row"><span class="field-label">Subject:</span><span class="field-value">Bivision / Ollivander — სექტემბრამდე</span></div>
+  <div class="note-box"><strong>HubSpot context:</strong> Apr 27 CEO memo · Q4 decision after resource-heavy projects · Re-entry: late Sept / early Oct · keep low-pressure</div>
+  <div class="delta">v3 change: <span>კარგი იყო v2-შიც · კიდევ შემოკლდა · max 3 წინადადება</span></div>
+  <div class="fields">
+    <div class="field"><span class="fl">From:</span><span class="fv">gela.shonia@bivision.ge</span></div>
+    <div class="field"><span class="fl">To:</span><span class="fv">giorgi@ollivandergroup.com</span></div>
+    <div class="field"><span class="fl">Subject:</span><span class="fv">Ollivander — სექტემბრამდე</span></div>
   </div>
-  <div class="email-body" id="email5">გიორგი, გამარჯობა.
+  <div class="body" id="e5">გიორგი, გამარჯობა.
 
-27 აპრილს ვისაუბრეთ. გავიგე — მიმდინარე პროექტები ბევრ რესურსს ითხოვს და გადაწყვეტილება Q4-ზე გადადის. პატივს ვცემ.
+27 აპრილს Q4 ვახსენეთ. პატივს ვცემ — ახლა სხვა პრიორიტეტებია.
 
-სექტემბრის ბოლოს ვუბრუნდები — უბრალოდ, რომ გაზიარო, რა სიახლეები და შედეგები გაჩნდება ამ პერიოდში Bivision-ის კლიენტებში.
-
-Q4-ამდე თუ რაიმე შეიცვლება — ხელმისაწვდომი ვარ.
+სექტემბრის ბოლოს ვუბრუნდები.
 
 გელა შონია
 Bivision | gela.shonia@bivision.ge</div>
-  <button class="copy-btn" onclick="copyEmail('email5', this)">Copy</button>
+  <button class="copy-btn" onclick="cp('e5',this)">Copy</button>
 </div>
 
-<!-- EMAIL 6: Oto Jailava — first touch -->
+<!-- EMAIL 6: Oto -->
 <div class="email-card">
   <div class="email-header">
-    <div class="lead-name">Oto Jailava <span class="priority-badge"><span class="tag tag-green">First touch — 7d</span></span></div>
-    <div class="lead-meta">Shareholder · ojailava@gmail.com</div>
-    <div class="stuck-reason">Apr 30 დარეგისტრირდა — ნოუთები არ არის. Shareholder = investment visibility / portfolio oversight ICP.</div>
+    <div class="lead-name">Oto Jailava <span class="tag ok">First touch</span></div>
+    <div class="lead-meta">Shareholder · Apr 30 registered · no contact made</div>
   </div>
-  <div class="notes-context" style="margin-top:12px;"><strong>HubSpot notes:</strong> No notes. Registered Apr 30. Role = Shareholder. First contact not made. [EP1: INFERENCE — pain likely = portfolio/investment oversight, not operational BI]</div>
-  <div class="email-fields" style="margin-top:0; padding-top:12px;">
-    <div class="field-row"><span class="field-label">From:</span><span class="field-value">gela.shonia@bivision.ge</span></div>
-    <div class="field-row"><span class="field-label">To:</span><span class="field-value">ojailava@gmail.com</span></div>
-    <div class="field-row"><span class="field-label">Subject:</span><span class="field-value">Bivision — გამარჯობა, ოტო</span></div>
+  <div class="delta">v3 change: <span>opens with shareholder pain (not product) · demo ask simplified</span></div>
+  <div class="fields">
+    <div class="field"><span class="fl">From:</span><span class="fv">gela.shonia@bivision.ge</span></div>
+    <div class="field"><span class="fl">To:</span><span class="fv">ojailava@gmail.com</span></div>
+    <div class="field"><span class="fl">Subject:</span><span class="fv">Bivision — ოტო, გამარჯობა</span></div>
   </div>
-  <div class="email-body" id="email6">ოტო, გამარჯობა.
+  <div class="body" id="e6">ოტო, გამარჯობა.
 
-Bivision-ს დაუკავშირდით გასულ კვირაში.
+კომპანიის მფლობელისთვის ყველაზე ხშირი ტკივილი: "სად ვდგავართ ახლა?" — პასუხი ჩვეულებრივ 3 დღის ლოდინია.
 
-მფლობელებს, რომლებთანაც ვმუშაობ, ხშირად ერთი საერთო გამოწვევა აქვთ: კომპანიის მდგომარეობა — ფინანსური, გაყიდვები, მარაგები — ცხადი ხდება მხოლოდ ბუღალტრის ანგარიშიდან, კვირაში ერთხელ.
-
-Bivision ამ სურათს რეალურ დროში გაძლევს — Fina, Oris, 1C, Balance-დან პირდაპირ.
+Bivision ამ სურათს ERP-იდან პირდაპირ გაძლევს — ყოველდღე, ავტომატურად.
 
 20 წუთი გაქვთ demo-სთვის?
 
 გელა შონია
 Bivision | gela.shonia@bivision.ge</div>
-  <button class="copy-btn" onclick="copyEmail('email6', this)">Copy</button>
+  <button class="copy-btn" onclick="cp('e6',this)">Copy</button>
+</div>
+
+<div style="background:#f3e8ff;border-radius:8px;padding:14px 18px;font-size:12px;color:#6b21a8;margin-top:8px;">
+  <strong>Gemini polish queue (ემეილები 1, 2, 6):</strong> ქართული სტრუქტურა სწორია — ტონი და ბუნებრიობა Gemini-ს გასაუმჯობესებელია. API key საჭირო: ai.google.dev → "Get API key" → GEMINI_API_KEY=xxx → .bivision-creds.env-ში.
 </div>
 
 <script>
-function copyEmail(id, btn) {
-  const text = document.getElementById(id).innerText;
-  navigator.clipboard.writeText(text).then(() => {
+function cp(id, btn) {
+  navigator.clipboard.writeText(document.getElementById(id).innerText).then(() => {
     btn.textContent = '✅ კოპირდა!';
-    setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+    setTimeout(() => btn.textContent = 'Copy', 2000);
   });
 }
 </script>
