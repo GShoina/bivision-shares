@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>April Leads — Re-engagement Drafts</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f4f4; padding: 32px 16px; }
+  h1 { font-size: 18px; color: #1a1a1a; margin-bottom: 8px; }
+  .meta { font-size: 12px; color: #888; margin-bottom: 32px; }
+  .diagnosis { background: #fff; border-radius: 8px; padding: 20px; margin-bottom: 32px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .diagnosis h2 { font-size: 14px; font-weight: 700; color: #333; margin-bottom: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { text-align: left; padding: 8px 10px; background: #f8f8f8; font-weight: 600; color: #555; border-bottom: 2px solid #e8e8e8; }
+  td { padding: 8px 10px; border-bottom: 1px solid #f0f0f0; color: #333; vertical-align: top; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+  .tag-red { background: #fde8e8; color: #c0392b; }
+  .tag-orange { background: #fef3e2; color: #e67e22; }
+  .tag-blue { background: #e8f0fe; color: #1a73e8; }
+  .email-card { background: #fff; border-radius: 8px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,.08); overflow: hidden; }
+  .email-header { padding: 16px 20px; background: #f8f9fa; border-bottom: 1px solid #e8e8e8; }
+  .email-header .lead-name { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+  .email-header .lead-meta { font-size: 12px; color: #666; margin-top: 4px; }
+  .stuck-reason { font-size: 11px; font-weight: 600; color: #c0392b; margin-top: 6px; }
+  .email-fields { padding: 16px 20px; border-bottom: 1px solid #f0f0f0; }
+  .field-row { display: flex; gap: 8px; margin-bottom: 6px; font-size: 12px; }
+  .field-label { color: #888; min-width: 60px; }
+  .field-value { color: #1a1a1a; font-weight: 500; }
+  .email-body { padding: 20px; font-size: 14px; line-height: 1.7; color: #1a1a1a; white-space: pre-line; }
+  .email-body .greeting { font-weight: 600; }
+  .copy-btn { display: block; width: calc(100% - 40px); margin: 0 20px 16px; padding: 10px; background: #1a73e8; color: #fff; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .priority-badge { float: right; }
+</style>
+</head>
+<body>
+
+<h1>April Leads — Re-engagement Email Drafts</h1>
+<p class="meta">Gela → gela.shonia@bivision.ge review | May 7, 2026 | 6 lead analyzed</p>
+
+<div class="diagnosis">
+  <h2>Pipeline Diagnosis — April 2026</h2>
+  <table>
+    <tr>
+      <th>სახელი</th><th>კომპანია</th><th>როლი</th><th>სტადია</th><th>ბოლო კ/ტ</th><th>პრობლემა</th>
+    </tr>
+    <tr>
+      <td><strong>გიორგი გიქორაშვილი</strong></td>
+      <td>Ollivander Group</td>
+      <td>Director</td>
+      <td><span class="tag tag-red">Deal overdue</span></td>
+      <td>—</td>
+      <td>Close date Apr 30 გასულია. Deal გაყინულია.</td>
+    </tr>
+    <tr>
+      <td><strong>Vera Kirtadze</strong></td>
+      <td>Horeca</td>
+      <td>Head of Finance</td>
+      <td><span class="tag tag-orange">Qualified — silent</span></td>
+      <td>Apr 16</td>
+      <td>21 დღე silence. Amount = 0. მენეჯმენტი ელოდება?</td>
+    </tr>
+    <tr>
+      <td><strong>Gvanca Tetrashvili</strong></td>
+      <td>Julius Meinl</td>
+      <td>Chief Accountant</td>
+      <td><span class="tag tag-orange">Qualified — silent</span></td>
+      <td>Apr 16</td>
+      <td>21 დღე silence. Accountant → CFO/CEO approval pending?</td>
+    </tr>
+    <tr>
+      <td><strong>Petre Chkheidze</strong></td>
+      <td>—</td>
+      <td>CEO</td>
+      <td><span class="tag tag-orange">Qualified — silent</span></td>
+      <td>Apr 22</td>
+      <td>CEO = decision maker, qualified same day. 15 დღე no follow-up.</td>
+    </tr>
+    <tr>
+      <td><strong>Shmagi Londaridze</strong></td>
+      <td>Elgromotors</td>
+      <td>Director Commerce</td>
+      <td><span class="tag tag-blue">Presentation scheduled</span></td>
+      <td>Apr 22</td>
+      <td>Presentation scheduled but not closed. 15 დღე idle.</td>
+    </tr>
+    <tr>
+      <td><strong>Oto Jailava</strong></td>
+      <td>—</td>
+      <td>Shareholder</td>
+      <td><span class="tag tag-blue">NEW — never contacted</span></td>
+      <td>never</td>
+      <td>Apr 30 დარეგისტრირდა. 7 დღე — პირველი კონტაქტი არ ყოფილა.</td>
+    </tr>
+  </table>
+</div>
+
+<!-- EMAIL 1: Ollivander — MOST URGENT -->
+<div class="email-card">
+  <div class="email-header">
+    <div class="lead-name">გიორგი გიქორაშვილი <span class="priority-badge"><span class="tag tag-red">P0 — overdue</span></span></div>
+    <div class="lead-meta">Director · Ollivander Group · giorgi@ollivandergroup.com</div>
+    <div class="stuck-reason">⚠ Deal close date Apr 30 გასულია — გადაწყვეტილება ჰქონდა, ახლა ჩუმდება</div>
+  </div>
+  <div class="email-fields">
+    <div class="field-row"><span class="field-label">From:</span><span class="field-value">gela.shonia@bivision.ge</span></div>
+    <div class="field-row"><span class="field-label">To:</span><span class="field-value">giorgi@ollivandergroup.com</span></div>
+    <div class="field-row"><span class="field-label">Subject:</span><span class="field-value">Bivision / Ollivander — გადაწყვეტილება</span></div>
+  </div>
+  <div class="email-body" id="email1">გიორგი, გამარჯობა.
+
+გასული თვის ბოლოს ვისაუბრეთ Bivision-ის დანერგვაზე. გავიგე, რომ გადაწყვეტილება ჯერ კიდევ ღიაა.
+
+პირდაპირ გკითხავ: არის რაიმე კონკრეტული კითხვა ან ეჭვი, რომელიც გაჭერს? ფასი, ინტეგრაცია, ვადები — ნებისმიერ საკითხზე კომფორტულად ვისაუბრებ.
+
+თუ მომენტი სწორი არ არის — ისიც პირდაპირ მითხარი, ვარეგულირებ.
+
+15 წუთი გაქვს ამ კვირაში?
+
+პატივისცემით,
+გელა შონია
+Bivision | gela.shonia@bivision.ge | +995 XXX XXX XXX</div>
+  <button class="copy-btn" onclick="copyEmail('email1', this)">Copy</button>
+</div>
+
+<!-- EMAIL 2: Vera Kirtadze / Horeca -->
+<div class="email-card">
+  <div class="email-header">
+    <div class="lead-name">Vera Kirtadze <span class="priority-badge"><span class="tag tag-orange">P1 — 21d silent</span></span></div>
+    <div class="lead-meta">Head of Finance · Horeca · vkirtadze@horeca.ge</div>
+    <div class="stuck-reason">21 დღე silence. Amount არ შეყვანილა — ბიუჯეტი ჯერ არ არის დამტკიცებული?</div>
+  </div>
+  <div class="email-fields">
+    <div class="field-row"><span class="field-label">From:</span><span class="field-value">gela.shonia@bivision.ge</span></div>
+    <div class="field-row"><span class="field-label">To:</span><span class="field-value">vkirtadze@horeca.ge</span></div>
+    <div class="field-row"><span class="field-label">Subject:</span><span class="field-value">Bivision / Horeca — მოკლე შეკითხვა</span></div>
+  </div>
+  <div class="email-body" id="email2">ვერა, გამარჯობა.
+
+16 აპრილს ვისაუბრეთ და გაინტერესა ფინანსური რეპორტინგის ავტომატიზაცია. მას შემდეგ ჩემ მხრიდან ინფორმაცია გამოგიგზავნე, მაგრამ გამოხმაურება არ მიმიღია.
+
+ვიცი, რომ ასეთი გადაწყვეტილებები ხშირად ელოდება მენეჯმენტის დამტკიცებას. თუ ასეაა — გეტყვი, როგორ შეგვიძლია ამ პროცესი გავამარტივოთ: მოვამზადებ მოკლე ROI ანგარიშს თქვენი სპეციფიკური შემთხვევისთვის, რომელიც დირექტორატს გადასცეს.
+
+ვარგა?
+
+გელა შონია
+Bivision | gela.shonia@bivision.ge</div>
+  <button class="copy-btn" onclick="copyEmail('email2', this)">Copy</button>
+</div>
+
+<!-- EMAIL 3: Gvanca Tetrashvili / Julius Meinl -->
+<div class="email-card">
+  <div class="email-header">
+    <div class="lead-name">Gvanca Tetrashvili <span class="priority-badge"><span class="tag tag-orange">P1 — 21d silent</span></span></div>
+    <div class="lead-meta">Chief Accountant · Julius Meinl · gvantsameinlgeo@gmail.com</div>
+    <div class="stuck-reason">Chief Accountant → გადაწყვეტილება CFO/CEO-სთან. 21 დღე — დაივიწყეს?</div>
+  </div>
+  <div class="email-fields">
+    <div class="field-row"><span class="field-label">From:</span><span class="field-value">gela.shonia@bivision.ge</span></div>
+    <div class="field-row"><span class="field-label">To:</span><span class="field-value">gvantsameinlgeo@gmail.com</span></div>
+    <div class="field-row"><span class="field-label">Subject:</span><span class="field-value">Bivision / Julius Meinl — ახალი კითხვა</span></div>
+  </div>
+  <div class="email-body" id="email3">გვანცა, გამარჯობა.
+
+16 აპრილს ვისაუბრეთ ფინანსური ანგარიშგების ავტომატიზაციაზე Julius Meinl-ისთვის. გამოხმაურება ველოდი, მაგრამ ვიცი — ასეთი გადაწყვეტილებები დროს ითხოვს.
+
+ერთი კონკრეტული კითხვა: ERP-ი (Fina, Oris, 1C თუ სხვა) გაქვთ, რომლიდანაც ახლა ხელით ექსპორტავთ მონაცემებს Excel-ში?
+
+ეს ინფორმაცია მეყოფა, რომ 30 წუთში გაჩვენოთ, რა შეიცვლება კონკრეტულად თქვენს ყოველდღიურ სამუშაო პროცესში.
+
+პატივისცემით,
+გელა შონია
+Bivision | gela.shonia@bivision.ge</div>
+  <button class="copy-btn" onclick="copyEmail('email3', this)">Copy</button>
+</div>
+
+<!-- EMAIL 4: Petre Chkheidze -->
+<div class="email-card">
+  <div class="email-header">
+    <div class="lead-name">Petre Chkheidze <span class="priority-badge"><span class="tag tag-orange">P1 — CEO, 15d</span></span></div>
+    <div class="lead-meta">CEO · petre.chkheidze@outlook.com</div>
+    <div class="stuck-reason">CEO = decision maker. Qualified Apr 22, same day registered. 15 დღე no follow-up — შეიძლება სხვა პრიორიტეტი ჰქვია.</div>
+  </div>
+  <div class="email-fields">
+    <div class="field-row"><span class="field-label">From:</span><span class="field-value">gela.shonia@bivision.ge</span></div>
+    <div class="field-row"><span class="field-label">To:</span><span class="field-value">petre.chkheidze@outlook.com</span></div>
+    <div class="field-row"><span class="field-label">Subject:</span><span class="field-value">Bivision — 15 წუთი ამ კვირაში?</span></div>
+  </div>
+  <div class="email-body" id="email4">პეტრე, გამარჯობა.
+
+22 აპრილს გვქონდა საუბარი Bivision-ის შესახებ. მჯერა, რომ ეს თქვენთვის სწორი მომენტია — განსაკუთრებით იმ ფონზე, რომ CEO-ებს, რომლებიც BI-ს დანერგავენ, საშუალოდ 6-8 საათი ეზოგებათ კვირაში მანუალური ანგარიშგებისგან.
+
+15 წუთი გაქვთ ამ კვირაში? გაჩვენებ, რა გამოიყურება თქვენი კომპანიის მაჩვენებლები Bivision-ში — კონკრეტულად, არა სლაიდებით.
+
+პატივისცემით,
+გელა შონია
+Bivision | gela.shonia@bivision.ge | +995 XXX XXX XXX</div>
+  <button class="copy-btn" onclick="copyEmail('email4', this)">Copy</button>
+</div>
+
+<!-- EMAIL 5: Shmagi Londaridze / Elgromotors -->
+<div class="email-card">
+  <div class="email-header">
+    <div class="lead-name">Shmagi Londaridze <span class="priority-badge"><span class="tag tag-blue">Presentation pending</span></span></div>
+    <div class="lead-meta">Director Commerce · Elgromotors · shmagi.londaridze@gmail.com</div>
+    <div class="stuck-reason">Presentation scheduled — მოხდა თუ ვადა ასრულდა? Close May 31 — 24 დღე დარჩა.</div>
+  </div>
+  <div class="email-fields">
+    <div class="field-row"><span class="field-label">From:</span><span class="field-value">gela.shonia@bivision.ge</span></div>
+    <div class="field-row"><span class="field-label">To:</span><span class="field-value">shmagi.londaridze@gmail.com</span></div>
+    <div class="field-row"><span class="field-label">Subject:</span><span class="field-value">Bivision / Elgromotors — demo ვადა</span></div>
+  </div>
+  <div class="email-body" id="email5">შმაგი, გამარჯობა.
+
+22 აპრილს ვისაუბრეთ და შეთანხმდით დემოზე. ვერ მოვახერხეთ კოორდინაცია — ჩემი მხრიდან.
+
+Elgromotors-ის მასშტაბისთვის — გაყიდვების, მარაგებისა და ფინანსების ანალიტიკა ერთ გარემოში — demo 30 წუთი გრძელდება, Zoom-ით ან პირადად.
+
+კვირის რომელი დღე გამოდის?
+
+გელა შონია
+Bivision | gela.shonia@bivision.ge</div>
+  <button class="copy-btn" onclick="copyEmail('email5', this)">Copy</button>
+</div>
+
+<!-- EMAIL 6: Oto Jailava — first touch -->
+<div class="email-card">
+  <div class="email-header">
+    <div class="lead-name">Oto Jailava <span class="priority-badge"><span class="tag tag-blue">First touch</span></span></div>
+    <div class="lead-meta">Shareholder · ojailava@gmail.com</div>
+    <div class="stuck-reason">Apr 30 დარეგისტრირდა, 7 დღე — პირველი კონტაქტი სულ არ ყოფილა.</div>
+  </div>
+  <div class="email-fields">
+    <div class="field-row"><span class="field-label">From:</span><span class="field-value">gela.shonia@bivision.ge</span></div>
+    <div class="field-row"><span class="field-label">To:</span><span class="field-value">ojailava@gmail.com</span></div>
+    <div class="field-row"><span class="field-label">Subject:</span><span class="field-value">Bivision — გამარჯობა, ოტო</span></div>
+  </div>
+  <div class="email-body" id="email6">ოტო, გამარჯობა.
+
+Bivision-ს დაუკავშირდით გასულ კვირაში. გმადლობ ინტერესისთვის.
+
+კომპანიის მფლობელებს, რომლებთანაც ვმუშაობ, ერთი საერთო გამოწვევა აქვთ: ბევრი მონაცემი, მაგრამ სწრაფი, მკაფიო სურათი — არა. ყოველი პარასკევი Excel-ში, ERP-ის ექსპორტი, ხელით ანგარიშგება.
+
+Bivision ამ პროცესს ავტომატიზებს: Fina, Oris, 1C, Balance — პირდაპირ dashboard-ში, რეალურ დროში.
+
+20 წუთი გაქვთ ამ კვირაში სამუშაო demo-სთვის?
+
+პატივისცემით,
+გელა შონია
+Bivision | gela.shonia@bivision.ge</div>
+  <button class="copy-btn" onclick="copyEmail('email6', this)">Copy</button>
+</div>
+
+<script>
+function copyEmail(id, btn) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ კოპირდა!';
+    setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>
