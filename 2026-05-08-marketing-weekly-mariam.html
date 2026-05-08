@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<title>Bivision — მარკეტინგის კვირის რეპორტი | მაისი 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f4f8; color: #2d3748; line-height: 1.6; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 28px 20px; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%); color: white; border-radius: 14px; padding: 30px 32px; margin-bottom: 24px; }
+  .header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
+  .header p { font-size: 0.9rem; opacity: 0.85; }
+  .header .tag { display: inline-block; background: rgba(255,255,255,0.2); border-radius: 20px; padding: 3px 12px; font-size: 0.78rem; margin-top: 10px; }
+
+  /* Section */
+  .section { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .section-title { font-size: 1.05rem; font-weight: 700; color: #1d3557; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid #e2e8f0; display: flex; align-items: center; gap: 8px; }
+  .section-title .icon { font-size: 1.1rem; }
+
+  /* KPI cards */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin: 14px 0; }
+  .kpi-card { background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px; text-align: center; }
+  .kpi-card .num { font-size: 1.6rem; font-weight: 700; color: #1d3557; }
+  .kpi-card .label { font-size: 0.72rem; color: #718096; margin-top: 3px; }
+  .kpi-card.highlight { background: #ebf4ff; border-color: #bee3f8; }
+  .kpi-card.highlight .num { color: #2b6cb0; }
+  .kpi-card.green { background: #f0fff4; border-color: #9ae6b4; }
+  .kpi-card.green .num { color: #276749; }
+  .kpi-card.orange { background: #fffaf0; border-color: #fbd38d; }
+  .kpi-card.orange .num { color: #c05621; }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; font-size: 0.83rem; margin: 14px 0; }
+  thead th { background: #2d3748; color: white; padding: 9px 12px; text-align: left; font-weight: 600; }
+  tbody td { padding: 8px 12px; border-bottom: 1px solid #e2e8f0; }
+  tbody tr:hover { background: #f7fafc; }
+  .best-day { background: #f0fff4 !important; font-weight: 600; }
+
+  /* Badges */
+  .badge { display: inline-block; padding: 2px 9px; border-radius: 12px; font-size: 0.72rem; font-weight: 600; }
+  .badge-green { background: #c6f6d5; color: #22543d; }
+  .badge-yellow { background: #fefcbf; color: #744210; }
+  .badge-red { background: #fed7d7; color: #742a2a; }
+  .badge-blue { background: #bee3f8; color: #2a4365; }
+  .badge-gray { background: #e2e8f0; color: #4a5568; }
+
+  /* Note box */
+  .note { border-left: 4px solid #63b3ed; background: #ebf8ff; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 0.87rem; }
+  .note.warn { border-color: #f6ad55; background: #fffaf0; }
+  .note.success { border-color: #68d391; background: #f0fff4; }
+  .note.action { border-color: #b794f4; background: #faf5ff; }
+
+  /* OKR block */
+  .okr-row { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 10px; margin-bottom: 12px; }
+  .okr-row.ok { background: #f0fff4; border: 1px solid #9ae6b4; }
+  .okr-row.partial { background: #fffaf0; border: 1px solid #fbd38d; }
+  .okr-row.gap { background: #fff5f5; border: 1px solid #feb2b2; }
+  .okr-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+  .okr-title { font-weight: 700; font-size: 0.92rem; margin-bottom: 4px; }
+  .okr-text { font-size: 0.84rem; color: #4a5568; }
+  .okr-target { font-size: 0.78rem; background: rgba(0,0,0,0.06); border-radius: 4px; padding: 2px 7px; display: inline-block; margin-top: 5px; }
+
+  /* Bar chart */
+  .bar-wrap { margin: 14px 0; }
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; font-size: 0.8rem; }
+  .bar-label { width: 55px; color: #718096; text-align: right; flex-shrink: 0; }
+  .bar-bg { flex: 1; background: #e2e8f0; border-radius: 4px; height: 18px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 6px; font-size: 0.72rem; color: white; font-weight: 600; transition: width 0.3s; }
+  .bar-fill.blue { background: #4299e1; }
+  .bar-fill.teal { background: #38b2ac; }
+  .bar-fill.purple { background: #805ad5; }
+  .bar-fill.green { background: #48bb78; }
+  .bar-val { width: 50px; text-align: left; font-weight: 600; color: #2d3748; }
+
+  /* Footer */
+  .footer { text-align: center; font-size: 0.75rem; color: #a0aec0; margin-top: 28px; padding-top: 16px; border-top: 1px solid #e2e8f0; }
+
+  /* Tooltip explain */
+  .explain { font-size: 0.78rem; color: #718096; font-style: italic; margin-top: 4px; }
+
+  /* Channel divider */
+  .channel-tag { display: inline-flex; align-items: center; gap: 5px; background: #1877f2; color: white; border-radius: 6px; padding: 3px 10px; font-size: 0.78rem; font-weight: 600; }
+  .channel-tag.li { background: #0a66c2; }
+
+  /* No data */
+  .no-data { text-align: center; padding: 24px; color: #a0aec0; font-size: 0.88rem; background: #f7fafc; border-radius: 8px; border: 2px dashed #e2e8f0; }
+
+  @media (max-width: 600px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .okr-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HEADER -->
+<div class="header">
+  <h1>📊 მარკეტინგის კვირის რეპორტი</h1>
+  <p>Bivision | გამზადებულია: 8 მაისი 2026</p>
+  <div class="tag">👋 მარიამ, ეს შენთვისაა — კომენტარები ნებისმიერ დროს!</div>
+</div>
+
+<!-- SECTION 1: LAST WEEK META -->
+<div class="section">
+  <div class="section-title"><span class="icon">📅</span> ბოლო კვირა (2–8 მაისი) — Facebook/Instagram რეკლამა</div>
+
+  <div class="note">
+    <strong>შენიშვნა:</strong> ეს მონაცემები <strong>ფასიანი რეკლამებიდანაა</strong> (Meta Ads). ამ კვირაში მხოლოდ 4 დღე გვქონდა აქტიური კამპანია — 5, 6, 7 და 8 მაისი. 1–4 მაისი: კამპანია პაუზაში.
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card highlight">
+      <div class="num">5,550</div>
+      <div class="label">👁 ნახვები (Impressions)</div>
+    </div>
+    <div class="kpi-card highlight">
+      <div class="num">4,922</div>
+      <div class="label">👤 უნიკ. ადამიანი (Reach)</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="num">110</div>
+      <div class="label">🖱 კლიკები</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="num">59</div>
+      <div class="label">🌐 საიტზე შესვლა</div>
+    </div>
+    <div class="kpi-card orange">
+      <div class="num">$6.96</div>
+      <div class="label">💰 დახარჯული</div>
+    </div>
+    <div class="kpi-card">
+      <div class="num">105</div>
+      <div class="label">▶ ვიდეო ნახვა</div>
+    </div>
+  </div>
+  <p class="explain">ნახვები = რამდენჯერ გამოჩნდა ჩვენი რეკლამა | Reach = რამდენ სხვადასხვა ადამიანს | საიტზე შესვლა = ვინც დააკლიკა და გვერდი ჩაიტვირთა</p>
+
+  <h3 style="font-size:0.88rem;font-weight:600;color:#4a5568;margin:18px 0 8px;">📆 დღიური სტატისტიკა (4 აქტიური დღე)</h3>
+  <table>
+    <thead>
+      <tr><th>დღე</th><th>ნახვები</th><th>კლიკები</th><th>CTR</th><th>საიტზე</th><th>ვიდეო</th><th>ხარჯი</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>5 მაისი (ორშ)</td><td>1,095</td><td>15</td><td>1.4%</td><td>8</td><td>13</td><td>$0.86</td></tr>
+      <tr><td>6 მაისი (სამ)</td><td>1,618</td><td>26</td><td>1.6%</td><td>14</td><td>54</td><td>$2.16</td></tr>
+      <tr><td>7 მაისი (ოთხ)</td><td>1,672</td><td>34</td><td>2.0%</td><td>16</td><td>38</td><td>$2.28</td></tr>
+      <tr class="best-day"><td>8 მაისი (პარ) ⭐</td><td>1,165</td><td>35</td><td><strong>3.0%</strong></td><td><strong>21</strong></td><td>16</td><td>$1.66</td></tr>
+    </tbody>
+  </table>
+  <p class="explain">CTR = კლიკების % ნახვებიდან. კარგი CTR Facebook-ზე: 1–3%+. ჩვენ ვიზრდებით — 8 მაისსი 3% გვაქვს! 🎉</p>
+
+  <div class="note success">
+    <strong>✅ კარგი:</strong> CTR 5-დან 8-მდე 1.4%-დან 3%-მდე გაიზარდა — კამპანია "სინათლეს იპოვებს". კვირის ბოლო ყველაზე ეფექტიანი იყო.
+  </div>
+  <div class="note warn">
+    <strong>⚠ ყურადღება:</strong> ეს კვირა მხოლოდ 1 კამპანია მუშაობდა (Lookalike 90 დღე). "New Traffic Campaign" — ყველაზე კარგი კამპანია — პაუზაშია. მიზეზი ჯერ გაურკვეველია.
+  </div>
+</div>
+
+<!-- SECTION 2: LINKEDIN -->
+<div class="section">
+  <div class="section-title"><span class="icon">💼</span> LinkedIn — ბოლო კვირა</div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card highlight">
+      <div class="num">842</div>
+      <div class="label">👥 გამომწერი</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="num">223</div>
+      <div class="label">👁 ბოლო პოსტის ნახვა</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="num">9%</div>
+      <div class="label">💬 Engagement Rate</div>
+    </div>
+    <div class="kpi-card orange">
+      <div class="num">8.1%</div>
+      <div class="label">🖱 Click Rate</div>
+    </div>
+  </div>
+  <p class="explain">Engagement Rate = ლაიქი / კომენტარი / share / კლიკი — 3%+ კარგია, 9% = ძალიან კარგი!</p>
+
+  <div class="note">
+    📝 <strong>ბოლო პოსტი (7 მაისი):</strong> "Excel + Claude" თემა. 223 impression, 9% engagement — ეს <strong>ძალიან კარგი</strong> შედეგია LinkedIn-ისთვის. ეს ნიშნავს, რომ ჩვენი სამიზნე აუდიტორია (CFO, CEO) რეაგირებს ტექ-კონტენტზე.
+  </div>
+  <div class="no-data">
+    📊 LinkedIn-ის სრული კვირის სტატისტიკა (page analytics) ამჟამად ხელმიუწვდომელია. <br>შემდეგ გადახედვამდე გამოჩნდება.
+  </div>
+</div>
+
+<!-- SECTION 3: APRIL -->
+<div class="section">
+  <div class="section-title"><span class="icon">📈</span> აპრილი 2026 — Facebook/Instagram რეკლამა</div>
+
+  <div class="note">
+    <strong>შენიშვნა:</strong> აპრილში <strong>13 აქტიური დღე</strong> გვქონდა (დანარჩენ დღეებში კამპანია პაუზაში იყო ან ბიუჯეტი ამოიწურა).
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card highlight">
+      <div class="num">49,156</div>
+      <div class="label">👁 სულ ნახვები</div>
+    </div>
+    <div class="kpi-card highlight">
+      <div class="num">~42,000</div>
+      <div class="label">👤 უნიკ. ადამიანი</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="num">1,401</div>
+      <div class="label">🖱 კლიკები</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="num">600</div>
+      <div class="label">🌐 საიტზე შესვლა</div>
+    </div>
+    <div class="kpi-card orange">
+      <div class="num">$55.77</div>
+      <div class="label">💰 დახარჯული</div>
+    </div>
+    <div class="kpi-card">
+      <div class="num">5,791</div>
+      <div class="label">▶ ვიდეო ნახვა</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:0.88rem;font-weight:600;color:#4a5568;margin:18px 0 8px;">📆 საუკეთესო და სუსტი დღეები</h3>
+
+  <!-- Bar chart impressions -->
+  <p style="font-size:0.82rem;font-weight:600;color:#4a5568;margin-bottom:8px;">ნახვები აქტიური დღეების მიხედვით:</p>
+  <div class="bar-wrap">
+    <div class="bar-row"><div class="bar-label">Apr 1</div><div class="bar-bg"><div class="bar-fill blue" style="width:53%">4,667</div></div></div>
+    <div class="bar-row"><div class="bar-label">Apr 2</div><div class="bar-bg"><div class="bar-fill blue" style="width:58%">5,104</div></div></div>
+    <div class="bar-row"><div class="bar-label">Apr 3</div><div class="bar-bg"><div class="bar-fill blue" style="width:39%">3,444</div></div></div>
+    <div class="bar-row"><div class="bar-label">Apr 6</div><div class="bar-bg"><div class="bar-fill blue" style="width:66%">5,812</div></div></div>
+    <div class="bar-row"><div class="bar-label">Apr 7 ⭐</div><div class="bar-bg"><div class="bar-fill green" style="width:100%">8,747</div></div></div>
+    <div class="bar-row"><div class="bar-label">Apr 8</div><div class="bar-bg"><div class="bar-fill blue" style="width:75%">6,603</div></div></div>
+    <div class="bar-row"><div class="bar-label">Apr 9</div><div class="bar-bg"><div class="bar-fill blue" style="width:27%">2,365</div></div></div>
+    <div class="bar-row"><div class="bar-label">Apr 16</div><div class="bar-bg"><div class="bar-fill teal" style="width:26%">2,313</div></div></div>
+    <div class="bar-row"><div class="bar-label">Apr 18</div><div class="bar-bg"><div class="bar-fill teal" style="width:35%">3,098</div></div></div>
+    <div class="bar-row"><div class="bar-label">Apr 19</div><div class="bar-bg"><div class="bar-fill teal" style="width:45%">3,972</div></div></div>
+    <div class="bar-row"><div class="bar-label">Apr 20</div><div class="bar-bg"><div class="bar-fill teal" style="width:33%">2,925</div></div></div>
+  </div>
+
+  <h3 style="font-size:0.88rem;font-weight:600;color:#4a5568;margin:18px 0 8px;">📊 სრული ცხრილი</h3>
+  <table>
+    <thead>
+      <tr><th>დღე</th><th>ნახვები</th><th>კლიკები</th><th>CTR</th><th>ვიდეო</th><th>ლაიქ/Share</th><th>ხარჯი</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1 აპ (ოთხ)</td><td>4,667</td><td>109</td><td>2.3%</td><td>276</td><td>1 reaction</td><td>$4.67</td></tr>
+      <tr><td>2 აპ (პარ)</td><td>5,104</td><td>123</td><td>2.4%</td><td>344</td><td>2 reaction</td><td>$5.97</td></tr>
+      <tr><td>3 აპ (შაბ)</td><td>3,444</td><td>69</td><td>2.0%</td><td>205</td><td>2 reaction</td><td>$4.12</td></tr>
+      <tr><td>6 აპ (სამ)</td><td>5,812</td><td>95</td><td>1.6%</td><td>241</td><td>1 reaction</td><td>$5.02</td></tr>
+      <tr class="best-day"><td>7 აპ (ოთხ) ⭐ BEST</td><td><strong>8,747</strong></td><td><strong>189</strong></td><td>2.2%</td><td><strong>602</strong></td><td>1 reaction</td><td>$8.95</td></tr>
+      <tr><td>8 აპ (პარ)</td><td>6,603</td><td>143</td><td>2.2%</td><td>765</td><td>1 reaction</td><td>$7.78</td></tr>
+      <tr><td>9 აპ (შაბ)</td><td>2,365</td><td>67</td><td>2.8%</td><td>302</td><td>—</td><td>$3.23</td></tr>
+      <tr><td>16 აპ (ხუთ)</td><td>2,313</td><td>120</td><td><strong>5.2% ⭐</strong></td><td>573</td><td>3 reaction, 1 comment</td><td>$2.58</td></tr>
+      <tr><td>17 აპ (პარ)</td><td>106</td><td>8</td><td>7.5%</td><td>29</td><td>—</td><td>$0.09</td></tr>
+      <tr><td>18 აპ (შაბ)</td><td>3,098</td><td>174</td><td>5.6% ⭐</td><td>787</td><td>3 reaction</td><td>$4.90</td></tr>
+      <tr><td>19 აპ (კვ)</td><td>3,972</td><td>188</td><td>4.7% ⭐</td><td>987 🔥</td><td>8 reaction</td><td>$5.58</td></tr>
+      <tr><td>20 აპ (ორშ)</td><td>2,925</td><td>116</td><td>4.0%</td><td>680</td><td>2 reaction</td><td>$3.88</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note success">
+    <strong>🔥 აპრილის ჰაილაითი:</strong> 19 აპრილი — <strong>987 ვიდეო ნახვა</strong> ერთ დღეში + 8 reaction. ეს ყველაზე engaging დღე. 16-20 აპრილი = ყველაზე ძლიერი კვირა (CTR 4-5%).
+  </div>
+  <div class="note warn">
+    <strong>📉 ყურადღება:</strong> მაისსა და აპრილს შორის დიდი სხვაობაა ბიუჯეტში ($56 vs $7). ნაკლები ბიუჯეტი = ნაკლები охват. CTR კი იზრდება, რაც კარგია — კონტენტი მუშაობს.
+  </div>
+</div>
+
+<!-- SECTION 4: OKR ALIGNMENT -->
+<div class="section">
+  <div class="section-title"><span class="icon">🎯</span> მარკეტინგის მიზნები — სად ვართ?</div>
+
+  <p style="font-size:0.85rem;color:#718096;margin-bottom:16px;">Bivision-ის მარკეტინგს 3 მთავარი მიზანი აქვს 2026 წლისთვის. ვნახოთ სად ვართ:</p>
+
+  <!-- OKR 1: Awareness/Reach -->
+  <div class="okr-row partial">
+    <div class="okr-icon">📣</div>
+    <div>
+      <div class="okr-title">მიზანი 1 — ბრენდი: "Bivision = BI ექსპერტი საქართველოში"</div>
+      <div class="okr-text">
+        ყოველ თვე ახალ ადამიანებს გავაცნობ ჩვენი ბიზნეს-ანალიტიკის სიახლეები.
+        <br><br>
+        <strong>✅ რაც კარგად მიდის:</strong> აპრილში 42,000+ უნიკ. ადამიანი ნახა ჩვენი რეკლამა. LinkedIn-ის ბოლო პოსტი 9% engagement — ძალიან კარგია!
+        <br>
+        <strong>⚠ რაც გვაკლია:</strong> ეს ძირითადად ფასიანი охват. ორგანული (უფასო) охват — Facebook page-ის სტატისტიკა — ჯერ ვერ ვტრეკავთ. LinkedIn-ის სრული ანალიტიკა ჯერ ხელმიუწვდომელია.
+      </div>
+      <div class="okr-target"><span class="badge badge-yellow">PARTIAL</span> — охват კარგია, ტრეკინგი სრული არ გვაქვს</div>
+    </div>
+  </div>
+
+  <!-- OKR 2: Leads -->
+  <div class="okr-row gap">
+    <div class="okr-icon">🤝</div>
+    <div>
+      <div class="okr-title">მიზანი 2 — ლიდები: ყოველ თვე 2–3 ბიზნეს-კონტაქტი demo-სთვის</div>
+      <div class="okr-text">
+        ადამიანი, ვინც კლიკავს → საიტზე შედის → Calendly-ზე შეხვედრას ჯავშნავს.
+        <br><br>
+        <strong>🔴 პრობლემა:</strong> Facebook-ის 600 საიტზე შესვლა (აპრილი) — <strong>0 tracked lead</strong>. არ ვიცით ვინ დარეგისტრირდა. Calendly-ს კავშირი Meta-სთან არ გვაქვს → ვერ ვხედავთ რამდენი "შეხვედრა" Facebook-იდან მოვიდა.
+        <br><br>
+        <strong>🛠 გამოსასწორებელი (ტექნიკური):</strong> Pixel event-ის დაყენება Calendly-ზე — მაშინ ყოველ lead-ს ვნახავთ. ეს ჩვენს IT-სთვის ამოცანაა.
+      </div>
+      <div class="okr-target"><span class="badge badge-red">GAP</span> — conversion tracking = 0</div>
+    </div>
+  </div>
+
+  <!-- OKR 3: Engagement/Content -->
+  <div class="okr-row ok">
+    <div class="okr-icon">💬</div>
+    <div>
+      <div class="okr-title">მიზანი 3 — ენგეიჯმენტი: კონტენტი, ვინც share-ს და save-ს იმსახურებს</div>
+      <div class="okr-text">
+        <strong>✅ ვიდეო კონტენტი მუშაობს:</strong> აპრილი — 5,791 ვიდეო ნახვა. 19 აპ = 987 ვიდეო ნახვა ერთ დღეში, 8 reaction.
+        <br>
+        <strong>✅ LinkedIn:</strong> Excel+Claude თემა = 9% ER — ჩვენი target audience (CFO/CEO) ამ კონტენტს კითხულობს.
+        <br>
+        <strong>⚠ გასაუმჯობესებელი:</strong> comments ცოტაა (1-2 მთელ თვეში). კითხვაში-დამთავრებული პოსტები comments-ს ზრდის.
+      </div>
+      <div class="okr-target"><span class="badge badge-green">GOOD</span> — ვიდეო + LinkedIn content მუშაობს</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SECTION 5: ACTION ITEMS FOR MARIAM -->
+<div class="section">
+  <div class="section-title"><span class="icon">✅</span> მარიამ, შემდეგი ნაბიჯები</div>
+
+  <div class="note action">
+    <strong>1. LinkedIn post — ამ კვირაში (P1)</strong><br>
+    Excel+Claude პოსტი კარგად გაიარა. შემდეგი თემა: <em>"ERP + Excel ერთად — ქართული კომპანიების ყველაზე გავრცელებული შეცდომა"</em>. მოკლე + question ბოლოში + 1 emoji.
+  </div>
+
+  <div class="note action">
+    <strong>2. Facebook — "New Traffic Campaign" კითხვა (P1)</strong><br>
+    ეს კამპანია ყველაზე კარგი შედეგები გვქონდა (4.88% CTR). პაუზაშია. Campaign Manager-ში შეამოწმე — <strong>რატომ გაჩერდა?</strong> ბიუჯეტი ამოიწურა? ან სხვა მიზეზი? ამ ინფოს ვიყენებ გადაწყვეტილებისთვის.
+  </div>
+
+  <div class="note action">
+    <strong>3. Facebook organic stats (P2)</strong><br>
+    Facebook Page Insights → "Reach" tab → ბოლო 28 დღის ხელით screenshot. ამ მონაცემებს API-ზე ვერ ვნახულობ — მხოლოდ Page-ის ადმინი ხედავს.
+  </div>
+
+  <div class="note warn">
+    <strong>4. Lead tracking — ტექნიკური (IT-სთვის)</strong><br>
+    Calendly-ზე Meta Pixel event არ გვაქვს → Facebook-იდან ლიდები ჩუმად "იკარგება". ეს ტექნიკური დავალებაა — ჩვენ ვიზრუნებთ. შენ არ გჭირდება ამაზე ყოყმანი.
+  </div>
+</div>
+
+<!-- SECTION 6: QUICK GLOSSARY -->
+<div class="section" style="background:#f7fafc;">
+  <div class="section-title"><span class="icon">📖</span> მოკლე ლექსიკონი (თუ კითხვა გაქვს)</div>
+  <table>
+    <thead><tr><th>სიტყვა</th><th>მარტივი ახსნა</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Impressions (ნახვები)</strong></td><td>რამდენჯერ გამოჩნდა ჩვენი პოსტი/რეკლამა ეკრანზე</td></tr>
+      <tr><td><strong>Reach</strong></td><td>რამდენ სხვადასხვა ადამიანს გამოუჩნდა (Impressions-ი შეიძლება 1 ადამიანს 5-ჯერ)</td></tr>
+      <tr><td><strong>CTR</strong></td><td>კლიკების პროცენტი. "100 ადამიანიდან 3-მა დააკლიკა" = 3% CTR. კარგია!</td></tr>
+      <tr><td><strong>Landing Page View</strong></td><td>ადამიანი დააკლიკა + გვერდი სრულად ჩაიტვირთა (ცუდი ინტერნეტი = კლიკი ≠ landing view)</td></tr>
+      <tr><td><strong>Engagement Rate</strong></td><td>ლაიქი + კომენტარი + share + კლიკი — სულ ყველა ვინც "სომ-ით" მოახდინა რეაქცია</td></tr>
+      <tr><td><strong>Video Views</strong></td><td>ვიდეო დაიწყო (Meta ითვლის 3 წამს+)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="footer">
+  📊 მონაცემები: Meta Ads API (real-time) | LinkedIn: manual screenshot May 7 | ორგანული Facebook: ხელმიუწვდომელი<br>
+  გამზადებულია: 8 მაისი 2026 | Bivision Marketing Team
+</div>
+
+</div>
+</body>
+</html>
