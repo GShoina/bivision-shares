@@ -1,995 +1,759 @@
+{{-- bihub Landing Page — Laravel Blade --}}
+{{-- Route: Route::get('/', fn() => view('bihub')); --}}
+{{-- Place in: resources/views/bihub.blade.php --}}
 <!DOCTYPE html>
 <html lang="ka">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>bihub — ბიზნეს და საჯარო მონაცემების ანალიტიკა</title>
-<meta name="description" content="ბიზნეს და საჯარო მონაცემების ანალიტიკა ერთ სივრცეში. BI ანალიტიკა Qlik Sense-ზე.">
-<meta name="theme-color" content="#0d0f14">
+<title>bihub — საქართველოს მონაცემები. BI-ფორმატში.</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
-  --bg:        #0d0f14;
-  --bg2:       #151a28;
-  --card:      #141824;
-  --card2:     #1b2038;
-  --amber:     #f59e0b;
-  --amber-dim: #d97706;
-  --sky:       #38bdf8;
-  --sky-dim:   #0ea5e9;
-  --green:     #059669;
-  --green-lt:  #10b981;
-  --text:      #f1f5f9;
-  --muted:     #94a3b8;
-  --border:    #1e2d45;
-  --blue:      #3b82f6;
-  --purple:    #8b5cf6;
-  --teal:      #2dd4bf;
-}
+  :root {
+    --bg:        #0f1117;
+    --bg2:       #161b27;
+    --card:      #1a1e2b;
+    --card2:     #1e2436;
+    --amber:     #f59e0b;
+    --amber-dim: #d97706;
+    --green:     #0a6b47;
+    --green-lt:  #0d8a5c;
+    --text:      #e2e8f0;
+    --muted:     #94a3b8;
+    --border:    #2d3748;
+    --blue:      #3b82f6;
+    --purple:    #8b5cf6;
+    --teal:      #14b8a6;
+    --red:       #ef4444;
+  }
 
-html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; }
 
-body {
-  font-family: 'Noto Sans Georgian', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  line-height: 1.6;
-}
+  body {
+    font-family: 'Noto Sans Georgian', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
 
-/* ─── NAVBAR ─── */
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(13,15,20,0.95);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 2rem;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+  /* ─── NAVBAR ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15,17,23,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-.nav-brand { display: flex; align-items: baseline; gap: 8px; }
-.nav-logo { display:flex; align-items:flex-end; gap:8px; }
-.nav-logo svg { display:block; flex-shrink:0; margin-bottom:1px; }
-.nav-logo .logo-word { color:#ffffff; font-weight:800; font-size:1.15rem; letter-spacing:-0.5px; line-height:1; padding-bottom:3px; }
-.nav-actions { display: flex; gap: 10px; align-items: center; }
+  .nav-brand { display: flex; align-items: baseline; gap: 8px; }
+  .nav-logo  { font-size: 1.5rem; font-weight: 800; color: var(--amber); letter-spacing: -0.5px; }
+  .nav-by    { font-size: 0.72rem; color: var(--green-lt); font-weight: 500; letter-spacing: 0.3px; }
+  .nav-actions { display: flex; gap: 10px; align-items: center; }
 
-.btn {
-  padding: 7px 18px;
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 0.82rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.18s;
-  border: none;
-  text-decoration: none;
-  display: inline-block;
-}
-.btn-ghost {
-  background: transparent;
-  border: 1.5px solid rgba(241,245,249,0.22);
-  color: var(--text);
-}
-.btn-ghost:hover { border-color: var(--green-lt); color: var(--green-lt); }
-.btn-amber {
-  background: transparent;
-  border: 1.5px solid var(--green-lt);
-  color: var(--green-lt);
-}
-.btn-amber:hover { background: rgba(16,185,129,0.12); transform: translateY(-1px); }
+  .btn {
+    padding: 7px 18px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
 
-@media (max-width: 480px) {
-  nav { padding: 0 1rem; }
-  .btn { padding: 6px 12px; font-size: 0.76rem; }
-}
+  .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--muted); }
+  .btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
+  .btn-amber { background: var(--amber); border: none; color: #0f1117; }
+  .btn-amber:hover { background: var(--amber-dim); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(245,158,11,0.3); }
 
-/* ─── HERO ─── */
-.hero {
-  padding: 60px 2rem 48px;
-  text-align: center;
-  max-width: 1100px;
-  margin: 0 auto;
-  position: relative;
-}
+  /* ─── HERO WRAP (canvas container) ─── */
+  .hero-wrap {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #080b12 0%, #0f1117 100%);
+  }
 
-.hero::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 60vh;
-  background:
-    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(16,185,129,0.09) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 80% 30%, rgba(56,189,248,0.06) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
-}
-.hero > * { position: relative; z-index: 1; }
+  #hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
 
-.hero-tag {
-  display: inline-block;
-  background: rgba(56,189,248,0.1);
-  border: 1px solid rgba(56,189,248,0.3);
-  color: var(--sky);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 4px 14px;
-  border-radius: 20px;
-  margin-bottom: 22px;
-}
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    z-index: 2;
+    padding: 80px 2rem 60px;
+    text-align: center;
+    max-width: 820px;
+    margin: 0 auto;
+  }
 
-.hero h1 {
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 800;
-  line-height: 1.2;
-  color: #fff;
-  margin-bottom: 16px;
-  letter-spacing: -0.5px;
-}
-.hero h1 span { color: var(--green-lt); }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.3);
+    color: var(--amber);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 22px;
+  }
 
-.hero-sub {
-  font-size: 1.05rem;
-  color: var(--muted);
-  margin-bottom: 36px;
-  font-weight: 400;
-}
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
 
-/* ─── FILTER PILLS ─── */
-.pills {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 40px;
-}
-.pill {
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  background: var(--card);
-  border: 1px solid var(--border);
-  color: var(--muted);
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.pill:hover { border-color: var(--sky); color: var(--sky); }
-.pill.active { background: rgba(56,189,248,0.12); border-color: var(--sky); color: var(--sky); font-weight: 600; }
+  .hero h1 span { color: var(--amber); }
 
-/* ─── STATS ROW ─── */
-.stats-row {
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-  flex-wrap: wrap;
-}
-.stat { display: flex; flex-direction: row; align-items: baseline; gap: 5px; }
-.stat-num { font-size: 1.3rem; font-weight: 800; color: #fff; }
-.stat-num span { color: var(--green-lt); }
-.stat-num.sky span { color: var(--sky); }
-.stat-label { font-size: 0.8rem; color: var(--muted); font-weight: 400; }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    margin-bottom: 36px;
+    font-weight: 400;
+  }
 
-/* ─── SECTION ─── */
-.section {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 2rem 80px;
-}
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 28px;
-}
-.section-title { font-size: 1.15rem; font-weight: 700; color: #fff; }
-.section-title span { display: block; font-size: 0.78rem; font-weight: 400; color: var(--muted); margin-top: 2px; }
+  .search-wrap {
+    position: relative;
+    max-width: 560px;
+    margin: 0 auto 28px;
+  }
 
-/* ─── REPORT GRID ─── */
-.reports-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-@media (max-width: 1100px) { .reports-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 800px)  { .reports-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 500px)  { .reports-grid { grid-template-columns: 1fr; } }
+  .search-wrap input {
+    width: 100%;
+    padding: 14px 56px 14px 20px;
+    background: rgba(26,30,43,0.85);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border 0.18s, box-shadow 0.18s;
+    backdrop-filter: blur(8px);
+  }
+  .search-wrap input:focus {
+    border-color: var(--amber);
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.15);
+  }
+  .search-wrap input::placeholder { color: var(--muted); }
 
-/* ─── CARD ANIMATIONS ─── */
-@keyframes cardIn {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+  .search-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    pointer-events: none;
+  }
 
-/* ─── REPORT CARD ─── */
-.report-card {
-  border-radius: 16px;
-  cursor: pointer;
-  position: relative;
-  background: var(--card);
-  border: 1px solid var(--border);
-  padding: 18px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-  animation: cardIn 0.45s ease both;
-}
-.report-card:nth-child(1)  { animation-delay: 0.05s; }
-.report-card:nth-child(2)  { animation-delay: 0.10s; }
-.report-card:nth-child(3)  { animation-delay: 0.15s; }
-.report-card:nth-child(4)  { animation-delay: 0.20s; }
-.report-card:nth-child(5)  { animation-delay: 0.25s; }
-.report-card:nth-child(6)  { animation-delay: 0.30s; }
-.report-card:nth-child(7)  { animation-delay: 0.35s; }
-.report-card:nth-child(8)  { animation-delay: 0.40s; }
-.report-card:nth-child(9)  { animation-delay: 0.45s; }
-.report-card:nth-child(10) { animation-delay: 0.50s; }
-.report-card:nth-child(11) { animation-delay: 0.55s; }
-.report-card:nth-child(12) { animation-delay: 0.60s; }
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 40px;
+  }
 
-.report-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 14px 40px rgba(0,0,0,0.35);
-  border-color: rgba(56,189,248,0.35);
-}
-.report-card.hidden { display: none; }
+  .pill {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    background: rgba(26,30,43,0.7);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    backdrop-filter: blur(6px);
+  }
+  .pill:hover, .pill.active {
+    background: rgba(245,158,11,0.12);
+    border-color: var(--amber);
+    color: var(--amber);
+  }
 
-/* ─── FREE CARD ─── */
-.report-card.free {
-  border-color: rgba(245,158,11,0.4);
-  box-shadow: 0 0 0 1px rgba(245,158,11,0.15), 0 6px 24px rgba(245,158,11,0.08);
-}
-.report-card.free:hover {
-  border-color: rgba(245,158,11,0.7);
-  box-shadow: 0 0 0 1.5px rgba(245,158,11,0.3), 0 14px 36px rgba(245,158,11,0.18);
-}
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
 
-.free-badge {
-  position: absolute;
-  top: 0; right: 0;
-  background: var(--green-lt);
-  color: #0d0f14;
-  font-size: 0.58rem;
-  font-weight: 800;
-  padding: 3px 10px;
-  border-radius: 0 16px 0 8px;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  z-index: 2;
-}
+  .stat { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .stat-num { font-size: 1.6rem; font-weight: 800; color: #fff; }
+  .stat-num span { color: var(--amber); }
+  .stat-label { font-size: 0.75rem; color: var(--muted); font-weight: 400; }
 
-/* ─── CARD STRUCTURE ─── */
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 12px;
-}
-.card-updated { display: none; }
+  /* ─── SECTION ─── */
+  .section { max-width: 1120px; margin: 0 auto; padding: 0 2rem 80px; }
 
-.card-chart {
-  display: block;
-  height: 64px;
-  margin-bottom: 12px;
-  border-radius: 6px;
-  overflow: hidden;
-}
-.card-chart svg { width: 100%; height: 64px; display: block; }
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+  }
 
-.card-title {
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 5px;
-  line-height: 1.35;
-}
+  .section-title { font-size: 1.15rem; font-weight: 700; color: #fff; }
+  .section-title span { display: block; font-size: 0.78rem; font-weight: 400; color: var(--muted); margin-top: 2px; }
 
-.card-desc {
-  font-size: 0.73rem;
-  color: var(--muted);
-  line-height: 1.45;
-  flex: 1;
-}
+  .see-all { font-size: 0.8rem; color: var(--amber); text-decoration: none; font-weight: 500; display: flex; align-items: center; gap: 4px; }
+  .see-all:hover { color: var(--amber-dim); }
 
-.card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid var(--border);
-}
-.card-link {
-  font-size: 0.74rem;
-  font-weight: 600;
-  color: var(--sky);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  transition: color 0.15s;
-}
-.card-link:hover { color: var(--sky-dim); }
-.card-views { font-size: 0.68rem; color: var(--muted); }
+  /* ─── REPORT GRID ─── */
+  .reports-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    transition: filter 0.6s ease;
+  }
+  .reports-grid.blurred { filter: blur(6px); pointer-events: none; user-select: none; }
 
-/* ─── LOCK OVERLAY ─── */
-.lock-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent 35%, rgba(13,15,20,0.88) 75%);
-  border-radius: 16px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 14px;
-}
-.lock-badge {
-  background: rgba(56,189,248,0.1);
-  border: 1px solid rgba(56,189,248,0.28);
-  border-radius: 20px;
-  padding: 4px 14px;
-  font-size: 0.7rem;
-  color: var(--sky);
-  font-weight: 600;
-}
+  @media (max-width: 900px) { .reports-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 580px) { .reports-grid { grid-template-columns: 1fr; } }
 
-/* ─── BADGES ─── */
-.badge {
-  font-size: 0.66rem;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 6px;
-  letter-spacing: 0.2px;
-}
-.badge-amber  { background: rgba(245,158,11,0.15);  color: #f59e0b; }
-.badge-sky    { background: rgba(56,189,248,0.12);   color: #38bdf8; }
-.badge-green  { background: rgba(16,185,129,0.15);   color: #10b981; }
-.badge-blue   { background: rgba(59,130,246,0.15);   color: #60a5fa; }
-.badge-purple { background: rgba(139,92,246,0.15);   color: #a78bfa; }
-.badge-teal   { background: rgba(45,212,191,0.15);   color: #2dd4bf; }
+  .report-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    transition: border-color 0.18s, transform 0.18s, box-shadow 0.18s;
+    cursor: pointer;
+  }
+  .report-card:hover {
+    border-color: rgba(245,158,11,0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
 
-/* ─── CARD POPUP ─── */
-.card-popup-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.72);
-  backdrop-filter: blur(4px);
-  z-index: 400;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-.card-popup-overlay.show { display: flex; }
-.card-popup-box {
-  background: var(--bg2);
-  border: 1px solid rgba(56,189,248,0.18);
-  border-radius: 20px;
-  padding: 28px 32px;
-  max-width: 440px;
-  width: 100%;
-  position: relative;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
-  animation: gate-in 0.28s cubic-bezier(0.34,1.56,0.64,1);
-}
-.popup-close {
-  position: absolute;
-  top: 14px; right: 16px;
-  background: transparent;
-  border: none;
-  color: var(--muted);
-  font-size: 1.5rem;
-  cursor: pointer;
-  line-height: 1;
-  padding: 2px 7px;
-  border-radius: 6px;
-  transition: background 0.15s, color 0.15s;
-}
-.popup-close:hover { background: var(--border); color: var(--text); }
-.popup-cat {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  color: var(--sky);
-  display: block;
-  margin-bottom: 8px;
-}
-.popup-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 10px;
-  line-height: 1.3;
-}
-.popup-desc {
-  font-size: 0.88rem;
-  color: var(--muted);
-  line-height: 1.7;
-  margin-bottom: 22px;
-}
-.popup-btn-open, .popup-btn-register {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 24px;
-  border-radius: 10px;
-  font-family: inherit;
-  font-size: 0.88rem;
-  font-weight: 700;
-  cursor: pointer;
-  text-decoration: none;
-  border: none;
-  transition: opacity 0.18s, transform 0.18s;
-}
-.popup-btn-open:hover, .popup-btn-register:hover { opacity: 0.88; transform: translateY(-1px); }
-.popup-btn-open     { background: var(--green-lt); color: #0d0f14; }
-.popup-btn-register { background: var(--green-lt);  color: #0d0f14; }
+  .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
 
-/* ─── FOOTER ─── */
-.footer-wrap {
-  border-top: 1px solid var(--border);
-}
-footer {
-  padding: 40px 2rem;
-  max-width: 1120px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 20px;
-}
-@media (max-width: 640px) { footer { grid-template-columns: 1fr; text-align: center; } }
+  .badge { font-size: 0.68rem; font-weight: 600; padding: 3px 9px; border-radius: 6px; letter-spacing: 0.2px; }
+  .badge-amber  { background: rgba(245,158,11,0.15);  color: #f59e0b; }
+  .badge-green  { background: rgba(10,107,71,0.2);    color: #10b981; }
+  .badge-blue   { background: rgba(59,130,246,0.15);  color: #60a5fa; }
+  .badge-purple { background: rgba(139,92,246,0.15);  color: #a78bfa; }
+  .badge-teal   { background: rgba(20,184,166,0.15);  color: #2dd4bf; }
+  .badge-red    { background: rgba(239,68,68,0.15);   color: #f87171; }
 
-.footer-tagline { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
-.footer-nav { display: flex; gap: 20px; justify-content: center; }
-.footer-nav a { font-size: 0.78rem; color: var(--muted); text-decoration: none; transition: color 0.15s; }
-.footer-nav a:hover { color: var(--text); }
-.footer-powered { text-align: right; font-size: 0.75rem; color: var(--muted); }
-@media (max-width: 640px) { .footer-powered { text-align: center; } }
+  .card-updated { font-size: 0.68rem; color: var(--muted); }
+  .card-chart { width: 100%; height: 64px; margin-bottom: 14px; border-radius: 6px; overflow: hidden; }
+  .card-chart svg { width: 100%; height: 100%; }
+  .card-title { font-size: 0.88rem; font-weight: 600; color: var(--text); margin-bottom: 12px; line-height: 1.4; }
+  .card-footer { display: flex; justify-content: space-between; align-items: center; }
+  .card-link { font-size: 0.75rem; color: var(--amber); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+  .card-link:hover { color: var(--amber-dim); }
+  .card-views { font-size: 0.7rem; color: var(--muted); }
 
-.biv-brand {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 1px;
-  text-decoration: none;
-  font-family: inherit;
-}
-.biv-b { color: #7c71d9; font-weight: 900; font-size: 1rem; letter-spacing: -0.5px; }
-.biv-dot { color: #10b981; font-weight: 900; font-size: 0.75rem; margin: 0 1px; }
-.biv-vision { color: #7c71d9; font-weight: 900; font-size: 1rem; letter-spacing: -0.5px; }
-.biv-brand:hover .biv-b, .biv-brand:hover .biv-vision { color: #a89ce8; }
+  /* ─── FEATURES STRIP ─── */
+  .features-strip {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 50px 2rem;
+  }
 
-/* ─── TIMER ─── */
-#timer-badge {
-  position: fixed; bottom: 28px; right: 28px; z-index: 200;
-  background: var(--card2); border: 1px solid var(--border); border-radius: 100px;
-  padding: 8px 16px; display: flex; align-items: center; gap: 8px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5); font-size: 0.82rem; font-weight: 600;
-  color: var(--muted); transition: border-color 0.3s, color 0.3s;
-}
-#timer-badge.urgent { border-color: rgba(245,158,11,0.5); color: var(--amber); }
-.timer-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-lt); animation: pulse-dot 1.4s infinite; }
-.timer-dot.urgent { background: var(--amber); }
-@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .features-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    text-align: center;
+  }
 
-/* ─── GATE MODAL ─── */
-#gate-overlay {
-  display: none; position: fixed; inset: 0; z-index: 500;
-  background: rgba(13,15,20,0.9); backdrop-filter: blur(6px);
-  align-items: center; justify-content: center; padding: 20px;
-}
-#gate-overlay.show { display: flex; }
-.gate-card {
-  background: var(--card2); border: 1px solid rgba(56,189,248,0.2);
-  border-radius: 22px; padding: 44px 40px; max-width: 420px; width: 100%;
-  text-align: center; box-shadow: 0 24px 60px rgba(0,0,0,0.7);
-  animation: gate-in 0.3s cubic-bezier(0.34,1.56,0.64,1);
-}
-@keyframes gate-in {
-  from { opacity: 0; transform: scale(0.88) translateY(16px); }
-  to   { opacity: 1; transform: scale(1) translateY(0); }
-}
-.gate-icon { width:56px;height:56px;border-radius:50%;background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.25);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.5rem; }
-.gate-title { font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:8px; }
-.gate-sub { font-size:0.85rem;color:var(--muted);margin-bottom:28px;line-height:1.55; }
-.gate-form { display:flex;flex-direction:column;gap:10px; }
-.gate-input { padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:inherit;font-size:0.88rem;outline:none;transition:border 0.18s; }
-.gate-input:focus { border-color:var(--sky); }
-.gate-input::placeholder { color:var(--muted); }
-.gate-submit { padding:12px;background:var(--sky);border:none;border-radius:10px;color:#0d0f14;font-family:inherit;font-size:0.9rem;font-weight:700;cursor:pointer;transition:background 0.18s,transform 0.18s; }
-.gate-submit:hover { background:var(--sky-dim);transform:translateY(-1px); }
-.gate-perks { display:flex;justify-content:center;gap:16px;margin-top:20px;padding-top:20px;border-top:1px solid var(--border); }
-.gate-perk { font-size:0.72rem;color:var(--muted);display:flex;align-items:center;gap:4px; }
-.gate-perk span { color:var(--green-lt); }
+  @media (max-width: 640px) { .features-inner { grid-template-columns: 1fr; } }
 
-/* ─── NO RESULTS ─── */
-.no-results { grid-column:1/-1;text-align:center;padding:48px 20px;color:var(--muted);font-size:0.9rem;display:none; }
-.no-results.show { display:block; }
+  .feature-icon  { font-size: 2rem; margin-bottom: 10px; display: block; }
+  .feature-title { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .feature-desc  { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 40px 2rem;
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 640px) { footer { grid-template-columns: 1fr; text-align: center; } }
+
+  .footer-brand .nav-logo { font-size: 1.2rem; }
+  .footer-tagline { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+  .footer-nav { display: flex; gap: 20px; justify-content: center; }
+  .footer-nav a { font-size: 0.78rem; color: var(--muted); text-decoration: none; transition: color 0.15s; }
+  .footer-nav a:hover { color: var(--text); }
+  .footer-powered { text-align: right; font-size: 0.75rem; color: var(--muted); }
+  .footer-powered a { color: var(--green-lt); text-decoration: none; font-weight: 600; }
+  .footer-powered a:hover { color: var(--green); }
+  @media (max-width: 640px) { .footer-powered { text-align: center; } }
+
+  /* ─── TIMER BADGE ─── */
+  #timer-badge {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 200;
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--muted);
+    transition: border-color 0.3s, color 0.3s;
+  }
+  #timer-badge.urgent { border-color: rgba(245,158,11,0.5); color: var(--amber); }
+
+  .timer-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-lt); animation: pulse-dot 1.4s infinite; }
+  .timer-dot.urgent { background: var(--amber); }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* ─── GATE MODAL ─── */
+  #gate-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    background: rgba(15,17,23,0.88);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  #gate-overlay.show { display: flex; }
+
+  .gate-card {
+    background: var(--card2);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 20px;
+    padding: 44px 40px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+    animation: gate-in 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  @keyframes gate-in {
+    from { opacity: 0; transform: scale(0.88) translateY(16px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .gate-icon { width: 56px; height: 56px; border-radius: 50%; background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.5rem; }
+  .gate-title { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .gate-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 28px; line-height: 1.55; }
+  .gate-sub strong { color: var(--amber); font-weight: 600; }
+  .gate-form { display: flex; flex-direction: column; gap: 10px; }
+  .gate-input { padding: 12px 16px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: inherit; font-size: 0.88rem; outline: none; transition: border 0.18s; }
+  .gate-input:focus { border-color: var(--amber); }
+  .gate-input::placeholder { color: var(--muted); }
+  .gate-submit { padding: 12px; background: var(--amber); border: none; border-radius: 10px; color: #0f1117; font-family: inherit; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: background 0.18s, transform 0.18s; }
+  .gate-submit:hover { background: var(--amber-dim); transform: translateY(-1px); }
+  .gate-close { margin-top: 14px; font-size: 0.78rem; color: var(--muted); cursor: pointer; background: none; border: none; font-family: inherit; transition: color 0.15s; }
+  .gate-close:hover { color: var(--text); }
+  .gate-perks { display: flex; justify-content: center; gap: 16px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
+  .gate-perk { font-size: 0.72rem; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+  .gate-perk span { color: var(--green-lt); }
+
+  .divider-line { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); max-width: 1120px; margin: 0 auto 80px; }
 </style>
 </head>
 <body>
 
-<!-- navbar -->
+<!-- ── NAVBAR ── -->
 <nav>
   <div class="nav-brand">
-    <div class="nav-logo">
-      <svg width="32" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0"    y="4"  width="9" height="20" rx="4.5" fill="#10b981"/>
-        <rect x="11.5" y="0"  width="9" height="28" rx="4.5" fill="#10b981"/>
-        <rect x="23"   y="6"  width="9" height="16" rx="4.5" fill="#10b981"/>
-      </svg>
-      <span class="logo-word">bihub</span>
-    </div>
+    <span class="nav-logo">bihub</span>
+    <span class="nav-by">by Bivision</span>
   </div>
   <div class="nav-actions">
-    <a href="https://bihub.ge/wp-login.php" class="btn btn-ghost">შესვლა</a>
-    <a href="https://bihub.ge/wp-login.php?action=register" class="btn btn-amber">რეგისტრაცია</a>
+    <button class="btn btn-ghost">შესვლა</button>
+    <button class="btn btn-amber">რეგისტრაცია</button>
   </div>
 </nav>
 
-<!-- hero -->
-<section class="hero">
-  <div class="hero-tag">🇬🇪 ქართული საჯარო მონაცემები</div>
-  <h1>ბიზნეს და საჯარო მონაცემების<br><span>ანალიტიკა ერთ სივრცეში</span></h1>
-  <p class="hero-sub">ეკონომიკა, ექსპ/იმპ, ჯანდაცვა, ფინანსები, სოფლის მეურნეობა — BI ანალიტიკა Qlik პლატფორმაზე.</p>
+<!-- ── HERO (animated canvas background) ── -->
+<div class="hero-wrap">
+  <canvas id="hero-canvas"></canvas>
+  <section class="hero">
+    <div class="hero-tag">🇬🇪 ქართული საჯარო მონაცემები</div>
+    <h1>საქართველოს მონაცემები.<br><span>BI-ფორმატში.</span></h1>
+    <p class="hero-sub">800+ საჯარო მონაცემთა ნაკრები — ეკონომიკა, ინდუსტრია, დემოგრაფია<br>BI-ვიზუალიზაციით. ინტერაქტიულად. ქართულ კონტექსტში.</p>
 
-  <div class="pills">
-    <span class="pill active" data-filter="all">ყველა</span>
-    <span class="pill" data-filter="ექსპ/იმპ">ექსპ/იმპ</span>
-    <span class="pill" data-filter="სახ. შესყიდვები">სახ. შესყიდვები</span>
-    <span class="pill" data-filter="ჯანდაცვა">ჯანდაცვა</span>
-    <span class="pill" data-filter="ფინანსები">ფინანსები</span>
-    <span class="pill" data-filter="სოფ. მეურნეობა">სოფ. მეურნეობა</span>
-    <span class="pill" data-filter="ინდუსტრია">ინდუსტრია</span>
-  </div>
+    <div class="search-wrap">
+      <input type="text" placeholder="მოძებნე: მშპ, სავაჭრო ბალანსი, მოსახლეობა...">
+      <svg class="search-icon" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+    </div>
 
-  <div class="stats-row">
-    <div class="stat">
-      <div class="stat-num">800<span>+</span></div>
-      <div class="stat-label">report</div>
+    <div class="pills">
+      <span class="pill active">ყველა</span>
+      <span class="pill">ეკონომიკა</span>
+      <span class="pill">ინდუსტრია</span>
+      <span class="pill">დემოგრაფია</span>
+      <span class="pill">სავაჭრო</span>
+      <span class="pill">ბიუჯეტი</span>
+      <span class="pill">ჯანდაცვა</span>
     </div>
-    <div class="stat">
-      <div class="stat-num sky">7<span>+</span></div>
-      <div class="stat-label">კატეგორია</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">2018<span>–</span></div>
-      <div class="stat-label">ისტორია</div>
-    </div>
-  </div>
-</section>
 
-<!-- cards -->
-<div class="section">
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num">800<span>+</span></div>
+        <div class="stat-label">report</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">12</div>
+        <div class="stat-label">კატეგორია</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">24<span>h</span></div>
+        <div class="stat-label">განახლება</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2018<span>–</span></div>
+        <div class="stat-label">ისტორია</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── REPORT GRID ── -->
+<div class="section" style="padding-top:60px;">
   <div class="section-header">
     <div class="section-title">
       პოპულარული რეპორტები
-      <span id="card-count-label">ყველა კატეგორია · 12 report</span>
+      <span>ბოლო 7 დღეში ყველაზე ხშირად ნახული</span>
     </div>
+    <a href="#" class="see-all">ყველა ნახვა →</a>
   </div>
 
   <div class="reports-grid" id="reports-grid">
 
-    <!-- 1: FREE -->
-    <div class="report-card free" data-category="სახ. შესყიდვები">
-      <div class="free-badge">✓ უფასო</div>
+    <!-- Card 1 — GDP Line -->
+    <div class="report-card">
       <div class="card-header">
-        <span class="badge badge-amber">შესყიდვები</span>
-        <span class="card-updated">1 დღე წინ</span>
+        <span class="badge badge-amber">ეკონომიკა</span>
+        <span class="card-updated">2 სთ. წინ</span>
       </div>
       <div class="card-chart">
-        <svg viewBox="0 0 240 64" preserveAspectRatio="xMidYMid meet">
-          <!-- Balance Sheet -->
-          <rect x="2" y="2" width="54" height="60" rx="5" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.3)" stroke-width="1"/>
-          <rect x="10" y="44" width="7" height="12" rx="1.5" fill="#10b981" opacity="0.65"/>
-          <rect x="21" y="34" width="7" height="22" rx="1.5" fill="#10b981" opacity="0.8"/>
-          <rect x="32" y="38" width="7" height="18" rx="1.5" fill="#10b981" opacity="0.9"/>
-          <rect x="43" y="28" width="7" height="28" rx="1.5" fill="#10b981"/>
-          <text x="29" y="13" text-anchor="middle" font-size="7" fill="rgba(16,185,129,0.8)" font-family="sans-serif" font-weight="600">Balance</text>
-          <!-- P&amp;L -->
-          <rect x="62" y="2" width="54" height="60" rx="5" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.25)" stroke-width="1"/>
-          <polyline points="66,50 76,40 86,44 96,28 106,24 116,16" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-          <circle cx="116" cy="16" r="3" fill="#38bdf8"/>
-          <text x="89" y="13" text-anchor="middle" font-size="7" fill="rgba(56,189,248,0.8)" font-family="sans-serif" font-weight="600">P&amp;L</text>
-          <!-- Cash Flow -->
-          <rect x="122" y="2" width="54" height="60" rx="5" fill="rgba(139,92,246,0.08)" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
-          <polyline points="126,48 136,40 146,34 156,38 166,26 176,20" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-          <polyline points="126,54 136,48 146,44 156,48 166,38 176,32" fill="none" stroke="#8b5cf6" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
-          <text x="149" y="13" text-anchor="middle" font-size="7" fill="rgba(139,92,246,0.8)" font-family="sans-serif" font-weight="600">Cash Flow</text>
-          <!-- Ratios -->
-          <rect x="182" y="2" width="56" height="60" rx="5" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
-          <circle cx="210" cy="38" r="14" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6"/>
-          <circle cx="210" cy="38" r="14" fill="none" stroke="#f59e0b" stroke-width="6" stroke-dasharray="53 35" stroke-dashoffset="-16" stroke-linecap="round"/>
-          <circle cx="210" cy="38" r="14" fill="none" stroke="#10b981" stroke-width="6" stroke-dasharray="22 66" stroke-dashoffset="-69" stroke-linecap="round"/>
-          <text x="210" y="13" text-anchor="middle" font-size="7" fill="rgba(245,158,11,0.8)" font-family="sans-serif" font-weight="600">Ratios</text>
+        <svg viewBox="0 0 240 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lg1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <polygon points="0,52 24,46 48,42 72,38 96,30 120,24 144,20 168,16 192,12 216,8 240,6 240,64 0,64" fill="url(#lg1)"/>
+          <polyline points="0,52 24,46 48,42 72,38 96,30 120,24 144,20 168,16 192,12 216,8 240,6" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="240" cy="6" r="4" fill="#f59e0b"/>
         </svg>
       </div>
-      <div class="card-title">კონკურენტებთან შედარება</div>
-      <div class="card-desc">კომპანიების ფინანსური შედეგები</div>
+      <div class="card-title">მშპ დინამიკა 2010–2024</div>
       <div class="card-footer">
-        <a href="https://bihub.ge/cards/shedareba/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <span class="card-views">7.4K ნახვა</span>
+        <a href="#" class="card-link">გახსნა <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <span class="card-views">4.2K ნახვა</span>
       </div>
     </div>
 
-    <!-- 2: საბაჟო -->
-    <div class="report-card locked" data-category="ექსპ/იმპ">
+    <!-- Card 2 — Export/Import Bar -->
+    <div class="report-card">
       <div class="card-header">
-        <span class="badge badge-sky">ექსპ/იმპ</span>
-        <span class="card-updated">3 სთ. წინ</span>
-      </div>
-      <div class="card-chart">
-        <svg viewBox="0 0 240 64" preserveAspectRatio="none">
-          <rect x="10"  y="34" width="20" height="30" rx="3" fill="#38bdf8" opacity="0.65"/>
-          <rect x="38"  y="24" width="20" height="40" rx="3" fill="#38bdf8" opacity="0.72"/>
-          <rect x="66"  y="40" width="20" height="24" rx="3" fill="#38bdf8" opacity="0.6"/>
-          <rect x="94"  y="18" width="20" height="46" rx="3" fill="#38bdf8" opacity="0.78"/>
-          <rect x="122" y="28" width="20" height="36" rx="3" fill="#38bdf8" opacity="0.7"/>
-          <rect x="150" y="10" width="20" height="54" rx="3" fill="#38bdf8" opacity="0.88"/>
-          <rect x="178" y="20" width="20" height="44" rx="3" fill="#38bdf8" opacity="0.82"/>
-          <rect x="206" y="4"  width="20" height="60" rx="3" fill="#38bdf8"/>
-        </svg>
-      </div>
-      <div class="card-title">საბაჟო დეკლარაციები</div>
-      <div class="card-desc">დეკლარილებული ექსპორტ-იმპორტი 2014-2026</div>
-      <div class="card-footer">
-        <a href="https://bihub.ge/cards/export-importis-statistika/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <span class="card-views">5.2K ნახვა</span>
-      </div>
-      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
-    </div>
-
-    <!-- 3: საგარეო ვაჭრობა -->
-    <div class="report-card locked" data-category="ექსპ/იმპ">
-      <div class="card-header">
-        <span class="badge badge-sky">ექსპ/იმპ</span>
+        <span class="badge badge-green">სავაჭრო</span>
         <span class="card-updated">5 სთ. წინ</span>
       </div>
       <div class="card-chart">
-        <svg viewBox="0 0 240 64" preserveAspectRatio="none">
-          <line x1="0" y1="32" x2="240" y2="32" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
-          <rect x="12"  y="22" width="13" height="10" rx="1.5" fill="#10b981" opacity="0.82"/>
-          <rect x="42"  y="17" width="13" height="15" rx="1.5" fill="#10b981" opacity="0.87"/>
-          <rect x="72"  y="13" width="13" height="19" rx="1.5" fill="#10b981" opacity="0.9"/>
-          <rect x="102" y="16" width="13" height="16" rx="1.5" fill="#10b981" opacity="0.88"/>
-          <rect x="132" y="10" width="13" height="22" rx="1.5" fill="#10b981"/>
-          <rect x="162" y="8"  width="13" height="24" rx="1.5" fill="#10b981"/>
-          <rect x="192" y="6"  width="13" height="26" rx="1.5" fill="#10b981"/>
-          <rect x="12"  y="32" width="13" height="15" rx="1.5" fill="#38bdf8" opacity="0.6"/>
-          <rect x="42"  y="32" width="13" height="19" rx="1.5" fill="#38bdf8" opacity="0.65"/>
-          <rect x="72"  y="32" width="13" height="22" rx="1.5" fill="#38bdf8" opacity="0.7"/>
-          <rect x="102" y="32" width="13" height="20" rx="1.5" fill="#38bdf8" opacity="0.72"/>
-          <rect x="132" y="32" width="13" height="18" rx="1.5" fill="#38bdf8" opacity="0.75"/>
-          <rect x="162" y="32" width="13" height="22" rx="1.5" fill="#38bdf8" opacity="0.8"/>
-          <rect x="192" y="32" width="13" height="20" rx="1.5" fill="#38bdf8" opacity="0.85"/>
+        <svg viewBox="0 0 240 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8"  y="28" width="18" height="36" rx="3" fill="#10b981" opacity="0.85"/>
+          <rect x="28" y="44" width="18" height="20" rx="3" fill="#f59e0b" opacity="0.85"/>
+          <rect x="54" y="20" width="18" height="44" rx="3" fill="#10b981" opacity="0.85"/>
+          <rect x="74" y="38" width="18" height="26" rx="3" fill="#f59e0b" opacity="0.85"/>
+          <rect x="100" y="14" width="18" height="50" rx="3" fill="#10b981" opacity="0.85"/>
+          <rect x="120" y="34" width="18" height="30" rx="3" fill="#f59e0b" opacity="0.85"/>
+          <rect x="146" y="10" width="18" height="54" rx="3" fill="#10b981" opacity="0.85"/>
+          <rect x="166" y="28" width="18" height="36" rx="3" fill="#f59e0b" opacity="0.85"/>
+          <rect x="192" y="6"  width="18" height="58" rx="3" fill="#10b981" opacity="0.85"/>
+          <rect x="212" y="22" width="18" height="42" rx="3" fill="#f59e0b" opacity="0.85"/>
         </svg>
       </div>
-      <div class="card-title">საგარეო ვაჭრობა</div>
-      <div class="card-desc">ექსპორტი/იმპორტი, პარტნიორი ქვეყნები 2014-2026</div>
+      <div class="card-title">ექსპორტ-იმპორტი 2019–2024</div>
       <div class="card-footer">
-        <a href="https://bihub.ge/cards/sagareo-vachroba-eqsport-importi-2014-2020/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <span class="card-views">4.8K ნახვა</span>
+        <a href="#" class="card-link">გახსნა <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <span class="card-views">3.8K ნახვა</span>
       </div>
-      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
     </div>
 
-    <!-- 4: ჯანდაცვა -->
-    <div class="report-card locked" data-category="ჯანდაცვა">
+    <!-- Card 3 — Population Donut -->
+    <div class="report-card">
       <div class="card-header">
-        <span class="badge badge-green">ჯანდაცვა</span>
+        <span class="badge badge-purple">დემოგრაფია</span>
+        <span class="card-updated">1 დღე წინ</span>
+      </div>
+      <div class="card-chart" style="display:flex;align-items:center;gap:12px;background:transparent;height:64px;">
+        <svg viewBox="0 0 64 64" width="64" height="64" style="flex-shrink:0;">
+          <circle cx="32" cy="32" r="24" fill="none" stroke="#2d3748" stroke-width="10"/>
+          <circle cx="32" cy="32" r="24" fill="none" stroke="#8b5cf6" stroke-width="10" stroke-dasharray="75 76" stroke-dashoffset="-10" transform="rotate(-90 32 32)"/>
+          <circle cx="32" cy="32" r="24" fill="none" stroke="#f59e0b" stroke-width="10" stroke-dasharray="38 113" stroke-dashoffset="-85" transform="rotate(-90 32 32)"/>
+          <circle cx="32" cy="32" r="24" fill="none" stroke="#10b981" stroke-width="10" stroke-dasharray="38 113" stroke-dashoffset="-123" transform="rotate(-90 32 32)"/>
+        </svg>
+        <div style="display:flex;flex-direction:column;gap:5px;font-size:0.7rem;">
+          <div style="display:flex;align-items:center;gap:5px;color:var(--muted)"><span style="width:8px;height:8px;border-radius:2px;background:#8b5cf6;flex-shrink:0;"></span>თბილისი 50%</div>
+          <div style="display:flex;align-items:center;gap:5px;color:var(--muted)"><span style="width:8px;height:8px;border-radius:2px;background:#f59e0b;flex-shrink:0;"></span>ქუთაისი 25%</div>
+          <div style="display:flex;align-items:center;gap:5px;color:var(--muted)"><span style="width:8px;height:8px;border-radius:2px;background:#10b981;flex-shrink:0;"></span>სხვა 25%</div>
+        </div>
+      </div>
+      <div class="card-title">მოსახლეობა რეგიონების მიხედვით</div>
+      <div class="card-footer">
+        <a href="#" class="card-link">გახსნა <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <span class="card-views">2.9K ნახვა</span>
+      </div>
+    </div>
+
+    <!-- Card 4 — Inflation volatile line -->
+    <div class="report-card">
+      <div class="card-header">
+        <span class="badge badge-amber">ეკონომიკა</span>
+        <span class="card-updated">3 სთ. წინ</span>
+      </div>
+      <div class="card-chart">
+        <svg viewBox="0 0 240 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lg4" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ef4444" stop-opacity="0.2"/>
+              <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <polygon points="0,32 30,24 60,36 90,14 120,28 150,8 180,22 210,18 240,30 240,64 0,64" fill="url(#lg4)"/>
+          <polyline points="0,32 30,24 60,36 90,14 120,28 150,8 180,22 210,18 240,30" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="240" cy="30" r="4" fill="#ef4444"/>
+        </svg>
+      </div>
+      <div class="card-title">ინფლაციის მაჩვენებელი 2020–2024</div>
+      <div class="card-footer">
+        <a href="#" class="card-link">გახსნა <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <span class="card-views">3.1K ნახვა</span>
+      </div>
+    </div>
+
+    <!-- Card 5 — Construction Bar -->
+    <div class="report-card">
+      <div class="card-header">
+        <span class="badge badge-blue">ინდუსტრია</span>
+        <span class="card-updated">6 სთ. წინ</span>
+      </div>
+      <div class="card-chart">
+        <svg viewBox="0 0 240 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10"  y="50" width="24" height="14" rx="3" fill="#3b82f6" opacity="0.7"/>
+          <rect x="44"  y="44" width="24" height="20" rx="3" fill="#3b82f6" opacity="0.75"/>
+          <rect x="78"  y="36" width="24" height="28" rx="3" fill="#3b82f6" opacity="0.8"/>
+          <rect x="112" y="28" width="24" height="36" rx="3" fill="#3b82f6" opacity="0.85"/>
+          <rect x="146" y="18" width="24" height="46" rx="3" fill="#3b82f6" opacity="0.9"/>
+          <rect x="180" y="8"  width="24" height="56" rx="3" fill="#3b82f6"/>
+        </svg>
+      </div>
+      <div class="card-title">სამშენებლო სფეროს ზრდა</div>
+      <div class="card-footer">
+        <a href="#" class="card-link">გახსნა <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <span class="card-views">2.4K ნახვა</span>
+      </div>
+    </div>
+
+    <!-- Card 6 — Unemployment declining line -->
+    <div class="report-card">
+      <div class="card-header">
+        <span class="badge badge-purple">დემოგრაფია</span>
+        <span class="card-updated">1 დღე წინ</span>
+      </div>
+      <div class="card-chart">
+        <svg viewBox="0 0 240 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lg6" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.2"/>
+              <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <polygon points="0,10 40,14 80,20 120,28 160,38 200,46 240,54 240,64 0,64" fill="url(#lg6)"/>
+          <polyline points="0,10 40,14 80,20 120,28 160,38 200,46 240,54" fill="none" stroke="#a78bfa" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="240" cy="54" r="4" fill="#a78bfa"/>
+        </svg>
+      </div>
+      <div class="card-title">უმუშევრობის დონე 2018–2024</div>
+      <div class="card-footer">
+        <a href="#" class="card-link">გახსნა <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <span class="card-views">2.7K ნახვა</span>
+      </div>
+    </div>
+
+    <!-- Card 7 — Tourism Bar -->
+    <div class="report-card">
+      <div class="card-header">
+        <span class="badge badge-teal">ჯანდაცვა / ტური</span>
         <span class="card-updated">4 სთ. წინ</span>
       </div>
       <div class="card-chart">
-        <svg viewBox="0 0 240 64" preserveAspectRatio="none">
-          <defs><linearGradient id="lg5" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#10b981" stop-opacity="0.28"/><stop offset="100%" stop-color="#10b981" stop-opacity="0"/></linearGradient></defs>
-          <polygon points="0,50 30,44 60,38 90,30 120,24 150,18 180,22 210,16 240,10 240,64 0,64" fill="url(#lg5)"/>
-          <polyline points="0,50 30,44 60,38 90,30 120,24 150,18 180,22 210,16 240,10" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <svg viewBox="0 0 240 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8"   y="46" width="22" height="18" rx="3" fill="#2dd4bf" opacity="0.7"/>
+          <rect x="38"  y="38" width="22" height="26" rx="3" fill="#2dd4bf" opacity="0.75"/>
+          <rect x="68"  y="52" width="22" height="12" rx="3" fill="#2dd4bf" opacity="0.6"/>
+          <rect x="98"  y="30" width="22" height="34" rx="3" fill="#2dd4bf" opacity="0.8"/>
+          <rect x="128" y="22" width="22" height="42" rx="3" fill="#2dd4bf" opacity="0.85"/>
+          <rect x="158" y="48" width="22" height="16" rx="3" fill="#2dd4bf" opacity="0.6"/>
+          <rect x="188" y="10" width="22" height="54" rx="3" fill="#2dd4bf"/>
+        </svg>
+      </div>
+      <div class="card-title">ტურიზმის შემოსავლები 2018–2024</div>
+      <div class="card-footer">
+        <a href="#" class="card-link">გახსნა <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <span class="card-views">3.3K ნახვა</span>
+      </div>
+    </div>
+
+    <!-- Card 8 — Budget Donut -->
+    <div class="report-card">
+      <div class="card-header">
+        <span class="badge badge-red">ბიუჯეტი</span>
+        <span class="card-updated">12 სთ. წინ</span>
+      </div>
+      <div class="card-chart" style="display:flex;align-items:center;gap:12px;background:transparent;height:64px;">
+        <svg viewBox="0 0 64 64" width="64" height="64" style="flex-shrink:0;">
+          <circle cx="32" cy="32" r="24" fill="none" stroke="#2d3748" stroke-width="10"/>
+          <circle cx="32" cy="32" r="24" fill="none" stroke="#ef4444" stroke-width="10" stroke-dasharray="68 83" stroke-dashoffset="-5" transform="rotate(-90 32 32)"/>
+          <circle cx="32" cy="32" r="24" fill="none" stroke="#f59e0b" stroke-width="10" stroke-dasharray="40 111" stroke-dashoffset="-73" transform="rotate(-90 32 32)"/>
+          <circle cx="32" cy="32" r="24" fill="none" stroke="#3b82f6" stroke-width="10" stroke-dasharray="43 108" stroke-dashoffset="-113" transform="rotate(-90 32 32)"/>
+        </svg>
+        <div style="display:flex;flex-direction:column;gap:5px;font-size:0.69rem;">
+          <div style="display:flex;align-items:center;gap:5px;color:var(--muted)"><span style="width:8px;height:8px;border-radius:2px;background:#ef4444;flex-shrink:0;"></span>სოც. 45%</div>
+          <div style="display:flex;align-items:center;gap:5px;color:var(--muted)"><span style="width:8px;height:8px;border-radius:2px;background:#f59e0b;flex-shrink:0;"></span>განათ. 26%</div>
+          <div style="display:flex;align-items:center;gap:5px;color:var(--muted)"><span style="width:8px;height:8px;border-radius:2px;background:#3b82f6;flex-shrink:0;"></span>სხვა 29%</div>
+        </div>
+      </div>
+      <div class="card-title">სახელმწიფო ბიუჯეტი 2024</div>
+      <div class="card-footer">
+        <a href="#" class="card-link">გახსნა <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <span class="card-views">5.1K ნახვა</span>
+      </div>
+    </div>
+
+    <!-- Card 9 — FDI Line -->
+    <div class="report-card">
+      <div class="card-header">
+        <span class="badge badge-green">სავაჭრო</span>
+        <span class="card-updated">2 დღე წინ</span>
+      </div>
+      <div class="card-chart">
+        <svg viewBox="0 0 240 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lg9" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#10b981" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <polygon points="0,40 30,44 60,32 90,36 120,18 150,24 180,14 210,20 240,10 240,64 0,64" fill="url(#lg9)"/>
+          <polyline points="0,40 30,44 60,32 90,36 120,18 150,24 180,14 210,20 240,10" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
           <circle cx="240" cy="10" r="4" fill="#10b981"/>
         </svg>
       </div>
-      <div class="card-title">საყოველთაო ჯანდაცვა</div>
-      <div class="card-desc">ანაზღაურება, პაციენტები, კლინიკები, რეგიონები 2015-2026</div>
+      <div class="card-title">FDI ნაკადები საქართველოში</div>
       <div class="card-footer">
-        <a href="https://bihub.ge/cards/sayoveltao-dazghvevis-analitika/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <span class="card-views">3.9K ნახვა</span>
+        <a href="#" class="card-link">გახსნა <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <span class="card-views">1.9K ნახვა</span>
       </div>
-      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
     </div>
 
-    <!-- 5: მშენებლობა -->
-    <div class="report-card locked" data-category="ინდუსტრია">
-      <div class="card-header">
-        <span class="badge badge-blue">ინდუსტრია</span>
-      </div>
-      <div class="card-chart">
-        <svg viewBox="0 0 240 64" preserveAspectRatio="none">
-          <rect x="12"  y="44" width="26" height="20" rx="2" fill="#3b82f6" opacity="0.68"/>
-          <rect x="12"  y="38" width="26" height="6"  rx="2" fill="#8b5cf6" opacity="0.72"/>
-          <rect x="52"  y="36" width="26" height="28" rx="2" fill="#3b82f6" opacity="0.74"/>
-          <rect x="52"  y="28" width="26" height="8"  rx="2" fill="#8b5cf6" opacity="0.78"/>
-          <rect x="92"  y="26" width="26" height="38" rx="2" fill="#3b82f6" opacity="0.82"/>
-          <rect x="92"  y="16" width="26" height="10" rx="2" fill="#8b5cf6" opacity="0.84"/>
-          <rect x="132" y="16" width="26" height="48" rx="2" fill="#3b82f6" opacity="0.9"/>
-          <rect x="132" y="4"  width="26" height="12" rx="2" fill="#8b5cf6" opacity="0.9"/>
-          <rect x="172" y="8"  width="26" height="56" rx="2" fill="#3b82f6"/>
-          <rect x="172" y="0"  width="26" height="8"  rx="2" fill="#8b5cf6"/>
-        </svg>
-      </div>
-      <div class="card-title">მშენებლობა & ნებართვები</div>
-      <div class="card-desc">თბილისში გაცემული ნებართვები და მშენებლობა 2010-2026</div>
-      <div class="card-footer">
-        <a href="https://bihub.ge/cards/mshenebloba-da-nebartvebis-analitika/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <span class="card-views">3.5K ნახვა</span>
-      </div>
-      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
-    </div>
-
-    <!-- 6: შესყიდვები -->
-    <div class="report-card locked" data-category="სახ. შესყიდვები">
-      <div class="card-header">
-        <span class="badge badge-amber">შესყიდვები</span>
-      </div>
-      <div class="card-chart">
-        <svg viewBox="0 0 240 64" preserveAspectRatio="none">
-          <rect x="0" y="5"  width="68"  height="10" rx="3" fill="#f59e0b" opacity="0.5"/>
-          <rect x="0" y="19" width="95"  height="10" rx="3" fill="#f59e0b" opacity="0.62"/>
-          <rect x="0" y="33" width="130" height="10" rx="3" fill="#f59e0b" opacity="0.74"/>
-          <rect x="0" y="47" width="175" height="10" rx="3" fill="#f59e0b" opacity="0.87"/>
-          <rect x="0" y="54" width="228" height="10" rx="3" fill="#f59e0b"/>
-        </svg>
-      </div>
-      <div class="card-title">სახელმწიფო შესყიდვები</div>
-      <div class="card-desc">ტენდერები, შემსიდველები და მიმწოდებლები 2010-2026</div>
-      <div class="card-footer">
-        <a href="https://bihub.ge/cards/tenderebi/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <span class="card-views">4.2K ნახვა</span>
-      </div>
-      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
-    </div>
-
-    <!-- 7: მეცხოველეობა -->
-    <div class="report-card locked" data-category="სოფ. მეურნეობა">
-      <div class="card-header">
-        <span class="badge badge-teal">სოფ. მეურნეობა</span>
-      </div>
-      <div class="card-chart">
-        <svg viewBox="0 0 240 64" preserveAspectRatio="none">
-          <rect x="8"  y="38" width="9" height="26" rx="1.5" fill="#10b981" opacity="0.75"/>
-          <rect x="19" y="46" width="9" height="18" rx="1.5" fill="#2dd4bf" opacity="0.75"/>
-          <rect x="30" y="50" width="9" height="14" rx="1.5" fill="#f59e0b" opacity="0.7"/>
-          <rect x="54" y="28" width="9" height="36" rx="1.5" fill="#10b981" opacity="0.82"/>
-          <rect x="65" y="38" width="9" height="26" rx="1.5" fill="#2dd4bf" opacity="0.82"/>
-          <rect x="76" y="42" width="9" height="22" rx="1.5" fill="#f59e0b" opacity="0.76"/>
-          <rect x="100" y="18" width="9" height="46" rx="1.5" fill="#10b981" opacity="0.88"/>
-          <rect x="111" y="28" width="9" height="36" rx="1.5" fill="#2dd4bf" opacity="0.88"/>
-          <rect x="122" y="32" width="9" height="32" rx="1.5" fill="#f59e0b" opacity="0.82"/>
-          <rect x="146" y="10" width="9" height="54" rx="1.5" fill="#10b981" opacity="0.94"/>
-          <rect x="157" y="20" width="9" height="44" rx="1.5" fill="#2dd4bf" opacity="0.94"/>
-          <rect x="168" y="24" width="9" height="40" rx="1.5" fill="#f59e0b" opacity="0.88"/>
-          <rect x="192" y="4"  width="9" height="60" rx="1.5" fill="#10b981"/>
-          <rect x="203" y="12" width="9" height="52" rx="1.5" fill="#2dd4bf"/>
-          <rect x="214" y="16" width="9" height="48" rx="1.5" fill="#f59e0b" opacity="0.95"/>
-        </svg>
-      </div>
-      <div class="card-title">მეცხოველეობა</div>
-      <div class="card-desc">პირუტყვი, რძე, ხორცი — რეგიონები 2006–2025</div>
-      <div class="card-footer">
-        <a href="https://bihub.ge/cards/meckhoveloebis-analitika-2006-2019/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <span class="card-views">2.1K ნახვა</span>
-      </div>
-      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
-    </div>
-
-    <!-- 8: თევზი -->
-    <div class="report-card locked" data-category="სოფ. მეურნეობა">
-      <div class="card-header">
-        <span class="badge badge-teal">სოფ. მეურნეობა</span>
-      </div>
-      <div class="card-chart">
-        <svg viewBox="0 0 240 64" preserveAspectRatio="none">
-          <circle cx="10"  cy="48" r="4.5" fill="#2dd4bf" opacity="0.58"/>
-          <circle cx="32"  cy="40" r="5.5" fill="#2dd4bf" opacity="0.65"/>
-          <circle cx="55"  cy="36" r="3.5" fill="#2dd4bf" opacity="0.7"/>
-          <circle cx="78"  cy="30" r="6"   fill="#2dd4bf" opacity="0.72"/>
-          <circle cx="98"  cy="34" r="4"   fill="#2dd4bf" opacity="0.75"/>
-          <circle cx="120" cy="26" r="5.5" fill="#2dd4bf" opacity="0.8"/>
-          <circle cx="143" cy="22" r="3.5" fill="#2dd4bf" opacity="0.82"/>
-          <circle cx="165" cy="18" r="5"   fill="#2dd4bf" opacity="0.87"/>
-          <circle cx="188" cy="14" r="4"   fill="#2dd4bf" opacity="0.92"/>
-          <circle cx="210" cy="12" r="6"   fill="#2dd4bf" opacity="0.95"/>
-          <circle cx="232" cy="8"  r="5"   fill="#2dd4bf"/>
-          <polyline points="10,48 55,36 98,34 143,22 188,14 232,8" fill="none" stroke="#2dd4bf" stroke-width="1" stroke-dasharray="4,3" opacity="0.35"/>
-        </svg>
-      </div>
-      <div class="card-title">თევზის წარმოება</div>
-      <div class="card-desc">მეთევზეობა, ფერმები, ექსპორტი 2006–2025</div>
-      <div class="card-footer">
-        <a href="https://bihub.ge/cards/tevzis-warmoeba-2006-2019/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <span class="card-views">1.3K ნახვა</span>
-      </div>
-      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
-    </div>
-
-    <!-- 9: სასურსათო -->
-    <div class="report-card locked" data-category="სოფ. მეურნეობა">
-      <div class="card-header">
-        <span class="badge badge-teal">სოფ. მეურნეობა</span>
-      </div>
-      <div class="card-chart">
-        <svg viewBox="0 0 240 64" preserveAspectRatio="none">
-          <rect x="15" y="40" width="22" height="24" rx="2" fill="#2dd4bf" opacity="0.72"/>
-          <rect x="15" y="34" width="22" height="6"  rx="2" fill="#f59e0b" opacity="0.8"/>
-          <rect x="50" y="34" width="22" height="30" rx="2" fill="#2dd4bf" opacity="0.78"/>
-          <rect x="50" y="28" width="22" height="6"  rx="2" fill="#f59e0b" opacity="0.8"/>
-          <rect x="85" y="26" width="22" height="38" rx="2" fill="#2dd4bf" opacity="0.84"/>
-          <rect x="85" y="20" width="22" height="6"  rx="2" fill="#f59e0b" opacity="0.85"/>
-          <rect x="120" y="18" width="22" height="46" rx="2" fill="#2dd4bf" opacity="0.9"/>
-          <rect x="120" y="12" width="22" height="6"  rx="2" fill="#f59e0b" opacity="0.85"/>
-          <rect x="155" y="12" width="22" height="52" rx="2" fill="#2dd4bf" opacity="0.95"/>
-          <rect x="155" y="6"  width="22" height="6"  rx="2" fill="#f59e0b"/>
-          <rect x="190" y="6"  width="22" height="58" rx="2" fill="#2dd4bf"/>
-          <rect x="190" y="0"  width="22" height="6"  rx="2" fill="#f59e0b"/>
-        </svg>
-      </div>
-      <div class="card-title">სასურსათო ბალანსი</div>
-      <div class="card-desc">წარმოება vs მოხმარება, კვების პროდ. 2006–2025</div>
-      <div class="card-footer">
-        <a href="https://bihub.ge/cards/saursato-balansi-2006-2019/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <span class="card-views">1.7K ნახვა</span>
-      </div>
-      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
-    </div>
-
-    <!-- 10: ვებ ტრეფიკი -->
-    <div class="report-card locked" data-category="ინდუსტრია">
-      <div class="card-header">
-        <span class="badge badge-blue">ინდუსტრია</span>
-      </div>
-      <div class="card-chart">
-        <svg viewBox="0 0 240 64" preserveAspectRatio="none">
-          <path d="M 0,60 C 40,59 80,54 120,40 C 160,25 200,10 240,3 L 240,64 L 0,64 Z" fill="rgba(59,130,246,0.1)"/>
-          <path d="M 0,60 C 40,59 80,54 120,40 C 160,25 200,10 240,3" fill="none" stroke="#3b82f6" stroke-width="14" opacity="0.06" stroke-linecap="round"/>
-          <path d="M 0,60 C 40,59 80,54 120,40 C 160,25 200,10 240,3" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="240" cy="3" r="5" fill="#3b82f6"/>
-          <circle cx="240" cy="3" r="9" fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.3"/>
-        </svg>
-      </div>
-      <div class="card-title">ვებ ტრეფიკი</div>
-      <div class="card-desc">მოწყობილობები, ბრაუზერები, პროვაიდერები 2009–2025</div>
-      <div class="card-footer">
-        <a href="https://bihub.ge/cards/veb-trefiki-saqartveloshi-2009-2020/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <span class="card-views">2.6K ნახვა</span>
-      </div>
-      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
-    </div>
-
-    <!-- 11: სადაზღვევო ფინანსური -->
-    <div class="report-card locked" data-category="ფინანსები">
-      <div class="card-header">
-        <span class="badge badge-purple">ფინანსები</span>
-        <span class="card-updated">8 სთ. წინ</span>
-      </div>
-      <div class="card-chart">
-        <svg viewBox="0 0 240 64" preserveAspectRatio="none">
-          <line x1="20"  y1="50" x2="20"  y2="36" stroke="#8b5cf6" stroke-width="1.5" opacity="0.7"/>
-          <rect x="16"   y="40" width="8" height="8"  rx="1" fill="#10b981" opacity="0.85"/>
-          <line x1="50"  y1="44" x2="50"  y2="26" stroke="#8b5cf6" stroke-width="1.5" opacity="0.75"/>
-          <rect x="46"   y="30" width="8" height="10" rx="1" fill="#10b981" opacity="0.85"/>
-          <line x1="80"  y1="38" x2="80"  y2="20" stroke="#ef4444" stroke-width="1.5" opacity="0.7"/>
-          <rect x="76"   y="24" width="8" height="10" rx="1" fill="#ef4444" opacity="0.72"/>
-          <line x1="110" y1="34" x2="110" y2="14" stroke="#8b5cf6" stroke-width="1.5" opacity="0.8"/>
-          <rect x="106"  y="18" width="8" height="12" rx="1" fill="#10b981" opacity="0.9"/>
-          <line x1="140" y1="26" x2="140" y2="10" stroke="#8b5cf6" stroke-width="1.5" opacity="0.85"/>
-          <rect x="136"  y="14" width="8" height="10" rx="1" fill="#10b981" opacity="0.92"/>
-          <line x1="170" y1="22" x2="170" y2="6"  stroke="#ef4444" stroke-width="1.5" opacity="0.75"/>
-          <rect x="166"  y="10" width="8" height="10" rx="1" fill="#ef4444" opacity="0.72"/>
-          <line x1="200" y1="18" x2="200" y2="4"  stroke="#8b5cf6" stroke-width="1.5" opacity="0.9"/>
-          <rect x="196"  y="6"  width="8" height="10" rx="1" fill="#10b981"/>
-          <line x1="228" y1="14" x2="228" y2="2"  stroke="#8b5cf6" stroke-width="1.5"/>
-          <rect x="224"  y="4"  width="8" height="8"  rx="1" fill="#10b981"/>
-        </svg>
-      </div>
-      <div class="card-title">სადაზღვევო ფინანსური ანალიტიკა</div>
-      <div class="card-desc">კომპანიები, პრემიები, ზარალიანობა 2017–2025</div>
-      <div class="card-footer">
-        <a href="https://bihub.ge/cards/sadazghvevo-bazris-finansuri-analitika/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <span class="card-views">1.8K ნახვა</span>
-      </div>
-      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
-    </div>
-
-    <!-- 12: სადაზღვევო სტატისტიკა -->
-    <div class="report-card locked" data-category="ფინანსები">
-      <div class="card-header">
-        <span class="badge badge-purple">ფინანსები</span>
-        <span class="card-updated">12 სთ. წინ</span>
-      </div>
-      <div class="card-chart" style="display:flex;align-items:center;gap:10px;">
-        <svg viewBox="0 0 64 64" width="60" height="60" style="flex-shrink:0;">
-          <circle cx="32" cy="32" r="24" fill="none" stroke="#1e2d45" stroke-width="10"/>
-          <circle cx="32" cy="32" r="24" fill="none" stroke="#8b5cf6" stroke-width="10" stroke-dasharray="75 76" stroke-dashoffset="-5" transform="rotate(-90 32 32)"/>
-          <circle cx="32" cy="32" r="24" fill="none" stroke="#38bdf8" stroke-width="10" stroke-dasharray="45 106" stroke-dashoffset="-80" transform="rotate(-90 32 32)"/>
-          <circle cx="32" cy="32" r="24" fill="none" stroke="#f59e0b" stroke-width="10" stroke-dasharray="31 120" stroke-dashoffset="-125" transform="rotate(-90 32 32)"/>
-        </svg>
-        <div style="display:flex;flex-direction:column;gap:4px;font-size:0.66rem;">
-          <div style="display:flex;align-items:center;gap:4px;color:var(--muted)"><span style="width:7px;height:7px;border-radius:2px;background:#8b5cf6;flex-shrink:0;"></span>სიცოცხლე 50%</div>
-          <div style="display:flex;align-items:center;gap:4px;color:var(--muted)"><span style="width:7px;height:7px;border-radius:2px;background:#38bdf8;flex-shrink:0;"></span>ქონება 30%</div>
-          <div style="display:flex;align-items:center;gap:4px;color:var(--muted)"><span style="width:7px;height:7px;border-radius:2px;background:#f59e0b;flex-shrink:0;"></span>სხვა 20%</div>
-        </div>
-      </div>
-      <div class="card-title">სადაზღვევო სტატისტიკა</div>
-      <div class="card-desc">ბაზარი, ანაზღაურებები, კომპანიები 2015–2025</div>
-      <div class="card-footer">
-        <a href="https://bihub.ge/cards/dazghvevis-statistika/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <span class="card-views">2.8K ნახვა</span>
-      </div>
-      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
-    </div>
-
-    <div class="no-results" id="no-results">ამ კატეგორიაში report ჯერ არ არის დამატებული.</div>
   </div>
 </div>
 
-<!-- footer -->
-<div class="footer-wrap">
-<footer>
-  <div>
-    <div class="nav-logo" style="margin-bottom:4px;">
-      <svg width="26" height="22" viewBox="0 0 32 28" fill="none">
-        <rect x="0"    y="6"  width="9" height="22" rx="4.5" fill="#10b981"/>
-        <rect x="11.5" y="0"  width="9" height="28" rx="4.5" fill="#10b981"/>
-        <rect x="23"   y="10" width="9" height="18" rx="4.5" fill="#10b981"/>
-      </svg>
-      <span class="logo-word" style="font-size:1rem;">bihub</span>
+<!-- ── FEATURES STRIP ── -->
+<div class="features-strip">
+  <div class="features-inner">
+    <div>
+      <span class="feature-icon">📊</span>
+      <div class="feature-title">BI-ხარისხის ვიზუალიზაცია</div>
+      <div class="feature-desc">ინტერაქტიული გრაფიკები, ფილტრები, drill-down — ძვირი BI ინსტრუმენტების გარეშე.</div>
     </div>
+    <div>
+      <span class="feature-icon">🔄</span>
+      <div class="feature-title">რეალური საჯარო მონაცემები</div>
+      <div class="feature-desc">Geostat, საბაჟო, სამინისტროები — ყოველდღიურ განახლებებთან ავტომატურად.</div>
+    </div>
+    <div>
+      <span class="feature-icon">🇬🇪</span>
+      <div class="feature-title">ქართული ბიზნეს კონტექსტი</div>
+      <div class="feature-desc">ადგილობრივ ინდუსტრიებსა და ბაზარზე მორგებული ანალიზი. ქართულ ენაზე.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-brand">
+    <div class="nav-logo">bihub</div>
     <div class="footer-tagline">საქართველოს BI მონაცემთა ჰაბი</div>
   </div>
   <nav class="footer-nav">
-    <a href="https://bihub.ge/cards/">რეპორტები</a>
-    <a href="https://bihub.ge/wp-login.php?action=register">რეგისტრაცია</a>
-    <a href="https://bivision.ge">კონტაქტი</a>
+    <a href="#">რეპორტები</a>
+    <a href="#">კატეგორიები</a>
+    <a href="#">API</a>
+    <a href="#">კონტაქტი</a>
   </nav>
   <div class="footer-powered">
-    <a href="https://bivision.ge" target="_blank" class="biv-brand">
-      <span class="biv-b">B</span><span class="biv-dot">•</span><span class="biv-vision">VISION</span>
-    </a><br>
-    <span style="font-size:0.68rem;color:var(--muted);">BI კონსალტინგი & ანალიტიკა</span>
+    Powered by <a href="https://bivision.ge" target="_blank">Bivision</a><br>
+    <span style="font-size:0.68rem;margin-top:3px;display:block;">BI კონსალტინგი &amp; ანალიტიკა</span>
   </div>
 </footer>
-</div>
 
-<!-- timer badge -->
+<!-- ── TIMER BADGE ── -->
 <div id="timer-badge">
   <div class="timer-dot" id="timer-dot"></div>
-  <span id="timer-text">⏱ 5:00</span>
+  <span id="timer-text">⏱ 2:00</span>
 </div>
 
-<!-- gate modal -->
+<!-- ── GATE MODAL ── -->
 <div id="gate-overlay">
   <div class="gate-card">
     <div class="gate-icon">🔓</div>
-    <div class="gate-title">შედი ანგარიშზე</div>
-    <div class="gate-sub">800+ BI რეპორტი გელოდება.<br><a href="https://bihub.ge/wp-login.php?action=register" style="color:var(--sky);text-decoration:none;font-weight:600;">ანგარიში არ გაქვს? დარეგისტრირდი</a></div>
-    <form class="gate-form" method="post" action="https://bihub.ge/wp-login.php">
-      <input type="hidden" name="redirect_to" value="https://bihub.ge/">
-      <input type="hidden" name="rememberme" value="forever">
-      <input class="gate-input" type="text" name="log" placeholder="ელ-ფოსტა ან მომხმარებელი" autocomplete="username">
-      <input class="gate-input" type="password" name="pwd" placeholder="პაროლი" autocomplete="current-password">
-      <button class="gate-submit" type="submit">შესვლა →</button>
-    </form>
-    <div style="text-align:center;margin-top:10px;">
-      <a href="https://bihub.ge/wp-login.php?action=lostpassword" style="font-size:0.76rem;color:var(--muted);text-decoration:none;">პაროლი დამავიწყდა?</a>
+    <div class="gate-title">გასაგრძელებლად შედი ან დარეგისტრირდი</div>
+    <div class="gate-sub">
+      <strong>უფასო ანგარიში</strong> — 30 წამი სჭირდება.<br>
+      მიიღე სრული წვდომა 800+ BI რეპორტზე.
     </div>
+    <div class="gate-form">
+      <input class="gate-input" type="email" placeholder="შეიყვანე ელ-ფოსტა">
+      <button class="gate-submit">გაგრძელება →</button>
+    </div>
+    <button class="gate-close" id="gate-close-btn">× 60 წამით გამოვიდე</button>
     <div class="gate-perks">
       <div class="gate-perk"><span>✓</span> უფასო</div>
       <div class="gate-perk"><span>✓</span> ბარათი არ სჭირდება</div>
@@ -998,110 +762,185 @@ footer {
   </div>
 </div>
 
-<!-- card detail popup -->
-<div id="card-popup" class="card-popup-overlay" onclick="if(event.target===this)this.classList.remove('show')">
-  <div class="card-popup-box">
-    <button class="popup-close" onclick="document.getElementById('card-popup').classList.remove('show')">×</button>
-    <span class="popup-cat" id="popup-cat"></span>
-    <div class="popup-title" id="popup-title"></div>
-    <div class="popup-desc" id="popup-desc"></div>
-    <div id="popup-actions"></div>
-  </div>
-</div>
-
 <script>
-// card popup
+/* ── HERO CANVAS — data network animation ── */
 (function() {
-  var descriptions = [
-    "შეადარე შენი კომპანია ინდუსტრიის საშუალო მაჩვენებლებს. შემოსავლები, მომგებიანობა, ზრდის ტემპი — ინტერაქტიული BI.",
-    "საბაჟო გამტარ პუნქტებზე გამავალი საქონლის სრული ანალიზი. შემოსავლები, ქვეყნები, ტვირთები 2014–2025.",
-    "საგარეო ვაჭრობის სტატისტიკა. ექსპ/იმპ ბალანსი, პარტნიორი ქვეყნები, ძირითადი საქონელი 2014–2025.",
-    "ჯანდაცვის პროგრამის ანალიტიკა. მოსარგებლეები, ხარჯები, სამედიცინო პუნქტები 2013–2025.",
-    "მეცხოველეობა: სულადობა, პროდუქციის მოცულობა, ფასები რეგიონების მიხედვით 2006–2025.",
-    "მეთევზეობის ანალიტიკა. დაჭერის მოცულობა, ფერმები, გადამუშავება, ბაზარი 2006–2025.",
-    "კვების პროდუქტების წარმოება, იმპორტი და მოხმარება. სასურსათო ინდიკატორები 2006–2025.",
-    "საქართველოში ვებ ტრეფიკი. მოწყობილობები, ბრაუზერები, ინტერნეტ პროვაიდერები 2009–2025.",
-    "სამშენებლო ნებართვები, ფართობი, ინვესტიციები. ქალაქები და რეგიონები 2006–2025.",
-    "სახელმწიფო ტენდერები. გამარჯვებული კომპანიები, სფეროები, ღირებულება 2012–2025.",
-    "სადაზღვევო ბაზრის ფინანსური შედეგები. კომპანიები, პრემიები, ზარალიანობა 2017–2025.",
-    "სადაზღვევო ბაზრის სტატისტიკა. კომპანიები, პრემიები, ანაზღაურებები 2015–2025."
-  ];
+  var canvas = document.getElementById('hero-canvas');
+  var wrap   = canvas.parentElement;
+  var ctx    = canvas.getContext('2d');
 
-  var cards = Array.from(document.querySelectorAll('.report-card[data-category]'));
-  var popup  = document.getElementById('card-popup');
+  var COLORS = ['#f59e0b', '#14b8a6', '#3b82f6', '#8b5cf6', '#10b981'];
+  var LABELS = ['მშპ','FDI','CPI','GDP','ექსპორტი','ბიუჯეტი','ინფლ.','მოსახლ.','ბარიერი','სავაჭრო'];
+  var LINK_DIST = 160;
+  var NODE_COUNT = 48;
+  var nodes = [];
 
-  cards.forEach(function(card, i) {
-    var isLocked = card.classList.contains('locked');
-    var linkEl   = card.querySelector('.card-link');
-    var href     = linkEl ? linkEl.getAttribute('href') : '#';
-
-    card.addEventListener('click', function(e) {
-      if (e.target.closest('.card-link') || e.target.closest('.lock-overlay')) return;
-      document.getElementById('popup-cat').textContent   = card.getAttribute('data-category') || '';
-      document.getElementById('popup-title').textContent = card.querySelector('.card-title').textContent;
-      document.getElementById('popup-desc').textContent  = descriptions[i] || '';
-      var acts = document.getElementById('popup-actions');
-      if (!isLocked) {
-        acts.innerHTML = '<a href="' + href + '" target="_blank" class="popup-btn-open">რეპორტი გახსნა →</a>';
-      } else {
-        acts.innerHTML = '<button class="popup-btn-register" onclick="document.getElementById(\'gate-overlay\').classList.add(\'show\');document.getElementById(\'card-popup\').classList.remove(\'show\')">დარეგისტრირდი — უფასოდ</button>';
-      }
-      popup.classList.add('show');
-    });
-  });
-})();
-
-// filter pills
-(function() {
-  var pills    = document.querySelectorAll('.pill');
-  var cards    = document.querySelectorAll('.report-card[data-category]');
-  var noRes    = document.getElementById('no-results');
-  var countLbl = document.getElementById('card-count-label');
-
-  function applyFilter(filter) {
-    var visible = 0;
-    cards.forEach(function(card) {
-      var show = filter === 'all' || (card.getAttribute('data-category') || '') === filter;
-      card.classList.toggle('hidden', !show);
-      if (show) visible++;
-    });
-    noRes.classList.toggle('show', visible === 0);
-    var label = filter === 'all' ? 'ყველა კატეგორია' : filter;
-    countLbl.textContent = label + ' · ' + visible + ' report';
+  function resize() {
+    canvas.width  = wrap.offsetWidth;
+    canvas.height = wrap.offsetHeight;
   }
 
-  pills.forEach(function(pill) {
-    pill.addEventListener('click', function() {
-      pills.forEach(function(p) { p.classList.remove('active'); });
-      pill.classList.add('active');
-      applyFilter(pill.getAttribute('data-filter'));
+  function rand(min, max) { return min + Math.random() * (max - min); }
+
+  function initNodes() {
+    nodes = [];
+    for (var i = 0; i < NODE_COUNT; i++) {
+      var labeled = i < LABELS.length;
+      nodes.push({
+        x:  rand(0, canvas.width),
+        y:  rand(0, canvas.height),
+        vx: rand(-0.22, 0.22),
+        vy: rand(-0.18, 0.18),
+        r:  labeled ? rand(3, 5) : rand(1.5, 3.2),
+        color: COLORS[Math.floor(rand(0, COLORS.length))],
+        label: labeled ? LABELS[i] : null,
+        pulse: rand(0, Math.PI * 2),
+        pulseSpeed: rand(0.018, 0.04)
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    /* lines */
+    for (var i = 0; i < nodes.length; i++) {
+      for (var j = i + 1; j < nodes.length; j++) {
+        var dx  = nodes[i].x - nodes[j].x;
+        var dy  = nodes[i].y - nodes[j].y;
+        var dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < LINK_DIST) {
+          var alpha = (1 - dist / LINK_DIST) * 0.18;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = 'rgba(148,163,184,' + alpha + ')';
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+    }
+
+    /* nodes */
+    nodes.forEach(function(n) {
+      n.pulse += n.pulseSpeed;
+      var glow = 0.55 + 0.45 * Math.sin(n.pulse);
+
+      /* outer glow ring */
+      if (n.r > 2.5) {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r + 5, 0, Math.PI * 2);
+        ctx.fillStyle = n.color.replace(')', ',' + (0.07 * glow) + ')').replace('rgb', 'rgba').replace('#', 'rgba(').replace(')', ')');
+        /* simpler: use a radial gradient for glow */
+        var grd = ctx.createRadialGradient(n.x, n.y, n.r * 0.3, n.x, n.y, n.r + 8);
+        grd.addColorStop(0, hexAlpha(n.color, 0.25 * glow));
+        grd.addColorStop(1, hexAlpha(n.color, 0));
+        ctx.fillStyle = grd;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r + 8, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      /* core dot */
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = hexAlpha(n.color, 0.7 + 0.3 * glow);
+      ctx.fill();
+
+      /* label */
+      if (n.label) {
+        ctx.font = '9px monospace';
+        ctx.fillStyle = hexAlpha(n.color, 0.55 + 0.3 * glow);
+        ctx.fillText(n.label, n.x + n.r + 4, n.y + 3);
+      }
     });
+  }
+
+  function hexAlpha(hex, alpha) {
+    var r = parseInt(hex.slice(1,3), 16);
+    var g = parseInt(hex.slice(3,5), 16);
+    var b = parseInt(hex.slice(5,7), 16);
+    return 'rgba(' + r + ',' + g + ',' + b + ',' + alpha.toFixed(3) + ')';
+  }
+
+  function tick() {
+    nodes.forEach(function(n) {
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < -20)              { n.x = canvas.width + 20; }
+      if (n.x > canvas.width + 20) { n.x = -20; }
+      if (n.y < -20)               { n.y = canvas.height + 20; }
+      if (n.y > canvas.height + 20){ n.y = -20; }
+    });
+    draw();
+    requestAnimationFrame(tick);
+  }
+
+  resize();
+  initNodes();
+  tick();
+
+  window.addEventListener('resize', function() {
+    resize();
+    initNodes();
   });
 })();
 
-// gate timer
+/* ── TIMER + GATE ── */
 (function() {
-  var preview = new URLSearchParams(location.search).get('preview') === '1';
-  if (preview) { document.getElementById('timer-badge').style.display='none'; return; }
-
-  var TOTAL     = 300;
+  var TOTAL = 120;
   var remaining = TOTAL;
-  var badge  = document.getElementById('timer-badge');
-  var dot    = document.getElementById('timer-dot');
-  var text   = document.getElementById('timer-text');
-  var overlay = document.getElementById('gate-overlay');
+  var graceRemaining = 0;
+  var gracePending = false;
+
+  var badge    = document.getElementById('timer-badge');
+  var dot      = document.getElementById('timer-dot');
+  var text     = document.getElementById('timer-text');
+  var grid     = document.getElementById('reports-grid');
+  var overlay  = document.getElementById('gate-overlay');
+  var closeBtn = document.getElementById('gate-close-btn');
 
   function fmt(s) {
-    var m = Math.floor(s / 60), sec = s % 60;
+    var m = Math.floor(s / 60);
+    var sec = s % 60;
     return '⏱ ' + m + ':' + (sec < 10 ? '0' : '') + sec;
   }
 
+  function triggerGate() {
+    grid.classList.add('blurred');
+    overlay.classList.add('show');
+  }
+
+  function startGrace() {
+    overlay.classList.remove('show');
+    grid.classList.remove('blurred');
+    gracePending = true;
+    graceRemaining = 60;
+    badge.classList.add('urgent');
+    dot.classList.add('urgent');
+  }
+
+  closeBtn.addEventListener('click', startGrace);
+
   var ticker = setInterval(function() {
+    if (gracePending) {
+      graceRemaining--;
+      text.textContent = '⏱ ' + graceRemaining + 's';
+      if (graceRemaining <= 0) { gracePending = false; triggerGate(); }
+      return;
+    }
     remaining--;
     text.textContent = fmt(remaining);
-    if (remaining <= 60) { badge.classList.add('urgent'); dot.classList.add('urgent'); }
-    if (remaining <= 0)  { clearInterval(ticker); text.textContent = '⏱ 0:00'; overlay.classList.add('show'); }
+    if (remaining <= 30) { badge.classList.add('urgent'); dot.classList.add('urgent'); }
+    if (remaining <= 0)  { clearInterval(ticker); text.textContent = '⏱ 0:00'; triggerGate(); }
   }, 1000);
+
+  document.querySelectorAll('.pill').forEach(function(pill) {
+    pill.addEventListener('click', function() {
+      document.querySelectorAll('.pill').forEach(function(p) { p.classList.remove('active'); });
+      pill.classList.add('active');
+    });
+  });
 })();
 </script>
 </body>
