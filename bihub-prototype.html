@@ -274,7 +274,7 @@ nav {
   align-items: flex-start;
   margin-bottom: 12px;
 }
-.card-updated { font-size: 0.68rem; color: var(--muted); }
+.card-updated { display: none; }
 
 .card-chart {
   display: block;
@@ -522,9 +522,9 @@ footer {
   <div class="nav-brand">
     <div class="nav-logo">
       <svg width="32" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0"    y="6"  width="9" height="22" rx="4.5" fill="#10b981"/>
+        <rect x="0"    y="4"  width="9" height="20" rx="4.5" fill="#10b981"/>
         <rect x="11.5" y="0"  width="9" height="28" rx="4.5" fill="#10b981"/>
-        <rect x="23"   y="10" width="9" height="18" rx="4.5" fill="#10b981"/>
+        <rect x="23"   y="6"  width="9" height="16" rx="4.5" fill="#10b981"/>
       </svg>
       <span class="logo-word">bihub</span>
     </div>
@@ -539,12 +539,12 @@ footer {
 <section class="hero">
   <div class="hero-tag">🇬🇪 ქართული საჯარო მონაცემები</div>
   <h1>ბიზნეს და საჯარო მონაცემების<br><span>ანალიტიკა ერთ სივრცეში</span></h1>
-  <p class="hero-sub">ეკონომიკა, ვაჭრობა, ჯანდაცვა, ფინანსები, სოფლის მეურნეობა — ინტერაქტიული BI ანალიტიკა Qlik Sense-ზე.</p>
+  <p class="hero-sub">ეკონომიკა, ექსპ/იმპ, ჯანდაცვა, ფინანსები, სოფლის მეურნეობა — BI ანალიტიკა Qlik პლატფორმაზე.</p>
 
   <div class="pills">
     <span class="pill active" data-filter="all">ყველა</span>
-    <span class="pill" data-filter="სავაჭრო">სავაჭრო</span>
-    <span class="pill" data-filter="ეკონომიკა">ეკონომიკა</span>
+    <span class="pill" data-filter="ექსპ/იმპ">ექსპ/იმპ</span>
+    <span class="pill" data-filter="სახ. შესყიდვები">სახ. შესყიდვები</span>
     <span class="pill" data-filter="ჯანდაცვა">ჯანდაცვა</span>
     <span class="pill" data-filter="ფინანსები">ფინანსები</span>
     <span class="pill" data-filter="სოფ. მეურნეობა">სოფ. მეურნეობა</span>
@@ -579,10 +579,10 @@ footer {
   <div class="reports-grid" id="reports-grid">
 
     <!-- 1: FREE -->
-    <div class="report-card free" data-category="ეკონომიკა">
+    <div class="report-card free" data-category="სახ. შესყიდვები">
       <div class="free-badge">✓ უფასო</div>
       <div class="card-header">
-        <span class="badge badge-amber">ეკონომიკა</span>
+        <span class="badge badge-amber">შესყიდვები</span>
         <span class="card-updated">1 დღე წინ</span>
       </div>
       <div class="card-chart">
@@ -613,7 +613,7 @@ footer {
         </svg>
       </div>
       <div class="card-title">კონკურენტებთან შედარება</div>
-      <div class="card-desc">საქართველო vs სომხეთი, აზერბაიჯანი</div>
+      <div class="card-desc">კომპანიების ფინანსური შედეგები</div>
       <div class="card-footer">
         <a href="https://bihub.ge/cards/shedareba/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         <span class="card-views">7.4K ნახვა</span>
@@ -621,9 +621,9 @@ footer {
     </div>
 
     <!-- 2: საბაჟო -->
-    <div class="report-card locked" data-category="სავაჭრო">
+    <div class="report-card locked" data-category="ექსპ/იმპ">
       <div class="card-header">
-        <span class="badge badge-sky">სავაჭრო</span>
+        <span class="badge badge-sky">ექსპ/იმპ</span>
         <span class="card-updated">3 სთ. წინ</span>
       </div>
       <div class="card-chart">
@@ -639,7 +639,7 @@ footer {
         </svg>
       </div>
       <div class="card-title">საბაჟო დეკლარაციები</div>
-      <div class="card-desc">შემოსავლები, პუნქტები, ტვირთები 2014–2025</div>
+      <div class="card-desc">დეკლარილებული ექსპორტ-იმპორტი 2014-2026</div>
       <div class="card-footer">
         <a href="https://bihub.ge/cards/export-importis-statistika/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         <span class="card-views">5.2K ნახვა</span>
@@ -648,9 +648,9 @@ footer {
     </div>
 
     <!-- 3: საგარეო ვაჭრობა -->
-    <div class="report-card locked" data-category="სავაჭრო">
+    <div class="report-card locked" data-category="ექსპ/იმპ">
       <div class="card-header">
-        <span class="badge badge-sky">სავაჭრო</span>
+        <span class="badge badge-sky">ექსპ/იმპ</span>
         <span class="card-updated">5 სთ. წინ</span>
       </div>
       <div class="card-chart">
@@ -673,7 +673,7 @@ footer {
         </svg>
       </div>
       <div class="card-title">საგარეო ვაჭრობა</div>
-      <div class="card-desc">ექსპ/იმპ ბალანსი, პარტნიორი ქვეყნები 2014–2025</div>
+      <div class="card-desc">ექსპორტი/იმპორტი, პარტნიორი ქვეყნები 2014-2026</div>
       <div class="card-footer">
         <a href="https://bihub.ge/cards/sagareo-vachroba-eqsport-importi-2014-2020/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         <span class="card-views">4.8K ნახვა</span>
@@ -696,7 +696,7 @@ footer {
         </svg>
       </div>
       <div class="card-title">საყოველთაო ჯანდაცვა</div>
-      <div class="card-desc">გაშუქება, ხარჯები, სამედ. პუნქტები 2013–2025</div>
+      <div class="card-desc">ანაზღაურება, პაციენტები, კლინიკები, რეგიონები 2015-2026</div>
       <div class="card-footer">
         <a href="https://bihub.ge/cards/sayoveltao-dazghvevis-analitika/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         <span class="card-views">3.9K ნახვა</span>
@@ -704,11 +704,61 @@ footer {
       <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
     </div>
 
-    <!-- 5: მეცხოველეობა -->
+    <!-- 5: მშენებლობა -->
+    <div class="report-card locked" data-category="ინდუსტრია">
+      <div class="card-header">
+        <span class="badge badge-blue">ინდუსტრია</span>
+      </div>
+      <div class="card-chart">
+        <svg viewBox="0 0 240 64" preserveAspectRatio="none">
+          <rect x="12"  y="44" width="26" height="20" rx="2" fill="#3b82f6" opacity="0.68"/>
+          <rect x="12"  y="38" width="26" height="6"  rx="2" fill="#8b5cf6" opacity="0.72"/>
+          <rect x="52"  y="36" width="26" height="28" rx="2" fill="#3b82f6" opacity="0.74"/>
+          <rect x="52"  y="28" width="26" height="8"  rx="2" fill="#8b5cf6" opacity="0.78"/>
+          <rect x="92"  y="26" width="26" height="38" rx="2" fill="#3b82f6" opacity="0.82"/>
+          <rect x="92"  y="16" width="26" height="10" rx="2" fill="#8b5cf6" opacity="0.84"/>
+          <rect x="132" y="16" width="26" height="48" rx="2" fill="#3b82f6" opacity="0.9"/>
+          <rect x="132" y="4"  width="26" height="12" rx="2" fill="#8b5cf6" opacity="0.9"/>
+          <rect x="172" y="8"  width="26" height="56" rx="2" fill="#3b82f6"/>
+          <rect x="172" y="0"  width="26" height="8"  rx="2" fill="#8b5cf6"/>
+        </svg>
+      </div>
+      <div class="card-title">მშენებლობა & ნებართვები</div>
+      <div class="card-desc">თბილისში გაცემული ნებართვები და მშენებლობა 2010-2026</div>
+      <div class="card-footer">
+        <a href="https://bihub.ge/cards/mshenebloba-da-nebartvebis-analitika/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <span class="card-views">3.5K ნახვა</span>
+      </div>
+      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
+    </div>
+
+    <!-- 6: შესყიდვები -->
+    <div class="report-card locked" data-category="სახ. შესყიდვები">
+      <div class="card-header">
+        <span class="badge badge-amber">შესყიდვები</span>
+      </div>
+      <div class="card-chart">
+        <svg viewBox="0 0 240 64" preserveAspectRatio="none">
+          <rect x="0" y="5"  width="68"  height="10" rx="3" fill="#f59e0b" opacity="0.5"/>
+          <rect x="0" y="19" width="95"  height="10" rx="3" fill="#f59e0b" opacity="0.62"/>
+          <rect x="0" y="33" width="130" height="10" rx="3" fill="#f59e0b" opacity="0.74"/>
+          <rect x="0" y="47" width="175" height="10" rx="3" fill="#f59e0b" opacity="0.87"/>
+          <rect x="0" y="54" width="228" height="10" rx="3" fill="#f59e0b"/>
+        </svg>
+      </div>
+      <div class="card-title">სახელმწიფო შესყიდვები</div>
+      <div class="card-desc">ტენდერები, შემსიდველები და მიმწოდებლები 2010-2026</div>
+      <div class="card-footer">
+        <a href="https://bihub.ge/cards/tenderebi/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <span class="card-views">4.2K ნახვა</span>
+      </div>
+      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
+    </div>
+
+    <!-- 7: მეცხოველეობა -->
     <div class="report-card locked" data-category="სოფ. მეურნეობა">
       <div class="card-header">
         <span class="badge badge-teal">სოფ. მეურნეობა</span>
-        <span class="card-updated">6 სთ. წინ</span>
       </div>
       <div class="card-chart">
         <svg viewBox="0 0 240 64" preserveAspectRatio="none">
@@ -738,11 +788,10 @@ footer {
       <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
     </div>
 
-    <!-- 6: თევზი -->
+    <!-- 8: თევზი -->
     <div class="report-card locked" data-category="სოფ. მეურნეობა">
       <div class="card-header">
         <span class="badge badge-teal">სოფ. მეურნეობა</span>
-        <span class="card-updated">2 დღე წინ</span>
       </div>
       <div class="card-chart">
         <svg viewBox="0 0 240 64" preserveAspectRatio="none">
@@ -769,11 +818,10 @@ footer {
       <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
     </div>
 
-    <!-- 7: სასურსათო -->
+    <!-- 9: სასურსათო -->
     <div class="report-card locked" data-category="სოფ. მეურნეობა">
       <div class="card-header">
         <span class="badge badge-teal">სოფ. მეურნეობა</span>
-        <span class="card-updated">1 დღე წინ</span>
       </div>
       <div class="card-chart">
         <svg viewBox="0 0 240 64" preserveAspectRatio="none">
@@ -800,11 +848,10 @@ footer {
       <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
     </div>
 
-    <!-- 8: ვებ ტრეფიკი -->
+    <!-- 10: ვებ ტრეფიკი -->
     <div class="report-card locked" data-category="ინდუსტრია">
       <div class="card-header">
         <span class="badge badge-blue">ინდუსტრია</span>
-        <span class="card-updated">12 სთ. წინ</span>
       </div>
       <div class="card-chart">
         <svg viewBox="0 0 240 64" preserveAspectRatio="none">
@@ -820,59 +867,6 @@ footer {
       <div class="card-footer">
         <a href="https://bihub.ge/cards/veb-trefiki-saqartveloshi-2009-2020/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         <span class="card-views">2.6K ნახვა</span>
-      </div>
-      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
-    </div>
-
-    <!-- 9: მშენებლობა -->
-    <div class="report-card locked" data-category="ინდუსტრია">
-      <div class="card-header">
-        <span class="badge badge-blue">ინდუსტრია</span>
-        <span class="card-updated">6 სთ. წინ</span>
-      </div>
-      <div class="card-chart">
-        <svg viewBox="0 0 240 64" preserveAspectRatio="none">
-          <rect x="12"  y="44" width="26" height="20" rx="2" fill="#3b82f6" opacity="0.68"/>
-          <rect x="12"  y="38" width="26" height="6"  rx="2" fill="#8b5cf6" opacity="0.72"/>
-          <rect x="52"  y="36" width="26" height="28" rx="2" fill="#3b82f6" opacity="0.74"/>
-          <rect x="52"  y="28" width="26" height="8"  rx="2" fill="#8b5cf6" opacity="0.78"/>
-          <rect x="92"  y="26" width="26" height="38" rx="2" fill="#3b82f6" opacity="0.82"/>
-          <rect x="92"  y="16" width="26" height="10" rx="2" fill="#8b5cf6" opacity="0.84"/>
-          <rect x="132" y="16" width="26" height="48" rx="2" fill="#3b82f6" opacity="0.9"/>
-          <rect x="132" y="4"  width="26" height="12" rx="2" fill="#8b5cf6" opacity="0.9"/>
-          <rect x="172" y="8"  width="26" height="56" rx="2" fill="#3b82f6"/>
-          <rect x="172" y="0"  width="26" height="8"  rx="2" fill="#8b5cf6"/>
-        </svg>
-      </div>
-      <div class="card-title">მშენებლობა & ნებართვები</div>
-      <div class="card-desc">ნებართვები, ფართობი, ინვესტიციები 2006–2025</div>
-      <div class="card-footer">
-        <a href="https://bihub.ge/cards/mshenebloba-da-nebartvebis-analitika/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <span class="card-views">3.5K ნახვა</span>
-      </div>
-      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
-    </div>
-
-    <!-- 10: შესყიდვები -->
-    <div class="report-card locked" data-category="ეკონომიკა">
-      <div class="card-header">
-        <span class="badge badge-amber">ეკონომიკა</span>
-        <span class="card-updated">2 სთ. წინ</span>
-      </div>
-      <div class="card-chart">
-        <svg viewBox="0 0 240 64" preserveAspectRatio="none">
-          <rect x="0" y="5"  width="68"  height="10" rx="3" fill="#f59e0b" opacity="0.5"/>
-          <rect x="0" y="19" width="95"  height="10" rx="3" fill="#f59e0b" opacity="0.62"/>
-          <rect x="0" y="33" width="130" height="10" rx="3" fill="#f59e0b" opacity="0.74"/>
-          <rect x="0" y="47" width="175" height="10" rx="3" fill="#f59e0b" opacity="0.87"/>
-          <rect x="0" y="54" width="228" height="10" rx="3" fill="#f59e0b"/>
-        </svg>
-      </div>
-      <div class="card-title">სახელმწიფო შესყიდვები</div>
-      <div class="card-desc">ტენდერები, კონტრაქტორები, ღირებულება 2012–2025</div>
-      <div class="card-footer">
-        <a href="https://bihub.ge/cards/tenderebi/" class="card-link" target="_blank">გახსნა <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <span class="card-views">4.2K ნახვა</span>
       </div>
       <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია (უფასო) საჭიროა</div></div>
     </div>
