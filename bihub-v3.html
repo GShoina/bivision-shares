@@ -1,4 +1,3 @@
-{{-- Route::get('/', fn() => view('bihub')); --}}
 <!DOCTYPE html>
 <html lang="ka">
 <head>
@@ -124,7 +123,7 @@ nav{
 
 /* ─── HERO ─── */
 .hero{
-  padding:72px 24px 40px;
+  padding:28px 24px 40px;
   text-align:center;
   max-width:1100px;margin:0 auto;
   position:relative;
@@ -525,11 +524,7 @@ footer{
 .ticker-wrap{
   overflow:hidden;height:38px;display:flex;align-items:center;
   background:rgba(10,13,24,0.6);
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  width:100vw;
-  position:relative;left:50%;
-  margin-left:-50vw;margin-right:-50vw;
-  margin-bottom:36px;
+  border-bottom:1px solid var(--border);
 }
 .ticker-label{
   flex-shrink:0;padding:0 14px;height:100%;display:flex;align-items:center;gap:6px;
@@ -579,31 +574,33 @@ footer{
   </div>
 </nav>
 
+<!-- ─── TICKER ─── -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-label"><span style="width:6px;height:6px;border-radius:50%;background:#06080f;display:inline-block"></span>LIVE FEED</div>
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="k">EXPORT</span><span class="v mono">$5.2B</span><span class="up mono">▴ 8.4%</span></span>
+    <span class="ticker-item"><span class="k">IMPORT</span><span class="v mono">$13.8B</span><span class="dn mono">▾ 2.1%</span></span>
+    <span class="ticker-item"><span class="k">GDP Q3</span><span class="v mono">7.5%</span><span class="up mono">▴ 0.4</span></span>
+    <span class="ticker-item"><span class="k">USD/GEL</span><span class="v mono">2.7142</span><span class="up mono">▴ 0.012</span></span>
+    <span class="ticker-item"><span class="k">EUR/GEL</span><span class="v mono">2.9418</span><span class="dn mono">▾ 0.008</span></span>
+    <span class="ticker-item"><span class="k">ინფლაცია</span><span class="v mono">2.1%</span><span class="up mono">▴ 0.2</span></span>
+    <span class="ticker-item"><span class="k">ტენდერები</span><span class="v mono">14,209</span><span class="up mono">▴ 312</span></span>
+    <span class="ticker-item"><span class="k">სამუშაო ძალა</span><span class="v mono">63.4%</span><span class="up mono">▴ 0.3</span></span>
+    <span class="ticker-item"><span class="k">ტურისტები</span><span class="v mono">7.4M</span><span class="up mono">▴ 18%</span></span>
+    <span class="ticker-item"><span class="k">EXPORT</span><span class="v mono">$5.2B</span><span class="up mono">▴ 8.4%</span></span>
+    <span class="ticker-item"><span class="k">IMPORT</span><span class="v mono">$13.8B</span><span class="dn mono">▾ 2.1%</span></span>
+    <span class="ticker-item"><span class="k">GDP Q3</span><span class="v mono">7.5%</span><span class="up mono">▴ 0.4</span></span>
+    <span class="ticker-item"><span class="k">USD/GEL</span><span class="v mono">2.7142</span><span class="up mono">▴ 0.012</span></span>
+    <span class="ticker-item"><span class="k">EUR/GEL</span><span class="v mono">2.9418</span><span class="dn mono">▾ 0.008</span></span>
+    <span class="ticker-item"><span class="k">ინფლაცია</span><span class="v mono">2.1%</span><span class="up mono">▴ 0.2</span></span>
+    <span class="ticker-item"><span class="k">ტენდერები</span><span class="v mono">14,209</span><span class="up mono">▴ 312</span></span>
+    <span class="ticker-item"><span class="k">სამუშაო ძალა</span><span class="v mono">63.4%</span><span class="up mono">▴ 0.3</span></span>
+    <span class="ticker-item"><span class="k">ტურისტები</span><span class="v mono">7.4M</span><span class="up mono">▴ 18%</span></span>
+  </div>
+</div>
+
 <!-- ─── HERO ─── -->
 <header class="hero">
-  <div class="ticker-wrap" aria-hidden="true">
-    <div class="ticker-label"><span style="width:6px;height:6px;border-radius:50%;background:#06080f;display:inline-block"></span>LIVE FEED</div>
-    <div class="ticker-track">
-      <span class="ticker-item"><span class="k">EXPORT</span><span class="v mono">$5.2B</span><span class="up mono">▴ 8.4%</span></span>
-      <span class="ticker-item"><span class="k">IMPORT</span><span class="v mono">$13.8B</span><span class="dn mono">▾ 2.1%</span></span>
-      <span class="ticker-item"><span class="k">GDP Q3</span><span class="v mono">7.5%</span><span class="up mono">▴ 0.4</span></span>
-      <span class="ticker-item"><span class="k">USD/GEL</span><span class="v mono">2.7142</span><span class="up mono">▴ 0.012</span></span>
-      <span class="ticker-item"><span class="k">EUR/GEL</span><span class="v mono">2.9418</span><span class="dn mono">▾ 0.008</span></span>
-      <span class="ticker-item"><span class="k">ინფლაცია</span><span class="v mono">2.1%</span><span class="up mono">▴ 0.2</span></span>
-      <span class="ticker-item"><span class="k">ტენდერები</span><span class="v mono">14,209</span><span class="up mono">▴ 312</span></span>
-      <span class="ticker-item"><span class="k">სამუშაო ძალა</span><span class="v mono">63.4%</span><span class="up mono">▴ 0.3</span></span>
-      <span class="ticker-item"><span class="k">ტურისტები</span><span class="v mono">7.4M</span><span class="up mono">▴ 18%</span></span>
-      <span class="ticker-item"><span class="k">EXPORT</span><span class="v mono">$5.2B</span><span class="up mono">▴ 8.4%</span></span>
-      <span class="ticker-item"><span class="k">IMPORT</span><span class="v mono">$13.8B</span><span class="dn mono">▾ 2.1%</span></span>
-      <span class="ticker-item"><span class="k">GDP Q3</span><span class="v mono">7.5%</span><span class="up mono">▴ 0.4</span></span>
-      <span class="ticker-item"><span class="k">USD/GEL</span><span class="v mono">2.7142</span><span class="up mono">▴ 0.012</span></span>
-      <span class="ticker-item"><span class="k">EUR/GEL</span><span class="v mono">2.9418</span><span class="dn mono">▾ 0.008</span></span>
-      <span class="ticker-item"><span class="k">ინფლაცია</span><span class="v mono">2.1%</span><span class="up mono">▴ 0.2</span></span>
-      <span class="ticker-item"><span class="k">ტენდერები</span><span class="v mono">14,209</span><span class="up mono">▴ 312</span></span>
-      <span class="ticker-item"><span class="k">სამუშაო ძალა</span><span class="v mono">63.4%</span><span class="up mono">▴ 0.3</span></span>
-      <span class="ticker-item"><span class="k">ტურისტები</span><span class="v mono">7.4M</span><span class="up mono">▴ 18%</span></span>
-    </div>
-  </div>
   <span class="hero-tag">🇬🇪 ქართული საჯარო მონაცემები</span>
   <h1>ბიზნეს და საჯარო მონაცემების<br><span class="grad">ანალიტიკა</span> ერთ სივრცეში</h1>
   <p class="hero-sub">ეკონომიკა, ექსპ/იმპ, ჯანდაცვა, ფინანსები, სოფლის მეურნეობა — BI ანალიტიკა Qlik პლატფორმაზე.</p>
