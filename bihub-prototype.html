@@ -55,9 +55,9 @@ nav {
 }
 
 .nav-brand { display: flex; align-items: baseline; gap: 8px; }
-.nav-logo { display:flex; align-items:center; gap:8px; }
-.nav-logo svg { display:block; flex-shrink:0; }
-.nav-logo .logo-word { color:#fff; font-weight:700; font-size:1.15rem; letter-spacing:-0.5px; line-height:1; }
+.nav-logo { display:flex; align-items:flex-end; gap:8px; }
+.nav-logo svg { display:block; flex-shrink:0; margin-bottom:1px; }
+.nav-logo .logo-word { color:#ffffff; font-weight:800; font-size:1.15rem; letter-spacing:-0.5px; line-height:1; padding-bottom:3px; }
 .nav-actions { display: flex; gap: 10px; align-items: center; }
 
 .btn {
@@ -80,10 +80,10 @@ nav {
 .btn-ghost:hover { border-color: var(--green-lt); color: var(--green-lt); }
 .btn-amber {
   background: transparent;
-  border: 1.5px solid var(--amber);
-  color: var(--amber);
+  border: 1.5px solid var(--green-lt);
+  color: var(--green-lt);
 }
-.btn-amber:hover { background: rgba(245,158,11,0.12); transform: translateY(-1px); }
+.btn-amber:hover { background: rgba(16,185,129,0.12); transform: translateY(-1px); }
 
 @media (max-width: 480px) {
   nav { padding: 0 1rem; }
@@ -134,7 +134,7 @@ nav {
   margin-bottom: 16px;
   letter-spacing: -0.5px;
 }
-.hero h1 span { color: var(--amber); }
+.hero h1 span { color: var(--green-lt); }
 
 .hero-sub {
   font-size: 1.05rem;
@@ -174,7 +174,7 @@ nav {
 }
 .stat { display: flex; flex-direction: row; align-items: baseline; gap: 5px; }
 .stat-num { font-size: 1.3rem; font-weight: 800; color: #fff; }
-.stat-num span { color: var(--amber); }
+.stat-num span { color: var(--green-lt); }
 .stat-num.sky span { color: var(--sky); }
 .stat-label { font-size: 0.8rem; color: var(--muted); font-weight: 400; }
 
@@ -256,7 +256,7 @@ nav {
 .free-badge {
   position: absolute;
   top: 0; right: 0;
-  background: var(--amber);
+  background: var(--green-lt);
   color: #0d0f14;
   font-size: 0.58rem;
   font-weight: 800;
@@ -433,7 +433,7 @@ nav {
 }
 .popup-btn-open:hover, .popup-btn-register:hover { opacity: 0.88; transform: translateY(-1px); }
 .popup-btn-open     { background: var(--green-lt); color: #0d0f14; }
-.popup-btn-register { background: var(--amber);    color: #0d0f14; }
+.popup-btn-register { background: var(--green-lt);  color: #0d0f14; }
 
 /* ─── FOOTER ─── */
 footer {
