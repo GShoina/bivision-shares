@@ -1081,6 +1081,9 @@ footer {
 
 // gate timer
 (function() {
+  var preview = new URLSearchParams(location.search).get('preview') === '1';
+  if (preview) { document.getElementById('timer-badge').style.display='none'; return; }
+
   var TOTAL     = 300;
   var remaining = TOTAL;
   var badge  = document.getElementById('timer-badge');
