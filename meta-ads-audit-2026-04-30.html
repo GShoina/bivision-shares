@@ -906,6 +906,112 @@
 <strong>⚠️ ღია ბლოკერი — Calendly conversion tracking:</strong> 73 კაცი სადესანტო გვერდზე ჩადის, მაგრამ Calendly booking-ი Pixel-ში არ ითვლება. May 12 check = manual (Calendly dashboard). სრული tracking-ი საჭიროა: Calendly → Meta Pixel event — <span class="small">pending owner Calendly plan confirmation (Variant A/B)</span>.
 </div>
 
+<h2>§20 — Built Audiences: Live Status + Quality (May 9)</h2>
+<p class="small">წყარო: Meta Graph API — /customaudiences — May 9, 2026</p>
+<table>
+<thead><tr><th>Audience</th><th>Type</th><th>Size</th><th>Seed</th><th>Grade</th><th>Status</th></tr></thead>
+<tbody>
+<tr>
+  <td><strong>Bivision_LAL_1pct_GE_HubSpotSeed</strong></td>
+  <td>LAL</td>
+  <td class="grn">31,600</td>
+  <td>86 HubSpot customers (verified)</td>
+  <td class="grn"><strong>A</strong></td>
+  <td class="grn">✓ Calendlyy-ში გამოყენებული</td>
+</tr>
+<tr>
+  <td><strong>Lookalike Bihub Verified GE 1%</strong></td>
+  <td>LAL</td>
+  <td class="grn">31,100</td>
+  <td>Bihub CRM — 1,315 verified contacts</td>
+  <td class="grn"><strong>A</strong></td>
+  <td class="grn">✓ Calendlyy-ში (May 9 დამატება)</td>
+</tr>
+<tr>
+  <td><strong>Lookalike Invitro Clinics GE 1%</strong></td>
+  <td>LAL</td>
+  <td class="grn">31,800</td>
+  <td>Invitro email list (verified)</td>
+  <td class="grn"><strong>A</strong></td>
+  <td>Ready — New Traffic Campaign (May 12+)</td>
+</tr>
+<tr>
+  <td><strong>Bivision_LAL_1pct_GE_PixelSeed</strong></td>
+  <td>LAL</td>
+  <td class="amb">28,800</td>
+  <td>⚠️ Pixel visitors 90d — მხოლოდ 20 ვიზიტორი</td>
+  <td class="amb"><strong>C</strong></td>
+  <td class="amb">⚠️ Calendlyy-ში — სუსტი seed; გაიზრდება ტრეფიკთან ერთად</td>
+</tr>
+<tr>
+  <td>Lookalike (1%) mar.Pixel_Visitors_90d</td>
+  <td>LAL</td>
+  <td class="red">~1,000*</td>
+  <td>✗ Seed = 20 ვიზიტორი (ზღვარს ქვევით)</td>
+  <td class="red"><strong>F</strong></td>
+  <td class="red">✗ Unusable — არ გამოიყენო</td>
+</tr>
+<tr>
+  <td>Bivision_Pixel_Visitors_90d</td>
+  <td>WEBSITE</td>
+  <td class="red">20</td>
+  <td>—</td>
+  <td class="red"><strong>F</strong></td>
+  <td class="red">✗ Too small — retargeting შეუძლებელი</td>
+</tr>
+<tr>
+  <td>LAL Pixel — Purchase Events</td>
+  <td>LAL</td>
+  <td class="red">~1,000*</td>
+  <td>✗ 0 Purchase event tracked</td>
+  <td class="red"><strong>F</strong></td>
+  <td class="red">✗ Unusable — Purchase event არ ხდება</td>
+</tr>
+</tbody>
+</table>
+<p class="small">*Meta "1,000" = privacy lower bound. Lookalike-ისთვის ≥100 seed სჭირდება. 3 A-grade audience = სულ ~94,500 reach GE-ში.</p>
+<div class="impact-card grn">
+<strong>Summary:</strong> 3× A-grade audiences ready (HubSpot + Bihub + Invitro LAL) — ეს სამი Calendlyy + New Traffic Campaign-ს მოემსახურება. Pixel-based audiences = F (seed მხოლოდ 20 ვიზიტორი) — გამოუსადეგარია ტრეფიკის ზრდამდე.
+</div>
+
+<h2>§21 — Post-Click Blackout: სად გაქრა 73 კაცი (May 9)</h2>
+<div class="impact-card amb">
+<strong>ფაქტი:</strong> Meta Pixel ადასტურებს 73 <code>landing_page_view</code>. შემდეგ — სიბნელე. Pixel-ს custom events არ აქვს. ჩვენ ვხედავთ ჩამოსვლას, მაგრამ ქცევა — უხილავია.
+</div>
+<table>
+<thead><tr><th>Tracking Layer</th><th>სტატუსი</th><th>Post-landing data?</th></tr></thead>
+<tbody>
+<tr>
+  <td><strong>Meta Pixel</strong></td>
+  <td>მხოლოდ <code>landing_page_view</code>. Custom conversion: 0.</td>
+  <td class="red">✗ Calendly / scroll / click — არ ითვლება</td>
+</tr>
+<tr>
+  <td><strong>GA4</strong></td>
+  <td>GTM-KLWN32H3 დაყენებულია — GA4 Property ID GTM კონტეინერშია (inline-ში ჩანს მხოლოდ GTM ID)</td>
+  <td class="amb">⚠️ Property ID საჭიროა GA4 Admin-დან</td>
+</tr>
+<tr>
+  <td><strong>Microsoft Clarity</strong></td>
+  <td>საიტზე არ არის</td>
+  <td class="red">✗ Session recording — 0</td>
+</tr>
+<tr>
+  <td><strong>Calendly</strong></td>
+  <td>Booking → Meta Pixel-ში არ ჩადის</td>
+  <td class="red">✗ May 12: manual check Calendly dashboard-ში</td>
+</tr>
+</tbody>
+</table>
+<div class="panel">
+<strong>3-step fix (priority):</strong>
+<ol>
+<li><strong>GA4 Property ID</strong> — GTM Admin → Container GTM-KLWN32H3 → GA4 Configuration tag → Measurement ID. შემდეგ .bivision-creds.env-ში.</li>
+<li><strong>Calendly → Pixel</strong> — Calendly "event scheduled" → GTM trigger → Meta Pixel fbq("track","Schedule"). Booking = მოხდა თუ არ მოხდა ვიცით.</li>
+<li><strong>Clarity (5 min)</strong> — clarity.microsoft.com → New project → 1 snippet → WP header. Session heatmaps ჩაირთვება — ვნახავთ სად გაქრა 73 კაცი.</li>
+</ol>
+</div>
+
 <hr>
 
 <p class="small">📁 <code>BI_DonotUseMe/outputs/2026-04-30 Meta Ads 7-month Audit + Forward Plan by Gela.html</code> (May 1 v3 restructure)<br>
