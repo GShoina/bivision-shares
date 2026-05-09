@@ -841,6 +841,73 @@
 
 <hr>
 
+<h2>§19 — Calendlyy კამპანიის გეგმა + ფაქტობრივი ანალიზი (May 9, 2026)</h2>
+
+<div class="tldr">
+<strong>წესი (owner-confirmed, permanent):</strong> ყოველი კამპანიის წინ — გეგმა, მიზანი, KPI. შეუსაბამობა = კორექტირება. ეს დოკუმენტი Calendlyy-სთვის პირველი ფორმალური plan section-ია.
+</div>
+
+<h3>ფაქტი: გეგმა არ არსებობდა გაშვებამდე</h3>
+<div class="impact-card amb">
+"M_ traffic campaign look like 1 _90 day" — May 5-ს გაეშვა <strong>წინასწარი KPI-ების, მიზნის ან წარმატების კრიტერიუმების გარეშე.</strong> ეს owner-ის დადგენილი წესის დარღვევაა. ქვემოთ — ანალიზი და forward plan.
+</div>
+
+<h3>May 5–8 პერფორმანსი (4 დღე)</h3>
+<div class="grid">
+  <div class="card"><div class="lbl">CTR (avg)</div><div class="val grn">1.93%</div><div class="small">↑ ტრენდი: 1.37→2.32%</div></div>
+  <div class="card"><div class="lbl">CPC</div><div class="val grn">$0.065</div><div class="small">ძალიან დაბალი</div></div>
+  <div class="card"><div class="lbl">Spend</div><div class="val">$8.63</div><div class="small">Lifetime $10-დან</div></div>
+  <div class="card"><div class="lbl">Landing Page Views</div><div class="val">73</div><div class="small">67% link click-to-LPV</div></div>
+  <div class="card"><div class="lbl">Calendly Bookings</div><div class="val red">უცნობი</div><div class="small">Pixel Calendly-ს ვერ ითვლის</div></div>
+  <div class="card"><div class="lbl">65+ spend</div><div class="val amb">$1.35 (16%)</div><div class="small">ICP-ს გარეთ — გასწორდა</div></div>
+</div>
+
+<h3>May 9 — განხორციელებული ცვლილებები (API)</h3>
+<table>
+<thead><tr><th>პარამეტრი</th><th>იყო</th><th>გახდა</th><th>მიზეზი</th></tr></thead>
+<tbody>
+<tr><td>Lifetime Budget</td><td>$10</td><td class="grn"><strong>$15</strong></td><td>3-დღიანი ტესტის გასაგრძელებლად</td></tr>
+<tr><td>Age range</td><td>18–65 (Adv+ გაფართოებული)</td><td class="grn"><strong>27–55</strong></td><td>ICP alignment: CFO/FD profile</td></tr>
+<tr><td>Advantage+ Audience</td><td>ჩართული</td><td class="amb"><strong>გამოჩართული</strong></td><td>Adv+ ბლოკავდა custom audience ცვლილებას + age enforcement</td></tr>
+<tr><td>Custom Audiences</td><td>Pixel seed + HubSpot seed</td><td class="grn"><strong>+ Bihub LAL 1%</strong></td><td>Mariam-ის მოთხოვნა; Bihub = 1,315 ვერიფიცირებული კონტაქტი</td></tr>
+</tbody>
+</table>
+
+<h3>Forward Plan: May 9–12</h3>
+<div class="panel">
+<table>
+<thead><tr><th>თარიღი</th><th>ქმედება</th><th>მიზანი / KPI</th></tr></thead>
+<tbody>
+<tr>
+  <td><strong>May 9–11</strong></td>
+  <td>Calendlyy გარბის: age 27-55, 3 audiences (Pixel+HubSpot+Bihub LAL), $15 lifetime</td>
+  <td>CTR ≥1.5% შენარჩუნება; 65+ spend = $0; Bihub segment-ის CTR vs დანარჩენი 2</td>
+</tr>
+<tr>
+  <td><strong>May 12</strong></td>
+  <td>Check: CTR per audience segment + Calendly booking count (manual check)</td>
+  <td>Bihub CTR vs Pixel vs HubSpot — რომელი segment ჯობია? Booking-ი მოხდა?</td>
+</tr>
+<tr>
+  <td><strong>May 12+</strong></td>
+  <td class="amb">New Traffic Campaign — <strong>გამოდგება მხოლოდ May 12 ანალიზის შემდეგ</strong></td>
+  <td>Audience: Invitro LAL 1% (~35K GE); Age 27-55; Creative: განსხვავებული; Budget: ≥$15; Plan document — სავალდებულო გაშვებამდე</td>
+</tr>
+<tr>
+  <td><strong>May 12 (ორშაბათი)</strong></td>
+  <td class="grn">Mariam-ის ახალი carousel — <strong>test-ready</strong></td>
+  <td>გეგმა: creative გაშვება Calendlyy-ს adset-ზე (ან ცალკე A/B); CTR benchmark: ≥1.5%</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="impact-card amb">
+<strong>⚠️ ღია ბლოკერი — Calendly conversion tracking:</strong> 73 კაცი სადესანტო გვერდზე ჩადის, მაგრამ Calendly booking-ი Pixel-ში არ ითვლება. May 12 check = manual (Calendly dashboard). სრული tracking-ი საჭიროა: Calendly → Meta Pixel event — <span class="small">pending owner Calendly plan confirmation (Variant A/B)</span>.
+</div>
+
+<hr>
+
 <p class="small">📁 <code>BI_DonotUseMe/outputs/2026-04-30 Meta Ads 7-month Audit + Forward Plan by Gela.html</code> (May 1 v3 restructure)<br>
 🔗 <strong>Mariam URL (GitHub Pages):</strong> <code>https://gshoina.github.io/bivision-shares/meta-ads-audit-2026-04-30.html</code><br>
 🔗 <strong>Mariam Campaign Track (live):</strong> <code>https://gshoina.github.io/bivision-shares/mariam-campaign-track-2026-05-01.html</code><br>
