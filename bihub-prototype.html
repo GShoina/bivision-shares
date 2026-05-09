@@ -176,9 +176,10 @@ nav {
 .stats-row {
   display: flex;
   justify-content: center;
-  gap: 32px;
-  flex-wrap: nowrap;
+  gap: 20px;
+  flex-wrap: wrap;
 }
+@media (min-width: 480px) { .stats-row { flex-wrap: nowrap; gap: 28px; } }
 
 .stat {
   display: flex;
@@ -618,8 +619,8 @@ footer {
     <div class="nav-logo"><img src="https://bihub.ge/wp-content/uploads/2021/10/Logo-1.png" alt="bihub"></div>
   </div>
   <div class="nav-actions">
-    <button class="btn btn-ghost">შესვლა</button>
-    <button class="btn btn-amber" id="register-btn">რეგისტრაცია</button>
+    <a href="https://bihub.ge/wp-login.php" class="btn btn-ghost">შესვლა</a>
+    <a href="https://bihub.ge/wp-login.php?action=register" class="btn btn-amber">რეგისტრაცია</a>
   </div>
 </nav>
 
@@ -672,91 +673,7 @@ footer {
 
   <div class="reports-grid" id="reports-grid">
 
-    <!-- @card: საბაჟოს ანალიტიკა | სავაჭრო -->
-    <div class="report-card locked" data-category="სავაჭრო">
-      <div class="card-header">
-        <span class="badge badge-sky">სავაჭრო</span>
-        <span class="card-updated">3 სთ. წინ</span>
-      </div>
-      <div class="card-chart">
-        <svg viewBox="0 0 240 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="10"  y="34" width="20" height="30" rx="3" fill="#38bdf8" opacity="0.7"/>
-          <rect x="38"  y="24" width="20" height="40" rx="3" fill="#38bdf8" opacity="0.78"/>
-          <rect x="66"  y="40" width="20" height="24" rx="3" fill="#38bdf8" opacity="0.65"/>
-          <rect x="94"  y="18" width="20" height="46" rx="3" fill="#38bdf8" opacity="0.82"/>
-          <rect x="122" y="28" width="20" height="36" rx="3" fill="#38bdf8" opacity="0.75"/>
-          <rect x="150" y="10" width="20" height="54" rx="3" fill="#38bdf8" opacity="0.9"/>
-          <rect x="178" y="20" width="20" height="44" rx="3" fill="#38bdf8" opacity="0.85"/>
-          <rect x="206" y="4"  width="20" height="60" rx="3" fill="#38bdf8"/>
-        </svg>
-      </div>
-      <div class="card-title">საბაჟოს ანალიტიკა</div>
-      <div class="card-desc">შემოსავლები, პუნქტები, გამტარუნარიანობა 2018–2024</div>
-      <div class="card-footer">
-        <a href="#" class="card-link">გახსნა <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <span class="card-views">5.1K ნახვა</span>
-      </div>
-      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია საჭიროა</div></div>
-    </div>
-
-    <!-- @card: ექსპორტი & იმპორტი | სავაჭრო -->
-    <div class="report-card locked" data-category="სავაჭრო">
-      <div class="card-header">
-        <span class="badge badge-sky">სავაჭრო</span>
-        <span class="card-updated">5 სთ. წინ</span>
-      </div>
-      <div class="card-chart">
-        <svg viewBox="0 0 240 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8"  y="24" width="16" height="40" rx="3" fill="#10b981" opacity="0.85"/>
-          <rect x="26" y="38" width="16" height="26" rx="3" fill="#f59e0b" opacity="0.85"/>
-          <rect x="52" y="16" width="16" height="48" rx="3" fill="#10b981" opacity="0.85"/>
-          <rect x="70" y="30" width="16" height="34" rx="3" fill="#f59e0b" opacity="0.85"/>
-          <rect x="96" y="10" width="16" height="54" rx="3" fill="#10b981" opacity="0.85"/>
-          <rect x="114" y="26" width="16" height="38" rx="3" fill="#f59e0b" opacity="0.85"/>
-          <rect x="140" y="6"  width="16" height="58" rx="3" fill="#10b981" opacity="0.9"/>
-          <rect x="158" y="20" width="16" height="44" rx="3" fill="#f59e0b" opacity="0.85"/>
-          <rect x="184" y="2"  width="16" height="62" rx="3" fill="#10b981"/>
-          <rect x="202" y="14" width="16" height="50" rx="3" fill="#f59e0b" opacity="0.9"/>
-        </svg>
-      </div>
-      <div class="card-title">ექსპორტი & იმპორტი</div>
-      <div class="card-desc">სავაჭრო ბალანსი და პარტნიორი ქვეყნები 2019–2024</div>
-      <div class="card-footer">
-        <a href="#" class="card-link">გახსნა <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <span class="card-views">4.8K ნახვა</span>
-      </div>
-      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია საჭიროა</div></div>
-    </div>
-
-    <!-- @card: სახელმწიფო შესყიდვები | ეკონომიკა -->
-    <div class="report-card locked" data-category="ეკონომიკა">
-      <div class="card-header">
-        <span class="badge badge-amber">ეკონომიკა</span>
-        <span class="card-updated">2 სთ. წინ</span>
-      </div>
-      <div class="card-chart">
-        <svg viewBox="0 0 240 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="lg3" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.25"/>
-              <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <polygon points="0,48 40,42 80,36 120,28 160,20 200,14 240,8 240,64 0,64" fill="url(#lg3)"/>
-          <polyline points="0,48 40,42 80,36 120,28 160,20 200,14 240,8" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
-          <circle cx="240" cy="8" r="4" fill="#f59e0b"/>
-        </svg>
-      </div>
-      <div class="card-title">სახელმწიფო შესყიდვები</div>
-      <div class="card-desc">ტენდერები, ღირებულება, კონტრაქტორები 2020–2024</div>
-      <div class="card-footer">
-        <a href="#" class="card-link">გახსნა <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <span class="card-views">6.2K ნახვა</span>
-      </div>
-      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია საჭიროა</div></div>
-    </div>
-
-    <!-- @card: კონკურენტებთან შედარება | ეკონომიკა -->
+    <!-- @card: კონკურენტებთან შედარება | ეკონომიკა — FREE FIRST -->
     <div class="report-card free" data-category="ეკონომიკა">
       <div class="free-badge">✓ უფასო</div>
       <div class="card-header">
@@ -1011,32 +928,87 @@ footer {
       </div>
     </div>
 
+    <!-- @card: საბაჟოს ანალიტიკა | სავაჭრო -->
+    <div class="report-card locked" data-category="სავაჭრო">
+      <div class="card-header">
+        <span class="badge badge-sky">სავაჭრო</span>
+        <span class="card-updated">3 სთ. წინ</span>
+      </div>
+      <div class="card-chart">
+        <svg viewBox="0 0 240 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10"  y="34" width="20" height="30" rx="3" fill="#38bdf8" opacity="0.7"/>
+          <rect x="38"  y="24" width="20" height="40" rx="3" fill="#38bdf8" opacity="0.78"/>
+          <rect x="66"  y="40" width="20" height="24" rx="3" fill="#38bdf8" opacity="0.65"/>
+          <rect x="94"  y="18" width="20" height="46" rx="3" fill="#38bdf8" opacity="0.82"/>
+          <rect x="122" y="28" width="20" height="36" rx="3" fill="#38bdf8" opacity="0.75"/>
+          <rect x="150" y="10" width="20" height="54" rx="3" fill="#38bdf8" opacity="0.9"/>
+          <rect x="178" y="20" width="20" height="44" rx="3" fill="#38bdf8" opacity="0.85"/>
+          <rect x="206" y="4"  width="20" height="60" rx="3" fill="#38bdf8"/>
+        </svg>
+      </div>
+      <div class="card-title">საბაჟოს ანალიტიკა</div>
+      <div class="card-desc">შემოსავლები, პუნქტები, გამტარუნარიანობა 2018–2024</div>
+      <div class="card-footer"></div>
+      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია საჭიროა</div></div>
+    </div>
+
+    <!-- @card: ექსპორტი & იმპორტი | სავაჭრო -->
+    <div class="report-card locked" data-category="სავაჭრო">
+      <div class="card-header">
+        <span class="badge badge-sky">სავაჭრო</span>
+        <span class="card-updated">5 სთ. წინ</span>
+      </div>
+      <div class="card-chart">
+        <svg viewBox="0 0 240 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8"  y="24" width="16" height="40" rx="3" fill="#10b981" opacity="0.85"/>
+          <rect x="26" y="38" width="16" height="26" rx="3" fill="#f59e0b" opacity="0.85"/>
+          <rect x="52" y="16" width="16" height="48" rx="3" fill="#10b981" opacity="0.85"/>
+          <rect x="70" y="30" width="16" height="34" rx="3" fill="#f59e0b" opacity="0.85"/>
+          <rect x="96" y="10" width="16" height="54" rx="3" fill="#10b981" opacity="0.85"/>
+          <rect x="114" y="26" width="16" height="38" rx="3" fill="#f59e0b" opacity="0.85"/>
+          <rect x="140" y="6"  width="16" height="58" rx="3" fill="#10b981" opacity="0.9"/>
+          <rect x="158" y="20" width="16" height="44" rx="3" fill="#f59e0b" opacity="0.85"/>
+          <rect x="184" y="2"  width="16" height="62" rx="3" fill="#10b981"/>
+          <rect x="202" y="14" width="16" height="50" rx="3" fill="#f59e0b" opacity="0.9"/>
+        </svg>
+      </div>
+      <div class="card-title">ექსპორტი & იმპორტი</div>
+      <div class="card-desc">სავაჭრო ბალანსი და პარტნიორი ქვეყნები 2019–2024</div>
+      <div class="card-footer"></div>
+      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია საჭიროა</div></div>
+    </div>
+
+    <!-- @card: სახელმწიფო შესყიდვები | ეკონომიკა -->
+    <div class="report-card locked" data-category="ეკონომიკა">
+      <div class="card-header">
+        <span class="badge badge-amber">ეკონომიკა</span>
+        <span class="card-updated">2 სთ. წინ</span>
+      </div>
+      <div class="card-chart">
+        <svg viewBox="0 0 240 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lg3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <polygon points="0,48 40,42 80,36 120,28 160,20 200,14 240,8 240,64 0,64" fill="url(#lg3)"/>
+          <polyline points="0,48 40,42 80,36 120,28 160,20 200,14 240,8" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="240" cy="8" r="4" fill="#f59e0b"/>
+        </svg>
+      </div>
+      <div class="card-title">სახელმწიფო შესყიდვები</div>
+      <div class="card-desc">ტენდერები, ღირებულება, კონტრაქტორები 2020–2024</div>
+      <div class="card-footer"></div>
+      <div class="lock-overlay"><div class="lock-badge">🔒 რეგისტრაცია საჭიროა</div></div>
+    </div>
+
     <!-- no results message -->
     <div class="no-results" id="no-results">ამ კატეგორიაში report ჯერ არ არის დამატებული.</div>
 
   </div><!-- end reports-grid -->
 </div>
 
-<!-- @section: features -->
-<div class="features-strip">
-  <div class="features-inner">
-    <div>
-      <span class="feature-icon">📊</span>
-      <div class="feature-title">გრაფიკები და ინტერაქტიული ანალიზი</div>
-      <div class="feature-desc">მონაცემები ვიზუალური ფორმით — გრაფიკები, ფილტრები, სათქმელი ციფრებში.</div>
-    </div>
-    <div>
-      <span class="feature-icon">🔄</span>
-      <div class="feature-title">რეალური საჯარო მონაცემები</div>
-      <div class="feature-desc">Geostat, საბაჟო, სამინისტრო — ყოველდღიურ განახლებებთან ავტომატურად.</div>
-    </div>
-    <div>
-      <span class="feature-icon">🇬🇪</span>
-      <div class="feature-title">ქართული ბიზნეს კონტექსტი</div>
-      <div class="feature-desc">ადგილობრივ ინდუსტრიებსა და ბაზარზე მორგებული ანალიზი. ქართულ ენაზე.</div>
-    </div>
-  </div>
-</div>
 
 <!-- @section: footer -->
 <footer>
@@ -1066,14 +1038,17 @@ footer {
 <div id="gate-overlay">
   <div class="gate-card">
     <div class="gate-icon">🔓</div>
-    <div class="gate-title">გასაგრძელებლად შედი ან დარეგისტრირდი</div>
-    <div class="gate-sub">
-      <strong>უფასო ანგარიში</strong> — 30 წამი სჭირდება.<br>
-      მიიღე სრული წვდომა 800+ BI რეპორტზე.
-    </div>
-    <div class="gate-form">
-      <input class="gate-input" type="email" placeholder="შეიყვანე ელ-ფოსტა" id="gate-email">
-      <button class="gate-submit" id="gate-submit-btn">გაგრძელება →</button>
+    <div class="gate-title">შედი ანგარიშზე</div>
+    <div class="gate-sub">800+ BI რეპორტი გელოდება.<br><a href="https://bihub.ge/wp-login.php?action=register" style="color:var(--sky);text-decoration:none;font-weight:600;">ანგარიში არ გაქვს? დარეგისტრირდი</a></div>
+    <form class="gate-form" method="post" action="https://bihub.ge/wp-login.php">
+      <input type="hidden" name="redirect_to" value="https://bihub.ge/">
+      <input type="hidden" name="rememberme" value="forever">
+      <input class="gate-input" type="text" name="log" placeholder="ელ-ფოსტა ან მომხმარებელი" id="gate-email" autocomplete="username">
+      <input class="gate-input" type="password" name="pwd" placeholder="პაროლი" autocomplete="current-password">
+      <button class="gate-submit" type="submit" id="gate-submit-btn">შესვლა →</button>
+    </form>
+    <div style="text-align:center;margin-top:10px;">
+      <a href="https://bihub.ge/wp-login.php?action=lostpassword" style="font-size:0.76rem;color:var(--muted);text-decoration:none;">პაროლი დამავიწყდა?</a>
     </div>
     <div class="gate-perks">
       <div class="gate-perk"><span>✓</span> უფასო</div>
@@ -1087,10 +1062,10 @@ footer {
 // @controller: card-flip
 (function() {
   var backs = [
+    "შეადარე შენი კომპანია ინდუსტრიის საშუალო მაჩვენებლებს. შემოსავლები, მომგებიანობა, ზრდის ტემპი — ინტერაქტიულ BI ფანჯარაში.",
     "საბაჟო გამტარ პუნქტებზე გამავალი საქონლის სრული ანალიზი. შემოსავლები, ქვეყნები, ტვირთების სტატისტიკა 2018–2025.",
     "საგარეო ვაჭრობის სრული სტატისტიკა. ექსპორტ/იმპორტის ბალანსი, პარტნიორი ქვეყნები, ძირითადი საქონელი 2014–2025.",
     "ყველა ტენდერი სახელმწიფო ბიუჯეტიდან. გამარჯვებული კომპანიები, სფეროები, ღირებულება 2012–2025.",
-    "შეადარე შენი კომპანია ინდუსტრიის საშუალო მაჩვენებლებს. შემოსავლები, მომგებიანობა, ზრდის ტემპი — ინტერაქტიულ BI ფანჯარაში.",
     "ჯანდაცვის პროგრამის სრული ანალიტიკა. მოსარგებლეები, ხარჯები, სამედიცინო პუნქტები რეგიონებით 2013–2025.",
     "სადაზღვევო ბაზრის სრული სტატისტიკა. კომპანიები, პრემიები, ანაზღაურებები 2017–2025.",
     "მეცხოველეობის სექტორის ანალიტიკა. სულადობა, პროდუქციის მოცულობა, ფასები რეგიონებით 2006–2025.",
@@ -1118,7 +1093,7 @@ footer {
     back.className = 'card-back';
     var cta = isLocked
       ? '<button class="cb-btn cb-btn-register" onclick="event.stopPropagation();document.getElementById(\'gate-overlay\').classList.add(\'show\')">დარეგისტრირდი — უფასოდ</button>'
-      : '<a href="https://bihub.ge" target="_blank" class="cb-btn cb-btn-open" onclick="event.stopPropagation()">აპლიკაციაში გახსნა →</a>';
+      : '<a href="https://bihub.ge/cards/shedareba/" target="_blank" class="cb-btn cb-btn-open" onclick="event.stopPropagation()">რეპორტი გახსნა →</a>';
     back.innerHTML =
       '<div class="cb-icon">' + (isLocked ? '🔒' : '📊') + '</div>' +
       '<div class="cb-title">' + title + '</div>' +
