@@ -360,7 +360,7 @@ function submitGate(e) {
   fd.append('_subject', 'BI Health Check — ' + (company || 'ახალი ლიდი') + ' | ქულა: ' + score + '/100');
   fd.append('სახელი', name); fd.append('ელ.ფოსტა', email); fd.append('კომპანია', company); fd.append('პოზიცია', role);
   fd.append('ქულა', score + '/100'); fd.append('სექტორი', 'სამშენებლო'); fd.append('_captcha', 'false');
-  fetch('https://formsubmit.co/ajax/info@bivision.ge', { method: 'POST', body: fd }).catch(() => {});
+  fetch('https://formsubmit.co/ajax/9a5df41878bde78a21554dd6e8d222e3', { method: 'POST', body: fd }).catch(() => {});
   document.getElementById('gate').innerHTML = '<h2 style="margin-bottom:0.8rem;">მადლობა!</h2><p>24 საათში დაგიკავშირდებით.<br>ახლავე გსურთ 15-წუთიანი დემო?</p><a href="https://calendly.com/bivision/courtest-meeting" target="_blank" class="btn" style="display:inline-block;text-decoration:none;margin-top:12px;">დავჯავშნოთ →</a><br><button type="button" class="btn secondary" onclick="document.getElementById(\'gate\').classList.add(\'hidden\')" style="margin-top:10px;font-size:13px;">დახურვა</button>';
 }
 
