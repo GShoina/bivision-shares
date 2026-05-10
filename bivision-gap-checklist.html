@@ -95,7 +95,7 @@
 <div class="container">
 
   <div class="header">
-    <div class="meta">Mentari · 2026-05-10 · bivision.ge SEO + Brand Audit · v3 (Viktor-challenged + live-verified)</div>
+    <div class="meta">Mentari · 2026-05-10 · bivision.ge SEO + Brand Audit · v4 (live-verified: P0 + product pages + llms.txt)</div>
     <h1>bivision.ge — Gap Checklist &amp; Feasibility Report</h1>
     <div class="ep0">EP0: 8/10 (S) — OKR1 (leads) + OKR3 (brand) პირდაპირ</div>
   </div>
@@ -112,7 +112,7 @@
     <div class="stat red"><div class="num">3</div><div class="label">🔴 P0 კრიტიკული (verified)</div></div>
     <div class="stat orange"><div class="num">6</div><div class="label">🟠 P1 მაღალი</div></div>
     <div class="stat yellow"><div class="num">14</div><div class="label">🟡 P2 საშუალო</div></div>
-    <div class="stat purple"><div class="num">1</div><div class="label">🟣 Owner Architecture</div></div>
+    <div class="stat purple"><div class="num">0</div><div class="label">🟣 Owner Architecture</div></div>
     <div class="stat green"><div class="num">9</div><div class="label">✅ კარგია</div></div>
   </div>
 
@@ -148,30 +148,38 @@
     </table>
   </div>
 
-  <!-- OWNER ARCHITECTURE DECISION -->
+  <!-- PRODUCT PAGES — DEBUNKED + REAL FINDING -->
   <div class="section">
     <div class="section-header">
-      <span class="badge arch">🟣 Owner Architecture Decision</span>
-      <h2>Product sub-pages — ყველაზე მაღალი ROI item. ცალკე sprint.</h2>
+      <span style="background:#DCFCE7;color:#15803D;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">✗ DEBUNKED — live-verified 2026-05-10</span>
+      <h2>Product sub-pages: ყველა 6 = HTTP 200. Pages არსებობს.</h2>
     </div>
     <table>
-      <tr><th>Finding</th><th>Revenue Impact</th><th>Effort</th><th>Decision needed</th></tr>
+      <tr><th>URL</th><th>Status</th><th>Real Audit Task</th></tr>
       <tr>
         <td>
-          <strong>6 პროდუქტი tab-ებია, არა URLs</strong> — BiFinance / BiRetail / BiStock / BiAudit / BiDebitors / BiMedical.<br><br>
-          ახლა: ყველა ერთ URL-ზეა (<code>/</code>). ვერ rank-ავს. AI engines ვერ cite-ავს. Zero discoverability per product.<br><br>
-          <strong>კონკრეტული დანაკარგი:</strong> ყოველი უნახავი product page = keyword cluster-ი მტერს რჩება. ამჟამინდელი ტოპ search-ები ("ბიზნეს ანალიტიკა საქართველო", "bi სისტემა", "power bi alternative") = ვერ capture-ავ, რადგან landing page = generic homepage. Competitor-ი რომელმაც sub-pages გახსნა = ის rank-ავს.
-          <span class="tag hypo">HYPOTHESIS — Lovable source</span>
+          <code>/saas-products/bifinance/</code><br>
+          <code>/saas-products/biretail/</code><br>
+          <code>/saas-products/bistock/</code><br>
+          <code>/saas-products/biaudit/</code><br>
+          <code>/saas-products/bidebitors/</code><br>
+          <code>/saas-products/bimedical/</code>
         </td>
         <td>
-          <strong>ყველაზე მაღალი</strong> სიაში.<br>
-          6 keyword cluster = 6 rank opportunity.<br>
-          1 organic lead/mo per product page (conservative) = 6 leads/mo incremental.<br>
-          Bivision ICP deal = ~$3K–8K ARR.<br>
-          <em>Estimated: +$18K–48K ARR/yr opportunity — unblocked by 6 pages.</em>
+          ✅ HTTP 200 — ყველა<br><br>
+          <strong>Lovable claim "tab-only, no URLs" = WRONG.</strong><br>
+          llms.txt-ი სწორად ასახავდა URLs.
         </td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div> multi-sprint<br>(4–6 კვირა)</td>
-        <td><span class="tag owner-gate">Owner: scope approve → ADR → ცალკე sprint plan</span></td>
+        <td>
+          <strong>რეალური P1 task:</strong> ყოველ product page-ს აქვს:
+          <ul style="margin:6px 0 0 16px;font-size:13px;">
+            <li>unique &lt;title&gt; + meta description? <span class="tag unverified">UNVERIFIED</span></li>
+            <li>Service JSON-LD schema? <span class="tag unverified">UNVERIFIED</span></li>
+            <li>unique H1? <span class="tag unverified">UNVERIFIED</span></li>
+            <li>OG image per product? <span class="tag unverified">UNVERIFIED</span></li>
+          </ul>
+          <br>→ Playwright audit per page სჭირდება.
+        </td>
       </tr>
     </table>
   </div>
