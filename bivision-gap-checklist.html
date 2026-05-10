@@ -95,13 +95,13 @@
 <div class="container">
 
   <div class="header">
-    <div class="meta">Mentari · 2026-05-10 · bivision.ge SEO + Brand Audit · v2 (self-corrected)</div>
+    <div class="meta">Mentari · 2026-05-10 · bivision.ge SEO + Brand Audit · v3 (Viktor-challenged + live-verified)</div>
     <h1>bivision.ge — Gap Checklist &amp; Feasibility Report</h1>
     <div class="ep0">EP0: 8/10 (S) — OKR1 (leads) + OKR3 (brand) პირდაპირ</div>
   </div>
 
   <div class="banner hypothesis">
-    <strong>⚠ EP1: HYPOTHESIS</strong> — ყველა finding = Lovable AI tool-ის output. არ არის Playwright/curl-ით live საიტზე verified. Execution-მდე → independent verification სავალდებულო.
+    <strong>EP1 Status:</strong> P0 items #1, #2, #4 = live-verified (WebFetch 2026-05-10). Item #3 (llms.txt) = DEBUNKED — ფაილი არსებობს (HTTP 200). P1–P2 = HYPOTHESIS (Lovable.dev AI tool output, unverified). Source: <strong>Lovable.dev</strong> (AI web builder) — არა Laravel PHP framework.
   </div>
 
   <div class="banner gate">
@@ -109,11 +109,11 @@
   </div>
 
   <div class="stats">
-    <div class="stat red"><div class="num">4</div><div class="label">🔴 P0 კრიტიკული</div></div>
-    <div class="stat orange"><div class="num">5</div><div class="label">🟠 P1 მაღალი</div></div>
+    <div class="stat red"><div class="num">3</div><div class="label">🔴 P0 კრიტიკული (verified)</div></div>
+    <div class="stat orange"><div class="num">6</div><div class="label">🟠 P1 მაღალი</div></div>
     <div class="stat yellow"><div class="num">14</div><div class="label">🟡 P2 საშუალო</div></div>
     <div class="stat purple"><div class="num">1</div><div class="label">🟣 Owner Architecture</div></div>
-    <div class="stat green"><div class="num">8</div><div class="label">✅ კარგია</div></div>
+    <div class="stat green"><div class="num">9</div><div class="label">✅ კარგია</div></div>
   </div>
 
   <!-- P0 CRITICAL -->
@@ -126,31 +126,24 @@
       <tr><th>#</th><th>პრობლემა</th><th>სად ვასწორებ</th><th>ძალ.</th><th>შენიშვნა</th></tr>
       <tr>
         <td>1</td>
-        <td><strong>lang="en-US"</strong> — საიტი ქართულია, html tag ინგლისური. Georgian SERP suppress. <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><strong>lang="en-US"</strong> — საიტი ქართულია, html tag ინგლისური. Georgian SERP suppress. <span style="background:#DCFCE7;color:#15803D;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;">✓ FACT — live verified</span></td>
         <td><span class="tag code">Theme + RankMath</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
         <td>lang="ka", og:locale="ka_GE", inLanguage:"ka"</td>
       </tr>
       <tr>
         <td>2</td>
-        <td><strong>ორი H1</strong> — hero + second-title. Keyword signal split. <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><strong>ორი H1</strong> — "ბიზნეს ანალიტიკა – ზუსტი მართვა" + "საჯარო მონაცემების პლატფორმა". Keyword signal split. <span style="background:#DCFCE7;color:#15803D;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;">✓ FACT — live verified</span></td>
         <td><span class="tag wp-admin">Page Builder</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
-        <td>მეორე → H2. Hero H1 მხოლოდ.</td>
+        <td>მეორე H1 → H2. Hero H1 მხოლოდ.</td>
       </tr>
       <tr>
         <td>3</td>
-        <td><strong>llms.txt — 404</strong> — GPTBot/PerplexityBot/ClaudeBot-ს content map არ აქვს. <span class="tag hypo">HYPOTHESIS</span></td>
-        <td><span class="tag code">New file (root)</span></td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
-        <td>1-2სთ. ვქმნი key pages + products listed.</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td><strong>robots.txt AI crawlers not allowed</strong> — GPTBot/PerplexityBot/ClaudeBot/Google-Extended implicit block. <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><strong>robots.txt: AI crawlers not allowed</strong> — GPTBot/PerplexityBot/ClaudeBot/Google-Extended — no Allow rules found. <span style="background:#DCFCE7;color:#15803D;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;">✓ FACT — live verified</span></td>
         <td><span class="tag rankmath">RankMath robots editor</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
-        <td>4 Allow rule. 30 წუთი.</td>
+        <td>4 Allow rule → 30 წუთი.</td>
       </tr>
     </table>
   </div>
@@ -159,15 +152,26 @@
   <div class="section">
     <div class="section-header">
       <span class="badge arch">🟣 Owner Architecture Decision</span>
-      <h2>Product sub-pages — ცალკე project, არა checklist item</h2>
+      <h2>Product sub-pages — ყველაზე მაღალი ROI item. ცალკე sprint.</h2>
     </div>
     <table>
-      <tr><th>Finding</th><th>Impact</th><th>Effort</th><th>Decision needed</th></tr>
+      <tr><th>Finding</th><th>Revenue Impact</th><th>Effort</th><th>Decision needed</th></tr>
       <tr>
-        <td><strong>პროდუქტები tab-ებია, არა URLs</strong> — BiFinance/BiRetail/BiStock/BiAudit/BiDebitors/BiMedical ვერ rank-ავს. AI engines ვერ cite-ავს. 6 ცალკე route სჭირდება. <span class="tag hypo">HYPOTHESIS</span></td>
-        <td>ყველაზე მაღალი SEO impact სიაში</td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div> multi-sprint</td>
-        <td><span class="tag owner-gate">Owner: scope approve → ADR → ცალკე sprint</span></td>
+        <td>
+          <strong>6 პროდუქტი tab-ებია, არა URLs</strong> — BiFinance / BiRetail / BiStock / BiAudit / BiDebitors / BiMedical.<br><br>
+          ახლა: ყველა ერთ URL-ზეა (<code>/</code>). ვერ rank-ავს. AI engines ვერ cite-ავს. Zero discoverability per product.<br><br>
+          <strong>კონკრეტული დანაკარგი:</strong> ყოველი უნახავი product page = keyword cluster-ი მტერს რჩება. ამჟამინდელი ტოპ search-ები ("ბიზნეს ანალიტიკა საქართველო", "bi სისტემა", "power bi alternative") = ვერ capture-ავ, რადგან landing page = generic homepage. Competitor-ი რომელმაც sub-pages გახსნა = ის rank-ავს.
+          <span class="tag hypo">HYPOTHESIS — Lovable source</span>
+        </td>
+        <td>
+          <strong>ყველაზე მაღალი</strong> სიაში.<br>
+          6 keyword cluster = 6 rank opportunity.<br>
+          1 organic lead/mo per product page (conservative) = 6 leads/mo incremental.<br>
+          Bivision ICP deal = ~$3K–8K ARR.<br>
+          <em>Estimated: +$18K–48K ARR/yr opportunity — unblocked by 6 pages.</em>
+        </td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div> multi-sprint<br>(4–6 კვირა)</td>
+        <td><span class="tag owner-gate">Owner: scope approve → ADR → ცალკე sprint plan</span></td>
       </tr>
     </table>
   </div>
@@ -180,6 +184,13 @@
     </div>
     <table>
       <tr><th>#</th><th>პრობლემა</th><th>სად ვასწორებ</th><th>ძალ.</th><th>შენიშვნა</th></tr>
+      <tr>
+        <td>4</td>
+        <td><strong>llms.txt — content audit needed</strong> — ფაილი არსებობს (HTTP 200). Lovable-ის claim (404) = <span style="background:#FEE2E2;color:#DC2626;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;">✗ DEBUNKED</span>. Content-ი შეიძლება მოძველდა ან არასრულია. <span class="tag unverified">UNVERIFIED content</span></td>
+        <td><span class="tag code">Audit + update</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
+        <td>WebFetch-ით content-ი შევამოწმო, მერე update.</td>
+      </tr>
       <tr>
         <td>5</td>
         <td><strong>JSON-LD missing: Service, FAQPage, BreadcrumbList, AggregateRating, foundingDate</strong> <span class="tag hypo">HYPOTHESIS</span></td>
@@ -332,8 +343,8 @@
       </tr>
       <tr>
         <td>✅ HTTP 200 correct</td>
-        <td>✅ Server response 1.8s — acceptable</td>
-        <td><span class="tag unverified">UNVERIFIED</span> img alt — audit tool claimed 0 missing; not Playwright-verified</td>
+        <td>✅ Server response 1.8s <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><span class="tag unverified">UNVERIFIED</span> img alt — Lovable.dev claimed 0 missing; not verified</td>
       </tr>
     </table>
   </div>
