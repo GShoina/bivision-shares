@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bivision.ge — SEO + Visual Gap Checklist (2026-05-10)</title>
+<style>
+  :root {
+    --primary: #221A4C;
+    --accent: #6653C6;
+    --red: #DC2626;
+    --orange: #EA580C;
+    --yellow: #CA8A04;
+    --green: #16A34A;
+    --gray-50: #F8F7FF;
+    --gray-100: #F1F0F9;
+    --gray-200: #E2E0F0;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --radius: 8px;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); background: var(--gray-50); color: var(--gray-900); font-size: 15px; line-height: 1.6; }
+  .container { max-width: 1000px; margin: 0 auto; padding: 32px 20px; }
+
+  /* Header */
+  .header { background: var(--primary); color: #fff; padding: 28px 32px; border-radius: var(--radius); margin-bottom: 28px; }
+  .header h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .header .meta { font-size: 13px; opacity: 0.7; }
+  .ep0 { display: inline-block; background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-top: 10px; }
+
+  /* Summary stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
+  .stat { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 16px; text-align: center; }
+  .stat .num { font-size: 28px; font-weight: 800; }
+  .stat .label { font-size: 12px; color: var(--gray-700); margin-top: 2px; }
+  .stat.red .num { color: var(--red); }
+  .stat.orange .num { color: var(--orange); }
+  .stat.yellow .num { color: var(--yellow); }
+  .stat.green .num { color: var(--green); }
+
+  /* Section */
+  .section { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); margin-bottom: 20px; overflow: hidden; }
+  .section-header { padding: 16px 20px; display: flex; align-items: center; gap: 10px; cursor: pointer; }
+  .section-header h2 { font-size: 16px; font-weight: 700; flex: 1; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+  .badge.p0 { background: #FEE2E2; color: var(--red); }
+  .badge.p1 { background: #FFEDD5; color: var(--orange); }
+  .badge.p2 { background: #FEF9C3; color: var(--yellow); }
+  .badge.good { background: #DCFCE7; color: var(--green); }
+
+  /* Item table */
+  table { width: 100%; border-collapse: collapse; }
+  th { background: var(--gray-100); padding: 10px 16px; text-align: left; font-size: 12px; font-weight: 700; color: var(--gray-700); text-transform: uppercase; letter-spacing: 0.05em; }
+  td { padding: 12px 16px; border-bottom: 1px solid var(--gray-100); vertical-align: top; font-size: 14px; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--gray-50); }
+
+  /* Tags */
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin: 1px; }
+  .tag.wp-admin { background: #EFF6FF; color: #1D4ED8; }
+  .tag.rankmath { background: #F0FDF4; color: #15803D; }
+  .tag.code { background: #FFF7ED; color: #C2410C; }
+  .tag.arch { background: #FAF5FF; color: #7E22CE; }
+  .tag.content { background: #F0FDFA; color: #0F766E; }
+  .tag.owner-gate { background: #FFF1F2; color: #BE123C; border: 1px solid #FECDD3; }
+  .tag.done { background: #DCFCE7; color: #15803D; }
+
+  /* Effort bar */
+  .effort { display: flex; align-items: center; gap: 4px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gray-200); }
+  .dot.fill { background: var(--accent); }
+
+  /* Owner gate banner */
+  .gate-banner { background: #FFF1F2; border: 1px solid #FECDD3; border-radius: var(--radius); padding: 14px 18px; margin-bottom: 20px; font-size: 14px; }
+  .gate-banner strong { color: var(--red); }
+
+  /* Roadmap */
+  .roadmap { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; }
+  .roadmap h2 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--primary); }
+  .phase { display: grid; grid-template-columns: 120px 1fr; gap: 12px; margin-bottom: 12px; align-items: start; }
+  .phase-label { background: var(--primary); color: #fff; border-radius: 6px; padding: 6px 10px; font-size: 12px; font-weight: 700; text-align: center; }
+  .phase-items { font-size: 13px; line-height: 1.7; }
+
+  @media (max-width: 600px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .phase { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="meta">Mentari · 2026-05-10 · bivision.ge SEO + Brand Audit</div>
+    <h1>bivision.ge — Gap Checklist & Feasibility Report</h1>
+    <div class="ep0">EP0: 8/10 (S) — პირდაპირ ახდენს OKR1 (leads) + OKR3 (brand) გავლენას</div>
+  </div>
+
+  <div class="gate-banner">
+    <strong>⚠ Owner Gate Active:</strong> bivision.ge-ში ცვლილება = owner-ის "შეიტანე" mandatory. ეს ფაილი planning-ი + feasibility-ია, არა execution. ყოველი item-ისთვის execution = ცალკე approval.
+  </div>
+
+  <div class="stats">
+    <div class="stat red"><div class="num">5</div><div class="label">🔴 კრიტიკული (P0)</div></div>
+    <div class="stat orange"><div class="num">5</div><div class="label">🟠 მაღალი (P1)</div></div>
+    <div class="stat yellow"><div class="num">15</div><div class="label">🟡 საშუალო (P2)</div></div>
+    <div class="stat green"><div class="num">9</div><div class="label">✅ კარგია (შენარჩუნება)</div></div>
+  </div>
+
+  <!-- P0 CRITICAL -->
+  <div class="section">
+    <div class="section-header">
+      <span class="badge p0">P0 — კრიტიკული</span>
+      <h2>ახლა ზარალავს SERP-ებსა და AI-ჩვენებებს</h2>
+    </div>
+    <table>
+      <tr>
+        <th>#</th><th>პრობლემა</th><th>სად ვასწორებ</th><th>ძალისხმევა</th><th>შენიშვნა</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td><strong>lang="en-US"</strong> — საიტი ქართულია, html tag ინგლისური. Google ქართულ SERP-ში არ გამოაჩენს.</td>
+        <td><span class="tag code">Theme code</span> <span class="tag rankmath">RankMath</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
+        <td>lang="ka", og:locale="ka_GE", JSON-LD inLanguage: "ka"</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>ორი H1</strong> — hero + second-title. Keyword signal იყოფა.</td>
+        <td><span class="tag wp-admin">WP Admin / Page Builder</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
+        <td>მეორე H1 → H2. ერთი H1 = hero title მხოლოდ.</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>პროდუქტები tab-ებია, არა URL-ები</strong> — BiFinance/BiRetail/… ვერ ახდენს rank-ს საკუთარი keywords-ით. AI engines ვერ cite-ავს.</td>
+        <td><span class="tag arch">ArchitectureChange</span> <span class="tag owner-gate">Owner Gate</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div></td>
+        <td>6 ცალკე route: /bifinance … /bimedical. მაღალი impact, მაღალი effort. Scope = owner decision.</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>llms.txt — 404</strong> — GPTBot, PerplexityBot, ClaudeBot-ს კარა-ა. AI-ს ციტირება ნულია.</td>
+        <td><span class="tag code">New file (root)</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
+        <td>1-2 საათი. ვქმნი /llms.txt სტრუქტურირებული content map-ით.</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><strong>robots.txt არ Allow-ავს AI crawlers</strong> — GPTBot/PerplexityBot/ClaudeBot/Google-Extended implicit block.</td>
+        <td><span class="tag wp-admin">WP Settings / Yoast/RankMath</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
+        <td>RankMath → Robots.txt editor → 4 Allow rule. 30 წუთი.</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- P1 HIGH -->
+  <div class="section">
+    <div class="section-header">
+      <span class="badge p1">P1 — მაღალი</span>
+      <h2>Trust + Structured Data + Schema gaps</h2>
+    </div>
+    <table>
+      <tr>
+        <th>#</th><th>პრობლემა</th><th>სად ვასწორებ</th><th>ძალისხმევა</th><th>შენიშვნა</th>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><strong>JSON-LD missing: Service, FAQPage, BreadcrumbList, AggregateRating, foundingDate</strong></td>
+        <td><span class="tag rankmath">RankMath Schema</span> <span class="tag code">Custom JSON-LD</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
+        <td>RankMath schema blocks + manual `&lt;script type="application/ld+json"&gt;` FAQPage</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td><strong>OG image 1898×1436 Optimole URL</strong> — სოციალური preview-ი არაბრენდული, fragile URL.</td>
+        <td><span class="tag wp-admin">Media + RankMath OG</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
+        <td>ვქმნი branded 1200×630 PNG. RankMath → Social → Custom OG image.</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td><strong>hreflang tags არ არის</strong> — თუ EN დაემატება, redirect chaos.</td>
+        <td><span class="tag rankmath">RankMath Sitemap</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
+        <td>ახლა = hreflang="ka" + x-default. EN-ის დამატება = separate task.</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td><strong>Sitemap-ში product URLs orphan</strong> — crawl-ზე მიუწვდომელი.</td>
+        <td><span class="tag rankmath">RankMath Sitemap</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
+        <td>ამ item-ი blocking item #3-ზე. product pages ჯერ routes, მერე sitemap.</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td><strong>E-E-A-T სუსტია</strong> — case studies, team page, blog = ნული. AI engines freshness + expertise-ს award-ავს.</td>
+        <td><span class="tag content">Content</span> <span class="tag owner-gate">Owner Gate</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div></td>
+        <td>სტრატეგიული გადაწყვეტილება. Mentari draft-ავს, owner approve-ავს.</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- P2 VISUAL & COPY -->
+  <div class="section">
+    <div class="section-header">
+      <span class="badge p2">P2 — Visual / Copy / Performance</span>
+      <h2>Conversion + Brand Quality gaps</h2>
+    </div>
+    <table>
+      <tr>
+        <th>#</th><th>კატეგორია</th><th>პრობლემა</th><th>სად ვასწორებ</th><th>ძალისხმევა</th>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>Visual</td>
+        <td>Inline styles everywhere — maintenance hell, no design tokens</td>
+        <td><span class="tag code">Theme CSS</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div></td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>Visual</td>
+        <td>Font family='bold' — not real font name, UseAnyFont artifact, unpredictable fallback</td>
+        <td><span class="tag code">Theme fonts</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td>Visual</td>
+        <td>Logo: PNG only, no SVG, no dark variant</td>
+        <td><span class="tag wp-admin">Media + Header</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td>Technical</td>
+        <td>Favicon: apple-touch-icon, manifest.webmanifest, maskable icons — needs audit</td>
+        <td><span class="tag wp-admin">WP Admin</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td>Visual</td>
+        <td>Hard-coded hexes: #221A4C, #6653C6, #333 — no token tree</td>
+        <td><span class="tag code">CSS Variables</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div></td>
+      </tr>
+      <tr>
+        <td>16</td>
+        <td>Visual</td>
+        <td>No dark mode — B2B SaaS audience expects it</td>
+        <td><span class="tag code">prefers-color-scheme</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div></td>
+      </tr>
+      <tr>
+        <td>17</td>
+        <td>Copy/CTA</td>
+        <td>ორი primary CTA hero-ში ("დემო" + "შეხვედრა") — split focus</td>
+        <td><span class="tag wp-admin">Page Builder</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
+      </tr>
+      <tr>
+        <td>18</td>
+        <td>Copy</td>
+        <td>Social proof რიცხვების გარეშე — "50+ პარტნიორი" მხოლოდ. No % savings, hours saved.</td>
+        <td><span class="tag content">Content</span> <span class="tag owner-gate">Owner Gate (data)</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
+      </tr>
+      <tr>
+        <td>19</td>
+        <td>Trust</td>
+        <td>Testimonials: არ არის სახელი/ფოტო/კომპანია. Logo wall alone ≠ social proof.</td>
+        <td><span class="tag content">Content</span> <span class="tag owner-gate">Owner Gate</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
+      </tr>
+      <tr>
+        <td>20</td>
+        <td>Conversion</td>
+        <td>Sticky CTA scroll-ზე არ არის — intent users-ს კარგავს hero-ს გასცდენის შემდეგ</td>
+        <td><span class="tag code">JS + CSS</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
+      </tr>
+      <tr>
+        <td>21</td>
+        <td>Performance</td>
+        <td>Core Web Vitals unknown — WP+LiteSpeed+Optimole heavy stack, LCP target: &lt;2.5s</td>
+        <td><span class="tag wp-admin">LiteSpeed + Optimole settings</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
+      </tr>
+      <tr>
+        <td>22</td>
+        <td>Performance</td>
+        <td>3 custom fonts preloaded — delays LCP paint</td>
+        <td><span class="tag code">Theme header</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
+      </tr>
+      <tr>
+        <td>23</td>
+        <td>Performance</td>
+        <td>CookieYes: left-side overlay on load → CLS impact + bad first impression</td>
+        <td><span class="tag wp-admin">CookieYes settings</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
+      </tr>
+      <tr>
+        <td>24</td>
+        <td>Technical</td>
+        <td>OG image: Optimole CDN 3rd-party params — social preview fragile</td>
+        <td><span class="tag wp-admin">RankMath OG</span></td>
+        <td>⟶ Item #7-ის ნაწილი</td>
+      </tr>
+      <tr>
+        <td>25</td>
+        <td>Legal/Perf</td>
+        <td>Crisp chat loads before consent — GDPR risk EU; performance cost always</td>
+        <td><span class="tag code">Crisp load delay</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- WHAT'S GOOD -->
+  <div class="section">
+    <div class="section-header">
+      <span class="badge good">✅ კარგია — არ შევახო</span>
+      <h2>შენარჩუნება სავალდებულო (regression test)</h2>
+    </div>
+    <table>
+      <tr><td>✅ HTTPS + HSTS enabled</td><td>✅ Canonical tag</td><td>✅ OG + Twitter Cards (needs fix, but exist)</td></tr>
+      <tr><td>✅ RankMath JSON-LD: Organization + Place + WebSite + Article</td><td>✅ Real GE address + phone + socials in schema</td><td>✅ Sitemap index segmented</td></tr>
+      <tr><td>✅ All img tags have alt</td><td>✅ HTTP 200 correct status</td><td>✅ Server response 1.8s — acceptable</td></tr>
+    </table>
+  </div>
+
+  <!-- EXECUTION ROADMAP -->
+  <div class="roadmap">
+    <h2>Execution Roadmap (owner approval-ის შემდეგ)</h2>
+
+    <div class="phase">
+      <div class="phase-label">კვირა 1<br><small>Quick Wins</small></div>
+      <div class="phase-items">
+        robots.txt AI-crawlers allow (#5) · llms.txt შექმნა (#4) · robots.txt · H1 fix (#2) · lang="ka" patch (#1) · OG image branded 1200×630 (#7)
+        <br><small style="color:#6B7280;">WP Admin + minor code only. 1-2 სრული სამუშაო დღე.</small>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-label">კვირა 2<br><small>Schema</small></div>
+      <div class="phase-items">
+        FAQPage schema (#6) · Service schema per product (#6) · AggregateRating (#6) · hreflang ka+x-default (#8) · CookieYes position fix (#23) · Crisp defer (#25)
+        <br><small style="color:#6B7280;">RankMath + custom JSON-LD. 2-3 დღე.</small>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-label">კვირა 3<br><small>CTA + Perf</small></div>
+      <div class="phase-items">
+        Hero CTA single primary + microcopy (#17) · Sticky scroll CTA (#20) · 3 font preload → 1 (#22) · PageSpeed baseline audit (#21) · Favicon/manifest audit (#14)
+        <br><small style="color:#6B7280;">Mix code + content. 3-4 დღე.</small>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-label">კვირა 4-6<br><small>Design Sys</small></div>
+      <div class="phase-items">
+        CSS design tokens (colors OKLCH, spacing) (#11, #15) · Georgian variable font replace UseAnyFont (#12) · SVG logo set + dark variant (#13) · Dark mode prefers-color-scheme (#16)
+        <br><small style="color:#6B7280;">Theme-level. 1-2 კვირა. Owner gate per change.</small>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-label">კვირა 7-10<br><small>Architecture</small></div>
+      <div class="phase-items">
+        Product sub-pages /bifinance … /bimedical (#3) · Sitemap update (#9) · Quantified social proof (#18) · Testimonials with photos (#19) · E-E-A-T content plan (#10)
+        <br><small style="color:#6B7280;">Owner decision required. Biggest impact item on the list.</small>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-label">კვირა 11-12<br><small>Content</small></div>
+      <div class="phase-items">
+        4 case study pages · Team page · First 4 blog posts (Georgian, AI-search optimized) · Submit refreshed sitemap · Monitor AI-engine brand mentions
+        <br><small style="color:#6B7280;">Content-heavy. Gurafa + Mariam co-owner.</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="section" style="background:#F8F7FF;">
+    <div style="padding:16px 20px;">
+      <strong>Legend:</strong>&nbsp;
+      <span class="tag wp-admin">WP Admin</span> = no code needed &nbsp;
+      <span class="tag rankmath">RankMath</span> = plugin settings &nbsp;
+      <span class="tag code">Code</span> = theme/file edit &nbsp;
+      <span class="tag arch">Architecture</span> = major scope &nbsp;
+      <span class="tag content">Content</span> = copywriting/media &nbsp;
+      <span class="tag owner-gate">Owner Gate</span> = explicit approval before execution
+      <br><br>
+      <strong>Effort dots:</strong> ● = 1 dot = quick (&lt;2h) · ●● = half-day · ●●● = multi-day
+    </div>
+  </div>
+
+  <div style="text-align:center; color:#9CA3AF; font-size:12px; margin-top:20px;">
+    Mentari · bivision.ge Audit · 2026-05-10 · Source: Lovable gap analysis + WEBSITE_STANDARD.md
+  </div>
+
+</div>
+</body>
+</html>
