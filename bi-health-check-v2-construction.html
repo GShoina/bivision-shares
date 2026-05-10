@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>სამშენებლო BI Health Check — ფინანსური კონტროლი 3 წუთში | Bivision</title>
-<meta name="description" content="10 კითხვა. 3 წუთი. გაიგე სად კარგავს სამშენებლო კომპანია ფინანსურ კონტროლს — project P&L, cash flow, budget vs actual.">
+<meta name="description" content="10 კითხვა. 3 წუთი. შეაფასეთ რამდენად სწრაფად ხედავს მენეჯმენტი პროექტების ფინანსურ სურათს — Project P&L, Cash Flow და Budget vs Actual.">
 <style>
   :root {
     --primary: #1a5c3a;
@@ -107,14 +107,14 @@
 
   <div id="intro" class="intro">
     <h1>სამშენებლო კომპანიის<br>BI Health Check</h1>
-    <p class="tagline">3 წუთში გაიგე სად კარგავს კომპანია ფინანსურ კონტროლს — project P&L, cash flow, budget vs actual.</p>
+    <p class="tagline">3 წუთში შეაფასეთ რამდენად სწრაფად ხედავს მენეჯმენტი პროექტების ფინანსურ სურათს — Project P&L, Cash Flow და Budget vs Actual ერთ ხედში.</p>
     <div class="intro-pills">
       <div class="pill"><strong>10</strong> კითხვა</div>
       <div class="pill"><strong>3</strong> წუთი</div>
       <div class="pill">უფასო</div>
     </div>
     <p style="color: var(--muted); font-size: 14px; max-width: 500px; margin: 0 auto;">
-      სამშენებლო კომპანიებისთვის — მშენებლები, დეველოპერები, კონტრაქტორები. პასუხის შემდეგ მიიღებ სრულ ანალიზს — სად არის ყველაზე დიდი ფინანსური რისკი.
+      სამშენებლო კომპანიებისთვის — მშენებლები, დეველოპერები, კონტრაქტორები. პასუხის შემდეგ მიიღებ სრულ ანალიზს — სად არის გაუმჯობესების ყველაზე დიდი შესაძლებლობა.
     </p>
     <button class="btn start-btn" onclick="startQuiz()">დაიწყე</button>
   </div>
@@ -161,13 +161,13 @@
     <div class="band-sub" id="band-sub">—</div>
 
     <div class="gap-section">
-      <h3>🎯 შენი 3 მთავარი ფინანსური ხარვეზი</h3>
+      <h3>🎯 3 მთავარი გაუმჯობესების შესაძლებლობა</h3>
       <div id="gaps"></div>
     </div>
 
     <div class="cta-box">
       <h3>15-წუთიანი სამშენებლო BI დემო</h3>
-      <p>გაჩვენებ project P&L dashboard-ს შენი ERP-ის (Fina / Oris / 1C / Balance) მონაცემებზე. ყოველგვარი ვალდებულების გარეშე.</p>
+      <p>გაჩვენებთ, როგორ შეიძლება გამოიყურებოდეს project-level ფინანსური dashboard თქვენი არსებული ERP/Excel მონაცემების საფუძველზე. ყოველგვარი ვალდებულების გარეშე.</p>
       <a href="https://calendly.com/bivision/courtest-meeting" target="_blank" class="cta-btn">დავჯავშნოთ 15 წუთი →</a>
     </div>
 
@@ -216,7 +216,7 @@ const questions = [
   },
   {
     dim: "Cash collection",
-    q: "მყიდველების დავალიანება და გადახდის ვადები — ვინ ვინ ახვევს ხედავთ?",
+    q: "მყიდველების დავალიანება და გადახდის ვადები — ვინ აგვიანებს და რამდენით, ხედავთ?",
     opts: [
       { t: "დიახ, ავტომატური debtor aging ანგარიში", p: 10 },
       { t: "ბუღალტერია მატყობინებს პრობლემებზე", p: 5 },
@@ -280,11 +280,11 @@ const questions = [
 ];
 
 const gapRecs = {
-  "Budget vs Actual": "ბიუჯეტის გადახარჯვა პროექტის ბოლოს = 8-15% მოგების დაკარგვა. Real-time tracking = ჩარევის window 3-4 კვირა ადრე.",
+  "Budget vs Actual": "ბიუჯეტის გადახარჯვა პროექტის ბოლოს — real-time tracking = ჩარევის window 3-4 კვირა ადრე.",
   "Project P&L": "P&L-ის ხილვა = მომგებიანი vs ზარალიანი პროექტების გამოყოფა. ერთი ზარალიანი პროექტი სხვათა მოგებას ჭამს.",
   "Sales pipeline": "Sales visibility = ფასის კორექტირება დაბალი ტემპის შემთხვევაში + cash flow forecast-ი.",
-  "Cash collection": "გადახდის 30-60 დღე დაგვიანება × ერთი კომპლექსი = 100K+ ₾ გაყინული კაპიტალი. Debtor aging = ადრეული ჩარევა.",
-  "Multi-project view": "Consolidated ხედის გარეშე შეუძლებელია რესურსების ოპტიმიზაცია. ცალ-ცალკე Excel = ბრმა მენეჯმენტი.",
+  "Cash collection": "გადახდის დაგვიანება = გაყინული კაპიტალი. Debtor aging = ადრეული ჩარევა და cash flow-ის დაცვა.",
+  "Multi-project view": "Consolidated ხედის გარეშე შეუძლებელია რესურსების ოპტიმიზაცია. ცალ-ცალკე Excel = არასრული მენეჯმენტ ხედი.",
   "Procurement control": "ქვეკონტრაქტორების ხარჯი ბიუჯეტს +10-20%-ით ხშირად. ავტომატური შედარება = ადრეული გაფრთხილება.",
   "Cash flow": "Cash gap სამშენებლო კომპანიის #1 ოპერაციული რისკი. 90-დღიანი forecast = bank line-ის სწორი გამოყენება.",
   "ERP integration": "ERP → Excel → ანგარიში = 3-5 სამუშაო დღე ყოველ თვე + შეცდომები. ERP → dashboard = 15 წუთი.",
@@ -390,12 +390,12 @@ function showResult() {
   const circle = document.getElementById('score-circle');
   let band, sub, cls;
   if (score <= 33) {
-    band = 'კრიტიკული ფინანსური სიბრმავე';
-    sub = 'Cash flow, P&L და budget control — ყველა სამი სუსტია. Cash gap და გადახარჯვის რისკი მაღალია.';
+    band = 'მაღალი გაუმჯობესების პოტენციალი';
+    sub = 'Cash flow, P&L და budget control — ყველა სამი გაძლიერების შესაძლებლობაა. ერთი ეტაპი ყველაზე სწრაფ ეფექტს მოიტანს.';
     cls = 'critical';
   } else if (score <= 66) {
-    band = 'ნაწილობრივი კონტროლი';
-    sub = 'ინფორმაცია ნაწილობრივ გაქვს, მაგრამ სიჩქარე და real-time visibility გაკლია. 5-10x ROI შესაძლებელია.';
+    band = 'კარგი საფუძველი — გაძლიერების შესაძლებლობა';
+    sub = 'ინფორმაცია ნაწილობრივ გაქვს, მაგრამ სიჩქარე და real-time visibility გაძლიერება შეიძლება.';
     cls = 'mid';
   } else {
     band = 'ძლიერი ფინანსური კონტროლი';

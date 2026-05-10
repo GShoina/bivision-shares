@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>სამედიცინო კლინიკის BI Health Check — ფინანსური ეფექტიანობა 3 წუთში | Bivision</title>
-<meta name="description" content="10 კითხვა. 3 წუთი. გაიგე სად კარგავს კლინიკა ფინანსურ ეფექტიანობას — პაციენტის P&L, consumables, capacity, reporting.">
+<meta name="description" content="10 კითხვა. 3 წუთი. შეაფასეთ რამდენად კარგად ჩანს კლინიკის ფინანსური და ოპერაციული ეფექტიანობა — სერვისები, ექიმები, consumables, capacity.">
 <style>
   :root {
     --primary: #1a3a6b;
@@ -107,14 +107,14 @@
 
   <div id="intro" class="intro">
     <h1>სამედიცინო კლინიკის<br>BI Health Check</h1>
-    <p class="tagline">3 წუთში გაიგე სად კარგავს კლინიკა ფინანსურ ეფექტიანობას — პაციენტის P&L, consumables, capacity.</p>
+    <p class="tagline">3 წუთში შეაფასეთ რამდენად კარგად ჩანს კლინიკის ფინანსური და ოპერაციული ეფექტიანობა — სერვისები, ექიმების დატვირთვა, consumables და capacity ერთ ხედში.</p>
     <div class="intro-pills">
       <div class="pill"><strong>10</strong> კითხვა</div>
       <div class="pill"><strong>3</strong> წუთი</div>
       <div class="pill">უფასო</div>
     </div>
     <p style="color: var(--muted); font-size: 14px; max-width: 500px; margin: 0 auto;">
-      რეპროდუქტოლოგიური, ქირურგიული და სპეციალიზებული კლინიკებისთვის. პასუხის შემდეგ მიიღებ ანალიზს — სად არის ყველაზე დიდი ფინანსური ხარვეზი.
+      რეპროდუქტოლოგიური, ქირურგიული და სპეციალიზებული კლინიკებისთვის. პასუხის შემდეგ მიიღებ ანალიზს — სად არის ფინანსური ეფექტიანობის გაძლიერების ყველაზე დიდი შესაძლებლობა.
     </p>
     <button class="btn start-btn" onclick="startQuiz()">დაიწყე</button>
   </div>
@@ -161,13 +161,13 @@
     <div class="band-sub" id="band-sub">—</div>
 
     <div class="gap-section">
-      <h3>🎯 შენი 3 მთავარი ფინანსური ხარვეზი</h3>
+      <h3>🎯 3 მთავარი გაუმჯობესების შესაძლებლობა</h3>
       <div id="gaps"></div>
     </div>
 
     <div class="cta-box">
       <h3>15-წუთიანი სამედიცინო BI დემო</h3>
-      <p>გაჩვენებ პაციენტის P&L dashboard-ს — consumables, insurance vs private, capacity utilization. შენი სისტემის მონაცემებზე.</p>
+      <p>გაჩვენებთ, როგორ შეიძლება გამოიყურებოდეს ციკლის / სერვისის ეფექტიანობის dashboard — consumables, insurance vs private, capacity. თქვენი სისტემის მონაცემების საფუძველზე. ყოველგვარი ვალდებულების გარეშე.</p>
       <a href="https://calendly.com/bivision/courtest-meeting" target="_blank" class="cta-btn">დავჯავშნოთ 15 წუთი →</a>
     </div>
 
@@ -280,11 +280,11 @@ const questions = [
 ];
 
 const gapRecs = {
-  "Cycle P&L": "ციკლის P&L-ის ხილვის გარეშე სერვისის ფასის ოპტიმიზაცია შეუძლებელია. ერთი ზარალიანი პროტოკოლი შეიძლება 20%+ მოგებას ფარავდეს.",
-  "Consumables": "მედიკამენტის ხარჯი ციკლზე = ყველაზე ცვლადი ხარჯი. Tracking-ის გარეშე — 15-25% overhead ინვიზიბლურია.",
-  "Insurance vs private": "სადაზღვევო პაციენტი ხშირად 30-40% ნაკლებ მოგებას იძლევა. Balance-ის გარეშე ზრდა შეიძლება მოგებას ამცირებდეს.",
+  "Cycle P&L": "ციკლის / სერვისის ეფექტიანობის ხილვის გარეშე ფასის ოპტიმიზაცია შეუძლებელია. ზარალიანი პროტოკოლი ინვიზიბლური რჩება.",
+  "Consumables": "მედიკამენტის ხარჯი ციკლზე = ყველაზე ცვლადი ხარჯი. Tracking-ის გარეშე — overhead ინვიზიბლურია.",
+  "Insurance vs private": "სადაზღვევო vs კომერციული სეგმენტის მომგებიანობა განსხვავდება. Balance-ის ხედის გარეშე ზრდა შეიძლება მოგებას ამცირებდეს.",
   "Doctor productivity": "ექიმის დატვირთვა + შემოსავალი = ყველაზე ძვირი რესურსის ოპტიმიზაცია. 20% capacity gap = პირდაპირი შემოსავლის დაკარგვა.",
-  "Patient acquisition": "CAC-ის გარეშე სარეკლამო ბიუჯეტი ბრმა ინვესტიციაა. არხის ჭრილში CAC = 30-50% ეფექტიანობის გაუმჯობესება.",
+  "Patient acquisition": "CAC-ის გარეშე სარეკლამო ბიუჯეტი ბრმა ინვესტიციაა. არხის ჭრილში CAC = მარკეტინგული ეფექტიანობის გაძლიერება.",
   "Capacity": "Capacity 70%+ = break-even ზონა. 85%+ = peak მოგება. ხილვის გარეშე — ან სიცარიელე ან burn-out.",
   "Service P&L": "სერვისის P&L ხილვა = ინვესტიციის სწორი მიმართულება. ჯამური P&L ახასიათებს — არ მართავს.",
   "HIS/ERP": "HIS/ERP → Excel = დღეში 2-3 საათი manual შრომა + შეცდომები. ავტომატიზაცია = ყოველდღიური financial clarity.",
@@ -364,13 +364,13 @@ function submitGate(e) {
 }
 
 const bivisionFix = {
-  "Cycle P&L": "BiFinance Cycle P&L — პაციენტის / ციკლის დონეზე revenue, consumables, margin. სისტემიდან ავტომატურად.",
+  "Cycle P&L": "BiMedical Cycle Analytics — ციკლის / სერვისის დონეზე revenue, consumables, margin. სისტემიდან ავტომატურად.",
   "Consumables": "Bivision Cost Tracking — მედიკამენტი და სახარჯი მასალა ციკლზე / პაციენტზე. ხელით გამოთვლა ქრება.",
   "Insurance vs private": "Bivision Segment P&L — სადაზღვევო vs კომერციული მომგებიანობა ერთ dashboard-ში. ბალანსი ხილული ხდება.",
   "Doctor productivity": "Bivision Doctor Dashboard — პაციენტი/დღე, შემოსავალი/ექიმი, load vs capacity. ოპტიმიზაციის საფუძველი.",
   "Patient acquisition": "Bivision Marketing Analytics — CAC არხის ჭრილში (Facebook, Google, referral). ბრმა სარეკლამო ხარჯი ქრება.",
   "Capacity": "Bivision Capacity Dashboard — ოპერაციული / ლაბორატორია / კაბინეტი გამოყენება %-ში, real-time.",
-  "Service P&L": "BiFinance Service P&L — ყველა სერვისი / განყოფილება ცალ-ცალკე. ინვესტიციის მიმართულება ნათელია.",
+  "Service P&L": "BiMedical Service Analytics — ყველა სერვისი / განყოფილება ცალ-ცალკე. ინვესტიციის მიმართულება ნათელია.",
   "HIS/ERP": "Bivision HIS/ERP Connector — სამედიცინო სისტემა → dashboard ავტომატურად. Excel ექსპორტი საჭირო აღარ გახდება.",
   "Reporting speed": "Automated Reporting — ყოველთვიური P&L + capacity + segment ანგარიში ავტომატურად. 10 დღე → 15 წუთი.",
   "Decision basis": "Bivision Clinical Business Dashboard — KPI real-time, drill-down, clinical + financial ხედი ერთ ეკრანზე."
@@ -390,12 +390,12 @@ function showResult() {
   const circle = document.getElementById('score-circle');
   let band, sub, cls;
   if (score <= 33) {
-    band = 'კრიტიკული ფინანსური სიბრმავე';
-    sub = 'Cycle P&L, consumables და capacity — ყველა სამი სუსტია. მოგების სიბრმავე მაღალია.';
+    band = 'მაღალი გაუმჯობესების პოტენციალი';
+    sub = 'ციკლის ეფექტიანობა, consumables და capacity — ყველა სამი გაძლიერების შესაძლებლობაა.';
     cls = 'critical';
   } else if (score <= 66) {
-    band = 'ნაწილობრივი კონტროლი';
-    sub = 'ინფორმაცია ნაწილობრივ გაქვს, მაგრამ სიჩქარე და granularity გაკლია. 3-5x ROI შესაძლებელია.';
+    band = 'კარგი საფუძველი — გაძლიერების შესაძლებლობა';
+    sub = 'ინფორმაცია ნაწილობრივ გაქვს, მაგრამ სიჩქარე და granularity გაძლიერება შეიძლება.';
     cls = 'mid';
   } else {
     band = 'ძლიერი ფინანსური მენეჯმენტი';
