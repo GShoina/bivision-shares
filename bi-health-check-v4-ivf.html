@@ -140,13 +140,13 @@
 
   <div id="gate" class="gate hidden">
     <h2>PDF ანგარიში ელ.ფოსტაზე <span style="font-size:14px;font-weight:400;color:var(--muted);">(სურვილისამებრ)</span></h2>
-    <p>გამოვაგზავნით სრულ სამედიცინო BI Health Check ანგარიშს — ხარვეზები + Bivision გამოსავალი.</p>
+    <p>გამოვაგზავნით სრულ სამედიცინო BI Health Check ანგარიშს — შეფასება + Bivision-ის პრაქტიკული რეკომენდაციები.</p>
     <form id="gate-form" onsubmit="submitGate(event)">
       <input type="text" id="gate-name" placeholder="სახელი და გვარი">
       <input type="email" id="gate-email" placeholder="ელ. ფოსტა" required>
       <input type="text" id="gate-company" placeholder="კლინიკის სახელი">
       <input type="text" id="gate-role" placeholder="თქვენი პოზიცია (CEO, CFO, მთავარი ექიმი...)">
-      <button type="submit" class="btn">გამომიგზავნე PDF</button>
+      <button type="submit" class="btn">გაგზავნა — 24 საათში დაგიკავშირდებით</button>
       <button type="button" class="btn secondary" onclick="document.getElementById('gate').classList.add('hidden')" style="font-size:13px;">გამოტოვება</button>
     </form>
     <p class="gate-note">Spam არ გამოგიგზავნით.</p>
@@ -189,7 +189,7 @@
 const questions = [
   {
     dim: "Cycle P&L",
-    q: "პაციენტის ციკლის / პროცედურის რეალური მოგება — ხედავთ?",
+    q: "ციკლის / სერვისის ფინანსური ეფექტიანობა — ხედავთ?",
     opts: [
       { t: "დიახ, თითოეული ციკლის P&L ავტომატურად", p: 10 },
       { t: "ბუღალტერია ამზადებს კვარტალში ერთხელ", p: 5 },
@@ -261,7 +261,7 @@ const questions = [
   },
   {
     dim: "Reporting speed",
-    q: "ყოველთვიური ფინანსური სურათი მენეჯმენტს რამდენ ხანში ხელს უხვდება?",
+    q: "ყოველთვიური ფინანსური სურათი მენეჯმენტს რამდენ ხანში მიეწოდება?",
     opts: [
       { t: "1-2 სამუშაო დღეში ავტომატურად", p: 10 },
       { t: "5-7 სამუშაო დღეში", p: 5 },
@@ -283,9 +283,9 @@ const gapRecs = {
   "Cycle P&L": "ციკლის / სერვისის ეფექტიანობის ხილვის გარეშე ფასის ოპტიმიზაცია შეუძლებელია. ზარალიანი პროტოკოლი ინვიზიბლური რჩება.",
   "Consumables": "მედიკამენტის ხარჯი ციკლზე = ყველაზე ცვლადი ხარჯი. Tracking-ის გარეშე — overhead ინვიზიბლურია.",
   "Insurance vs private": "სადაზღვევო vs კომერციული სეგმენტის მომგებიანობა განსხვავდება. Balance-ის ხედის გარეშე ზრდა შეიძლება მოგებას ამცირებდეს.",
-  "Doctor productivity": "ექიმის დატვირთვა + შემოსავალი = ყველაზე ძვირი რესურსის ოპტიმიზაცია. 20% capacity gap = პირდაპირი შემოსავლის დაკარგვა.",
+  "Doctor productivity": "ექიმის დატვირთვა + შემოსავალი = ყველაზე ძვირი რესურსის ოპტიმიზაცია. Capacity-ის ხილვის გარეშე სრული პოტენციალი ვერ გამოიყენება.",
   "Patient acquisition": "CAC-ის გარეშე სარეკლამო ბიუჯეტი ბრმა ინვესტიციაა. არხის ჭრილში CAC = მარკეტინგული ეფექტიანობის გაძლიერება.",
-  "Capacity": "Capacity 70%+ = break-even ზონა. 85%+ = peak მოგება. ხილვის გარეშე — ან სიცარიელე ან burn-out.",
+  "Capacity": "Capacity utilization-ის ხილვა = სიცარიელის და გადატვირთვის პრევენცია. ოპტიმალური დიაპაზონი ინდივიდუალურია — ხილვა უნდა.",
   "Service P&L": "სერვისის P&L ხილვა = ინვესტიციის სწორი მიმართულება. ჯამური P&L ახასიათებს — არ მართავს.",
   "HIS/ERP": "HIS/ERP → Excel = დღეში 2-3 საათი manual შრომა + შეცდომები. ავტომატიზაცია = ყოველდღიური financial clarity.",
   "Reporting speed": "10+ დღე = გასული თვის მონაცემები. სამედიცინო ბიზნესი სწრაფად ცვლადია — გვიანი ინფო = გვიანი გადაწყვეტილება.",
@@ -357,10 +357,10 @@ function submitGate(e) {
     answers: answers,
     score: calcScore()
   };
-  const log = JSON.parse(localStorage.getItem('bi_health_leads_v3') || '[]');
+  const log = JSON.parse(localStorage.getItem('bi_health_leads_v4m') || '[]');
   log.push(gateData);
-  localStorage.setItem('bi_health_leads_v3', JSON.stringify(log));
-  showResult();
+  localStorage.setItem('bi_health_leads_v4m', JSON.stringify(log));
+  document.getElementById('gate').innerHTML = '<h2 style="margin-bottom:0.8rem;">მადლობა!</h2><p>24 საათში დაგიკავშირდებით.<br>ახლავე გსურთ 15-წუთიანი დემო?</p><a href="https://calendly.com/bivision/courtest-meeting" target="_blank" class="btn" style="display:inline-block;text-decoration:none;margin-top:12px;">დავჯავშნოთ →</a><br><button type="button" class="btn secondary" onclick="document.getElementById(\'gate\').classList.add(\'hidden\')" style="margin-top:10px;font-size:13px;">დახურვა</button>';
 }
 
 const bivisionFix = {

@@ -140,13 +140,13 @@
 
   <div id="gate" class="gate hidden">
     <h2>PDF ანგარიში ელ.ფოსტაზე <span style="font-size:14px;font-weight:400;color:var(--muted);">(სურვილისამებრ)</span></h2>
-    <p>გამოვაგზავნით სრულ სამშენებლო BI Health Check ანგარიშს — ხარვეზები + Bivision გამოსავალი.</p>
+    <p>გამოვაგზავნით სრულ სამშენებლო BI Health Check ანგარიშს — შეფასება + Bivision-ის პრაქტიკული რეკომენდაციები.</p>
     <form id="gate-form" onsubmit="submitGate(event)">
       <input type="text" id="gate-name" placeholder="სახელი და გვარი">
       <input type="email" id="gate-email" placeholder="ელ. ფოსტა" required>
       <input type="text" id="gate-company" placeholder="კომპანიის სახელი">
       <input type="text" id="gate-role" placeholder="თქვენი პოზიცია (CEO, CFO...)">
-      <button type="submit" class="btn">გამომიგზავნე PDF</button>
+      <button type="submit" class="btn">გაგზავნა — 24 საათში დაგიკავშირდებით</button>
       <button type="button" class="btn secondary" onclick="document.getElementById('gate').classList.add('hidden')" style="font-size:13px;">გამოტოვება</button>
     </form>
     <p class="gate-note">Spam არ გამოგიგზავნით.</p>
@@ -261,7 +261,7 @@ const questions = [
   },
   {
     dim: "Reporting speed",
-    q: "ყოველთვიური ფინანსური სურათი ტოპ-მენეჯმენტს რამდენ ხანში ხელს უხვდება?",
+    q: "ყოველთვიური ფინანსური სურათი ტოპ-მენეჯმენტს რამდენ ხანში მიეწოდება?",
     opts: [
       { t: "1-2 სამუშაო დღეში ავტომატურად", p: 10 },
       { t: "5-7 სამუშაო დღეში ბუღალტრის მიერ", p: 5 },
@@ -285,11 +285,11 @@ const gapRecs = {
   "Sales pipeline": "Sales visibility = ფასის კორექტირება დაბალი ტემპის შემთხვევაში + cash flow forecast-ი.",
   "Cash collection": "გადახდის დაგვიანება = გაყინული კაპიტალი. Debtor aging = ადრეული ჩარევა და cash flow-ის დაცვა.",
   "Multi-project view": "Consolidated ხედის გარეშე შეუძლებელია რესურსების ოპტიმიზაცია. ცალ-ცალკე Excel = არასრული მენეჯმენტ ხედი.",
-  "Procurement control": "ქვეკონტრაქტორების ხარჯი ბიუჯეტს +10-20%-ით ხშირად. ავტომატური შედარება = ადრეული გაფრთხილება.",
+  "Procurement control": "ქვეკონტრაქტორების ხარჯი ხშირად ბიუჯეტს სცდება. ავტომატური შედარება = ადრეული გაფრთხილება.",
   "Cash flow": "Cash gap სამშენებლო კომპანიის #1 ოპერაციული რისკი. 90-დღიანი forecast = bank line-ის სწორი გამოყენება.",
   "ERP integration": "ERP → Excel → ანგარიში = 3-5 სამუშაო დღე ყოველ თვე + შეცდომები. ERP → dashboard = 15 წუთი.",
   "Reporting speed": "10+ დღე = გასული თვის მონაცემები. გადაწყვეტილება ძველ ფაქტებზე = რეაქტიული, არა სტრატეგიული მენეჯმენტი.",
-  "Decision basis": "ინტუიცია კარგია — მაგრამ 500K+ გადაწყვეტილებებში ციფრების გარეშე = გაზრდილი რისკი."
+  "Decision basis": "ინტუიცია კარგია — მაგრამ მსხვილ გადაწყვეტილებებში ციფრების გარეშე = გაზრდილი რისკი."
 };
 
 let answers = new Array(questions.length).fill(null);
@@ -357,10 +357,10 @@ function submitGate(e) {
     answers: answers,
     score: calcScore()
   };
-  const log = JSON.parse(localStorage.getItem('bi_health_leads_v2') || '[]');
+  const log = JSON.parse(localStorage.getItem('bi_health_leads_v3c') || '[]');
   log.push(gateData);
-  localStorage.setItem('bi_health_leads_v2', JSON.stringify(log));
-  showResult();
+  localStorage.setItem('bi_health_leads_v3c', JSON.stringify(log));
+  document.getElementById('gate').innerHTML = '<h2 style="margin-bottom:0.8rem;">მადლობა!</h2><p>24 საათში დაგიკავშირდებით.<br>ახლავე გსურთ 15-წუთიანი დემო?</p><a href="https://calendly.com/bivision/courtest-meeting" target="_blank" class="btn" style="display:inline-block;text-decoration:none;margin-top:12px;">დავჯავშნოთ →</a><br><button type="button" class="btn secondary" onclick="document.getElementById(\'gate\').classList.add(\'hidden\')" style="margin-top:10px;font-size:13px;">დახურვა</button>';
 }
 
 const bivisionFix = {
