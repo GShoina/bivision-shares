@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bivision Cold Emails V2 — Role-Specific — 2026-05-10</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', sans-serif; max-width: 900px; margin: 40px auto; padding: 0 24px; background: #f3f4f6; color: #1a1a1a; }
+  h1 { font-size: 1.3rem; color: #111; border-bottom: 3px solid #4f46e5; padding-bottom: 10px; margin-bottom: 4px; }
+  .subtitle { font-size: 0.82rem; color: #666; margin-bottom: 32px; }
+  .card { background: #fff; border-radius: 12px; padding: 28px 32px; margin-bottom: 28px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
+  .card-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+  .card-num { font-size: 1.5rem; font-weight: 800; color: #c7d2fe; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #4f46e5; }
+  .tag { display: inline-block; font-size: 0.72rem; background: #ede9fe; color: #5b21b6; padding: 2px 10px; border-radius: 20px; margin-right: 4px; }
+  .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; margin-bottom: 20px; font-size: 0.82rem; }
+  .meta-row { display: flex; flex-direction: column; }
+  .meta-label { color: #9ca3af; font-size: 0.72rem; text-transform: uppercase; font-weight: 600; margin-bottom: 2px; }
+  .meta-val { color: #374151; }
+  .divider { border: none; border-top: 1px solid #f0f0f0; margin: 16px 0; }
+  .subject-box { background: #f5f3ff; border-left: 3px solid #7c3aed; padding: 10px 16px; border-radius: 0 8px 8px 0; margin-bottom: 14px; }
+  .subject-label { font-size: 0.72rem; color: #7c3aed; font-weight: 700; text-transform: uppercase; margin-bottom: 3px; }
+  .subject-text { font-size: 1rem; font-weight: 700; color: #1e1b4b; }
+  .body-label { font-size: 0.72rem; color: #9ca3af; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
+  .body-text { font-size: 0.93rem; line-height: 1.85; color: #111; white-space: pre-wrap; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px 18px; background: #fafafa; }
+  .cta-box { margin-top: 10px; font-size: 0.88rem; }
+  .cta-label { color: #9ca3af; font-size: 0.72rem; text-transform: uppercase; font-weight: 700; margin-bottom: 3px; }
+  .cta-text { color: #4f46e5; font-weight: 600; }
+  .analysis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; font-size: 0.82rem; }
+  .why { background: #f0fdf4; border-radius: 8px; padding: 10px 14px; }
+  .risk { background: #fff7ed; border-radius: 8px; padding: 10px 14px; }
+  .why-label { color: #15803d; font-weight: 700; font-size: 0.72rem; text-transform: uppercase; margin-bottom: 4px; }
+  .risk-label { color: #c2410c; font-weight: 700; font-size: 0.72rem; text-transform: uppercase; margin-bottom: 4px; }
+  .copy-btn { float: right; font-size: 0.76rem; background: #4f46e5; color: #fff; border: none; padding: 5px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+  .copy-btn:hover { background: #3730a3; }
+</style>
+</head>
+<body>
+
+<h1>Bivision Cold Emails — V2 Role-Specific</h1>
+<div class="subtitle">2026-05-10 &nbsp;|&nbsp; Gemini 2.5 Flash polish &nbsp;|&nbsp; Framework: role × pain × product angle &nbsp;|&nbsp; 80–120 სიტყვა</div>
+
+<!-- EMAIL 1 -->
+<div class="card">
+  <button class="copy-btn" onclick="copyEmail(1)">Copy email</button>
+  <div class="card-header">
+    <div class="card-num">01</div>
+    <div class="card-title">CFO — Cash Flow Visibility</div>
+  </div>
+  <span class="tag">Construction / Developer</span>
+  <span class="tag">CFO</span>
+  <span class="tag">cold</span>
+
+  <div class="meta-grid" style="margin-top:14px;">
+    <div class="meta-row"><span class="meta-label">Pain hypothesis</span><span class="meta-val">Cash flow რისკი გვიან ჩანს — მონაცემები მიმოფანტულია ERP/Excel-ში</span></div>
+    <div class="meta-row"><span class="meta-label">Product angle</span><span class="meta-val">Project-level P&L + Cash Flow dashboard, Fina/Oris/1C ინტეგრაცია</span></div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="subject-box">
+    <div class="subject-label">Subject</div>
+    <div class="subject-text" id="subj1">ფულადი ნაკადების გამჭვირვალობა მშენებლობისას</div>
+  </div>
+
+  <div class="body-label">Email body</div>
+  <div class="body-text" id="body1">სამშენებლო კომპანიებში ფულადი ნაკადების პრობლემა ხშირია: გაყიდვები, დებიტორები, ხარჯები და ბიუჯეტი მიმოფანტულია Excel-სა და ERP სისტემებში. სანამ ციფრებს აჯამებთ, სიტუაცია იცვლება.
+
+Bivision აერთიანებს Fina/Oris/1C მონაცემებს project-level P&L და Cash Flow dashboard-ად — 17+ ქართულ კომპანიაში უკვე გავნერგეთ. CFO ხედავს სად ჩამორჩება გეგმა და სად ჩნდება ლიკვიდობის რისკი.</div>
+
+  <div class="cta-box">
+    <div class="cta-label">CTA</div>
+    <div class="cta-text" id="cta1">ღირს 15 წუთში მსგავსი მოდელის ნახვა?</div>
+  </div>
+
+  <div class="analysis">
+    <div class="why"><div class="why-label">✓ Why it works</div>CFO-ის მთავარ ტკივილს მიმართავს — cash flow + ERP სახელები კონკრეტულია</div>
+    <div class="risk"><div class="risk-label">⚠ Risk</div>CFO-მ შეიძლება ინტეგრაციის სირთულეს ეჭვობდეს — objection unhandled</div>
+  </div>
+</div>
+
+<!-- EMAIL 2 -->
+<div class="card">
+  <button class="copy-btn" onclick="copyEmail(2)">Copy email</button>
+  <div class="card-header">
+    <div class="card-num">02</div>
+    <div class="card-title">Sales Director — Apartment Sales Analytics</div>
+  </div>
+  <span class="tag">Construction / Developer</span>
+  <span class="tag">კომერციული დირექტორი</span>
+  <span class="tag">cold</span>
+
+  <div class="meta-grid" style="margin-top:14px;">
+    <div class="meta-row"><span class="meta-label">Pain hypothesis</span><span class="meta-val">Plan vs actual მხოლოდ ხელით reconciliation-ის შემდეგ ჩანს</span></div>
+    <div class="meta-row"><span class="meta-label">Product angle</span><span class="meta-val">Apartment sales analytics — sold/reserved/available, ფასი/m², discount, debtor</span></div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="subject-box">
+    <div class="subject-label">Subject</div>
+    <div class="subject-text" id="subj2">გაყიდვების ზუსტი სურათი, რეალურ დროში</div>
+  </div>
+
+  <div class="body-label">Email body</div>
+  <div class="body-text" id="body2">სამშენებლო კომპანიებში გაყიდვების სურათი — რომელი ბინა გაიყიდა, რამდენი დარჩა, ფასდაკლებები, დებიტორები — CRM-სა და Excel-ს შორის იკარგება. ხელით გადამოწმება ნიშნავს, რომ გადაწყვეტილებები ყოველთვის დაგვიანებულია.
+
+Bivision ამ მონაცემებს BI dashboard-ად 2–3 კვირაში ათამაშებს — კომპლექსი, ბინა, ფასი, სტატუსი, გეგმა vs ფაქტი — ავტომატური ანალიზით.</div>
+
+  <div class="cta-box">
+    <div class="cta-label">CTA</div>
+    <div class="cta-text" id="cta2">გაინტერესებთ მსგავსი dashboard-ის მაგალითი?</div>
+  </div>
+
+  <div class="analysis">
+    <div class="why"><div class="why-label">✓ Why it works</div>Sales Director-ის real-time pain — კონკრეტული მაგალითები (ბინა, ფასი, სტატუსი)</div>
+    <div class="risk"><div class="risk-label">⚠ Risk</div>CRM-ის მიმართ ლოიალობა შეიძლება barrier-ი იყოს</div>
+  </div>
+</div>
+
+<!-- EMAIL 3 -->
+<div class="card">
+  <button class="copy-btn" onclick="copyEmail(3)">Copy email</button>
+  <div class="card-header">
+    <div class="card-num">03</div>
+    <div class="card-title">CEO — Executive Dashboard (P0 Personalized)</div>
+  </div>
+  <span class="tag">ვივა / ელთ / ლაგი</span>
+  <span class="tag">CEO</span>
+  <span class="tag">personalized</span>
+
+  <div class="meta-grid" style="margin-top:14px;">
+    <div class="meta-row"><span class="meta-label">Pain hypothesis</span><span class="meta-val">სრული სურათი ცალ-ცალკე სისტემებშია — CEO ლოდინს უწევს</span></div>
+    <div class="meta-row"><span class="meta-label">Product angle</span><span class="meta-val">Executive dashboard — პროექტი + Cash Flow + გაყიდვები + ბიუჯეტი</span></div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="subject-box">
+    <div class="subject-label">Subject <span style="font-size:0.7rem;color:#9ca3af;font-weight:400">(HubSpot token)</span></div>
+    <div class="subject-text" id="subj3">{{company}} — მართვა ერთი ეკრანიდან</div>
+  </div>
+
+  <div class="body-label">Email body</div>
+  <div class="body-text" id="body3">{{company}}-სთვის: {{complex}}-ის გაყიდვები, Cash Flow, ხარჯები vs ბიუჯეტი — ცალ-ცალკე სისტემებშია. სრული სურათის შეკრება CEO-სთვის ლოდინს ნიშნავს.
+
+Bivision-მა ეს სამი წყარო executive dashboard-ად 2–3 კვირაში გააერთიანა 17+ ქართულ კომპანიაში — Fina/Oris/1C ინტეგრაციით.
+
+ამ წერილს უპასუხეთ — 15 წუთი გვაქვს სასაუბროდ?
+
+გელა შონია — Bivision CEO</div>
+
+  <div class="cta-box">
+    <div class="cta-label">CTA</div>
+    <div class="cta-text" id="cta3">ამ წერილს უპასუხეთ — 15 წუთი გვაქვს სასაუბროდ?</div>
+  </div>
+
+  <div class="analysis">
+    <div class="why"><div class="why-label">✓ Why it works</div>CEO-to-CEO ხელმოწერა + პერსონალიზაცია + დროის ფაქტორი</div>
+    <div class="risk"><div class="risk-label">⚠ Risk</div>CEO-მ შეიძლება ტექნიკური task-ად ჩათვალოს, არა სტრატეგიულ ინსტრუმენტად</div>
+  </div>
+</div>
+
+<!-- EMAIL 4 -->
+<div class="card">
+  <button class="copy-btn" onclick="copyEmail(4)">Copy email</button>
+  <div class="card-header">
+    <div class="card-num">04</div>
+    <div class="card-title">IVF Clinic Director — Patient Flow + Revenue</div>
+  </div>
+  <span class="tag">IVF / Medical</span>
+  <span class="tag">გენ. დირექტორი</span>
+  <span class="tag">cold</span>
+
+  <div class="meta-grid" style="margin-top:14px;">
+    <div class="meta-row"><span class="meta-label">Pain hypothesis</span><span class="meta-val">ექიმები × პაციენტები × შემოსავალი — სხვადასხვა ცხრილებში, ხელით შეჯამება</span></div>
+    <div class="meta-row"><span class="meta-label">Product angle</span><span class="meta-val">Medical analytics — ექიმი × პაციენტი × პროცედურა × შემოსავალი</span></div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="subject-box">
+    <div class="subject-label">Subject</div>
+    <div class="subject-text" id="subj4">IVF კლინიკის ეფექტური მართვა</div>
+  </div>
+
+  <div class="body-label">Email body</div>
+  <div class="body-text" id="body4">IVF კლინიკებში ექიმების დატვირთვა, შემოსავლიანი პროცედურები და პაციენტების ნაკადი — ჩვეულებრივ სხვადასხვა ცხრილებში ცხოვრობს. კვირის შეჯამება ხელით ემართება.
+
+Bivision ამ მონაცემებს dashboard-ად 2–3 კვირაში ათამაშებს — ექიმი, პროცედურა, პაციენტი, შემოსავალი — ავტომატური ანალიზით.</div>
+
+  <div class="cta-box">
+    <div class="cta-label">CTA</div>
+    <div class="cta-text" id="cta4">15 წუთი ღირს?</div>
+  </div>
+
+  <div class="analysis">
+    <div class="why"><div class="why-label">✓ Why it works</div>სამედიცინო კლინიკის კონკრეტული ოპერაციული pain — ექიმი/პაციენტი/შემოსავალი</div>
+    <div class="risk"><div class="risk-label">⚠ Risk</div>კლინიკას შიდა MIS სისტემა ჰქონდეს — change resistance მაღალია</div>
+  </div>
+</div>
+
+<script>
+function copyEmail(n) {
+  const subj = document.getElementById('subj'+n).innerText;
+  const body = document.getElementById('body'+n).innerText;
+  const cta  = document.getElementById('cta'+n).innerText;
+  const full = 'Subject: ' + subj + '\n\n' + body + '\n\n' + cta;
+  navigator.clipboard.writeText(full).then(() => {
+    const btns = document.querySelectorAll('.copy-btn');
+    const btn = btns[n-1];
+    const orig = btn.innerText;
+    btn.innerText = 'Copied!';
+    setTimeout(() => btn.innerText = orig, 1500);
+  });
+}
+</script>
+</body>
+</html>
