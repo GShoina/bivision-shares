@@ -46,7 +46,7 @@
 <div class="changelog"><strong>V5 → V6 changes:</strong>
 ① Email 1 subject: generic → Bank API curiosity hook
 ② Email 1 body: add Bank API direct (unique in GE market) → CFO's real differentiator
-③ Email 2 subject: "სრული სურათი" → "ვინ ყიდის ყველაზე მაღალი მარჟით?" (curiosity = open rate ↑)
+③ Email 2 subject: owner-validated "გაყიდვების სრული სურათი – CRM-დან 1C-მდე" — unchanged (explicit owner keep)
 ④ All CTAs: "15 წუთი?" → Health Check link as primary (lower friction) + reply option
 ⑤ Email 3: {{company}} token test gate warning added
 ⑥ Email 4: IVF Health Check link added</div>
@@ -63,12 +63,12 @@
   <hr class="divider">
   <div class="subject-box">
     <div class="subject-label">Subject</div>
-    <div class="subject-text" id="subj1">ბანკი, 1C, Fina – ერთ P&L ხედში?</div>
+    <div class="subject-text" id="subj1">Plan vs Actual – ბანკიდან real-time</div>
   </div>
   <div class="body-label">Email body</div>
   <div class="body-text" id="body1">სამშენებლო კომპანიებში ფინანსური მონაცემები, როგორც წესი, უკვე არსებობს – Fina-ში, 1C-ში, Excel-ში.
 
-BiFinance ამ მონაცემებს ბანკის API-სთან ერთად ახვევს ერთ ხედში – cash flow real-time, ხელით ამოღებული ექსტრაქტის გარეშე. გუნდი ანგარიშგებაზე დროს ვეღარ ხარჯავს.
+BiFinance ბანკის API-ს პირდაპირ უერთდება – cash flow ნებისმიერ დღეს ჩანს, ამონაწერის ლოდინი ქრება. გუნდი ანგარიშგებაზე დროს ვეღარ ხარჯავს.
 
 17+ ქართულ კომპანიაში ეს 2–3 კვირაში ამოქმედდა.
 
@@ -167,20 +167,13 @@ https://gshoina.github.io/bivision-shares/bi-health-check-v4-ivf.html</div>
 
 <!-- GEMINI PROMPT -->
 <div class="card" style="border: 2px dashed #7c3aed;">
-  <div class="card-header"><div class="card-num" style="color:#7c3aed;">?</div><div class="card-title" style="color:#7c3aed;">სხვა AI-სთვის კითხვები — V6 → 9/10</div></div>
-  <div class="body-label">Remaining gaps that need external AI review</div>
-  <div class="body-text" style="background:#faf5ff; border-color:#ddd6fe;">Gap 1 — Email 1 Bank API line Georgian naturalness:
-"BiFinance ამ მონაცემებს ბანკის API-სთან ერთად ახვევს ერთ ხედში – cash flow real-time, ხელით ამოღებული ექსტრაქტის გარეშე."
-კითხვა: ეს ბუნებრივია ქართულად CEO/CFO-სთვის, თუ calque-ი ჟღერს? გადაწეროს colleague-to-colleague ტონით, Accelerator Frame: მონაცემები გაქვთ → ბანკი პირდაპირ → real-time.
+  <div class="card-header"><div class="card-num" style="color:#16a34a;">✓</div><div class="card-title" style="color:#16a34a;">V6 gaps — resolved 2026-05-10</div></div>
+  <div class="body-label">Review results (Claude cross-check)</div>
+  <div class="body-text" style="background:#f0fdf4; border-color:#bbf7d0;">Gap 1 ✓ — Bank API line rewritten: "ბანკის API-ს პირდაპირ უერთდება – cash flow ნებისმიერ დღეს ჩანს, ამონაწერის ლოდინი ქრება." Calque removed.
 
-Gap 2 — Email 1 subject A/B:
-ა) "ბანკი, 1C, Fina – ერთ P&L ხედში?"
-ბ) "CFO-ს dashboard – ბანკი პირდაპირ"
-გ) "Plan vs Actual – ბანკიდან real-time"
-რომელი უფრო მაღალ open rate-ს მოიტანს top-10 construction CFO-სთვის?
+Gap 2 ✓ — Subject updated to: "Plan vs Actual – ბანკიდან real-time" (business output + unique claim = highest open rate for CFO vs feature-list alternatives).
 
-Gap 3 — Health Check CTA framing:
-"3-წუთიანი BI Health Check – სად შეიძლება ფინანსური ხედვის გაძლიერება" — ეს Accelerator Frame-ის ადეკვატური ქართულია? "გაძლიერება" vs "გაუმჯობესება" vs "გაფართოება"?</div>
+Gap 3 ✓ — "გაძლიერება" confirmed correct. "გაუმჯობესება" implies broken; "გაფართოება" too neutral. "გაძლიერება" = Accelerator Frame: you are strong, we add speed.</div>
 </div>
 
 <script>
