@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<title>Cold Email Protocol — სამშენებლო სექტორი | Bivision</title>
+<style>
+body { font-family: 'Segoe UI', 'Noto Sans Georgian', Arial, sans-serif; max-width: 860px; margin: 32px auto; padding: 0 24px 60px; color: #1a1a2e; line-height: 1.7; background: #fafafa; }
+h1 { color: #1a5c3a; font-size: 1.6rem; border-bottom: 3px solid #1a5c3a; padding-bottom: 10px; margin-bottom: 6px; }
+h2 { color: #1a5c3a; font-size: 1.1rem; margin-top: 32px; margin-bottom: 8px; border-left: 4px solid #2ecc71; padding-left: 10px; }
+h3 { color: #333; font-size: 0.97rem; margin-top: 18px; margin-bottom: 4px; }
+.meta { font-size: 0.85rem; color: #777; margin-bottom: 28px; }
+.box { background: #fff; border: 1px solid #dde; border-radius: 8px; padding: 16px 20px; margin: 12px 0; }
+.warn { background: #fff8e1; border-left: 4px solid #f57c00; padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+.stop { background: #fff0f0; border-left: 4px solid #e74c3c; padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+.good { background: #f0f8f4; border-left: 4px solid #1a5c3a; padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+.field { background: #f4f7fb; border: 1px solid #d0d8e8; border-radius: 6px; padding: 12px 16px; margin: 8px 0; }
+.field strong { color: #1a3a6b; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 0.93rem; }
+th { background: #e8f5ee; color: #1a5c3a; padding: 8px 12px; text-align: left; }
+td { padding: 8px 12px; border-bottom: 1px solid #e5e5e5; vertical-align: top; }
+.email-example { background: #fff; border: 2px solid #1a5c3a; border-radius: 8px; padding: 20px 24px; margin: 16px 0; }
+.email-example .subject { font-weight: 700; color: #1a5c3a; margin-bottom: 4px; font-size: 0.95rem; }
+.email-example .body { font-size: 0.95rem; line-height: 1.8; white-space: pre-line; }
+.label { display: inline-block; background: #1a5c3a; color: white; font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; }
+.reject { color: #e74c3c; font-weight: 600; }
+ol, ul { padding-left: 22px; }
+li { margin: 5px 0; }
+code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 0.9rem; }
+footer { margin-top: 48px; font-size: 0.8rem; color: #aaa; border-top: 1px solid #e5e5e5; padding-top: 12px; }
+</style>
+</head>
+<body>
+
+<h1>Bivision Cold Email Protocol — სამშენებლო / დეველოპერი</h1>
+<div class="meta">შემდგენელი: Gurafa · 2026-05-10 · v1.0 · სტატუსი: draft for review</div>
+
+<h2>0. კონტექსტი — სანამ წერილს დაწერ</h2>
+<div class="box">
+  <strong>სამშენებლო სექტორი Bivision-ისთვის ახალია.</strong><br>
+  <strong>Proof — დაშვებული:</strong>
+  <ul>
+    <li><strong>IG Development Holding</strong> — სახელის გამოყენება ✓ (ფინანსური analytics, BiFinance)</li>
+    <li>"სამშენებლო / დეველოპერული კომპანიები ქართულ ბაზარზე" — ✓</li>
+    <li>ERP integrations (Fina, Oris, 1C, Zoho, HubSpot) + Bank API — ✓</li>
+  </ul>
+  <strong>სტატუსი:</strong> სამშენებლო სექტორი ახალია — IG Development = anchor proof. სახელი გამოიყენება ფრთხილად: "IG Development Holding-ში BiFinance-ი project P&L-ს ავტომატურად ითვლის."
+</div>
+
+<div class="good">
+  <strong>Bivision Credential Anchors — გამოიყენე email-ში:</strong>
+  <ul>
+    <li><strong>"2 კვირაში"</strong> — სწრაფი deployment (bivision.ge-ს headline: "ბიზნეს ანალიტიკა 2 კვირაში")</li>
+    <li><strong>"50+ პარტნიორი"</strong> — reference სოციალური დასტური</li>
+    <li><strong>"2015 წლიდან"</strong> — გამოცდილება ქართულ ბაზარზე</li>
+    <li><strong>"Excel-ის რუტინის ჩანაცვლება"</strong> — site-ზე განმეორებადი promise (CFO/finance pain)</li>
+    <li><strong>"80%-იანი reporting ავტომატიზაცია"</strong> — BiRetail-ის განყოფილებიდან, valid across products</li>
+    <li><strong>"8.9 NPS"</strong> — ქართული ბაზარი, client satisfaction — high trust anchor</li>
+  </ul>
+  <em>გამოყენება: მხოლოდ 1–2 anchor email-ში. ყველა ერთად = boast.</em>
+</div>
+
+<h2>1. პროდუქტი — რა სთავაზობს Bivision სამშენებლო სექტორს</h2>
+<div class="warn" style="margin-bottom:8px;">Deployment time: <strong>2 კვირა</strong>. ERP connector ან Bank API ინტეგრაცია შედის. Excel-ის ჩანაცვლება = explicit site promise.</div>
+<table>
+  <tr><th>პროდუქტი</th><th>რას აკეთებს (site language)</th><th>სამშენებლო use case</th></tr>
+  <tr><td><strong>BiFinance</strong></td><td>ფინანსური წესრიგი + ავტომატური reporting. გეგმა vs ფაქტი, გადახრები დროულად. შვილობილი კომპანიების კონსოლიდაცია. Excel-ის ჩანაცვლება ანალიტიკით.</td><td>Project-level P&L — რომელი პროექტი რამდენად მომგებიანია ახლა. Multi-project consolidated view.</td></tr>
+  <tr><td><strong>Direct Cash Flow</strong></td><td>ბანკის API → real-time cash visibility. Cash gap forecast.</td><td>Cash position ნებისმიერ დღეს. Bank line-ის სწორი გამოყენება.</td></tr>
+  <tr><td><strong>Budget vs Actual</strong></td><td>გეგმა vs ფაქტი ავტომატურად. გადახარჯვის tracking project/stage/contractor ჭრილში.</td><td>კონტრაქტორი, მასალა, ეტაპი — სად მიდის ბიუჯეტი. Alert გადახარჯვაზე.</td></tr>
+  <tr><td><strong>ERP Integration</strong></td><td>Fina / Oris / 1C / Balance → dashboard. "Excel-ის რუტინის ჩანაცვლება". 80% reporting ავტომატიზაცია.</td><td>ხელით Excel-ის გარეშე. Reporting 10 სამ.დღიდან → 15 წუთამდე.</td></tr>
+  <tr><td><strong>BiDebitors</strong></td><td>Aging report, DSO გაუმჯობესება, CEI tracking. AI cash flow forecast. Collection process ავტომატიზაცია.</td><td>ვინ რამდენს ახვევს — 30/60/90 დღე. გაყინული კაპიტალი.</td></tr>
+</table>
+
+<h2>2. როლების რუქა — ტკივილი ჭრილში</h2>
+<table>
+  <tr><th>როლი</th><th>მთავარი ტკივილი</th><th>სწორი angle</th></tr>
+  <tr>
+    <td><strong>CEO / დამფუძნებელი</strong></td>
+    <td>ბიზნესის სრული სურათი გვიან ჩანს. რომელი პროექტი "ჭამს" cash-ს — ხშირად არ ჩანს სანამ გვიანაა.</td>
+    <td>Project P&L + cash flow visibility ერთ ეკრანზე</td>
+  </tr>
+  <tr>
+    <td><strong>CFO / ფინანსური დირექტორი</strong></td>
+    <td>Excel reporting = 3-5 სამ. დღე/თვე. ბიუჯეტი vs ფაქტი გვიანდება. ბანკის კითხვაზე cash coverage — სიჩქარე გაკლია.</td>
+    <td>Budget vs Actual + Direct Cash Flow (Bank API)</td>
+  </tr>
+  <tr>
+    <td><strong>Commercial / Sales Director</strong></td>
+    <td>ბინების სტატუსი, გაყიდვების გეგმა vs ფაქტი, ფასდაკლება, მ² — სხვადასხვა Excel-ში იკარგება.</td>
+    <td>Sales analytics + apartment pipeline dashboard</td>
+  </tr>
+  <tr>
+    <td><strong>Project / Operations Director</strong></td>
+    <td>ქვეკონტრაქტორების ხარჯი, გადახარჯვა, ეტაპების პროგრესი — ხშირად სიურპრიზი.</td>
+    <td>Budget vs Actual per contractor/stage + WIP</td>
+  </tr>
+</table>
+
+<h2>3. სავალდებულო 8-ველიანი pre-check — სანამ წერილს დაწერ</h2>
+<div class="warn">თუ ეს 8 ველი არ შეავსე — <strong>წერილი არ დაიწეროს.</strong></div>
+
+<div class="field"><strong>1. Recipient Role:</strong> CEO / CFO / Sales Director / Project Director</div>
+<div class="field"><strong>2. Company type:</strong> developer (ბინები) / construction contractor / holding / mixed</div>
+<div class="field"><strong>3. Trigger/Signal:</strong> რა event-ი გვაქვს? (tender win / new project announced / CFO hire / LinkedIn signal / cold — no signal)<br><em>No signal = opening უფრო მძიმე insight-ით უნდა იწყებოდეს</em></div>
+<div class="field"><strong>4. One Pain:</strong> ერთი მთავარი ტკივილი (cash flow / project P&L / budget control / debtors / sales pipeline)<br><em>მხოლოდ ერთი — ორი pain = წერილი მძიმდება</em></div>
+<div class="field"><strong>5. Consequence/Cost:</strong> რა ბიზნეს-ზარალი ან რისკი ჩანს ამ pain-ისგან? (დრო / cash gap / გვიანი გადაწყვეტილება / გადახარჯვა)<br><em>ეს ველი commercial argument-ს ქმნის — გარეშე = ფაქტის ჩამოთვლა, არა argument</em></div>
+<div class="field"><strong>6. Product Angle:</strong> BiFinance / Direct Cash Flow / Budget vs Actual / ERP integration / Debtors</div>
+<div class="field"><strong>7. Proof allowed:</strong> <strong>IG Development Holding</strong> ✓ / ERP integrations / Bank API / "სამშენებლო კომპანიები ქართულ ბაზარზე"</div>
+<div class="field"><strong>8. CTA type:</strong> reply / 15-min call / example dashboard / "2 მაგალითი გამოგიგზავნოთ?"</div>
+
+<h2>4. სტრუქტურა — ყოველი წერილი</h2>
+<div class="box">
+  <strong>Subject:</strong> 3–6 სიტყვა. კონკრეტული pain ან კითხვა. <span class="reject">არა "Bivision გთავაზობთ".</span><br><br>
+  <strong>Opening (1 წინადადება):</strong> Industry insight ან pain hypothesis — არა Bivision-ზე. რეალური ბიზნეს-სიტუაცია.<br><br>
+  <strong>Consequence (1–2 წინადადება):</strong> რა ჯდება ეს pain — დრო, cash risk, გვიანი ხილვა. Commercial argument.<br><br>
+  <strong>Bivision relevance (1–2 წინადადება):</strong> კონკრეტულად რას ახერხებს — არა "BI dashboard", არამედ "project P&L / cash position / budget gap" ხილვა.<br><br>
+  <strong>Proof (1 წინადადება):</strong> მხოლოდ ის რაც ვიცით — ERP integrations, Bank API, ქართული ბიზნეს-გამოცდილება.<br><br>
+  <strong>CTA (1 კითხვა):</strong> Low-friction. <span class="reject">არა "30-წუთიანი demo". </span>კი: "15 წუთში გაჩვენოთ მსგავსი მოდელი?"
+</div>
+<div class="warn"><strong>სიგრძე:</strong> 80–120 სიტყვა. Mobile-friendly. Plain text.</div>
+
+<h2>5. Quality Gate — წერილი არ გავიდეს, თუ:</h2>
+<div class="stop">
+  <ol>
+    <li>Bivision პირველ წინადადებაში ჩანს</li>
+    <li>ტექსტი ნებისმიერ სამშენებლო კომპანიას ეგზავნება (generic)</li>
+    <li>"dashboard", "BI", "analytics" — ახსნის გარეშე</li>
+    <li>CTA = "30-წუთიანი demo-სთვის"</li>
+    <li>Subject line ჰგავს რეკლამას</li>
+    <li>Consequence/Cost ველი ცარიელია</li>
+    <li>ტექსტი არ უპასუხებს: "რატომ უნდა გაეხსნა ეს CFO/CEO-ს ახლა?"</li>
+    <li>კლიენტის სახელი გამოიყენება IG Development-ის გარდა სხვა დაუშვებელი კლიენტი</li>
+  </ol>
+</div>
+
+<h2>6. Output Format — ყოველი გენერირებული ვერსია</h2>
+<div class="box">
+<pre style="font-size:0.9rem; line-height:1.8;">
+Segment:        [developer / contractor / holding]
+Role:           [CEO / CFO / Sales / Project]
+Trigger:        [signal ან cold]
+Pain:           [ერთი]
+Consequence:    [რა ჯდება]
+Product angle:  [BiFinance / Cash Flow / etc]
+
+Subject:
+[...]
+
+Email body:
+[...]
+
+CTA:
+[...]
+
+Why this works:
+[commercial argument-ის ახსნა — 1–2 წინადადება]
+
+Risk/weakness:
+[რა შეიძლება არ გამოვიდეს — 1 წინადადება]
+</pre>
+</div>
+
+<h2>7. მაგალითები — სწორი მიმართულება</h2>
+
+<div class="email-example">
+  <div class="label">CFO · cold · project P&L + budget vs actual</div>
+  <div class="subject">Subject: პროექტების მომგებიანობა — ახლა ჩანს?</div>
+  <div class="body">
+სამშენებლო კომპანიებში project-level P&L ხშირად მხოლოდ პროექტის ბოლოს ჩანს. გეგმა vs ფაქტი — Excel-ში, ხელით, თვეში ერთხელ. ეს ნიშნავს, რომ გადახარჯვა 3-4 კვირა გვიანდება.
+
+BiFinance Fina/Oris/1C-ის მონაცემებს პირდაპირ უკავშირებს project P&L-ს — CFO ხედავს: სად მიდის ბიუჯეტი, სად ჩნდება cash gap, რომელ პროექტს სჭირდება ჩარევა. IG Development Holding-ი ასე მართავს პროექტების ფინანსებს.
+
+15 წუთში გაჩვენოთ მსგავსი მოდელი?
+
+გელა შონია — Bivision</div>
+</div>
+
+<div class="email-example">
+  <div class="label">CEO · trigger: new project announced · cash flow · 2-week hook</div>
+  <div class="subject">Subject: [კომპანია] — cash flow ახალ კომპლექსზე</div>
+  <div class="body">
+[კომპლექსის] გაშვება ნიშნავს ახალ cash cycle-ს — გაყიდვები, დებიტორები, ქვეკონტრაქტორები, ბანკის ვალდებულებები. ამ სტადიაზე cash gap სიურპრიზი ყველაზე ძვირია.
+
+Bivision ბანკის API-ს პირდაპირ უკავშირებს financial dashboard-ს — cash position ნებისმიერ დღეს, 90-დღიანი forecast. ინტეგრაცია 2 კვირა.
+
+ღირს, გაჩვენოთ როგორ გამოიყურება ასეთი სურათი?
+
+გელა შონია — Bivision</div>
+</div>
+
+<div class="email-example">
+  <div class="label">Commercial Director · cold · sales pipeline + 80% automation</div>
+  <div class="subject">Subject: ბინების სტატუსი — ერთ ეკრანზე?</div>
+  <div class="body">
+დეველოპერულ კომპანიებში გაყიდვების სრული სურათი — გაყიდული, რეზერვი, თავისუფალი, ფასი მ²-ზე — ხშირად CRM-სა და Excel-ს შორის იყოფა. ტემპი და ფასდაკლება — გვიანი ინფო.
+
+Bivision ამ მონაცემებს ერთ sales dashboard-ად აერთიანებს — კომპლექსის ჭრილში, real-time. Reporting-ის 80% ავტომატიზდება.
+
+2 მაგალითი გამოგიგზავნოთ?
+
+გელა შონია — Bivision</div>
+</div>
+
+<h2>8. ქართული ტექსტი — Gemini წესი</h2>
+<div class="warn">
+  <strong>Email body-ს ქართულ პროზას Claude არ წერს.</strong><br><br>
+  პროცესი:
+  <ol>
+    <li>Claude ავსებს 8-ველიანი pre-check-ს + ააწყობს commercial argument-ს (ინგლისურად ან bullet-ებში)</li>
+    <li>Claude გადასცემს Gemini-ს: <code>/gemini</code> — "დაწერე სამშენებლო CFO-სთვის cold email შემდეგი argument-ის მიხედვით: [...]"</li>
+    <li>Gemini წარმოადგენს ქართულ ვერსიას</li>
+    <li>Claude ამოწმებს Quality Gate-ს მიხედვით</li>
+  </ol>
+  <strong>მიზეზი:</strong> ქართული B2B marketing prose = Gemini. Claude = strategy + structure + verification.
+</div>
+
+<h2>9. აკრძალული ფრაზები</h2>
+<div class="stop">
+"ინოვაციური გადაწყვეტა" · "მონაცემებზე დაფუძნებული გადაწყვეტილებები" (ახსნის გარეშე) · "ყველაფერი ერთ ეკრანზე" (კონკრეტიზაციის გარეშე) · "გააუმჯობესეთ ეფექტურობა" · "value proposition" · "pipeline" ქართულ ტექსტში · კლიენტის სახელი (ჯერ)
+</div>
+
+<footer>Bivision · Gurafa Intelligence Layer · 2026-05-10 · v1.0 — review before agent use</footer>
+</body>
+</html>

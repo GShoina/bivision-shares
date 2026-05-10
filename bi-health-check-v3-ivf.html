@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>სამედიცინო კლინიკის BI Health Check — ფინანსური ეფექტიანობა 3 წუთში | Bivision</title>
+<meta name="description" content="10 კითხვა. 3 წუთი. გაიგე სად კარგავს კლინიკა ფინანსურ ეფექტიანობას — პაციენტის P&L, consumables, capacity, reporting.">
+<style>
+  :root {
+    --primary: #1a3a6b;
+    --primary-dark: #122a55;
+    --accent: #3b82f6;
+    --danger: #e74c3c;
+    --warning: #f57c00;
+    --bg: #fafafa;
+    --surface: #fff;
+    --border: #e5e5e5;
+    --text: #1a1a2e;
+    --muted: #666;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', 'Noto Sans Georgian', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+  .container { max-width: 720px; margin: 0 auto; padding: 1.5rem 1.2rem 4rem; }
+  .topbar { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 2px solid var(--border); margin-bottom: 2rem; }
+  .logo { font-size: 22px; font-weight: 800; color: var(--primary); letter-spacing: 1px; }
+  .logo span { color: var(--accent); }
+  .sector-tag { font-size: 13px; color: var(--muted); font-weight: 600; background: #e8eef8; padding: 4px 10px; border-radius: 12px; }
+  .intro { text-align: center; padding: 1rem 0 2rem; }
+  .intro h1 { font-size: clamp(22px, 5vw, 32px); color: var(--text); margin-bottom: 0.7rem; line-height: 1.2; }
+  .intro .tagline { font-size: 17px; color: var(--muted); margin-bottom: 1.5rem; }
+  .intro-pills { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .pill { background: var(--surface); border: 1px solid var(--border); padding: 6px 14px; border-radius: 20px; font-size: 13px; color: var(--muted); }
+  .pill strong { color: var(--primary); }
+  .progress-wrap { margin-bottom: 1.5rem; }
+  .progress-label { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+  .progress { background: var(--border); height: 6px; border-radius: 3px; overflow: hidden; }
+  .progress-bar { background: var(--primary); height: 100%; width: 0%; transition: width 0.4s ease; }
+  .question-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.8rem 1.5rem; margin-bottom: 1rem; animation: fadeIn 0.3s ease; }
+  .q-number { color: var(--primary); font-weight: 600; font-size: 13px; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 1px; }
+  .q-text { font-size: 19px; line-height: 1.4; margin-bottom: 1.3rem; font-weight: 600; }
+  .options { display: flex; flex-direction: column; gap: 0.6rem; }
+  .option { display: flex; align-items: flex-start; gap: 0.8rem; padding: 0.9rem 1rem; border: 2px solid var(--border); border-radius: 8px; cursor: pointer; background: #fafafa; transition: all 0.15s ease; }
+  .option:hover { border-color: var(--primary); background: #f0f4fb; }
+  .option.selected { border-color: var(--primary); background: #e8eef8; }
+  .option-dot { width: 20px; height: 20px; border: 2px solid var(--border); border-radius: 50%; flex-shrink: 0; margin-top: 2px; position: relative; }
+  .option.selected .option-dot { border-color: var(--primary); }
+  .option.selected .option-dot::after { content: ''; position: absolute; inset: 3px; background: var(--primary); border-radius: 50%; }
+  .option-text { font-size: 15px; line-height: 1.4; }
+  .nav { display: flex; justify-content: space-between; gap: 0.8rem; margin-top: 1.2rem; }
+  .btn { padding: 0.8rem 1.5rem; border-radius: 8px; border: 2px solid var(--primary); background: var(--primary); color: white; font-weight: 600; font-size: 15px; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+  .btn:hover:not(:disabled) { background: var(--primary-dark); border-color: var(--primary-dark); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .btn.secondary { background: transparent; color: var(--primary); }
+  .btn.secondary:hover:not(:disabled) { background: var(--primary); color: white; }
+  .start-btn { display: block; margin: 1.5rem auto 0; padding: 1rem 2.5rem; font-size: 17px; }
+  .gate { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem 1.5rem; text-align: center; }
+  .gate h2 { font-size: 24px; color: var(--text); margin-bottom: 0.6rem; }
+  .gate p { color: var(--muted); margin-bottom: 1.5rem; font-size: 15px; }
+  .gate form { display: flex; flex-direction: column; gap: 0.8rem; max-width: 400px; margin: 0 auto; }
+  .gate input { padding: 0.8rem 1rem; border: 2px solid var(--border); border-radius: 8px; font-size: 15px; font-family: inherit; }
+  .gate input:focus { outline: none; border-color: var(--primary); }
+  .gate-note { font-size: 12px; color: var(--muted); margin-top: 0.8rem; }
+  .result { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem 1.5rem; }
+  .score-circle { width: 160px; height: 160px; border-radius: 50%; margin: 0 auto 1.2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; }
+  .score-circle.critical { background: linear-gradient(135deg, var(--danger), #c0392b); }
+  .score-circle.mid { background: linear-gradient(135deg, var(--warning), #d35400); }
+  .score-circle.strong { background: linear-gradient(135deg, #3b82f6, #1a3a6b); }
+  .score-num { font-size: 48px; font-weight: 800; line-height: 1; }
+  .score-max { font-size: 14px; opacity: 0.9; margin-top: 4px; }
+  .band { text-align: center; font-size: 22px; font-weight: 700; margin-bottom: 0.4rem; }
+  .band-sub { text-align: center; color: var(--muted); margin-bottom: 2rem; }
+  .gap-section h3 { font-size: 17px; color: var(--primary); margin-bottom: 0.8rem; border-left: 4px solid var(--primary); padding-left: 10px; }
+  .gap-item { background: #fff5f5; border-left: 3px solid var(--danger); padding: 0.8rem 1rem; margin-bottom: 0.6rem; border-radius: 0 6px 6px 0; }
+  .gap-item strong { color: var(--danger); }
+  .gap-item p { font-size: 14px; color: var(--text); margin-top: 4px; }
+  .gap-fix { background: #eaf0f8; border-left: 3px solid #5b9bd5; padding: 0.7rem 1rem; margin-top: 8px; border-radius: 0 6px 6px 0; }
+  .gap-fix .fix-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--primary); margin-bottom: 4px; }
+  .gap-fix .fix-text { font-size: 13px; color: #1a2f5a; line-height: 1.5; }
+  .cta-box { background: linear-gradient(135deg, var(--primary), #2a5298); color: white; padding: 1.5rem; border-radius: 10px; margin-top: 2rem; text-align: center; }
+  .cta-box h3 { font-size: 20px; margin-bottom: 0.5rem; color: white; border: 0; padding: 0; }
+  .cta-box p { opacity: 0.95; margin-bottom: 1rem; font-size: 15px; }
+  .cta-btn { background: white; color: var(--primary); padding: 0.8rem 1.8rem; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-block; }
+  .cta-btn:hover { background: #e8eef8; }
+  .share-bar { display: flex; gap: 0.6rem; justify-content: center; margin-top: 1.5rem; }
+  .share-bar button { background: var(--surface); border: 1px solid var(--border); padding: 8px 16px; border-radius: 6px; font-size: 13px; cursor: pointer; color: var(--muted); font-family: inherit; }
+  .share-bar button:hover { border-color: var(--primary); color: var(--primary); }
+  footer { text-align: center; padding: 2rem 0 1rem; color: var(--muted); font-size: 12px; }
+  footer a { color: var(--primary); text-decoration: none; }
+  .hidden { display: none; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 480px) {
+    .container { padding: 1rem 0.8rem 3rem; }
+    .question-card, .gate, .result { padding: 1.5rem 1rem; }
+    .q-text { font-size: 17px; }
+    .option-text { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="topbar">
+    <div class="logo">B<span>·</span>VISION</div>
+    <div class="sector-tag">სამედიცინო კლინიკა</div>
+  </div>
+
+  <div id="intro" class="intro">
+    <h1>სამედიცინო კლინიკის<br>BI Health Check</h1>
+    <p class="tagline">3 წუთში გაიგე სად კარგავს კლინიკა ფინანსურ ეფექტიანობას — პაციენტის P&L, consumables, capacity.</p>
+    <div class="intro-pills">
+      <div class="pill"><strong>10</strong> კითხვა</div>
+      <div class="pill"><strong>3</strong> წუთი</div>
+      <div class="pill">უფასო</div>
+    </div>
+    <p style="color: var(--muted); font-size: 14px; max-width: 500px; margin: 0 auto;">
+      რეპროდუქტოლოგიური, ქირურგიული და სპეციალიზებული კლინიკებისთვის. პასუხის შემდეგ მიიღებ ანალიზს — სად არის ყველაზე დიდი ფინანსური ხარვეზი.
+    </p>
+    <button class="btn start-btn" onclick="startQuiz()">დაიწყე</button>
+  </div>
+
+  <div id="quiz" class="hidden">
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>კითხვა <span id="q-current">1</span>/<span id="q-total">10</span></span>
+        <span id="q-time">~3 წთ დარჩა</span>
+      </div>
+      <div class="progress"><div class="progress-bar" id="progress-bar"></div></div>
+    </div>
+    <div class="question-card">
+      <div class="q-number" id="q-label">კითხვა 1</div>
+      <div class="q-text" id="q-text"></div>
+      <div class="options" id="options"></div>
+    </div>
+    <div class="nav">
+      <button class="btn secondary" id="prev-btn" onclick="prevQuestion()" disabled>← წინა</button>
+      <button class="btn" id="next-btn" onclick="nextQuestion()" disabled>შემდეგი →</button>
+    </div>
+  </div>
+
+  <div id="gate" class="gate hidden">
+    <h2>PDF ანგარიში ელ.ფოსტაზე <span style="font-size:14px;font-weight:400;color:var(--muted);">(სურვილისამებრ)</span></h2>
+    <p>გამოვაგზავნით სრულ სამედიცინო BI Health Check ანგარიშს — ხარვეზები + Bivision გამოსავალი.</p>
+    <form id="gate-form" onsubmit="submitGate(event)">
+      <input type="text" id="gate-name" placeholder="სახელი და გვარი">
+      <input type="email" id="gate-email" placeholder="ელ. ფოსტა" required>
+      <input type="text" id="gate-company" placeholder="კლინიკის სახელი">
+      <input type="text" id="gate-role" placeholder="თქვენი პოზიცია (CEO, CFO, მთავარი ექიმი...)">
+      <button type="submit" class="btn">გამომიგზავნე PDF</button>
+      <button type="button" class="btn secondary" onclick="document.getElementById('gate').classList.add('hidden')" style="font-size:13px;">გამოტოვება</button>
+    </form>
+    <p class="gate-note">Spam არ გამოგიგზავნით.</p>
+  </div>
+
+  <div id="result" class="result hidden">
+    <div class="score-circle" id="score-circle">
+      <div class="score-num" id="score-num">0</div>
+      <div class="score-max">/ 100</div>
+    </div>
+    <div class="band" id="band">—</div>
+    <div class="band-sub" id="band-sub">—</div>
+
+    <div class="gap-section">
+      <h3>🎯 შენი 3 მთავარი ფინანსური ხარვეზი</h3>
+      <div id="gaps"></div>
+    </div>
+
+    <div class="cta-box">
+      <h3>15-წუთიანი სამედიცინო BI დემო</h3>
+      <p>გაჩვენებ პაციენტის P&L dashboard-ს — consumables, insurance vs private, capacity utilization. შენი სისტემის მონაცემებზე.</p>
+      <a href="https://calendly.com/bivision/courtest-meeting" target="_blank" class="cta-btn">დავჯავშნოთ 15 წუთი →</a>
+    </div>
+
+    <div class="share-bar">
+      <button onclick="shareResult('linkedin')">LinkedIn-ზე გაზიარება</button>
+      <button onclick="shareResult('copy')">ლინკის კოპირება</button>
+      <button onclick="document.getElementById('gate').classList.remove('hidden');document.getElementById('gate').scrollIntoView({behavior:'smooth'})">📄 PDF ანგარიში</button>
+      <button onclick="restart()">ხელახლა</button>
+    </div>
+  </div>
+
+  <footer>
+    Bivision · <a href="https://bivision.ge">bivision.ge</a> · Qlik Partner საქართველოში
+  </footer>
+
+</div>
+
+<script>
+const questions = [
+  {
+    dim: "Cycle P&L",
+    q: "პაციენტის ციკლის / პროცედურის რეალური მოგება — ხედავთ?",
+    opts: [
+      { t: "დიახ, თითოეული ციკლის P&L ავტომატურად", p: 10 },
+      { t: "ბუღალტერია ამზადებს კვარტალში ერთხელ", p: 5 },
+      { t: "მხოლოდ კლინიკის საერთო P&L ვხედავ", p: 0 }
+    ]
+  },
+  {
+    dim: "Consumables",
+    q: "მედიკამენტები და სახარჯი მასალები — ხარჯი პაციენტზე / ციკლზე გაქვთ?",
+    opts: [
+      { t: "დიახ, ავტომატური ხარჯის ასახვა პაციენტზე", p: 10 },
+      { t: "საერთო ხარჯი ვიცი, პაციენტზე — ხელით", p: 5 },
+      { t: "ფარმაცია ცალ-ცალკე, კავშირი P&L-თან არ გვაქვს", p: 0 }
+    ]
+  },
+  {
+    dim: "Insurance vs private",
+    q: "სადაზღვევო vs კომერციული პაციენტების მომგებიანობა — შედარება?",
+    opts: [
+      { t: "ვიცი ზუსტად რომელი სეგმენტი რა მოგებას იძლევა", p: 10 },
+      { t: "ზოგადი შთაბეჭდილება გვაქვს", p: 5 },
+      { t: "მხოლოდ ჯამური შემოსავალი ვიცი", p: 0 }
+    ]
+  },
+  {
+    dim: "Doctor productivity",
+    q: "ექიმებისა და ლაბორატორიის დატვირთვა და ეფექტიანობა:",
+    opts: [
+      { t: "ციფრებით ვხედავ — პაციენტი/დღე, შემოსავალი/ექიმი", p: 10 },
+      { t: "ზოგადი წარმოდგენა გვაქვს", p: 5 },
+      { t: "სისტემატურად არ ვზომავ", p: 0 }
+    ]
+  },
+  {
+    dim: "Patient acquisition",
+    q: "ახალი პაციენტის მოზიდვის ღირებულება (CAC) — ხედავთ?",
+    opts: [
+      { t: "დიახ, მარკეტინგული არხის ჭრილში ვიცი CAC", p: 10 },
+      { t: "სარეკლამო ბიუჯეტი ვიცი, CAC — ვერ ვითვლი", p: 5 },
+      { t: "სარეკლამო ხარჯი ვიცი, კავშირი პაციენტთან — არა", p: 0 }
+    ]
+  },
+  {
+    dim: "Capacity",
+    q: "ოპერაციული, ლაბორატორია, კაბინეტები — გამოყენების % ხედავთ?",
+    opts: [
+      { t: "დიახ, capacity utilization dashboard-ი გვაქვს", p: 10 },
+      { t: "განრიგი ვხედავ, % გამოყენება — ხელით", p: 5 },
+      { t: "არა, სიცარიელე ან გადატვირთვა ხშირად სიურპრიზია", p: 0 }
+    ]
+  },
+  {
+    dim: "Service P&L",
+    q: "კლინიკის სხვადასხვა სერვისი / განყოფილება — ცალ-ცალკე P&L?",
+    opts: [
+      { t: "დიახ, ყველა სერვისი ცალ-ცალკე P&L-ით", p: 10 },
+      { t: "ზოგიერთი სერვისი, ხელით", p: 5 },
+      { t: "მხოლოდ კლინიკის საერთო P&L", p: 0 }
+    ]
+  },
+  {
+    dim: "HIS/ERP",
+    q: "სამედიცინო ინფორმაციული სისტემა (MIS/HIS/ERP) → ფინანსური ანგარიშები:",
+    opts: [
+      { t: "სისტემა → dashboard ავტომატურად", p: 10 },
+      { t: "სისტემიდან ვიღებ, Excel-ში ვამუშავებ", p: 5 },
+      { t: "ძირითადად Excel, სისტემა ნაკლებად ვიყენებ", p: 0 }
+    ]
+  },
+  {
+    dim: "Reporting speed",
+    q: "ყოველთვიური ფინანსური სურათი მენეჯმენტს რამდენ ხანში ხელს უხვდება?",
+    opts: [
+      { t: "1-2 სამუშაო დღეში ავტომატურად", p: 10 },
+      { t: "5-7 სამუშაო დღეში", p: 5 },
+      { t: "10+ სამუშაო დღე ან არარეგულარულად", p: 0 }
+    ]
+  },
+  {
+    dim: "Decision basis",
+    q: "კლინიკის ძირითადი ბიზნეს-გადაწყვეტილებები (ფასი, სერვისი, ექიმი, რეკლამა) ეყრდნობა:",
+    opts: [
+      { t: "მონაცემებს real-time dashboard-იდან", p: 10 },
+      { t: "ყოველთვიურ ანგარიშებს + კლინიკურ გამოცდილებას", p: 5 },
+      { t: "ინტუიციას და კლინიკური გამოცდილებას", p: 0 }
+    ]
+  }
+];
+
+const gapRecs = {
+  "Cycle P&L": "ციკლის P&L-ის ხილვის გარეშე სერვისის ფასის ოპტიმიზაცია შეუძლებელია. ერთი ზარალიანი პროტოკოლი შეიძლება 20%+ მოგებას ფარავდეს.",
+  "Consumables": "მედიკამენტის ხარჯი ციკლზე = ყველაზე ცვლადი ხარჯი. Tracking-ის გარეშე — 15-25% overhead ინვიზიბლურია.",
+  "Insurance vs private": "სადაზღვევო პაციენტი ხშირად 30-40% ნაკლებ მოგებას იძლევა. Balance-ის გარეშე ზრდა შეიძლება მოგებას ამცირებდეს.",
+  "Doctor productivity": "ექიმის დატვირთვა + შემოსავალი = ყველაზე ძვირი რესურსის ოპტიმიზაცია. 20% capacity gap = პირდაპირი შემოსავლის დაკარგვა.",
+  "Patient acquisition": "CAC-ის გარეშე სარეკლამო ბიუჯეტი ბრმა ინვესტიციაა. არხის ჭრილში CAC = 30-50% ეფექტიანობის გაუმჯობესება.",
+  "Capacity": "Capacity 70%+ = break-even ზონა. 85%+ = peak მოგება. ხილვის გარეშე — ან სიცარიელე ან burn-out.",
+  "Service P&L": "სერვისის P&L ხილვა = ინვესტიციის სწორი მიმართულება. ჯამური P&L ახასიათებს — არ მართავს.",
+  "HIS/ERP": "HIS/ERP → Excel = დღეში 2-3 საათი manual შრომა + შეცდომები. ავტომატიზაცია = ყოველდღიური financial clarity.",
+  "Reporting speed": "10+ დღე = გასული თვის მონაცემები. სამედიცინო ბიზნესი სწრაფად ცვლადია — გვიანი ინფო = გვიანი გადაწყვეტილება.",
+  "Decision basis": "სამედიცინო გამოცდილება + ბიზნეს მონაცემი = სწორი კლინიკური ბიზნესი. მხოლოდ ინტუიცია = ზრდის ceiling."
+};
+
+let answers = new Array(questions.length).fill(null);
+let current = 0;
+let gateData = {};
+
+function startQuiz() {
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('quiz').classList.remove('hidden');
+  document.getElementById('q-total').textContent = questions.length;
+  render();
+}
+
+function render() {
+  const q = questions[current];
+  document.getElementById('q-label').textContent = `კითხვა ${current + 1}`;
+  document.getElementById('q-text').textContent = q.q;
+  document.getElementById('q-current').textContent = current + 1;
+  const remaining = Math.max(1, Math.round((questions.length - current) * 0.3));
+  document.getElementById('q-time').textContent = `~${remaining} წთ დარჩა`;
+  document.getElementById('progress-bar').style.width = `${((current + 1) / questions.length) * 100}%`;
+  const optsEl = document.getElementById('options');
+  optsEl.innerHTML = '';
+  q.opts.forEach((opt, i) => {
+    const d = document.createElement('div');
+    d.className = 'option' + (answers[current] === i ? ' selected' : '');
+    d.innerHTML = `<div class="option-dot"></div><div class="option-text">${opt.t}</div>`;
+    d.onclick = () => select(i);
+    optsEl.appendChild(d);
+  });
+  document.getElementById('prev-btn').disabled = current === 0;
+  document.getElementById('next-btn').disabled = answers[current] === null;
+  document.getElementById('next-btn').textContent = current === questions.length - 1 ? 'დასრულება →' : 'შემდეგი →';
+}
+
+function select(i) {
+  answers[current] = i;
+  render();
+}
+
+function nextQuestion() {
+  if (answers[current] === null) return;
+  if (current < questions.length - 1) { current++; render(); }
+  else { showResult(); }
+}
+
+function prevQuestion() {
+  if (current > 0) { current--; render(); }
+}
+
+function showGate() {
+  document.getElementById('quiz').classList.add('hidden');
+  document.getElementById('gate').classList.remove('hidden');
+}
+
+function submitGate(e) {
+  e.preventDefault();
+  gateData = {
+    name: document.getElementById('gate-name').value,
+    email: document.getElementById('gate-email').value,
+    company: document.getElementById('gate-company').value,
+    role: document.getElementById('gate-role').value,
+    sector: 'medical_ivf',
+    timestamp: new Date().toISOString(),
+    answers: answers,
+    score: calcScore()
+  };
+  const log = JSON.parse(localStorage.getItem('bi_health_leads_v3') || '[]');
+  log.push(gateData);
+  localStorage.setItem('bi_health_leads_v3', JSON.stringify(log));
+  showResult();
+}
+
+const bivisionFix = {
+  "Cycle P&L": "BiFinance Cycle P&L — პაციენტის / ციკლის დონეზე revenue, consumables, margin. სისტემიდან ავტომატურად.",
+  "Consumables": "Bivision Cost Tracking — მედიკამენტი და სახარჯი მასალა ციკლზე / პაციენტზე. ხელით გამოთვლა ქრება.",
+  "Insurance vs private": "Bivision Segment P&L — სადაზღვევო vs კომერციული მომგებიანობა ერთ dashboard-ში. ბალანსი ხილული ხდება.",
+  "Doctor productivity": "Bivision Doctor Dashboard — პაციენტი/დღე, შემოსავალი/ექიმი, load vs capacity. ოპტიმიზაციის საფუძველი.",
+  "Patient acquisition": "Bivision Marketing Analytics — CAC არხის ჭრილში (Facebook, Google, referral). ბრმა სარეკლამო ხარჯი ქრება.",
+  "Capacity": "Bivision Capacity Dashboard — ოპერაციული / ლაბორატორია / კაბინეტი გამოყენება %-ში, real-time.",
+  "Service P&L": "BiFinance Service P&L — ყველა სერვისი / განყოფილება ცალ-ცალკე. ინვესტიციის მიმართულება ნათელია.",
+  "HIS/ERP": "Bivision HIS/ERP Connector — სამედიცინო სისტემა → dashboard ავტომატურად. Excel ექსპორტი საჭირო აღარ გახდება.",
+  "Reporting speed": "Automated Reporting — ყოველთვიური P&L + capacity + segment ანგარიში ავტომატურად. 10 დღე → 15 წუთი.",
+  "Decision basis": "Bivision Clinical Business Dashboard — KPI real-time, drill-down, clinical + financial ხედი ერთ ეკრანზე."
+};
+
+function calcScore() {
+  let s = 0;
+  answers.forEach((a, i) => { if (a !== null) s += questions[i].opts[a].p; });
+  return s;
+}
+
+function showResult() {
+  document.getElementById('quiz').classList.add('hidden');
+  document.getElementById('result').classList.remove('hidden');
+  const score = calcScore();
+  document.getElementById('score-num').textContent = score;
+  const circle = document.getElementById('score-circle');
+  let band, sub, cls;
+  if (score <= 33) {
+    band = 'კრიტიკული ფინანსური სიბრმავე';
+    sub = 'Cycle P&L, consumables და capacity — ყველა სამი სუსტია. მოგების სიბრმავე მაღალია.';
+    cls = 'critical';
+  } else if (score <= 66) {
+    band = 'ნაწილობრივი კონტროლი';
+    sub = 'ინფორმაცია ნაწილობრივ გაქვს, მაგრამ სიჩქარე და granularity გაკლია. 3-5x ROI შესაძლებელია.';
+    cls = 'mid';
+  } else {
+    band = 'ძლიერი ფინანსური მენეჯმენტი';
+    sub = 'კარგი BI-პრაქტიკა. მომდევნო ფაზა: AI პროგნოზი, outcome-based pricing, capacity optimization.';
+    cls = 'strong';
+  }
+  circle.className = 'score-circle ' + cls;
+  document.getElementById('band').textContent = band;
+  document.getElementById('band-sub').textContent = sub;
+  const scored = answers.map((a, i) => ({
+    dim: questions[i].dim,
+    points: a !== null ? questions[i].opts[a].p : 0
+  }));
+  const worst = scored.filter(x => x.points < 10).sort((a, b) => a.points - b.points).slice(0, 3);
+  const gapsEl = document.getElementById('gaps');
+  gapsEl.innerHTML = '';
+  if (worst.length === 0) {
+    gapsEl.innerHTML = '<div class="gap-item"><strong>ძლიერ მდგომარეობაში ხართ.</strong><p>მომდევნო ფაზა: AI-driven outcome forecasting + automated capacity alerts.</p></div>';
+  } else {
+    worst.forEach((w, i) => {
+      const rec = gapRecs[w.dim] || 'ამ სფეროში ჩავუღრმავდებით დემოზე.';
+      const fix = bivisionFix[w.dim] || '';
+      gapsEl.innerHTML += `<div class="gap-item"><strong>${i + 1}. ${w.dim}</strong><p>${rec}</p>${fix ? `<div class="gap-fix"><div class="fix-label">Bivision გამოსავალი</div><div class="fix-text">${fix}</div></div>` : ''}</div>`;
+    });
+  }
+}
+
+function shareResult(platform) {
+  const url = window.location.href;
+  if (platform === 'linkedin') {
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+  } else if (platform === 'copy') {
+    navigator.clipboard.writeText(url).then(() => alert('ლინკი კოპირდა'));
+  }
+}
+
+function restart() {
+  answers = new Array(questions.length).fill(null);
+  current = 0;
+  document.getElementById('result').classList.add('hidden');
+  document.getElementById('intro').classList.remove('hidden');
+}
+</script>
+</body>
+</html>

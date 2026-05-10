@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<title>Cold Email Protocol — სამედიცინო / IVF | Bivision</title>
+<style>
+body { font-family: 'Segoe UI', 'Noto Sans Georgian', Arial, sans-serif; max-width: 860px; margin: 32px auto; padding: 0 24px 60px; color: #1a1a2e; line-height: 1.7; background: #fafafa; }
+h1 { color: #1a3a6b; font-size: 1.6rem; border-bottom: 3px solid #1a3a6b; padding-bottom: 10px; margin-bottom: 6px; }
+h2 { color: #1a3a6b; font-size: 1.1rem; margin-top: 32px; margin-bottom: 8px; border-left: 4px solid #3b82f6; padding-left: 10px; }
+h3 { color: #333; font-size: 0.97rem; margin-top: 18px; margin-bottom: 4px; }
+.meta { font-size: 0.85rem; color: #777; margin-bottom: 28px; }
+.box { background: #fff; border: 1px solid #dde; border-radius: 8px; padding: 16px 20px; margin: 12px 0; }
+.warn { background: #fff8e1; border-left: 4px solid #f57c00; padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+.stop { background: #fff0f0; border-left: 4px solid #e74c3c; padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+.good { background: #f0f4fb; border-left: 4px solid #1a3a6b; padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+.field { background: #f4f7fb; border: 1px solid #d0d8e8; border-radius: 6px; padding: 12px 16px; margin: 8px 0; }
+.field strong { color: #1a3a6b; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 0.93rem; }
+th { background: #e8eef8; color: #1a3a6b; padding: 8px 12px; text-align: left; }
+td { padding: 8px 12px; border-bottom: 1px solid #e5e5e5; vertical-align: top; }
+.email-example { background: #fff; border: 2px solid #1a3a6b; border-radius: 8px; padding: 20px 24px; margin: 16px 0; }
+.email-example .subject { font-weight: 700; color: #1a3a6b; margin-bottom: 4px; font-size: 0.95rem; }
+.email-example .body { font-size: 0.95rem; line-height: 1.8; white-space: pre-line; }
+.label { display: inline-block; background: #1a3a6b; color: white; font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; }
+.reject { color: #e74c3c; font-weight: 600; }
+ol, ul { padding-left: 22px; }
+li { margin: 5px 0; }
+code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 0.9rem; }
+footer { margin-top: 48px; font-size: 0.8rem; color: #aaa; border-top: 1px solid #e5e5e5; padding-top: 12px; }
+</style>
+</head>
+<body>
+
+<h1>Bivision Cold Email Protocol — სამედიცინო კლინიკა / IVF</h1>
+<div class="meta">შემდგენელი: Gurafa · 2026-05-10 · v1.0 · სტატუსი: draft for review</div>
+
+<h2>0. კონტექსტი — სანამ წერილს დაწერ</h2>
+<div class="box">
+  <strong>სამედიცინო სექტორში Bivision-ს არსებული კლიენტები ჰყავს.</strong><br><br>
+  <strong>Proof — დაშვებული:</strong>
+  <ul>
+    <li>მარდალეიშვილის კლინიკა — სახელის გამოყენება ✓</li>
+    <li>Geocord — სახელის გამოყენება ✓</li>
+    <li>"სამედიცინო კლინიკები ქართულ ბაზარზე" — ✓</li>
+  </ul>
+  <strong>Products deployed:</strong> <strong>BiMedical</strong> (dedicated product — site-ზე: "კლინიკისა და ჰოსპიტლის ანალიტიკა") + BiFinance + Direct Cash Flow (Bank API).<br><br>
+  <strong>სექტორის სპეციფიკა:</strong> IVF/რეპროდუქტოლოგია = procedure-level economics. CEO ხშირად ექიმი-მეწარმეა — ბიზნეს ენა, კლინიკური კი არა, მაგრამ tone = professional peer.
+</div>
+
+<div class="good">
+  <strong>Bivision Credential Anchors — გამოიყენე email-ში:</strong>
+  <ul>
+    <li><strong>"BiMedical"</strong> — dedicated product (არა generic BI) — კლინიკისა და ჰოსპიტლის ანალიტიკა</li>
+    <li><strong>"2 კვირაში"</strong> — deployment speed (bivision.ge headline: "ბიზნეს ანალიტიკა 2 კვირაში")</li>
+    <li><strong>"50+ პარტნიორი"</strong> — სოციალური დასტური</li>
+    <li><strong>"2015 წლიდან"</strong> — გამოცდილება ქართულ ბაზარზე</li>
+    <li><strong>"8.9 NPS"</strong> — client satisfaction anchor</li>
+    <li><strong>"Excel-ის ჩანაცვლება"</strong> — site-ზე განმეორებადი promise (CFO pain)</li>
+  </ul>
+  <em>გამოყენება: მხოლოდ 1–2 anchor email-ში. ყველა ერთად = boast.</em>
+</div>
+
+<h2>1. პროდუქტი — რას სთავაზობს Bivision სამედიცინო სექტორს</h2>
+<div class="warn" style="margin-bottom:8px;">Primary product: <strong>BiMedical</strong> (dedicated medical analytics). Deployment: <strong>2 კვირა</strong>. HIS/ERP integration შედის.</div>
+<table>
+  <tr><th>პროდუქტი</th><th>რას აკეთებს (site language)</th><th>სამედიცინო use case</th></tr>
+  <tr><td><strong>BiMedical</strong></td><td>"კლინიკის ოპერაციული და ფინანსური მართვა". ექიმების, საწოლების, აპარატურის დატვირთვულობა. განყოფილება/სერვისი/პაციენტი P&L. AI-ს მეშვეობით ხარჯების შემცირება. პაციენტების ქცევა + მომართვიანობა.</td><td>სამედიცინო კლინიკის dedicated BI — procedure P&L, capacity, doctor productivity, segment analysis.</td></tr>
+  <tr><td><strong>BiFinance</strong></td><td>ფინანსური წესრიგი, P&L ჭრილში. გეგმა vs ფაქტი. Excel-ის ჩანაცვლება ანალიტიკით.</td><td>კლინიკის ფინანსური P&L სერვისის / განყოფილების ჭრილში. CFO reporting ავტომატიზაცია.</td></tr>
+  <tr><td><strong>Direct Cash Flow</strong></td><td>ბანკის API → real-time cash. AI cash forecast.</td><td>სადაზღვევო + კომერციული გადასახდელები → cash position ნებისმიერ დღეს.</td></tr>
+  <tr><td><strong>Insurance vs Private</strong></td><td>სეგმენტის P&L — ორი stream ცალ-ცალკე.</td><td>სადაზღვევო vs კომერციული მომგებიანობა. Balance-ის გადაწყვეტილება ციფრებზე.</td></tr>
+  <tr><td><strong>BiDebitors</strong></td><td>Aging, DSO, CEI, collection ავტომატიზაცია. AI cash forecast.</td><td>სადაზღვევო კომპანიის ვადაგადაცილება. Debtor tracking per payer.</td></tr>
+</table>
+
+<h2>2. როლების რუქა — ტკივილი ჭრილში</h2>
+<table>
+  <tr><th>როლი</th><th>მთავარი ტკივილი</th><th>სწორი angle</th></tr>
+  <tr>
+    <td><strong>CEO / დამფუძნებელი / მთავარი ექიმი</strong></td>
+    <td>კლინიკა იზრდება, მაგრამ ფინანსური სურათი ბუნდოვანია. სადაზღვევო vs კომერციული balance, ექიმების ეფექტიანობა — ხშირად ინტუიციაზეა.</td>
+    <td>BiFinance + Insurance vs Private + Doctor Productivity</td>
+  </tr>
+  <tr>
+    <td><strong>CFO / ფინანსური დირექტორი</strong></td>
+    <td>Excel reporting + HIS/ERP ხელით = 3-5 დღე/თვე. ციკლის P&L არ ითვლება ავტომატურად. Cash position — ბანკში შეხედვა.</td>
+    <td>BiFinance + Direct Cash Flow + Cost Control</td>
+  </tr>
+  <tr>
+    <td><strong>Operations / კლინიკის გამგე</strong></td>
+    <td>ოთახების, ოპერაციული, ლაბის დატვირთვა — ინტუიციაზე. ექიმის schedule vs შემოსავალი — კავშირი ხელით.</td>
+    <td>Doctor Productivity + Capacity utilization</td>
+  </tr>
+</table>
+
+<h2>3. სავალდებულო 8-ველიანი pre-check — სანამ წერილს დაწერ</h2>
+<div class="warn">თუ ეს 8 ველი არ შეავსე — <strong>წერილი არ დაიწეროს.</strong></div>
+
+<div class="field"><strong>1. Recipient Role:</strong> CEO-ექიმი / CFO / Operations Manager</div>
+<div class="field"><strong>2. Clinic type:</strong> IVF / სამშობიარო / ქირურგიული / მულტი-სპეციალობა / სტომატოლოგიური ჯაჭვი</div>
+<div class="field"><strong>3. Trigger/Signal:</strong> რა event-ი გვაქვს? (new location opened / insurance contract signed / CFO hire / LinkedIn signal / cold)<br><em>No signal = opening insight-ით უნდა იწყებოდეს — არა Bivision-ით</em></div>
+<div class="field"><strong>4. One Pain:</strong> ერთი მთავარი ტკივილი (cycle P&L / consumables cost / doctor productivity / insurance vs private / cash flow)<br><em>ერთი — ორი pain = წერილი მძიმდება</em></div>
+<div class="field"><strong>5. Consequence/Cost:</strong> რა ბიზნეს-ზარალი ჩანს ამ pain-ისგან? (ზარალიანი სერვისი რომელიც ჩანს მოგებიანად / ექიმის idle time / სადაზღვევო vs კომერციული balance-ის სიბრმავე)<br><em>commercial argument = ეს ველი</em></div>
+<div class="field"><strong>6. Product Angle:</strong> BiFinance / Cost Control / Doctor Productivity / Direct Cash Flow / Insurance vs Private</div>
+<div class="field"><strong>7. Proof:</strong> მარდალეიშვილის კლინიკა ✓ / Geocord ✓ / "სამედიცინო კლინიკები ქართულ ბაზარზე" ✓</div>
+<div class="field"><strong>8. CTA type:</strong> reply / 15-min call / "გაჩვენოთ მაგალითი?" / "2 სლაიდი გამოგიგზავნოთ?"</div>
+
+<h2>4. სტრუქტურა — ყოველი წერილი</h2>
+<div class="box">
+  <strong>Subject:</strong> 3–6 სიტყვა. კლინიკური ბიზნეს-pain ან კითხვა. <span class="reject">არა "Bivision გთავაზობთ".</span><br><br>
+  <strong>Opening (1 წინადადება):</strong> სამედიცინო კლინიკის ბიზნეს-სიტუაცია. Peer tone — "კლინიკებში ხშირად..." არა "ჩვენ ვიცით..."<br><br>
+  <strong>Consequence (1–2 წინადადება):</strong> რა ჯდება ეს — სერვისის P&L სიბრმავე, ექიმის idle capacity, cash gap, insurance mix imbalance.<br><br>
+  <strong>Bivision relevance (1–2 წინადადება):</strong> კონკრეტულად — "ციკლის P&L ექიმის ჭრილში", "სადაზღვევო vs კომერციული მომგებიანობა", "consumables per procedure".<br><br>
+  <strong>Proof (1 წინადადება):</strong> მარდალეიშვილი / Geocord / "სამედიცინო კლინიკები ქართულ ბაზარზე".<br><br>
+  <strong>CTA (1 კითხვა):</strong> Low-friction. <span class="reject">არა "30-წუთიანი demo".</span> კი: "15 წუთში გაჩვენოთ მსგავსი სურათი?"
+</div>
+<div class="warn"><strong>სიგრძე:</strong> 80–120 სიტყვა. Plain text. Peer tone — CEO-ექიმს ლაპარაკობ.</div>
+
+<h2>5. Quality Gate — წერილი არ გავიდეს, თუ:</h2>
+<div class="stop">
+  <ol>
+    <li>Bivision პირველ წინადადებაში ჩანს</li>
+    <li>ტექსტი ნებისმიერ კლინიკას ეგზავნება — generic</li>
+    <li>"dashboard", "analytics" ახსნის გარეშე</li>
+    <li>Consequence/Cost ველი ცარიელია</li>
+    <li>CTA = "30-წუთიანი demo"</li>
+    <li>Tone = vendor-to-client — არა peer-to-peer</li>
+    <li>ტექსტი არ უპასუხებს: "რატომ უნდა გაეხსნა ეს CEO-ექიმს ახლა?"</li>
+    <li>Proof = არარეალური კლიენტი ან გამოგონილი სტატისტიკა</li>
+  </ol>
+</div>
+
+<h2>6. Output Format — ყოველი გენერირებული ვერსია</h2>
+<div class="box">
+<pre style="font-size:0.9rem; line-height:1.8;">
+Segment:        [IVF / surgical / multi-specialty]
+Role:           [CEO-ექიმი / CFO / Operations]
+Trigger:        [signal ან cold]
+Pain:           [ერთი]
+Consequence:    [რა ჯდება]
+Product angle:  [BiFinance / Cost Control / etc]
+
+Subject:
+[...]
+
+Email body:
+[...]
+
+CTA:
+[...]
+
+Why this works:
+[commercial argument-ის ახსნა]
+
+Risk/weakness:
+[რა შეიძლება არ გამოვიდეს]
+</pre>
+</div>
+
+<h2>7. მაგალითები — სწორი მიმართულება</h2>
+
+<div class="email-example">
+  <div class="label">CEO-ექიმი · cold · cycle P&L · BiMedical</div>
+  <div class="subject">Subject: IVF ციკლის რეალური ღირებულება</div>
+  <div class="body">
+IVF კლინიკებში ციკლის P&L — მედიკამენტები, ლაბის დრო, ექიმის დატვირთვა — ხშირად მხოლოდ კლინიკის ჯამურ P&L-ში ჩანს. ეს ნიშნავს, რომ ზარალიანი პროტოკოლი შეიძლება „ჩამალული" იყოს მომგებიანი სერვისის გვერდით.
+
+Bivision BiMedical-ი სპეციალურად კლინიკებისთვის არის — procedure-level P&L, ექიმის და ლაბის capacity ერთ dashboard-ში. მარდალეიშვილის კლინიკაში ასეთი სურათი 2 კვირაში ამოქმედდა.
+
+15 წუთში გაჩვენოთ მსგავსი სურათი?
+
+გელა შონია — Bivision</div>
+</div>
+
+<div class="email-example">
+  <div class="label">CFO · cold · insurance vs private + Excel replacement</div>
+  <div class="subject">Subject: სადაზღვევო vs კომერციული — P&L სხვაობა?</div>
+  <div class="body">
+სამედიცინო კლინიკებში სადაზღვევო პაციენტი და კომერციული პაციენტი ხშირად ერთ P&L-ში ერევა. Excel-ში ხელით გამოყოფა — 3-5 სამ.დღე/თვე, და მაინც არ არის ზუსტი. ერთი სეგმენტი მეორეს მომგებიანობას „ფარავს".
+
+Bivision BiMedical-ი ამ სეგმენტაციას ავტომატურად ახდენს HIS/ERP-დან — CFO ხედავს მარჟას ჭრილში, Excel-ის გარეშე.
+
+ღირს, 2 მაგალითი გამოგიგზავნოთ?
+
+გელა შონია — Bivision</div>
+</div>
+
+<div class="email-example">
+  <div class="label">CEO-ექიმი · trigger: new location opened · cash flow</div>
+  <div class="subject">Subject: [კლინიკა] — ახალი ფილიალის cash flow</div>
+  <div class="body">
+ახალი ლოკაციის გახსნა ნიშნავს ახალ cash cycle-ს — სადაზღვევო გადასახდელები, consumables, ექიმების ხელფასი, lease. ამ სტადიაზე cash gap სიურპრიზი ყველაზე ძვირია.
+
+Bivision ბანკის API-ს პირდაპირ უკავშირებს financial dashboard-ს — cash position ნებისმიერ დღეს. Geocord-ი და მარდალეიშვილი ასე მართავენ. ინტეგრაცია 2 კვირა.
+
+15 წუთში გაჩვენოთ?
+
+გელა შონია — Bivision</div>
+</div>
+
+<h2>8. IVF-სპეციფიკური ენა — გამოიყენე</h2>
+<div class="good">
+  <strong>კი:</strong> "ციკლის P&L", "consumables per procedure", "ექიმის დატვირთულობა", "სადაზღვევო vs კომერციული", "პაციენტის ნაკადი", "capacity utilization"<br><br>
+  <span class="reject">არა:</span> "healthcare analytics", "patient journey", "clinical outcomes", "care pathway" — ეს კლინიკური ტერმინებია, ბიზნეს ენა არა
+</div>
+
+<h2>9. ქართული ტექსტი — Gemini წესი</h2>
+<div class="warn">
+  <strong>Email body-ს ქართულ პროზას Claude არ წერს.</strong><br><br>
+  პროცესი:
+  <ol>
+    <li>Claude ავსებს 8-ველიანი pre-check-ს + ააწყობს commercial argument-ს (ინგლისურად ან bullet-ებში)</li>
+    <li>Claude გადასცემს Gemini-ს: <code>/gemini</code> — "დაწერე სამედიცინო CEO-სთვის cold email შემდეგი argument-ის მიხედვით: [...]"</li>
+    <li>Gemini წარმოადგენს ქართულ ვერსიას</li>
+    <li>Claude ამოწმებს Quality Gate-ს მიხედვით</li>
+  </ol>
+  <strong>მიზეზი:</strong> ქართული B2B marketing prose = Gemini. Claude = strategy + structure + verification.
+</div>
+
+<h2>10. აკრძალული ფრაზები</h2>
+<div class="stop">
+"ინოვაციური გადაწყვეტა" · "მონაცემებზე დაფუძნებული გადაწყვეტილებები" (ახსნის გარეშე) · "ჯანდაცვის სექტორი ციფრდება" · "გააუმჯობესეთ პაციენტის გამოცდილება" · vendor tone · გამოგონილი სტატისტიკა
+</div>
+
+<footer>Bivision · Gurafa Intelligence Layer · 2026-05-10 · v1.0 — review before agent use</footer>
+</body>
+</html>
