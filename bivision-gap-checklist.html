@@ -12,6 +12,7 @@
     --orange: #EA580C;
     --yellow: #CA8A04;
     --green: #16A34A;
+    --purple: #7E22CE;
     --gray-50: #F8F7FF;
     --gray-100: #F1F0F9;
     --gray-200: #E2E0F0;
@@ -24,40 +25,46 @@
   body { font-family: var(--font); background: var(--gray-50); color: var(--gray-900); font-size: 15px; line-height: 1.6; }
   .container { max-width: 1000px; margin: 0 auto; padding: 32px 20px; }
 
-  /* Header */
-  .header { background: var(--primary); color: #fff; padding: 28px 32px; border-radius: var(--radius); margin-bottom: 28px; }
+  .header { background: var(--primary); color: #fff; padding: 28px 32px; border-radius: var(--radius); margin-bottom: 20px; }
   .header h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
   .header .meta { font-size: 13px; opacity: 0.7; }
   .ep0 { display: inline-block; background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-top: 10px; }
 
-  /* Summary stats */
-  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
-  .stat { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 16px; text-align: center; }
-  .stat .num { font-size: 28px; font-weight: 800; }
-  .stat .label { font-size: 12px; color: var(--gray-700); margin-top: 2px; }
+  /* Banners */
+  .banner { border-radius: var(--radius); padding: 14px 18px; margin-bottom: 16px; font-size: 14px; }
+  .banner.hypothesis { background: #F5F3FF; border: 1px solid #DDD6FE; color: #5B21B6; }
+  .banner.gate { background: #FFF1F2; border: 1px solid #FECDD3; }
+  .banner.gate strong { color: var(--red); }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 24px; }
+  .stat { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 14px; text-align: center; }
+  .stat .num { font-size: 26px; font-weight: 800; }
+  .stat .label { font-size: 11px; color: var(--gray-700); margin-top: 2px; }
   .stat.red .num { color: var(--red); }
   .stat.orange .num { color: var(--orange); }
   .stat.yellow .num { color: var(--yellow); }
+  .stat.purple .num { color: var(--purple); }
   .stat.green .num { color: var(--green); }
 
   /* Section */
   .section { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); margin-bottom: 20px; overflow: hidden; }
-  .section-header { padding: 16px 20px; display: flex; align-items: center; gap: 10px; cursor: pointer; }
-  .section-header h2 { font-size: 16px; font-weight: 700; flex: 1; }
-  .badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+  .section-header { padding: 14px 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--gray-100); }
+  .section-header h2 { font-size: 15px; font-weight: 700; flex: 1; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; white-space: nowrap; }
   .badge.p0 { background: #FEE2E2; color: var(--red); }
   .badge.p1 { background: #FFEDD5; color: var(--orange); }
   .badge.p2 { background: #FEF9C3; color: var(--yellow); }
+  .badge.arch { background: #FAF5FF; color: var(--purple); }
   .badge.good { background: #DCFCE7; color: var(--green); }
+  .badge.backlog { background: #F3F4F6; color: #6B7280; }
 
-  /* Item table */
   table { width: 100%; border-collapse: collapse; }
-  th { background: var(--gray-100); padding: 10px 16px; text-align: left; font-size: 12px; font-weight: 700; color: var(--gray-700); text-transform: uppercase; letter-spacing: 0.05em; }
-  td { padding: 12px 16px; border-bottom: 1px solid var(--gray-100); vertical-align: top; font-size: 14px; }
+  th { background: var(--gray-100); padding: 9px 16px; text-align: left; font-size: 11px; font-weight: 700; color: var(--gray-700); text-transform: uppercase; letter-spacing: 0.05em; }
+  td { padding: 11px 16px; border-bottom: 1px solid var(--gray-100); vertical-align: top; font-size: 13px; }
   tr:last-child td { border-bottom: none; }
   tr:hover td { background: var(--gray-50); }
 
-  /* Tags */
   .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin: 1px; }
   .tag.wp-admin { background: #EFF6FF; color: #1D4ED8; }
   .tag.rankmath { background: #F0FDF4; color: #15803D; }
@@ -65,25 +72,20 @@
   .tag.arch { background: #FAF5FF; color: #7E22CE; }
   .tag.content { background: #F0FDFA; color: #0F766E; }
   .tag.owner-gate { background: #FFF1F2; color: #BE123C; border: 1px solid #FECDD3; }
-  .tag.done { background: #DCFCE7; color: #15803D; }
+  .tag.hypo { background: #F5F3FF; color: #6D28D9; border: 1px solid #DDD6FE; }
+  .tag.unverified { background: #FFFBEB; color: #92400E; border: 1px solid #FDE68A; }
 
-  /* Effort bar */
-  .effort { display: flex; align-items: center; gap: 4px; }
+  .effort { display: flex; align-items: center; gap: 3px; }
   .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gray-200); }
   .dot.fill { background: var(--accent); }
 
-  /* Owner gate banner */
-  .gate-banner { background: #FFF1F2; border: 1px solid #FECDD3; border-radius: var(--radius); padding: 14px 18px; margin-bottom: 20px; font-size: 14px; }
-  .gate-banner strong { color: var(--red); }
-
-  /* Roadmap */
   .roadmap { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; }
-  .roadmap h2 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--primary); }
-  .phase { display: grid; grid-template-columns: 120px 1fr; gap: 12px; margin-bottom: 12px; align-items: start; }
-  .phase-label { background: var(--primary); color: #fff; border-radius: 6px; padding: 6px 10px; font-size: 12px; font-weight: 700; text-align: center; }
+  .roadmap h2 { font-size: 15px; font-weight: 700; margin-bottom: 16px; color: var(--primary); }
+  .phase { display: grid; grid-template-columns: 110px 1fr; gap: 12px; margin-bottom: 12px; align-items: start; }
+  .phase-label { background: var(--primary); color: #fff; border-radius: 6px; padding: 6px 10px; font-size: 11px; font-weight: 700; text-align: center; }
   .phase-items { font-size: 13px; line-height: 1.7; }
 
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     .stats { grid-template-columns: repeat(2, 1fr); }
     .phase { grid-template-columns: 1fr; }
   }
@@ -93,66 +95,79 @@
 <div class="container">
 
   <div class="header">
-    <div class="meta">Mentari · 2026-05-10 · bivision.ge SEO + Brand Audit</div>
-    <h1>bivision.ge — Gap Checklist & Feasibility Report</h1>
-    <div class="ep0">EP0: 8/10 (S) — პირდაპირ ახდენს OKR1 (leads) + OKR3 (brand) გავლენას</div>
+    <div class="meta">Mentari · 2026-05-10 · bivision.ge SEO + Brand Audit · v2 (self-corrected)</div>
+    <h1>bivision.ge — Gap Checklist &amp; Feasibility Report</h1>
+    <div class="ep0">EP0: 8/10 (S) — OKR1 (leads) + OKR3 (brand) პირდაპირ</div>
   </div>
 
-  <div class="gate-banner">
-    <strong>⚠ Owner Gate Active:</strong> bivision.ge-ში ცვლილება = owner-ის "შეიტანე" mandatory. ეს ფაილი planning-ი + feasibility-ია, არა execution. ყოველი item-ისთვის execution = ცალკე approval.
+  <div class="banner hypothesis">
+    <strong>⚠ EP1: HYPOTHESIS</strong> — ყველა finding = Lovable AI tool-ის output. არ არის Playwright/curl-ით live საიტზე verified. Execution-მდე → independent verification სავალდებულო.
+  </div>
+
+  <div class="banner gate">
+    <strong>⚠ Owner Gate Active:</strong> bivision.ge ცვლილება = explicit "შეიტანე" mandatory. ეს document = planning only.
   </div>
 
   <div class="stats">
-    <div class="stat red"><div class="num">5</div><div class="label">🔴 კრიტიკული (P0)</div></div>
-    <div class="stat orange"><div class="num">5</div><div class="label">🟠 მაღალი (P1)</div></div>
-    <div class="stat yellow"><div class="num">15</div><div class="label">🟡 საშუალო (P2)</div></div>
-    <div class="stat green"><div class="num">9</div><div class="label">✅ კარგია (შენარჩუნება)</div></div>
+    <div class="stat red"><div class="num">4</div><div class="label">🔴 P0 კრიტიკული</div></div>
+    <div class="stat orange"><div class="num">5</div><div class="label">🟠 P1 მაღალი</div></div>
+    <div class="stat yellow"><div class="num">14</div><div class="label">🟡 P2 საშუალო</div></div>
+    <div class="stat purple"><div class="num">1</div><div class="label">🟣 Owner Architecture</div></div>
+    <div class="stat green"><div class="num">8</div><div class="label">✅ კარგია</div></div>
   </div>
 
   <!-- P0 CRITICAL -->
   <div class="section">
     <div class="section-header">
       <span class="badge p0">P0 — კრიტიკული</span>
-      <h2>ახლა ზარალავს SERP-ებსა და AI-ჩვენებებს</h2>
+      <h2>ახლა ზარალავს SERP + AI visibility</h2>
     </div>
     <table>
-      <tr>
-        <th>#</th><th>პრობლემა</th><th>სად ვასწორებ</th><th>ძალისხმევა</th><th>შენიშვნა</th>
-      </tr>
+      <tr><th>#</th><th>პრობლემა</th><th>სად ვასწორებ</th><th>ძალ.</th><th>შენიშვნა</th></tr>
       <tr>
         <td>1</td>
-        <td><strong>lang="en-US"</strong> — საიტი ქართულია, html tag ინგლისური. Google ქართულ SERP-ში არ გამოაჩენს.</td>
-        <td><span class="tag code">Theme code</span> <span class="tag rankmath">RankMath</span></td>
+        <td><strong>lang="en-US"</strong> — საიტი ქართულია, html tag ინგლისური. Georgian SERP suppress. <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><span class="tag code">Theme + RankMath</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
-        <td>lang="ka", og:locale="ka_GE", JSON-LD inLanguage: "ka"</td>
+        <td>lang="ka", og:locale="ka_GE", inLanguage:"ka"</td>
       </tr>
       <tr>
         <td>2</td>
-        <td><strong>ორი H1</strong> — hero + second-title. Keyword signal იყოფა.</td>
-        <td><span class="tag wp-admin">WP Admin / Page Builder</span></td>
+        <td><strong>ორი H1</strong> — hero + second-title. Keyword signal split. <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><span class="tag wp-admin">Page Builder</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
-        <td>მეორე H1 → H2. ერთი H1 = hero title მხოლოდ.</td>
+        <td>მეორე → H2. Hero H1 მხოლოდ.</td>
       </tr>
       <tr>
         <td>3</td>
-        <td><strong>პროდუქტები tab-ებია, არა URL-ები</strong> — BiFinance/BiRetail/… ვერ ახდენს rank-ს საკუთარი keywords-ით. AI engines ვერ cite-ავს.</td>
-        <td><span class="tag arch">ArchitectureChange</span> <span class="tag owner-gate">Owner Gate</span></td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div></td>
-        <td>6 ცალკე route: /bifinance … /bimedical. მაღალი impact, მაღალი effort. Scope = owner decision.</td>
+        <td><strong>llms.txt — 404</strong> — GPTBot/PerplexityBot/ClaudeBot-ს content map არ აქვს. <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><span class="tag code">New file (root)</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
+        <td>1-2სთ. ვქმნი key pages + products listed.</td>
       </tr>
       <tr>
         <td>4</td>
-        <td><strong>llms.txt — 404</strong> — GPTBot, PerplexityBot, ClaudeBot-ს კარა-ა. AI-ს ციტირება ნულია.</td>
-        <td><span class="tag code">New file (root)</span></td>
+        <td><strong>robots.txt AI crawlers not allowed</strong> — GPTBot/PerplexityBot/ClaudeBot/Google-Extended implicit block. <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><span class="tag rankmath">RankMath robots editor</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
-        <td>1-2 საათი. ვქმნი /llms.txt სტრუქტურირებული content map-ით.</td>
+        <td>4 Allow rule. 30 წუთი.</td>
       </tr>
+    </table>
+  </div>
+
+  <!-- OWNER ARCHITECTURE DECISION -->
+  <div class="section">
+    <div class="section-header">
+      <span class="badge arch">🟣 Owner Architecture Decision</span>
+      <h2>Product sub-pages — ცალკე project, არა checklist item</h2>
+    </div>
+    <table>
+      <tr><th>Finding</th><th>Impact</th><th>Effort</th><th>Decision needed</th></tr>
       <tr>
-        <td>5</td>
-        <td><strong>robots.txt არ Allow-ავს AI crawlers</strong> — GPTBot/PerplexityBot/ClaudeBot/Google-Extended implicit block.</td>
-        <td><span class="tag wp-admin">WP Settings / Yoast/RankMath</span></td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
-        <td>RankMath → Robots.txt editor → 4 Allow rule. 30 წუთი.</td>
+        <td><strong>პროდუქტები tab-ებია, არა URLs</strong> — BiFinance/BiRetail/BiStock/BiAudit/BiDebitors/BiMedical ვერ rank-ავს. AI engines ვერ cite-ავს. 6 ცალკე route სჭირდება. <span class="tag hypo">HYPOTHESIS</span></td>
+        <td>ყველაზე მაღალი SEO impact სიაში</td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div> multi-sprint</td>
+        <td><span class="tag owner-gate">Owner: scope approve → ADR → ცალკე sprint</span></td>
       </tr>
     </table>
   </div>
@@ -161,46 +176,44 @@
   <div class="section">
     <div class="section-header">
       <span class="badge p1">P1 — მაღალი</span>
-      <h2>Trust + Structured Data + Schema gaps</h2>
+      <h2>Trust + Structured Data gaps</h2>
     </div>
     <table>
+      <tr><th>#</th><th>პრობლემა</th><th>სად ვასწორებ</th><th>ძალ.</th><th>შენიშვნა</th></tr>
       <tr>
-        <th>#</th><th>პრობლემა</th><th>სად ვასწორებ</th><th>ძალისხმევა</th><th>შენიშვნა</th>
+        <td>5</td>
+        <td><strong>JSON-LD missing: Service, FAQPage, BreadcrumbList, AggregateRating, foundingDate</strong> <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><span class="tag rankmath">RankMath Schema</span> <span class="tag code">Custom JSON-LD</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
+        <td>Verify with Rich Results Test first.</td>
       </tr>
       <tr>
         <td>6</td>
-        <td><strong>JSON-LD missing: Service, FAQPage, BreadcrumbList, AggregateRating, foundingDate</strong></td>
-        <td><span class="tag rankmath">RankMath Schema</span> <span class="tag code">Custom JSON-LD</span></td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
-        <td>RankMath schema blocks + manual `&lt;script type="application/ld+json"&gt;` FAQPage</td>
+        <td><strong>OG image: 1898×1436 Optimole URL</strong> — preview fragile, not branded. <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><span class="tag wp-admin">Media + RankMath OG</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
+        <td>ვქმნი branded 1200×630 PNG.</td>
       </tr>
       <tr>
         <td>7</td>
-        <td><strong>OG image 1898×1436 Optimole URL</strong> — სოციალური preview-ი არაბრენდული, fragile URL.</td>
-        <td><span class="tag wp-admin">Media + RankMath OG</span></td>
+        <td><strong>hreflang tags არ არის</strong> — future EN add = chaos. <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><span class="tag rankmath">RankMath Sitemap</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
-        <td>ვქმნი branded 1200×630 PNG. RankMath → Social → Custom OG image.</td>
+        <td>ახლა: ka + x-default.</td>
       </tr>
       <tr>
         <td>8</td>
-        <td><strong>hreflang tags არ არის</strong> — თუ EN დაემატება, redirect chaos.</td>
+        <td><strong>Sitemap product URLs orphan</strong> — blocking on Architecture Decision above. <span class="tag hypo">HYPOTHESIS</span></td>
         <td><span class="tag rankmath">RankMath Sitemap</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
-        <td>ახლა = hreflang="ka" + x-default. EN-ის დამატება = separate task.</td>
+        <td>Item #8 blocking on product pages (Owner Decision).</td>
       </tr>
       <tr>
         <td>9</td>
-        <td><strong>Sitemap-ში product URLs orphan</strong> — crawl-ზე მიუწვდომელი.</td>
-        <td><span class="tag rankmath">RankMath Sitemap</span></td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
-        <td>ამ item-ი blocking item #3-ზე. product pages ჯერ routes, მერე sitemap.</td>
-      </tr>
-      <tr>
-        <td>10</td>
-        <td><strong>E-E-A-T სუსტია</strong> — case studies, team page, blog = ნული. AI engines freshness + expertise-ს award-ავს.</td>
-        <td><span class="tag content">Content</span> <span class="tag owner-gate">Owner Gate</span></td>
+        <td><strong>E-E-A-T სუსტია</strong> — case studies, team page, blog ნული. <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><span class="tag content">Content</span> <span class="tag owner-gate">Owner Gate (client data)</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div></td>
-        <td>სტრატეგიული გადაწყვეტილება. Mentari draft-ავს, owner approve-ავს.</td>
+        <td>Mentari draft-ავს frame, owner fills real client data.</td>
       </tr>
     </table>
   </div>
@@ -209,116 +222,93 @@
   <div class="section">
     <div class="section-header">
       <span class="badge p2">P2 — Visual / Copy / Performance</span>
-      <h2>Conversion + Brand Quality gaps</h2>
+      <h2>Conversion + Brand Quality</h2>
     </div>
     <table>
+      <tr><th>#</th><th>კატ.</th><th>პრობლემა</th><th>სად</th><th>ძალ.</th></tr>
       <tr>
-        <th>#</th><th>კატეგორია</th><th>პრობლემა</th><th>სად ვასწორებ</th><th>ძალისხმევა</th>
-      </tr>
-      <tr>
-        <td>11</td>
-        <td>Visual</td>
-        <td>Inline styles everywhere — maintenance hell, no design tokens</td>
+        <td>10</td><td>Visual</td>
+        <td>Inline styles — no design tokens. Maintenance hell. <span class="tag hypo">HYPOTHESIS</span></td>
         <td><span class="tag code">Theme CSS</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div></td>
       </tr>
       <tr>
-        <td>12</td>
-        <td>Visual</td>
-        <td>Font family='bold' — not real font name, UseAnyFont artifact, unpredictable fallback</td>
+        <td>11</td><td>Visual</td>
+        <td>Font family='bold' — UseAnyFont artifact, not real name. <span class="tag hypo">HYPOTHESIS</span></td>
         <td><span class="tag code">Theme fonts</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>13</td>
-        <td>Visual</td>
-        <td>Logo: PNG only, no SVG, no dark variant</td>
+        <td>12</td><td>Visual</td>
+        <td>Logo: PNG only, no SVG, no dark variant. <span class="tag hypo">HYPOTHESIS</span></td>
         <td><span class="tag wp-admin">Media + Header</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>14</td>
-        <td>Technical</td>
-        <td>Favicon: apple-touch-icon, manifest.webmanifest, maskable icons — needs audit</td>
+        <td>13</td><td>Technical</td>
+        <td>Favicon: apple-touch-icon, manifest — needs audit. <span class="tag unverified">UNVERIFIED</span></td>
         <td><span class="tag wp-admin">WP Admin</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>15</td>
-        <td>Visual</td>
-        <td>Hard-coded hexes: #221A4C, #6653C6, #333 — no token tree</td>
+        <td>14</td><td>Visual</td>
+        <td>Hard-coded hexes scattered — no CSS token tree. <span class="tag hypo">HYPOTHESIS</span></td>
         <td><span class="tag code">CSS Variables</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div></td>
       </tr>
       <tr>
-        <td>16</td>
-        <td>Visual</td>
-        <td>No dark mode — B2B SaaS audience expects it</td>
-        <td><span class="tag code">prefers-color-scheme</span></td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div></td>
-      </tr>
-      <tr>
-        <td>17</td>
-        <td>Copy/CTA</td>
-        <td>ორი primary CTA hero-ში ("დემო" + "შეხვედრა") — split focus</td>
+        <td>15</td><td>Copy</td>
+        <td>ორი primary CTA hero-ში ("დემო" + "შეხვედრა") — split attention. <span class="tag hypo">HYPOTHESIS</span></td>
         <td><span class="tag wp-admin">Page Builder</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>18</td>
-        <td>Copy</td>
-        <td>Social proof რიცხვების გარეშე — "50+ პარტნიორი" მხოლოდ. No % savings, hours saved.</td>
-        <td><span class="tag content">Content</span> <span class="tag owner-gate">Owner Gate (data)</span></td>
+        <td>16</td><td>Copy</td>
+        <td>Social proof: "50+ პარტნიორი" მხოლოდ — no % savings. <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><span class="tag content">Content</span> <span class="tag owner-gate">Owner (data)</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>19</td>
-        <td>Trust</td>
-        <td>Testimonials: არ არის სახელი/ფოტო/კომპანია. Logo wall alone ≠ social proof.</td>
-        <td><span class="tag content">Content</span> <span class="tag owner-gate">Owner Gate</span></td>
+        <td>17</td><td>Trust</td>
+        <td>Testimonials: სახელი/ფოტო/კომპანია არ არის. <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><span class="tag content">Content</span> <span class="tag owner-gate">Owner</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>20</td>
-        <td>Conversion</td>
-        <td>Sticky CTA scroll-ზე არ არის — intent users-ს კარგავს hero-ს გასცდენის შემდეგ</td>
+        <td>18</td><td>Conv.</td>
+        <td>Sticky CTA scroll-ზე არ არის. <span class="tag hypo">HYPOTHESIS</span></td>
         <td><span class="tag code">JS + CSS</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>21</td>
-        <td>Performance</td>
-        <td>Core Web Vitals unknown — WP+LiteSpeed+Optimole heavy stack, LCP target: &lt;2.5s</td>
-        <td><span class="tag wp-admin">LiteSpeed + Optimole settings</span></td>
+        <td>19</td><td>Perf.</td>
+        <td>Core Web Vitals unknown — LCP target &lt;2.5s. <span class="tag unverified">UNVERIFIED</span></td>
+        <td><span class="tag wp-admin">LiteSpeed + Optimole</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>22</td>
-        <td>Performance</td>
-        <td>3 custom fonts preloaded — delays LCP paint</td>
+        <td>20</td><td>Perf.</td>
+        <td>3 custom fonts preloaded — LCP paint delay. <span class="tag hypo">HYPOTHESIS</span></td>
         <td><span class="tag code">Theme header</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>23</td>
-        <td>Performance</td>
-        <td>CookieYes: left-side overlay on load → CLS impact + bad first impression</td>
+        <td>21</td><td>Perf.</td>
+        <td>CookieYes left-side overlay on load → CLS. <span class="tag hypo">HYPOTHESIS</span></td>
         <td><span class="tag wp-admin">CookieYes settings</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>24</td>
-        <td>Technical</td>
-        <td>OG image: Optimole CDN 3rd-party params — social preview fragile</td>
-        <td><span class="tag wp-admin">RankMath OG</span></td>
-        <td>⟶ Item #7-ის ნაწილი</td>
-      </tr>
-      <tr>
-        <td>25</td>
-        <td>Legal/Perf</td>
-        <td>Crisp chat loads before consent — GDPR risk EU; performance cost always</td>
+        <td>22</td><td>Legal</td>
+        <td>Crisp chat loads before consent — GDPR risk EU. <span class="tag hypo">HYPOTHESIS</span></td>
         <td><span class="tag code">Crisp load delay</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
+      </tr>
+      <tr>
+        <td>backlog</td><td>Visual</td>
+        <td><strong>Dark mode</strong> — Georgian B2B mid-market priority: LOW. გადადება სხვა items-ის შემდეგ. <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><span class="tag code">prefers-color-scheme</span></td>
+        <td>backlog</td>
       </tr>
     </table>
   </div>
@@ -326,86 +316,79 @@
   <!-- WHAT'S GOOD -->
   <div class="section">
     <div class="section-header">
-      <span class="badge good">✅ კარგია — არ შევახო</span>
-      <h2>შენარჩუნება სავალდებულო (regression test)</h2>
+      <span class="badge good">✅ კარგია — regression test</span>
+      <h2>შენარჩუნება სავალდებულო</h2>
     </div>
     <table>
-      <tr><td>✅ HTTPS + HSTS enabled</td><td>✅ Canonical tag</td><td>✅ OG + Twitter Cards (needs fix, but exist)</td></tr>
-      <tr><td>✅ RankMath JSON-LD: Organization + Place + WebSite + Article</td><td>✅ Real GE address + phone + socials in schema</td><td>✅ Sitemap index segmented</td></tr>
-      <tr><td>✅ All img tags have alt</td><td>✅ HTTP 200 correct status</td><td>✅ Server response 1.8s — acceptable</td></tr>
+      <tr>
+        <td>✅ HTTPS + HSTS</td>
+        <td>✅ Canonical tag</td>
+        <td>✅ OG + Twitter Cards (exist, needs fixes)</td>
+      </tr>
+      <tr>
+        <td>✅ RankMath JSON-LD: Organization + Place + WebSite + Article</td>
+        <td>✅ Real GE address + phone + socials in schema</td>
+        <td>✅ Sitemap index segmented</td>
+      </tr>
+      <tr>
+        <td>✅ HTTP 200 correct</td>
+        <td>✅ Server response 1.8s — acceptable</td>
+        <td><span class="tag unverified">UNVERIFIED</span> img alt — audit tool claimed 0 missing; not Playwright-verified</td>
+      </tr>
     </table>
   </div>
 
-  <!-- EXECUTION ROADMAP -->
+  <!-- ROADMAP -->
   <div class="roadmap">
-    <h2>Execution Roadmap (owner approval-ის შემდეგ)</h2>
-
+    <h2>Execution Roadmap — owner approval-ის შემდეგ</h2>
     <div class="phase">
-      <div class="phase-label">კვირა 1<br><small>Quick Wins</small></div>
+      <div class="phase-label">კვირა 1<br><small>Verify + Quick</small></div>
       <div class="phase-items">
-        robots.txt AI-crawlers allow (#5) · llms.txt შექმნა (#4) · robots.txt · H1 fix (#2) · lang="ka" patch (#1) · OG image branded 1200×630 (#7)
-        <br><small style="color:#6B7280;">WP Admin + minor code only. 1-2 სრული სამუშაო დღე.</small>
+        <strong>ჯერ verify:</strong> Playwright audit live — lang, H1 count, llms.txt, robots.txt, img alt. შემდეგ fix: robots.txt AI-allow (#4) · llms.txt (#3) · H1 fix (#2) · lang="ka" (#1)
       </div>
     </div>
-
     <div class="phase">
-      <div class="phase-label">კვირა 2<br><small>Schema</small></div>
+      <div class="phase-label">კვირა 2<br><small>Schema + OG</small></div>
       <div class="phase-items">
-        FAQPage schema (#6) · Service schema per product (#6) · AggregateRating (#6) · hreflang ka+x-default (#8) · CookieYes position fix (#23) · Crisp defer (#25)
-        <br><small style="color:#6B7280;">RankMath + custom JSON-LD. 2-3 დღე.</small>
+        FAQPage schema · Service schema · hreflang ka+x-default (#7) · Branded OG 1200×630 (#6) · CookieYes position (#21) · Crisp defer (#22)
       </div>
     </div>
-
     <div class="phase">
       <div class="phase-label">კვირა 3<br><small>CTA + Perf</small></div>
       <div class="phase-items">
-        Hero CTA single primary + microcopy (#17) · Sticky scroll CTA (#20) · 3 font preload → 1 (#22) · PageSpeed baseline audit (#21) · Favicon/manifest audit (#14)
-        <br><small style="color:#6B7280;">Mix code + content. 3-4 დღე.</small>
+        Single primary CTA (#15) · Sticky scroll CTA (#18) · Font preload → 1 only (#20) · PageSpeed baseline (#19) · Favicon audit (#13)
       </div>
     </div>
-
     <div class="phase">
       <div class="phase-label">კვირა 4-6<br><small>Design Sys</small></div>
       <div class="phase-items">
-        CSS design tokens (colors OKLCH, spacing) (#11, #15) · Georgian variable font replace UseAnyFont (#12) · SVG logo set + dark variant (#13) · Dark mode prefers-color-scheme (#16)
-        <br><small style="color:#6B7280;">Theme-level. 1-2 კვირა. Owner gate per change.</small>
+        CSS tokens (#10, #14) · Georgian variable font (#11) · SVG logo (#12)
       </div>
     </div>
-
     <div class="phase">
-      <div class="phase-label">კვირა 7-10<br><small>Architecture</small></div>
+      <div class="phase-label">Owner Decision<br><small>Architecture</small></div>
       <div class="phase-items">
-        Product sub-pages /bifinance … /bimedical (#3) · Sitemap update (#9) · Quantified social proof (#18) · Testimonials with photos (#19) · E-E-A-T content plan (#10)
-        <br><small style="color:#6B7280;">Owner decision required. Biggest impact item on the list.</small>
-      </div>
-    </div>
-
-    <div class="phase">
-      <div class="phase-label">კვირა 11-12<br><small>Content</small></div>
-      <div class="phase-items">
-        4 case study pages · Team page · First 4 blog posts (Georgian, AI-search optimized) · Submit refreshed sitemap · Monitor AI-engine brand mentions
-        <br><small style="color:#6B7280;">Content-heavy. Gurafa + Mariam co-owner.</small>
+        Product sub-pages (#arch) · E-E-A-T content (#9) · Testimonials + social proof (#16, #17) → ADR required
       </div>
     </div>
   </div>
 
-  <!-- LEGEND -->
   <div class="section" style="background:#F8F7FF;">
-    <div style="padding:16px 20px;">
+    <div style="padding:14px 20px; font-size:13px;">
       <strong>Legend:</strong>&nbsp;
-      <span class="tag wp-admin">WP Admin</span> = no code needed &nbsp;
-      <span class="tag rankmath">RankMath</span> = plugin settings &nbsp;
-      <span class="tag code">Code</span> = theme/file edit &nbsp;
-      <span class="tag arch">Architecture</span> = major scope &nbsp;
-      <span class="tag content">Content</span> = copywriting/media &nbsp;
-      <span class="tag owner-gate">Owner Gate</span> = explicit approval before execution
-      <br><br>
-      <strong>Effort dots:</strong> ● = 1 dot = quick (&lt;2h) · ●● = half-day · ●●● = multi-day
+      <span class="tag wp-admin">WP Admin</span> no code &nbsp;
+      <span class="tag rankmath">RankMath</span> plugin settings &nbsp;
+      <span class="tag code">Code</span> theme/file edit &nbsp;
+      <span class="tag arch">Architecture</span> major scope &nbsp;
+      <span class="tag content">Content</span> copy/media &nbsp;
+      <span class="tag owner-gate">Owner Gate</span> explicit approval &nbsp;
+      <span class="tag hypo">HYPOTHESIS</span> unverified finding &nbsp;
+      <span class="tag unverified">UNVERIFIED</span> needs Playwright check
     </div>
   </div>
 
   <div style="text-align:center; color:#9CA3AF; font-size:12px; margin-top:20px;">
-    Mentari · bivision.ge Audit · 2026-05-10 · Source: Lovable gap analysis + WEBSITE_STANDARD.md
+    Mentari · bivision.ge Audit v2 · 2026-05-10 · Source: Lovable gap analysis (unverified) + WEBSITE_STANDARD.md
   </div>
 
 </div>
