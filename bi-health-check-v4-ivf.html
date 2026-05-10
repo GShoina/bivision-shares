@@ -347,19 +347,20 @@ function showGate() {
 
 function submitGate(e) {
   e.preventDefault();
-  gateData = {
-    name: document.getElementById('gate-name').value,
-    email: document.getElementById('gate-email').value,
-    company: document.getElementById('gate-company').value,
-    role: document.getElementById('gate-role').value,
-    sector: 'medical_ivf',
-    timestamp: new Date().toISOString(),
-    answers: answers,
-    score: calcScore()
-  };
+  const name = document.getElementById('gate-name').value;
+  const email = document.getElementById('gate-email').value;
+  const company = document.getElementById('gate-company').value;
+  const role = document.getElementById('gate-role').value;
+  const score = calcScore();
+  gateData = { name, email, company, role, sector: 'medical_ivf', timestamp: new Date().toISOString(), answers, score };
   const log = JSON.parse(localStorage.getItem('bi_health_leads_v4m') || '[]');
   log.push(gateData);
   localStorage.setItem('bi_health_leads_v4m', JSON.stringify(log));
+  const fd = new FormData();
+  fd.append('_subject', 'BI Health Check — ' + (company || 'ახალი ლიდი') + ' | ქულა: ' + score + '/100');
+  fd.append('სახელი', name); fd.append('ელ.ფოსტა', email); fd.append('კლინიკა', company); fd.append('პოზიცია', role);
+  fd.append('ქულა', score + '/100'); fd.append('სექტორი', 'სამედიცინო / IVF'); fd.append('_captcha', 'false');
+  fetch('https://formsubmit.co/ajax/info@bivision.ge', { method: 'POST', body: fd }).catch(() => {});
   document.getElementById('gate').innerHTML = '<h2 style="margin-bottom:0.8rem;">მადლობა!</h2><p>24 საათში დაგიკავშირდებით.<br>ახლავე გსურთ 15-წუთიანი დემო?</p><a href="https://calendly.com/bivision/courtest-meeting" target="_blank" class="btn" style="display:inline-block;text-decoration:none;margin-top:12px;">დავჯავშნოთ →</a><br><button type="button" class="btn secondary" onclick="document.getElementById(\'gate\').classList.add(\'hidden\')" style="margin-top:10px;font-size:13px;">დახურვა</button>';
 }
 
