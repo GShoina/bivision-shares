@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bivision Emails V6 — 2026-05-10</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', sans-serif; max-width: 900px; margin: 40px auto; padding: 0 24px; background: #f3f4f6; color: #1a1a1a; }
+  h1 { font-size: 1.2rem; color: #111; border-bottom: 3px solid #4f46e5; padding-bottom: 10px; margin-bottom: 4px; }
+  .subtitle { font-size: 0.79rem; color: #666; margin-bottom: 10px; }
+  .changelog { font-size: 0.79rem; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 6px; padding: 9px 14px; margin-bottom: 24px; color: #7c2d12; }
+  .card { background: #fff; border-radius: 12px; padding: 26px 30px; margin-bottom: 22px; box-shadow: 0 1px 5px rgba(0,0,0,0.07); }
+  .card-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+  .card-num { font-size: 1.3rem; font-weight: 800; color: #c7d2fe; }
+  .card-title { font-size: 0.95rem; font-weight: 700; color: #4f46e5; }
+  .tags { margin-bottom: 12px; }
+  .tag { display: inline-block; font-size: 0.7rem; padding: 2px 10px; border-radius: 20px; margin-right: 4px; }
+  .tag-a { background: #e0e7ff; color: #3730a3; }
+  .tag-b { background: #ede9fe; color: #5b21b6; }
+  .tag-ok { background: #d1fae5; color: #065f46; font-weight: 700; }
+  .tag-freeze { background: #fef3c7; color: #92400e; font-weight: 700; }
+  .divider { border: none; border-top: 1px solid #f0f0f0; margin: 12px 0; }
+  .subject-box { background: #f5f3ff; border-left: 3px solid #7c3aed; padding: 9px 14px; border-radius: 0 8px 8px 0; margin-bottom: 12px; }
+  .subject-label { font-size: 0.67rem; color: #7c3aed; font-weight: 700; text-transform: uppercase; margin-bottom: 3px; }
+  .subject-text { font-size: 0.96rem; font-weight: 700; color: #1e1b4b; }
+  .body-label { font-size: 0.67rem; color: #9ca3af; font-weight: 700; text-transform: uppercase; margin-bottom: 5px; }
+  .body-text { font-size: 0.9rem; line-height: 1.9; color: #111; white-space: pre-wrap; border: 1px solid #e5e7eb; border-radius: 8px; padding: 13px 17px; background: #fafafa; }
+  .meta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; font-size: 0.78rem; }
+  .meta-cell { border-radius: 7px; padding: 8px 12px; }
+  .insight-cell { background: #eff6ff; }
+  .insight-label { color: #1d4ed8; font-size: 0.67rem; font-weight: 700; text-transform: uppercase; margin-bottom: 3px; }
+  .why-cell { background: #f0fdf4; }
+  .why-label { color: #15803d; font-size: 0.67rem; font-weight: 700; text-transform: uppercase; margin-bottom: 3px; }
+  .warn-cell { background: #fef9c3; border-radius: 7px; padding: 8px 12px; margin-top: 8px; font-size: 0.78rem; }
+  .warn-label { color: #854d0e; font-size: 0.67rem; font-weight: 700; text-transform: uppercase; margin-bottom: 3px; }
+  .copy-btn { float: right; font-size: 0.72rem; background: #4f46e5; color: #fff; border: none; padding: 4px 13px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+  .copy-btn:hover { background: #3730a3; }
+  .hc-link { display: inline-block; margin-top: 8px; font-size: 0.75rem; color: #4f46e5; background: #e0e7ff; padding: 3px 10px; border-radius: 12px; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<h1>Bivision Cold Emails – V6</h1>
+<div class="subtitle">2026-05-10 &nbsp;|&nbsp; V6 fixes: Bank API differentiator + subject curiosity hooks + Health Check CTA</div>
+<div class="changelog"><strong>V5 → V6 changes:</strong>
+① Email 1 subject: generic → Bank API curiosity hook
+② Email 1 body: add Bank API direct (unique in GE market) → CFO's real differentiator
+③ Email 2 subject: "სრული სურათი" → "ვინ ყიდის ყველაზე მაღალი მარჟით?" (curiosity = open rate ↑)
+④ All CTAs: "15 წუთი?" → Health Check link as primary (lower friction) + reply option
+⑤ Email 3: {{company}} token test gate warning added
+⑥ Email 4: IVF Health Check link added</div>
+
+<!-- EMAIL 1 -->
+<div class="card">
+  <button class="copy-btn" onclick="copyEmail(1)">Copy</button>
+  <div class="card-header"><div class="card-num">01</div><div class="card-title">CFO – Bank API + Project P&L</div></div>
+  <div class="tags">
+    <span class="tag tag-a">Construction / Developer</span>
+    <span class="tag tag-b">CFO</span>
+    <span class="tag tag-freeze">⚠ FREEZE — pilot ongoing</span>
+  </div>
+  <hr class="divider">
+  <div class="subject-box">
+    <div class="subject-label">Subject</div>
+    <div class="subject-text" id="subj1">ბანკი, 1C, Fina – ერთ P&L ხედში?</div>
+  </div>
+  <div class="body-label">Email body</div>
+  <div class="body-text" id="body1">სამშენებლო კომპანიებში ფინანსური მონაცემები, როგორც წესი, უკვე არსებობს – Fina-ში, 1C-ში, Excel-ში.
+
+BiFinance ამ მონაცემებს ბანკის API-სთან ერთად ახვევს ერთ ხედში – cash flow real-time, ხელით ამოღებული ექსტრაქტის გარეშე. გუნდი ანგარიშგებაზე დროს ვეღარ ხარჯავს.
+
+17+ ქართულ კომპანიაში ეს 2–3 კვირაში ამოქმედდა.
+
+3-წუთიანი BI Health Check – სად შეიძლება ფინანსური ხედვის გაძლიერება:
+https://gshoina.github.io/bivision-shares/bi-health-check-v2-construction.html</div>
+  <div class="meta-row">
+    <div class="meta-cell insight-cell"><div class="insight-label">V6 differentiator</div>Bank API direct = unique in Georgian market. No other local BI tool offers this. CFO recognizes value immediately — removes manual extract step.</div>
+    <div class="meta-cell why-cell"><div class="why-label">CTA logic</div>Health Check = 3 min, self-serve, low friction. CFO clicks → fills → Bivision sees score → personalized follow-up. Better than cold "15 წუთი?" ask.</div>
+  </div>
+</div>
+
+<!-- EMAIL 2 -->
+<div class="card">
+  <button class="copy-btn" onclick="copyEmail(2)">Copy</button>
+  <div class="card-header"><div class="card-num">02</div><div class="card-title">Sales Director – Margin Intelligence</div></div>
+  <div class="tags">
+    <span class="tag tag-a">Construction / Developer</span>
+    <span class="tag tag-b">კომერციული დირექტორი</span>
+    <span class="tag tag-freeze">⚠ FREEZE — pilot ongoing</span>
+  </div>
+  <hr class="divider">
+  <div class="subject-box">
+    <div class="subject-label">Subject</div>
+    <div class="subject-text" id="subj2">ვინ ყიდის ყველაზე მაღალი მარჟით?</div>
+  </div>
+  <div class="body-label">Email body</div>
+  <div class="body-text" id="body2">სამშენებლო კომპანიებში გაყიდვების მონაცემები ჩვეულებრივ რამდენიმე სისტემაში გროვდება – CRM-ში, 1C-ში, Excel-ში.
+
+BiFinance ამ მონაცემებს real-time Plan vs Actual-ად აერთიანებს: ვინ ყიდის ყველაზე მაღალი მარჟით, რომელი კომპლექსი გეგმიდან ჩამორჩება, სად სჭირდება ყურადღება კვარტლის შუაში.
+
+3-წუთიანი BI Health Check – სად შეიძლება გაყიდვების ხედვის გაძლიერება:
+https://gshoina.github.io/bivision-shares/bi-health-check-v2-construction.html</div>
+  <div class="meta-row">
+    <div class="meta-cell insight-cell"><div class="insight-label">Subject logic</div>"ვინ ყიდის ყველაზე მაღალი მარჟით?" — Sales Director-ი ამ კითხვას ყოველდღე სვამს. Open rate ↑ vs generic "გაყიდვების სრული სურათი".</div>
+    <div class="meta-cell why-cell"><div class="why-label">Accelerator ✓</div>"გროვდება" (neutral) → "აერთიანებს" (they win) → concrete outputs → Health Check CTA.</div>
+  </div>
+</div>
+
+<!-- EMAIL 3 -->
+<div class="card">
+  <button class="copy-btn" onclick="copyEmail(3)">Copy</button>
+  <div class="card-header"><div class="card-num">03</div><div class="card-title">CEO – P0 Personalized Holding</div></div>
+  <div class="tags">
+    <span class="tag tag-a">ვივა / ელთ / ლაგი</span>
+    <span class="tag tag-b">CEO</span>
+    <span class="tag tag-freeze">⚠ FREEZE — pilot ongoing</span>
+  </div>
+  <hr class="divider">
+  <div class="subject-box">
+    <div class="subject-label">Subject <span style="font-size:0.67rem;color:#9ca3af;font-weight:400">(HubSpot token)</span></div>
+    <div class="subject-text" id="subj3">{{company}} – კონსოლიდაცია "წამებში, არა დღეებში"</div>
+  </div>
+  <div class="body-label">Email body</div>
+  <div class="body-text" id="body3">კომპანიებში, სადაც 3+ პროექტია, მონაცემები ჩვეულებრივ უკვე არსებობს – Oris-ში, 1C-ში, გაყიდვების სისტემებში.
+
+BiFinance ამ მონაცემებს პროექტის ჭრილში, ბანკის ვალდებულებასთან ერთად, ერთ სურათად ახვევს – კონსოლიდაცია "წამებში, არა დღეებში".
+
+{{company}}-ისთვის ეს 2–3 კვირაში რეალურია.
+
+ამ წერილს უპასუხეთ – 15 წუთი?
+
+გელა შონია – Bivision CEO</div>
+  <div class="meta-row">
+    <div class="meta-cell insight-cell"><div class="insight-label">Subject V6 change</div>Subject-ში "წამებში, არა დღეებში" — concrete claim, not feature label. CEO opens curious "how?".</div>
+    <div class="meta-cell why-cell"><div class="why-label">CTA: direct reply kept</div>CEO-to-CEO = direct ask works. Health Check = too many steps for P0 target. Reply = simplest path.</div>
+  </div>
+  <div class="warn-cell"><div class="warn-label">⚠ Pre-send gate</div>HubSpot-ში გაგზავნამდე: დაამოწმე რომ {{company}} token filled-ია. "{{company}}" unfilled = credibility 0. Test send to info@bivision.ge first.</div>
+</div>
+
+<!-- EMAIL 4 -->
+<div class="card">
+  <button class="copy-btn" onclick="copyEmail(4)">Copy</button>
+  <div class="card-header"><div class="card-num">04</div><div class="card-title">IVF Clinic – Peer Reference + Health Check</div></div>
+  <div class="tags">
+    <span class="tag tag-a">IVF / Medical</span>
+    <span class="tag tag-b">კლინიკის დირექტორი</span>
+    <span class="tag tag-ok">✓ READY TO SEND</span>
+  </div>
+  <hr class="divider">
+  <div class="subject-box">
+    <div class="subject-label">Subject</div>
+    <div class="subject-text" id="subj4">Invitro-ში BiMedical-მა რა დაინახა?</div>
+  </div>
+  <div class="body-label">Email body</div>
+  <div class="body-text" id="body4">Invitro Hospital-სა და მარდალეიშვილის კლინიკაში BiMedical-მა სერვისების ჭრილში დანახვა შეძლო, სად არის ზრდის პოტენციალი – ხშირად არა ყველაზე ჩვეულებრივ მიმართულებებში.
+
+ექიმების/სერვისების რენტაბელობა, AI-ით ფარული პოტენციალი, Doctra/Oris/1C-სთან ინტეგრაცია – 2–3 კვირაში.
+
+გინდათ, ეს თქვენი კლინიკის კონტექსტში გაჩვენოთ? ან შეავსეთ 3-წუთიანი Medical BI Health Check:
+https://gshoina.github.io/bivision-shares/bi-health-check-v3-ivf.html</div>
+  <div class="meta-row">
+    <div class="meta-cell insight-cell"><div class="insight-label">V6 CTA change</div>Dual CTA: demo ask + Health Check link. Health Check = lower commitment, still captures interest. IVF director may prefer self-assessment before call.</div>
+    <div class="meta-cell why-cell"><div class="why-label">Subject unchanged</div>"Invitro-ში BiMedical-მა რა დაინახა?" — strongest subject across all 4. Peer reference + curiosity = highest open rate expected.</div>
+  </div>
+</div>
+
+<!-- GEMINI PROMPT -->
+<div class="card" style="border: 2px dashed #7c3aed;">
+  <div class="card-header"><div class="card-num" style="color:#7c3aed;">?</div><div class="card-title" style="color:#7c3aed;">სხვა AI-სთვის კითხვები — V6 → 9/10</div></div>
+  <div class="body-label">Remaining gaps that need external AI review</div>
+  <div class="body-text" style="background:#faf5ff; border-color:#ddd6fe;">Gap 1 — Email 1 Bank API line Georgian naturalness:
+"BiFinance ამ მონაცემებს ბანკის API-სთან ერთად ახვევს ერთ ხედში – cash flow real-time, ხელით ამოღებული ექსტრაქტის გარეშე."
+კითხვა: ეს ბუნებრივია ქართულად CEO/CFO-სთვის, თუ calque-ი ჟღერს? გადაწეროს colleague-to-colleague ტონით, Accelerator Frame: მონაცემები გაქვთ → ბანკი პირდაპირ → real-time.
+
+Gap 2 — Email 1 subject A/B:
+ა) "ბანკი, 1C, Fina – ერთ P&L ხედში?"
+ბ) "CFO-ს dashboard – ბანკი პირდაპირ"
+გ) "Plan vs Actual – ბანკიდან real-time"
+რომელი უფრო მაღალ open rate-ს მოიტანს top-10 construction CFO-სთვის?
+
+Gap 3 — Health Check CTA framing:
+"3-წუთიანი BI Health Check – სად შეიძლება ფინანსური ხედვის გაძლიერება" — ეს Accelerator Frame-ის ადეკვატური ქართულია? "გაძლიერება" vs "გაუმჯობესება" vs "გაფართოება"?</div>
+</div>
+
+<script>
+function copyEmail(n) {
+  const subj = document.getElementById('subj'+n).innerText;
+  const body = document.getElementById('body'+n).innerText;
+  navigator.clipboard.writeText('Subject: ' + subj + '\n\n' + body).then(() => {
+    const btns = document.querySelectorAll('.copy-btn');
+    const orig = btns[n-1].innerText;
+    btns[n-1].innerText = 'Copied!';
+    setTimeout(() => btns[n-1].innerText = orig, 1500);
+  });
+}
+</script>
+</body>
+</html>
