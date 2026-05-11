@@ -7,10 +7,25 @@
 <style>
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 960px; margin: 0 auto; padding: 24px; background: #f9f9f9; color: #1a1a1a; }
   h1 { font-size: 1.4rem; border-bottom: 3px solid #221A4C; padding-bottom: 8px; color: #221A4C; }
-  h2 { font-size: 1rem; color: #221A4C; margin-top: 28px; margin-bottom: 8px; }
   h3 { font-size: 0.88rem; color: #333; margin: 16px 0 6px; }
   .meta { color: #666; font-size: 0.82rem; margin-bottom: 24px; }
-  .section { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px 20px; margin-bottom: 16px; }
+  .ep0 { font-size: 0.8rem; color: #666; margin-bottom: 16px; border-bottom: 1px dashed #ddd; padding-bottom: 8px; }
+
+  /* collapsible sections */
+  details { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 14px; overflow: hidden; }
+  details[open] { border-color: #221A4C; }
+  summary {
+    font-size: 1rem; font-weight: 700; color: #221A4C;
+    padding: 13px 18px; cursor: pointer; list-style: none;
+    display: flex; align-items: center; justify-content: space-between;
+    user-select: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '＋'; font-size: 1rem; color: #aaa; transition: transform .2s; }
+  details[open] summary::after { content: '－'; }
+  summary:hover { background: #f5f5ff; }
+  .section-body { padding: 4px 18px 16px; }
+
   table { width: 100%; border-collapse: collapse; font-size: 0.84rem; margin-top: 8px; }
   th { background: #221A4C; color: #fff; padding: 7px 10px; text-align: left; font-weight: 600; }
   td { padding: 6px 10px; border-bottom: 1px solid #eee; vertical-align: top; }
@@ -18,18 +33,28 @@
   code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.82rem; }
   .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
   .tag-fact { background: #d4edda; color: #155724; }
-  .tag-inf { background: #cce5ff; color: #004085; }
-  .tag-hyp { background: #fff3cd; color: #856404; }
-  .tag-risk { background: #f8d7da; color: #721c24; }
-  .tag-opp { background: #d1ecf1; color: #0c5460; }
+  .tag-inf  { background: #cce5ff; color: #004085; }
+  .tag-hyp  { background: #fff3cd; color: #856404; }
   .flag-box { background: #fff8f0; border-left: 3px solid #e07b00; padding: 10px 14px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 0.84rem; }
-  .opp-box { background: #f0fff4; border-left: 3px solid #28a745; padding: 10px 14px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 0.84rem; }
+  .opp-box  { background: #f0fff4; border-left: 3px solid #28a745; padding: 10px 14px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 0.84rem; }
   .code-block { background: #1e1e1e; color: #d4d4d4; padding: 12px 16px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.8rem; margin: 8px 0; overflow-x: auto; line-height: 1.5; }
-  .ep0 { font-size: 0.8rem; color: #666; margin-bottom: 16px; border-bottom: 1px dashed #ddd; padding-bottom: 8px; }
-  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
   .stat-box { background: #221A4C; color: #fff; border-radius: 8px; padding: 12px 16px; }
   .stat-box .num { font-size: 1.6rem; font-weight: 700; }
   .stat-box .label { font-size: 0.75rem; opacity: 0.8; }
+
+  /* related report banner */
+  .related-banner {
+    display: flex; align-items: center; gap: 14px;
+    background: #221A4C; color: #fff; border-radius: 8px;
+    padding: 14px 18px; margin-bottom: 18px; text-decoration: none;
+  }
+  .related-banner:hover { background: #2d2266; }
+  .related-banner .rb-icon { font-size: 1.6rem; }
+  .related-banner .rb-label { font-size: 0.75rem; opacity: 0.7; }
+  .related-banner .rb-title { font-size: 0.92rem; font-weight: 700; }
+  .related-banner .rb-arrow { margin-left: auto; font-size: 1.2rem; opacity: 0.7; }
+
   @media(max-width:600px){ .summary-grid { grid-template-columns: 1fr 1fr; } }
 </style>
 </head>
@@ -39,16 +64,27 @@
 <p class="meta">Viktor | audit lane | 2026-05-11 | წყარო: live API + robots.txt + llms.txt + product page (FACT-ვერიფიცირებული)</p>
 <p class="ep0">EP0: 8/10 (S) — პირდაპირი კომპეტიტორის სრული ტექ-სტეკი + მონაცემების არქიტექტურა გამჟღავნდა; Bivision-ს B2B pivot-ის შეფასებისთვის კრიტიკულია</p>
 
+<!-- RELATED REPORT LINK -->
+<a class="related-banner" href="https://gshoina.github.io/bivision-shares/tarifebi-scraper-arch-2026-05-11.html" target="_blank">
+  <div class="rb-icon">⚙️</div>
+  <div>
+    <div class="rb-label">Part 2 — ღრმა ტექნიკური ანალიზი</div>
+    <div class="rb-title">სკრეიფერის არქიტექტურა (reconstructed) + Bivision დაცვის 7 counter</div>
+  </div>
+  <div class="rb-arrow">→</div>
+</a>
+
 <!-- STATS -->
-<div class="section">
-<h2>მასშტაბი (FACT — live /api/meta.php + llms.txt)</h2>
+<details open>
+<summary>მასშტაბი (FACT — live /api/meta.php + llms.txt)</summary>
+<div class="section-body">
 <div class="summary-grid">
   <div class="stat-box"><div class="num">211K+</div><div class="label">პროდუქტი სულ</div></div>
   <div class="stat-box"><div class="num">28</div><div class="label">სავაჭრო ქსელი</div></div>
   <div class="stat-box"><div class="num">50+</div><div class="label">ბანკი + MFO + სერვისი</div></div>
   <div class="stat-box"><div class="num">2–6h</div><div class="label">განახლების ციკლი</div></div>
 </div>
-<table style="margin-top:14px">
+<table>
   <tr><th>სეგმენტი</th><th>ქსელები</th><th>პროდუქტები</th></tr>
   <tr><td>სუპერმარკეტი</td><td>Carrefour (43K), Spar (9.9K), Goodwill (6.9K), Europroduct (12.7K), Magniti, Nikora, Ori Nabiji, Libre, Agrohub, Alcorium, Madart, Ioli, Zgapari, Georgita</td><td>~150,000</td></tr>
   <tr><td>აფთიაქი</td><td>Aversi (19.4K), PSP (12.7K), GPC (15.3K), Pharmadepot (13.4K), Impex</td><td>112,000+</td></tr>
@@ -58,10 +94,12 @@
   <tr><td>მობილური</td><td>Magticom, Silknet, Cellfie, Hallo</td><td>ტარიფები + roaming</td></tr>
 </table>
 </div>
+</details>
 
 <!-- TECH STACK -->
-<div class="section">
-<h2>ტექ-სტეკი (FACT — llms.txt + page source)</h2>
+<details open>
+<summary>ტექ-სტეკი (FACT — llms.txt + page source)</summary>
+<div class="section-body">
 <table>
   <tr><th>ფენა</th><th>ტექნოლოგია</th><th>სტატუსი</th></tr>
   <tr><td>Frontend rendering</td><td>Server-rendered PHP — <strong>JS framework არ არის</strong></td><td><span class="tag tag-fact">FACT</span></td></tr>
@@ -75,11 +113,12 @@
   <tr><td>AI-readability</td><td>llms.txt (added 2026-04-29) + robots.txt: Allow all</td><td><span class="tag tag-fact">FACT</span></td></tr>
 </table>
 </div>
+</details>
 
 <!-- DATA PIPELINE -->
-<div class="section">
-<h2>მონაცემების პაიპლაინი — როგორ და სად</h2>
-
+<details>
+<summary>მონაცემების პაიპლაინი — როგორ და სად</summary>
+<div class="section-body">
 <h3>1. სკრეიფინგის წყაროები (FACT — llms.txt)</h3>
 <table>
   <tr><th>ტიპი</th><th>წყარო</th><th>სიხშირე</th></tr>
@@ -107,10 +146,10 @@
 
 <div class="flag-box">
   <strong>კრიტიკული დეტალი: per-city pricing</strong><br>
-  იგივე პროდუქტი სხვადასხვა ID-ით შენახულია თბილისში, ბათუმში, ქუთაისში... ეს ნიშნავს რომ 211K "პროდუქტი" = product × city combinations. რეალური SKU-ების რაოდენობა გაცილებით ნაკლებია. ეს ასევე ნიშნავს ბევრ duplicate სკრეიფინგ ობიექტს.
+  იგივე პროდუქტი სხვადასხვა ID-ით შენახულია თბილისში, ბათუმში, ქუთაისში... ეს ნიშნავს რომ 211K "პროდუქტი" = product × city combinations. რეალური SKU-ების რაოდენობა გაცილებით ნაკლებია.
 </div>
 
-<h3>3. სიტებბ ინდექსი (FACT — sitemap.xml)</h3>
+<h3>3. სიტემაპ ინდექსი (FACT — sitemap.xml)</h3>
 <table>
   <tr><th>ფაილი</th><th>შინაარსი</th></tr>
   <tr><td>sitemap-products-1..7.xml</td><td>~30,000 URL × 7 = ~210,000 product pages</td></tr>
@@ -118,14 +157,15 @@
   <tr><td>sitemap-banks.xml</td><td>50+ ბანკი</td></tr>
   <tr><td>sitemap-stations.xml</td><td>9 სადგური</td></tr>
   <tr><td>sitemap-operators.xml</td><td>4 ოპერატორი</td></tr>
-  <tr><td>sitemap-categories.xml + storetype-categories.xml</td><td>კატეგორიები</td></tr>
-  <tr><td>sitemap-cities.xml + city-stores.xml + category-stores.xml</td><td>geo-scoped combinations</td></tr>
+  <tr><td>sitemap-categories + city-stores + category-stores</td><td>geo-scoped combinations</td></tr>
 </table>
 </div>
+</details>
 
 <!-- PUBLIC API -->
-<div class="section">
-<h2>გამოვლენილი Public API (FACT — no auth, JSON)</h2>
+<details>
+<summary>გამოვლენილი Public API (FACT — no auth, JSON)</summary>
+<div class="section-body">
 <table>
   <tr><th>endpoint</th><th>პარამეტრები</th><th>რეტურნი</th></tr>
   <tr><td><code>/api/meta.php</code></td><td>—</td><td>ყველა store სლაგი + product_count</td></tr>
@@ -136,99 +176,101 @@
   <tr><td><code>/api/rate.php</code></td><td>—</td><td>product user ratings</td></tr>
 </table>
 <div class="flag-box">
-  <strong>ყურადღება: API auth-გარეშეა</strong> — auth-key ან rate-limit ხილული არ არის. Bivision-ს ან ნებისმიერ მესამე მხარეს შეუძლია ამ API-ის პარალელური გამოყენება. ეს სუსტი წერტილია.
+  <strong>API auth-გარეშეა</strong> — rate-limit ხილული არ არის. Bivision-ს შეუძლია ამ API-ის გამოყენება retail price benchmark layer-ისთვის Qlik dashboards-ში.
 </div>
 </div>
+</details>
 
 <!-- SCRAPING METHODS -->
-<div class="section">
-<h2>სკრეიფინგის მეთოდები — ინფერენცია</h2>
+<details>
+<summary>სკრეიფინგის მეთოდები — ინფერენცია</summary>
+<div class="section-body">
 <table>
   <tr><th>სეგმენტი</th><th>სავარაუდო მეთოდი</th><th>საფუძველი</th></tr>
-  <tr><td>Carrefour, Spar, Goodwill</td><td>Store JSON API (მათი sites-ი REST/GraphQL-ს გამოიყენებს)</td><td><span class="tag tag-inf">INFERENCE</span> — image URL pattern + product count precision</td></tr>
-  <tr><td>Aversi, PSP, GPC</td><td>HTML scraping ან pharmacy JSON API</td><td><span class="tag tag-inf">INFERENCE</span> — ზოგი image ისევ aversi.ge CDN-ზეა</td></tr>
-  <tr><td>Magniti</td><td>ulu.ge CDN (Magniti-ს საკუთარი სისტემა) — image direct link</td><td><span class="tag tag-fact">FACT</span> — product page: ulu.ge/processed_product_images_magniti/...</td></tr>
-  <tr><td>ვალუტა</td><td>myfin.ge API — არ სკრეიფავს ბანკებს პირდაპირ</td><td><span class="tag tag-fact">FACT</span> — llms.txt explicit</td></tr>
+  <tr><td>Carrefour, Spar, Goodwill</td><td>Store JSON API (REST/GraphQL)</td><td><span class="tag tag-inf">INFERENCE</span> — image URL pattern + product count precision</td></tr>
+  <tr><td>Aversi, PSP, GPC</td><td>Playwright headless (Cloudflare bypass) ← კრიტიკული</td><td><span class="tag tag-inf">INFERENCE</span> — aversi.ge CF Managed Challenge confirmed live</td></tr>
+  <tr><td>Magniti</td><td>ulu.ge CDN direct link — image normalization-გარეშე</td><td><span class="tag tag-fact">FACT</span> — product page: ulu.ge/processed_product_images_magniti/...</td></tr>
+  <tr><td>ვალუტა</td><td>myfin.ge API — ბანკები პირდაპირ არ</td><td><span class="tag tag-fact">FACT</span> — llms.txt explicit</td></tr>
   <tr><td>საწვავი</td><td>სადგურების homepage HTML parse</td><td><span class="tag tag-fact">FACT</span> — llms.txt explicit</td></tr>
 </table>
-
-<h3>სურათების ნორმალიზაცია (FACT)</h3>
-<p style="font-size:0.84rem">პარსვის დროს: retailer-ის სურათი → download → MD5 hash → rename → upload to <code>s3.iserv.ge/svc-tarifebi/products/</code>. ეს გვიჩვენებს სისტემატიზებულ ETL პაიპლაინს, არა ნაჩქარევ scraper-ს. გამონაკლისი: Magniti — image URL პირდაპირ ulu.ge-ზე (ქეშირება ჯერ არ დასრულებულა ან Magniti-ს API პირდაპირ image-ს გასცემს).</p>
-
 <h3>Barcode ინტეგრაცია</h3>
-<p style="font-size:0.84rem">პროდუქტის სახელი შეიცავს EAN barcode-ს: <code>"სავუშკინი ხაჭო 5%-350გრ/4810268028847"</code>. ეს ნიშნავს, რომ სისტემა barcode-ს იყენებს cross-store deduplication-ისთვის — იგივე EAN სხვადასხვა ქსელში = same product, different price. სოფისტიკური pipeline.</p>
+<p style="font-size:0.84rem">პროდუქტის სახელი შეიცავს EAN barcode-ს: <code>"სავუშკინი ხაჭო 5%-350გრ/4810268028847"</code>. სისტემა barcode-ს იყენებს cross-store deduplication-ისთვის — იგივე EAN სხვადასხვა ქსელში = same product, different price. სოფისტიკური ETL.</p>
 </div>
+</details>
 
 <!-- SEO STRATEGY -->
-<div class="section">
-<h2>SEO სტრატეგია (FACT)</h2>
+<details>
+<summary>SEO სტრატეგია (FACT)</summary>
+<div class="section-body">
 <table>
   <tr><th>ელემენტი</th><th>დეტალი</th></tr>
   <tr><td>Server-side rendering</td><td>PHP SSR — ყველა პროდუქტი Google-ისთვის crawlable</td></tr>
   <tr><td>Schema.org</td><td>Product + Offer JSON-LD ყველა product page-ზე</td></tr>
-  <tr><td>Sitemap</td><td>17 sitemap file: 7 × product (×30K), + entities × combinations</td></tr>
+  <tr><td>Sitemap</td><td>17 sitemap file: 7 × product (×30K) + entities × combinations</td></tr>
   <tr><td>robots.txt</td><td>Allow: / — ყველა crawler, AI-ჩათვლით</td></tr>
-  <tr><td>llms.txt</td><td>2026-04-29 — AI assistants-ისთვის structured summary (ძალიან ახალი)</td></tr>
-  <tr><td>URL structure</td><td><code>/product/{id}</code>, <code>/store/{slug}</code>, <code>/category/{slug}/store/{slug}</code> — SEO-clean</td></tr>
+  <tr><td>llms.txt</td><td>2026-04-29 — AI assistants-ისთვის structured summary (ახალი)</td></tr>
+  <tr><td>URL structure</td><td><code>/product/{id}</code>, <code>/store/{slug}</code>, <code>/category/{slug}/store/{slug}</code></td></tr>
   <tr><td>City × category combinations</td><td><code>/city/tbilisi/store/carrefour</code> — longtail SEO trap</td></tr>
 </table>
 </div>
+</details>
 
 <!-- BUSINESS MODEL -->
-<div class="section">
-<h2>ბიზნეს მოდელი</h2>
+<details>
+<summary>ბიზნეს მოდელი</summary>
+<div class="section-body">
 <table>
-  <tr><th>ელემენტი</th><th>სტატუსი</th><th>ეპ1</th></tr>
+  <tr><th>ელემენტი</th><th>სტატუსი</th><th>EP1</th></tr>
   <tr><td>B2C სერვისი</td><td>უფასო, registration-გარეშე</td><td><span class="tag tag-fact">FACT</span></td></tr>
-  <tr><td>რეკლამა</td><td>ხილული არ არის (ჯერ); შეიძლება არ არის ან client-side ჩაიტვირთება</td><td><span class="tag tag-hyp">HYPOTHESIS</span></td></tr>
+  <tr><td>რეკლამა</td><td>ხილული არ არის; შეიძლება client-side</td><td><span class="tag tag-hyp">HYPOTHESIS</span></td></tr>
   <tr><td>Licensed data feeds</td><td>B2B — <code>info@tarifebi.ge</code> — "contact for licensed data feeds"</td><td><span class="tag tag-fact">FACT</span></td></tr>
-  <tr><td>Affiliate / referral</td><td>store link-ები პირდაპირი (carrefour.ge...) — affiliate code ხილული არ არის</td><td><span class="tag tag-hyp">HYPOTHESIS</span></td></tr>
+  <tr><td>Affiliate / referral</td><td>affiliate code ხილული არ არის store links-ში</td><td><span class="tag tag-hyp">HYPOTHESIS</span></td></tr>
 </table>
 </div>
+</details>
 
 <!-- COMPETITIVE ASSESSMENT -->
-<div class="section">
-<h2>Bivision-სთვის სტრატეგიული შეფასება</h2>
-
+<details open>
+<summary>Bivision-სთვის სტრატეგიული შეფასება</summary>
+<div class="section-body">
 <div class="opp-box">
   <strong>OPPORTUNITY: სხვადასხვა ბაზარი</strong><br>
-  tarifebi.ge = B2C consumer price comparison. Bivision = B2B BI dashboards (ERP data, KPI, Qlik). <strong>პირდაპირი კომპეტიცია ახლა არ არის.</strong> ისინი სამომხმარებლო ფასებს აჩვენებენ; Bivision კლიენტის შიდა მონაცემებს ანალიზს.
+  tarifebi.ge = B2C consumer price comparison. Bivision = B2B BI dashboards. <strong>პირდაპირი კომპეტიცია ახლა არ არის.</strong> ისინი სამომხმარებლო ფასებს აჩვენებენ; Bivision კლიენტის შიდა მონაცემებს ანალიზს.
 </div>
-
 <div class="flag-box">
   <strong>RISK: B2B pivot ლოდინშია</strong><br>
-  tarifebi.ge უკვე სთავაზობს licensed data feeds (B2B). თუ მათ ეს მიმართულება განავითარეს — retail BI მოდული, competitor pricing dashboard — <strong>ეს Bivision-ის ICP-ს ეხება პირდაპირ</strong> (Carrefour, Nikora...).
+  tarifebi.ge უკვე სთავაზობს licensed data feeds. თუ retail BI მოდული გაავითარეს — <strong>Bivision-ის ICP-ს ეხება პირდაპირ</strong> (Carrefour, Nikora...).
 </div>
-
 <table>
   <tr><th>კრიტერიუმი</th><th>tarifebi.ge</th><th>Bivision</th><th>verdict</th></tr>
   <tr><td>ბაზარი</td><td>B2C consumer</td><td>B2B enterprise/SME</td><td>სხვადასხვა ახლა</td></tr>
   <tr><td>მონაცემის ტიპი</td><td>public retail prices</td><td>კლიენტის შიდა ERP/KPI</td><td>სხვადასხვა</td></tr>
   <tr><td>ტექ სიღრმე</td><td>PHP scraper + SQL + S3</td><td>Qlik + MCP + Claude AI</td><td>Bivision ↑ AI ფენა</td></tr>
-  <tr><td>სკალა</td><td>211K პროდუქტი, 2M+ daily queries (INFERENCE)</td><td>7 კლიენტი, ღრმა ინტეგრაცია</td><td>სხვადასხვა მოდელი</td></tr>
-  <tr><td>B2B data risk</td><td>licensed feeds = potential BI pivot</td><td>AI-powered insights = defensible moat</td><td>Bivision-ს AI = barrier</td></tr>
-  <tr><td>API openness</td><td>auth-გარეშე public API</td><td>—</td><td>ისინი vulnerable არიან copy-to</td></tr>
+  <tr><td>სკალა</td><td>211K პროდუქტი</td><td>7 კლიენტი, ღრმა ინტეგრაცია</td><td>სხვადასხვა მოდელი</td></tr>
+  <tr><td>B2B data risk</td><td>licensed feeds = potential pivot</td><td>AI insights = defensible moat</td><td>Bivision AI = barrier</td></tr>
+  <tr><td>API openness</td><td>auth-გარეშე public API</td><td>—</td><td>ისინი vulnerable + Bivision-ს usable</td></tr>
 </table>
-
-<h3>Bivision-ის defensible moat (ამ ინტელიჯენსის შედეგი)</h3>
-<ul style="font-size:0.85rem; line-height:1.7">
-  <li>tarifebi.ge-ს <strong>analysis layer არ აქვს</strong> — ისინი data collector-ები არიან, insight generator-ები არა</li>
-  <li>Bivision-ს ERP კავშირი (Fina, Oris, 1C, Balance) + Qlik + Claude = <strong>ისინი ვერ გაიმეორებენ 2025-ში</strong></li>
-  <li>tarifebi-ს public API-ს Bivision-ს შეუძლია <strong>გამოიყენოს</strong> — retail price benchmark data კლიენტ dashboards-ში (OPPORTUNITY)</li>
+<ul style="font-size:0.85rem; line-height:1.8; margin-top:12px">
+  <li>tarifebi.ge-ს <strong>analysis layer არ აქვს</strong> — data collector, არა insight generator</li>
+  <li>Bivision-ს ERP კავშირი (Fina, Oris, 1C, Balance) + Qlik + Claude = <strong>ვერ გაიმეორებენ</strong></li>
+  <li>tarifebi public API → Bivision-ს შეუძლია <strong>გამოიყენოს</strong> retail price benchmark Qlik dashboards-ში</li>
 </ul>
 </div>
+</details>
 
 <!-- VERDICT -->
-<div class="section">
-<h2>ქმედება (Viktor recommendation)</h2>
+<details open>
+<summary>ქმედება (Viktor recommendation)</summary>
+<div class="section-body">
 <table>
   <tr><th>#</th><th>ქმედება</th><th>პრიორიტეტი</th></tr>
-  <tr><td>1</td><td>Bivision pitch-ში retail-BI ვერტიკალი (Carrefour, Nikora...) — tarifebi-ს public API + Bivision analysis layer = unique value prop. <br><em>Gurafa-ს: vertical study</em></td><td>P1 — Gurafa</td></tr>
-  <tr><td>2</td><td>tarifebi-ს B2B pivot watch — quarterly monitor: info@tarifebi.ge cold email subscribe / site monitor. <br><em>Gurafa-ს: quarterly signal</em></td><td>P2 — Gurafa</td></tr>
-  <tr><td>3</td><td>Davit T. connection — owner decision. ეს ინტელიჯენსი ვერ confirm/deny-ებს პირადმა connection-ს ტექ-სტეკიდან. <br><em>Owner-ის lane</em></td><td>Owner-reserved</td></tr>
-  <tr><td>4</td><td>API integration opportunity — <code>/api/products.php</code> auth-free. Demo dashboard: retail price tracker Qlik + tarifebi API. <br><em>Mentari-ს: pilot project</em></td><td>P1 — Mentari</td></tr>
+  <tr><td>1</td><td>Bivision pitch — retail-BI ვერტიკალი (Carrefour, Nikora): tarifebi API + Bivision analysis layer = unique value prop. <em>→ Gurafa: vertical study</em></td><td>P1 — Gurafa</td></tr>
+  <tr><td>2</td><td>tarifebi B2B pivot watch — quarterly. <em>→ Gurafa: signal track</em></td><td>P2 — Gurafa</td></tr>
+  <tr><td>3</td><td>Davit T. connection — ტექ-სტეკიდან ვერ confirm/deny. <em>→ Owner lane</em></td><td>Owner-reserved</td></tr>
+  <tr><td>4</td><td>Demo dashboard: retail price tracker Qlik + tarifebi API (auth-free). <em>→ Mentari: pilot</em></td><td>P1 — Mentari</td></tr>
 </table>
 </div>
+</details>
 
 <p style="margin-top:20px; font-size:0.8rem; color:#999;">Viktor | audit lane | 2026-05-11 | წყაროები: tarifebi.ge/llms.txt, /api/meta.php, /api/products.php, /api/exchange.php, /robots.txt, /sitemap.xml, /product/19844 — ყველა live-ვერიფიცირებული</p>
 </body>
