@@ -25,66 +25,59 @@
   .subject-text { font-size: 0.96rem; font-weight: 700; color: #1e1b4b; }
   .body-label { font-size: 0.67rem; color: #9ca3af; font-weight: 700; text-transform: uppercase; margin-bottom: 5px; }
   .body-text { font-size: 0.9rem; line-height: 1.9; color: #111; white-space: pre-wrap; border: 1px solid #e5e7eb; border-radius: 8px; padding: 13px 17px; background: #fafafa; }
-  .meta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; font-size: 0.78rem; }
-  .meta-cell { border-radius: 7px; padding: 8px 12px; }
-  .insight-cell { background: #eff6ff; }
-  .insight-label { color: #1d4ed8; font-size: 0.67rem; font-weight: 700; text-transform: uppercase; margin-bottom: 3px; }
-  .why-cell { background: #f0fdf4; }
-  .why-label { color: #15803d; font-size: 0.67rem; font-weight: 700; text-transform: uppercase; margin-bottom: 3px; }
+  .body-text a { color: #6B63B5; font-weight: 600; }
+  .sig { font-size: 0.82rem; color: #555; margin-top: 6px; border-top: 1px solid #e5e7eb; padding-top: 8px; }
   .copy-btn { float: right; font-size: 0.72rem; background: #6B63B5; color: #fff; border: none; padding: 4px 13px; border-radius: 6px; cursor: pointer; font-weight: 600; }
   .copy-btn:hover { background: #5a54a0; }
-  .body-text a { color: #6B63B5; }
+  .grammar-note { font-size: 0.72rem; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 5px; padding: 5px 10px; margin-bottom: 8px; color: #166534; }
 </style>
 </head>
 <body>
 
 <h1>Bivision Cold Emails — Construction Final v7</h1>
-<div class="subtitle">2026-05-11 &nbsp;|&nbsp; CEO + CFO versions &nbsp;|&nbsp; owner-final copy</div>
-<div class="note"><strong>სტატუსი:</strong> ⚠ Construction = FREEZE (pilot ongoing). გაგზავნა მხოლოდ owner unlock-ის შემდეგ.</div>
+<div class="subtitle">2026-05-11 &nbsp;|&nbsp; CEO + CFO &nbsp;|&nbsp; owner-final copy</div>
+<div class="note"><strong>სტატუსი:</strong> ⚠ Construction = FREEZE (pilot ongoing). გაგზავნა owner unlock-ის შემდეგ.</div>
 
 <!-- EMAIL 1: CEO -->
 <div class="card">
   <button class="copy-btn" onclick="copyEmail(1)">Copy</button>
-  <div class="card-header"><div class="card-num">01</div><div class="card-title">CEO — API Hook-ით გაძლიერებული</div></div>
+  <div class="card-header"><div class="card-num">01</div><div class="card-title">CEO — Executive View</div></div>
   <div class="tags">
     <span class="tag tag-a">Construction / Developer</span>
     <span class="tag tag-b">CEO</span>
-    <span class="tag tag-freeze">⚠ FREEZE — pilot ongoing</span>
+    <span class="tag tag-freeze">⚠ FREEZE</span>
   </div>
+  <div class="grammar-note">გრამატიკა შესწორდა: „წარმატებული" (იყო: წარმატბული)</div>
   <hr class="divider">
   <div class="subject-box">
     <div class="subject-label">Subject</div>
-    <div class="subject-text" id="subj1">პროექტების ფინანსური ხედი</div>
+    <div class="subject-text" id="subj1">კონტროლი სამშენებლო პროექტებზე / Executive View</div>
   </div>
   <div class="body-label">Email body</div>
   <div class="body-text" id="body1">{{first_name}}, მოგესალმებით.
 
-მსხვილ დეველოპერულ კომპანიებში მონაცემები, როგორც წესი, უკვე არსებობს — ERP-ში, Excel-ში, გაყიდვების ფაილებში და ბიუჯეტებში.
+წარმატებული დეველოპერული &amp; სამშენებლო კომპანიებში მონაცემები და რეპორტები უკვე არსებობს სხვადასხვა სისტემებში (ERP, Excel, Zoho, Hubspot, Google Sheet), თუმცა მენეჯმენტისთვის გამოწვევა უფრო მათი ერთიან სურათად, რეალურ დროში თავმოყრაა.
 
-მთავარი შესაძლებლობა ხშირად ამ მონაცემების ერთ მენეჯმენტ ხედად შეკვრაა, რათა ხელმძღვანელმა სწრაფად დაინახოს:
+ჩვენ Bivision-ში არ ვყიდით ახალ სააღრიცხვო სისტემას. ჩვენ არსებული წყაროების (Fina, Oris, 1C) გაერთიანებით ვაშენებთ Executive დაშბორდებს, სადაც პირდაპირ ჩანს:
 
-  • რომელი პროექტი როგორ მიდის გეგმასთან შედარებით;
-  • სად ჩნდება ბიუჯეტიდან გადახრა;
-  • როგორია მომავალი პერიოდის cash flow სურათი.
+  • პროექტების კონსოლიდირებული და ინდივიდუალური P&amp;L;
+  • მიმდინარე ბიუჯეტი vs ფაქტობრივი ხარჯი (გადახარჯვის სიურპრიზების გარეშე);
+  • მომავალი პერიოდის 90 დღის Cash Flow.
 
-BiFinance ბანკის API-ს პირდაპირ უერთდება — cash position ნებისმიერ დღეს, ამონაწერის ლოდინი ქრება.
+შევქმენით 3-წუთიანი Construction BI Health Check, რომელიც დაგანახებთ, რა ეტაპზეა თქვენი კომპანიის ანალიტიკა და სად გაქვთ საოპერაციო „ბრმა ზონები".
 
-Bivision-ში ჩვენ არ ვცვლით თქვენს არსებულ სააღრიცხვო სისტემებს. ვაერთიანებთ Fina/Oris/1C/Excel-ის მონაცემებს და ვაშენებთ executive dashboard-ს მენეჯმენტის გადაწყვეტილებებისთვის.
+👉 <a href="https://gshoina.github.io/bivision-shares/bi-health-check-v3-construction.html" target="_blank">შეამოწმეთ ფინანსური რეპორტინგის სტატუსი აქ</a>
 
-შევქმენით 3-წუთიანი Construction BI Health Check, რომელიც დაგეხმარებათ სწრაფად შეაფასოთ, სად შეიძლება პროექტების ფინანსური ხედის გაძლიერება.
-
-👉 <a href="https://gshoina.github.io/bivision-shares/bi-health-check-v3-construction.html" target="_blank">გაიარეთ Health Check აქ</a>
-
-შედეგების მიხედვით თავად შეაფასებთ, რამდენად რელევანტურია Bivision-ის ჩართულობა.
+შედეგების მიხედვით თავად შეაფასეთ, რამდენად რელევანტური იქნება ჩვენი გუნდის ჩართულობა.
 
 საუკეთესო სურვილებით,
 
 გელა შონია
-Bivision | gela.shonia@bivision.ge</div>
-  <div class="meta-row">
-    <div class="meta-cell insight-cell"><div class="insight-label">Frame</div>Opportunity-First + Bank API hook. CEO buys vision, CFO buys removal of pain. API line = unique GE market claim.</div>
-    <div class="meta-cell why-cell"><div class="why-label">CTA logic</div>Health Check = self-serve audit. CEO evaluates fit → higher quality lead on reply.</div>
-  </div>
+მმართველი პარტნიორი
+
+შპს „ბივიჟენი" | მის: ჟ. შარტავას ქ. 40, თბილისი 0160, საქართველო
+E: gela.shonia@bivision.ge | M: (+995) 593 255 385
+W: www.Bivision.ge | W: www.bihub.ge</div>
 </div>
 
 <!-- EMAIL 2: CFO -->
@@ -94,8 +87,9 @@ Bivision | gela.shonia@bivision.ge</div>
   <div class="tags">
     <span class="tag tag-a">Construction / Developer</span>
     <span class="tag tag-b">CFO / Finance Director</span>
-    <span class="tag tag-freeze">⚠ FREEZE — pilot ongoing</span>
+    <span class="tag tag-freeze">⚠ FREEZE</span>
   </div>
+  <div class="grammar-note">გრამატიკა შესწორდა: „წარმატებული" / „რამდენიმედღიანი" / „მ.შ. მობილურშიც"</div>
   <hr class="divider">
   <div class="subject-box">
     <div class="subject-label">Subject</div>
@@ -104,26 +98,24 @@ Bivision | gela.shonia@bivision.ge</div>
   <div class="body-label">Email body</div>
   <div class="body-text" id="body2">{{first_name}}, მოგესალმებით.
 
-დეველოპერულ კომპანიებში ფინანსური რეპორტინგის მნიშვნელოვანი ნაწილი ხშირად კვლავ ხელით კეთდება — ERP-დან, Excel-დან, ბიუჯეტებიდან და გაყიდვების ფაილებიდან მონაცემების შეკრებით.
+წარმატებული დეველოპერული &amp; სამშენებლო კომპანიებში ფინანსური რეპორტინგის მნიშვნელოვანი ნაწილი ხშირად კვლავ ხელით კეთდება — ERP-დან, Excel-დან, ბიუჯეტებიდან და გაყიდვების ფაილებიდან მონაცემების შეკრებით.
 
-რა შეიცვლება თქვენი ფინანსური გუნდისთვის, თუ პროექტების P&L-ის და Cash Flow-ს სრული სურათის მიღება 5-დღიანი ექსელ-რუტინის ნაცვლად, ავტომატურად, ერთი კლიკით იქნება შესაძლებელი?
+რა შეიცვლება თქვენი ფინანსური გუნდისთვის, თუ პროექტების მომგებიანობის (P&amp;L), ფულის მოძრაობის (Cash Flow), Budget vs Actual-ის და დებიტორული დავალიანებების სრული სურათის მიღება რამდენიმედღიანი Excel-რუტინის ნაცვლად, ავტომატურად, ერთი კლიკით იქნება შესაძლებელი?
 
-Bivision-ში ჩვენ ვაერთიანებთ არსებულ წყაროებს — Fina, Oris, 1C, Balance, Excel — და ვაშენებთ ავტომატიზებულ ფინანსურ dashboard-ებს, სადაც მენეჯმენტისთვის საჭირო რეპორტები მუდმივად განახლებად ხედში ჩანს.
+Bivision-ში ჩვენ ვაერთიანებთ არსებულ წყაროებს — Fina, Oris, 1C, Balance, Excel, Zoho, Hubspot, Google Sheet — და ვაშენებთ ავტომატიზებულ ფინანსურ Dashboard-ებს, სადაც მენეჯმენტი საჭირო რეპორტებს მ.შ. მობილურშიც live, მუდმივად განახლებად ხედავს.
 
-შევქმენით 3-წუთიანი Construction BI Health Check სპეციალურად ფინანსური გუნდისთვის.
+შევქმენით 3-წუთიანი Construction BI Health Check, რომელიც დაგანახებთ, რა ეტაპზეა თქვენი კომპანიის ანალიტიკა და სად გაქვთ საოპერაციო „ბრმა ზონები".
 
 👉 <a href="https://gshoina.github.io/bivision-shares/bi-health-check-v3-construction.html" target="_blank">შეამოწმეთ ფინანსური რეპორტინგის სტატუსი აქ</a>
-
-შედეგი დაგეხმარებათ დაინახოთ, კონკრეტულად სად შეიძლება ხელით მუშაობის შემცირება და ფინანსური ხედის ავტომატიზაცია.
 
 საუკეთესო სურვილებით,
 
 გელა შონია
-Bivision | gela.shonia@bivision.ge</div>
-  <div class="meta-row">
-    <div class="meta-cell insight-cell"><div class="insight-label">Frame</div>Curiosity Hook — rhetorical question forces CFO to imagine the alternative. "5-day Excel routine" = their reality named directly.</div>
-    <div class="meta-cell why-cell"><div class="why-label">CTA logic</div>Health Check for finance team = self-diagnosis. CFO validates gaps → qualified reply.</div>
-  </div>
+მმართველი პარტნიორი
+
+შპს „ბივიჟენი" | მის: ჟ. შარტავას ქ. 40, თბილისი 0160, საქართველო
+E: gela.shonia@bivision.ge | M: (+995) 593 255 385
+W: www.Bivision.ge | W: www.bihub.ge</div>
 </div>
 
 <script>
