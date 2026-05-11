@@ -141,9 +141,11 @@
   <tr><td><code>/api/search.php</code></td><td><code>q=milk</code></td><td>full-text search</td></tr>
   <tr><td><code>/api/exchange.php</code></td><td><code>currency=USD</code></td><td>NBG + 50+ bank rates</td></tr>
   <tr><td><code>/api/fuel.php</code></td><td>—</td><td>9 სადგური × fuel types</td></tr>
-  <tr><td><code>/api/rate.php</code></td><td>—</td><td>product user ratings</td></tr>
+  <tr><td><code>/api/rate.php</code></td><td>required (unverified)</td><td>⚠️ 400 without params — endpoint exists, signature unknown</td></tr>
+  <tr><td><code>/api/history.php</code></td><td><code>id=N</code></td><td>🔒 CF Managed Challenge — exists, individual product price history</td></tr>
+  <tr><td><code>/api/product.php</code></td><td><code>id=N</code></td><td>🔒 CF Managed Challenge — exists, single product detail</td></tr>
 </table>
-<div class="flag-box"><strong>Zero auth.</strong> Rate-limit ხილული არ არის. 211K პროდუქტი ≈2 საათში ამოსაღებია.</div>
+<div class="flag-box"><strong>Zero auth on 5/8 endpoints.</strong> Rate-limit ხილული არ არის. 211K პროდუქტი ≈2 საათში ამოსაღებია. history + product = CF-protected — individual-page data, mass-scrape blocked.</div>
 </div>
 </details>
 
@@ -398,6 +400,365 @@ python canary_monitor.py --search "99999.99" --notify slack://bivision-alerts
 </div>
 </details>
 
-<p style="margin-top:24px; font-size:0.8rem; color:#999;">Viktor | audit lane | 2026-05-11 | წყაროები: tarifebi.ge/llms.txt + /api/meta.php + /api/products.php + /api/exchange.php + /robots.txt + /sitemap.xml + /product/19844 + HTTP headers + aversi.ge CF probe</p>
+<!-- ═══════════════════════════════ PART 3 ═══════════════════════════════ -->
+<div class="part-header">Part 3 — Bivision Future System — Protection Architecture</div>
+
+<details open>
+<summary>სისტემის არქიტექტურა — 8-ფენიანი დაცვა</summary>
+<div class="sb">
+<p style="font-size:0.84rem;margin-bottom:12px">Bivision-ის მომავალი data product (price intelligence / BI pipeline) — ყველა სისუსტე tarifebi-სა, ყველა moat Bivision-ისთვის.</p>
+<pre>
+┌─────────────────────────────────────────────────────────┐
+│                  BIVISION DATA PRODUCT                  │
+├──────────┬──────────┬──────────┬──────────┬────────────┤
+│ Layer 1  │ Layer 2  │ Layer 3  │ Layer 4  │  Layer 5   │
+│ Collect  │  Auth    │ Storage  │   CDN/   │  Schema    │
+│ (scrape) │  + JWT   │ S3+Sign  │   WAF    │  Opacity   │
+├──────────┴──────────┴──────────┴──────────┴────────────┤
+│              Layer 6: Canary + Fingerprint              │
+│              Layer 7: Legal (ToS + NDA)                 │
+│              Layer 8: Monitor + Alert                   │
+└─────────────────────────────────────────────────────────┘
+</pre>
+<div class="key-box"><strong>Core principle:</strong> tarifebi = open-by-default (zero auth, permanent S3 URLs, URL-param API). Bivision = closed-by-default — ყველა endpoint requires token, ყველა asset expires, ყველა client fingerprinted.</div>
+</div>
+</details>
+
+<details>
+<summary>Layer 1 — Data Collection (scraper design — tarifebi-ზე უკეთ)</summary>
+<div class="sb">
+<h3>tarifebi სისუსტე</h3>
+<ul>
+  <li>Aversi.ge → CF Managed Challenge → Playwright headless — detectible, slow, fragile</li>
+  <li>Magniti images ჯერ კიდევ ulu.ge-ზე — image normalization incomplete</li>
+  <li>Currency: myfin.ge aggregator → single point of failure</li>
+</ul>
+<h3>Bivision-ის მიდგომა</h3>
+<pre># scraper architecture — Python + Playwright + rotating proxy
+class BiScraper:
+
+    # Tier 1: public JSON APIs (no browser needed)
+    TIER1_TARGETS = {
+        'carrefour': 'https://www.carrefour.ge/api/products',
+        'spar':      'https://spar.ge/api/v2/catalog',
+        'goodwill':  'https://goodwill.ge/api/items',
+    }
+
+    # Tier 2: CF-protected sites → Playwright persistent session
+    TIER2_CF_TARGETS = ['aversi.ge', 'psp.ge']
+
+    def scrape_tier2(self, url: str):
+        with sync_playwright() as p:
+            browser = p.chromium.launch_persistent_context(
+                user_data_dir='/var/scraper/sessions',  # ← persist cookies
+                proxy={'server': self.get_rotating_proxy()},
+                args=['--disable-blink-features=AutomationControlled']
+            )
+            page = browser.new_page()
+            page.goto(url)
+            page.wait_for_load_state('networkidle')
+            return page.content()
+
+    # Image normalization — ALL assets to own S3
+    def normalize_image(self, src_url: str) -> str:
+        img_bytes = requests.get(src_url, timeout=10).content
+        md5 = hashlib.md5(img_bytes).hexdigest()
+        key = f"products/{md5}.webp"
+        # convert to WebP + upload
+        img = Image.open(BytesIO(img_bytes)).convert('RGB')
+        buf = BytesIO()
+        img.save(buf, 'WEBP', quality=82)
+        self.s3.put_object(Key=key, Body=buf.getvalue(), ContentType='image/webp')
+        return f"https://cdn.bivision.ge/{key}"
+
+    # EAN extraction — from name field
+    def extract_ean(self, name: str) -> str | None:
+        match = re.search(r'/(\d{8,13})$', name)
+        return match.group(1) if match else None</pre>
+<div class="flag-box"><strong>Moat vs tarifebi:</strong> WebP conversion (30% smaller, faster LCP). Bivision CDN (cdn.bivision.ge) — ჩვენი brand, არა iserv.ge. Rotating proxy pool — IP ban-resistant.</div>
+</div>
+</details>
+
+<details>
+<summary>Layer 2 — Auth + JWT (zero-trust API)</summary>
+<div class="sb">
+<h3>tarifebi სისუსტე</h3>
+<pre># tarifebi: zero auth
+curl https://tarifebi.ge/api/products.php   # ← works for anyone, forever
+</pre>
+<h3>Bivision JWT design</h3>
+<pre># JWT payload — per-client fingerprint embedded
+{
+  "sub": "client_acme_001",
+  "tier": "professional",           # free | starter | professional | enterprise
+  "rate_limit": 1000,               # req/hour
+  "datasets": ["retail", "pharma"], # scoped access — not all data
+  "canary_seed": "a7f3c9",          # unique per client — fingerprints leaked data
+  "iat": 1715420000,
+  "exp": 1715506400                 # 24h access token
+}
+
+# Refresh token: 30-day, stored server-side → revocable instantly
+# Header: Authorization: Bearer {token}
+# On abuse: token.revoked = true → all subsequent requests = 401
+
+# Rate limit response:
+HTTP/1.1 429 Too Many Requests
+Retry-After: 3600
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 0</pre>
+<table>
+  <tr><th>Tier</th><th>Rate Limit</th><th>Datasets</th><th>Price</th></tr>
+  <tr><td>Free</td><td>100 req/hr</td><td>retail only, 24h delay</td><td>$0 (lead gen)</td></tr>
+  <tr><td>Starter</td><td>500 req/hr</td><td>retail + pharma</td><td>~$200/mo</td></tr>
+  <tr><td>Professional</td><td>2,000 req/hr</td><td>all datasets</td><td>~$500/mo</td></tr>
+  <tr><td>Enterprise</td><td>unlimited</td><td>all + raw export</td><td>custom</td></tr>
+</table>
+</div>
+</details>
+
+<details>
+<summary>Layer 3 — Storage + Signed URLs</summary>
+<div class="sb">
+<h3>tarifebi სისუსტე</h3>
+<pre># tarifebi image URL — permanent, public, no expiry
+https://s3.iserv.ge/svc-tarifebi/products/4cf1d4c49cb8ff11e05cd7de93a71121.jpg
+# → mass download in 5 minutes, no auth needed
+</pre>
+<h3>Bivision signed URL design</h3>
+<pre># S3 presigned URL — 15-minute expiry
+import boto3
+s3 = boto3.client('s3')
+
+def get_image_url(key: str, client_id: str) -> str:
+    return s3.generate_presigned_url(
+        'get_object',
+        Params={
+            'Bucket': 'bivision-data',
+            'Key': key,
+            # watermark param — passed to Lambda@Edge for image stamping
+            'ResponseContentDisposition': f'inline; filename="{client_id}.webp"'
+        },
+        ExpiresIn=900  # 900 seconds = 15 minutes
+    )
+
+# API response includes signed URL — expires before scraper can reuse
+{
+  "product_id": 12345,
+  "image_url": "https://cdn.bivision.ge/products/abc.webp?X-Amz-Expires=900&X-Amz-Signature=...",
+  "image_expires_at": "2026-05-11T12:15:00Z"
+}
+</pre>
+<div class="key-box">Lambda@Edge: ყველა image request-ზე client_id watermark invisible (steganography). ნებისმიერი გაჟონილი სურათი → წყარო identifiable.</div>
+</div>
+</details>
+
+<details>
+<summary>Layer 4 — Cloudflare WAF + Bot Protection</summary>
+<div class="sb">
+<h3>tarifebi სისუსტე</h3>
+<ul>
+  <li>Bot protection = none on /api/ endpoints</li>
+  <li>History + product pages = CF-protected (inconsistent — main endpoints open)</li>
+  <li>No rate limiting observable from outside</li>
+</ul>
+<h3>Bivision Cloudflare config</h3>
+<pre># Cloudflare WAF Rules (Pro plan = $20/mo)
+
+# Rule 1: Block non-JWT API requests
+(http.request.uri.path matches "^/v1/" and
+ not http.request.headers["Authorization"] matches "^Bearer ")
+→ BLOCK
+
+# Rule 2: Rate limit per IP on auth endpoint
+(http.request.uri.path eq "/v1/auth/token")
+→ Rate Limit: 10 req/min per IP → BLOCK 1hr
+
+# Rule 3: Bot Fight Mode
+→ ENABLED (Bot Fight Mode — $0 add-on on Pro)
+→ Blocks: curl default UA, scrapy, python-requests defaults
+
+# Rule 4: Geo-restrict (optional — GE market only)
+(not ip.geoip.country in {"GE" "US" "DE"})
+→ CHALLENGE (JS challenge, not block)
+
+# Rule 5: Anomaly spike detection
+(http.request.uri.path matches "^/v1/products" and
+ rate(1m) gt 200)
+→ MANAGED CHALLENGE</pre>
+<div class="flag-box"><strong>Cost:</strong> CF Pro = $20/mo. Bot Fight Mode = included. WAF custom rules = 5 free on Pro. Zero-trust API + CF = industry standard დაცვა.</div>
+</div>
+</details>
+
+<details>
+<summary>Layer 5 — Schema Opacity (API design)</summary>
+<div class="sb">
+<h3>tarifebi სისუსტე</h3>
+<pre># GET /api/products.php?store=carrefour&category=dairy&limit=100
+# → URL params = full schema leak. Anyone sees structure instantly.</pre>
+<h3>Bivision POST query pattern</h3>
+<pre># POST /v1/query
+# Authorization: Bearer {jwt}
+
+{
+  "dataset": "retail",
+  "version": "2.1",
+  "filters": {
+    "stores": ["carrefour", "spar"],
+    "categories": ["dairy"],
+    "city": "tbilisi",
+    "price_range": {"min": 1, "max": 50},
+    "on_sale": true
+  },
+  "fields": ["id", "name", "price", "store", "category"],
+  "sort": {"field": "price", "order": "asc"},
+  "pagination": {"page": 1, "limit": 50}
+}
+
+# Response — field names obfuscated from public guessing:
+{
+  "meta": {"total": 1243, "page": 1, "pages": 25},
+  "items": [
+    {"i": 59995, "n": "...", "p": 3.45, "s": "crf", "c": "dpr", "ci": "tbs"}
+  ]
+}
+# field aliases: i=id, n=name, p=price, s=store, c=category, ci=city
+# aliases rotate per JWT rotation → leaked data decodes wrong after token refresh</pre>
+</div>
+</details>
+
+<details>
+<summary>Layer 6 — Canary Records + Data Fingerprinting</summary>
+<div class="sb">
+<h3>tarifebi სისუსტე: კანარი = 0. გაჟონვა = blind.</h3>
+<h3>Bivision canary system</h3>
+<pre># canary_manager.py
+
+CANARY_PRODUCTS = [
+    # fake products — never scraped from real stores
+    # each client sees slightly different version
+    {"id": 999001, "name": "Bivision Monitor Milk 1L", "price": 99999.99, "store": "carrefour"},
+    {"id": 999002, "name": "Bivision Sentinel Water 500ml", "price": 88888.88, "store": "spar"},
+]
+
+def inject_canary(response: dict, client_id: str) -> dict:
+    """Inject unique canary per client into response"""
+    canary = CANARY_PRODUCTS[hash(client_id) % len(CANARY_PRODUCTS)].copy()
+    # Tweak price slightly per client — unique fingerprint
+    canary['price'] += hash(client_id + 'salt') % 100 / 1000
+    canary['client_tag'] = client_id  # invisible in normal view
+    response['items'].append(canary)
+    return response
+
+# canary_monitor.py — daily cron
+def scan_for_leaks():
+    sources_to_check = [
+        'https://tarifebi.ge/api/products.php?q=bivision',
+        'https://google.com/search?q="Bivision Monitor Milk"',
+        # competitor sites, aggregators
+    ]
+    for url in sources_to_check:
+        content = requests.get(url).text
+        for canary in CANARY_PRODUCTS:
+            if canary['name'] in content:
+                alert(f"LEAK DETECTED: {canary['name']} found at {url}")
+                revoke_client_by_canary(canary)</pre>
+<div class="key-box">ყოველი client პირობით სხვა canary-ს ხედავს → გაჟონვა = instant client identification. Auto-revoke + legal notice.</div>
+</div>
+</details>
+
+<details>
+<summary>Layer 7 — Legal Architecture (ToS + NDA + DMCA)</summary>
+<div class="sb">
+<table>
+  <tr><th>ინსტრუმენტი</th><th>მიზანი</th><th>ქმედება</th></tr>
+  <tr><td>Terms of Service</td><td>automated access ban, resale ban, reverse-engineering ban</td><td>sign-up gate — checkbox required</td></tr>
+  <tr><td>B2B NDA</td><td>ყველა API client სავალდებულო → data confidentiality, non-compete</td><td>DocuSign before API key</td></tr>
+  <tr><td>Database Copyright</td><td>compilation copyright — Georgian law + Berne Convention</td><td>register annually</td></tr>
+  <tr><td>DMCA / GDPR</td><td>გამოყენება EU clients-ისთვის — takedown mechanism</td><td>abuse@bivision.ge designated agent</td></tr>
+  <tr><td>Rate limit ToS</td><td>exceed limit = automatic suspension + invoice</td><td>webhook notification → lock</td></tr>
+</table>
+<div class="flag-box"><strong>tarifebi სისუსტე:</strong> ToS არსებობს მაგრამ enforcement = 0. No NDA on B2B. No canary = cannot prove in court WHO leaked. Bivision canary = court-admissible fingerprint.</div>
+</div>
+</details>
+
+<details>
+<summary>Layer 8 — Monitoring + Anomaly Detection</summary>
+<div class="sb">
+<pre># monitor.py — real-time anomaly detection
+
+THRESHOLDS = {
+    'req_per_hour':    1000,   # per client — JWT tier limits
+    'req_per_minute':   100,   # burst detection
+    'unique_products':  5000,  # >5K unique product IDs in 1h = mass scrape
+    'canary_trigger':      1,  # any canary hit = immediate alert
+}
+
+def check_client_behavior(client_id: str, window_minutes: int = 60):
+    stats = redis.hgetall(f"client:{client_id}:stats")
+    alerts = []
+
+    if int(stats['req_count']) > THRESHOLDS['req_per_hour']:
+        alerts.append(('RATE_EXCEED', 'auto-throttle'))
+
+    if int(stats['unique_products']) > THRESHOLDS['unique_products']:
+        alerts.append(('MASS_SCRAPE', 'suspend + notify'))
+
+    if int(stats['canary_hits']) > 0:
+        alerts.append(('CANARY_TRIGGERED', 'revoke + legal'))
+
+    for alert_type, action in alerts:
+        dispatch_action(client_id, alert_type, action)
+        notify_slack(f"#{client_id}: {alert_type} → {action}")
+
+# Slack alert format:
+# 🚨 client_acme_001 | MASS_SCRAPE | 7,234 unique products in 45min
+# Action: SUSPENDED | JWT revoked | Legal team notified
+</pre>
+<table>
+  <tr><th>სიგნალი</th><th>threshold</th><th>ავტო-ქმედება</th></tr>
+  <tr><td>Request burst</td><td>&gt;100/min</td><td>throttle + log</td></tr>
+  <tr><td>Mass product scan</td><td>&gt;5K unique/hr</td><td>suspend + alert</td></tr>
+  <tr><td>Canary hit</td><td>any</td><td>revoke + legal notice</td></tr>
+  <tr><td>Off-hours spike</td><td>2AM–6AM + high vol</td><td>flag + CAPTCHA</td></tr>
+  <tr><td>IP rotation detected</td><td>&gt;20 IPs same JWT</td><td>revoke + investigate</td></tr>
+</table>
+</div>
+</details>
+
+<details class="green">
+<summary>Competitive Moat Summary — Bivision vs tarifebi</summary>
+<div class="sb">
+<table>
+  <tr><th>დაცვის ფენა</th><th>tarifebi (ეხლა)</th><th>Bivision (planned)</th><th>cost</th></tr>
+  <tr><td>API auth</td><td>❌ zero auth</td><td>✅ JWT + scoped tiers</td><td>$0 (self-built)</td></tr>
+  <tr><td>Rate limiting</td><td>❌ none visible</td><td>✅ per-client + Redis</td><td>$0</td></tr>
+  <tr><td>Bot protection</td><td>⚠️ CF only on some pages</td><td>✅ CF WAF + Bot Fight</td><td>$20/mo</td></tr>
+  <tr><td>Image expiry</td><td>❌ permanent URLs</td><td>✅ 15min signed URLs</td><td>$0 (S3 native)</td></tr>
+  <tr><td>Schema opacity</td><td>❌ GET params = full leak</td><td>✅ POST query + field aliases</td><td>$0</td></tr>
+  <tr><td>Canary records</td><td>❌ zero</td><td>✅ per-client fingerprint</td><td>$0</td></tr>
+  <tr><td>Image watermark</td><td>❌ none</td><td>✅ steganographic (Lambda@Edge)</td><td>~$5/mo Lambda</td></tr>
+  <tr><td>Legal (NDA+ToS)</td><td>⚠️ ToS only, no NDA</td><td>✅ ToS + NDA + DMCA agent</td><td>$0–$500 lawyer 1x</td></tr>
+  <tr><td>Leak monitoring</td><td>❌ blind</td><td>✅ daily scan + auto-alert</td><td>$0</td></tr>
+  <tr><td>Scraper tech</td><td>Playwright (basic)</td><td>✅ Playwright + rotating proxy + WebP</td><td>~$30/mo proxy</td></tr>
+</table>
+<div class="key-box"><strong>სულ:</strong> ~$55/mo — Cloudflare Pro ($20) + Lambda ($5) + proxy pool ($30). ყველა სხვა ფენა = $0 code. tarifebi-ის იგივე შესაქმნელად ახლა: $0 auth + copyable in days. Bivision-ის კოპირება: JWT revoke + canary + legal + steganography = კოპირება არარენტაბელური.</div>
+</div>
+</details>
+
+<details class="red">
+<summary>RISK — რა ვერ იცავს ამ სისტემას</summary>
+<div class="sb">
+<ul>
+  <li><strong>Determined state actor / well-funded team:</strong> ყველა ეს საშუალება შეიძლება bypass-ი — slow manual collection, Tor, CAPTCHA farms. $55/mo-ს დაცვა Lazarus Group-ს ვერ ააჩერებს.</li>
+  <li><strong>Ex-employee / insider:</strong> NDA + canary helps, მაგრამ insider-ს JWT access შეიძლება ჰქონდეს. → Audit log mandatory + MFA + principle of least privilege.</li>
+  <li><strong>Public data argument:</strong> court-ში competitor-ს შეუძლია დაამტკიცოს "data is public domain" (stores post prices publicly). Canary = compilation copyright protection, არა raw data.</li>
+  <li><strong>tarifebi clone-ი direct scrapes:</strong> Bivision API-ს bypass → stores directly. ამ შემთხვევაში Bivision-ის API protection უსარგებლო. <span class="tag tag-hyp">HYPOTHESIS</span> — Bivision-ის unique value = analysis layer, არა data exclusivity.</li>
+</ul>
+<div class="flag-box"><strong>რეკომენდაცია:</strong> Bivision data product-ის moat = analysis layer (Qlik + AI insights), არა data exclusivity. "data = tarifebi", "insight = Bivision" — ეს defensible. "data = unique" — ეს risky claim.</div>
+</div>
+</details>
+
+<p style="margin-top:24px; font-size:0.8rem; color:#999;">Viktor | audit lane | 2026-05-11 | წყაროები: tarifebi.ge/llms.txt + /api/meta.php + /api/products.php + /api/exchange.php + /robots.txt + /sitemap.xml + /product/19844 + HTTP headers + aversi.ge CF probe + live endpoint status scan</p>
 </body>
 </html>
