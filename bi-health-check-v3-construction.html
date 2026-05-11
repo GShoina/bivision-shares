@@ -101,7 +101,7 @@
 <div class="container">
 
   <div class="topbar">
-    <div class="logo">B<span>·</span>VISION</div>
+    <div class="logo">Bi<span>vision</span></div>
     <div class="sector-tag">სამშენებლო სექტორი</div>
   </div>
 
@@ -166,7 +166,7 @@
     </div>
 
     <div class="cta-box">
-      <h3>15-წუთიანი სამშენებლო BI დემო</h3>
+      <h3>15-წუთიანი დემო</h3>
       <p>გაჩვენებთ, როგორ შეიძლება გამოიყურებოდეს project-level ფინანსური dashboard თქვენი არსებული ERP/Excel მონაცემების საფუძველზე. ყოველგვარი ვალდებულების გარეშე.</p>
       <a href="https://calendly.com/bivision/courtest-meeting" target="_blank" class="cta-btn">დავჯავშნოთ 15 წუთი →</a>
     </div>
@@ -218,17 +218,17 @@ const questions = [
     dim: "Cash collection",
     q: "მყიდველების დავალიანება და გადახდის ვადები — ვინ აგვიანებს და რამდენით, ხედავთ?",
     opts: [
-      { t: "დიახ, ავტომატური debtor aging ანგარიში", p: 10 },
-      { t: "ბუღალტერია მატყობინებს პრობლემებზე", p: 5 },
+      { t: "დიახ, ავტომატური დებიტორის ხანდაზმულობის ანგარიში", p: 10 },
+      { t: "ფინანსური გუნდი/ბუღალტერია მატყობინებს პრობლემებზე", p: 5 },
       { t: "მხოლოდ კონკრეტული კლიენტის შეკითხვისას", p: 0 }
     ]
   },
   {
     dim: "Multi-project view",
-    q: "რამდენი პროექტია ერთდროულად — ხედავთ consolidated ფინანსურ სურათს?",
+    q: "რამდენი პროექტია ერთდროულად — ხედავთ კონსოლიდირებულ ფინანსურ სურათს?",
     opts: [
       { t: "დიახ, ყველა პროექტი ერთ ხედში P&L-ით", p: 10 },
-      { t: "ცალ-ცალკე, ხელით ვაჯამებ", p: 5 },
+      { t: "ფინანსური გუნდი Excel-ში აკონსოლიდირებს ხელით", p: 5 },
       { t: "არა, თითოეული პროექტი ცალკე Excel-ში", p: 0 }
     ]
   },
@@ -237,7 +237,7 @@ const questions = [
     q: "მასალები და ქვეკონტრაქტორები — ხარჯი ბიუჯეტის ფარგლებშია?",
     opts: [
       { t: "შესყიდვა ბიუჯეტს ადარდება ავტომატურად", p: 10 },
-      { t: "ბუღალტერია ამოწმებს კვარტალში ერთხელ", p: 5 },
+      { t: "ფინანსური გუნდი/ბუღალტერია ამოწმებს ყოველთვიურად (შემდეგი თვის 5-10 რიცხვში)", p: 5 },
       { t: "გადახარჯვა ხშირად სიურპრიზია", p: 0 }
     ]
   },
@@ -246,7 +246,7 @@ const questions = [
     q: "მომავალი 90 დღის cash position — ახლა ხედავთ?",
     opts: [
       { t: "დიახ, ავტომატური cash flow forecast", p: 10 },
-      { t: "ბუღალტერი ამზადებს თვეში ერთხელ", p: 5 },
+      { t: "ფინანსური გუნდი/ბუღალტერია ამზადებს თვეში ერთხელ", p: 5 },
       { t: "არა, cash gap სიურპრიზია", p: 0 }
     ]
   },
@@ -264,7 +264,7 @@ const questions = [
     q: "ყოველთვიური ფინანსური სურათი ტოპ-მენეჯმენტს რამდენ ხანში მიეწოდება?",
     opts: [
       { t: "1-2 სამუშაო დღეში ავტომატურად", p: 10 },
-      { t: "5-7 სამუშაო დღეში ბუღალტრის მიერ", p: 5 },
+      { t: "5-7 სამუშაო დღეში ფინანსური გუნდის მიერ", p: 5 },
       { t: "10+ სამუშაო დღე ან არარეგულარულად", p: 0 }
     ]
   },
@@ -283,8 +283,8 @@ const gapRecs = {
   "Budget vs Actual": "ბიუჯეტის გადახარჯვა პროექტის ბოლოს — real-time tracking = ჩარევის window 3-4 კვირა ადრე.",
   "Project P&L": "P&L-ის ხილვა = მომგებიანი vs ზარალიანი პროექტების გამოყოფა. ერთი ზარალიანი პროექტი სხვათა მოგებას ჭამს.",
   "Sales pipeline": "Sales visibility = ფასის კორექტირება დაბალი ტემპის შემთხვევაში + cash flow forecast-ი.",
-  "Cash collection": "გადახდის დაგვიანება = გაყინული კაპიტალი. Debtor aging = ადრეული ჩარევა და cash flow-ის დაცვა.",
-  "Multi-project view": "Consolidated ხედის გარეშე შეუძლებელია რესურსების ოპტიმიზაცია. ცალ-ცალკე Excel = არასრული მენეჯმენტ ხედი.",
+  "Cash collection": "გადახდის დაგვიანება = გაყინული კაპიტალი. დებიტორის ხანდაზმულობა = ადრეული ჩარევა და cash flow-ის დაცვა.",
+  "Multi-project view": "კონსოლიდირებული ხედის გარეშე შეუძლებელია რესურსების ოპტიმიზაცია. ცალ-ცალკე Excel = არასრული მენეჯმენტ ხედი.",
   "Procurement control": "ქვეკონტრაქტორების ხარჯი ხშირად ბიუჯეტს სცდება. ავტომატური შედარება = ადრეული გაფრთხილება.",
   "Cash flow": "Cash gap სამშენებლო კომპანიის #1 ოპერაციული რისკი. 90-დღიანი forecast = bank line-ის სწორი გამოყენება.",
   "ERP integration": "ERP → Excel → ანგარიში = 3-5 სამუშაო დღე ყოველ თვე + შეცდომები. ERP → dashboard = 15 წუთი.",
@@ -369,8 +369,8 @@ const bivisionFix = {
   "Budget vs Actual": "BiFinance Budget vs Actual — project-level გადახრა real-time. ERP connector: Fina / Oris / 1C / Balance. დაყენება: 2-3 კვირა.",
   "Project P&L": "BiFinance Project P&L dashboard — ყველა პროექტი ერთ ხედში: revenue, cost, margin, drill-down ნებისმიერ ჭრილში.",
   "Sales pipeline": "BiFinance Sales dashboard — ბინების სტატუსი (გაყიდული / რეზერვი / თავისუფალი) + revenue forecast ავტომატურად.",
-  "Cash collection": "Debtors Analytics — debtor aging 30/60/90+ დღე, ვადაგადაცილებული გადახდების ავტომატური tracking.",
-  "Multi-project view": "Bivision Consolidated Dashboard — N პროექტი ერთ ეკრანზე: P&L + cash + progress + budget vs actual.",
+  "Cash collection": "Debtors Analytics — დებიტორის ხანდაზმულობა 30/60/90+ დღე, ვადაგადაცილებული გადახდების ავტომატური tracking.",
+  "Multi-project view": "Bivision კონსოლიდირებული Dashboard — N პროექტი ერთ ეკრანზე: P&L + cash + progress + budget vs actual.",
   "Procurement control": "Budget vs Actual (შესყიდვა) — ქვეკონტრაქტორის ხარჯი ბიუჯეტს ადარდება ავტომატურად. Alert გადახარჯვაზე.",
   "Cash flow": "Direct Cash Flow (Bank API) — cash position ნებისმიერ დღეს, 90-დღიანი forecast, bank line-ის ოპტიმიზაცია.",
   "ERP integration": "Bivision ERP Connector — Fina / Oris / 1C / Balance → dashboard ავტომატურად. Excel ექსპორტი საჭირო აღარ გახდება.",
