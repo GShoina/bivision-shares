@@ -86,12 +86,12 @@
   <h2>ა) მარქეთინგი — სტატუსი</h2>
 
   <!-- META ADS -->
-  <div style="font-size:0.8rem;font-weight:700;color:#444;margin-bottom:10px;">📣 Meta Ads — ბოლო 7 დღე (May 6–12) <span class="badge b-fact">FACT — API</span></div>
+  <div style="font-size:0.8rem;font-weight:700;color:#444;margin-bottom:10px;">📣 Meta Ads — May 5–9 (campaign period) <span class="badge b-fact">FACT — API</span></div>
   <div class="kpi-grid">
-    <div class="kpi green">
+    <div class="kpi orange">
       <div class="num">$9.92</div>
       <div class="lbl">Spend</div>
-      <div class="sub">$15 lifetime budget<br>~$5 remaining</div>
+      <div class="sub">$15 lifetime / ~$5 unused<br>campaign EXPIRED</div>
     </div>
     <div class="kpi blue">
       <div class="num">5,411</div>
@@ -100,28 +100,48 @@
     </div>
     <div class="kpi blue">
       <div class="num">1.88%</div>
-      <div class="lbl">CTR</div>
-      <div class="sub">industry avg ~1% — კარგია</div>
+      <div class="lbl">CTR avg</div>
+      <div class="sub">May 8 peak: 2.32%</div>
     </div>
-    <div class="kpi green">
-      <div class="num">$0.07</div>
-      <div class="lbl">CPC</div>
-      <div class="sub">119 link clicks total</div>
+    <div class="kpi red">
+      <div class="num">0</div>
+      <div class="lbl">Bookings</div>
+      <div class="sub">URL bug — 83 LP views wasted</div>
     </div>
   </div>
   <div style="height:10px"></div>
-  <div class="row"><div class="label">Active campaign</div><div class="val green">M_ traffic look like 1 _90 day <span class="badge b-live">ACTIVE</span></div></div>
-  <div class="row"><div class="label">Adset "Calendlyy"</div><div class="val green">ACTIVE — lifetime budget $15 <span class="badge b-fact">FACT</span></div></div>
-  <div class="row"><div class="label">Landing page views</div><div class="val">83 (7 დღეში)</div></div>
-  <div class="row"><div class="label">Page engagement</div><div class="val">307 total</div></div>
+
+  <!-- Daily table -->
+  <table style="width:100%;border-collapse:collapse;font-size:0.8rem;margin-bottom:12px;">
+    <thead><tr style="background:#f5f3ff;">
+      <th style="padding:6px 10px;text-align:left;color:#6B63B5;font-size:0.72rem;text-transform:uppercase;">თარიღი</th>
+      <th style="padding:6px 10px;text-align:right;color:#6B63B5;font-size:0.72rem;text-transform:uppercase;">Spend</th>
+      <th style="padding:6px 10px;text-align:right;color:#6B63B5;font-size:0.72rem;text-transform:uppercase;">Reach</th>
+      <th style="padding:6px 10px;text-align:right;color:#6B63B5;font-size:0.72rem;text-transform:uppercase;">CTR</th>
+      <th style="padding:6px 10px;text-align:right;color:#6B63B5;font-size:0.72rem;text-transform:uppercase;">LP Views</th>
+    </tr></thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:5px 10px;">May 5</td><td style="padding:5px 10px;text-align:right;">$0.86</td><td style="padding:5px 10px;text-align:right;">1,078</td><td style="padding:5px 10px;text-align:right;">1.37%</td><td style="padding:5px 10px;text-align:right;">8</td></tr>
+      <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:5px 10px;">May 6</td><td style="padding:5px 10px;text-align:right;">$2.16</td><td style="padding:5px 10px;text-align:right;">1,366</td><td style="padding:5px 10px;text-align:right;">1.61%</td><td style="padding:5px 10px;text-align:right;">14</td></tr>
+      <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:5px 10px;">May 7</td><td style="padding:5px 10px;text-align:right;">$2.28</td><td style="padding:5px 10px;text-align:right;">1,450</td><td style="padding:5px 10px;text-align:right;">2.03%</td><td style="padding:5px 10px;text-align:right;">16</td></tr>
+      <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:5px 10px;">May 8 ⭐</td><td style="padding:5px 10px;text-align:right;">$3.33</td><td style="padding:5px 10px;text-align:right;">2,004</td><td style="padding:5px 10px;text-align:right;color:#15803d;font-weight:700;">2.32%</td><td style="padding:5px 10px;text-align:right;">35</td></tr>
+      <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:5px 10px;">May 9</td><td style="padding:5px 10px;text-align:right;">$1.29</td><td style="padding:5px 10px;text-align:right;">776</td><td style="padding:5px 10px;text-align:right;">1.47%</td><td style="padding:5px 10px;text-align:right;">10</td></tr>
+      <tr style="background:#fef2f2;"><td style="padding:5px 10px;color:#991b1b;font-weight:600;">May 10–12</td><td style="padding:5px 10px;text-align:right;color:#991b1b;font-weight:600;">$0</td><td colspan="3" style="padding:5px 10px;color:#991b1b;font-size:0.78rem;">კამპანია expired — stop_time May 9, 13:24</td></tr>
+    </tbody>
+  </table>
+
+  <div class="row"><div class="label">Campaign status</div><div class="val red">EXPIRED May 9, 13:24 — API shows ACTIVE მაგრამ delivery = 0 <span class="badge b-block">RESTART NEEDED</span></div></div>
+  <div class="row"><div class="label">Adset targeting</div><div class="val">LAL_PixelSeed_1% + LAL_HubSpot_1% + LAL_Bihub_1% <span class="badge b-fact">3 audiences</span></div></div>
+  <div class="row"><div class="label">Optimization goal</div><div class="val">LANDING_PAGE_VIEWS — სწორი. Calendly booking = <span style="color:#c2410c">untracked Meta event</span></div></div>
+  <div class="row"><div class="label">Budget remaining</div><div class="val orange">~$5.08 unused — restart-ზე გამოიყენება</div></div>
   <div class="row"><div class="label">Calendly bookings</div><div class="val red">0 <span class="badge b-fact">FACT — API + Gmail</span></div></div>
-  <div class="row"><div class="label">Today spend (May 12)</div><div class="val gray">$0 — no data yet</div></div>
 
   <div class="crit-box">
-    <strong>🔴 P0 — ორმაგი კრიზისი:</strong><br>
-    1. <strong>URL bug:</strong> კარუსელის ყველა 6 ბარათი → <code>?month=2026-03</code> → მარტის კალენდარი → 0 slot → 0 booking. 83 LP view = ნაგავი.<br>
-    2. <strong>Budget exhaustion:</strong> $9.92 / $15 = მხოლოდ ~$5 დარჩა. ~$1.42/day → ~3-4 დღეში კამპანია გაჩერდება (~May 15-16).<br>
-    <strong>სანამ URL არ გასწორდება — ყოველი დახარჯული დოლარი = 0 return.</strong>
+    <strong>🔴 P0 — URL bug + expired campaign:</strong><br>
+    1. <strong>URL bug:</strong> კარუსელის ყველა 6 ბარათი → <code>?month=2026-03</code> → მარტის კალენდარი → 0 slot → 0 booking. 83 LP view = ნაგავი. ვებსაიტის ღილაკი სწორია — bug მხოლოდ ad creative-შია.<br>
+    2. <strong>Campaign expired:</strong> stop_time = May 9. ~$5 unused budget. Restart = URL fix → extend stop_time → replenish budget.<br>
+    3. <strong>Tracking gap:</strong> Calendly booking = Meta-ს invisible conversion. Auto-pause rule ვერ გამოიწვია. Custom conversion event საჭიროა.<br>
+    <strong>CTR trend კარგი იყო (1.4%→2.32%). Audience სწორია. მხოლოდ URL და restart სჭირდება.</strong>
   </div>
 
   <div style="height:14px"></div>
