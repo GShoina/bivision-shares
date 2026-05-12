@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEO Brief — 2026-05-12 | Bivision</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', sans-serif; background: #f8f9fa; color: #1a1a1a; padding: 32px 20px 60px; }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  .header { border-bottom: 3px solid #6B63B5; padding-bottom: 12px; margin-bottom: 28px; }
+  .header h1 { font-size: 1.3rem; color: #1a1a1a; }
+  .header .meta { font-size: 0.78rem; color: #888; margin-top: 4px; }
+  .section { background: #fff; border-radius: 10px; padding: 20px 24px; margin-bottom: 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .section h2 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6B63B5; margin-bottom: 14px; border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .kpi-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .kpi { border-radius: 8px; padding: 15px 14px; text-align: center; }
+  .kpi.purple { background: #f5f3ff; }
+  .kpi.green { background: #f0fdf4; }
+  .kpi.red { background: #fef2f2; }
+  .kpi.yellow { background: #fefce8; }
+  .kpi.blue { background: #eff6ff; }
+  .kpi.gray { background: #f8fafc; }
+  .kpi .num { font-size: 1.75rem; font-weight: 800; line-height: 1.1; }
+  .kpi.purple .num { color: #6B63B5; }
+  .kpi.green .num { color: #15803d; }
+  .kpi.red .num { color: #dc2626; }
+  .kpi.yellow .num { color: #92400e; }
+  .kpi.blue .num { color: #1d4ed8; }
+  .kpi.gray .num { color: #64748b; }
+  .kpi .lbl { font-size: 0.71rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 5px; }
+  .kpi.purple .lbl { color: #5b21b6; }
+  .kpi.green .lbl { color: #166534; }
+  .kpi.red .lbl { color: #991b1b; }
+  .kpi.yellow .lbl { color: #78350f; }
+  .kpi.blue .lbl { color: #1e40af; }
+  .kpi.gray .lbl { color: #475569; }
+  .kpi .sub { font-size: 0.69rem; color: #94a3b8; margin-top: 4px; line-height: 1.3; }
+  .row { display: flex; justify-content: space-between; align-items: flex-start; padding: 7px 0; font-size: 0.87rem; border-bottom: 1px solid #f5f5f5; }
+  .row:last-child { border-bottom: none; }
+  .row .label { color: #666; flex: 0 0 200px; font-size: 0.82rem; padding-top: 1px; }
+  .row .val { font-weight: 600; color: #111; flex: 1; }
+  .val.green { color: #15803d; }
+  .val.orange { color: #c2410c; }
+  .val.red { color: #dc2626; }
+  .val.gray { color: #888; font-weight: 400; }
+  .val.blue { color: #1d4ed8; }
+  .badge { display: inline-block; font-size: 0.67rem; font-weight: 700; padding: 1px 6px; border-radius: 3px; margin-left: 4px; vertical-align: middle; }
+  .b-fact { background: #d1fae5; color: #065f46; }
+  .b-live { background: #dcfce7; color: #166534; }
+  .b-warn { background: #fef9c3; color: #854d0e; }
+  .b-block { background: #fee2e2; color: #991b1b; }
+  .b-unv { background: #f1f5f9; color: #475569; }
+  .warn-box { background: #fff7ed; border-left: 4px solid #fb923c; border-radius: 0 8px 8px 0; padding: 11px 15px; margin-top: 12px; font-size: 0.82rem; color: #7c2d12; line-height: 1.6; }
+  .info-box { background: #eff6ff; border-left: 4px solid #60a5fa; border-radius: 0 8px 8px 0; padding: 11px 15px; margin-top: 12px; font-size: 0.82rem; color: #1e40af; line-height: 1.6; }
+  .ok-box { background: #f0fdf4; border-left: 4px solid #4ade80; border-radius: 0 8px 8px 0; padding: 11px 15px; margin-top: 12px; font-size: 0.82rem; color: #166534; line-height: 1.6; }
+  .hs-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; margin-top: 4px; }
+  .hs-table th { background: #f5f3ff; color: #6B63B5; padding: 7px 10px; text-align: left; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; }
+  .hs-table td { padding: 7px 10px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+  .hs-table tr:last-child td { border-bottom: none; }
+  .flag { display: inline-block; font-size: 0.69rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-left: 5px; }
+  .f-p0 { background: #fee2e2; color: #991b1b; }
+  .f-p1 { background: #fef9c3; color: #854d0e; }
+  @media (max-width: 600px) { .kpi-grid,.kpi-grid-3 { grid-template-columns: repeat(2,1fr); } .row { flex-direction: column; gap: 2px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>CEO Brief — Bivision</h1>
+  <div class="meta">2026-05-12 &nbsp;|&nbsp; Meta API ✓ live &nbsp;|&nbsp; FB Page ✓ &nbsp;|&nbsp; Gmail Calendly ✓ &nbsp;|&nbsp; LinkedIn <span style="color:#ef4444">✗ no token</span> &nbsp;|&nbsp; HubSpot metrics <span style="color:#ef4444">✗ scope</span></div>
+</div>
+
+<!-- SOCIAL -->
+<div class="section">
+  <h2>📱 სოციალური არხები</h2>
+  <div class="kpi-grid">
+    <div class="kpi purple">
+      <div class="num">753</div>
+      <div class="lbl">Facebook Followers</div>
+      <div class="sub">Bivision Page <span class="badge b-fact">FACT — API</span></div>
+    </div>
+    <div class="kpi blue">
+      <div class="num">842</div>
+      <div class="lbl">LinkedIn Followers</div>
+      <div class="sub">კომპანიის გვერდი <span class="badge b-fact">FACT — May 11</span></div>
+    </div>
+    <div class="kpi green">
+      <div class="num">183</div>
+      <div class="lbl">Video Views</div>
+      <div class="sub">Meta Ads, ბოლო 7 დღე <span class="badge b-fact">FACT</span></div>
+    </div>
+    <div class="kpi yellow">
+      <div class="num">2</div>
+      <div class="lbl">Post Reactions</div>
+      <div class="sub">FB Page, ბოლო 7 დღე <span class="badge b-fact">FACT</span></div>
+    </div>
+  </div>
+  <div class="warn-box">FB Page organic post stats (reach, engagement) — System User token-ს page_read_engagement scope არ აქვს. Page Access Token-ია საჭირო — meta.com/adsmanager → Settings → Page → Generate Page Token.</div>
+</div>
+
+<!-- META ADS -->
+<div class="section">
+  <h2>📣 Meta Ads — ბოლო 7 დღე (May 5–11)</h2>
+  <div class="kpi-grid">
+    <div class="kpi green">
+      <div class="num">$9.92</div>
+      <div class="lbl">Spend</div>
+      <div class="sub">ACTIVE: M_ traffic LAL 90d <span class="badge b-fact">FACT</span></div>
+    </div>
+    <div class="kpi blue">
+      <div class="num">5,411</div>
+      <div class="lbl">Reach</div>
+      <div class="sub">unique accounts</div>
+    </div>
+    <div class="kpi blue">
+      <div class="num">1.88%</div>
+      <div class="lbl">CTR</div>
+      <div class="sub">industry avg ~1% — კარგია</div>
+    </div>
+    <div class="kpi green">
+      <div class="num">$0.07</div>
+      <div class="lbl">CPC</div>
+      <div class="sub">cost per click — ძალიან კარგი</div>
+    </div>
+  </div>
+  <div style="height:10px"></div>
+  <div class="row"><div class="label">Active campaign</div><div class="val green">M_ traffic campaign look like 1 _90 day <span class="badge b-live">ACTIVE</span></div></div>
+  <div class="row"><div class="label">Calendly campaigns</div><div class="val red">"calendly" + "calendly 2" — ორივე PAUSED <span class="badge b-warn">⚠</span></div></div>
+  <div class="row"><div class="label">Landing page views</div><div class="val">83 (7 დღეში)</div></div>
+  <div class="row"><div class="label">Link clicks</div><div class="val">119 | Page engagement: 307</div></div>
+  <div class="row"><div class="label">Schedule / Booking</div><div class="val red">0 <span class="badge b-fact">FACT — API</span></div></div>
+  <div class="warn-box">
+    <strong>⚠ კრიტიკული:</strong> Calendly campaign-ები PAUSED-ია. ACTIVE campaign = traffic LAL — Calendly-ზე არ მიდის. 83 LP view გადავიდა სადღაც, მაგრამ Calendly conversion = 0. შეამოწმე: PAUSED campaign-ები რატომ გაჩერდა?
+  </div>
+</div>
+
+<!-- CALENDLY -->
+<div class="section">
+  <h2>📅 Calendly — Bookings</h2>
+  <div class="kpi-grid-3">
+    <div class="kpi red">
+      <div class="num">0</div>
+      <div class="lbl">ახალი Booking</div>
+      <div class="sub">მაის 9-დან <span class="badge b-fact">FACT — Gmail</span></div>
+    </div>
+    <div class="kpi yellow">
+      <div class="num">1</div>
+      <div class="lbl">LP Visit</div>
+      <div class="sub">/thank-you-booking — GA4, კი არა booking</div>
+    </div>
+    <div class="kpi gray">
+      <div class="num">Apr 14</div>
+      <div class="lbl">ბოლო Booking</div>
+      <div class="sub">shmagi.londaridze@gmail.com</div>
+    </div>
+  </div>
+  <div class="warn-box">
+    Meta Ads LAL campaign → 83 landing page view, 0 Calendly booking. Funnel broken: ads → site → Calendly-ს ვერ პოულობენ ან drop-off high. Heatmap / session recording გადახედვა სჭირდება.
+  </div>
+</div>
+
+<!-- HUBSPOT -->
+<div class="section">
+  <h2>📧 HubSpot — Construction Email (11 მაი)</h2>
+  <table class="hs-table">
+    <tr><th>ემეილი</th><th>გაგზავნილი</th><th>Open Rate</th><th>Clicks</th><th>Bounces</th></tr>
+    <tr>
+      <td><strong>CEO</strong> — კონტროლი სამშენებლო პროექტებზე</td>
+      <td>~301 <span class="badge b-fact">FACT</span></td>
+      <td colspan="3" style="color:#94a3b8;font-style:italic;font-size:0.8rem;">API content scope missing — შეამოწმე: app-eu1.hubspot.com → Marketing → Email → Performance</td>
+    </tr>
+    <tr>
+      <td><strong>CFO</strong> — ფინანსური რეპორტინგი ERP-დან</td>
+      <td>~301 <span class="badge b-fact">FACT</span></td>
+      <td colspan="3" style="color:#94a3b8;font-style:italic;font-size:0.8rem;">—</td>
+    </tr>
+  </table>
+  <div class="info-box">HubSpot Private App → Settings → Integrations → Private Apps → add <strong>content</strong> scope → 2 წუთი → მეტრიკა ავტომატურად ჩაიწერება.</div>
+</div>
+
+<!-- ACTION REQUIRED -->
+<div class="section">
+  <h2>▶ P0 — დღეს</h2>
+  <div class="row"><div class="label">1. Calendly campaign</div><div class="val red">Meta Ads-ში "calendly" / "calendly 2" — რატომ PAUSED? გაააქტიურე ან ახალი შექმენი. 0 booking = funnel broken. <span class="flag f-p0">P0</span></div></div>
+  <div class="row"><div class="label">2. IVF email</div><div class="val">138 კონტაქტი (ხელმძღვანელი) — copy მომეცი → HubSpot-ით გავაგზავნი <span class="flag f-p0">P0</span></div></div>
+  <div class="row"><div class="label">3. HubSpot scope</div><div class="val">content scope → 2 წუთი → email metrics ხელმისაწვდომი <span class="flag f-p1">P1</span></div></div>
+  <div class="row"><div class="label">4. FB Page token</div><div class="val">page organic reach-ის სანახავად <span class="flag f-p1">P1</span></div></div>
+</div>
+
+</div>
+</body>
+</html>
