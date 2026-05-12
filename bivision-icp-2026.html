@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bivision ICP 2026 — Ideal Customer Profile</title>
+<style>
+  :root { --purple:#6B63B5; --green:#00A651; --dark:#1a1a2e; --light:#f8f7ff; --border:#e0dff5; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Segoe UI',Arial,sans-serif; background:#f5f4fc; color:#222; line-height:1.6; }
+  .header { background:var(--purple); color:#fff; padding:28px 32px; }
+  .header h1 { font-size:1.6rem; margin-bottom:4px; }
+  .header .meta { font-size:0.85rem; opacity:0.8; }
+  .container { max-width:960px; margin:0 auto; padding:24px 16px; }
+  h2 { color:var(--purple); font-size:1.2rem; margin:28px 0 12px; border-bottom:2px solid var(--border); padding-bottom:6px; }
+  h3 { color:var(--dark); font-size:1rem; margin:16px 0 8px; }
+  table { width:100%; border-collapse:collapse; margin-bottom:16px; font-size:0.9rem; }
+  th { background:var(--purple); color:#fff; padding:8px 10px; text-align:left; }
+  td { padding:7px 10px; border-bottom:1px solid var(--border); vertical-align:top; }
+  tr:nth-child(even) td { background:#f0effe; }
+  .card { background:#fff; border-radius:8px; padding:16px 20px; margin-bottom:16px; border:1px solid var(--border); }
+  .grn { color:var(--green); font-weight:700; }
+  .red { color:#c0392b; font-weight:700; }
+  .amb { color:#e67e22; font-weight:700; }
+  .tag { display:inline-block; padding:2px 10px; border-radius:12px; font-size:0.78rem; font-weight:700; margin:2px; }
+  .tag-green { background:#d4f4e2; color:#00A651; }
+  .tag-red { background:#fde8e8; color:#c0392b; }
+  .tag-purple { background:#ede9ff; color:#6B63B5; }
+  .north-star { background:linear-gradient(135deg,#6B63B5,#8b7fd4); color:#fff; border-radius:10px; padding:16px 20px; margin-bottom:20px; }
+  .north-star strong { font-size:1.1rem; }
+  .score-band { padding:8px 14px; border-radius:6px; margin:4px 0; font-size:0.9rem; }
+  .band-a-plus { background:#d4f4e2; border-left:4px solid #00A651; }
+  .band-a { background:#e8f5e9; border-left:4px solid #4CAF50; }
+  .band-b { background:#fff9e6; border-left:4px solid #f0ad4e; }
+  .band-c { background:#fff3e0; border-left:4px solid #FF9800; }
+  .band-d { background:#fde8e8; border-left:4px solid #c0392b; }
+  .persona { background:#fff; border:1px solid var(--border); border-radius:8px; padding:16px; margin-bottom:12px; border-top:3px solid var(--purple); }
+  .trigger-list li { padding:4px 0; border-bottom:1px dotted var(--border); }
+  .trigger-list li:last-child { border:none; }
+  .vertical-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:8px; margin-bottom:16px; }
+  .vertical-item { background:#fff; border:1px solid var(--border); border-radius:6px; padding:8px 12px; text-align:center; font-size:0.88rem; font-weight:600; color:var(--purple); }
+  .quick-check { background:#1a1a2e; color:#fff; border-radius:8px; padding:16px 20px; }
+  .quick-check ol { padding-left:20px; }
+  .quick-check li { padding:3px 0; }
+  details { border:1px solid var(--border); border-radius:8px; margin-bottom:12px; }
+  summary { background:var(--light); padding:10px 16px; cursor:pointer; font-weight:600; border-radius:7px; color:var(--purple); }
+  details[open] summary { border-radius:7px 7px 0 0; }
+  details > div { padding:16px; }
+  .competitor-row td:first-child { font-weight:700; }
+  .footer { text-align:center; padding:20px; font-size:0.8rem; color:#888; margin-top:32px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Bivision — Ideal Customer Profile 2026</h1>
+  <div class="meta">v2.0 · 2026-05-12 · merged: positioning.html §7 + IDEAL-CUSTOMER-PROFILE.md · SSOT: gshoina.github.io/bivision-shares/bivision-icp-2026.html</div>
+</div>
+
+<div class="container">
+
+<div class="north-star">
+  <strong>🎯 ICP ერთ წინადადებაში</strong><br>
+  ქართული SME/Medium კომპანია (1M–70M₾ შემოსავალი), ქართული ERP-ის (Fina/Oris/1C/Balance/FMG/Superfin) მომხმარებელი, რომელსაც CFO/CEO ყოველ თვე 3–10 დღე ხელით Excel-ს ივსებს — და ახლა ეს ტკივილი ხილვადი გახდა.
+</div>
+
+<!-- FIRMOGRAPHIC -->
+<h2>§1 — ფირმოგრაფია (Firmographic Criteria)</h2>
+<table>
+<thead><tr><th>კრიტერიუმი</th><th>Ideal Range</th><th>Red Flag</th></tr></thead>
+<tbody>
+<tr><td><strong>შემოსავალი</strong></td><td>1M–70M₾/წელი (sweet spot 5M–30M₾)</td><td>&lt;1M₾ = disqualify; &gt;70M₾ = IT გუნდი უკვე</td></tr>
+<tr><td><strong>გუნდი</strong></td><td>5–200 ადამიანი</td><td>&lt;5 = too small; &gt;500 = enterprise cycle</td></tr>
+<tr><td><strong>ERP MUST</strong></td><td>Fina / Oris / 1C / Balance / FMG / Superfin</td><td>SAP/Oracle = disqualify; ERP არ = 6-month education sell</td></tr>
+<tr><td><strong>Geography</strong></td><td>თბილისი (75%+), ბათუმი, ქუთაისი</td><td>International-HQ = procurement bureaucracy</td></tr>
+<tr><td><strong>კომპ. ასაკი</strong></td><td>5+ წელი</td><td>&lt;3 წელი = ERP ბოლომდე არ არის</td></tr>
+<tr><td><strong>სტრუქტურა</strong></td><td>მულტი-ფილიალი / მულტი-კატეგორია / scale-up</td><td>single-person = no complexity</td></tr>
+<tr><td><strong>Buyer</strong></td><td>CFO / Finance Dir / Owner-CEO / Ops Director</td><td>Committee buying = 12+ თვე</td></tr>
+</tbody>
+</table>
+
+<!-- VERTICALS -->
+<h2>§2 — Verticals (validated)</h2>
+<div class="vertical-grid">
+  <div class="vertical-item">🛒 Retail</div>
+  <div class="vertical-item">📦 Distribution</div>
+  <div class="vertical-item">🏗️ Construction</div>
+  <div class="vertical-item">🚢 Importers</div>
+  <div class="vertical-item">🏥 Medical</div>
+  <div class="vertical-item">🏢 Holdings</div>
+  <div class="vertical-item">🏦 Finance Svcs</div>
+  <div class="vertical-item">🏭 Manufacturing</div>
+  <div class="vertical-item">🍽️ HoReCa</div>
+  <div class="vertical-item">🚚 Logistics</div>
+</div>
+<p style="font-size:0.85rem;color:#888;"><strong>Sweet spot:</strong> Retail/Distribution · თბილისი · 5–80 emp · 5M–30M₾ · 1C ან Oris · CFO 1 კაცი + 1-2 ბუღალტერი</p>
+
+<!-- TRIGGERS -->
+<h2>§3 — "ახლავე მჭირდება" Triggers</h2>
+<div class="card">
+<ul class="trigger-list">
+  <li>📊 სრული სურათის არ ქონა + დაგვიანებული რეპორტინგი — <strong>ყველაზე ხშირი</strong></li>
+  <li>⏱️ C-level-ს ოპერატიულობა სჭირდება — თვის დახურვა 3–5+ დღე ეკარგება</li>
+  <li>🏪 ახალი ფილიალი → consolidation Excel-ში ქაოსდება</li>
+  <li>👤 კადრების დენადობა — CFO/analyst წავიდა, ცოდნაც წავიდა</li>
+  <li>🏦 ინვესტორი / ბანკი / აუდიტი სტრუქტურულ რეპორტს ითხოვს</li>
+  <li>📈 ზრდის წნეხი — "რომელი პროდუქტი/ფილიალი გვაქცევს სარგებელს?" უპასუხოდ</li>
+  <li>🤖 კონკურენტი AI-ზე ისაუბრა → "ჩამოვრჩებით" CEO-ს თავში</li>
+  <li>🔄 ERP migration — "სად ვნახო ისტორიული მონაცემები?"</li>
+  <li>📋 Board/investor meeting — management accounts needed</li>
+</ul>
+</div>
+
+<!-- ANTI-ICP -->
+<h2>§4 — Anti-ICP (Instant Disqualify)</h2>
+<table>
+<thead><tr><th>#</th><th>Disqualifier</th><th>Signal</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>&lt;1M₾ შემოსავალი</td><td>ცხრილი ჯერ კიდევ საკმარისია</td></tr>
+<tr><td>2</td><td>ERP არ გამოიყენება</td><td>"ყველაფერი Excel-შია" — 6-mo education first</td></tr>
+<tr><td>3</td><td>არა-ქართული ERP (SAP/Oracle/Dynamics)</td><td>connector depth არ გვაქვს</td></tr>
+<tr><td>4</td><td>BI = "ლამაზი ჩარტები" ფიქრი</td><td>decision-culture ready არ არის</td></tr>
+<tr><td>5</td><td>სახელმწიფო სტრუქტურა</td><td>18-mo procurement</td></tr>
+<tr><td>6</td><td>უკვე Power BI/Tableau-ს იყენებს</td><td>switching cost objection</td></tr>
+<tr><td>7</td><td>&gt;500 emp, IT department</td><td>enterprise buyer, 12+ mo cycle</td></tr>
+<tr><td>8</td><td>კომპანია distress-ში</td><td>budget freeze, survival mode</td></tr>
+<tr><td>9</td><td>ERP ერთხელ ჩავარდა ("1C ვცადეთ")</td><td>change fatigue, 2× effort</td></tr>
+</tbody>
+</table>
+
+<!-- SCORING -->
+<h2>§5 — ICP Scoring Rubric (100 ქულა)</h2>
+<table>
+<thead><tr><th>კატეგორია</th><th>Max</th><th>Key Signal</th></tr></thead>
+<tbody>
+<tr><td>Firmographic Fit</td><td>25</td><td>ზომა / ინდუსტრია / გეოგრაფია / ERP</td></tr>
+<tr><td>Technographic Fit</td><td>15</td><td>ERP ტიპი / Excel dependency / sophistication</td></tr>
+<tr><td>Pain Point Alignment</td><td>20</td><td>სიმძიმე / ბოლო trigger</td></tr>
+<tr><td>Budget Capacity</td><td>20</td><td>შემოსავალი / software spend history</td></tr>
+<tr><td>Contact Access</td><td>10</td><td>CFO/CEO identified + warm path</td></tr>
+<tr><td>Timing Signals</td><td>10</td><td>Active trigger event</td></tr>
+</tbody>
+</table>
+
+<div class="score-band band-a-plus"><strong>A+ (90–100):</strong> 24h contact. Demo offer პირველ შეტყობინებაში.</div>
+<div class="score-band band-a"><strong>A (75–89):</strong> High priority. Personalized outreach. Research before contact.</div>
+<div class="score-band band-b"><strong>B (60–74):</strong> Good fit. Semi-personalized sequence. 3-touch minimum.</div>
+<div class="score-band band-c"><strong>C (40–59):</strong> Marginal. Nurture only. 90-day revisit.</div>
+<div class="score-band band-d" style="margin-bottom:16px;"><strong>D (0–39):</strong> Do not pursue.</div>
+
+<div class="quick-check">
+<strong>⚡ 60-წამიანი qualifier:</strong>
+<ol>
+  <li>იყენებს Fina/Oris/1C/Balance/FMG/Superfin? (Y/N)</li>
+  <li>შემოსავალი 1M–70M₾? (Y/N)</li>
+  <li>CFO ან CEO LinkedIn-ზე? (Y/N)</li>
+  <li>Reporting complexity (მულტი-ფილიალი/SKU/ბრუნვა)? (Y/N)</li>
+  <li>ბოლო trigger (ზრდა/აუდიტი/ახალი ფილიალი)? (Y/N)</li>
+</ol>
+<p style="margin-top:8px;font-size:0.85rem;opacity:0.8;">5Y = A · 3-4Y = B · 1-2Y = C · 0Y = D</p>
+</div>
+
+<!-- PERSONAS -->
+<h2>§6 — Buyer Personas</h2>
+
+<div class="persona">
+<h3>Persona 1 — "გადატვირთული CFO" 👩‍💼</h3>
+<p><strong>პროფილი:</strong> 30–45 წ., 10+ წელი ბუღალტერია, ჩიეფ ბუღალტრიდან CFO-დ გაიზარდა. ორშ: report-ი ERP-დან Excel-ში. პარ: CEO კიდევ სხვა სვეტს ითხოვს.</p>
+<p style="margin-top:8px;"><strong>მათ სიტყვებში:</strong> "1C-ში ყველაფერი შდის, მაგრამ ანგარიში ამოიღო — 3 საათი." / "დირექტორი ყოველ კვირა სხვა ციფრებს ითხოვს."</p>
+<p style="margin-top:8px;"><strong>Objections:</strong> "ძვირია" → anchor to hours × salary | "ვერ ჩავაშენებ" → lead ERP connector demo | "დრო არ მაქვს" → 30-min demo with their data</p>
+<p style="margin-top:8px;"><strong>Subject line:</strong> "Oris-დან dashboard — 2 კვირაში, თქვენი მონაცემებით"</p>
+</div>
+
+<div class="persona">
+<h3>Persona 2 — "კონტროლის მოყვარული CEO" 👨‍💼</h3>
+<p><strong>პროფილი:</strong> 40–60 წ., founder ან ხანგრძლივი CEO. ინტუიციით მართავს, ზრდასთან ერთად ეს რისკი ხდება. CFO-ს ენდობა, მაგრამ თვითონ ვერ ამოწმებს.</p>
+<p style="margin-top:8px;"><strong>მათ სიტყვებში:</strong> "ვიცი რომ ბევრს ვყიდით, მაგრამ ფულს ვერ ვხედავ." / "CFO-ს ვენდობი, მაგრამ თვითონ ვერ ვამოწმებ."</p>
+<p style="margin-top:8px;"><strong>Objections:</strong> "პატარა ვართ" → "47M₾ ბრუნვა პატარა არ არის" | "IT ვიყიდე, არ მუშაობს" → 2-week guarantee | "ვის გამოიყენეთ?" → reference client same industry</p>
+<p style="margin-top:8px;"><strong>Subject line:</strong> "CEO-ს dashboard — გაყიდვები, ფინანსები, მარაგი ერთ ეკრანზე"</p>
+</div>
+
+<div class="persona">
+<h3>Persona 3 — "ოპერაციების მენეჯერი / COO" 🏭</h3>
+<p><strong>პროფილი:</strong> 50+ emp კომპანიებში. 3+ ფილიალი ან product line. ERP operational KPIs-ს ვერ სერვისდება.</p>
+<p style="margin-top:8px;"><strong>Pain:</strong> Branch comparison impossible. "3 ფილიალი, ვინ გამოდის?" — უცნობია.</p>
+<p style="margin-top:8px;"><strong>Subject line:</strong> "3 ფილიალი, 1 dashboard — ვინ გამოდის?"</p>
+</div>
+
+<!-- BUDGET -->
+<h2>§7 — Budget Qualifiers</h2>
+<table>
+<thead><tr><th>Signal</th><th>Why Matters</th></tr></thead>
+<tbody>
+<tr><td>ERP license active (Fina/Oris/1C)</td><td>Proven willingness to pay for software</td></tr>
+<tr><td>Finance team 1–5 people</td><td>More accountants = more manual work = clearer ROI</td></tr>
+<tr><td>Recent investment (ახალი ფილიალი, equipment)</td><td>Budget allocated for growth</td></tr>
+<tr><td>No active BI contract</td><td>Open seat</td></tr>
+<tr><td>Revenue 2M–50M₾</td><td>Budget capacity 500–3,000₾/mo</td></tr>
+</tbody>
+</table>
+<div class="card" style="background:#d4f4e2;border-color:#00A651;">
+<strong>ROI framing (Georgian CFO):</strong><br>
+"თვეში 40 საათი × 20₾/საათი = 800₾ ხელფასი. Bivision = 600₾/თვე. ROI = პირველი თვიდან."
+</div>
+
+<!-- COMPETITIVE -->
+<h2>§8 — Competitive Context</h2>
+<table>
+<thead><tr><th>Competitor</th><th>Angle</th><th>Bivision Counter</th></tr></thead>
+<tbody>
+<tr><td><strong>BDO Digital</strong></td><td>International BI + 1C, 50M₾+ companies</td><td>BDO = complex + expensive; Bivision = fast + local</td></tr>
+<tr><td><strong>Gegidze</strong></td><td>Full DX agency incl. BI, SMBs</td><td>Gegidze = generalist; Bivision = BI specialist, 2-week deploy</td></tr>
+<tr><td><strong>DIY Power BI</strong></td><td>Self-service, cheap</td><td>No Georgian ERP connectors, needs IT skill, no support</td></tr>
+<tr><td><strong>Internal IT build</strong></td><td>Custom dashboards</td><td>Never finishes; CFO still manually working</td></tr>
+</tbody>
+</table>
+
+<details>
+<summary>🏆 Bivision-ის 6 Competitive Moat</summary>
+<div>
+<ol style="padding-left:20px;line-height:2;">
+  <li><strong>ERP connectors</strong> — Fina/Oris/1C/Balance/FMG/Superfin (ქართული ბაზრის 65–80%) — სტაბილური, ready-to-use</li>
+  <li><strong>ქართული ფინანსური სტანდარტი</strong> — ყველა ანგარიში "ქართულ ფინანსურ ენაზე ლაპარაკობს"</li>
+  <li><strong>2–3 კვირა deployment</strong> — ინდუსტრიის სტანდარტი 3+ თვე; Bivision = 2-3 კვირა</li>
+  <li><strong>BI + AI native (MCP layer)</strong> — ბუნებრივი ენის query: "რამდენი გავყიდეთ მარტში?" → 3 წამში</li>
+  <li><strong>მორგებული, არა შაბლონი</strong> — "ჯერ ბიზნესი, მერე რეპორტი"</li>
+  <li><strong>Post-launch stay</strong> — SaaS ყოველთვიური + გუნდი რჩება</li>
+</ol>
+</div>
+</details>
+
+<!-- PROSPECTING -->
+<h2>§9 — Prospecting Playbook</h2>
+
+<details>
+<summary>🔍 სად ვპოვოთ</summary>
+<div>
+<h3>LinkedIn (primary)</h3>
+<p>Search: <code>CFO OR "Finance Director" OR "Chief Accountant" Georgia</code><br>
+Filter: 50–500 employees, Georgia, Retail/Manufacturing/Distribution/F&B/HoReCa<br>
+Query: <code>"CFO" "Tbilisi" "Fina" OR "1C" OR "Oris"</code></p>
+<h3>Priority Hiring Signals (upgrade to A+)</h3>
+<ul style="padding-left:20px;">
+  <li>Job posting: "ანალიტიკოსი" ან "data analyst" → reporting load growing</li>
+  <li>ახალი ფილიალი announcement → complexity just doubled</li>
+  <li>LinkedIn CEO post: "growth", "expansion", "transparency"</li>
+</ul>
+<h3>Enrichment Checklist (before outreach)</h3>
+<ol style="padding-left:20px;">
+  <li>ERP system confirm (Google company + "Oris/Fina/1C")</li>
+  <li>CFO + CEO on LinkedIn identified</li>
+  <li>rs.ge revenue range</li>
+  <li>Company website — team size, branches</li>
+  <li>Any existing BI tool? (objection prep)</li>
+  <li>Mutual connection?</li>
+  <li>Facebook Business page tone + recent posts</li>
+  <li>ICP score ≥ B before outreach</li>
+</ol>
+</div>
+</details>
+
+<details>
+<summary>📧 Messaging Templates</summary>
+<div>
+<h3>Cold email opener — CFO</h3>
+<p><em>"თვეში რამდენ საათს ხარჯავთ 1C-დან Excel-ში გადაყვანაზე?"</em></p>
+<h3>Cold email opener — CEO</h3>
+<p><em>"ბოლოს როდის გქონდათ სრული სურათი ბიზნესის — ერთ ეკრანზე, რეალურ დროში?"</em></p>
+<h3>Marketing phrases rotation (Mariam/LinkedIn/ads)</h3>
+<ul style="padding-left:20px;line-height:2;">
+  <li>"მართე მონაცემებით — შენი ინტუიცია დაგიდასტუროს ციფრებმა"</li>
+  <li>"გამოცადე ახლავე — 2 კვირაში ჯდები, შემდეგ გუნდი შენთან რჩება"</li>
+  <li>"ჩვენ dashboard-ს არ ვყიდით — მზა პასუხებს ვყიდით თქვენს კითხვებზე"</li>
+  <li>"3-5 დღე კი არა, 3 წამი."</li>
+  <li>"ფინანსისტი წავიდა? ცოდნა დარჩა."</li>
+  <li>"რეპორტი ≠ ანალიტიკა. რა მოხდა გეტყვით ყველა. რატომ — მხოლოდ ჩვენ."</li>
+</ul>
+<h3>Voice Rules (MUST — ყველა content)</h3>
+<ul style="padding-left:20px;">
+  <li>"Real-time" ნუ → "ახლა" / "დღევანდელი"</li>
+  <li>ERP სახელები ყოველთვის — Fina, Oris, Balance, 1C, FMG, Superfin</li>
+  <li>Generic BI არა — vertical + ლოკალური</li>
+  <li>CEO-ის ენა: ცოცხალი მეტაფორა, კრებითობა</li>
+</ul>
+</div>
+</details>
+
+<!-- DEAL FLOW -->
+<h2>§10 — Deal Flow</h2>
+<table>
+<thead><tr><th>ეტაპი</th><th>Timeline</th><th>Key Action</th></tr></thead>
+<tbody>
+<tr><td>CFO identifies pain → research</td><td>2–4 კვირა (passive)</td><td>Content + SEO must be findable</td></tr>
+<tr><td>CFO brings 2-3 options to CEO</td><td>Demo request</td><td>Respond same day</td></tr>
+<tr><td><strong>Demo with their actual ERP data ⭐</strong></td><td>30 min</td><td><strong>70% of deals close or die here</strong></td></tr>
+<tr><td>CEO deliberates</td><td>1–2 კვირა</td><td>Reference client same industry</td></tr>
+<tr><td>Contract signed</td><td>Total: 4–8 კვირა</td><td>1-pager Georgian SMB format</td></tr>
+</tbody>
+</table>
+
+<div class="footer">
+  Bivision ICP v2.0 · 2026-05-12 · Sources: positioning.html §7 (Apr 21) + IDEAL-CUSTOMER-PROFILE.md (May 7)<br>
+  🔗 <a href="https://gshoina.github.io/bivision-shares/meta-ads-audit-2026-04-30.html">Gela's Dashboard</a> ·
+  <a href="https://gshoina.github.io/bivision-shares/positioning.html">Positioning v2</a>
+</div>
+
+</div>
+</body>
+</html>
