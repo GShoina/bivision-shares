@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cleanup Guide — 3 Leads/Week</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#0f0e1f;color:#fff;padding:20px 16px;max-width:600px;margin:0 auto}
+h1{font-size:16px;color:#a09be0;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.sub{font-size:12px;color:#555;margin-bottom:32px}
+.section{margin-bottom:28px}
+.label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;padding:6px 12px;border-radius:4px;display:inline-block}
+.label.remove{background:#3a1a1a;color:#ff6b6b}
+.label.keep{background:#0a2a1a;color:#00A651}
+.label.insight{background:#1a1a3a;color:#a09be0}
+ul{list-style:none}
+li{padding:10px 0;border-bottom:1px solid #1a1929;font-size:14px;line-height:1.5;display:flex;gap:10px;align-items:flex-start}
+li:last-child{border-bottom:none}
+.icon{flex-shrink:0;margin-top:2px}
+.remove li .icon{color:#ff6b6b}
+.keep li .icon{color:#00A651}
+.file{color:#888;font-size:12px;font-family:monospace;display:block;margin-top:3px}
+.insight-box{background:#13122a;border:1px solid #2e2b55;border-radius:8px;padding:16px;font-size:13px;line-height:1.8;color:#ccc}
+.insight-box strong{color:#fff}
+.bottom{margin-top:40px;padding:16px;background:#13122a;border-radius:8px;text-align:center}
+.bottom .metric{font-size:28px;font-weight:800;color:#00A651}
+.bottom .metric-label{font-size:12px;color:#666;margin-top:4px}
+</style>
+</head>
+<body>
+
+<h1>Cleanup Guide</h1>
+<p class="sub">3 qualified leads/week · 2026-05-13</p>
+
+<div class="section remove">
+  <div class="label remove">&#10005; ამოიღე — 0 კავშირი leads-თან</div>
+  <ul>
+    <li><span class="icon">✕</span><div>SESSION_OPEN_ITEMS.md<span class="file">BI_C-Suite/docs/</span></div></li>
+    <li><span class="icon">✕</span><div>SESSION_plan files (ყველა)<span class="file">BI_C-Suite/docs/SESSION_*.md</span></div></li>
+    <li><span class="icon">✕</span><div>SELF_RULES.md<span class="file">BI_C-Suite/docs/</span></div></li>
+    <li><span class="icon">✕</span><div>EXECUTION_QUEUE.md<span class="file">BI_C-Suite/docs/</span></div></li>
+    <li><span class="icon">✕</span><div>AUDIT_FEEDBACK.md<span class="file">BI_C-Suite/docs/</span></div></li>
+    <li><span class="icon">✕</span><div>Viktor audit infrastructure<span class="file">Mentari_VCS/docs/agents/viktor.md + audit files</span></div></li>
+    <li><span class="icon">✕</span><div>80%+ memory files — agent behavior, process rules, red lines<span class="file">~/.claude/memory/feedback_*.md (governance-related)</span></div></li>
+  </ul>
+</div>
+
+<div class="section keep">
+  <div class="label keep">&#10003; დატოვე — პირდაპირ lead-ს ეხება</div>
+  <ul>
+    <li><span class="icon">✓</span><div>ICP definition<span class="file">memory/reference_icp_bivision.md</span></div></li>
+    <li><span class="icon">✓</span><div>Construction 197 contacts<span class="file">memory/project_construction_prospects.md</span></div></li>
+    <li><span class="icon">✓</span><div>Cold email copy rules<span class="file">memory/feedback_cold_email_construction_rules.md</span></div></li>
+    <li><span class="icon">✓</span><div>HubSpot setup + send mechanism<span class="file">memory/project_hubspot_email_setup_may11.md</span></div></li>
+    <li><span class="icon">✓</span><div>Bivision positioning + ICP + moats<span class="file">memory/project_bivision_positioning.md</span></div></li>
+    <li><span class="icon">✓</span><div>Meta campaign access + creds<span class="file">memory/project_meta_api_access.md</span></div></li>
+    <li><span class="icon">✓</span><div>LinkedIn workflow<span class="file">memory/project_linkedin_posting_workflow.md</span></div></li>
+    <li><span class="icon">✓</span><div>Email outreach strategy v5<span class="file">memory/feedback_email_strategy_v3.md</span></div></li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="label insight">&#9670; ამ session-ის დასკვნა</div>
+  <div class="insight-box">
+    <strong>Rules in files = theater.</strong> Behavior changes with direct pushback — not with more documents.<br><br>
+    <strong>Accountability:</strong> agent-ზე = doesn't work. შენ + metric = works.<br><br>
+    <strong>Rule accumulation loop:</strong> mistake → rule → mistake → rule. Rules were your response to agent failures. The loop doesn't close with more rules.<br><br>
+    <strong>Working mechanism:</strong> this conversation. Direct challenge. Real-time.
+  </div>
+</div>
+
+<div class="bottom">
+  <div class="metric">ICP + message + send</div>
+  <div class="metric-label">3 leads/week-ის ფორმულა. ყველა სხვა = noise.</div>
+</div>
+
+</body>
+</html>
