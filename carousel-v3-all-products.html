@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bivision Carousel v3 — ყველა პროდუქტი</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0a0a; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 32px 20px 60px; font-family: 'Segoe UI', sans-serif; color: #fff; }
+
+  h1 { color: #777; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; }
+  .subtitle { color: #444; font-size: 0.72rem; margin-bottom: 28px; }
+
+  .carousel-wrap { position: relative; width: 480px; max-width: 100%; }
+
+  .slides { position: relative; width: 100%; padding-top: 100%; }
+  .slide { position: absolute; inset: 0; display: none; border-radius: 14px; overflow: hidden; flex-direction: column; justify-content: space-between; }
+  .slide.active { display: flex; }
+
+  /* slide backgrounds */
+  .s1 { background: linear-gradient(145deg, #0d1b2a 0%, #1a3a5c 60%, #0f2d4a 100%); }
+  .s2 { background: linear-gradient(145deg, #0d1f12 0%, #1a3d22 60%, #0e2718 100%); }
+  .s3 { background: linear-gradient(145deg, #1f0d1a 0%, #3d1a30 60%, #280e22 100%); }
+  .s4 { background: linear-gradient(145deg, #1a1000 0%, #3d2800 60%, #281800 100%); }
+  .s5 { background: linear-gradient(145deg, #0d1520 0%, #1a2a40 60%, #0a1828 100%); }
+  .s6 { background: linear-gradient(145deg, #1a1000 0%, #2e1800 60%, #1a0f00 100%); }
+  .s7 { background: linear-gradient(145deg, #0a0a1a 0%, #1a1a3a 60%, #0d0d26 100%); }
+
+  /* accent colors */
+  .s1 .ac { color: #4fc3f7; }
+  .s2 .ac { color: #81c784; }
+  .s3 .ac { color: #f48fb1; }
+  .s4 .ac { color: #ffcc80; }
+  .s5 .ac { color: #80deea; }
+  .s6 .ac { color: #ff8a65; }
+  .s7 .ac { color: #ce93d8; }
+
+  .top-bar { display: flex; justify-content: space-between; align-items: center; padding: 18px 22px 0; }
+  .brand { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.65; }
+  .slide-num { font-size: 0.68rem; opacity: 0.35; letter-spacing: 0.05em; }
+
+  .content { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 18px 24px; }
+
+  .tag-line { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.45; margin-bottom: 10px; }
+
+  /* COVER */
+  .cover-head { font-size: 1.6rem; font-weight: 900; line-height: 1.25; margin-bottom: 14px; }
+  .cover-sub { font-size: 0.8rem; opacity: 0.5; line-height: 1.6; margin-bottom: 18px; }
+  .cover-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill { font-size: 0.68rem; font-weight: 600; padding: 4px 10px; border-radius: 20px; background: rgba(255,255,255,0.08); opacity: 0.7; }
+
+  /* PRODUCT */
+  .prod-head { font-size: 1.15rem; font-weight: 800; margin-bottom: 6px; }
+  .pain-line { font-size: 0.75rem; font-style: italic; padding: 6px 10px; border-left: 3px solid; border-radius: 0 6px 6px 0; margin-bottom: 16px; background: rgba(255,255,255,0.04); line-height: 1.4; }
+  .features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .features li { display: flex; align-items: flex-start; gap: 8px; font-size: 0.8rem; opacity: 0.85; line-height: 1.4; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; margin-top: 5px; }
+
+  /* CLOSING */
+  .closing-emoji { font-size: 2.6rem; margin-bottom: 12px; }
+  .closing-head { font-size: 1.3rem; font-weight: 900; line-height: 1.3; margin-bottom: 8px; }
+  .closing-sub { font-size: 0.78rem; opacity: 0.45; margin-bottom: 22px; line-height: 1.5; }
+  .cta-btn { display: inline-block; background: #ce93d8; color: #000; font-size: 0.82rem; font-weight: 800; padding: 10px 24px; border-radius: 8px; letter-spacing: 0.04em; }
+  .bio-hint { font-size: 0.66rem; opacity: 0.3; margin-top: 8px; letter-spacing: 0.04em; }
+
+  .bottom-bar { display: flex; justify-content: space-between; align-items: center; padding: 0 22px 16px; }
+  .cta-text { font-size: 0.75rem; font-weight: 600; opacity: 0.5; }
+
+  .dots { display: flex; gap: 5px; margin-top: 14px; justify-content: center; }
+  .di { width: 6px; height: 6px; border-radius: 50%; background: #333; cursor: pointer; transition: background 0.2s; }
+  .di.active { background: #ce93d8; }
+
+  .nav { display: flex; justify-content: space-between; width: 100%; margin-top: 14px; gap: 10px; }
+  .nav-btn { flex: 1; background: #1a1a1a; border: 1px solid #2a2a2a; color: #888; padding: 8px 0; border-radius: 7px; cursor: pointer; font-size: 0.8rem; transition: background 0.15s; }
+  .nav-btn:hover { background: #222; color: #fff; }
+  .nav-btn:disabled { opacity: 0.2; cursor: default; }
+
+  /* NOTES SECTION */
+  .notes { width: 480px; max-width: 100%; margin-top: 28px; background: #111; border-radius: 10px; padding: 18px 22px; border: 1px solid #1e1e1e; }
+  .notes h3 { font-size: 0.72rem; color: #555; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+  .note { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; font-size: 0.8rem; }
+  .ni { flex-shrink: 0; font-size: 0.82rem; }
+  .nt { color: #888; line-height: 1.5; }
+  .nt strong { color: #ccc; }
+
+  /* INSTRUCTIONS */
+  .instructions { width: 480px; max-width: 100%; margin-top: 20px; background: #0f0f1e; border-radius: 10px; padding: 18px 22px; border: 1px solid #1e1e2e; }
+  .instructions h3 { font-size: 0.72rem; color: #7c6fcd; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+  .inst-item { display: flex; gap: 10px; margin-bottom: 10px; font-size: 0.8rem; align-items: flex-start; }
+  .inst-num { background: #6B63B5; color: white; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; flex-shrink: 0; }
+  .inst-text { color: #aaa; line-height: 1.5; }
+  .inst-text strong { color: #ddd; }
+  .fix-tag { display: inline-block; background: #3d1a00; color: #ff8a65; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 4px; }
+</style>
+</head>
+<body>
+
+<h1>Bivision Carousel v3</h1>
+<p class="subtitle">7 სლაიდი · Instagram 1:1 · 2026-05-13 · ყველა პროდუქტი</p>
+
+<div class="carousel-wrap">
+  <div class="slides">
+
+    <!-- SLIDE 1: COVER -->
+    <div class="slide s1 active">
+      <div class="top-bar">
+        <span class="brand ac">Bivision</span>
+        <span class="slide-num">1 / 7</span>
+      </div>
+      <div class="content">
+        <div class="tag-line">BI ანალიტიკა</div>
+        <div class="cover-head">
+          შენი CFO<br>
+          <span class="ac">ახლაც Excel-ში</span><br>
+          ეძებს პასუხს?
+        </div>
+        <div class="cover-sub">
+          ERP გაქვს — ერთიანი კონტროლი კი არა.<br>
+          BI დაშბორდი 2-3 კვირაში, ნებისმიერი ERP-იდან.
+        </div>
+        <div class="cover-pills">
+          <span class="pill">ფინანსები</span>
+          <span class="pill">გაყიდვები</span>
+          <span class="pill">მარაგები</span>
+          <span class="pill">სამედიცინო</span>
+          <span class="pill">სამშენებლო</span>
+        </div>
+      </div>
+      <div class="bottom-bar">
+        <div class="cta-text ac">გადაფურცლე ➞</div>
+        <span class="slide-num">Fina · Oris · 1C · ბალანსი</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: BiFinance -->
+    <div class="slide s2">
+      <div class="top-bar">
+        <span class="brand ac">Bivision</span>
+        <span class="slide-num">2 / 7</span>
+      </div>
+      <div class="content">
+        <div class="prod-head ac">💰 BiFinance</div>
+        <div class="pain-line ac">CFO-ს ანგარიში — 10 წუთი, არა 3 საათი</div>
+        <ul class="features">
+          <li><span class="dot ac"></span><span>P&amp;L და Cash Flow — რეალურ დროში</span></li>
+          <li><span class="dot ac"></span><span>ბიუჯეტი vs ფაქტი — ავტომატური</span></li>
+          <li><span class="dot ac"></span><span>მოგებიანობა პროდუქტ/კატეგორიებით</span></li>
+        </ul>
+      </div>
+      <div class="bottom-bar">
+        <div class="cta-text ac">შემდეგი ➞</div>
+        <span class="pill" style="opacity:0.5; font-size:0.65rem;">ყველა სექტორი</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: BiRetail -->
+    <div class="slide s3">
+      <div class="top-bar">
+        <span class="brand ac">Bivision</span>
+        <span class="slide-num">3 / 7</span>
+      </div>
+      <div class="content">
+        <div class="prod-head ac">🛒 BiRetail</div>
+        <div class="pain-line ac">Excel ხვალ გეტყვის — BiRetail ახლა</div>
+        <ul class="features">
+          <li><span class="dot ac"></span><span>გაყიდვები კატეგორიებით, ტრენდებით</span></li>
+          <li><span class="dot ac"></span><span>მარჟა და მოგება — ყველა პროდუქტზე</span></li>
+          <li><span class="dot ac"></span><span>სეზონური პიკების წინასწარი ხილვა</span></li>
+        </ul>
+      </div>
+      <div class="bottom-bar">
+        <div class="cta-text ac">შემდეგი ➞</div>
+        <span class="pill" style="opacity:0.5; font-size:0.65rem;">Retail · Distribution</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: BiStock -->
+    <div class="slide s4">
+      <div class="top-bar">
+        <span class="brand ac">Bivision</span>
+        <span class="slide-num">4 / 7</span>
+      </div>
+      <div class="content">
+        <div class="prod-head ac">📦 BiStock</div>
+        <div class="pain-line ac">ჩაწოლილი საქონელი = ხელიდან გაშვებული ფული</div>
+        <ul class="features">
+          <li><span class="dot ac"></span><span>ნაშთები რეალურ დროში — ყველა საწყობი</span></li>
+          <li><span class="dot ac"></span><span>ქვედა/ზედა ზღვარი — ავტო-გაფრთხილება</span></li>
+          <li><span class="dot ac"></span><span>შესყიდვების რეკომენდაცია ტრენდიდან</span></li>
+        </ul>
+      </div>
+      <div class="bottom-bar">
+        <div class="cta-text ac">შემდეგი ➞</div>
+        <span class="pill" style="opacity:0.5; font-size:0.65rem;">Retail · Importer</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: BiMedical -->
+    <div class="slide s5">
+      <div class="top-bar">
+        <span class="brand ac">Bivision</span>
+        <span class="slide-num">5 / 7</span>
+      </div>
+      <div class="content">
+        <div class="prod-head ac">🏥 BiMedical</div>
+        <div class="pain-line ac">კლინიკის P&amp;L — ექიმის განრიგი და ფინანსები ერთ ეკრანზე</div>
+        <ul class="features">
+          <li><span class="dot ac"></span><span>P&amp;L სამედიცინო სერვისებით</span></li>
+          <li><span class="dot ac"></span><span>ექიმების დატვირთულობა vs შემოსავლები</span></li>
+          <li><span class="dot ac"></span><span>პაციენტთა ნაკადი — პიკი და ეფექტურობა</span></li>
+        </ul>
+        <div style="font-size:0.68rem; opacity:0.4; margin-top:12px;">✓ Invitro · Mardaleishvili · GeoCord</div>
+      </div>
+      <div class="bottom-bar">
+        <div class="cta-text ac">შემდეგი ➞</div>
+        <span class="pill" style="opacity:0.5; font-size:0.65rem;">IVF · Clinic</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: BiConstruction -->
+    <div class="slide s6">
+      <div class="top-bar">
+        <span class="brand ac">Bivision</span>
+        <span class="slide-num">6 / 7</span>
+      </div>
+      <div class="content">
+        <div class="prod-head ac">🏗️ BiConstruction</div>
+        <div class="pain-line ac">Project P&amp;L — ხარჯის სიურპრიზი აღარ არსებობს</div>
+        <ul class="features">
+          <li><span class="dot ac"></span><span>პროექტების კონსოლიდირებული P&amp;L</span></li>
+          <li><span class="dot ac"></span><span>ბიუჯეტი vs ფაქტობრივი ხარჯი — live</span></li>
+          <li><span class="dot ac"></span><span>90-დღიანი Cash Flow პროგნოზი</span></li>
+        </ul>
+      </div>
+      <div class="bottom-bar">
+        <div class="cta-text ac">შემდეგი ➞</div>
+        <span class="pill" style="opacity:0.5; font-size:0.65rem;">Developer · Construction</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: CLOSING CTA -->
+    <div class="slide s7">
+      <div class="top-bar">
+        <span class="brand ac">Bivision</span>
+        <span class="slide-num">7 / 7</span>
+      </div>
+      <div class="content" style="text-align:center; align-items:center;">
+        <div class="closing-emoji">📊</div>
+        <div class="closing-head">
+          <span class="ac">2–3 კვირა.</span><br>
+          ERP → Dashboard.
+        </div>
+        <div class="closing-sub">
+          Fina · ბალანსი · Oris · 1C<br>
+          ქართული ERP-ებთან — ვინმე სხვა ვერ.
+        </div>
+        <div class="cta-btn">30-წუთიანი demo ↗</div>
+        <div class="bio-hint">ბმული bio-ში · bivision.ge</div>
+      </div>
+      <div class="bottom-bar" style="justify-content:center;">
+        <span style="font-size:0.68rem; opacity:0.25; letter-spacing:0.08em;">BIVISION · BI ANALYTICS · GEORGIA</span>
+      </div>
+    </div>
+
+  </div><!-- /slides -->
+
+  <div class="dots" id="dots"></div>
+  <div class="nav">
+    <button class="nav-btn" id="prev" onclick="move(-1)" disabled>← წინა</button>
+    <button class="nav-btn" id="next" onclick="move(1)">შემდეგი →</button>
+  </div>
+</div><!-- /carousel-wrap -->
+
+<!-- MARIAM INSTRUCTIONS -->
+<div class="instructions">
+  <h3>🎨 მარიამ — Canva-ში გასასწორებელი (v3 სტრუქტურა)</h3>
+  <div class="inst-item">
+    <div class="inst-num">1</div>
+    <div class="inst-text"><strong>Cover (სლაიდი 1):</strong> headline = "შენი CFO ახლაც Excel-ში ეძებს პასუხს?" <span class="fix-tag">NEW HOOK</span></div>
+  </div>
+  <div class="inst-item">
+    <div class="inst-num">2</div>
+    <div class="inst-text"><strong>BiFinance (2) · BiRetail (3) · BiStock (4):</strong> max 3 bullet/სლაიდი. pain-line ზედა. <span class="fix-tag">TRIM BULLETS</span></div>
+  </div>
+  <div class="inst-item">
+    <div class="inst-num">3</div>
+    <div class="inst-text"><strong>BiMedical (სლაიდი 5) — NEW:</strong> 🏥 header. 3 bullet. Footer: "✓ Invitro · Mardaleishvili · GeoCord"</div>
+  </div>
+  <div class="inst-item">
+    <div class="inst-num">4</div>
+    <div class="inst-text"><strong>BiConstruction (სლაიდი 6) — NEW:</strong> 🏗️ header. 3 bullet. Construction სექტორი.</div>
+  </div>
+  <div class="inst-item">
+    <div class="inst-num">5</div>
+    <div class="inst-text"><strong>Closing CTA (სლაიდი 7) — NEW:</strong> "30-წუთიანი demo ↗" button. "ბმული bio-ში". Bivision logo. <span class="fix-tag">MUST ADD</span></div>
+  </div>
+</div>
+
+<!-- NOTES -->
+<div class="notes">
+  <h3>Agent Notes</h3>
+  <div class="note"><span class="ni">✓</span><div class="nt"><strong>Cover pain hook</strong> გამოსწორდა — "გამოწვევა" → direct question</div></div>
+  <div class="note"><span class="ni">✓</span><div class="nt"><strong>Bullets 3-მდე</strong> — ყველა სლაიდზე max 3</div></div>
+  <div class="note"><span class="ni">✓</span><div class="nt"><strong>Closing CTA</strong> დამატებულია — carousel-ის ყველაზე მნიშვნელოვანი სლაიდი retention-ისთვის</div></div>
+  <div class="note"><span class="ni">+</span><div class="nt"><strong>BiMedical + BiConstruction</strong> — ახლად დამატებული პროდუქტები</div></div>
+  <div class="note"><span class="ni">⚠</span><div class="nt"><strong>BiConstruction</strong> — email freeze active (pilots). Social media: owner-confirm needed. სლაიდი მზადაა.</div></div>
+</div>
+
+<script>
+  let cur = 0;
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  const dotsEl = document.getElementById('dots');
+
+  // build dots
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('div');
+    d.className = 'di' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  }
+
+  function goTo(n) {
+    slides[cur].classList.remove('active');
+    dotsEl.children[cur].classList.remove('active');
+    cur = n;
+    slides[cur].classList.add('active');
+    dotsEl.children[cur].classList.add('active');
+    document.getElementById('prev').disabled = cur === 0;
+    document.getElementById('next').disabled = cur === total - 1;
+  }
+
+  function move(d) { goTo(cur + d); }
+</script>
+
+</body>
+</html>
