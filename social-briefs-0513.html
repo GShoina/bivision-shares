@@ -3,168 +3,179 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Social Post Briefs — BiFinance / BiRetail / BI Analytics</title>
+<title>Social Post Briefs v2</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f4f8; color: #1a1a2e; padding: 32px 16px; }
-  h1 { font-size: 22px; color: #6B63B5; margin-bottom: 4px; }
-  .meta { font-size: 13px; color: #888; margin-bottom: 32px; }
-  .post { background: #fff; border-radius: 12px; padding: 28px; margin-bottom: 28px; box-shadow: 0 2px 12px rgba(107,99,181,0.08); }
-  .post-title { font-size: 17px; font-weight: 700; color: #6B63B5; margin-bottom: 20px; border-bottom: 2px solid #6B63B5; padding-bottom: 10px; }
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 20px; }
-  .card { border-radius: 8px; padding: 16px; min-height: 130px; display: flex; flex-direction: column; justify-content: center; }
-  .card-1 { background: #6B63B5; color: #fff; }
-  .card-2, .card-3 { background: #f0effe; color: #1a1a2e; border: 1px solid #d0ccf5; }
-  .card-4 { background: #00A651; color: #fff; }
-  .card-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; opacity: 0.7; margin-bottom: 8px; text-transform: uppercase; }
-  .card-text { font-size: 14px; line-height: 1.6; font-weight: 500; }
-  .card-text ul { padding-left: 16px; margin-top: 6px; }
-  .card-text li { margin-bottom: 4px; font-size: 13px; }
-  .check { color: #00A651; font-weight: 700; }
-  .card-4 .check { color: #fff; }
-  .design-brief { background: #1a1a2e; color: #e0e0e0; border-radius: 8px; padding: 16px 20px; font-size: 13px; line-height: 1.7; }
-  .design-brief strong { color: #6B63B5; }
-  .design-label { font-size: 11px; font-weight: 700; color: #6B63B5; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; }
-  .platform-badge { display: inline-block; background: #6B63B5; color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-right: 6px; margin-bottom: 14px; }
-  .prompt-box { background: #fff8e1; border-left: 4px solid #00A651; border-radius: 0 8px 8px 0; padding: 14px 16px; margin-top: 20px; font-size: 13px; line-height: 1.7; color: #333; }
-  .prompt-label { font-size: 11px; font-weight: 700; color: #00A651; letter-spacing: 1px; margin-bottom: 6px; text-transform: uppercase; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #1a1a2e; color: #fff; padding: 24px 16px; }
+h1 { font-size: 18px; color: #a09be0; margin-bottom: 4px; letter-spacing: 0.5px; }
+.meta { font-size: 12px; color: #666; margin-bottom: 32px; }
+.post-block { margin-bottom: 48px; }
+.post-label { font-size: 13px; font-weight: 700; color: #a09be0; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.carousel { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; }
+.carousel::-webkit-scrollbar { height: 4px; }
+.carousel::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+.card { flex: 0 0 260px; height: 260px; border-radius: 10px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+.card-num { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; opacity: 0.5; text-transform: uppercase; }
+.c1 { background: #6B63B5; }
+.c1 .hook-text { font-size: 24px; font-weight: 800; line-height: 1.3; color: #fff; margin-top: 8px; }
+.c1 .hook-sub { font-size: 13px; color: rgba(255,255,255,0.65); margin-top: 8px; }
+.c2 { background: #fff; color: #1a1a2e; }
+.c2 .prod-title { font-size: 16px; font-weight: 800; color: #6B63B5; }
+.c2 .prod-sub { font-size: 12px; color: #555; margin-top: 6px; line-height: 1.5; }
+.c2 .screen-placeholder { background: #f0effe; border: 1.5px dashed #c0bcf0; border-radius: 6px; height: 90px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #9090c0; margin-top: 10px; }
+.c3 { background: #13122a; color: #fff; border: 1px solid #2e2b55; }
+.c3 .val-title { font-size: 11px; font-weight: 700; color: #a09be0; letter-spacing: 1px; text-transform: uppercase; }
+.c3 ul { list-style: none; margin-top: 10px; }
+.c3 li { font-size: 13px; line-height: 1.8; color: #ddd; }
+.c3 li::before { content: "✓ "; color: #00A651; font-weight: 700; }
+.c4 { background: #00A651; }
+.c4 .cta-main { font-size: 20px; font-weight: 800; color: #fff; line-height: 1.3; }
+.c4 .cta-sub { font-size: 13px; color: rgba(255,255,255,0.8); margin-top: 6px; }
+.cta-btn { display: inline-block; background: #fff; color: #00A651; font-size: 12px; font-weight: 800; padding: 8px 16px; border-radius: 20px; margin-top: 10px; }
+.note { background: #0f0e1f; border-left: 3px solid #6B63B5; border-radius: 0 6px 6px 0; padding: 12px 16px; font-size: 12px; color: #999; line-height: 1.7; margin-top: 14px; }
+.note strong { color: #a09be0; }
+.prompt { background: #0f0e1f; border: 1px solid #2e2b55; border-radius: 10px; padding: 20px; margin-top: 48px; }
+.prompt h2 { font-size: 14px; color: #00A651; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
+.prompt p { font-size: 13px; color: #bbb; line-height: 1.8; }
+.prompt strong { color: #fff; }
 </style>
 </head>
 <body>
+<h1>Social Post Briefs — v2</h1>
+<p class="meta">BiFinance · BiRetail · BI Analytics · 2026-05-13 · ⚠️ ფერები Mariam-ის screenshot-ს ელოდება</p>
 
-<h1>Social Post Briefs</h1>
-<p class="meta">BiFinance · BiRetail · BI Analytics &nbsp;|&nbsp; 2026-05-13 &nbsp;|&nbsp; Mentari</p>
-
-<!-- POST 1 — BiFinance -->
-<div class="post">
-  <div class="post-title">Post 1 — BiFinance</div>
-  <span class="platform-badge">Facebook</span>
-  <span class="platform-badge">LinkedIn</span>
-  <div class="cards">
-    <div class="card card-1">
-      <div class="card-label">Card 1 — Hook</div>
-      <div class="card-text">CFO-ს ყოველ თვე 2 დღე ჰყავს Excel-ში.<br><br>ეს ნორმალური არ არის.</div>
-    </div>
-    <div class="card card-2">
-      <div class="card-label">Card 2 — Product</div>
-      <div class="card-text">BiFinance:<br>P&amp;L, Balance, Cash Flow — ერთ ეკრანზე, real-time.<br><br><em style="font-size:12px;opacity:.7">[ dashboard screenshot ]</em></div>
-    </div>
-    <div class="card card-3">
-      <div class="card-label">Card 3 — Value</div>
-      <div class="card-text">
-        <ul>
-          <li><span class="check">✓</span> 1C / Oris / Fina / Balance კავშირი</li>
-          <li><span class="check">✓</span> ბიუჯეტი vs ფაქტი ავტომატურად</li>
-          <li><span class="check">✓</span> 2 კვირაში deploy</li>
-        </ul>
+<!-- POST 1: BiFinance -->
+<div class="post-block">
+  <div class="post-label">Post 1 — BiFinance</div>
+  <div class="carousel">
+    <div class="card c1">
+      <div class="card-num">01 / 04</div>
+      <div>
+        <div class="hook-text">CFO: 2 დღე Excel.<br>ყოველ თვე.</div>
+        <div class="hook-sub">ეს ნორმა არ არის →</div>
       </div>
     </div>
-    <div class="card card-4">
-      <div class="card-label">Card 4 — CTA</div>
-      <div class="card-text">📅 უფასო 30-წუთიანი დემო<br><br><strong>→ Calendly</strong></div>
+    <div class="card c2">
+      <div>
+        <div class="card-num" style="color:#999">02 / 04</div>
+        <div class="prod-title">BiFinance</div>
+        <div class="prod-sub">P&amp;L · Balance · Cash Flow<br>ერთ ეკრანზე, real-time</div>
+      </div>
+      <div class="screen-placeholder">[ BiFinance dashboard ]</div>
     </div>
-  </div>
-  <div class="design-label">Design Direction</div>
-  <div class="design-brief">
-    <strong>Card 1:</strong> purple bg (#6B63B5), large white bold text, no image.<br>
-    <strong>Cards 2-3:</strong> white bg, BiFinance dashboard screenshot background (semi-transparent), text overlay.<br>
-    <strong>Card 4:</strong> green bg (#00A651), white text, large CTA button.<br>
-    Format: 1080×1080. Font: Segoe UI / Inter Bold for hooks.
-  </div>
-</div>
-
-<!-- POST 2 — BiRetail -->
-<div class="post">
-  <div class="post-title">Post 2 — BiRetail</div>
-  <span class="platform-badge">Facebook</span>
-  <span class="platform-badge">LinkedIn</span>
-  <div class="cards">
-    <div class="card card-1">
-      <div class="card-label">Card 1 — Hook</div>
-      <div class="card-text">3 მაღაზია, 3 Excel.<br>ვინ ყიდის? ვინ ბრუნავს?<br><br>— არ ჩანს.</div>
+    <div class="card c3">
+      <div class="val-title">03 / 04 — რა გეძლევა</div>
+      <ul>
+        <li>1C / Oris / Fina / Balance</li>
+        <li>ბიუჯეტი vs ფაქტი ავტომ.</li>
+        <li>2 კვირაში deploy</li>
+        <li>CFO dashboard — მობილურ.</li>
+      </ul>
     </div>
-    <div class="card card-2">
-      <div class="card-label">Card 2 — Product</div>
-      <div class="card-text">BiRetail:<br>ყველა მაღაზია ერთ dashboard-ზე.<br><br><em style="font-size:12px;opacity:.7">[ retail dashboard screenshot ]</em></div>
-    </div>
-    <div class="card card-3">
-      <div class="card-label">Card 3 — Value</div>
-      <div class="card-text">
-        <ul>
-          <li><span class="check">✓</span> მარაგები real-time</li>
-          <li><span class="check">✓</span> გაყიდვები მაღაზიების მიხედვით</li>
-          <li><span class="check">✓</span> ABC ანალიზი ავტომატურად</li>
-        </ul>
+    <div class="card c4">
+      <div class="card-num" style="color:rgba(255,255,255,0.5)">04 / 04</div>
+      <div>
+        <div class="cta-main">📅 30-წუთ. დემო<br>— უფასოდ</div>
+        <div class="cta-sub">Calendly</div>
+        <div class="cta-btn">დაჯავშნე</div>
       </div>
     </div>
-    <div class="card card-4">
-      <div class="card-label">Card 4 — CTA</div>
-      <div class="card-text">📅 30-წუთიანი დემო<br><br><strong>→ Calendly</strong></div>
-    </div>
   </div>
-  <div class="design-label">Design Direction</div>
-  <div class="design-brief">
-    <strong>Card 1:</strong> purple bg, white bold text. Retail shelf / store image faint in background.<br>
-    <strong>Cards 2-3:</strong> BiRetail dashboard screenshot + overlay. Clean, minimal.<br>
-    <strong>Card 4:</strong> green bg (#00A651), CTA button centered.<br>
-    Format: 1080×1080.
-  </div>
+  <div class="note"><strong>Hook:</strong> "2 დღე Excel ყოველ თვე" = კონკრეტული pain. CFO-ს ეხება პირდაპირ.</div>
 </div>
 
-<!-- POST 3 — General BI -->
-<div class="post">
-  <div class="post-title">Post 3 — BI Analytics (General)</div>
-  <span class="platform-badge">Facebook</span>
-  <span class="platform-badge">LinkedIn</span>
-  <div class="cards">
-    <div class="card card-1">
-      <div class="card-label">Card 1 — Hook</div>
-      <div class="card-text">"რა ხდება ბიზნესში?"<br><br>ბუღალტერი ხვალ გიპასუხებს.<br><br><em style="font-size:12px;opacity:.8">ეს 2024 არ არის.</em></div>
-    </div>
-    <div class="card card-2">
-      <div class="card-label">Card 2 — Platform</div>
-      <div class="card-text">Bivision:<br>ფინანსი · გაყიდვები · მარაგი · HR<br>— ერთ ადგილას, real-time.<br><br><em style="font-size:12px;opacity:.7">[ CEO dashboard screenshot ]</em></div>
-    </div>
-    <div class="card card-3">
-      <div class="card-label">Card 3 — Value</div>
-      <div class="card-text">
-        <ul>
-          <li><span class="check">✓</span> ERP-თან ავტომატური კავშირი</li>
-          <li><span class="check">✓</span> CEO dashboard — მობილურიდან</li>
-          <li><span class="check">✓</span> 20–200 თანამშრომლიანი კომპანიისთვის</li>
-        </ul>
+<!-- POST 2: BiRetail -->
+<div class="post-block">
+  <div class="post-label">Post 2 — BiRetail</div>
+  <div class="carousel">
+    <div class="card c1">
+      <div class="card-num">01 / 04</div>
+      <div>
+        <div class="hook-text">3 მაღაზია.<br>3 Excel.<br>0 სურათი.</div>
+        <div class="hook-sub">ვინ ყიდის? ვინ ბრუნავს? →</div>
       </div>
     </div>
-    <div class="card card-4">
-      <div class="card-label">Card 4 — CTA</div>
-      <div class="card-text">📅 BI Health Check — უფასოდ<br><br><strong>→ Calendly</strong></div>
+    <div class="card c2">
+      <div>
+        <div class="card-num" style="color:#999">02 / 04</div>
+        <div class="prod-title">BiRetail</div>
+        <div class="prod-sub">ყველა მაღაზია ერთ<br>dashboard-ზე, real-time</div>
+      </div>
+      <div class="screen-placeholder">[ BiRetail dashboard ]</div>
+    </div>
+    <div class="card c3">
+      <div class="val-title">03 / 04 — რა გეძლევა</div>
+      <ul>
+        <li>მარაგები real-time</li>
+        <li>გაყიდვები მაღაზიების მიხ.</li>
+        <li>ABC ანალიზი ავტომატურად</li>
+        <li>ქსელური შედარება 1 კლიკში</li>
+      </ul>
+    </div>
+    <div class="card c4">
+      <div class="card-num" style="color:rgba(255,255,255,0.5)">04 / 04</div>
+      <div>
+        <div class="cta-main">📅 30-წუთ. დემო<br>— უფასოდ</div>
+        <div class="cta-sub">Calendly</div>
+        <div class="cta-btn">დაჯავშნე</div>
+      </div>
     </div>
   </div>
-  <div class="design-label">Design Direction</div>
-  <div class="design-brief">
-    <strong>Card 1:</strong> dark purple / near-black bg, white text. Dramatic, bold.<br>
-    <strong>Cards 2-3:</strong> white bg, multi-module dashboard screenshot, #6B63B5 accents.<br>
-    <strong>Card 4:</strong> green bg (#00A651), "BI Health Check" prominent.<br>
-    Format: 1080×1080.
-  </div>
+  <div class="note"><strong>Hook:</strong> "3 / 3 / 0" რიცხვები ოპოზიციაში. ხედავ პრობლემას ერთ წამში.</div>
 </div>
 
-<!-- Canva / GPT Prompt -->
-<div class="post">
-  <div class="post-title">Mariam-ისთვის — Canva / GPT Prompt</div>
-  <div class="prompt-label">Copy-paste prompt</div>
-  <div class="prompt-box">
-Create a 4-slide Instagram/Facebook carousel (1080×1080px) for a B2B SaaS company called Bivision.<br><br>
-<strong>Brand colors:</strong> Purple #6B63B5 (primary), Green #00A651 (CTA/accents), White background.<br>
-<strong>Font:</strong> Bold sans-serif (Inter or Segoe UI) for headlines, regular for body.<br>
-<strong>Style:</strong> Professional, clean, minimal. B2B executive audience (CFO, CEO).<br><br>
-<strong>Structure:</strong><br>
-— Slide 1: Bold hook text only, purple background, white text.<br>
-— Slides 2-3: White background, product dashboard screenshot (semi-transparent), text overlay with checkmarks in green.<br>
-— Slide 4: Green background (#00A651), white CTA text, calendar emoji, Calendly mention.<br><br>
-Georgian language. No stock photos of people. Use dashboard screenshots provided.
+<!-- POST 3: BI General -->
+<div class="post-block">
+  <div class="post-label">Post 3 — BI Analytics</div>
+  <div class="carousel">
+    <div class="card c1">
+      <div class="card-num">01 / 04</div>
+      <div>
+        <div class="hook-text">"რა ხდება<br>ბიზნესში?"</div>
+        <div class="hook-sub" style="margin-top:10px;font-size:14px;color:rgba(255,255,255,0.8)">ბუღალტერი ხვალ გიპასუხებს.</div>
+        <div class="hook-sub">ეს 2025 არ არის →</div>
+      </div>
+    </div>
+    <div class="card c2">
+      <div>
+        <div class="card-num" style="color:#999">02 / 04</div>
+        <div class="prod-title">Bivision BI</div>
+        <div class="prod-sub">ფინანსი · გაყიდვები · მარაგი<br>ერთ ეკრანზე, ახლავე</div>
+      </div>
+      <div class="screen-placeholder">[ CEO dashboard ]</div>
+    </div>
+    <div class="card c3">
+      <div class="val-title">03 / 04 — რა გეძლევა</div>
+      <ul>
+        <li>ERP-თან ავტომატური კავშირი</li>
+        <li>CEO dashboard — მობილურ.</li>
+        <li>20–200 თანამშრომლ. კომპ.</li>
+        <li>2 კვირაში მზადაა</li>
+      </ul>
+    </div>
+    <div class="card c4">
+      <div class="card-num" style="color:rgba(255,255,255,0.5)">04 / 04</div>
+      <div>
+        <div class="cta-main">📅 BI Health Check<br>— უფასოდ</div>
+        <div class="cta-sub">Calendly</div>
+        <div class="cta-btn">დაჯავშნე</div>
+      </div>
+    </div>
   </div>
+  <div class="note"><strong>Hook:</strong> ციტატა = reader ცნობს საკუთარ თავს. "2025 არ არის" = urgency გარეშე ყვირილისა.</div>
 </div>
 
+<!-- Prompt -->
+<div class="prompt">
+  <h2>Mariam → Canva / GPT prompt</h2>
+  <p>
+    Create a 4-slide carousel, <strong>1080×1080px</strong>.<br><br>
+    <strong>Slide 1:</strong> Purple <strong>#6B63B5</strong> bg. White Extra Bold text, 44–48px. Max 6 words. Arrow hint bottom-right.<br>
+    <strong>Slide 2:</strong> White bg. Product name top-left #6B63B5 bold. Dashboard screenshot fills bottom 55%. Light purple tint overlay.<br>
+    <strong>Slide 3:</strong> Dark <strong>#13122A</strong> bg. 4 bullets, green <strong>#00A651</strong> checkmarks. White 14px text.<br>
+    <strong>Slide 4:</strong> Green <strong>#00A651</strong> bg. White bold CTA. White rounded pill button "დაჯავშნე".<br><br>
+    Brand: Bivision. B2B Georgian. No stock photos of people. Georgian language.
+  </p>
+</div>
 </body>
 </html>
