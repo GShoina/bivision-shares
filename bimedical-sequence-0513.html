@@ -3,169 +3,161 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BiMedical Email Sequence v1 — Mentari</title>
+<title>BiMedical Email Sequence — Final</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#f5f4fb;color:#1a1a2e;padding:20px 16px;max-width:680px;margin:0 auto}
 h1{font-size:15px;color:#6B63B5;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
-.meta{font-size:12px;color:#888;margin-bottom:28px}
-.warning{background:#fff8ec;border:1px solid #f0c070;border-radius:8px;padding:12px 14px;font-size:12px;color:#b06800;margin-bottom:24px}
+.meta{font-size:12px;color:#888;margin-bottom:20px}
+.style-rule{background:#fff;border:1px solid #e0ddf5;border-radius:8px;padding:12px 14px;font-size:12px;color:#555;margin-bottom:24px;line-height:1.7}
+.style-rule strong{color:#6B63B5}
 .email-card{background:#fff;border:1px solid #e0ddf5;border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:0 2px 8px rgba(107,99,181,0.07)}
 .email-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #eeeaf8}
 .day-badge{background:#6B63B5;color:#fff;font-size:11px;font-weight:800;padding:4px 10px;border-radius:20px;white-space:nowrap}
 .email-title{font-size:14px;font-weight:700;color:#1a1a2e}
-.subject-row{margin-bottom:10px}
 .subject-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#6B63B5;margin-bottom:6px}
-.subject-a, .subject-b{background:#f5f4fb;border-radius:6px;padding:10px 12px;font-size:13px;color:#2a2a3e;margin-bottom:6px;border-left:3px solid #6B63B5}
-.subject-b{border-left-color:#00A651}
-.ab-label{font-size:10px;color:#999;margin-right:6px;font-weight:700}
-.body-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#6B63B5;margin-top:14px;margin-bottom:8px}
+.subject-val{background:#f5f4fb;border-radius:6px;padding:10px 12px;font-size:13px;color:#2a2a3e;border-left:3px solid #6B63B5;margin-bottom:14px}
+.body-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#6B63B5;margin-bottom:8px}
 .email-body{background:#f9f8ff;border:1px solid #e0ddf5;border-radius:8px;padding:16px;font-size:13px;color:#333;line-height:1.9;white-space:pre-line}
-.calendly-link{color:#00A651;font-weight:700}
+.email-body ul{list-style:none;padding:0;margin:8px 0}
+.email-body li{padding:4px 0 4px 16px;position:relative}
+.email-body li::before{content:"›";position:absolute;left:0;color:#6B63B5;font-weight:700}
+.cta-link{color:#00A651;font-weight:700}
 .notes{font-size:11px;color:#aaa;margin-top:10px;padding-top:10px;border-top:1px solid #eeeaf8}
-.send-plan{background:#fff;border:1px solid #e0ddf5;border-radius:10px;padding:16px;margin-top:24px;box-shadow:0 2px 8px rgba(107,99,181,0.07)}
+.send-plan{background:#fff;border:1px solid #e0ddf5;border-radius:10px;padding:16px;margin-top:24px}
 .send-plan h3{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#6B63B5;margin-bottom:12px}
 .send-row{display:flex;gap:12px;align-items:flex-start;padding:8px 0;border-bottom:1px solid #eeeaf8;font-size:13px;color:#333}
 .send-row:last-child{border-bottom:none}
-.send-day{font-size:11px;color:#6B63B5;font-weight:700;min-width:60px}
+.send-day{font-size:11px;color:#6B63B5;font-weight:700;min-width:70px;flex-shrink:0}
 </style>
 </head>
 <body>
 
 <h1>BiMedical Email Sequence</h1>
-<p class="meta">BI_C-Suite · v1 draft · 2026-05-13 · Mentari · Target: Georgian clinics</p>
+<p class="meta">Final · 2026-05-14 · 4 emails · Target: Georgian clinic CEO/CFO</p>
 
-<div class="warning">
-  ⚠️ სტატუსი: DRAFT — owner Gemini-challenge pending. Calendly link = [CALENDLY] placeholder. ახალი Mailchimp campaign-ში ჩაყრა = owner approval-შემდეგ.
+<div class="style-rule">
+  <strong>Em-dash სახელმძღვანელო (ყველა future copy-სთვის):</strong><br>
+  contrast → ახალი წინადადება &nbsp;|&nbsp; pause → <code>.</code> &nbsp;|&nbsp; "ანუ/კერძოდ" → <code>:</code> &nbsp;|&nbsp; სიის გამყოფი → <code>,</code><br>
+  "—" დარჩება მხოლოდ სადაც სხვა ვარიანტი tone-ს არღვევს.
 </div>
 
 <!-- EMAIL 1 -->
 <div class="email-card">
   <div class="email-header">
-    <div class="day-badge">DAY 1</div>
-    <div class="email-title">Pain Hook — 2 სისტემა, 0 სურათი</div>
+    <div class="day-badge">EMAIL 1 — Day 1</div>
+    <div class="email-title">Initial Cold Email — CEO/CFO</div>
   </div>
-
-  <div class="subject-row">
-    <div class="subject-label">Subject Lines (A/B test)</div>
-    <div class="subject-a"><span class="ab-label">A</span>კლინიკის ფინანსები — 2 სისტემა, 0 სურათი</div>
-    <div class="subject-b"><span class="ab-label">B</span>სამედიცინო პროგრამა ბუღალტერიას ვერ ელაპარაკება — ეს ნორმა არ არის</div>
-  </div>
-
+  <div class="subject-label">Subject</div>
+  <div class="subject-val">კლინიკის ფინანსური და საოპერაციო სურათი / BiMedical</div>
   <div class="body-label">Body</div>
-  <div class="email-body">გამარჯობა,
+  <div class="email-body">{{first_name}}, მოგესალმებით.
 
-კლინიკების უმეტესობაში ასე გამოიყურება:
-სამედიცინო პროგრამა — ერთ მხარეს. ბუღალტერია — მეორეს. შორის — ადამიანი, Excel და საათები.
+წარმატებულ კლინიკებში მონაცემები უკვე დიდი მოცულობით გროვდება: HIS/ERP სისტემებში, ბუღალტერიაში, ექიმების გრაფიკებსა და სადაზღვევო პორტალებზე. თუმცა, ხელმძღვანელობისთვის მთავარი გამოწვევა ამ წყაროების ექსელის გარეშე, ერთიან მენეჯმენტ-ხედად შეკვრაა.
 
-შედეგი: ვერ ხედავთ რომელი სერვისი მომგებიანია, ვინ გიდის ვალი, სად მიდის ფული.
+ჩვენ Bivision-ში შევქმენით BiMedical — ანალიტიკური სისტემა, რომელსაც უკვე იყენებენ მარდალეიშვილის კლინიკა, ნევროლოგიისა და ნეიროფსიქოლოგიის ინსტიტუტი და Geocord. ჩვენ ვაერთიანებთ სხვადასხვა წყაროში გაფანტულ ბაზებს და მენეჯმენტს ვაძლევთ მუდმივად განახლებად ხედს:</div>
+  <ul style="margin:0 16px 0;padding:8px 0 12px 16px;font-size:13px;color:#333;line-height:1.9;list-style:none">
+    <li style="padding:3px 0 3px 14px;position:relative"><span style="position:absolute;left:0;color:#6B63B5;font-weight:700">›</span> შემოსავლებისა და ხარჯების დეტალური ანალიზი 1 კლიკით;</li>
+    <li style="padding:3px 0 3px 14px;position:relative"><span style="position:absolute;left:0;color:#6B63B5;font-weight:700">›</span> კონკრეტულად რომელი სერვისი, ქეისი თუ განყოფილებაა რენტაბელური;</li>
+    <li style="padding:3px 0 3px 14px;position:relative"><span style="position:absolute;left:0;color:#6B63B5;font-weight:700">›</span> ფულადი ნაკადების კონტროლი და დავალიანებების მართვა;</li>
+    <li style="padding:3px 0 3px 14px;position:relative"><span style="position:absolute;left:0;color:#6B63B5;font-weight:700">›</span> აპარატურისა და ექიმების დატვირთვის ეფექტურობა.</li>
+  </ul>
+  <div class="email-body">ეს მიდგომა სრულად ხსნის ფინანსური გუნდის ექსელ-რუტინას და მენეჯმენტს აძლევს დამოუკიდებლობას — დაინახოს სრული სურათი რეპორტების მოლოდინის გარეშე, დანერგვიდან ზუსტად 2 კვირაში.
 
-ერთ-ერთმა ქართულმა კლინიკამ ეს შეცვალა — სამედიცინო და ფინანსური მონაცემები ახლა ერთ dashboard-ზეა. ხელით დამუშავება — აღარ არის.
+იმის შესაფასებლად, თუ რა ეტაპზეა ახლა თქვენი კლინიკის შიდა ანალიტიკა, შევქმენით 3-წუთიანი სწრაფი აუდიტი:
 
-30 წუთი გაქვთ? → <span class="calendly-link">[CALENDLY]</span>
+👉 <a href="https://gshoina.github.io/bivision-shares/bi-health-check-v4-ivf.html" class="cta-link">Medical BI Health Check</a>
 
-პატივისცემით,
-გელა შონია
-Bivision</div>
-  <div class="notes">Format: plain text. No image. Sender: info@bivision.ge / გელა შონია. CTA = Calendly BI Health Check.</div>
+შედეგების მიხედვით თავად გადაწყვიტეთ, რამდენად გიღირთ ამ თემაზე მოკლე გაცნობითი ზარის დაგეგმვა.
+
+საუკეთესო სურვილებით,
+გელა შონია</div>
+  <div class="notes">Sender: info@bivision.ge. Named clients: მარდალეიშვილი, ნევროლოგიის ინსტიტუტი, Geocord ✓ verified + permission granted.</div>
 </div>
 
 <!-- EMAIL 2 -->
 <div class="email-card">
   <div class="email-header">
-    <div class="day-badge">DAY 3–5</div>
-    <div class="email-title">BI Health Check — Diagnostic CTA</div>
+    <div class="day-badge">EMAIL 2 — Day 3–5</div>
+    <div class="email-title">Follow-up 1 — Diagnostic</div>
   </div>
-
-  <div class="subject-row">
-    <div class="subject-label">Subject</div>
-    <div class="subject-a"><span class="ab-label">✓</span>3 კითხვა → კლინიკის მართვის სად არის ბრმა ზონა?</div>
-  </div>
-
+  <div class="subject-label">Subject</div>
+  <div class="subject-val">კლინიკის მართვა: მონაცემები vs ინტუიცია</div>
   <div class="body-label">Body</div>
-  <div class="email-body">{{first_name}}, გამარჯობა.
+  <div class="email-body">{{first_name}}, მოგესალმებით.
 
-ჩემს წინა წერილს ვუბრუნდები — ერთი კონკრეტული ნაბიჯი:
+მოკლედ ვუბრუნდები ჩემს ბოლო წერილს კლინიკის რეპორტინგის ავტომატიზაციაზე. სანამ უშუალოდ შეხვედრას დავგეგმავდეთ, მინდა გაგიზიაროთ Medical BI Health Check.
 
-გავაკეთეთ 3-წუთიანი BI Health Check კლინიკებისთვის. გვიჩვენებს, სად არის ბრმა ზონები — სამედიცინო პროგრამა, ბუღალტერია, cash flow.
+ეს არის 3-წუთიანი ინსტრუმენტი, რომელიც დაგანახებთ, თუ რამდენად ეფექტურად გარდაიქმნება თქვენი კლინიკის მონაცემები რეალურ მენეჯმენტ-გადაწყვეტილებებად და სად გაქვთ მართვის „ბრმა ზონები".
 
-👉 <a href="https://gshoina.github.io/bivision-shares/bi-health-check-v4-ivf.html" style="color:#00A651;font-weight:700">შეამოწმე კლინიკის მართვის დონე — 3 წუთი</a>
+👉 <a href="https://gshoina.github.io/bivision-shares/bi-health-check-v4-ivf.html" class="cta-link">Medical BI Health Check</a>
 
-შედეგებს 24 საათში გავაანალიზებ და გეტყვი, სად გვაქვს გამართვის სივრცე.
-
-პატივისცემით,
-გელა შონია
-Bivision</div>
-  <div class="notes">Action anchor text = click obvious. 24h follow-up promise = urgency without pressure. Link: bi-health-check-v4-ivf.html (current). Note: IVF-focused — consider general clinic version if needed.</div>
-</div>
-
-<!-- EMAIL 3 -->
-<div class="email-card" style="border-color:#e0f0e8">
-  <div class="email-header">
-    <div class="day-badge" style="background:#00A651">DAY 8–10</div>
-    <div class="email-title">სისტემური გათიშულობა — Proof</div>
-  </div>
-
-  <div class="subject-row">
-    <div class="subject-label">Subject</div>
-    <div class="subject-a"><span class="ab-label">✓</span>სამედიცინო პროგრამა vs ბუღალტერია — მონაცემთა გათიშულობა</div>
-  </div>
-
-  <div class="body-label">Body</div>
-  <div class="email-body">{{first_name}}, გამარჯობა.
-
-კლინიკების უმეტესობაში სურათი ასეთია: სამედიცინო პროგრამა — ერთ მხარესაა, ბუღალტერია — მეორე მხარეს. მათ შორის კი Excel-ის ფაილები და ადამიანური რესურსის საათებია.
-
-შედეგად, მენეჯმენტს უჭირს დანახვა — რომელი სერვისია მომგებიანი და სად გადის "უხილავი" ხარჯები.
-
-ჩვენს პარტნიორ კლინიკებში (მარდალეიშვილი, Geocord) ეს სურათი შევცვალეთ: სამედიცინო და ფინანსური მონაცემები ახლა ერთიან დაშბორდზეა. ხელით დამუშავება — აღარ არსებობს.
-
-გაქვთ 15 წუთი, რომ განახოთ, როგორ მუშაობს ეს პრაქტიკაში?
-👉 <span class="calendly-link">[CALENDLY]</span>
+ტესტის შედეგები დაგეხმარებათ განსაზღვროთ, რამდენად პრიორიტეტულია თქვენთვის ამ ეტაპზე პროცესების გაციფრულება.
 
 პატივისცემით,
 გელა შონია</div>
-  <div class="notes">Named proof: მარდალეიშვილი + Geocord — verified clients, permission granted ✓. 15min CTA.</div>
+  <div class="notes">No em-dashes. Short, low-friction CTA. Health check link live ✓.</div>
+</div>
+
+<!-- EMAIL 3 -->
+<div class="email-card">
+  <div class="email-header">
+    <div class="day-badge">EMAIL 3 — Day 8–10</div>
+    <div class="email-title">Follow-up 2 — Operational Gap</div>
+  </div>
+  <div class="subject-label">Subject</div>
+  <div class="subject-val">სამედიცინო პროგრამა vs ბუღალტერია — მონაცემთა გათიშულობა</div>
+  <div class="body-label">Body <span style="color:#00A651;font-size:10px;font-weight:700;margin-left:6px">✓ EM-DASH CORRECTED</span></div>
+  <div class="email-body">{{first_name}}, გამარჯობა.
+
+კლინიკების უმეტესობაში სურათი ასეთია: სამედიცინო პროგრამა ერთ მხარეს, ბუღალტერია მეორეზე. შუაში: Excel, ადამიანური საათები.
+
+შედეგად, მენეჯმენტს უჭირს იმის დანახვა, თუ რეალურად რომელი სერვისია მომგებიანი და სად გადის „უხილავი" ხარჯები.
+
+ჩვენს პარტნიორ კლინიკებში ეს სურათი შევცვალეთ: სამედიცინო და ფინანსური მონაცემები ახლა ერთიან დაშბორდზეა. ხელით დამუშავება აღარ არის.
+
+გაქვთ 15 წუთი, რომ განახოთ, როგორ მუშაობს ეს პრაქტიკაში?
+👉 <span class="cta-link">[CALENDLY]</span>
+
+პატივისცემით,
+გელა შონია</div>
+  <div class="notes">Changes: "— ერთ მხარესაა, … — მეორე მხარეს" → "ერთ მხარეს, … მეორეზე. შუაში:". "ხელით დამუშავება — აღარ არსებობს" → "აღარ არის".</div>
 </div>
 
 <!-- EMAIL 4 -->
-<div class="email-card" style="border-color:#fde8e8">
+<div class="email-card">
   <div class="email-header">
-    <div class="day-badge" style="background:#c0392b">DAY 12–15</div>
-    <div class="email-title">სნაიპერული კითხვა — Break-up</div>
+    <div class="day-badge" style="background:#c0392b">EMAIL 4 — Day 12–15</div>
+    <div class="email-title">Follow-up 3 — The Sniper</div>
   </div>
-
-  <div class="subject-row">
-    <div class="subject-label">Subject</div>
-    <div class="subject-a"><span class="ab-label">✓</span>ფული ბანკში + სადაზღვევოების დებიტორები — ახლა ზუსტად იცით?</div>
-  </div>
-
-  <div class="body-label">Body</div>
+  <div class="subject-label">Subject</div>
+  <div class="subject-val">ფული ბანკში + სადაზღვევოების დებიტორები — ახლა ზუსტად იცით?</div>
+  <div class="body-label">Body <span style="color:#00A651;font-size:10px;font-weight:700;margin-left:6px">✓ EM-DASH CORRECTED</span></div>
   <div class="email-body">{{first_name}}, გამარჯობა.
 
 ერთი კონკრეტული კითხვა:
 
-ახლა, ამ წამს — ზუსტად იცით, რამდენი გაქვთ ბანკებში და რა მოცულობისაა სადაზღვევოების დავალიანება?
+ახლა, ამ წამს: ზუსტად იცით, რამდენი გაქვთ ბანკებში და რა მოცულობისაა სადაზღვევოების დავალიანება?
 
-თუ პასუხი არის "ხვალ გეტყვით" — მართვაში ბრმა ზონები გაქვთ.
+თუ პასუხი არის „ხვალ გეტყვით" — მართვაში ბრმა ზონები გაქვთ.
 
-ჩვენი პარტნიორი კლინიკები ამ სურათს რეალურ დროში ხედავენ — ბანკთან და HIS-თან პირდაპირი კავშირით. ამ სისტემის გამართვას ზუსტად 2 კვირა სჭირდება.
+ჩვენი პარტნიორი კლინიკები ამ სურათს რეალურ დროში ხედავენ. ბანკთან და HIS-თან პირდაპირი კავშირი. ამ სისტემის გამართვას ზუსტად 2 კვირა სჭირდება.
 
-გაქვთ 15 წუთი? დაჯავშნეთ აქ: <span class="calendly-link">[CALENDLY]</span>
+გაქვთ 15 წუთი? დაჯავშნეთ აქ: <span class="cta-link">[CALENDLY]</span>
 
 პატივისცემით,
 გელა შონია
 Bivision</div>
-  <div class="notes">Final email. Insurance debtor + cash = most specific medical pain. "2 კვირა" = deployment promise. No reply = sequence ends.</div>
+  <div class="notes">Changes: "ამ წამს —" → "ამ წამს:". "რეალურ დროში ხედავენ — ბანკთან…კავშირით." → 2 sentences, no dash. One "—" kept: "გეტყვით — მართვაში" (contrast, justified).</div>
 </div>
 
 <!-- SEND PLAN -->
 <div class="send-plan">
-  <h3>Send Plan — Mailchimp (New Campaign · IVF draft untouched)</h3>
-  <div class="send-row"><span class="send-day">May 16</span><span>Email 1 — Cold open, pain hook. All clinic contacts.</span></div>
-  <div class="send-row"><span class="send-day">May 19–21</span><span>Email 2 — BI Health Check link. Non-openers from Email 1.</span></div>
-  <div class="send-row"><span class="send-day">May 24–26</span><span>Email 3 — Named proof (მარდალეიშვილი, Geocord). Non-clickers.</span></div>
-  <div class="send-row"><span class="send-day">May 28–31</span><span>Email 4 — Sniper question, break-up. Non-responders only.</span></div>
+  <h3>Send Plan — New Mailchimp Campaign (IVF draft untouched)</h3>
+  <div class="send-row"><span class="send-day">May 16</span><span>Email 1 — cold open. All clinic contacts.</span></div>
+  <div class="send-row"><span class="send-day">May 19–21</span><span>Email 2 — Health Check. Non-openers from Email 1.</span></div>
+  <div class="send-row"><span class="send-day">May 24–26</span><span>Email 3 — operational gap + proof. Non-clickers.</span></div>
+  <div class="send-row"><span class="send-day">May 28–31</span><span>Email 4 — sniper break-up. Non-responders only.</span></div>
   <div class="send-row"><span class="send-day">Post</span><span>Clicker/reply → HubSpot deal. Opener only → tag "BiMedical warm" for LinkedIn follow.</span></div>
 </div>
 
