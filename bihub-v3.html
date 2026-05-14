@@ -203,12 +203,13 @@ nav{
 
 /* ─── STATS ROW ─── */
 .stats-row{
-  display:flex;justify-content:center;gap:36px;flex-wrap:wrap;
+  display:flex;justify-content:center;gap:clamp(8px,2.5vw,36px);flex-wrap:nowrap;
   padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
   max-width:760px;margin:0 auto;
 }
 .stat{display:flex;flex-direction:column;align-items:center;gap:2px}
 .stat-num{font-family:'JetBrains Mono',monospace;font-size:1.35rem;font-weight:700;color:#fff;letter-spacing:-0.5px}
+@media(max-width:420px){.stat-num{font-size:1rem}.stat-label{font-size:0.6rem;letter-spacing:0.3px}.stats-row{padding:10px 4px}}
 .stat-num .accent{color:var(--emerald-glow)}
 .stat-num .accent-cyan{color:var(--cyan)}
 .stat-label{font-size:0.7rem;color:var(--muted);font-weight:500;letter-spacing:0.6px;text-transform:uppercase}
