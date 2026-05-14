@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BiMedical Email Sequence v1 — Mentari</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#0f0e1f;color:#fff;padding:20px 16px;max-width:680px;margin:0 auto}
+h1{font-size:15px;color:#a09be0;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.meta{font-size:12px;color:#555;margin-bottom:28px}
+.warning{background:#2a1a0a;border:1px solid #6b3a00;border-radius:8px;padding:12px 14px;font-size:12px;color:#ffaa55;margin-bottom:24px}
+.email-card{background:#13122a;border:1px solid #2e2b55;border-radius:12px;padding:20px;margin-bottom:20px}
+.email-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #1a1929}
+.day-badge{background:#6B63B5;color:#fff;font-size:11px;font-weight:800;padding:4px 10px;border-radius:20px;white-space:nowrap}
+.email-title{font-size:14px;font-weight:700;color:#fff}
+.subject-row{margin-bottom:10px}
+.subject-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#a09be0;margin-bottom:6px}
+.subject-a, .subject-b{background:#0f0e1f;border-radius:6px;padding:10px 12px;font-size:13px;color:#ddd;margin-bottom:6px;border-left:3px solid #6B63B5}
+.subject-b{border-left-color:#00A651}
+.ab-label{font-size:10px;color:#555;margin-right:6px;font-weight:700}
+.body-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#a09be0;margin-top:14px;margin-bottom:8px}
+.email-body{background:#0a1a0f;border:1px solid #1a3a2a;border-radius:8px;padding:16px;font-size:13px;color:#ccc;line-height:1.9;white-space:pre-line}
+.calendly-link{color:#00A651;font-weight:700}
+.notes{font-size:11px;color:#555;margin-top:10px;padding-top:10px;border-top:1px solid #1a1929}
+.send-plan{background:#13122a;border:1px solid #2e2b55;border-radius:10px;padding:16px;margin-top:24px}
+.send-plan h3{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#a09be0;margin-bottom:12px}
+.send-row{display:flex;gap:12px;align-items:flex-start;padding:8px 0;border-bottom:1px solid #1a1929;font-size:13px}
+.send-row:last-child{border-bottom:none}
+.send-day{font-size:11px;color:#6B63B5;font-weight:700;min-width:60px}
+</style>
+</head>
+<body>
+
+<h1>BiMedical Email Sequence</h1>
+<p class="meta">BI_C-Suite · v1 draft · 2026-05-13 · Mentari · Target: Georgian clinics</p>
+
+<div class="warning">
+  ⚠️ სტატუსი: DRAFT — owner Gemini-challenge pending. Calendly link = [CALENDLY] placeholder. ახალი Mailchimp campaign-ში ჩაყრა = owner approval-შემდეგ.
+</div>
+
+<!-- EMAIL 1 -->
+<div class="email-card">
+  <div class="email-header">
+    <div class="day-badge">DAY 1</div>
+    <div class="email-title">Pain Hook — 2 სისტემა, 0 სურათი</div>
+  </div>
+
+  <div class="subject-row">
+    <div class="subject-label">Subject Lines (A/B test)</div>
+    <div class="subject-a"><span class="ab-label">A</span>კლინიკის ფინანსები — 2 სისტემა, 0 სურათი</div>
+    <div class="subject-b"><span class="ab-label">B</span>სამედიცინო პროგრამა ბუღალტერიას ვერ ელაპარაკება — ეს ნორმა არ არის</div>
+  </div>
+
+  <div class="body-label">Body</div>
+  <div class="email-body">გამარჯობა,
+
+კლინიკების უმეტესობაში ასე გამოიყურება:
+სამედიცინო პროგრამა — ერთ მხარეს. ბუღალტერია — მეორეს. შორის — ადამიანი, Excel და საათები.
+
+შედეგი: ვერ ხედავთ რომელი სერვისი მომგებიანია, ვინ გიდის ვალი, სად მიდის ფული.
+
+ერთ-ერთმა ქართულმა კლინიკამ ეს შეცვალა — სამედიცინო და ფინანსური მონაცემები ახლა ერთ dashboard-ზეა. ხელით დამუშავება — აღარ არის.
+
+30 წუთი გაქვთ? → <span class="calendly-link">[CALENDLY]</span>
+
+პატივისცემით,
+გელა შონია
+Bivision</div>
+  <div class="notes">Format: plain text. No image. Sender: info@bivision.ge / გელა შონია. CTA = Calendly BI Health Check.</div>
+</div>
+
+<!-- EMAIL 2 -->
+<div class="email-card">
+  <div class="email-header">
+    <div class="day-badge">DAY 3</div>
+    <div class="email-title">Cash Flow + Debtor Angle</div>
+  </div>
+
+  <div class="subject-row">
+    <div class="subject-label">Subject Lines (A/B test)</div>
+    <div class="subject-a"><span class="ab-label">A</span>ფული ბანკში — კლინიკა ვერ ხედავს real-time-ში?</div>
+    <div class="subject-b"><span class="ab-label">B</span>დებიტორები: ვინ გიდის, რამდენი, მიავიწყდათ?</div>
+  </div>
+
+  <div class="body-label">Body</div>
+  <div class="email-body">გამარჯობა,
+
+გუშინ დაგიკავშირდით — ერთი კონკრეტული კითხვა:
+
+ახლა, ამ წამს — რამდენი ფული გაქვთ ბანკებში? და ვინ გიდით ვალი?
+
+თუ პასუხი "ხვალ გეტყვი" — ჩვენ ამას ვცვლით. პირდაპირი კავშირი ბანკთან + დებიტორების სრული სურათი.
+
+BI Health Check — 30 წუთი, უფასოდ: <span class="calendly-link">[CALENDLY]</span></div>
+  <div class="notes">Shorter = intentional. One sharp question. No signature block (continuity from Email 1).</div>
+</div>
+
+<!-- EMAIL 3 -->
+<div class="email-card">
+  <div class="email-header">
+    <div class="day-badge">DAY 7</div>
+    <div class="email-title">Break-up + One Question</div>
+  </div>
+
+  <div class="subject-row">
+    <div class="subject-label">Subject Lines (A/B test)</div>
+    <div class="subject-a"><span class="ab-label">A</span>ბოლო შეტყობინება — Bivision</div>
+    <div class="subject-b"><span class="ab-label">B</span>კლინიკა + BI — ერთი კითხვა</div>
+  </div>
+
+  <div class="body-label">Body</div>
+  <div class="email-body">გამარჯობა,
+
+აღარ შეგაწუხებთ — მხოლოდ ერთი კითხვა:
+
+ფინანსური ანგარიშგება კლინიკაში — ახლა რამდენ დროს ხარჯავთ ყოველ თვე?
+
+თუ პასუხი 1 საათზე მეტია — ღირს 30 წუთი: <span class="calendly-link">[CALENDLY]</span></div>
+  <div class="notes">3 sentences max. No pitch. Single question forces reply or reveals non-fit.</div>
+</div>
+
+<!-- SEND PLAN -->
+<div class="send-plan">
+  <h3>Send Plan — Mailchimp (New Campaign)</h3>
+  <div class="send-row"><span class="send-day">May 16</span><span>Email 1 → all clinic contacts. New campaign (IVF draft = untouched).</span></div>
+  <div class="send-row"><span class="send-day">May 18</span><span>Email 2 → non-openers from May 16 batch. Subject B if A open rate &lt;20%.</span></div>
+  <div class="send-row"><span class="send-day">May 22</span><span>Email 3 → non-clickers only. Openers who clicked = move to HubSpot deal.</span></div>
+  <div class="send-row"><span class="send-day">Post</span><span>Opener → HubSpot contact update: "BiMedical sequence — opened". Clicker → deal created.</span></div>
+</div>
+
+</body>
+</html>
