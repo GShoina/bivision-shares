@@ -90,7 +90,7 @@ nav{
 .nav-logo{display:flex;align-items:center;gap:8px}
 .nav-logo svg{display:block;flex-shrink:0}
 .logo-word{color:var(--text);font-weight:800;font-size:1.18rem;letter-spacing:-0.6px;line-height:1}
-.footer-biv-brand{display:flex;align-items:center;gap:7px;white-space:nowrap;margin-top:6px}
+.footer-biv-brand{display:flex;align-items:center;justify-content:space-between;white-space:nowrap;margin-top:6px}
 .footer-biv-text{font-size:0.68rem;color:var(--muted);font-weight:500}
 .live-chip{
   display:inline-flex;align-items:center;gap:6px;
@@ -455,77 +455,6 @@ footer{
 .biv-b,.biv-vision{color:#a89ce8;font-weight:900;font-size:1rem;letter-spacing:-0.5px}
 .biv-dot{color:var(--emerald-glow);font-weight:900;font-size:0.78rem;margin:0 1px}
 .biv-brand:hover .biv-b,.biv-brand:hover .biv-vision{color:#c0b6f0}
-
-/* ─── TIMER ─── */
-#timer-badge{
-  position:fixed;bottom:24px;right:24px;z-index:200;
-  background:rgba(255,255,255,0.95);
-  backdrop-filter:blur(8px);
-  border:1px solid var(--border-strong);border-radius:100px;
-  padding:9px 16px;display:flex;align-items:center;gap:10px;
-  box-shadow:0 8px 28px rgba(0,0,0,0.5);
-  font-size:0.82rem;font-weight:600;
-  color:var(--text-dim);transition:border-color 0.3s,color 0.3s;
-}
-#timer-badge .timer-num{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--text)}
-#timer-badge.urgent{border-color:rgba(245,158,11,0.55);color:var(--amber)}
-#timer-badge.urgent .timer-num{color:var(--amber)}
-.timer-dot{width:7px;height:7px;border-radius:50%;background:var(--emerald-glow);animation:pulse-dot 1.4s infinite}
-.timer-dot.urgent{background:var(--amber)}
-
-/* ─── GATE MODAL ─── */
-#gate-overlay{
-  display:none;position:fixed;inset:0;z-index:500;
-  background:rgba(26,26,46,0.7);backdrop-filter:blur(8px);
-  align-items:center;justify-content:center;padding:20px;
-}
-#gate-overlay.show{display:flex}
-.gate-card{
-  position:relative;
-  background:linear-gradient(180deg,var(--surface-2) 0%,var(--bg-2) 100%);
-  border:1px solid var(--border-strong);
-  border-radius:18px;padding:40px 36px;max-width:430px;width:100%;
-  text-align:center;
-  box-shadow:0 24px 60px rgba(107,99,181,0.18),0 0 0 1px rgba(107,99,181,0.12);
-  animation:gate-in 0.32s cubic-bezier(0.34,1.56,0.64,1);
-}
-.gate-card::before{
-  content:"";position:absolute;inset:0;border-radius:18px;padding:1px;
-  background:linear-gradient(180deg,rgba(107,99,181,0.25),transparent 60%);
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
-}
-@keyframes gate-in{from{opacity:0;transform:scale(0.92) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.gate-icon{
-  width:56px;height:56px;border-radius:50%;
-  background:rgba(107,99,181,0.08);border:1px solid rgba(107,99,181,0.25);
-  display:flex;align-items:center;justify-content:center;
-  margin:0 auto 18px;font-size:1.5rem;
-}
-.gate-title{font-size:1.2rem;font-weight:700;color:white;margin-bottom:8px}
-.gate-sub{font-size:0.85rem;color:var(--text-dim);margin-bottom:24px;line-height:1.55}
-.gate-form{display:flex;flex-direction:column;gap:10px}
-.gate-input{
-  padding:12px 16px;background:var(--surface);
-  border:1px solid var(--border-strong);border-radius:10px;
-  color:var(--text);font-family:inherit;font-size:0.88rem;
-  outline:none;transition:border 0.18s,box-shadow 0.18s;
-}
-.gate-input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(107,99,181,0.12)}
-.gate-input::placeholder{color:var(--muted)}
-.gate-submit{
-  padding:12px;background:linear-gradient(180deg,var(--cyan) 0%,var(--cyan-dim) 100%);
-  border:none;border-radius:10px;color:#02161b;
-  font-family:inherit;font-size:0.9rem;font-weight:700;
-  cursor:pointer;transition:transform 0.15s,box-shadow 0.15s;
-}
-.gate-submit:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(107,99,181,0.25)}
-.gate-link{display:block;margin-top:14px;font-size:0.78rem;color:var(--muted);text-decoration:none}
-.gate-link:hover{color:var(--cyan)}
-.gate-perks{display:flex;justify-content:center;gap:14px;margin-top:20px;padding-top:18px;border-top:1px solid var(--border);flex-wrap:wrap}
-.gate-perk{font-size:0.7rem;color:var(--text-dim);display:inline-flex;align-items:center;gap:4px}
-.gate-perk .ok{color:var(--emerald-glow);font-weight:700}
 
 /* ─── TICKER ─── */
 .ticker-wrap{
@@ -1258,7 +1187,7 @@ footer{
 <div class="footer-wrap">
   <footer>
     <div>
-      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap">
         <div class="nav-logo" style="justify-content:flex-start">
           <svg width="28" height="24" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect x="0"    y="4"  width="9" height="20" rx="4.5" fill="#00A651"/>
@@ -1270,7 +1199,7 @@ footer{
         <div class="footer-tagline" style="margin-top:0">საქართველოს საჯარო მონაცემების ჰაბი</div>
       </div>
       <div class="footer-biv-brand">
-        <img src="https://bivision.ge/wp-content/uploads/2025/10/Logo-1.svg" alt="Bivision" style="height:13px;display:block">
+        <img src="https://bivision.ge/wp-content/uploads/2025/10/Logo-1.svg" alt="Bivision" style="height:18px;display:block">
         <span class="footer-biv-text">BI & მონაცემების ანალიტიკა</span>
       </div>
     </div>
@@ -1288,39 +1217,10 @@ footer{
   </footer>
 </div>
 
-<!-- ─── TIMER ─── -->
-<div id="timer-badge" role="status" aria-live="polite">
-  <span class="timer-dot"></span>
-  <span>უფასო წვდომა: <span class="timer-num mono" id="timer-num">5:00</span></span>
-</div>
-
-<!-- ─── GATE ─── -->
-<div id="gate-overlay" role="dialog" aria-modal="true" aria-labelledby="gate-title">
-  <div class="gate-card">
-    <div class="gate-icon">🔓</div>
-    <div class="gate-title" id="gate-title">შედი ანგარიშზე</div>
-    <div class="gate-sub">800+ BI რეპორტი გელოდება.<br>ანგარიში არ გაქვს? <a href="https://bihub.ge/wp-login.php?action=register" style="color:var(--cyan);text-decoration:none">დარეგისტრირდი</a></div>
-    <form class="gate-form" action="https://bihub.ge/login" method="get" onsubmit="if (!window.__cfRLUnblockHandlers) return false; return true" data-cf-modified-48c9c1a2f592a0ada1074a48-="">
-      <input class="gate-input" type="email" name="email" placeholder="ელ-ფოსტა" required>
-      <input class="gate-input" type="password" name="password" placeholder="პაროლი" required>
-      <button class="gate-submit" type="submit">შესვლა →</button>
-    </form>
-    <a href="https://bihub.ge/wp-login.php?action=lostpassword" class="gate-link">პაროლი დამავიწყდა?</a>
-    <div class="gate-perks">
-      <span class="gate-perk"><span class="ok">✓</span> უფასო</span>
-      <span class="gate-perk"><span class="ok">✓</span> ბარათი არ სჭირდება</span>
-      <span class="gate-perk"><span class="ok">✓</span> ყველა რეპორტი</span>
-    </div>
-  </div>
-</div>
-
 <script type="48c9c1a2f592a0ada1074a48-text/javascript">
 (function(){
   const $  = (s,c)=> (c||document).querySelector(s);
   const $$ = (s,c)=> Array.from((c||document).querySelectorAll(s));
-
-  const params = new URLSearchParams(location.search);
-  const previewMode = params.get('preview') === '1';
 
   /* ── Card flip ── */
   $$('.card-flip').forEach(card=>{
@@ -1384,8 +1284,6 @@ footer{
     }
     if (e.key === 'Escape'){
       $$('.card-flip.flipped').forEach(c=>c.classList.remove('flipped'));
-      const o = $('#gate-overlay');
-      if (o.classList.contains('show') && previewMode) o.classList.remove('show');
     }
   });
 
@@ -1413,29 +1311,6 @@ footer{
   },{threshold:0.4});
   $$('[data-count]').forEach(el=>io.observe(el));
 
-  /* ── Timer + gate ── */
-  const timerEl = $('#timer-num');
-  const badge = $('#timer-badge');
-  const dot   = badge.querySelector('.timer-dot');
-  const overlay = $('#gate-overlay');
-  let secs = 5*60;
-
-  function fmt(s){ const m=Math.floor(s/60), r=s%60; return m+':'+String(r).padStart(2,'0'); }
-  function tick(){
-    if (secs<=0){
-      if (!previewMode) overlay.classList.add('show');
-      return;
-    }
-    timerEl.textContent = fmt(secs);
-    if (secs<=60){ badge.classList.add('urgent'); dot.classList.add('urgent'); }
-    secs--;
-    setTimeout(tick, 1000);
-  }
-  if (previewMode){
-    badge.style.display = 'none';
-  } else {
-    tick();
-  }
 })();
 </script>
 <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="48c9c1a2f592a0ada1074a48-|49" defer></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"16acd89a725b458a8cd5cc7ffefb9ecc","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
