@@ -85,10 +85,13 @@ nav{
   padding:0 24px;height:60px;
   display:flex;align-items:center;justify-content:space-between;
 }
-.nav-brand{display:flex;align-items:center;gap:12px}
-.nav-logo{display:flex;align-items:flex-end;gap:8px}
-.nav-logo svg{display:block;flex-shrink:0;margin-bottom:2px}
-.logo-word{color:var(--text);font-weight:800;font-size:1.18rem;letter-spacing:-0.6px;line-height:1;padding-bottom:2px}
+.nav-brand{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.nav-brand-top{display:flex;align-items:center;gap:12px}
+.nav-logo{display:flex;align-items:center;gap:8px}
+.nav-logo svg{display:block;flex-shrink:0}
+.logo-word{color:var(--text);font-weight:800;font-size:1.18rem;letter-spacing:-0.6px;line-height:1}
+.nav-sub-brand{display:flex;align-items:center;gap:7px;white-space:nowrap;padding-left:2px}
+.nav-sub-text{font-size:0.68rem;color:var(--muted);font-weight:500}
 .live-chip{
   display:inline-flex;align-items:center;gap:6px;
   padding:3px 10px 3px 8px;border-radius:100px;
@@ -119,6 +122,8 @@ nav{
   nav{padding:0 14px}
   .live-chip{display:none}
   .btn{padding:6px 11px;font-size:0.74rem}
+  .hero h1{font-size:1rem;white-space:nowrap}
+  .footer-tagline{white-space:nowrap;font-size:0.68rem}
 }
 
 /* ─── HERO ─── */
@@ -568,15 +573,21 @@ footer{
 <!-- ─── NAV ─── -->
 <nav>
   <div class="nav-brand">
-    <a href="#" class="nav-logo" aria-label="bihub home">
-      <svg width="32" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect x="0"    y="4"  width="9" height="20" rx="4.5" fill="#10b981"/>
-        <rect x="11.5" y="0"  width="9" height="28" rx="4.5" fill="#10b981"/>
-        <rect x="23"   y="6"  width="9" height="16" rx="4.5" fill="#10b981"/>
-      </svg>
-      <span class="logo-word">bihub</span>
-    </a>
-    <span class="live-chip"><span class="live-dot"></span>LIVE DATA</span>
+    <div class="nav-brand-top">
+      <a href="#" class="nav-logo" aria-label="bihub home">
+        <svg width="32" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="0"    y="4"  width="9" height="20" rx="4.5" fill="#00A651"/>
+          <rect x="11.5" y="0"  width="9" height="28" rx="4.5" fill="#00A651"/>
+          <rect x="23"   y="6"  width="9" height="16" rx="4.5" fill="#00A651"/>
+        </svg>
+        <span class="logo-word">bihub</span>
+      </a>
+      <span class="live-chip"><span class="live-dot"></span>LIVE DATA</span>
+    </div>
+    <div class="nav-sub-brand">
+      <img src="https://bivision.ge/wp-content/uploads/2025/10/Logo-1.svg" alt="Bivision" style="height:13px;display:block;opacity:0.8">
+      <span class="nav-sub-text">BI & მონაცემების ანალიტიკა</span>
+    </div>
   </div>
   <div class="nav-actions">
     <a href="https://bihub.ge/wp-login.php" class="btn btn-ghost">შესვლა</a>
@@ -1260,7 +1271,7 @@ footer{
         </svg>
         <span class="logo-word">bihub</span>
       </div>
-      <div class="footer-tagline">საქართველოს BI მონაცემთა ჰაბი</div>
+      <div class="footer-tagline">საქართველოს საჯარო მონაცემების ჰაბი</div>
     </div>
     <nav class="footer-nav" aria-label="footer">
       <a href="https://bihub.ge/cards/">რეპორტები</a>
