@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly CEO Brief — 2026-05-15 | GelLa</title>
+<style>
+  :root {
+    --purple: #6B63B5;
+    --green: #00A651;
+    --red: #E53E3E;
+    --orange: #DD6B20;
+    --gray: #718096;
+    --light: #F7F8FA;
+    --border: #E2E8F0;
+    --dark: #1A202C;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F0F2F5; color: var(--dark); font-size: 14px; line-height: 1.6; }
+  .header { background: var(--purple); color: white; padding: 20px 32px; display: flex; justify-content: space-between; align-items: center; }
+  .header h1 { font-size: 18px; font-weight: 700; }
+  .header .meta { font-size: 12px; opacity: 0.8; text-align: right; }
+  .ep0 { background: #2D3748; color: #68D391; font-family: monospace; font-size: 12px; padding: 8px 32px; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .full-width { grid-column: 1 / -1; }
+  .card { background: white; border-radius: 8px; border: 1px solid var(--border); overflow: hidden; }
+  .card-header { padding: 12px 16px; font-weight: 700; font-size: 13px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; }
+  .card-header:hover { background: var(--light); }
+  .card-body { padding: 16px; border-top: 1px solid var(--border); }
+  .section-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray); margin-bottom: 8px; }
+  .kpi-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+  .kpi { background: var(--light); border-radius: 6px; padding: 8px 12px; flex: 1; min-width: 80px; text-align: center; }
+  .kpi .val { font-size: 18px; font-weight: 700; color: var(--dark); }
+  .kpi .lbl { font-size: 10px; color: var(--gray); margin-top: 2px; }
+  .tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; }
+  .tag-green { background: #C6F6D5; color: #276749; }
+  .tag-red { background: #FED7D7; color: #9B2C2C; }
+  .tag-orange { background: #FEEBC8; color: #7B341E; }
+  .tag-gray { background: #E2E8F0; color: #4A5568; }
+  .tag-blue { background: #BEE3F8; color: #2C5282; }
+  .alert { padding: 10px 12px; border-radius: 6px; font-size: 12px; margin-bottom: 10px; }
+  .alert-red { background: #FFF5F5; border-left: 3px solid var(--red); }
+  .alert-orange { background: #FFFAF0; border-left: 3px solid var(--orange); }
+  .alert-green { background: #F0FFF4; border-left: 3px solid var(--green); }
+  .alert-blue { background: #EBF8FF; border-left: 3px solid #3182CE; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { background: var(--light); font-weight: 600; padding: 6px 8px; text-align: left; color: var(--gray); font-size: 11px; text-transform: uppercase; }
+  td { padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  tr:last-child td { border-bottom: none; }
+  .ch-sol { font-size: 12px; }
+  .ch-sol .challenge { color: var(--red); font-weight: 600; }
+  .ch-sol .arrow { color: var(--gray); margin: 0 4px; }
+  .ch-sol .solution { color: var(--green); font-weight: 600; }
+  .bar { height: 6px; background: #E2E8F0; border-radius: 3px; overflow: hidden; margin-top: 4px; }
+  .bar-fill { height: 100%; border-radius: 3px; background: var(--purple); }
+  .bar-fill.green { background: var(--green); }
+  .bar-fill.red { background: var(--red); }
+  ul.bullets { padding-left: 16px; }
+  ul.bullets li { margin-bottom: 4px; font-size: 13px; }
+  .mariam-section { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .mariam-col { }
+  .mariam-col h4 { font-size: 12px; font-weight: 700; margin-bottom: 8px; padding-bottom: 4px; border-bottom: 2px solid; }
+  .mariam-col.good h4 { border-color: var(--green); color: var(--green); }
+  .mariam-col.think h4 { border-color: var(--orange); color: var(--orange); }
+  .mariam-col.need h4 { border-color: var(--purple); color: var(--purple); }
+  .flag { font-size: 10px; color: var(--gray); font-style: italic; }
+  .divider { height: 1px; background: var(--border); margin: 12px 0; }
+  details summary { cursor: pointer; }
+  details[open] summary::after { content: " ▲"; }
+  details summary::after { content: " ▼"; color: var(--gray); font-size: 10px; }
+  .next-week { background: var(--light); border-radius: 6px; padding: 12px; }
+  .next-week h4 { font-size: 12px; font-weight: 700; color: var(--purple); margin-bottom: 8px; }
+  .next-week li { font-size: 12px; margin-bottom: 4px; }
+  @media (max-width: 700px) { .container { grid-template-columns: 1fr; } .mariam-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>Weekly CEO Brief — Bivision</h1>
+    <div style="font-size:12px;opacity:0.8;margin-top:2px;">FB · LinkedIn · Mailchimp · GA4 · Clarity · bivision.ge · Mariam review</div>
+  </div>
+  <div class="meta">
+    2026-05-15, კვირა<br>
+    by GelLa (BI_DonotUseMe)<br>
+    <span style="color:#68D391;">Meta: LIVE API ✓ · bivision.ge: LIVE ✓</span>
+  </div>
+</div>
+
+<div class="ep0">EP0: 7/10 (S) — real Meta data; Mailchimp/GA4/Clarity disk-only [EP1:UNVERIFIED live]; site hardening ✅ by Geo გუშინ; 0 leads კვირაში</div>
+
+<div class="container">
+
+  <!-- ═══ META / FACEBOOK ═══ -->
+  <div class="card full-width">
+    <div class="card-header" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
+      📘 Meta / Facebook Ads — კვირის შედეგი
+      <div>
+        <span class="tag tag-orange">0 ლიდი</span>
+        <span class="tag tag-gray">$17.95 დახარჯული</span>
+        <span class="tag tag-red">Calendlyy PAUSED • დღეს ამოიწურა</span>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <div class="alert alert-red">
+        <strong>⚠️ Calendlyy კამპანია:</strong> stop_time = 2026-05-15 17:48 (დღეს). $10.09 ხარჯი, 0 ლიდი, PAUSED. გადაწყვეტილება: გავაგრძელო ახალი Lead Gen-ით, თუ დავხურო?
+      </div>
+      <div class="alert alert-orange">
+        <strong>B*Product_Traffic:</strong> stop_time = 2026-05-16. ACTIVE. CTR კარგია (1.45%) — მაგრამ TRAFFIC objective → ლიდი შეუძლებელია. მარიამი ცვლიდა 13 მაისს (სახელი ადასტურებს).
+      </div>
+
+      <div class="kpi-row" style="margin-top:16px;">
+        <div class="kpi"><div class="val">11,817</div><div class="lbl">შთაბ. (7d)</div></div>
+        <div class="kpi"><div class="val">197</div><div class="lbl">კლიკი</div></div>
+        <div class="kpi"><div class="val">$17.95</div><div class="lbl">ხარჯი</div></div>
+        <div class="kpi"><div class="val">94</div><div class="lbl">LPV</div></div>
+        <div class="kpi"><div class="val" style="color:var(--red);">0</div><div class="lbl">ლიდი</div></div>
+        <div class="kpi"><div class="val">$0.09</div><div class="lbl">CPC (avg)</div></div>
+      </div>
+
+      <table>
+        <tr><th>კამპანია</th><th>სტატუსი</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>Spend</th><th>LPV</th><th>ლიდი</th><th>end</th></tr>
+        <tr>
+          <td>M_ Calendlyy (LAL 90d)</td>
+          <td><span class="tag tag-gray">PAUSED</span></td>
+          <td>6,019</td><td>113</td>
+          <td><span style="color:var(--green);font-weight:700;">1.88%</span></td>
+          <td>$10.09</td><td>67</td>
+          <td><span style="color:var(--red);font-weight:700;">0</span></td>
+          <td style="color:var(--red);font-weight:700;">დღეს</td>
+        </tr>
+        <tr>
+          <td>B*Product_Traffic [Mariam]</td>
+          <td><span class="tag tag-green">ACTIVE</span></td>
+          <td>5,798</td><td>84</td>
+          <td><span style="color:var(--green);font-weight:700;">1.45%</span></td>
+          <td>$7.86</td><td>27</td>
+          <td><span style="color:var(--red);font-weight:700;">0</span></td>
+          <td style="color:var(--orange);font-weight:700;">ხვალ</td>
+        </tr>
+      </table>
+
+      <div class="divider"></div>
+      <div class="ch-sol">
+        <span class="challenge">გამოწვევა: 0 ლიდი კვირაში, ორივე კამპანია Traffic objective</span>
+        <span class="arrow">→</span>
+        <span class="solution">გადასვლა Lead Gen objective-ზე. May 19 Meta rebuild. Calendlyy-ი — ახალი კამპანიით გაგრძელება LEADS obj-ით.</span>
+      </div>
+      <div class="divider"></div>
+      <div class="flag">[EP1:FACT — Meta Graph API v21.0, date_preset=last_7d, 2026-05-08→2026-05-14]</div>
+    </div>
+  </div>
+
+  <!-- ═══ LINKEDIN ═══ -->
+  <div class="card">
+    <div class="card-header" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
+      💼 LinkedIn
+      <span class="tag tag-gray">842 followers</span>
+    </div>
+    <div class="card-body">
+      <div class="alert alert-blue">
+        <strong>Live data unavailable</strong> — Playwright locked, LinkedIn auth blocked. ქვემოთ disk + memory baseline.
+      </div>
+      <table>
+        <tr><th>მეტრიკა</th><th>სტატუსი</th></tr>
+        <tr><td>Company page followers</td><td><strong>842</strong> [EP1:FACT — memory, last verified]</td></tr>
+        <tr><td>კვირის პოსტები</td><td>[EP1:UNVERIFIED — Playwright needed]</td></tr>
+        <tr><td>Impressions / Reach</td><td>[EP1:UNVERIFIED]</td></tr>
+        <tr><td>Engagement rate</td><td>[EP1:UNVERIFIED]</td></tr>
+        <tr><td>გამავალი ლიდი</td><td>Lead Gen Form — NOT YET created (open item)</td></tr>
+      </table>
+      <div class="divider"></div>
+      <div class="ch-sol">
+        <span class="challenge">LinkedIn Lead Gen Form არ არის</span>
+        <span class="arrow">→</span>
+        <span class="solution">May 15+ P1 item. Mariam = posting; Form = missing piece.</span>
+      </div>
+      <div class="flag" style="margin-top:8px;">[EP1:UNVERIFIED — live data; confirm next session via Playwright]</div>
+    </div>
+  </div>
+
+  <!-- ═══ MAILCHIMP ═══ -->
+  <div class="card">
+    <div class="card-header" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
+      📧 Mailchimp — BiMedical კამპანია
+      <span class="tag tag-blue">May 19 სენდი</span>
+    </div>
+    <div class="card-body">
+      <div class="alert alert-orange">
+        <strong>⚠️ Send time = 7:30 PM AZT</strong> — owner-ი ცვლის 10:00 AM-ზე Mailchimp UI-ში (Campaign 17993958 → Edit → Schedule).
+      </div>
+
+      <table>
+        <tr><th>პარამეტრი</th><th>სტატუსი</th></tr>
+        <tr><td>კამპანია ID</td><td>17993958</td></tr>
+        <tr><td>Subject</td><td>კლინიკის ფინანსური სურათი 1 დაშბორდზე / BiMedical</td></tr>
+        <tr><td>სტატუსი</td><td><span class="tag tag-blue">Scheduled → May 19</span></td></tr>
+        <tr><td>Recipients</td><td><strong>145</strong> (IVF-Medical tag)</td></tr>
+        <tr><td>Send time</td><td><span style="color:var(--red);">7:30 PM AZT</span> → owner ცვლის 10:00 AM-ზე</td></tr>
+        <tr><td>Email 1 open/click</td><td>[EP1:UNVERIFIED — not sent yet, May 19]</td></tr>
+        <tr><td>Email 2–4 follow-up</td><td>კონფიგურაცია pending (after May 19)</td></tr>
+      </table>
+
+      <div class="divider"></div>
+      <div class="section-title">შემდეგი ვერტიკალები</div>
+      <ul class="bullets">
+        <li>BiAudit — after BiMedical launch</li>
+        <li>BiFinance — after BiAudit</li>
+        <li>Contact enrichment: company name + tax ID → Mailchimp (not built)</li>
+      </ul>
+      <div class="flag" style="margin-top:8px;">[EP1:FACT — session plan May 14-15 disk]</div>
+    </div>
+  </div>
+
+  <!-- ═══ GA4 ═══ -->
+  <div class="card">
+    <div class="card-header" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
+      📊 GA4
+      <span class="tag tag-gray">Live data unavailable</span>
+    </div>
+    <div class="card-body">
+      <div class="alert alert-blue">
+        GA4 bivision.ge-სთვის Service Account არ არის კონფიგურირებული (creds-ში SA = bihub.ge only). Playwright locked. ქვემოთ — ბოლო ცნობილი baseline.
+      </div>
+      <table>
+        <tr><th>მეტრიკა</th><th>Baseline (ბოლო ცნობილი)</th></tr>
+        <tr><td>google/organic avg session</td><td>51s [FACT — May 7 scout]</td></tr>
+        <tr><td>TTFB (ამ სესიის live check)</td><td><span style="color:var(--red);font-weight:700;">1,737ms</span> — P1 გაუსწორებელი [EP1:FACT]</td></tr>
+        <tr><td>Key Events setup</td><td>whatsapp_click / phone_call / contact_form — owner-pending (Admin → Events)</td></tr>
+        <tr><td>demo_click event</td><td>hero Calendly button-ზე — ✅ დამატებული May 3</td></tr>
+        <tr><td>კვირის conversions</td><td>[EP1:UNVERIFIED]</td></tr>
+      </table>
+      <div class="divider"></div>
+      <div class="ch-sol">
+        <span class="challenge">TTFB 1,737ms — არ გაუმჯობესებულა</span>
+        <span class="arrow">→</span>
+        <span class="solution">Geo: LiteSpeed cache tune P1 (pending). WP caching plugin config review.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CLARITY ═══ -->
+  <div class="card">
+    <div class="card-header" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
+      🔍 Microsoft Clarity
+      <span class="tag tag-gray">Live data unavailable</span>
+    </div>
+    <div class="card-body">
+      <div class="alert alert-blue">
+        Playwright locked — live login შეუძლებელია ამ session-ში. Clarity-ს dashboard = owner გახსნის clarity.microsoft.com.
+      </div>
+      <div class="section-title">ყურადღების ზონები (საყურებელი next session)</div>
+      <ul class="bullets">
+        <li>Hero section scroll depth — ახალი GIF→video ეფექტი</li>
+        <li>Products page rage clicks — testimonials section (v3 fix შემდეგ)</li>
+        <li>Mobile bounce rate — mobile overflow fix შემდეგ (May 14)</li>
+        <li>Dead clicks on header — 0 active Calendly CTA?</li>
+      </ul>
+      <div class="flag">[EP1:UNVERIFIED — Playwright blocked this session]</div>
+    </div>
+  </div>
+
+  <!-- ═══ BIVISION.GE SITE ═══ -->
+  <div class="card full-width">
+    <div class="card-header" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
+      🌐 bivision.ge — გუშინდელი ცვლილებები + ამჟამინდელი მდგომარეობა
+      <div>
+        <span class="tag tag-green">HSTS ✅</span>
+        <span class="tag tag-green">CSP ✅</span>
+        <span class="tag tag-green">21 GIF→Video ✅</span>
+        <span class="tag tag-red">TTFB 1.7s ⚠️</span>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <div class="alert alert-green">
+        <strong>✅ Geo-მ გუშინ:</strong> 21 GIF→WebM/MP4 (ffmpeg VP9+H.264) · mobile overflow fix · smart video preload JS · hero border-radius · cache purge. HSTS 86400→31536000 · CSP implemented · www redirect + PHP BOM (bivision.ge SEO P1s).
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+        <div>
+          <div class="section-title">Security headers (live check)</div>
+          <table>
+            <tr><td>HSTS max-age</td><td><span class="tag tag-green">31,536,000 ✅</span></td></tr>
+            <tr><td>includeSubDomains</td><td><span class="tag tag-green">✅</span></td></tr>
+            <tr><td>CSP</td><td><span class="tag tag-green">Present ✅</span></td></tr>
+            <tr><td>Server</td><td>Apache</td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="section-title">Performance</div>
+          <table>
+            <tr><td>TTFB (live)</td><td><span class="tag tag-red">1,737ms ⚠️</span></td></tr>
+            <tr><td>HTTP status</td><td><span class="tag tag-green">200 ✅</span></td></tr>
+            <tr><td>www redirect</td><td><span class="tag tag-green">301 ✅</span></td></tr>
+            <tr><td>PHP BOM</td><td><span class="tag tag-green">Removed ✅</span></td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="section-title">Pending (Geo next session)</div>
+          <table>
+            <tr><td>TTFB optimization</td><td><span class="tag tag-orange">P1 open</span></td></tr>
+            <tr><td>BiMedical GIF verify</td><td><span class="tag tag-orange">P0 recheck</span></td></tr>
+            <tr><td>Site-wide GIF audit</td><td><span class="tag tag-orange">P0 fresh scan</span></td></tr>
+            <tr><td>bihub.ge GIF filter</td><td><span class="tag tag-orange">separate WP</span></td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-title">გუშინ deployed — დეტალი</div>
+      <details>
+        <summary style="font-size:12px;color:var(--purple);font-weight:600;">21 GIF→Video pipeline + სხვა ცვლილებები (დეტალი)</summary>
+        <div style="margin-top:8px;">
+          <ul class="bullets" style="font-size:12px;">
+            <li>ffmpeg VP9 (WebM) + H.264 (MP4) — cross-browser coverage</li>
+            <li>render_block filter priority 5: Optimole CDN URL + Georgian filename handled</li>
+            <li>products-mobile-image overflow fix</li>
+            <li>Smart video preload: active tab=auto, hidden=none</li>
+            <li>Hero video border-radius: 16px (matched img)</li>
+            <li>HSTS: 86400 → 31,536,000 + includeSubDomains (.htaccess)</li>
+            <li>CSP: default-src 'self' https; script-src unsafe-inline/eval; object-src none</li>
+            <li>www → non-www 301 redirect confirmed via curl</li>
+            <li>PHP BOM removed from functions.php → robots.txt/sitemap clean</li>
+          </ul>
+        </div>
+      </details>
+
+      <div class="divider"></div>
+      <div class="ch-sol">
+        <span class="challenge">TTFB 1,737ms — LiteSpeed cache არ მუშაობს სრულად</span>
+        <span class="arrow">→</span>
+        <span class="solution">Geo: caching plugin tune (WP Rocket / LiteSpeed settings) — P1 next session</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ COMPETITOR SNAPSHOT ═══ -->
+  <div class="card full-width">
+    <div class="card-header" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
+      🔭 Competitor Pulse (Gurafa scan May 13)
+      <span class="tag tag-red">FMG SOFT Threat Upgraded</span>
+    </div>
+    <div class="card-body">
+      <table>
+        <tr><th>კონკურენტი</th><th>სტატუსი</th><th>ცვლილება</th><th>რისკი</th></tr>
+        <tr><td>Amadeo</td><td>Stable</td><td>No new product/hiring</td><td><span class="tag tag-red">HIGH (unchanged)</span></td></tr>
+        <tr><td><strong>FMG SOFT</strong></td><td><strong>⬆️ Upgraded</strong></td><td>Odoo Gold Partner + construction/RE push — "leader in digitalization of dev companies GE"</td><td><span class="tag tag-red">MEDIUM-HIGH ⬆️</span></td></tr>
+        <tr><td>BDO Digital GE</td><td>🆕 New entrant</td><td>BI/analytics brand confirmed, CFO buyer overlap</td><td><span class="tag tag-orange">MEDIUM</span></td></tr>
+        <tr><td>SMART Business GE</td><td>🆕 New entrant</td><td>MS Dynamics 365 BC + Power BI = native stack</td><td><span class="tag tag-orange">LOW-MEDIUM</span></td></tr>
+        <tr><td>Apricot.ge</td><td>Stable</td><td>No delta</td><td><span class="tag tag-gray">LOW-MEDIUM</span></td></tr>
+        <tr><td>Gegidze</td><td>Stable</td><td>No new activity</td><td><span class="tag tag-orange">MEDIUM</span></td></tr>
+      </table>
+      <div class="divider"></div>
+      <div class="alert alert-orange">
+        <strong>Construction outreach framing must shift:</strong> FMG SOFT-ი პირდაპირ 465 prospect-ს ეკიდება "digitalization of development companies." Bivision pitch = <em>"BI ON TOP of your ERP (Oris/Fina/1C/Odoo) — cross-system, CFO-grade, 2-3 wk"</em> — FMG-ს ინსტალაცია = Bivision-ის ლიდი, არა ბარიერი.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ MARIAM REVIEW ═══ -->
+  <div class="card full-width">
+    <div class="card-header" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'noon'">
+      👩 მარიამის კვირის შეფასება — შეხვედრისთვის (2026-05-15)
+      <span class="tag tag-blue">Mariam Bandzeladze · Marketing</span>
+    </div>
+    <div class="card-body">
+
+      <div class="mariam-section">
+
+        <div class="mariam-col good">
+          <h4>✅ კარგად გააკეთა</h4>
+          <ul class="bullets" style="font-size:12px;">
+            <li><strong>B*Product_Traffic კამპანია</strong> — May 13 ედიტი: CTR 1.45%, CPC $0.09. ტექნიკური execution სწორი.</li>
+            <li><strong>CTR ორივე კამპანიაზე > 1.4%</strong> — audience selection/creative მუშაობს. ეს დამოუკიდებელი შედეგია.</li>
+            <li><strong>LinkedIn posting cadence</strong> — კომპანიის გვერდი active (842 followers — სტაბილური growth-ის signal).</li>
+            <li><strong>Responsiveness</strong> — CMs-ში ედიტები სწრაფად.</li>
+          </ul>
+        </div>
+
+        <div class="mariam-col think">
+          <h4>💭 გასაანალიზებელი</h4>
+          <ul class="bullets" style="font-size:12px;">
+            <li><strong>0 ლიდი კვირაში</strong> — ორივე კამპანია TRAFFIC objective. ლიდები ვერ გამოჩნდება. კამპანიის objective = მარიამის ხელში? გასარკვევი ownership.</li>
+            <li><strong>Landing page conversion rate</strong> — 197 clicks → 94 LPV → 0 leads. LPV-to-lead = 0%. Calendly form-ი მუშაობს? მიწვდება ვიზიტორს?</li>
+            <li><strong>Carousel post</strong> — დამტკიცება pending. კვირები გადის. რა სჭირდება launch-ისთვის?</li>
+            <li><strong>Gegidze counter-creative</strong> — construction-specific — still open. კონკურენტი ფართოვდება.</li>
+          </ul>
+        </div>
+
+        <div class="mariam-col need">
+          <h4>📋 რა მჭირდება მისგან</h4>
+          <ul class="bullets" style="font-size:12px;">
+            <li><strong>Carousel post</strong> — owner confirmation შემდეგ — launch immediately.</li>
+            <li><strong>LinkedIn Lead Gen Form</strong> — create this week (P1 open item).</li>
+            <li><strong>Gegidze counter-creative</strong> — construction-specific copy — 1 ad variant.</li>
+            <li><strong>May 19 BiMedical</strong> — Email 1 sends → Mariam-ი monitors opens/clicks, reports back May 21.</li>
+            <li><strong>Meta Lead Gen rebuild</strong> (May 19+) — coordinate objective switch: TRAFFIC → LEADS.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="next-week">
+        <h4>📅 შემდეგი კვირის გეგმა — მარიამი (May 19–23)</h4>
+        <ul class="bullets">
+          <li><strong>May 19:</strong> Email 1 sends → monitor dashboard. Click/open report back.</li>
+          <li><strong>May 19:</strong> Meta Lead Gen rebuild (LEADS objective, Calendly-direct, $10/day test). GelLa configures, Mariam approves creative.</li>
+          <li><strong>May 20–21:</strong> LinkedIn Lead Gen Form — create + test flow.</li>
+          <li><strong>კვირა:</strong> Carousel launch (if owner-approved). Gegidze counter ad — 1 variant.</li>
+          <li><strong>May 22:</strong> Construction email follow-up check — HubSpot campaign 17751009 recipient count confirm.</li>
+        </ul>
+      </div>
+
+      <div class="divider"></div>
+      <div class="flag">
+        ⚠️ Note: LinkedIn/Facebook post-level data (likes, reach, saves) = [EP1:UNVERIFIED] — Playwright blocked this session. Mariam შეხვედრაზე live data მოიტანს / owner shares.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ ACTION ITEMS ═══ -->
+  <div class="card full-width">
+    <div class="card-header" style="background:var(--light);">
+      ⚡ Owner Action Items — P0 (დღეს)
+    </div>
+    <div class="card-body">
+      <table>
+        <tr><th>#</th><th>Action</th><th>სად</th><th>დრო</th></tr>
+        <tr>
+          <td>1</td>
+          <td>Campaign 17993958 send time 7:30 PM → <strong>10:00 AM AZT</strong></td>
+          <td>Mailchimp → Campaigns → Edit → Schedule</td>
+          <td>2 წუთი</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>Calendlyy კამპანია:</strong> გავაგრძელო ახალ Lead Gen-ად May 19-ზე? (ერთი სიტყვა)</td>
+          <td>გელა-ს გადაწყვეტილება</td>
+          <td>30 წამი</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>GA4 Key Events: mark whatsapp_click / phone_call / contact_form_submit</td>
+          <td>analytics.google.com → Admin → Events</td>
+          <td>5 წუთი</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Meta App Live mode (pixel events-ისთვის)</td>
+          <td>developers.facebook.com → App Settings → Live</td>
+          <td>2 წუთი</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<div style="text-align:center;padding:16px;color:var(--gray);font-size:11px;">
+  GelLa · BI_DonotUseMe · 2026-05-15 · Meta data: Graph API v21.0 LIVE · bivision.ge: LIVE · Mailchimp/GA4/Clarity: disk-only [EP1 tagged]
+</div>
+
+<script>
+  // init all cards open
+  document.querySelectorAll('.card-body').forEach(b => b.style.display = 'block');
+</script>
+
+</body>
+</html>
