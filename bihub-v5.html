@@ -128,7 +128,7 @@ nav{
 
 /* ─── HERO ─── */
 .hero{
-  padding:36px 24px 80px;
+  padding:36px 24px 120px;
   text-align:center;
   max-width:1100px;margin:0 auto;
   position:relative;
@@ -161,7 +161,7 @@ nav{
 /* ─── PILLS ─── */
 .pills{
   display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
-  margin:0 auto 36px;max-width:900px;
+  margin:0 auto 18px;max-width:900px;
 }
 .pill{
   padding:6px 14px;border-radius:100px;
@@ -185,7 +185,7 @@ nav{
 .stat-label{font-size:0.7rem;color:var(--muted);font-weight:500;letter-spacing:0.6px;text-transform:uppercase}
 
 /* ─── SECTION ─── */
-.section{max-width:1440px;margin:0 auto;padding:48px 24px 80px}
+.section{max-width:1440px;margin:0 auto;padding:24px 24px 80px}
 .section-header{
   display:flex;justify-content:space-between;align-items:flex-end;
   margin-bottom:24px;gap:16px;flex-wrap:wrap;
@@ -581,6 +581,47 @@ footer{
   border:1px solid rgba(255,255,255,0.08);
 }
 @media(max-width:600px){.biv-dash-img{border-radius:8px}}
+
+/* --- sticky back btn --- */
+.sticky-btn-back{
+  padding:9px 20px;border-radius:9px;
+  background:rgba(107,99,181,0.10);border:1px solid rgba(107,99,181,0.30);
+  color:var(--text);font-family:inherit;font-size:0.85rem;font-weight:600;
+  cursor:pointer;transition:background 0.15s;
+}
+.sticky-btn-back:hover{background:rgba(107,99,181,0.20)}
+
+/* --- card expanded 45% overlay --- */
+.grid-expanded{
+  position:relative !important;
+  display:grid !important;
+  overflow:visible !important;
+}
+.card-flip.card-fade{
+  opacity:0.18 !important;
+  pointer-events:none !important;
+  height:300px !important;
+  overflow:hidden !important;
+  transition:opacity 0.28s ease !important;
+}
+.card-flip.card-focus{
+  position:absolute !important;
+  top:0 !important;
+  left:50% !important;
+  transform:translateX(-50%) !important;
+  width:46% !important;
+  max-width:620px !important;
+  z-index:20 !important;
+  background:var(--card-bg) !important;
+  box-shadow:0 16px 64px rgba(0,0,0,0.22) !important;
+  border-radius:16px !important;
+}
+@media(max-width:900px){
+  .card-flip.card-focus{width:80% !important}
+}
+@media(max-width:600px){
+  .card-flip.card-focus{width:96% !important}
+}
 </style>
 </head>
 <body>
@@ -701,11 +742,6 @@ footer{
                     <div class="back-title">კონკურენტებთან შედარება</div>
           <div class="back-desc">შეადარე ფინანსური შედეგები კონკურენტებს — მოგება-ზარალი, ბალანსი, შემოსავლები, Gross Margin, EBITDA, ROA, ROE. რეალურ დროის მონაცემებით.</div>
 
-          <div class="back-actions three-btn">
-            <a href="https://bihub.ge/cards/shedareba/" class="btn-open" target="_blank" rel="noopener">გახსნა →</a>
-            <a href="#" class="btn-reg-popup">რეგ. — უფასოდ ✦</a>
-            <button class="btn-back" type="button">&#8962; დაბრუნება</button>
-          </div>
         </div>
       </div>
     </article>
@@ -748,11 +784,6 @@ footer{
           <div class="back-title">საბაჟო დეკლარაციები</div>
           <div class="back-desc">იმპორტიორ/ექსპორტიორი კომპანიებისთვის — ქვეყნების, ღირებულების, მოცულობის ანალიზი. დეკლარირებული ვაყარკობი, საქონელი, HS კოდის მიხედვით 2014-2025.</div>
 
-          <div class="back-actions three-btn">
-            <a href="https://bihub.ge/wp-login.php" class="btn-access">&#x1F512; შესვლა</a>
-            <a href="#" class="btn-reg-popup">რეგ. — უფასოდ ✦</a>
-            <button class="btn-back" type="button">&#8962; დაბრუნება</button>
-          </div>
         </div>
       </div>
     </article>
@@ -784,11 +815,6 @@ footer{
           <div class="back-title">საგარეო ვაჭრობა</div>
           <div class="back-desc">საქართველოს საგარეო ვაჭრობა — Top იმპორტირებული სასაქონლო ჯგუფი, პარტნიორი ქვეყნების დინამიკა, სავაჭრო ბალანსი. ოფიციალური სტატისტიკა 2014-2025.</div>
 
-          <div class="back-actions three-btn">
-            <a href="https://bihub.ge/wp-login.php" class="btn-access">&#x1F512; შესვლა</a>
-            <a href="#" class="btn-reg-popup">რეგ. — უფასოდ ✦</a>
-            <button class="btn-back" type="button">&#8962; დაბრუნება</button>
-          </div>
         </div>
       </div>
     </article>
@@ -830,11 +856,6 @@ footer{
           <div class="back-title">საყოველთაო ჯანდაცვა</div>
           <div class="back-desc">პაციენტების რაოდენობა, ასაკობრივი კატეგორიები, სამედიცინო დაწესებულები. საყოველთაო ჯანდაცვის პროგრამის ანალიტიკა 2013-2025.</div>
 
-          <div class="back-actions three-btn">
-            <a href="https://bihub.ge/wp-login.php" class="btn-access">&#x1F512; შესვლა</a>
-            <a href="#" class="btn-reg-popup">რეგ. — უფასოდ ✦</a>
-            <button class="btn-back" type="button">&#8962; დაბრუნება</button>
-          </div>
         </div>
       </div>
     </article>
@@ -876,11 +897,6 @@ footer{
           <div class="back-title">მშენებლობა & ნებართვები</div>
           <div class="back-desc">ნებართვები, დასრულებული მშენებლობები, თბილისის სამსახურის მონაცემები. მშენებლობა & ნებართვების ანალიტიკა 2006-2025.</div>
 
-          <div class="back-actions three-btn">
-            <a href="https://bihub.ge/wp-login.php" class="btn-access">&#x1F512; შესვლა</a>
-            <a href="#" class="btn-reg-popup">რეგ. — უფასოდ ✦</a>
-            <button class="btn-back" type="button">&#8962; დაბრუნება</button>
-          </div>
         </div>
       </div>
     </article>
@@ -920,11 +936,6 @@ footer{
           <div class="back-title">სახელმწიფო შესყიდვები</div>
           <div class="back-desc">ტენდერების სტატისტიკა — გამცხადებლელი, პრეტენდენტი, დომინანტი კომპანიები. სახელმწიფო შესყიდვებების ანალიტიკა 2012-2025.</div>
 
-          <div class="back-actions three-btn">
-            <a href="https://bihub.ge/wp-login.php" class="btn-access">&#x1F512; შესვლა</a>
-            <a href="#" class="btn-reg-popup">რეგ. — უფასოდ ✦</a>
-            <button class="btn-back" type="button">&#8962; დაბრუნება</button>
-          </div>
         </div>
       </div>
     </article>
@@ -963,11 +974,6 @@ footer{
           <div class="back-title">მეცხოველეობა</div>
           <div class="back-desc">პირუტყვის სულადობა, რძისა და ხორცის წარმოება რეგიონების მიხედვით. ისტორიული ტრენდი, სეზონურობა და პროდუქტიულობა.</div>
 
-          <div class="back-actions three-btn">
-            <a href="https://bihub.ge/wp-login.php" class="btn-access">&#x1F512; შესვლა</a>
-            <a href="#" class="btn-reg-popup">რეგ. — უფასოდ ✦</a>
-            <button class="btn-back" type="button">&#8962; დაბრუნება</button>
-          </div>
         </div>
       </div>
     </article>
@@ -1005,11 +1011,6 @@ footer{
           <div class="back-title">თევზის წარმოება</div>
           <div class="back-desc">მეთევზეობის ბაზრის ანალიტიკა — წარმოება, აკვაკულტურა, ექსპორტი და იმპორტი ჯიშების მიხედვით.</div>
 
-          <div class="back-actions three-btn">
-            <a href="https://bihub.ge/wp-login.php" class="btn-access">&#x1F512; შესვლა</a>
-            <a href="#" class="btn-reg-popup">რეგ. — უფასოდ ✦</a>
-            <button class="btn-back" type="button">&#8962; დაბრუნება</button>
-          </div>
         </div>
       </div>
     </article>
@@ -1052,11 +1053,6 @@ footer{
           <div class="back-title">სასურსათო ბალანსი</div>
           <div class="back-desc">ადგილობრივი წარმოება, იმპორტი და მოხმარება პროდუქტთა ჯგუფების მიხედვით — თვითუზრუნველყოფის კოეფიციენტი და დეფიციტი.</div>
 
-          <div class="back-actions three-btn">
-            <a href="https://bihub.ge/wp-login.php" class="btn-access">&#x1F512; შესვლა</a>
-            <a href="#" class="btn-reg-popup">რეგ. — უფასოდ ✦</a>
-            <button class="btn-back" type="button">&#8962; დაბრუნება</button>
-          </div>
         </div>
       </div>
     </article>
@@ -1108,11 +1104,6 @@ footer{
           <div class="back-title">ვებ ტრეფიკი</div>
           <div class="back-desc">საქართველოში ინტერნეტ-მოხმარების ანალიტიკა — მოწყობილობები, ოპერაციული სისტემები, ბრაუზერები, ინტერნეტ პროვაიდერები.</div>
 
-          <div class="back-actions three-btn">
-            <a href="https://bihub.ge/wp-login.php" class="btn-access">&#x1F512; შესვლა</a>
-            <a href="#" class="btn-reg-popup">რეგ. — უფასოდ ✦</a>
-            <button class="btn-back" type="button">&#8962; დაბრუნება</button>
-          </div>
         </div>
       </div>
     </article>
@@ -1160,11 +1151,6 @@ footer{
           <div class="back-title">სადაზღვევო ფინანსური ანალიტიკა</div>
           <div class="back-desc">სადაზღვევო კომპანიების ფინანსური მაჩვენებლები — პრემიები, ზარალიანობა (Loss Ratio), ხარჯების კოეფიციენტი, კომბინირებული კოეფიციენტი.</div>
 
-          <div class="back-actions three-btn">
-            <a href="https://bihub.ge/wp-login.php" class="btn-access">&#x1F512; შესვლა</a>
-            <a href="#" class="btn-reg-popup">რეგ. — უფასოდ ✦</a>
-            <button class="btn-back" type="button">&#8962; დაბრუნება</button>
-          </div>
         </div>
       </div>
     </article>
@@ -1208,11 +1194,6 @@ footer{
           <div class="back-title">სადაზღვევო სტატისტიკა</div>
           <div class="back-desc">სადაზღვევო ბაზრის ზოგადი სურათი — წილობრივი განაწილება პროდუქტების მიხედვით, ანაზღაურებები, ლიდერი კომპანიები.</div>
 
-          <div class="back-actions three-btn">
-            <a href="https://bihub.ge/wp-login.php" class="btn-access">&#x1F512; შესვლა</a>
-            <a href="#" class="btn-reg-popup">რეგ. — უფასოდ ✦</a>
-            <button class="btn-back" type="button">&#8962; დაბრუნება</button>
-          </div>
         </div>
       </div>
     </article>
@@ -1234,7 +1215,7 @@ footer{
     </div>
   </div>
     <div class="biv-visual">
-      <img src="https://mla1pamiitby.i.optimole.com/cb:Seib.664/w:auto/h:auto/q:mauto/f:best/https://bivision.ge/wp-content/uploads/2025/10/Group-7763-3.webp"
+      <img src="https://mla1pamiitby.i.optimole.com/cb:Seib.664/w:auto/h:auto/q:mauto/f:best/https://bivision.ge/wp-content/uploads/2025/10/OBJECTS-3.webp"
            alt="ბივიზიონის დაშბორდი"
            class="biv-dash-img" loading="lazy" onerror="this.style.display='none'">
     </div>
@@ -1397,12 +1378,17 @@ footer{
     $$('.card-flip').forEach(card=>mo.observe(card,{attributes:true,attributeFilter:['class']}));
   }
 
+  /* sticky back btn */
+  const stickyBack=$('.sticky-btn-back');
+  if(stickyBack) stickyBack.addEventListener('click',()=>collapseCard());
+
 })();
 </script>
 <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="48c9c1a2f592a0ada1074a48-|49" defer></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"16acd89a725b458a8cd5cc7ffefb9ecc","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 <div id="sticky-cta-bar">
   <a href="https://bihub.ge/wp-login.php" class="sticky-btn-login">შესვლა</a>
   <a href="https://bihub.ge/wp-login.php?action=register" class="sticky-btn-register">რეგისტრაცია &#8594; უფასოდ</a>
+  <button class="sticky-btn-back" type="button">დაბრუნება</button>
 </div>
 <script>
 (function(){
