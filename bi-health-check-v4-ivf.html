@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>სამედიცინო კლინიკის BI Health Check — ფინანსური ეფექტიანობა 3 წუთში | Bivision</title>
-<meta name="description" content="10 კითხვა. 3 წუთი. შეაფასეთ რამდენად კარგად ჩანს კლინიკის ფინანსური და ოპერაციული ეფექტიანობა — სერვისები, ექიმები, consumables, capacity.">
+<title>სამედიცინო კლინიკის BI Health Check: ფინანსური ეფექტიანობა 3 წუთში | Bivision</title>
+<meta name="description" content="10 კითხვა. 3 წუთი. შეაფასეთ რამდენად კარგად ჩანს კლინიკის ფინანსური და ოპერაციული ეფექტიანობა: სერვისები, ექიმები, consumables, capacity.">
 <style>
   :root {
     --primary: #1a3a6b;
@@ -106,14 +106,14 @@
 
   <div id="intro" class="intro">
     <h1>სამედიცინო კლინიკის<br>BI Health Check</h1>
-    <p class="tagline">3 წუთში შეაფასეთ რამდენად კარგად ჩანს კლინიკის ფინანსური და ოპერაციული ეფექტიანობა — სერვისები, ექიმების დატვირთვა, consumables და capacity ერთ ხედში.</p>
+    <p class="tagline">3 წუთში შეაფასეთ რამდენად კარგად ჩანს კლინიკის ფინანსური და ოპერაციული ეფექტიანობა: სერვისები, ექიმების დატვირთვა, consumables და capacity ერთ ხედში.</p>
     <div class="intro-pills">
       <div class="pill"><strong>10</strong> კითხვა</div>
       <div class="pill"><strong>3</strong> წუთი</div>
       <div class="pill">უფასო</div>
     </div>
     <p style="color: var(--muted); font-size: 14px; max-width: 500px; margin: 0 auto;">
-      რეპროდუქტოლოგიური, ქირურგიული და სპეციალიზებული კლინიკებისთვის. პასუხის შემდეგ მიიღებ ანალიზს — სად არის ფინანსური ეფექტიანობის გაძლიერების ყველაზე დიდი შესაძლებლობა.
+      რეპროდუქტოლოგიური, ქირურგიული და სპეციალიზებული კლინიკებისთვის. პასუხის შემდეგ მიიღებ ანალიზს: სად არის ფინანსური ეფექტიანობის გაძლიერების ყველაზე დიდი შესაძლებლობა.
     </p>
     <button class="btn start-btn" onclick="startQuiz()">დაიწყე</button>
   </div>
@@ -139,7 +139,7 @@
 
   <div id="gate" class="gate hidden">
     <h2>PDF ანგარიში ელ.ფოსტაზე <span style="font-size:14px;font-weight:400;color:var(--muted);">(სურვილისამებრ)</span></h2>
-    <p>გამოვაგზავნით სრულ სამედიცინო BI Health Check ანგარიშს — შეფასება + Bivision-ის პრაქტიკული რეკომენდაციები.</p>
+    <p>გამოვაგზავნით სრულ სამედიცინო BI Health Check ანგარიშს: შეფასება + Bivision-ის პრაქტიკული რეკომენდაციები.</p>
     <form id="gate-form" onsubmit="submitGate(event)">
       <input type="text" id="gate-name" placeholder="სახელი და გვარი">
       <input type="email" id="gate-email" placeholder="ელ. ფოსტა" required>
@@ -166,7 +166,7 @@
 
     <div class="cta-box">
       <h3>15-წუთიანი კლინიკის ანალიტიკის დემო</h3>
-      <p>გაჩვენებთ, როგორ შეიძლება გამოიყურებოდეს ქეისის / სერვისის ეფექტიანობის dashboard — consumables, insurance vs private, capacity. თქვენი სისტემის მონაცემების საფუძველზე. ყოველგვარი ვალდებულების გარეშე.</p>
+      <p>გაჩვენებთ, როგორ შეიძლება გამოიყურებოდეს ქეისის / სერვისის ეფექტიანობის dashboard: consumables, insurance vs private, capacity. თქვენი სისტემის მონაცემების საფუძველზე. ყოველგვარი ვალდებულების გარეშე.</p>
       <a href="https://calendly.com/bivision/courtest-meeting" target="_blank" class="cta-btn">დავჯავშნოთ 15 წუთი →</a>
     </div>
 
@@ -197,7 +197,7 @@ const questions = [
   },
   {
     dim: "Consumables",
-    q: "მედიკამენტები და სახარჯი მასალები — ხარჯი პაციენტზე / ქეისზე გაქვთ?",
+    q: "მედიკამენტები და სახარჯი მასალები: ხარჯი პაციენტზე / ქეისზე გაქვთ?",
     opts: [
       { t: "დიახ, ავტომატური ხარჯის ასახვა პაციენტზე", p: 10 },
       { t: "საერთო ხარჯი ვიცი, პაციენტზე — ხელით", p: 5 },
@@ -206,7 +206,7 @@ const questions = [
   },
   {
     dim: "Insurance vs private",
-    q: "სადაზღვევო vs კომერციული პაციენტების მომგებიანობა — შედარება?",
+    q: "სადაზღვევო vs კომერციული პაციენტების მომგებიანობა: შედარება?",
     opts: [
       { t: "ვიცი ზუსტად რომელი სეგმენტი რა მოგებას იძლევა", p: 10 },
       { t: "ზოგადი შთაბეჭდილება გვაქვს", p: 5 },
@@ -217,23 +217,23 @@ const questions = [
     dim: "Doctor productivity",
     q: "ექიმებისა და ლაბორატორიის დატვირთვა და ეფექტიანობა:",
     opts: [
-      { t: "ციფრებით ვხედავ — პაციენტი/დღე, შემოსავალი/ექიმი", p: 10 },
+      { t: "ციფრებით ვხედავ: პაციენტი/დღე, შემოსავალი/ექიმი", p: 10 },
       { t: "ზოგადი წარმოდგენა გვაქვს", p: 5 },
       { t: "სისტემატურად არ ვზომავ", p: 0 }
     ]
   },
   {
     dim: "Patient acquisition",
-    q: "ახალი პაციენტის მოზიდვის ღირებულება (CAC) — ხედავთ?",
+    q: "ახალი პაციენტის მოზიდვის ღირებულება (CAC), ხედავთ?",
     opts: [
       { t: "დიახ, მარკეტინგული არხის ჭრილში ვიცი CAC", p: 10 },
-      { t: "სარეკლამო ბიუჯეტი ვიცი, CAC — ვერ ვითვლი", p: 5 },
-      { t: "სარეკლამო ხარჯი ვიცი, კავშირი პაციენტთან — არა", p: 0 }
+      { t: "სარეკლამო ბიუჯეტი ვიცი, CAC ვერ ვითვლი", p: 5 },
+      { t: "სარეკლამო ხარჯი ვიცი, კავშირი პაციენტთან არა", p: 0 }
     ]
   },
   {
     dim: "Capacity",
-    q: "ოპერაციული, ლაბორატორია, კაბინეტები — გამოყენების % ხედავთ?",
+    q: "ოპერაციული, ლაბორატორია, კაბინეტები, გამოყენების % ხედავთ?",
     opts: [
       { t: "დიახ, capacity utilization dashboard-ი გვაქვს", p: 10 },
       { t: "განრიგი ვხედავ, % გამოყენება — ხელით", p: 5 },
@@ -242,7 +242,7 @@ const questions = [
   },
   {
     dim: "Service P&L",
-    q: "კლინიკის სხვადასხვა სერვისი / განყოფილება — ცალ-ცალკე P&L?",
+    q: "კლინიკის სხვადასხვა სერვისი / განყოფილება: ცალ-ცალკე P&L?",
     opts: [
       { t: "დიახ, ყველა სერვისი ცალ-ცალკე P&L-ით", p: 10 },
       { t: "ზოგიერთი სერვისი, ხელით", p: 5 },
@@ -280,14 +280,14 @@ const questions = [
 
 const gapRecs = {
   "Cycle P&L": "ქეისის / სერვისის ეფექტიანობის ხილვის გარეშე ფასის ოპტიმიზაცია შეუძლებელია. ზარალიანი პროტოკოლი ინვიზიბლური რჩება.",
-  "Consumables": "მედიკამენტის ხარჯი ქეისზე = ყველაზე ცვლადი ხარჯი. Tracking-ის გარეშე — overhead ინვიზიბლურია.",
+  "Consumables": "მედიკამენტის ხარჯი ქეისზე = ყველაზე ცვლადი ხარჯი. Tracking-ის გარეშე overhead ინვიზიბლურია.",
   "Insurance vs private": "სადაზღვევო vs კომერციული სეგმენტის მომგებიანობა განსხვავდება. Balance-ის ხედის გარეშე ზრდა შეიძლება მოგებას ამცირებდეს.",
   "Doctor productivity": "ექიმის დატვირთვა + შემოსავალი = ყველაზე ძვირი რესურსის ოპტიმიზაცია. Capacity-ის ხილვის გარეშე სრული პოტენციალი ვერ გამოიყენება.",
   "Patient acquisition": "CAC-ის გარეშე სარეკლამო ბიუჯეტი ბრმა ინვესტიციაა. არხის ჭრილში CAC = მარკეტინგული ეფექტიანობის გაძლიერება.",
-  "Capacity": "Capacity utilization-ის ხილვა = სიცარიელის და გადატვირთვის პრევენცია. ოპტიმალური დიაპაზონი ინდივიდუალურია — ხილვა უნდა.",
-  "Service P&L": "სერვისის P&L ხილვა = ინვესტიციის სწორი მიმართულება. ჯამური P&L ახასიათებს — არ მართავს.",
+  "Capacity": "Capacity utilization-ის ხილვა = სიცარიელის და გადატვირთვის პრევენცია. ოპტიმალური დიაპაზონი ინდივიდუალურია, ხილვა უნდა.",
+  "Service P&L": "სერვისის P&L ხილვა = ინვესტიციის სწორი მიმართულება. ჯამური P&L ახასიათებს, მაგრამ არ მართავს.",
   "HIS/ERP": "HIS/ERP → Excel = დღეში 2-3 საათი manual შრომა + შეცდომები. ავტომატიზაცია = ყოველდღიური financial clarity.",
-  "Reporting speed": "10+ დღე = გასული თვის მონაცემები. სამედიცინო ბიზნესი სწრაფად ცვლადია — გვიანი ინფო = გვიანი გადაწყვეტილება.",
+  "Reporting speed": "10+ დღე = გასული თვის მონაცემები. სამედიცინო ბიზნესი სწრაფად ცვლადია, გვიანი ინფო = გვიანი გადაწყვეტილება.",
   "Decision basis": "სამედიცინო გამოცდილება + ბიზნეს მონაცემი = სწორი კლინიკური ბიზნესი. მხოლოდ ინტუიცია = ზრდის ceiling."
 };
 
@@ -356,7 +356,7 @@ function submitGate(e) {
   log.push(gateData);
   localStorage.setItem('bi_health_leads_v4m', JSON.stringify(log));
   const fd = new FormData();
-  fd.append('_subject', 'BI Health Check — ' + (company || 'ახალი ლიდი') + ' | ქულა: ' + score + '/100');
+  fd.append('_subject', 'BI Health Check: ' + (company || 'ახალი ლიდი') + ' | ქულა: ' + score + '/100');
   fd.append('სახელი', name); fd.append('ელ.ფოსტა', email); fd.append('კლინიკა', company); fd.append('პოზიცია', role);
   fd.append('ქულა', score + '/100'); fd.append('სექტორი', 'სამედიცინო / IVF');
   fd.append('_captcha', 'false'); fd.append('_template', 'table'); fd.append('_replyto', email);
@@ -365,16 +365,16 @@ function submitGate(e) {
 }
 
 const bivisionFix = {
-  "Cycle P&L": "BiMedical Cycle Analytics — ქეისის / სერვისის დონეზე revenue, consumables, margin. სისტემიდან ავტომატურად.",
-  "Consumables": "Bivision Cost Tracking — მედიკამენტი და სახარჯი მასალა ქეისზე / პაციენტზე. ხელით გამოთვლა ქრება.",
-  "Insurance vs private": "Bivision Segment P&L — სადაზღვევო vs კომერციული მომგებიანობა ერთ dashboard-ში. ბალანსი ხილული ხდება.",
-  "Doctor productivity": "Bivision Doctor Dashboard — პაციენტი/დღე, შემოსავალი/ექიმი, load vs capacity. ოპტიმიზაციის საფუძველი.",
-  "Patient acquisition": "Bivision Marketing Analytics — CAC არხის ჭრილში (Facebook, Google, referral). ბრმა სარეკლამო ხარჯი ქრება.",
-  "Capacity": "Bivision Capacity Dashboard — ოპერაციული / ლაბორატორია / კაბინეტი გამოყენება %-ში, real-time.",
-  "Service P&L": "BiMedical Service Analytics — ყველა სერვისი / განყოფილება ცალ-ცალკე. ინვესტიციის მიმართულება ნათელია.",
-  "HIS/ERP": "Bivision HIS/ERP Connector — სამედიცინო სისტემა → dashboard ავტომატურად. Excel ექსპორტი საჭირო აღარ გახდება.",
-  "Reporting speed": "Automated Reporting — ყოველთვიური P&L + capacity + segment ანგარიში ავტომატურად. 10 დღე → 15 წუთი.",
-  "Decision basis": "Bivision Clinical Business Dashboard — KPI real-time, drill-down, clinical + financial ხედი ერთ ეკრანზე."
+  "Cycle P&L": "BiMedical Cycle Analytics: ქეისის / სერვისის დონეზე revenue, consumables, margin. სისტემიდან ავტომატურად.",
+  "Consumables": "Bivision Cost Tracking: მედიკამენტი და სახარჯი მასალა ქეისზე / პაციენტზე. ხელით გამოთვლა ქრება.",
+  "Insurance vs private": "Bivision Segment P&L: სადაზღვევო vs კომერციული მომგებიანობა ერთ dashboard-ში. ბალანსი ხილული ხდება.",
+  "Doctor productivity": "Bivision Doctor Dashboard: პაციენტი/დღე, შემოსავალი/ექიმი, load vs capacity. ოპტიმიზაციის საფუძველი.",
+  "Patient acquisition": "Bivision Marketing Analytics: CAC არხის ჭრილში (Facebook, Google, referral). ბრმა სარეკლამო ხარჯი ქრება.",
+  "Capacity": "Bivision Capacity Dashboard: ოპერაციული / ლაბორატორია / კაბინეტი გამოყენება %-ში, real-time.",
+  "Service P&L": "BiMedical Service Analytics: ყველა სერვისი / განყოფილება ცალ-ცალკე. ინვესტიციის მიმართულება ნათელია.",
+  "HIS/ERP": "Bivision HIS/ERP Connector: სამედიცინო სისტემა → dashboard ავტომატურად. Excel ექსპორტი საჭირო აღარ გახდება.",
+  "Reporting speed": "Automated Reporting: ყოველთვიური P&L + capacity + segment ანგარიში ავტომატურად. 10 დღე → 15 წუთი.",
+  "Decision basis": "Bivision Clinical Business Dashboard: KPI real-time, drill-down, clinical + financial ხედი ერთ ეკრანზე."
 };
 
 function calcScore() {
@@ -392,10 +392,10 @@ function showResult() {
   let band, sub, cls;
   if (score <= 33) {
     band = 'მაღალი გაუმჯობესების პოტენციალი';
-    sub = 'ქეისის ეფექტიანობა, consumables და capacity — ყველა სამი გაძლიერების შესაძლებლობაა.';
+    sub = 'ქეისის ეფექტიანობა, consumables და capacity: ყველა სამი გაძლიერების შესაძლებლობაა.';
     cls = 'critical';
   } else if (score <= 66) {
-    band = 'კარგი საფუძველი — გაძლიერების შესაძლებლობა';
+    band = 'კარგი საფუძველი, გაძლიერების შესაძლებლობა';
     sub = 'ინფორმაცია ნაწილობრივ გაქვს, მაგრამ სიჩქარე და granularity გაძლიერება შეიძლება.';
     cls = 'mid';
   } else {
