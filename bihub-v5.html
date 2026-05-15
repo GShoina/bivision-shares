@@ -622,6 +622,37 @@ footer{
 @media(max-width:600px){
   .card-flip.card-focus{width:96% !important}
 }
+
+/* --- BIV SIDE-BY-SIDE --- */
+.biv-inner--row{
+  display:flex !important;
+  align-items:center;
+  gap:60px;
+  max-width:1200px;
+  flex-wrap:wrap;
+}
+.biv-text{
+  flex:1;min-width:280px;
+  text-align:left;
+}
+.biv-inner--row .biv-ctas{justify-content:flex-start}
+.biv-visual{
+  flex:1;min-width:280px;
+  margin-top:0 !important;
+}
+.biv-dash-img{
+  max-width:100%;width:100%;border-radius:12px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.45);
+  border:1px solid rgba(255,255,255,0.08);
+}
+@media(max-width:860px){
+  .biv-inner--row{flex-direction:column;text-align:center}
+  .biv-inner--row .biv-ctas{justify-content:center}
+}
+
+/* --- SPACING FIXES --- */
+/* hero already has padding:36px 24px 120px */
+/* section already has padding:24px 24px 80px */
 </style>
 </head>
 <body>
@@ -1204,8 +1235,9 @@ footer{
 
 
 <!-- ─── BIVISION SECTION ─── -->
-<section class="biv-section" style="background:linear-gradient(160deg,#1A1A2E 0%,#2d2553 50%,#1a2e1a 100%);padding:104px 24px;border-top:none;">
-  <div class="biv-inner">
+<section class="biv-section" style="background:linear-gradient(160deg,#1A1A2E 0%,#2d2553 50%,#1a2e1a 100%);padding:80px 24px;border-top:none;">
+  <div class="biv-inner biv-inner--row">
+  <div class="biv-text">
     <span class="biv-sub">მართე მონაცემებით</span>
     <h2 class="biv-h2">ბიზნეს ანალიტიკა &mdash; ზუსტი მართვა რეალურ დროში</h2>
     <p class="biv-desc">ნაცვლად ფრაგმენტული ცხრილებისა და ხელით აწყობილი რეპორტებისა &mdash; შექმენი მართვის ერთიანი, ავტომატიზებული სისტემა. Bivision CEO-სა და CFO-ს აძლევს ფინანსებისა და გაყიდვების სრულ ხილვადობას.</p>
@@ -1214,8 +1246,9 @@ footer{
       <a href="https://bivision.ge" target="_blank" class="biv-btn-ghost">გაიგე მეტი &rarr;</a>
     </div>
   </div>
+  </div>
     <div class="biv-visual">
-      <img src="https://mla1pamiitby.i.optimole.com/cb:Seib.664/w:auto/h:auto/q:mauto/f:best/https://bivision.ge/wp-content/uploads/2025/10/OBJECTS-3.webp"
+      <img src="https://mla1pamiitby.i.optimole.com/cb:Seib.664/w:auto/h:auto/q:mauto/f:best/https://bivision.ge/wp-content/uploads/2025/10/Group-7763-3.webp"
            alt="ბივიზიონის დაშბორდი"
            class="biv-dash-img" loading="lazy" onerror="this.style.display='none'">
     </div>
