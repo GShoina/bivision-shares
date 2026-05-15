@@ -1477,6 +1477,7 @@ footer{
     grid.style.height = '';
     focusedCard = null;
   }
+  window._bihubCollapse = collapseCard;
 
   $$('.card-flip').forEach(card=>{
     $('.card-front',card).addEventListener('click',e=>{
@@ -1574,12 +1575,7 @@ footer{
   /* sticky back btn */
   var backBtn=document.querySelector('.sticky-btn-back');
   if(backBtn) backBtn.addEventListener('click',function(){
-    var focused=document.querySelector('.card-flip.card-focus');
-    if(!focused)return;
-    focused.classList.remove('flipped','card-focus');
-    document.querySelectorAll('.card-flip').forEach(function(c2){c2.classList.remove('card-fade');});
-    var grid=document.getElementById('grid');
-    if(grid){grid.classList.remove('grid-expanded');grid.style.height='';}
+    if(window._bihubCollapse) window._bihubCollapse();
   });
 })();
 </script>
