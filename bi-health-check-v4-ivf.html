@@ -141,14 +141,14 @@
     <h2>PDF ანგარიში ელ.ფოსტაზე <span style="font-size:14px;font-weight:400;color:var(--muted);">(სურვილისამებრ)</span></h2>
     <p>გამოვაგზავნით სრულ სამედიცინო BI Health Check ანგარიშს: შეფასება + Bivision-ის პრაქტიკული რეკომენდაციები.</p>
     <form id="gate-form" onsubmit="submitGate(event)">
-      <input type="text" id="gate-name" placeholder="სახელი და გვარი">
-      <input type="email" id="gate-email" placeholder="ელ. ფოსტა" required>
-      <input type="text" id="gate-company" placeholder="კლინიკის სახელი">
-      <input type="text" id="gate-role" placeholder="თქვენი პოზიცია (CEO, CFO, მთავარი ექიმი...)">
+      <input type="text" id="gate-name" placeholder="სახელი და გვარი *" required>
+            <input type="text" id="gate-company" placeholder="კლინიკის სახელი">
+      <input type="tel" id="gate-phone" placeholder="ტელეფონი">
+      <input type="email" id="gate-email" placeholder="ელ. ფოსტა *" required>
       <button type="submit" class="btn">გაგზავნა — 24 საათში დაგიკავშირდებით</button>
       <button type="button" class="btn secondary" onclick="document.getElementById('gate').classList.add('hidden')" style="font-size:13px;">გამოტოვება</button>
     </form>
-    <p class="gate-note">Spam არ გამოგიგზავნით.</p>
+    <p class="gate-note">* სავალდებულო. Spam არ გამოგიგზავნით.</p>
   </div>
 
   <div id="result" class="result hidden">
@@ -349,15 +349,15 @@ function submitGate(e) {
   const name = document.getElementById('gate-name').value;
   const email = document.getElementById('gate-email').value;
   const company = document.getElementById('gate-company').value;
-  const role = document.getElementById('gate-role').value;
+  const phone = document.getElementById('gate-phone').value;
   const score = calcScore();
-  gateData = { name, email, company, role, sector: 'medical_ivf', timestamp: new Date().toISOString(), answers, score };
+  gateData = { name, email, company, phone, sector: 'medical_ivf', timestamp: new Date().toISOString(), answers, score };
   const log = JSON.parse(localStorage.getItem('bi_health_leads_v4m') || '[]');
   log.push(gateData);
   localStorage.setItem('bi_health_leads_v4m', JSON.stringify(log));
   const fd = new FormData();
   fd.append('_subject', 'BI Health Check: ' + (company || 'ახალი ლიდი') + ' | ქულა: ' + score + '/100');
-  fd.append('სახელი', name); fd.append('ელ.ფოსტა', email); fd.append('კლინიკა', company); fd.append('პოზიცია', role);
+  fd.append('სახელი', name); fd.append('ელ.ფოსტა', email); fd.append('კლინიკა', company); fd.append('ტელეფონი', phone);
   fd.append('ქულა', score + '/100'); fd.append('სექტორი', 'სამედიცინო / IVF');
   fd.append('_captcha', 'false'); fd.append('_template', 'table'); fd.append('_replyto', email);
   fetch('https://formsubmit.co/ajax/9a5df41878bde78a21554dd6e8d222e3', { method: 'POST', body: fd }).catch(() => {});
