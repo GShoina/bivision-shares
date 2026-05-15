@@ -157,34 +157,6 @@ nav{
 }
 
 /* ─── SEARCH ─── */
-.search-wrap{
-  max-width:560px;margin:0 auto 18px;
-  position:relative;
-}
-.search-input{
-  width:100%;
-  padding:14px 18px 14px 46px;
-  background:rgba(255,255,255,0.95);
-  border:1px solid var(--border-strong);
-  border-radius:12px;
-  color:var(--text);
-  font-family:inherit;font-size:0.95rem;
-  outline:none;transition:border 0.18s,box-shadow 0.18s,background 0.18s;
-  backdrop-filter:blur(8px);
-}
-.search-input::placeholder{color:var(--muted)}
-.search-input:focus{border-color:var(--cyan);box-shadow:0 0 0 4px rgba(107,99,181,0.12)}
-.search-icon{
-  position:absolute;left:16px;top:50%;transform:translateY(-50%);
-  color:var(--muted);pointer-events:none;
-}
-.search-kbd{
-  position:absolute;right:14px;top:50%;transform:translateY(-50%);
-  font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:600;
-  color:var(--muted);background:var(--surface-2);
-  border:1px solid var(--border);border-radius:6px;
-  padding:2px 8px;
-}
 
 /* ─── PILLS ─── */
 .pills{
@@ -202,19 +174,11 @@ nav{
 }
 .pill:hover{border-color:var(--cyan);color:var(--cyan)}
 .pill.active{
-  background:rgba(107,99,181,0.10);
-  border-color:var(--cyan);color:var(--cyan);font-weight:600;
+  background:rgba(0,166,81,0.12);
+  border-color:#00A651;color:#007a3a;font-weight:600;
 }
 
 /* ─── STATS ROW ─── */
-.stats-row{
-  display:flex;justify-content:center;gap:clamp(8px,2.5vw,36px);flex-wrap:nowrap;
-  padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  max-width:760px;margin:0 auto;
-}
-.stat{display:flex;flex-direction:column;align-items:center;gap:2px}
-.stat-num{font-family:'JetBrains Mono',monospace;font-size:1.35rem;font-weight:700;color:var(--text);letter-spacing:-0.5px}
-@media(max-width:420px){.stat-num{font-size:1rem}.stat-label{font-size:0.6rem;letter-spacing:0.3px}.stats-row{padding:10px 4px}}
 @media(max-width:767px){.h1-plat{display:none}}
 .stat-num .accent{color:var(--emerald-glow)}
 .stat-num .accent-cyan{color:var(--cyan)}
@@ -641,13 +605,6 @@ footer{
   
   <h1>ბიზნეს და საჯარო მონაცემების<br><span class="grad">ანალიტიკა</span> ერთ სივრცეში<br>Qlik Sense BI<span class="h1-plat"> პლატფორმაზე</span></h1>
 
-  <div class="search-wrap">
-    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-    </svg>
-    <input id="search" class="search-input" type="text" placeholder="მოძებნე რეპორტი — მაგ. ექსპორტი, ტენდერები, ჯანდაცვა..." aria-label="მოძებნე რეპორტი">
-    <span class="search-kbd">⌘ K</span>
-  </div>
 
   <div class="pills" role="tablist" aria-label="კატეგორიები">
     <button class="pill active" data-cat="all">ყველა</button>
@@ -659,8 +616,6 @@ footer{
     <button class="pill" data-cat="industry">ინდუსტრია</button>
   </div>
 
-  <div class="stats-row">
-    <div class="stat"><div class="stat-num"><span class="accent" data-count="800">0</span>+</div><div class="stat-label">რეპორტი</div></div>
     <div class="stat"><div class="stat-num"><span class="accent-cyan" data-count="7">0</span>+</div><div class="stat-label">კატეგორია</div></div>
     <div class="stat"><div class="stat-num">2018<span class="accent">–</span></div><div class="stat-label">ისტორია</div></div>
     <div class="stat"><div class="stat-num"><span class="accent" data-count="24">0</span>/7</div><div class="stat-label">განახლება</div></div>
