@@ -174,8 +174,8 @@ nav{
 }
 .pill:hover{border-color:var(--cyan);color:var(--cyan)}
 .pill.active{
-  background:#00A651;
-  border-color:#00A651;color:#fff;font-weight:600;
+  background:#057a3c;
+  border-color:#057a3c;color:#fff;font-weight:600;
 }
 
 /* ─── STATS ROW ─── */
@@ -262,6 +262,7 @@ nav{
   padding:18px 20px;
   background:linear-gradient(180deg,var(--surface-2) 0%,var(--bg-2) 100%);
 }
+.card-flip.card-focus .card-back{overflow-y:auto;padding-bottom:76px}
 
 /* free card accent */
 .card-flip.free .card-front{
@@ -290,9 +291,9 @@ nav{
 .badge-amber{background:rgba(245,158,11,0.12);color:var(--amber);border-color:rgba(245,158,11,0.25)}
 .badge-cyan{background:rgba(107,99,181,0.10);color:var(--cyan);border-color:rgba(107,99,181,0.25)}
 .badge-emerald{background:rgba(16,185,129,0.12);color:var(--emerald-glow);border-color:rgba(16,185,129,0.25)}
-.badge-violet{background:rgba(139,92,246,0.12);color:#a78bfa;border-color:rgba(139,92,246,0.25)}
-.badge-rose{background:rgba(244,63,94,0.10);color:#fb7185;border-color:rgba(244,63,94,0.22)}
-.badge-blue{background:rgba(59,130,246,0.12);color:#60a5fa;border-color:rgba(59,130,246,0.22)}
+.badge-violet{background:rgba(139,92,246,0.12);color:#c4b5fd;border-color:rgba(139,92,246,0.35)}
+.badge-rose{background:rgba(244,63,94,0.10);color:#fda4af;border-color:rgba(244,63,94,0.30)}
+.badge-blue{background:rgba(59,130,246,0.12);color:#93c5fd;border-color:rgba(59,130,246,0.30)}
 
 .card-meta{
   font-family:'JetBrains Mono',monospace;
@@ -654,7 +655,7 @@ footer{
 /* hero already has padding:36px 24px 120px */
 /* section already has padding:0 24px 80px */
 
-@media(max-width:900px){.pills{flex-wrap:wrap !important}}
+@media(max-width:960px){.pills{flex-wrap:wrap !important}}
 </style>
 </head>
 <body>
@@ -1398,9 +1399,9 @@ footer{
 
 <!-- ─── REG MODAL ─── -->
 <div id="reg-overlay">
-  <div id="reg-modal">
+  <div id="reg-modal" role="dialog" aria-modal="true" aria-labelledby="reg-modal-title">
     <button id="reg-close" aria-label="დახურვა">&times;</button>
-    <h2>რეგისტრაცია &mdash; უფასოდ</h2>
+    <h2 id="reg-modal-title">რეგისტრაცია &mdash; უფასოდ</h2>
     <p>მიიღე წვდომა 800+ ანალიტიკური რეპორტისადმი</p>
     <form id="reg-form">
       <div class="reg-field">
