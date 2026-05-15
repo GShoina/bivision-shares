@@ -1571,6 +1571,16 @@ footer{
   function sync(){document.querySelector('.card-flip.flipped')?bar.classList.add('show'):bar.classList.remove('show');}
   var mo=new MutationObserver(sync);
   document.querySelectorAll('.card-flip').forEach(function(c){mo.observe(c,{attributes:true,attributeFilter:['class']});});
+  /* sticky back btn */
+  var backBtn=document.querySelector('.sticky-btn-back');
+  if(backBtn) backBtn.addEventListener('click',function(){
+    var focused=document.querySelector('.card-flip.card-focus');
+    if(!focused)return;
+    focused.classList.remove('flipped','card-focus');
+    document.querySelectorAll('.card-flip').forEach(function(c2){c2.classList.remove('card-fade');});
+    var grid=document.getElementById('grid');
+    if(grid){grid.classList.remove('grid-expanded');grid.style.height='';}
+  });
 })();
 </script>
 </body>
