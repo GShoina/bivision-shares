@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>მარიამის კვირის შეფასება — 2026-05-15</title>
+<style>
+  :root {
+    --purple: #6B63B5;
+    --green: #00A651;
+    --orange: #DD6B20;
+    --red: #E53E3E;
+    --gray: #718096;
+    --border: #E2E8F0;
+    --light: #F7F8FA;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F0F2F5; color: #1A202C; font-size: 15px; line-height: 1.7; }
+
+  .header { background: var(--purple); color: white; padding: 28px 36px; }
+  .header h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .header .sub { font-size: 13px; opacity: 0.85; }
+
+  .container { max-width: 820px; margin: 32px auto; padding: 0 16px 48px; display: flex; flex-direction: column; gap: 20px; }
+
+  .card { background: white; border-radius: 10px; border: 1px solid var(--border); overflow: hidden; }
+  .card-header { padding: 16px 20px; font-weight: 700; font-size: 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+  .card-header.good { border-left: 4px solid var(--green); }
+  .card-header.think { border-left: 4px solid var(--orange); }
+  .card-header.need { border-left: 4px solid var(--purple); }
+  .card-header.plan { border-left: 4px solid #3182CE; }
+  .card-body { padding: 20px; }
+
+  .item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .item:last-child { border-bottom: none; padding-bottom: 0; }
+  .item-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .item-text { flex: 1; }
+  .item-text strong { display: block; font-size: 14px; margin-bottom: 3px; }
+  .item-text p { font-size: 13px; color: #4A5568; }
+
+  .week-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .day { background: var(--light); border-radius: 6px; padding: 10px 8px; text-align: center; }
+  .day .date { font-size: 11px; color: var(--gray); font-weight: 600; }
+  .day .task { font-size: 12px; margin-top: 4px; color: #2D3748; }
+
+  .highlight { background: #EBF8FF; border-left: 3px solid #3182CE; padding: 12px 16px; border-radius: 0 6px 6px 0; font-size: 14px; margin-bottom: 16px; }
+  .highlight strong { color: #2C5282; }
+
+  .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 10px; margin-left: 8px; }
+  .tag-green { background: #C6F6D5; color: #276749; }
+  .tag-orange { background: #FEEBC8; color: #7B341E; }
+  .tag-blue { background: #BEE3F8; color: #2C5282; }
+  .tag-red { background: #FED7D7; color: #9B2C2C; }
+
+  .footer { text-align: center; color: var(--gray); font-size: 12px; margin-top: 8px; }
+
+  @media (max-width: 600px) { .week-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>მარიამ, კვირის შეფასება 👋</h1>
+  <div class="sub">2026-05-15 · Bivision Marketing · გელა</div>
+</div>
+
+<div class="container">
+
+  <!-- კარგად გააკეთა -->
+  <div class="card">
+    <div class="card-header good">
+      ✅ კარგად გააკეთა ამ კვირაში
+    </div>
+    <div class="card-body">
+
+      <div class="item">
+        <div class="item-icon">📊</div>
+        <div class="item-text">
+          <strong>Facebook კამპანიის კლიკი კარგ დონეზეა</strong>
+          <p>CTR (კლიკების პროცენტი) ორ კამპანიაზე 1.4–1.9% — ეს კარგი მაჩვენებელია. ნიშნავს: კრეატივი და სამიზნე აუდიტორია მუშაობს. ფასი კლიკზე $0.09 — ძალიან ეფექტური.</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-icon">✏️</div>
+        <div class="item-text">
+          <strong>კამპანიის ედიტი სწრაფად შესრულდა</strong>
+          <p>13 მაისს B*Product_Traffic კამპანიაში ედიტი დროულად გაკეთდა. Execution — სწრაფი და სწორი.</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-icon">💼</div>
+        <div class="item-text">
+          <strong>LinkedIn გვერდი აქტიური</strong>
+          <p>კომპანიის გვერდი — 842 მიმდევარი. Posting cadence სტაბილური. ეს ნელ-ნელა იზრდება.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- გასაფიქრებელი -->
+  <div class="card">
+    <div class="card-header think">
+      💭 გასაფიქრებელი — ერთად განვიხილოთ
+    </div>
+    <div class="card-body">
+
+      <div class="highlight">
+        <strong>მთავარი საკითხი:</strong> კამპანიები კარგად მუშაობს — კლიკი მოდის. მაგრამ ლიდი (booking/კონტაქტი) ჯერ ვერ გამოჩნდა. ეს ტექნიკური საკითხია, არა შენი შეცდომა — ამაზე ქვემოთ.
+      </div>
+
+      <div class="item">
+        <div class="item-icon">🎯</div>
+        <div class="item-text">
+          <strong>კამპანიის მიზანი — Traffic vs Leads</strong>
+          <p>ამჟამინდელი კამპანიები "ტრაფიკი"-ს მიზნით მუშაობს — ანუ ხალხი გადადის საიტზე, მაგრამ სისტემა ლიდს ვერ ითვლის. 19 მაისიდან ახალ კამპანიაზე გადავდივართ — "Leads" objective. მაშინ პირდაპირ Calendly booking-ი ჩაითვლება.</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-icon">🖼️</div>
+        <div class="item-text">
+          <strong>Carousel post — launch-ი გადადის?</strong>
+          <p>Canva carousel მზადაა — ამ კვირაში launch ვერ მოხდა. ეს გელასგან (დადასტურება) იყო blocked. შემდეგ კვირაში launch-ი — ის უნდა მოხდეს.</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-icon">⚔️</div>
+        <div class="item-text">
+          <strong>Gegidze counter — ჯერ კიდევ open</strong>
+          <p>კონკურენტი ახლა აქტიურობს სამშენებლო სეგმენტში. Counter-creative — 1 ვარიანტი სამშენებლო კომპანიებისთვის — ჯერ კიდევ არ გამოჩენილა.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- რა გჭირდება მისგან -->
+  <div class="card">
+    <div class="card-header need">
+      📋 რა გჭირდება ამ კვირაში — კონკრეტული
+    </div>
+    <div class="card-body">
+
+      <div class="item">
+        <div class="item-icon">1️⃣</div>
+        <div class="item-text">
+          <strong>Carousel post — launch <span class="tag tag-orange">P1</span></strong>
+          <p>გელა დაადასტურებს — Mariam posts immediately. დაყოვნება აღარ.</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-icon">2️⃣</div>
+        <div class="item-text">
+          <strong>LinkedIn Lead Gen Form — შექმნა <span class="tag tag-blue">ახალი</span></strong>
+          <p>LinkedIn-ზე Lead Gen Form ჯერ არ გვაქვს. ეს ამ კვირის P1-ია. ფორმა: "გინდა BI demo?" → ელ-ფოსტა + სახელი → Calendly link. გელა ეხმარება სტრუქტურაში.</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-icon">3️⃣</div>
+        <div class="item-text">
+          <strong>Gegidze counter-creative — 1 ვარიანტი <span class="tag tag-orange">P1</span></strong>
+          <p>სამშენებლო კომპანიებისთვის — 1 ad variant. კონკურენტი ამ სეგმენტში აქტიურობს, ჩვენ კი counter-ი ჯერ არ გვაქვს.</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-icon">4️⃣</div>
+        <div class="item-text">
+          <strong>BiMedical Email 1 — მონიტორინგი May 21 <span class="tag tag-blue">ახალი</span></strong>
+          <p>19 მაისს 145 კლინიკას ეგზავნება პირველი ემეილი. 21 მაისს — opens/clicks რეპორტი: ვინ გახსნა, ვინ დააკლიკა. Mailchimp-ის Reports სექცია.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- შემდეგი კვირის გეგმა -->
+  <div class="card">
+    <div class="card-header plan">
+      📅 შემდეგი კვირა — May 19–23
+    </div>
+    <div class="card-body">
+
+      <div class="week-grid">
+        <div class="day">
+          <div class="date">ორშაბათი 19</div>
+          <div class="task">BiMedical Email 1 sends 10:00 AM. Carousel launch (if approved).</div>
+        </div>
+        <div class="day">
+          <div class="date">სამშაბათი 20</div>
+          <div class="task">LinkedIn Lead Gen Form — შექმნა + ტესტი.</div>
+        </div>
+        <div class="day">
+          <div class="date">ოთხშაბათი 21</div>
+          <div class="task">Email opens/clicks report. New Meta Leads campaign — creative review.</div>
+        </div>
+        <div class="day">
+          <div class="date">ხუთშაბათი 22</div>
+          <div class="task">Gegidze counter ad — 1 variant submit.</div>
+        </div>
+        <div class="day">
+          <div class="date">პარასკევი 23</div>
+          <div class="task">კვირის summary. LinkedIn post (კვირის ბოლო).</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">Bivision · 2026-05-15 · გელა</div>
+
+</body>
+</html>
