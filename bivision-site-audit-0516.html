@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>bivision.ge - Site Audit 2026-05-16</title>
+<style>
+:root{--purple:#6B63B5;--green:#00A651;--dark:#221A4C;--bg:#F7F7FB;--card:#fff;--muted:#6B7280;--red:#DC2626;--amber:#F59E0B;--blue:#2563EB}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--dark);line-height:1.55;padding:20px}
+.wrap{max-width:1100px;margin:0 auto}
+header{background:linear-gradient(135deg,var(--purple),var(--dark));color:#fff;padding:32px 24px;border-radius:14px;margin-bottom:24px}
+header h1{font-size:28px;margin-bottom:8px}
+header .meta{opacity:.85;font-size:14px}
+.tldr{background:var(--card);padding:20px;border-radius:12px;margin-bottom:20px;border-left:4px solid var(--green)}
+.tldr h2{font-size:18px;margin-bottom:10px;color:var(--purple)}
+.tldr ul{list-style:none;padding:0}
+.tldr li{padding:6px 0;border-bottom:1px solid #eee;font-size:14px}
+.section{margin-bottom:24px}
+.section>h2{font-size:20px;margin-bottom:12px;color:var(--purple);border-bottom:2px solid var(--purple);padding-bottom:6px;display:inline-block}
+.card{background:var(--card);border-radius:12px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.card-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.card-h h3{font-size:16px;color:var(--dark);flex:1;min-width:0}
+.badge{padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;color:#fff}
+.b-p0{background:var(--red)}
+.b-p1{background:var(--amber)}
+.b-p2{background:var(--blue)}
+.b-ok{background:var(--green)}
+.tag{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;margin-left:6px}
+.t-fact{background:#DCFCE7;color:#166534}
+.t-hyp{background:#FEF3C7;color:#92400E}
+.t-inf{background:#DBEAFE;color:#1E40AF}
+.row{display:grid;grid-template-columns:100px 1fr;gap:8px 14px;font-size:13px;margin-top:8px}
+.row dt{color:var(--muted);font-weight:600}
+.row dd{color:var(--dark);word-break:break-word}
+pre{background:#0F172A;color:#E2E8F0;padding:14px;border-radius:8px;overflow:auto;font-family:Consolas,monospace;font-size:12px;margin-top:10px;line-height:1.45;white-space:pre-wrap}
+code.inline{background:#F1F5F9;padding:1px 6px;border-radius:4px;font-size:12px;font-family:Consolas,monospace;color:var(--purple);word-break:break-all}
+.fix{background:#F0FDF4;border-left:3px solid var(--green);padding:10px 14px;margin-top:10px;border-radius:0 6px 6px 0;font-size:13px}
+.fix strong{color:#166534}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;font-size:13px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #eee}
+th{background:var(--purple);color:#fff;font-weight:600;font-size:12px}
+.status-ok{color:var(--green);font-weight:700}
+.status-warn{color:var(--amber);font-weight:700}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px 0 10px}
+@media(max-width:640px){body{padding:12px}header h1{font-size:22px}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1>bivision.ge - Site Audit</h1>
+<div class="meta">2026-05-16 - GelLa - curl-based (no browser) - 5 pages scanned - 1474-line functions.php reviewed</div>
+</header>
+
+<div class="tldr">
+<h2>TL;DR</h2>
+<ul>
+<li><strong>P0 (2):</strong> "სერვისები" menu links to BiFinance instead of /saas-products/. "სუპერი" testimonial appears on 4 product pages.</li>
+<li><strong>P1 (1):</strong> BiRetail video tags have no width/height — CLS / layout collapse risk.</li>
+<li><strong>P2 (1):</strong> Hero img object-fit verify needed (CSS in build/index.css to confirm).</li>
+<li><strong>OK (4):</strong> build/index.css loads. .gif to video filter working. products-mobile-image overflow:hidden active. All 5 pages return 200.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>HTTP Status</h2>
+<table>
+<thead><tr><th>Page</th><th>URL</th><th>Status</th><th>Bytes</th></tr></thead>
+<tbody>
+<tr><td>Home</td><td>https://bivision.ge/</td><td class="status-ok">200</td><td>268,382</td></tr>
+<tr><td>BiRetail</td><td>/saas-products/biretail/</td><td class="status-ok">200</td><td>244,540</td></tr>
+<tr><td>BiFinance</td><td>/saas-products/bifinance/</td><td class="status-ok">200</td><td>235,195</td></tr>
+<tr><td>BiMedical</td><td>/saas-products/bimedical/</td><td class="status-ok">200</td><td>231,504</td></tr>
+<tr><td>BiAudit</td><td>/saas-products/biaudit/</td><td class="status-ok">200</td><td>180,460</td></tr>
+<tr><td>Products index</td><td>/saas-products/</td><td class="status-ok">200</td><td>-</td></tr>
+<tr><td>Services route</td><td>/services/</td><td class="status-warn">404</td><td>- (expected)</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="section">
+<h2>P0 - Critical (ფიქსი დღესვე)</h2>
+
+<div class="card">
+<div class="card-h">
+<h3>BUG #1 - "სერვისები" top-level menu link points to BiFinance, not products index <span class="tag t-fact">FACT</span></h3>
+<span class="badge b-p0">P0</span>
+</div>
+<dl class="row">
+<dt>Verified on</dt><dd>https://bivision.ge/ (home page header nav)</dd>
+<dt>Symptom</dt><dd>User clicks top-level "სერვისები" → lands on BiFinance product page instead of catalog</dd>
+<dt>Cause</dt><dd>WP menu item type=custom, URL field manually set to <code class="inline">/saas-products/bifinance/</code></dd>
+<dt>HTML</dt><dd><code class="inline">&lt;a href="https://bivision.ge/saas-products/bifinance/" class="menu-item-title"&gt;სერვისები&lt;/a&gt;</code></dd>
+</dl>
+<div class="fix">
+<strong>Fix - WP Admin (2 min):</strong><br>
+1. Appearance → Menus → Primary Menu<br>
+2. Expand "სერვისები" item (Custom Link)<br>
+3. URL: change to <code class="inline">https://bivision.ge/saas-products/</code><br>
+4. Save Menu → admin bar → "გაასუფთავე ქეში"<br>
+5. Verify: curl + grep on home page menu items.
+</div>
+</div>
+
+<div class="card">
+<div class="card-h">
+<h3>BUG #2 - "სუპერი" testimonial (empty position) appears on 4 product pages <span class="tag t-fact">FACT</span></h3>
+<span class="badge b-p0">P0</span>
+</div>
+<dl class="row">
+<dt>Verified on</dt><dd>biretail, bifinance, bimedical, biaudit (1 occurrence each). NOT on home.</dd>
+<dt>Symptom</dt><dd>Testimonial card shows author name "სუპერი" with empty position. Author-position p tag empty.</dd>
+<dt>Post ID</dt><dd>3487 (referenced in bifinance/bimedical/biaudit HTML)</dd>
+<dt>HTML</dt><dd><code class="inline">&lt;h4 class="author-name"&gt;სუპერი&lt;/h4&gt;&lt;p class="author-position"&gt;&lt;/p&gt;</code></dd>
+</dl>
+<div class="fix">
+<strong>Fix option A (preferred): unpublish post 3487</strong><br>
+1. WP Admin → Posts → ID 3487 (URL: <code class="inline">/wp-admin/post.php?post=3487&amp;action=edit</code>)<br>
+2. Status → Draft (or Trash if not needed)<br>
+3. Update → Purge cache<br>
+<br>
+<strong>Fix option B:</strong> edit testimonial - fill author name + position properly, or uncheck "Is testimonial" field <code class="inline">_bevision_is_testimonial</code><br>
+<br>
+<strong>Verify:</strong> curl + grep on biretail page expect 0 "სუპერი" occurrences.
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>P1 - High</h2>
+
+<div class="card">
+<div class="card-h">
+<h3>BUG #3 - BiRetail video tags missing width/height (13 videos, 0 with dims) <span class="tag t-fact">FACT</span></h3>
+<span class="badge b-p1">P1</span>
+</div>
+<dl class="row">
+<dt>Verified on</dt><dd>/saas-products/biretail/</dd>
+<dt>Symptom</dt><dd>Cumulative Layout Shift (CLS) - videos load with intrinsic 0x0, hero section collapses until video loads</dd>
+<dt>HTML</dt><dd><code class="inline">&lt;video autoplay loop muted playsinline preload="none"&gt;&lt;source src="BiRetail-SaaS.webm"&gt;&lt;source src="BiRetail-SaaS.mp4"&gt;&lt;/video&gt;</code></dd>
+<dt>Root cause</dt><dd>render_block gif-to-video filter at functions.php:1437 reads width/height from original img tag. If source img had no width/height attr (likely after 2026-05-15 re-upload), video output also lacks them.</dd>
+<dt>Why BiRetail worse</dt><dd>BiRetail has 13 videos vs 1-2 on other pages — most damage visible there.</dd>
+</dl>
+<div class="fix">
+<strong>Fix A - functions.php patch (default dims fallback). In gif-to-video filter (line ~1437), add fallback when width/height match missing:</strong>
+<pre>
+if (!isset($wm[1]) || !isset($hm[1])) {
+    $is_hero = strpos($all, "product-hero") !== false;
+    $w_val = $is_hero ? 1280 : 800;
+    $h_val = $is_hero ? 720  : 600;
+} else {
+    $w_val = $wm[1];
+    $h_val = $hm[1];
+}
+$w = " width=\"" . $w_val . "\"";
+$h = " height=\"" . $h_val . "\"";
+</pre>
+<strong>Fix B (simpler):</strong> re-save BiRetail page in Gutenberg block editor - WP auto-populates width/height from media library metadata. Test single video first.
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>P2 - Medium</h2>
+
+<div class="card">
+<div class="card-h">
+<h3>BUG #4 - Hero image object-fit/object-position needs CSS verify <span class="tag t-hyp">HYPOTHESIS</span></h3>
+<span class="badge b-p2">P2</span>
+</div>
+<dl class="row">
+<dt>Verified on</dt><dd>https://bivision.ge/ (home only - analytics-hero__image)</dd>
+<dt>Symptom (reported)</dt><dd>Hero img not centered properly</dd>
+<dt>HTML</dt><dd><code class="inline">&lt;img class="analytics-hero__desktop-img" src="data:image/svg+xml..."/&gt;</code> - Optimole lazy-load placeholder, no inline object-fit.</dd>
+<dt>Why HYPOTHESIS</dt><dd>build/index.css loaded (ver=1764748958) but computed CSS for analytics-hero__desktop-img not inspected via curl - would need browser DOM.</dd>
+</dl>
+<div class="fix">
+<strong>Fix - inline CSS in functions.php (safest):</strong><br>
+Edit functions.php line ~1369 (existing wp_head style block). Append:
+<pre>.analytics-hero__image{display:flex;align-items:center;justify-content:center;}
+.analytics-hero__desktop-img,.analytics-hero__mobile-img{
+  width:100%;height:auto;max-height:491px;
+  object-fit:contain;object-position:center;
+}</pre>
+<strong>Verify:</strong> Admin → "გაასუფთავე ქეში" → reload home, inspect computed style.
+</div>
+</div>
+
+<div class="card">
+<div class="card-h">
+<h3>BUG #5 - BiRetail 64 imgs (verify alt coverage) <span class="tag t-inf">INFERENCE</span></h3>
+<span class="badge b-p2">P2</span>
+</div>
+<dl class="row">
+<dt>Verified on</dt><dd>/saas-products/biretail/ - 64 img tags total, 62 are Optimole SVG lazy-load placeholders</dd>
+<dt>Status</dt><dd>Not a regression. Most placeholders are Optimole lazy-load SVGs which inherit alt from data-opt-src. Verify alt coverage on real images after browser render.</dd>
+</dl>
+<div class="fix"><strong>Defer:</strong> verify in next browser-based audit.</div>
+</div>
+</div>
+
+<div class="section">
+<h2>OK - Confirmed working</h2>
+
+<div class="card">
+<div class="card-h"><h3>build/index.css loads with cache-bust <span class="tag t-fact">FACT</span></h3><span class="badge b-ok">OK</span></div>
+<dl class="row"><dt>Evidence</dt><dd><code class="inline">build/index.css?ver=1764748958</code> present on home AND biretail. filemtime cache-bust working.</dd></dl>
+</div>
+
+<div class="card">
+<div class="card-h"><h3>render_block gif-to-video filter fully working <span class="tag t-fact">FACT</span></h3><span class="badge b-ok">OK</span></div>
+<dl class="row">
+<dt>Evidence</dt><dd>0 img src .gif on any of 5 pages. Video counts: home=1, biretail=13, bifinance=2, bimedical=2, biaudit=1.</dd>
+<dt>Filter</dt><dd>functions.php:1437 (priority 5, runs BEFORE Optimole). Handles webm + mp4 fallback, urldecode for Georgian filenames.</dd>
+</dl>
+</div>
+
+<div class="card">
+<div class="card-h"><h3>products-mobile-image overflow:hidden still applied <span class="tag t-fact">FACT</span></h3><span class="badge b-ok">OK</span></div>
+<dl class="row">
+<dt>Evidence</dt><dd>8 instances of <code class="inline">products-mobile-image</code> in BiRetail. CSS rule at functions.php:1369 active.</dd>
+</dl>
+</div>
+
+<div class="card">
+<div class="card-h"><h3>All 5 pages return 200 <span class="tag t-fact">FACT</span></h3><span class="badge b-ok">OK</span></div>
+<dl class="row"><dt>Evidence</dt><dd>home, biretail, bifinance, bimedical, biaudit, saas-products all 200. /services/ 404 (expected, route does not exist by design).</dd></dl>
+</div>
+</div>
+
+<div class="section">
+<h2>functions.php - filters summary</h2>
+<table>
+<thead><tr><th>Filter / Hook</th><th>Line</th><th>Purpose</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>logo-alt-fix</td><td>1357</td><td>Replace alt=Logo with alt=Bivision</td><td class="status-ok">active</td></tr>
+<tr><td>dashboard-features-mobile-center + hero-img-fill</td><td>1368</td><td>Mobile CTA center + video fill + products-mobile-image overflow</td><td class="status-ok">active</td></tr>
+<tr><td>wpautop br fix in style</td><td>1373</td><td>Remove br injected inside style tags (BiRetail fix 2026-05-16)</td><td class="status-ok">active</td></tr>
+<tr><td>smart-video-preload</td><td>1380</td><td>preload=auto for visible tab, none for inactive</td><td class="status-ok">active</td></tr>
+<tr><td>img-dims-cdn-fix</td><td>1407</td><td>Adds width/height to img with /w:N/h:N CDN URL (products-image only)</td><td class="status-ok">active</td></tr>
+<tr><td>gif-lazy-load</td><td>1421</td><td>Lazy-load Optimole CDN imgs, skip product-hero</td><td class="status-ok">active</td></tr>
+<tr><td>gif-to-video (priority 5)</td><td>1437</td><td>img.gif → video with webm+mp4 sources</td><td class="status-warn">working but drops width/height when source img missing dims — see BUG #3</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="section">
+<h2>Fix sequence (recommended order)</h2>
+<ol style="padding-left:24px;line-height:2;font-size:14px">
+<li><strong>P0 - Menu fix (2 min, no risk):</strong> Appearance → Menus → "სერვისები" → URL → <code class="inline">/saas-products/</code> → Save → Purge cache.</li>
+<li><strong>P0 - Testimonial cleanup (3 min, no risk):</strong> Post 3487 → Status: Draft → Update → Purge cache. Verify on all 4 pages.</li>
+<li><strong>P1 - Video dims (15 min, low risk):</strong> Option A - re-save BiRetail page in Gutenberg. Option B - apply functions.php patch (BUG #3 fix block). Test with single video first.</li>
+<li><strong>P2 - Hero CSS (5 min, low risk):</strong> Append CSS to functions.php:1369 wp_head style block. Purge cache.</li>
+</ol>
+</div>
+
+<footer>
+GelLa - BiVision Geo lane - curl-based audit (no Playwright) - 2026-05-16<br>
+Next audit recommendation: browser-based DOM check after P0+P1 fixes deployed.
+</footer>
+
+</div>
+</body>
+</html>
