@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI for Productivity — Free Team Course</title>
+<style>
+:root{
+  --purple:#6B63B5;--purple-light:#9b94d4;--purple-dark:#4a4390;
+  --green:#00A651;--green-dark:#007a3d;
+  --dark:#1a1a2e;--mid:#2d2d4a;
+  --light:#f8f9fa;--card:#fff;--border:#e0e0e0;
+  --text:#2c2c3e;--muted:#666;
+  --orange:#e85d04;--teal:#0891b2;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--light);color:var(--text);line-height:1.65;}
+
+/* NAV */
+.sidenav{position:fixed;left:0;top:0;bottom:0;width:228px;background:var(--dark);overflow-y:auto;z-index:100;display:flex;flex-direction:column;}
+.nav-logo{padding:18px 18px 14px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.nav-logo .brand{color:white;font-weight:800;font-size:.95rem;}.nav-logo .brand em{color:var(--green);font-style:normal;}
+.nav-logo .sub{color:rgba(255,255,255,0.38);font-size:.68rem;margin-top:2px;}
+.nav-badge{margin:10px 14px;background:rgba(0,166,81,0.18);border:1px solid rgba(0,166,81,0.35);border-radius:8px;padding:8px 12px;text-align:center;}
+.nav-badge .big{font-size:1.5rem;font-weight:800;color:var(--green);}
+.nav-badge .sm{font-size:.68rem;color:rgba(255,255,255,0.5);}
+.sidenav ul{list-style:none;padding:6px 0;flex:1;}
+.sidenav ul li a{display:flex;align-items:center;gap:7px;color:rgba(255,255,255,.62);text-decoration:none;padding:7px 18px;font-size:.82rem;transition:all .15s;border-left:3px solid transparent;}
+.sidenav ul li a:hover,.sidenav ul li a.active{color:white;background:rgba(107,99,181,.22);border-left-color:var(--purple-light);}
+.sidenav ul li a .num{color:var(--purple-light);font-weight:700;font-size:.76rem;min-width:16px;}
+.sidenav ul li.section-divider{padding:10px 18px 4px;font-size:.65rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.25);}
+.nav-footer{padding:10px 14px;border-top:1px solid rgba(255,255,255,.07);}
+.nav-footer a{color:rgba(255,255,255,.35);font-size:.68rem;text-decoration:none;}
+
+.main{margin-left:228px;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--dark) 0%,var(--purple-dark) 55%,var(--purple) 100%);color:white;padding:52px 48px 40px;position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;right:-80px;bottom:-80px;width:320px;height:320px;background:rgba(255,255,255,.03);border-radius:50%;}
+.hero .kicker{color:var(--green);font-size:.75rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+.hero h1{font-size:2.3rem;font-weight:800;line-height:1.15;margin-bottom:8px;}
+.hero .tagline{opacity:.82;max-width:580px;margin-bottom:18px;font-size:.97rem;}
+.hero .geo-note{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:11px 16px;font-size:.86rem;max-width:560px;margin-bottom:24px;}
+.hero .geo-note strong{color:var(--green);}
+.stats{display:flex;gap:24px;flex-wrap:wrap;}
+.stat .val{font-size:1.7rem;font-weight:800;color:var(--green);}
+.stat .lbl{font-size:.72rem;opacity:.6;margin-top:2px;}
+
+/* CONTENT */
+.content{padding:38px 48px;max-width:1020px;}
+
+/* SECTION HEADER */
+.sec-h{font-size:1.1rem;font-weight:800;color:var(--purple-dark);margin:36px 0 14px;border-left:4px solid var(--purple);padding-left:12px;scroll-margin-top:20px;}
+
+/* CARDS GRID */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:12px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;}
+.card .c-icon{font-size:1.5rem;margin-bottom:8px;}
+.card .c-name{font-weight:800;font-size:.9rem;color:var(--dark);margin-bottom:3px;}
+.card .c-role{font-size:.78rem;color:var(--muted);}
+.card .c-tag{display:inline-block;background:#f0eeff;color:var(--purple-dark);border-radius:10px;padding:2px 9px;font-size:.72rem;font-weight:700;margin-top:6px;}
+
+/* TRAINER CARD */
+.trainer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:20px;}
+.trainer{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;text-decoration:none;transition:all .15s;display:block;}
+.trainer:hover{border-color:var(--purple);box-shadow:0 3px 14px rgba(107,99,181,.12);}
+.trainer .t-avatar{font-size:1.8rem;margin-bottom:6px;}
+.trainer .t-name{font-weight:800;color:var(--dark);font-size:.88rem;margin-bottom:2px;}
+.trainer .t-handle{color:var(--muted);font-size:.74rem;margin-bottom:6px;}
+.trainer .t-best{font-size:.78rem;color:var(--text);line-height:1.4;}
+.trainer .t-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;}
+.t-tag{font-size:.68rem;font-weight:700;padding:2px 7px;border-radius:8px;}
+.t-free{background:#d4edda;color:#155724;}
+.t-video{background:#fff3cd;color:#856404;}
+.t-tech{background:#e2d9f3;color:#4a4390;}
+.t-nocode{background:#d1ecf1;color:#0c5460;}
+.t-star{color:#f59e0b;font-size:.8rem;}
+
+/* FREE TOOLS TABLE */
+.ftable{width:100%;border-collapse:collapse;font-size:.84rem;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.ftable th{background:var(--purple);color:white;padding:9px 12px;text-align:left;font-weight:700;}
+.ftable td{padding:8px 12px;border-bottom:1px solid var(--border);}
+.ftable tr:last-child td{border-bottom:none;}
+.ftable tr:nth-child(even) td{background:#f9f9fb;}
+.pill{display:inline-block;border-radius:8px;padding:2px 9px;font-size:.7rem;font-weight:700;}
+.pg{background:#d4edda;color:#155724;}.py{background:#fff3cd;color:#856404;}.pr{background:#f8d7da;color:#721c24;}
+
+/* PATH TABLE */
+.path-table{width:100%;border-collapse:collapse;font-size:.84rem;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:8px;}
+.path-table th{background:var(--mid);color:white;padding:9px 12px;text-align:left;font-weight:700;}
+.path-table td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+.path-table tr:last-child td{border-bottom:none;}
+.path-table tr:nth-child(even) td{background:#f9f9fb;}
+.path-num{display:flex;gap:5px;flex-wrap:wrap;}
+.pn{background:var(--purple);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;flex-shrink:0;}
+
+/* SESSION */
+.session{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:32px;overflow:hidden;scroll-margin-top:18px;}
+.s-head{background:linear-gradient(135deg,var(--purple-dark) 0%,var(--purple) 100%);color:white;padding:20px 26px;display:flex;align-items:flex-start;gap:16px;}
+.s-badge{background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.35);border-radius:10px;width:50px;height:50px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;}
+.s-badge .bl{font-size:.58rem;opacity:.8;font-weight:700;}
+.s-badge .bn{font-size:1.35rem;font-weight:800;line-height:1.1;}
+.s-info h2{font-size:1.15rem;font-weight:700;margin-bottom:3px;}
+.s-info .ssub{opacity:.78;font-size:.83rem;}
+.s-tags{display:flex;gap:7px;margin-top:7px;flex-wrap:wrap;}
+.stag{background:rgba(255,255,255,.15);border-radius:10px;padding:3px 10px;font-size:.72rem;font-weight:600;}
+.stag.free{background:rgba(0,166,81,.4);}
+.stag.warn{background:rgba(255,193,7,.35);}
+.stag.hot{background:rgba(232,93,4,.4);}
+
+/* HANDS-ON METER */
+.ho-meter{display:flex;align-items:center;gap:10px;margin:14px 0 6px;font-size:.8rem;}
+.ho-bar{flex:1;height:8px;background:#e0e0e0;border-radius:4px;overflow:hidden;}
+.ho-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--green));border-radius:4px;}
+.ho-label{font-weight:700;color:var(--purple-dark);min-width:80px;font-size:.75rem;}
+
+.sbody{padding:22px 26px;}
+.slabel{font-size:.7rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--purple);margin-bottom:7px;margin-top:18px;}
+.slabel:first-child{margin-top:0;}
+.slabel .must{background:var(--orange);color:white;border-radius:6px;padding:1px 6px;font-size:.65rem;margin-left:6px;}
+
+/* OBJS */
+.objs{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
+.obj{display:flex;gap:7px;align-items:flex-start;font-size:.86rem;}
+.obj::before{content:"✓";color:var(--green);font-weight:800;flex-shrink:0;margin-top:1px;}
+
+/* CONCEPTS */
+.concepts{display:flex;flex-wrap:wrap;gap:6px;}
+.concept{background:#f0eeff;color:var(--purple-dark);border-radius:16px;padding:3px 11px;font-size:.78rem;font-weight:600;}
+
+/* RESOURCES */
+.resources{display:flex;flex-direction:column;gap:8px;}
+.resource{border:1px solid var(--border);border-radius:10px;padding:12px 15px;display:flex;align-items:flex-start;gap:12px;text-decoration:none;transition:all .15s;background:#fafafa;position:relative;}
+.resource:hover{border-color:var(--purple);background:#f5f3ff;box-shadow:0 2px 12px rgba(107,99,181,.1);}
+.resource.must-do{border-color:var(--orange);background:#fff8f5;}
+.must-badge{position:absolute;top:-8px;right:12px;background:var(--orange);color:white;font-size:.65rem;font-weight:800;padding:2px 8px;border-radius:8px;}
+.r-icon{font-size:1.2rem;flex-shrink:0;margin-top:2px;}
+.r-body{flex:1;}
+.r-title{font-weight:700;color:var(--text);font-size:.88rem;margin-bottom:2px;}
+.r-desc{font-size:.8rem;color:var(--muted);line-height:1.5;}
+.r-meta{display:flex;gap:6px;margin-top:5px;flex-wrap:wrap;}
+.rm{font-size:.68rem;font-weight:700;padding:2px 7px;border-radius:8px;}
+.rm-free{background:#d4edda;color:#155724;}
+.rm-video{background:#fff3cd;color:#856404;}
+.rm-read{background:#d1ecf1;color:#0c5460;}
+.rm-official{background:#e2d9f3;color:#4a4390;}
+.rm-course{background:#fce4ec;color:#880e4f;}
+.rm-time{background:#f0f0f0;color:#444;}
+
+/* WARN */
+.warnbox{background:#fef3c7;border:1px solid #fcd34d;border-radius:10px;padding:11px 15px;font-size:.84rem;margin-bottom:10px;color:#92400e;}
+.warnbox strong{display:block;margin-bottom:2px;}
+
+/* TWO BOXES */
+.two-boxes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;}
+/* BI BOX */
+.bi-box{background:linear-gradient(135deg,#f0fdf4 0%,#f0eeff 100%);border:1px solid #c3e6cb;border-radius:10px;padding:14px 16px;}
+.bi-box .bh{font-weight:800;color:var(--purple-dark);font-size:.72rem;letter-spacing:.5px;text-transform:uppercase;margin-bottom:5px;}
+.bi-box p{font-size:.84rem;color:#2d4a35;line-height:1.5;}
+/* BIGGER BOX */
+.big-box{background:linear-gradient(135deg,#fff7ed 0%,#fef3c7 100%);border:1px solid #fed7aa;border-radius:10px;padding:14px 16px;}
+.big-box .bh{font-weight:800;color:var(--orange);font-size:.72rem;letter-spacing:.5px;text-transform:uppercase;margin-bottom:5px;}
+.big-box p{font-size:.84rem;color:#7c2d12;line-height:1.5;}
+
+/* EXERCISE */
+.exblock{margin-top:10px;}
+.ex-tabs{display:flex;gap:8px;margin-bottom:0;}
+.ex-tab{background:var(--light);border:1px solid var(--border);border-bottom:none;border-radius:8px 8px 0 0;padding:6px 14px;font-size:.75rem;font-weight:700;color:var(--muted);cursor:pointer;}
+.ex-tab.solo{border-color:var(--purple);color:var(--purple-dark);background:#f0eeff;}
+.ex-tab.team{border-color:var(--teal);color:var(--teal);background:#ecfeff;}
+.ex-panel{border:1px solid var(--border);border-radius:0 8px 8px 8px;padding:14px 18px;background:var(--card);}
+.ex-panel.solo{border-color:var(--purple);border-left:4px solid var(--purple);}
+.ex-panel.team{border-color:var(--teal);border-left:4px solid var(--teal);}
+.ex-title{font-weight:700;font-size:.88rem;margin-bottom:8px;}
+.ex-title.solo{color:var(--purple-dark);}
+.ex-title.team{color:var(--teal);}
+.psteps{list-style:none;counter-reset:s;}
+.psteps li{display:flex;gap:8px;font-size:.84rem;padding:4px 0;counter-increment:s;}
+.psteps li::before{content:counter(s);background:var(--purple);color:white;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:.66rem;font-weight:800;flex-shrink:0;margin-top:2px;}
+.psteps.team li::before{background:var(--teal);}
+
+/* FOOTER */
+.footer{text-align:center;padding:28px;color:var(--muted);font-size:.78rem;border-top:1px solid var(--border);}
+.footer a{color:var(--purple);}
+
+@media(max-width:768px){
+  .sidenav{display:none;}.main{margin-left:0;}
+  .hero{padding:28px 20px;}.content{padding:20px;}
+  .sbody{padding:18px 20px;}.objs{grid-template-columns:1fr;}
+  .two-boxes{grid-template-columns:1fr;}.trainer-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- SIDENAV -->
+<nav class="sidenav">
+  <div class="nav-logo">
+    <div class="brand">AI for <em>Productivity</em></div>
+    <div class="sub">Free Team Course · 8 Sessions · 40+ Resources</div>
+  </div>
+  <div class="nav-badge">
+    <div class="big">0 ₾</div>
+    <div class="sm">900₾ კურსის ეკვივალენტი · უფასოდ</div>
+  </div>
+  <ul>
+    <li class="section-divider">Orientation</li>
+    <li><a href="#intro">📋 Tools & Access</a></li>
+    <li><a href="#trainers">🎓 Best Trainers</a></li>
+    <li><a href="#paths">🗺 Team Learning Paths</a></li>
+    <li class="section-divider">Sessions</li>
+    <li><a href="#s1"><span class="num">01</span>AI Foundations</a></li>
+    <li><a href="#s2"><span class="num">02</span>AI in Workspace</a></li>
+    <li><a href="#s3"><span class="num">03</span>Data & Insight</a></li>
+    <li><a href="#s4"><span class="num">04</span>Projects & Memory</a></li>
+    <li><a href="#s5"><span class="num">05</span>Knowledge & Research</a></li>
+    <li><a href="#s6"><span class="num">06</span>Visual Output</a></li>
+    <li><a href="#s7"><span class="num">07</span>Automation</a></li>
+    <li><a href="#s8"><span class="num">08</span>AI Agents</a></li>
+  </ul>
+  <div class="nav-footer">
+    <a href="ninogorgadze-syllabus-2026-05-16.html">→ Original Syllabus (900₾)</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+<div class="hero">
+  <div class="kicker">Gurafa Intelligence · Bivision · May 2026 · Team Edition</div>
+  <h1>AI for Productivity<br><span style="color:var(--green);">Free Team Course</span></h1>
+  <div class="tagline">8 sessions · Best free English resources · Curated top trainers · Hands-on exercises for individuals and teams · Bivision context + broader thinking</div>
+  <div class="geo-note">
+    <strong>გუნდისთვის:</strong> თითოეულ სესიას აქვს ინდივიდუალური + გუნდური სავარჯიშო. CEO-დან marketing-მდე — ყველა პოზიციისთვის გზა. HO Meter გეტყვის: reading vs doing ratio.
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="val">8</div><div class="lbl">Sessions</div></div>
+    <div class="stat"><div class="val">12</div><div class="lbl">Top Trainers</div></div>
+    <div class="stat"><div class="val">40+</div><div class="lbl">Resources</div></div>
+    <div class="stat"><div class="val">~20h</div><div class="lbl">Total</div></div>
+    <div class="stat"><div class="val">0 ₾</div><div class="lbl">Cost</div></div>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- TOOLS TABLE -->
+<div id="intro" style="scroll-margin-top:20px;">
+<div class="sec-h">Tool Access: What's Free</div>
+<table class="ftable">
+  <tr><th>Tool</th><th>Free?</th><th>Signup</th><th>For This Course</th></tr>
+  <tr><td><strong>Claude</strong></td><td><span class="pill pg">Free</span></td><td>claude.ai</td><td>Primary tool sessions 1-5, 8. Claude Desktop = free download.</td></tr>
+  <tr><td><strong>ChatGPT</strong></td><td><span class="pill py">Partial</span></td><td>chatgpt.com</td><td>Free: GPT-4o, Projects, Memory, Custom GPTs. Plus ($20/mo) = Data Analysis + Agent Mode.</td></tr>
+  <tr><td><strong>NotebookLM</strong></td><td><span class="pill pg">100% Free</span></td><td>notebooklm.google.com</td><td>Session 5. All features — no paid tier exists.</td></tr>
+  <tr><td><strong>Make.com</strong></td><td><span class="pill pg">Free plan</span></td><td>make.com</td><td>Sessions 7-8. 1,000 ops/month. Make Academy = fully free.</td></tr>
+  <tr><td><strong>n8n</strong></td><td><span class="pill pg">100% Free</span></td><td>n8n.io</td><td>Session 7. Self-hosted = unlimited everything. Best Make alternative.</td></tr>
+  <tr><td><strong>Gamma</strong></td><td><span class="pill pg">Free plan</span></td><td>gamma.app</td><td>Session 6. 400 free credits = ~10 full decks. Watermark only.</td></tr>
+  <tr><td><strong>Canva AI</strong></td><td><span class="pill pg">Free</span></td><td>canva.com</td><td>Session 6. Magic Design, AI images. Better free alternative to HeyGen.</td></tr>
+  <tr><td><strong>HeyGen</strong></td><td><span class="pill py">Limited</span></td><td>heygen.com</td><td>Session 6. 1 video/month. Learn concept first via YouTube.</td></tr>
+</table>
+</div>
+
+<!-- TRAINERS HUB -->
+<div id="trainers" style="scroll-margin-top:20px;">
+<div class="sec-h">🎓 Best Trainers & Channels — Who to Follow</div>
+<p style="font-size:.87rem;color:var(--muted);margin-bottom:14px;">These are the actual best educators — not just for this syllabus, but for staying current with AI as it evolves. Subscribe to 2-3 that match your learning style.</p>
+
+<div class="trainer-grid">
+
+  <a class="trainer" href="https://www.youtube.com/@mreflow" target="_blank">
+    <div class="t-avatar">🐺</div>
+    <div class="t-name">Matt Wolfe</div>
+    <div class="t-handle">@mreflow · FutureTools.io</div>
+    <div class="t-best">Best for: weekly AI news that actually matters. "What changed this week and why you should care." Most accessible. Zero jargon.</div>
+    <div class="t-tags"><span class="t-tag t-free">Free</span><span class="t-tag t-video">YouTube</span><span class="t-tag" style="background:#fce4ec;color:#880e4f">AI News #1</span></div>
+  </a>
+
+  <a class="trainer" href="https://www.youtube.com/@LiamOttley" target="_blank">
+    <div class="t-avatar">⚡</div>
+    <div class="t-name">Liam Ottley</div>
+    <div class="t-handle">@LiamOttley · Morningside AI</div>
+    <div class="t-best">Best for: no-code automation, Make.com, AI agencies. Practical business automation — not theory. #1 rated for non-coders.</div>
+    <div class="t-tags"><span class="t-tag t-free">Free</span><span class="t-tag t-nocode">No-Code #1</span><span class="t-tag t-video">YouTube</span></div>
+  </a>
+
+  <a class="trainer" href="https://www.youtube.com/@KevinStratvert" target="_blank">
+    <div class="t-avatar">📊</div>
+    <div class="t-name">Kevin Stratvert</div>
+    <div class="t-handle">@KevinStratvert</div>
+    <div class="t-best">Best for: non-technical team members. Microsoft ex-employee. Extremely clear, slow, visual. Covers Copilot, Make.com, AI tools for everyday work.</div>
+    <div class="t-tags"><span class="t-tag t-free">Free</span><span class="t-tag t-video">YouTube</span><span class="t-tag" style="background:#d1ecf1;color:#0c5460">Beginner Best</span></div>
+  </a>
+
+  <a class="trainer" href="https://www.deeplearning.ai/short-courses/" target="_blank">
+    <div class="t-avatar">🎓</div>
+    <div class="t-name">Andrew Ng / DeepLearning.AI</div>
+    <div class="t-handle">deeplearning.ai</div>
+    <div class="t-best">Best for: structured foundations. 1-2h free courses on every AI topic — prompting, agents, RAG, MCP. Academic quality, practical depth. MIT-level, free.</div>
+    <div class="t-tags"><span class="t-tag t-free">Free</span><span class="t-tag t-tech">Structured</span><span class="t-tag" style="background:#d4edda;color:#155724">⭐ Must Follow</span></div>
+  </a>
+
+  <a class="trainer" href="https://www.youtube.com/@corbin_brown" target="_blank">
+    <div class="t-avatar">🤖</div>
+    <div class="t-name">Corbin Brown</div>
+    <div class="t-handle">@corbin_brown</div>
+    <div class="t-best">Best for: Claude-specific tutorials. Builds real Claude workflows on camera. Shows MCP setup, Projects, Artifacts. Best Claude educator on YouTube.</div>
+    <div class="t-tags"><span class="t-tag t-free">Free</span><span class="t-tag t-video">YouTube</span><span class="t-tag t-tech">Claude Expert</span></div>
+  </a>
+
+  <a class="trainer" href="https://www.youtube.com/@matthew_berman" target="_blank">
+    <div class="t-avatar">🔬</div>
+    <div class="t-name">Matthew Berman</div>
+    <div class="t-handle">@matthew_berman</div>
+    <div class="t-best">Best for: deep dives on new model releases, local AI, open-source tools. Tests new models live as they ship. More technical — for curious learners.</div>
+    <div class="t-tags"><span class="t-tag t-free">Free</span><span class="t-tag t-video">YouTube</span><span class="t-tag t-tech">Advanced</span></div>
+  </a>
+
+  <a class="trainer" href="https://anthropic.skilljar.com/" target="_blank">
+    <div class="t-avatar">🏛</div>
+    <div class="t-name">Anthropic Academy</div>
+    <div class="t-handle">skilljar.com/anthropic</div>
+    <div class="t-best">Best for: authoritative Claude + MCP knowledge. Free courses direct from the makers: AI Fluency, MCP Introduction, Claude prompt engineering.</div>
+    <div class="t-tags"><span class="t-tag t-free">Free</span><span class="t-tag" style="background:#e2d9f3;color:#4a4390">Official</span><span class="t-tag t-tech">Claude</span></div>
+  </a>
+
+  <a class="trainer" href="https://www.youtube.com/@AIExplained-official" target="_blank">
+    <div class="t-avatar">🧠</div>
+    <div class="t-name">AI Explained</div>
+    <div class="t-handle">@AIExplained-official</div>
+    <div class="t-best">Best for: understanding WHY AI works the way it does. Not tutorials — deeper thinking about AI capabilities, limitations, real-world implications. Sharp analysis.</div>
+    <div class="t-tags"><span class="t-tag t-free">Free</span><span class="t-tag t-video">YouTube</span><span class="t-tag" style="background:#fce4ec;color:#880e4f">Thinking Layer</span></div>
+  </a>
+
+  <a class="trainer" href="https://academy.make.com/" target="_blank">
+    <div class="t-avatar">🔄</div>
+    <div class="t-name">Make Academy</div>
+    <div class="t-handle">academy.make.com</div>
+    <div class="t-best">Best for: automation mastery. Official Make.com learning platform — beginner to advanced, AI automation track, certification. 100% free. Session 7 primary resource.</div>
+    <div class="t-tags"><span class="t-tag t-free">Free</span><span class="t-tag t-nocode">Make.com</span><span class="t-tag" style="background:#d4edda;color:#155724">⭐ Must-Do</span></div>
+  </a>
+
+  <a class="trainer" href="https://notebooklm.google.com/" target="_blank">
+    <div class="t-avatar">📓</div>
+    <div class="t-name">Google NotebookLM</div>
+    <div class="t-handle">notebooklm.google.com</div>
+    <div class="t-best">Best for: knowledge management and research. Learn by doing — no course needed. Upload documents, generate AI podcasts, build knowledge bases. Session 5.</div>
+    <div class="t-tags"><span class="t-tag t-free">100% Free</span><span class="t-tag" style="background:#e2d9f3;color:#4a4390">Google</span></div>
+  </a>
+
+  <a class="trainer" href="https://learnprompting.org/" target="_blank">
+    <div class="t-avatar">📖</div>
+    <div class="t-name">LearnPrompting.org</div>
+    <div class="t-handle">learnprompting.org</div>
+    <div class="t-best">Best for: prompting depth. Open-source, community-maintained guide. Most comprehensive free text resource on prompting techniques — from zero-shot to advanced agent patterns.</div>
+    <div class="t-tags"><span class="t-tag t-free">Free</span><span class="t-tag t-tech">Reference</span><span class="t-tag" style="background:#d4edda;color:#155724">⭐ Bookmark</span></div>
+  </a>
+
+  <a class="trainer" href="https://www.youtube.com/@NickMilo" target="_blank">
+    <div class="t-avatar">🗺</div>
+    <div class="t-name">Nick Milo</div>
+    <div class="t-handle">@NickMilo · Linking Your Thinking</div>
+    <div class="t-best">Best for: NotebookLM + knowledge management. Deep dives on organizing knowledge with AI. Particularly good for research-heavy roles — understanding, not just collecting info.</div>
+    <div class="t-tags"><span class="t-tag t-free">Free</span><span class="t-tag t-video">YouTube</span><span class="t-tag t-tech">NotebookLM</span></div>
+  </a>
+
+</div>
+
+<div style="background:#f0eeff;border:1px solid #c4b5fd;border-radius:10px;padding:12px 16px;font-size:.84rem;color:var(--purple-dark);margin-bottom:8px;">
+  <strong>Strategy:</strong> Subscribe to Matt Wolfe (news) + 1 technical (Corbin Brown or Andrew Ng) + Make Academy (automation). That's 80% of what you need. The rest = on-demand.
+</div>
+</div>
+
+<!-- TEAM PATHS -->
+<div id="paths" style="scroll-margin-top:20px;">
+<div class="sec-h">🗺 Team Learning Paths</div>
+<table class="path-table">
+  <tr>
+    <th>Role</th><th>Priority Order</th><th>Skip/Skim</th><th>Time Needed</th>
+  </tr>
+  <tr>
+    <td><strong>CEO / Owner</strong><br><span style="font-size:.75rem;color:var(--muted)">Strategic overview, key decisions</span></td>
+    <td><div class="path-num"><span class="pn">1</span><span class="pn">5</span><span class="pn">4</span><span class="pn">6</span><span class="pn">8</span><span class="pn">7</span></div></td>
+    <td>S2 (deep tech), S3 (data hands-on)</td>
+    <td>~8h core</td>
+  </tr>
+  <tr>
+    <td><strong>Marketing / Copy</strong><br><span style="font-size:.75rem;color:var(--muted)">Content, campaigns, social</span></td>
+    <td><div class="path-num"><span class="pn">1</span><span class="pn">4</span><span class="pn">6</span><span class="pn">5</span><span class="pn">7</span><span class="pn">3</span></div></td>
+    <td>S2 (MCP setup), S8 (agents deep)</td>
+    <td>~10h core</td>
+  </tr>
+  <tr>
+    <td><strong>Sales / BD</strong><br><span style="font-size:.75rem;color:var(--muted)">Lead gen, email, proposals</span></td>
+    <td><div class="path-num"><span class="pn">1</span><span class="pn">4</span><span class="pn">7</span><span class="pn">5</span><span class="pn">6</span><span class="pn">8</span></div></td>
+    <td>S3 (data depth), S2 (technical MCP)</td>
+    <td>~9h core</td>
+  </tr>
+  <tr>
+    <td><strong>Analyst / BI</strong><br><span style="font-size:.75rem;color:var(--muted)">Data, dashboards, reports</span></td>
+    <td><div class="path-num"><span class="pn">1</span><span class="pn">3</span><span class="pn">2</span><span class="pn">5</span><span class="pn">7</span><span class="pn">8</span></div></td>
+    <td>S6 (visual), S4 (GPTs)</td>
+    <td>~12h — all sessions relevant</td>
+  </tr>
+  <tr>
+    <td><strong>Operations / Admin</strong><br><span style="font-size:.75rem;color:var(--muted)">Process automation, coordination</span></td>
+    <td><div class="path-num"><span class="pn">1</span><span class="pn">4</span><span class="pn">7</span><span class="pn">2</span><span class="pn">5</span><span class="pn">8</span></div></td>
+    <td>S3 (advanced data), S6 (design)</td>
+    <td>~8h core</td>
+  </tr>
+  <tr>
+    <td><strong>Sequential (any)</strong><br><span style="font-size:.75rem;color:var(--muted)">Cover everything in order</span></td>
+    <td><div class="path-num"><span class="pn">1</span><span class="pn">2</span><span class="pn">3</span><span class="pn">4</span><span class="pn">5</span><span class="pn">6</span><span class="pn">7</span><span class="pn">8</span></div></td>
+    <td>Nothing — full coverage</td>
+    <td>~20h total</td>
+  </tr>
+</table>
+</div>
+
+<!-- ======================== SESSIONS ======================== -->
+
+<!-- S1 -->
+<div class="session" id="s1">
+  <div class="s-head">
+    <div class="s-badge"><span class="bl">S</span><span class="bn">01</span></div>
+    <div class="s-info">
+      <h2>AI Foundations: LLMs, Tools & Prompting</h2>
+      <div class="ssub">How AI works · ChatGPT vs Claude vs Gemini · Manus / n8n / Lindy landscape · Prompting frameworks</div>
+      <div class="s-tags"><span class="stag">~2.5h</span><span class="stag free">100% Free</span><span class="stag hot">Start Here — Everyone</span></div>
+    </div>
+  </div>
+  <div class="sbody">
+    <div class="slabel">Hands-On Ratio</div>
+    <div class="ho-meter"><span class="ho-label">65% Doing</span><div class="ho-bar"><div class="ho-fill" style="width:65%"></div></div><span style="font-size:.75rem;color:var(--muted)">35% Reading/Watching</span></div>
+
+    <div class="slabel">Learning Objectives</div>
+    <div class="objs">
+      <div class="obj">Explain LLMs in plain language (tokens, context, temperature)</div>
+      <div class="obj">Compare ChatGPT, Claude, Gemini — use case differences</div>
+      <div class="obj">Apply RISEN and Chain-of-Thought prompting frameworks</div>
+      <div class="obj">Map the AI landscape: chatbot vs automation vs agent</div>
+    </div>
+
+    <div class="slabel">Key Concepts</div>
+    <div class="concepts">
+      <span class="concept">LLM</span><span class="concept">Tokens</span><span class="concept">Context window</span><span class="concept">Temperature</span><span class="concept">System prompt</span><span class="concept">Few-shot</span><span class="concept">Chain-of-thought</span><span class="concept">Hallucination</span>
+    </div>
+
+    <div class="slabel">Resources <span class="must">⭐ Start with must-do</span></div>
+    <div class="resources">
+      <a class="resource must-do" href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" target="_blank">
+        <span class="must-badge">⭐ MUST DO</span>
+        <span class="r-icon">🎓</span>
+        <div class="r-body">
+          <div class="r-title">ChatGPT Prompt Engineering — DeepLearning.AI (Andrew Ng + OpenAI)</div>
+          <div class="r-desc">Best structured prompting course on the planet. Free. Taught by Andrew Ng + Isa Fulford from OpenAI. Zero coding required for conceptual lessons. Covers: zero-shot, few-shot, CoT, output format control.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-course">Short Course</span><span class="rm rm-official">Andrew Ng</span><span class="rm rm-time">1h 30min</span></div>
+        </div>
+      </a>
+      <a class="resource must-do" href="https://learnprompting.org/" target="_blank">
+        <span class="must-badge">⭐ BOOKMARK</span>
+        <span class="r-icon">📖</span>
+        <div class="r-body">
+          <div class="r-title">LearnPrompting.org — Open Source Prompting Bible</div>
+          <div class="r-desc">Most complete free resource. Zero-shot → few-shot → CoT → ReAct → advanced patterns. Treat as a reference manual, not a course to read cover-to-cover. Return when you need a specific technique.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-read">Reference</span><span class="rm rm-time">Read as needed</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank">
+        <span class="r-icon">📘</span>
+        <div class="r-body">
+          <div class="r-title">Anthropic Prompt Guide — Claude-Specific Patterns</div>
+          <div class="r-desc">Claude behaves differently from GPT. Key patterns: XML tags for structure, extended thinking blocks, system prompt design. Short, practical, authoritative. Read after DeepLearning course.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-official">Official</span><span class="rm rm-read">Docs</span><span class="rm rm-time">30min</span></div>
+        </div>
+      </a>
+      <div class="resource">
+        <span class="r-icon">🔬</span>
+        <div class="r-body">
+          <div class="r-title">Side-by-Side Comparison (No link — just do it)</div>
+          <div class="r-desc">Open claude.ai + chatgpt.com + gemini.google.com. Send the exact same prompt to all three. This 45-minute exercise teaches more about practical differences than any video. Note: quality, refusals, tone, length, accuracy. Each person on your team will prefer a different one — that's fine.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-time">45min · Hands-On</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-boxes">
+      <div class="bi-box">
+        <div class="bh">🏢 Bivision Context</div>
+        <p>Claude = proposals, reports, client emails. ChatGPT = market research (browsing). Gemini = inside Google Docs. Knowing which tool = right task → 3× speed per deliverable without extra cost.</p>
+      </div>
+      <div class="big-box">
+        <div class="bh">🌍 Think Bigger</div>
+        <p>These tools change how you learn anything. Ask Claude to explain a new concept at 3 different depth levels. Use ChatGPT to challenge your own business decisions. The meta-skill is knowing when to trust and when to verify the AI.</p>
+      </div>
+    </div>
+
+    <div class="exblock">
+      <div class="ex-tabs">
+        <span class="ex-tab solo">👤 Individual Exercise</span>
+      </div>
+      <div class="ex-panel solo">
+        <div class="ex-title solo">1A — Prompt Engineering Practice</div>
+        <ol class="psteps">
+          <li>Pick any real task you do at work (write email, summarize report, plan meeting agenda)</li>
+          <li>Version A: basic prompt ("write an email to a client"). Version B: RISEN framework (Role + Input + Steps + Expectation + Narrowing)</li>
+          <li>Send both to Claude. Compare. What changed?</li>
+          <li>Now send your best version to ChatGPT AND Gemini. Which won for this task type?</li>
+          <li>Save your winning prompt as a template — you'll reuse this exact structure</li>
+        </ol>
+      </div>
+    </div>
+    <div class="exblock" style="margin-top:8px;">
+      <div class="ex-tabs">
+        <span class="ex-tab team">👥 Team Exercise</span>
+      </div>
+      <div class="ex-panel team">
+        <div class="ex-title team">1B — Team Prompt Competition (1h, 3+ people)</div>
+        <ol class="psteps team">
+          <li>Everyone picks the same topic: "Write a LinkedIn post about Bivision's BI solution for Georgian manufacturers"</li>
+          <li>Each person writes a different prompt and sends to Claude. Anonymous — don't show your prompt.</li>
+          <li>Share all outputs (not prompts). Team votes: which output is best?</li>
+          <li>Reveal the prompts. Analyze: what made the winning prompt better?</li>
+          <li>Build a shared "Prompt Library" doc with the best patterns found</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S2 -->
+<div class="session" id="s2">
+  <div class="s-head">
+    <div class="s-badge"><span class="bl">S</span><span class="bn">02</span></div>
+    <div class="s-info">
+      <h2>AI in Workspace: Claude Desktop, MCP & Google</h2>
+      <div class="ssub">Claude Desktop + MCP servers · ChatGPT Desktop screen context · Google Workspace AI · Multi-document analysis</div>
+      <div class="s-tags"><span class="stag">~2h</span><span class="stag free">100% Free</span><span class="stag">Technical but Accessible</span></div>
+    </div>
+  </div>
+  <div class="sbody">
+    <div class="slabel">Hands-On Ratio</div>
+    <div class="ho-meter"><span class="ho-label">70% Doing</span><div class="ho-bar"><div class="ho-fill" style="width:70%"></div></div><span style="font-size:.75rem;color:var(--muted)">30% Reading/Watching</span></div>
+
+    <div class="slabel">Learning Objectives</div>
+    <div class="objs">
+      <div class="obj">Install Claude Desktop and understand MCP in 5 minutes</div>
+      <div class="obj">Connect filesystem MCP — Claude reads local files</div>
+      <div class="obj">Use Gemini inline in Google Docs and Gmail</div>
+      <div class="obj">Analyze multiple documents simultaneously</div>
+    </div>
+
+    <div class="slabel">Key Concepts</div>
+    <div class="concepts">
+      <span class="concept">Claude Desktop</span><span class="concept">MCP Protocol</span><span class="concept">MCP Server</span><span class="concept">Tool use</span><span class="concept">Local files</span><span class="concept">Gemini in Workspace</span>
+    </div>
+
+    <div class="slabel">Resources</div>
+    <div class="resources">
+      <a class="resource must-do" href="https://anthropic.skilljar.com/introduction-to-model-context-protocol" target="_blank">
+        <span class="must-badge">⭐ MUST DO</span>
+        <span class="r-icon">🏫</span>
+        <div class="r-body">
+          <div class="r-title">Introduction to MCP — Anthropic Official Course</div>
+          <div class="r-desc">Free course directly from Anthropic. What MCP is, why it exists, how servers connect Claude to external tools. 45 minutes. Do this before any hands-on setup.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-official">Anthropic Official</span><span class="rm rm-course">Course</span><span class="rm rm-time">45min</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://www.youtube.com/watch?v=3wArVlPvqAk" target="_blank">
+        <span class="r-icon">▶️</span>
+        <div class="r-body">
+          <div class="r-title">Claude Desktop MCP in 13 Minutes — YouTube</div>
+          <div class="r-desc">Best visual quickstart. Install → edit config → add filesystem MCP → Claude reads local files. Watch after the Anthropic course. Do alongside — pause and follow.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-video">Video</span><span class="rm rm-time">13min</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://docs.anthropic.com/en/docs/claude-desktop/mcp" target="_blank">
+        <span class="r-icon">📘</span>
+        <div class="r-body">
+          <div class="r-title">Claude Desktop MCP Docs — Official Config Reference</div>
+          <div class="r-desc">The actual setup file. claude_desktop_config.json format. Lists popular servers: filesystem, brave-search, fetch, Notion, GitHub, Postgres. Bookmark as reference.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-official">Official</span><span class="rm rm-read">Reference</span></div>
+        </div>
+      </a>
+    </div>
+
+    <div class="two-boxes">
+      <div class="bi-box">
+        <div class="bh">🏢 Bivision Context</div>
+        <p>Filesystem MCP = Claude reads client Excel files, Oris exports, proposals directly from your folder. "Summarize all open proposals in /proposals/ and flag any over 30 days old" → Claude does it in seconds, touching files you already have.</p>
+      </div>
+      <div class="big-box">
+        <div class="bh">🌍 Think Bigger</div>
+        <p>MCP is the architecture that makes AI genuinely useful in work contexts — not a chatbot, but an AI with access to your actual world. The same principle powers enterprise AI copilots costing thousands per month. You can build a free equivalent with Claude Desktop + MCP in an afternoon.</p>
+      </div>
+    </div>
+
+    <div class="exblock">
+      <div class="ex-tabs"><span class="ex-tab solo">👤 Individual</span></div>
+      <div class="ex-panel solo">
+        <div class="ex-title solo">2A — First MCP Connection</div>
+        <ol class="psteps">
+          <li>Download Claude Desktop (claude.ai/download). Install.</li>
+          <li>Add filesystem MCP to claude_desktop_config.json — point to your Documents folder</li>
+          <li>Ask Claude: "List all .xlsx files and describe what each seems to contain based on the filename"</li>
+          <li>Add "fetch" MCP server. Ask Claude to read any website and summarize it.</li>
+          <li>Time it: how long did the whole setup take? What would you have spent to get the same capability from a SaaS tool?</li>
+        </ol>
+      </div>
+    </div>
+    <div class="exblock" style="margin-top:8px;">
+      <div class="ex-tabs"><span class="ex-tab team">👥 Team</span></div>
+      <div class="ex-panel team">
+        <div class="ex-title team">2B — Team File Intelligence Session (2h, 2+ people)</div>
+        <ol class="psteps team">
+          <li>Each person sets up Claude Desktop with filesystem MCP (30 min setup together)</li>
+          <li>Person A: ask Claude to analyze a price list Excel. Person B: ask Claude to review a proposal folder.</li>
+          <li>Together: ask Claude to "compare these two proposal templates and suggest a combined best version"</li>
+          <li>Discuss: which team workflows could benefit most from Claude having file access? List top 3.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S3 -->
+<div class="session" id="s3">
+  <div class="s-head">
+    <div class="s-badge"><span class="bl">S</span><span class="bn">03</span></div>
+    <div class="s-info">
+      <h2>Data & Insight: AI-Powered Analysis</h2>
+      <div class="ssub">Upload CSV/Excel · Ask questions · Detect anomalies · Visualize · Insight narratives</div>
+      <div class="s-tags"><span class="stag">~2.5h</span><span class="stag free">Free (Claude)</span><span class="stag warn">ChatGPT Data Analysis = Plus $20/mo</span></div>
+    </div>
+  </div>
+  <div class="sbody">
+    <div class="slabel">Hands-On Ratio</div>
+    <div class="ho-meter"><span class="ho-label">80% Doing</span><div class="ho-bar"><div class="ho-fill" style="width:80%"></div></div><span style="font-size:.75rem;color:var(--muted)">20% Reading/Watching</span></div>
+
+    <div class="warnbox">
+      <strong>⚠️ Free Alternative:</strong> ChatGPT Advanced Data Analysis = Plus only. <strong>Claude free tier fully supports file uploads + analysis.</strong> All exercises in this session work with Claude at no cost. ChatGPT = bonus if you have Plus.
+    </div>
+
+    <div class="slabel">Learning Objectives</div>
+    <div class="objs">
+      <div class="obj">Upload CSV/Excel to Claude and interrogate the data</div>
+      <div class="obj">Prompt for charts, trend analysis, and summaries</div>
+      <div class="obj">Detect anomalies and outliers using natural language</div>
+      <div class="obj">Generate executive-ready insight narratives automatically</div>
+    </div>
+
+    <div class="slabel">Key Concepts</div>
+    <div class="concepts">
+      <span class="concept">File upload</span><span class="concept">Data interrogation</span><span class="concept">Anomaly detection</span><span class="concept">Visualization prompts</span><span class="concept">Insight narrative</span><span class="concept">Claude Artifacts</span>
+    </div>
+
+    <div class="slabel">Resources</div>
+    <div class="resources">
+      <a class="resource must-do" href="https://claude.ai" target="_blank">
+        <span class="must-badge">⭐ PRIMARY TOOL</span>
+        <span class="r-icon">💡</span>
+        <div class="r-body">
+          <div class="r-title">Claude Free — Upload File, Ask Questions Directly</div>
+          <div class="r-desc">claude.ai → attach CSV or Excel file → ask business questions in plain English. Claude generates analysis and Artifacts (HTML tables, summaries). No subscription needed. This is the primary learning tool for this session.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-time">Hands-On Primary</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://mitsloanedtech.mit.edu/ai/tools/how-to-use-chatgpts-advanced-data-analysis-feature/" target="_blank">
+        <span class="r-icon">🎓</span>
+        <div class="r-body">
+          <div class="r-title">MIT Sloan: AI for Data Analysis — Practical Guide</div>
+          <div class="r-desc">MIT's real-world guide. Techniques work identically with Claude. Upload Excel → ask for regression, patterns, outlier detection, visualization. Real business examples throughout.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-read">Guide · MIT</span><span class="rm rm-time">20min read</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://www.coursera.org/learn/chatgpt-advanced-data-analysis" target="_blank">
+        <span class="r-icon">📚</span>
+        <div class="r-body">
+          <div class="r-title">AI Data Analysis — Vanderbilt University (Coursera, Free Audit)</div>
+          <div class="r-desc">3-hour structured course. Audit free — no certificate. Concepts apply equally to Claude. Covers: reshape data, visualize, detect anomalies, automate multi-file tasks.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE (audit)</span><span class="rm rm-course">Vanderbilt</span><span class="rm rm-time">3h</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://cheatcodeslab.com/your-data-supercharged-with-chatgpt-advanced-analysis/" target="_blank">
+        <span class="r-icon">📖</span>
+        <div class="r-body">
+          <div class="r-title">AI Data Analysis Prompt Library</div>
+          <div class="r-desc">Copy-paste prompt templates: "find top 10 anomalies", "show year-over-year trend", "write executive summary in 3 bullets", "flag all rows where X > Y". Works with Claude or ChatGPT. Pure practical reference.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-read">Prompt Library</span><span class="rm rm-time">Reference</span></div>
+        </div>
+      </a>
+    </div>
+
+    <div class="two-boxes">
+      <div class="bi-box">
+        <div class="bh">🏢 Bivision Context</div>
+        <p>Client exports Trial Balance from Oris → CSV → upload to Claude → "Map these accounts to Balance Sheet categories, show equity, assets, liabilities" → Claude generates HTML report. The Oris connector workaround in 15 minutes, free, no ODBC driver.</p>
+      </div>
+      <div class="big-box">
+        <div class="bh">🌍 Think Bigger</div>
+        <p>Every manager has data they don't fully use because analysis is slow. A 5MB expense report, a sales CSV, a survey export — all become interactive in minutes. The bottleneck was never the data. It was the query time. That bottleneck is gone.</p>
+      </div>
+    </div>
+
+    <div class="exblock">
+      <div class="ex-tabs"><span class="ex-tab solo">👤 Individual</span></div>
+      <div class="ex-panel solo">
+        <div class="ex-title solo">3A — Analyze Real Data</div>
+        <ol class="psteps">
+          <li>Export any real data to CSV (invoices, leads, expenses, client list — anything)</li>
+          <li>claude.ai → attach file → "What are the key patterns and anomalies in this data?"</li>
+          <li>"Which [category/client/month] is the outlier and why might that be?"</li>
+          <li>"Write a 3-bullet executive summary for the CFO"</li>
+          <li>Save the output as HTML (Claude Artifact) — this is now a shareable report</li>
+        </ol>
+      </div>
+    </div>
+    <div class="exblock" style="margin-top:8px;">
+      <div class="ex-tabs"><span class="ex-tab team">👥 Team</span></div>
+      <div class="ex-panel team">
+        <div class="ex-title team">3B — Data Story Sprint (1.5h, 2+ people)</div>
+        <ol class="psteps team">
+          <li>Choose one real company dataset everyone can access (e.g., last quarter's sales pipeline)</li>
+          <li>Each person independently asks Claude 5 different questions about the same dataset</li>
+          <li>Regroup: compare findings. Did different questions reveal different truths?</li>
+          <li>Together: build one definitive "CEO Dashboard" Claude Artifact from the best findings</li>
+          <li>Debrief: what questions would the CEO actually ask? Did we ask them?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S4 -->
+<div class="session" id="s4">
+  <div class="s-head">
+    <div class="s-badge"><span class="bl">S</span><span class="bn">04</span></div>
+    <div class="s-info">
+      <h2>Personal Assistants: Projects, Memory & Custom GPTs</h2>
+      <div class="ssub">Claude Projects · ChatGPT Projects + Memory · Custom GPTs · Claude Artifacts · Canvas</div>
+      <div class="s-tags"><span class="stag">~2h</span><span class="stag free">Mostly Free</span><span class="stag">High Daily Value</span></div>
+    </div>
+  </div>
+  <div class="sbody">
+    <div class="slabel">Hands-On Ratio</div>
+    <div class="ho-meter"><span class="ho-label">75% Doing</span><div class="ho-bar"><div class="ho-fill" style="width:75%"></div></div><span style="font-size:.75rem;color:var(--muted)">25% Reading/Watching</span></div>
+
+    <div class="slabel">Learning Objectives</div>
+    <div class="objs">
+      <div class="obj">Create Claude Project with custom instructions + knowledge files</div>
+      <div class="obj">Configure ChatGPT Memory for persistent context</div>
+      <div class="obj">Build a Custom GPT for one repeated workflow</div>
+      <div class="obj">Generate and export via Claude Artifacts</div>
+    </div>
+
+    <div class="slabel">Key Concepts</div>
+    <div class="concepts">
+      <span class="concept">Claude Projects</span><span class="concept">System prompt persistence</span><span class="concept">ChatGPT Memory</span><span class="concept">Custom GPTs</span><span class="concept">GPT Builder</span><span class="concept">Artifacts</span>
+    </div>
+
+    <div class="slabel">Resources</div>
+    <div class="resources">
+      <a class="resource must-do" href="https://support.anthropic.com/en/articles/9517075-what-are-projects" target="_blank">
+        <span class="must-badge">⭐ START HERE</span>
+        <span class="r-icon">📘</span>
+        <div class="r-body">
+          <div class="r-title">Claude Projects — Official Guide</div>
+          <div class="r-desc">Create Projects, set custom system instructions, upload knowledge files (price lists, templates, FAQs). Claude remembers everything within the project. Free on claude.ai. Takes 10 minutes to set up, saves hours daily.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-official">Official</span><span class="rm rm-read">Docs</span><span class="rm rm-time">20min</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://help.openai.com/en/articles/8590148-memory-in-chatgpt" target="_blank">
+        <span class="r-icon">🧠</span>
+        <div class="r-body">
+          <div class="r-title">ChatGPT Memory — Official Guide</div>
+          <div class="r-desc">What ChatGPT remembers between sessions, how to view/edit/delete memories, how to instruct it to remember specific preferences. Free tier included. Pairs well with Claude Projects for a complete workflow.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-official">Official</span><span class="rm rm-read">Guide</span><span class="rm rm-time">15min</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://help.openai.com/en/articles/8554397-creating-a-gpt" target="_blank">
+        <span class="r-icon">🤖</span>
+        <div class="r-body">
+          <div class="r-title">Creating a Custom GPT — OpenAI Official</div>
+          <div class="r-desc">GPT Builder in 10 minutes: name → instructions → knowledge → tools → publish privately. Free ChatGPT account supports creating and using Custom GPTs. Zero coding. The result: a specialized AI for any recurring task.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-official">Official</span><span class="rm rm-read">Guide</span><span class="rm rm-time">30min</span></div>
+        </div>
+      </a>
+    </div>
+
+    <div class="two-boxes">
+      <div class="bi-box">
+        <div class="bh">🏢 Bivision Context</div>
+        <p>"Bivision Sales Assistant" Claude Project: ICP definition, pricing, objection scripts, uploaded case studies. Every email, proposal, client answer uses consistent Bivision voice without re-explaining context. One setup → daily dividend.</p>
+      </div>
+      <div class="big-box">
+        <div class="bh">🌍 Think Bigger</div>
+        <p>Projects and Custom GPTs are personal operating systems. A journalist builds a "research assistant" GPT with source verification instructions. A doctor builds one with clinical guidelines. A teacher with curriculum standards. What's your operating context? Build the AI that knows it.</p>
+      </div>
+    </div>
+
+    <div class="exblock">
+      <div class="ex-tabs"><span class="ex-tab solo">👤 Individual</span></div>
+      <div class="ex-panel solo">
+        <div class="ex-title solo">4A — Build Your Role-Specific AI Assistant</div>
+        <ol class="psteps">
+          <li>Open claude.ai → New Project → name it for your specific role</li>
+          <li>System prompt: describe your role, company context, tone preferences, output format requirements</li>
+          <li>Upload 2-3 reference documents relevant to your work</li>
+          <li>Test with your 3 most common work requests. Measure: how much better vs starting fresh each time?</li>
+          <li>Build parallel Custom GPT in ChatGPT for the same role. Compare which tool + which task = better fit.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="exblock" style="margin-top:8px;">
+      <div class="ex-tabs"><span class="ex-tab team">👥 Team</span></div>
+      <div class="ex-panel team">
+        <div class="ex-title team">4B — Team Assistant Library (2h, whole team)</div>
+        <ol class="psteps team">
+          <li>Each person builds a Claude Project for their role (Marketing, Sales, BI, Ops — each different)</li>
+          <li>Share system prompts with the team. Discussion: what context did each person include? What did they miss?</li>
+          <li>Together, build one shared "Company Knowledge Base" project with shared documents</li>
+          <li>Test: ask the shared project a complex cross-department question. How accurate is it?</li>
+          <li>Decide: what 5 documents would make this shared assistant most valuable?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S5 -->
+<div class="session" id="s5">
+  <div class="s-head">
+    <div class="s-badge"><span class="bl">S</span><span class="bn">05</span></div>
+    <div class="s-info">
+      <h2>Knowledge & Research: NotebookLM + Deep Research</h2>
+      <div class="ssub">NotebookLM · Audio Overview · Deep Research · Q&A on documents · Research structuring</div>
+      <div class="s-tags"><span class="stag">~2h</span><span class="stag free">100% Free</span><span class="stag hot">Best ROI-Per-Hour Session</span></div>
+    </div>
+  </div>
+  <div class="sbody">
+    <div class="slabel">Hands-On Ratio</div>
+    <div class="ho-meter"><span class="ho-label">85% Doing</span><div class="ho-bar"><div class="ho-fill" style="width:85%"></div></div><span style="font-size:.75rem;color:var(--muted)">15% Watching</span></div>
+
+    <div class="slabel">Learning Objectives</div>
+    <div class="objs">
+      <div class="obj">Create NotebookLM from PDFs, links, YouTube videos</div>
+      <div class="obj">Generate Audio Overview (AI podcast) on your documents</div>
+      <div class="obj">Use Studio Panel: study guide, FAQ, briefing doc</div>
+      <div class="obj">Apply Deep Research for multi-source synthesis</div>
+    </div>
+
+    <div class="slabel">Key Concepts</div>
+    <div class="concepts">
+      <span class="concept">NotebookLM</span><span class="concept">Source grounding</span><span class="concept">Audio Overview</span><span class="concept">Studio Panel</span><span class="concept">Deep Research</span><span class="concept">Citation tracking</span>
+    </div>
+
+    <div class="slabel">Resources</div>
+    <div class="resources">
+      <a class="resource must-do" href="https://notebooklm.google.com/" target="_blank">
+        <span class="must-badge">⭐ JUST DO IT</span>
+        <span class="r-icon">📓</span>
+        <div class="r-body">
+          <div class="r-title">NotebookLM — Use It Directly (No Setup Needed)</div>
+          <div class="r-desc">notebooklm.google.com → Google account → upload PDF or paste URL → ask questions → generate Audio Overview. Completely free, no paid tier. Learn by doing — the interface is self-explanatory. Reading guides about it is slower than just opening it.</div>
+          <div class="r-meta"><span class="rm rm-free">100% FREE</span><span class="rm rm-time">Open Now · Hands-On</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://www.youtube.com/watch?v=px10ePAossA" target="_blank">
+        <span class="r-icon">▶️</span>
+        <div class="r-body">
+          <div class="r-title">NotebookLM Beginner's Guide 2025 — YouTube</div>
+          <div class="r-desc">15-minute complete walkthrough: upload sources → generate AI podcast → study guide → FAQ template. Shows all Studio Panel features. Watch if you get stuck, not before you try.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-video">Video</span><span class="rm rm-time">15min</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://wondertools.substack.com/p/notebooklm-the-complete-guide" target="_blank">
+        <span class="r-icon">📖</span>
+        <div class="r-body">
+          <div class="r-title">NotebookLM Complete Guide — WonderTools (Business Focus)</div>
+          <div class="r-desc">Business use cases: competitive research, meeting prep, learning domains fast. Strong on practical applications. Covers advanced features: mind maps, saved responses, sharing notebooks.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-read">Read</span><span class="rm rm-time">15min</span></div>
+        </div>
+      </a>
+    </div>
+
+    <div class="two-boxes">
+      <div class="bi-box">
+        <div class="bh">🏢 Bivision Context</div>
+        <p>Upload competitor pages + industry reports + client RFPs → ask "What positioning gaps exist in the Georgian BI market?" → NotebookLM cross-references all sources with exact citations. What used to be 4 hours of manual research = 20 minutes.</p>
+      </div>
+      <div class="big-box">
+        <div class="bh">🌍 Think Bigger</div>
+        <p>NotebookLM is how you learn anything fast. Upload 5 books on a topic → generate a podcast → listen on your commute → ask questions → you've effectively "read" deeply in hours. It's not cheating; it's leverage. The bottleneck of learning is no longer reading time — it's asking the right questions.</p>
+      </div>
+    </div>
+
+    <div class="exblock">
+      <div class="ex-tabs"><span class="ex-tab solo">👤 Individual</span></div>
+      <div class="ex-panel solo">
+        <div class="ex-title solo">5A — Personal Research Notebook</div>
+        <ol class="psteps">
+          <li>Choose a topic you need to understand better for work (ERP market, construction industry trends, AI in finance)</li>
+          <li>Find 3-5 sources: PDFs, articles, YouTube videos. Add them to a new NotebookLM notebook.</li>
+          <li>Generate Audio Overview. Listen. What surprised you?</li>
+          <li>Click Studio Panel → Briefing Doc. Share that doc with a colleague — does it accurately represent the sources?</li>
+          <li>Ask 5 specific questions to test depth. Note where NotebookLM gives confident wrong answers (it will happen — important to recognize).</li>
+        </ol>
+      </div>
+    </div>
+    <div class="exblock" style="margin-top:8px;">
+      <div class="ex-tabs"><span class="ex-tab team">👥 Team</span></div>
+      <div class="ex-panel team">
+        <div class="ex-title team">5B — Competitive Intelligence Notebook (1.5h, 2+ people)</div>
+        <ol class="psteps team">
+          <li>Together: create one NotebookLM notebook named "Market Intelligence [Month/Year]"</li>
+          <li>Add: 5+ competitor pages (paste URLs), any industry report you have, 2-3 news articles about your market</li>
+          <li>Collectively ask 10 different strategic questions. Each person asks 2.</li>
+          <li>Generate Briefing Doc → review together: what's missing? What do you need to add?</li>
+          <li>Make this a recurring monthly ritual. Same notebook, new sources each month = rolling competitive intelligence.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S6 -->
+<div class="session" id="s6">
+  <div class="s-head">
+    <div class="s-badge"><span class="bl">S</span><span class="bn">06</span></div>
+    <div class="s-info">
+      <h2>Visual Output: AI Design, Presentations & Video</h2>
+      <div class="ssub">Gamma · Canva AI · Claude Design · HeyGen · Executive One-Pager · Infographics</div>
+      <div class="s-tags"><span class="stag">~2h</span><span class="stag free">Mostly Free</span><span class="stag">High Visual Impact</span></div>
+    </div>
+  </div>
+  <div class="sbody">
+    <div class="slabel">Hands-On Ratio</div>
+    <div class="ho-meter"><span class="ho-label">80% Doing</span><div class="ho-bar"><div class="ho-fill" style="width:80%"></div></div><span style="font-size:.75rem;color:var(--muted)">20% Reading/Watching</span></div>
+
+    <div class="slabel">Learning Objectives</div>
+    <div class="objs">
+      <div class="obj">Generate a full presentation deck from a text brief in Gamma</div>
+      <div class="obj">Create infographics and one-pagers in Canva AI</div>
+      <div class="obj">Understand HeyGen — AI avatar video concept + alternatives</div>
+      <div class="obj">Build executive visual package: deck + one-pager + cover image</div>
+    </div>
+
+    <div class="slabel">Key Concepts</div>
+    <div class="concepts">
+      <span class="concept">Gamma</span><span class="concept">Canva AI</span><span class="concept">HeyGen</span><span class="concept">AI avatar</span><span class="concept">One-Pager</span><span class="concept">Claude Artifacts</span><span class="concept">Visual narrative</span>
+    </div>
+
+    <div class="slabel">Resources</div>
+    <div class="resources">
+      <a class="resource must-do" href="https://gamma.app/" target="_blank">
+        <span class="must-badge">⭐ START HERE</span>
+        <span class="r-icon">🎨</span>
+        <div class="r-body">
+          <div class="r-title">Gamma — AI Presentation Maker (400 Free Credits)</div>
+          <div class="r-desc">Sign up → 400 credits (≈10 full decks). Type your topic → AI generates complete slide deck with visuals in 30 seconds. Edit, restyle, export PDF/PPT. No design skills needed. This is the session's core tool — just open and try.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE (400 credits)</span><span class="rm rm-time">Open Immediately</span></div>
+        </div>
+      </a>
+      <a class="resource must-do" href="https://www.canva.com/" target="_blank">
+        <span class="must-badge">⭐ BETTER FOR IMAGES</span>
+        <span class="r-icon">🖼</span>
+        <div class="r-body">
+          <div class="r-title">Canva AI — Magic Design + AI Image Generator</div>
+          <div class="r-desc">Free tier is generous. Magic Design: describe → full deck or one-pager. AI Image Generator: text → professional image. Better free alternative to HeyGen for visual assets. No credit limits for most features. Use for infographics, covers, social posts.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-time">Primary Design Tool</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://tutorialsdojo.com/beginners-guide-to-gamma-let-ai-build-your-presentations/" target="_blank">
+        <span class="r-icon">📖</span>
+        <div class="r-body">
+          <div class="r-title">Beginner's Guide to Gamma — Tutorials Dojo</div>
+          <div class="r-desc">Step-by-step with screenshots: brief → outline → deck → customize → export. Read only if Gamma's interface confuses you — for most people, just open Gamma and try.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-read">Read</span><span class="rm rm-time">15min</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://www.heygen.com/" target="_blank">
+        <span class="r-icon">🎬</span>
+        <div class="r-body">
+          <div class="r-title">HeyGen — AI Avatar Video (1 Free Video/Month)</div>
+          <div class="r-desc">1 free video per month. Paste script → AI avatar speaks it in any language including Georgian (voice clone). Save your credit for when you have a real use case — not for experimenting. Watch YouTube demos first to understand before using your free video.</div>
+          <div class="r-meta"><span class="rm rm-free">1 free/mo</span><span class="rm rm-time">Save for real use case</span></div>
+        </div>
+      </a>
+    </div>
+
+    <div class="two-boxes">
+      <div class="bi-box">
+        <div class="bh">🏢 Bivision Context</div>
+        <p>Gamma: pitch deck for construction sector in 15 min. Canva: "BI Dashboard Value Chain" infographic for LinkedIn. Claude Artifact: HTML data report embed in bihub.ge. HeyGen: Georgian-language product demo video — one per month, planned carefully.</p>
+      </div>
+      <div class="big-box">
+        <div class="bh">🌍 Think Bigger</div>
+        <p>Visual communication is the bottleneck for most ideas that never get funding, adoption, or attention. The idea wasn't bad — the presentation was. AI removes the execution gap between having a good idea and making it look like one. Every person on your team can now present like a designer. That changes org culture, not just output speed.</p>
+      </div>
+    </div>
+
+    <div class="exblock">
+      <div class="ex-tabs"><span class="ex-tab solo">👤 Individual</span></div>
+      <div class="ex-panel solo">
+        <div class="ex-title solo">6A — Full Visual Package in 30 Minutes</div>
+        <ol class="psteps">
+          <li>Choose any topic you need to present or communicate this week</li>
+          <li>Gamma: generate 8-10 slide deck. Time it.</li>
+          <li>Canva: generate 1 infographic summarizing the key concept. Time it.</li>
+          <li>Claude: "Write a one-paragraph executive summary of [topic] as an Artifact in HTML"</li>
+          <li>Total time? Compare to how long this would take traditionally. That delta = your time savings per presentation.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="exblock" style="margin-top:8px;">
+      <div class="ex-tabs"><span class="ex-tab team">👥 Team</span></div>
+      <div class="ex-panel team">
+        <div class="ex-title team">6B — Visual Sprint: Deck Roulette (1.5h)</div>
+        <ol class="psteps team">
+          <li>Each person picks a random topic (not their specialty) — write it on a card, shuffle</li>
+          <li>Everyone has 20 minutes to generate: a Gamma deck + a Canva infographic on their random topic</li>
+          <li>Present to the group — 2 minutes each. No prep beyond what AI gave you.</li>
+          <li>Vote: most compelling presentation? Discuss: what made the prompt good or bad?</li>
+          <li>Debrief: when does AI visual output work? When does it need significant editing?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S7 -->
+<div class="session" id="s7">
+  <div class="s-head">
+    <div class="s-badge"><span class="bl">S</span><span class="bn">07</span></div>
+    <div class="s-info">
+      <h2>Automation & Workflows: Make.com + n8n</h2>
+      <div class="ssub">Triggers · Actions · Filters · Routers · AI text in workflows · Approval flows · Make.com vs n8n</div>
+      <div class="s-tags"><span class="stag">~3h</span><span class="stag free">Free Plans Available</span><span class="stag hot">Highest ROI Session</span></div>
+    </div>
+  </div>
+  <div class="sbody">
+    <div class="slabel">Hands-On Ratio</div>
+    <div class="ho-meter"><span class="ho-label">70% Doing</span><div class="ho-bar"><div class="ho-fill" style="width:70%"></div></div><span style="font-size:.75rem;color:var(--muted)">30% Learning Structure</span></div>
+
+    <div class="slabel">Learning Objectives</div>
+    <div class="objs">
+      <div class="obj">Build your first Make.com scenario with 3+ modules</div>
+      <div class="obj">Add AI text generation inside an automated workflow</div>
+      <div class="obj">Create an approval-based automation flow</div>
+      <div class="obj">Know when to use Make.com vs n8n (free, unlimited)</div>
+    </div>
+
+    <div class="slabel">Key Concepts</div>
+    <div class="concepts">
+      <span class="concept">Scenario</span><span class="concept">Trigger</span><span class="concept">Action</span><span class="concept">Filter</span><span class="concept">Router</span><span class="concept">Operations</span><span class="concept">Webhook</span><span class="concept">AI module</span><span class="concept">n8n</span>
+    </div>
+
+    <div class="slabel">Resources</div>
+    <div class="resources">
+      <a class="resource must-do" href="https://academy.make.com/" target="_blank">
+        <span class="must-badge">⭐ MUST DO FIRST</span>
+        <span class="r-icon">🏫</span>
+        <div class="r-body">
+          <div class="r-title">Make Academy — Official Free Certification (Start Here)</div>
+          <div class="r-desc">100% free. Official Make.com courses: beginner → intermediate → AI automation track → certification badge. Self-paced, hands-on exercises built into the platform. 4-6 hours for full track. Best structured automation course available for free.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-official">Make.com Official</span><span class="rm rm-course">Full Track</span><span class="rm rm-time">4-6h total</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://www.youtube.com/@LiamOttley" target="_blank">
+        <span class="r-icon">▶️</span>
+        <div class="r-body">
+          <div class="r-title">Liam Ottley — No-Code AI Automation YouTube Channel</div>
+          <div class="r-desc">Rated #1 for no-code automation educators. Makes real business automations on camera using Make.com + AI. Watch: his "AI automation agency" series. Practical, results-focused, no fluff. Subscribe for ongoing learning.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-video">YouTube Channel</span><span class="rm rm-time">On-demand</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://www.youtube.com/watch?v=MpmpC4C5fZs" target="_blank">
+        <span class="r-icon">▶️</span>
+        <div class="r-body">
+          <div class="r-title">Master Make.com in 2 Hours — YouTube</div>
+          <div class="r-desc">Complete beginner guide. Scenarios, triggers, actions, filters, routers, error handling. Real examples throughout. Watch if you prefer video over Make Academy's course format.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-video">Video</span><span class="rm rm-time">2h</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://docs.n8n.io/try-n8n/" target="_blank">
+        <span class="r-icon">⚡</span>
+        <div class="r-body">
+          <div class="r-title">n8n — 100% Free Self-Hosted Make.com Alternative</div>
+          <div class="r-desc">When Make.com's 1,000 ops/month limit is too low: n8n self-hosted = unlimited everything, forever free. 400+ integrations, same visual builder concept. 30-minute setup. For serious automation volume without per-operation cost.</div>
+          <div class="r-meta"><span class="rm rm-free">100% FREE</span><span class="rm rm-official">n8n.io</span><span class="rm rm-time">30min setup</span></div>
+        </div>
+      </a>
+    </div>
+
+    <div class="two-boxes">
+      <div class="bi-box">
+        <div class="bh">🏢 Bivision Context</div>
+        <p>Lead automation: new HubSpot contact → Make.com → Claude generates personalized email using company + industry → Gmail draft for review. 197 construction CFOs processed in one scenario run. Manual time per lead: 20 min → 0 min.</p>
+      </div>
+      <div class="big-box">
+        <div class="bh">🌍 Think Bigger</div>
+        <p>Automation is the force multiplier. A person with good automation skills produces the output of 3-5 without it. The question isn't "which task should I automate?" — it's "which recurring tasks are too important to leave to human consistency?" Errors in manual processes are invisible until they matter. Automation makes the invisible visible.</p>
+      </div>
+    </div>
+
+    <div class="exblock">
+      <div class="ex-tabs"><span class="ex-tab solo">👤 Individual</span></div>
+      <div class="ex-panel solo">
+        <div class="ex-title solo">7A — Your First AI-Powered Workflow</div>
+        <ol class="psteps">
+          <li>Create Make.com free account. New Scenario.</li>
+          <li>Trigger: Google Sheets "Watch rows" (new row = new lead/task/entry)</li>
+          <li>Module 2: Claude or OpenAI → generate personalized content based on row data</li>
+          <li>Module 3: Gmail "Create draft" OR Google Sheets "Update row" with AI output</li>
+          <li>Test with 3 rows. Review outputs. What would you change in the AI instruction?</li>
+        </ol>
+      </div>
+    </div>
+    <div class="exblock" style="margin-top:8px;">
+      <div class="ex-tabs"><span class="ex-tab team">👥 Team</span></div>
+      <div class="ex-panel team">
+        <div class="ex-title team">7B — Process Audit + Automation Map (2h, whole team)</div>
+        <ol class="psteps team">
+          <li>Each person lists: the 5 most repetitive tasks they do weekly that involve moving info between tools</li>
+          <li>Group mapping: plot them on a whiteboard/doc. Identify the 3 highest-volume bottlenecks for the whole team.</li>
+          <li>Pick 1 to automate together. Build the Make.com scenario as a group — one person drives, others direct.</li>
+          <li>Test live. Debrief: what failed? What would you improve? How long would building this have taken without AI tools?</li>
+          <li>Create an "Automation Backlog" — prioritized list of future automation candidates.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S8 -->
+<div class="session" id="s8">
+  <div class="s-head">
+    <div class="s-badge"><span class="bl">S</span><span class="bn">08</span></div>
+    <div class="s-info">
+      <h2>AI Agents: Multi-Step Autonomous Workflows</h2>
+      <div class="ssub">What is an agent · ChatGPT Agent Mode · Claude as Agent (MCP) · Agent patterns · Real use cases</div>
+      <div class="s-tags"><span class="stag">~3h</span><span class="stag free">Mostly Free</span><span class="stag">Most Advanced Session</span></div>
+    </div>
+  </div>
+  <div class="sbody">
+    <div class="slabel">Hands-On Ratio</div>
+    <div class="ho-meter"><span class="ho-label">60% Doing</span><div class="ho-bar"><div class="ho-fill" style="width:60%"></div></div><span style="font-size:.75rem;color:var(--muted)">40% Concepts + Architecture</span></div>
+
+    <div class="slabel">Learning Objectives</div>
+    <div class="objs">
+      <div class="obj">Define agent vs chatbot vs automation (and when each is right)</div>
+      <div class="obj">Observe ChatGPT Agent Mode executing a multi-step task</div>
+      <div class="obj">Configure Claude + MCP tools to act as a lightweight agent</div>
+      <div class="obj">Identify 3 agent-ready workflows in your actual work</div>
+    </div>
+
+    <div class="slabel">Key Concepts</div>
+    <div class="concepts">
+      <span class="concept">AI Agent</span><span class="concept">Tool use</span><span class="concept">Plan → Act → Observe loop</span><span class="concept">Browser control</span><span class="concept">Human-in-the-loop</span><span class="concept">Guardrails</span><span class="concept">Multi-agent</span>
+    </div>
+
+    <div class="slabel">Resources</div>
+    <div class="resources">
+      <a class="resource must-do" href="https://www.youtube.com/playlist?list=PLlrxD0HtieHgKcRjd5-8DT9TbwdlDO-OC" target="_blank">
+        <span class="must-badge">⭐ BEST FREE COURSE</span>
+        <span class="r-icon">▶️</span>
+        <div class="r-body">
+          <div class="r-title">AI Agents for Beginners — Microsoft (10-Lesson YouTube Series)</div>
+          <div class="r-desc">The best free structured course on AI agents in existence. Microsoft's 10 lessons: what agents are, planning patterns, tool use, memory, multi-agent systems, safety. Conceptual + practical. First 5 lessons require zero coding — perfect for non-technical learners. The standard reference for AI agent architecture in 2025-2026.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-official">Microsoft</span><span class="rm rm-video">10-lesson series</span><span class="rm rm-time">~4h total</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://www.youtube.com/watch?v=k50ZVChTLo8" target="_blank">
+        <span class="r-icon">▶️</span>
+        <div class="r-body">
+          <div class="r-title">ChatGPT Agent Mode Step-by-Step Demo — YouTube</div>
+          <div class="r-desc">Best practical demo of what agent mode actually does: browses web, extracts data, creates files, completes multi-step tasks without human input between steps. Watch to understand the "feel" before building your own.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-video">Video</span><span class="rm rm-time">20min</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://www.codecademy.com/article/chatgpt-agent-mode-tutorial" target="_blank">
+        <span class="r-icon">📖</span>
+        <div class="r-body">
+          <div class="r-title">ChatGPT Agents: 3 Real Use Cases — Codecademy</div>
+          <div class="r-desc">Written tutorial. Three concrete business use cases with step-by-step instructions. Efficient — gets to application without theory overhead. Good for practical thinkers who want examples before concepts.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-read">Read</span><span class="rm rm-time">20min</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://www.youtube.com/watch?v=mjkecNwp1X0" target="_blank">
+        <span class="r-icon">▶️</span>
+        <div class="r-body">
+          <div class="r-title">Build a ChatGPT Agent — Full Tutorial for Beginners (YouTube)</div>
+          <div class="r-desc">Build a custom agent with instructions, knowledge files, and tools from scratch. Complete walkthrough. No coding. The output: a working specialized AI agent you own.</div>
+          <div class="r-meta"><span class="rm rm-free">FREE</span><span class="rm rm-video">Video</span><span class="rm rm-time">25min</span></div>
+        </div>
+      </a>
+    </div>
+
+    <div class="two-boxes">
+      <div class="bi-box">
+        <div class="bh">🏢 Bivision Context</div>
+        <p>Competitor monitoring agent: every Monday, Claude + browser MCP → Meta Ads Library → scan Amadeo, Gegidze → extract new ads → compare to last week → write summary → save to disk. What's currently a weekly manual task = fully automated. Zero human time after setup.</p>
+      </div>
+      <div class="big-box">
+        <div class="bh">🌍 Think Bigger</div>
+        <p>Agents are the boundary of current AI. Right now they fail unexpectedly, hallucinate tool calls, get stuck in loops. Understanding their limits IS the skill — knowing when to trust an agent unsupervised vs when human-in-the-loop is mandatory. The managers who thrive will be those who design agent boundaries, not those who let agents run wild.</p>
+      </div>
+    </div>
+
+    <div class="exblock">
+      <div class="ex-tabs"><span class="ex-tab solo">👤 Individual</span></div>
+      <div class="ex-panel solo">
+        <div class="ex-title solo">8A — Agent Opportunity Mapping</div>
+        <ol class="psteps">
+          <li>List 5 weekly tasks: find info → process it → produce output (report, email, update)</li>
+          <li>Score each: (a) how often? (b) how consistent? (c) how long? (d) need creativity?</li>
+          <li>Top score = best agent candidate. Build it in Claude + MCP or Make.com</li>
+          <li>Run it once supervised. Watch for: what breaks? Where does it need human judgment?</li>
+          <li>Calculate: time saved × 50 weeks = annual hours reclaimed. Is it worth 3h to build?</li>
+        </ol>
+      </div>
+    </div>
+    <div class="exblock" style="margin-top:8px;">
+      <div class="ex-tabs"><span class="ex-tab team">👥 Team</span></div>
+      <div class="ex-panel team">
+        <div class="ex-title team">8B — Agent Design Workshop (2h, whole team)</div>
+        <ol class="psteps team">
+          <li>Each person presents their top agent candidate from Exercise 8A (5 min each)</li>
+          <li>Group vote: which one creates the most value for the company if built well?</li>
+          <li>Design session: map out the winning agent's architecture — Trigger → Steps → Tools → Output → Human checkpoint</li>
+          <li>Assign owner: who builds it? Timeline? How do we measure success?</li>
+          <li>Define failure mode: what happens if the agent does something wrong? What's the rollback plan? This is the most important step — agents fail in unexpected ways.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<div class="footer">
+  Compiled by Gurafa Intelligence · Bivision · 2026-05-16 · All resources verified free and publicly accessible<br>
+  Based on <a href="ninogorgadze-syllabus-2026-05-16.html">ნინო გორგაძე AI for Management syllabus</a> · Original: 900₾ · 16h live<br>
+  This version: 0₾ · ~20h self-paced · 12 curated trainers · Individual + Team exercises · Bivision context + universal thinking
+</div>
+
+</div><!-- /main -->
+
+<script>
+const ids=['intro','trainers','paths','s1','s2','s3','s4','s5','s6','s7','s8'];
+const links=document.querySelectorAll('.sidenav a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  ids.forEach(id=>{const el=document.getElementById(id);if(el&&window.scrollY>=el.offsetTop-90)cur=id;});
+  links.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
+});
+</script>
+</body>
+</html>
