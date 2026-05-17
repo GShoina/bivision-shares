@@ -444,6 +444,49 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--light);color:var(-
       <span class="concept">LLM</span><span class="concept">Tokens</span><span class="concept">Context window</span><span class="concept">Temperature</span><span class="concept">System prompt</span><span class="concept">Few-shot</span><span class="concept">Chain-of-thought</span><span class="concept">Hallucination</span>
     </div>
 
+    <div class="slabel">AI Tool Landscape — Know What Exists Before You Choose</div>
+    <div style="overflow-x:auto;margin-bottom:10px;">
+    <table style="width:100%;border-collapse:collapse;font-size:.82rem;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+      <tr style="background:var(--mid);color:white;">
+        <th style="padding:9px 12px;text-align:left;">Tool</th>
+        <th style="padding:9px 12px;text-align:left;">Category</th>
+        <th style="padding:9px 12px;text-align:left;">Best For</th>
+        <th style="padding:9px 12px;text-align:left;">Free?</th>
+        <th style="padding:9px 12px;text-align:left;">Covered In</th>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;"><strong>Claude</strong></td><td style="padding:8px 12px;">AI Model</td><td style="padding:8px 12px;">Writing, analysis, code, long context</td><td style="padding:8px 12px;"><span class="pill pg">Free</span></td><td style="padding:8px 12px;">S1–S8</td>
+      </tr>
+      <tr style="background:#f9f9fb;border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;"><strong>ChatGPT</strong></td><td style="padding:8px 12px;">AI Model</td><td style="padding:8px 12px;">Web search, data analysis (Plus), Custom GPTs</td><td style="padding:8px 12px;"><span class="pill py">Partial</span></td><td style="padding:8px 12px;">S1, S3, S4, S8</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;"><strong>n8n</strong></td><td style="padding:8px 12px;">Automation</td><td style="padding:8px 12px;">Workflow automation, AI-native, self-hosted. Claude has native node.</td><td style="padding:8px 12px;"><span class="pill pg">Free (self-host)</span></td><td style="padding:8px 12px;">S7 ★ Primary</td>
+      </tr>
+      <tr style="background:#f9f9fb;border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;"><strong>Make.com</strong></td><td style="padding:8px 12px;">Automation</td><td style="padding:8px 12px;">No-code automation, faster setup than n8n, 1K ops/mo free</td><td style="padding:8px 12px;"><span class="pill pg">Free plan</span></td><td style="padding:8px 12px;">S7 (alternative)</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;"><strong>Lindy.ai</strong></td><td style="padding:8px 12px;">Agent Platform</td><td style="padding:8px 12px;">No-code agent builder. 4000+ apps. Claude Sonnet 4.5 native. "AI employees"</td><td style="padding:8px 12px;"><span class="pill py">400 credits/mo</span></td><td style="padding:8px 12px;">S8 ★ Primary</td>
+      </tr>
+      <tr style="background:#f9f9fb;border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;"><strong>OpenClaw</strong></td><td style="padding:8px 12px;">Personal Agent</td><td style="padding:8px 12px;">Runs locally on your machine. WhatsApp/Telegram/Slack UI. 100+ skills, Claude API. 214K GitHub stars.</td><td style="padding:8px 12px;"><span class="pill pg">Free (self-host)</span></td><td style="padding:8px 12px;">S8</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;"><strong>Manus</strong></td><td style="padding:8px 12px;">Autonomous Agent</td><td style="padding:8px 12px;">Multi-agent research, code execution, "My Computer" desktop. Acquired by Meta Dec 2025.</td><td style="padding:8px 12px;"><span class="pill py">300 credits/day free</span></td><td style="padding:8px 12px;">S8</td>
+      </tr>
+      <tr style="background:#f9f9fb;border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;"><strong>AutoGPT</strong></td><td style="padding:8px 12px;">Agent Framework</td><td style="padding:8px 12px;">Open-source autonomous agent. GPT-4 based. Builder UI + agent marketplace.</td><td style="padding:8px 12px;"><span class="pill pg">Open source</span></td><td style="padding:8px 12px;">S8</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;"><strong>Hermes Agent</strong></td><td style="padding:8px 12px;">Agent Framework</td><td style="padding:8px 12px;">Self-hosted, MIT license, learns your workflows over 30 days. VPS $5-20/mo + API costs.</td><td style="padding:8px 12px;"><span class="pill pg">Free (self-host)</span></td><td style="padding:8px 12px;">S8</td>
+      </tr>
+      <tr style="background:#f9f9fb;">
+        <td style="padding:8px 12px;"><strong>Lindy / Manus vs Make.com</strong></td><td style="padding:8px 12px;">Decision</td><td style="padding:8px 12px;"><strong>Make/n8n</strong> = deterministic, exact trigger logic. <strong>Lindy/Manus/Agents</strong> = flexible, AI-reasoned steps. Use both for different tasks.</td><td style="padding:8px 12px;">—</td><td style="padding:8px 12px;">S7+S8</td>
+      </tr>
+    </table>
+    </div>
+
     <div class="slabel">Resources <span class="must">⭐ Start with must-do</span></div>
     <div class="resources">
       <a class="resource must-do" href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" target="_blank">
@@ -1093,7 +1136,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--light);color:var(-
     <div class="two-boxes">
       <div class="bi-box">
         <div class="bh">🏢 Bivision Context</div>
-        <p>Lead automation: new HubSpot contact → Make.com → Claude generates personalized email using company + industry → Gmail draft for review. 197 construction CFOs processed in one scenario run. Manual time per lead: 20 min → 0 min.</p>
+        <p><strong>Recommended stack: n8n + Claude.</strong> n8n has native Anthropic node — no API wrangling. New HubSpot contact → n8n → Claude generates personalized email → Gmail draft. 197 CFOs in one run. Make.com = faster to start; n8n = better for Claude-heavy workflows, unlimited, free.</p>
       </div>
       <div class="big-box">
         <div class="bh">🌍 Think Bigger</div>
@@ -1136,7 +1179,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--light);color:var(-
     <div class="s-badge"><span class="bl">S</span><span class="bn">08</span></div>
     <div class="s-info">
       <h2>AI Agents: Multi-Step Autonomous Workflows</h2>
-      <div class="ssub">What is an agent · ChatGPT Agent Mode · Claude as Agent (MCP) · Agent patterns · Real use cases</div>
+      <div class="ssub">What is an agent · Lindy (no-code agents) · OpenClaw · Manus · AutoGPT · Hermes · Claude+MCP · ChatGPT Agent Mode</div>
       <div class="s-tags"><span class="stag">~3h</span><span class="stag free">Mostly Free</span><span class="stag">Most Advanced Session</span></div>
     </div>
   </div>
@@ -1154,11 +1197,64 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--light);color:var(-
 
     <div class="slabel">Key Concepts</div>
     <div class="concepts">
-      <span class="concept">AI Agent</span><span class="concept">Tool use</span><span class="concept">Plan → Act → Observe loop</span><span class="concept">Browser control</span><span class="concept">Human-in-the-loop</span><span class="concept">Guardrails</span><span class="concept">Multi-agent</span>
+      <span class="concept">AI Agent</span><span class="concept">Tool use</span><span class="concept">Plan → Act → Observe</span><span class="concept">Lindy</span><span class="concept">OpenClaw</span><span class="concept">Manus</span><span class="concept">AutoGPT</span><span class="concept">Hermes</span><span class="concept">Human-in-the-loop</span><span class="concept">Guardrails</span>
+    </div>
+
+    <div class="slabel">Agent Platform Comparison — Choose Your Entry Point</div>
+    <div style="overflow-x:auto;margin-bottom:12px;">
+    <table style="width:100%;border-collapse:collapse;font-size:.81rem;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+      <tr style="background:var(--mid);color:white;">
+        <th style="padding:8px 12px;">Platform</th><th style="padding:8px 12px;">Type</th><th style="padding:8px 12px;">Effort</th><th style="padding:8px 12px;">Cost</th><th style="padding:8px 12px;">Best For</th>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);background:#f0fdf4;">
+        <td style="padding:8px 12px;"><strong>Lindy.ai</strong> ★</td><td style="padding:8px 12px;">No-code agent builder</td><td style="padding:8px 12px;">Low — visual UI</td><td style="padding:8px 12px;">Free 400 cr/mo; $49/mo+</td><td style="padding:8px 12px;">Business teams, non-technical. Claude 4.5 native. "AI employees" that run workflows.</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;"><strong>OpenClaw</strong></td><td style="padding:8px 12px;">Personal agent (self-host)</td><td style="padding:8px 12px;">Medium — runs on your machine</td><td style="padding:8px 12px;">Free + API costs</td><td style="padding:8px 12px;">Personal AI on WhatsApp/Telegram. 100+ skills. Claude API. 214K GitHub stars.</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);background:#f9f9fb;">
+        <td style="padding:8px 12px;"><strong>Manus</strong></td><td style="padding:8px 12px;">Autonomous cloud agent</td><td style="padding:8px 12px;">Low — hosted</td><td style="padding:8px 12px;">300 credits/day free; $19/mo+</td><td style="padding:8px 12px;">Multi-step research + code. "My Computer" desktop control. Meta-owned Dec 2025.</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;"><strong>AutoGPT</strong></td><td style="padding:8px 12px;">Open-source agent</td><td style="padding:8px 12px;">Medium</td><td style="padding:8px 12px;">Open source + API</td><td style="padding:8px 12px;">Full autonomy experiments. Builder UI + agent marketplace. GPT-4 based.</td>
+      </tr>
+      <tr>
+        <td style="padding:8px 12px;"><strong>Hermes Agent</strong></td><td style="padding:8px 12px;">Self-hosted, MIT</td><td style="padding:8px 12px;">High — VPS setup</td><td style="padding:8px 12px;">$5-20/mo VPS + API</td><td style="padding:8px 12px;">Learns your workflows over 30 days. Transparent cost. Full control.</td>
+      </tr>
+    </table>
+    </div>
+
+    <div style="background:#f0fdf4;border:1px solid #c3e6cb;border-radius:10px;padding:11px 16px;font-size:.84rem;margin-bottom:12px;color:#2d4a35;">
+      <strong>Recommendation for non-technical team:</strong> Start with <strong>Lindy.ai</strong> — no setup, Claude native, visual builder. If you hit the free tier limit: move to n8n (S7) + Claude MCP (S2) = full equivalent, zero ongoing cost.
     </div>
 
     <div class="slabel">Resources</div>
     <div class="resources">
+      <a class="resource must-do" href="https://www.lindy.ai/" target="_blank">
+        <span class="must-badge">⭐ START HERE (no-code)</span>
+        <span class="r-icon">🤖</span>
+        <div class="r-body">
+          <div class="r-title">Lindy.ai — No-Code AI Agent Builder (Claude 4.5 Native)</div>
+          <div class="r-desc">Sign up free (400 credits/month ≈ 40 tasks). Build "Lindies" — AI employees that run multi-step workflows. 4,000+ app integrations including HubSpot, Gmail, Slack. Visual builder, natural language instructions. Best entry point for non-technical team members. Claude Sonnet 4.5 integrated natively.</div>
+          <div class="r-meta"><span class="rm rm-free">400 credits/mo free</span><span class="rm rm-official">lindy.ai</span><span class="rm rm-time">Try immediately</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://openclaw.ai/" target="_blank">
+        <span class="r-icon">🦞</span>
+        <div class="r-body">
+          <div class="r-title">OpenClaw — Personal AI Agent on WhatsApp/Telegram (214K GitHub stars)</div>
+          <div class="r-desc">Open-source personal agent. Runs locally on your machine. Responds on WhatsApp, Telegram, Slack, Discord. 100+ built-in skills: reads emails, manages calendar, runs code, browses web. Uses Claude API. Created by Peter Steinberger (Austrian), launched Nov 2025 — fastest-growing open source project ever. <strong>Note: requires Claude API key, not free account.</strong></div>
+          <div class="r-meta"><span class="rm rm-free">Free (self-host)</span><span class="rm rm-official">openclaw.ai</span><span class="rm rm-time">Advanced setup</span></div>
+        </div>
+      </a>
+      <a class="resource" href="https://manus.im/" target="_blank">
+        <span class="r-icon">🌐</span>
+        <div class="r-body">
+          <div class="r-title">Manus — Autonomous Multi-Agent Platform (Meta-owned)</div>
+          <div class="r-desc">Give it a complex task: Manus delegates to sub-agents (one browses, one codes, one synthesizes). Free tier: 300 credits/day. "My Computer" feature lets it control desktop apps. Acquired by Meta Dec 2025. Good for research tasks that need 10+ steps. Watch demo before trying — credits burn fast on complex tasks.</div>
+          <div class="r-meta"><span class="rm rm-free">300 credits/day free</span><span class="rm rm-official">manus.im</span><span class="rm rm-time">Watch demo first</span></div>
+        </div>
+      </a>
       <a class="resource must-do" href="https://www.youtube.com/playlist?list=PLlrxD0HtieHgKcRjd5-8DT9TbwdlDO-OC" target="_blank">
         <span class="must-badge">⭐ BEST FREE COURSE</span>
         <span class="r-icon">▶️</span>
