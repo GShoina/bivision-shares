@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gurafa Intelligence Hub v2</title>
+<style>
+:root {
+  --purple:#6B63B5; --purple-d:#4f48a0; --purple-l:#8B83C5;
+  --green:#00A651; --bg:#f0f2f7; --card:#fff;
+  --text:#1e1e2e; --muted:#6b7280; --border:#e5e7eb;
+  --red:#ef4444; --orange:#f97316; --blue:#3b82f6;
+  --sidebar:#16161e;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden}
+.app{display:flex;flex-direction:column;height:100vh}
+
+.topbar{background:var(--purple);color:#fff;padding:0 20px;height:52px;display:flex;align-items:center;gap:12px;flex-shrink:0;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.topbar h1{font-size:16px;font-weight:700;letter-spacing:-.3px}
+.ver{background:rgba(255,255,255,.18);padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.3px}
+.sp{flex:1}
+.topbar .dt{font-size:12px;opacity:.65}
+.topbar a{font-size:11px;color:rgba(255,255,255,.65);text-decoration:none;padding:3px 11px;border:1px solid rgba(255,255,255,.25);border-radius:14px;transition:.15s;white-space:nowrap}
+.topbar a:hover{background:rgba(255,255,255,.15);color:#fff}
+
+.layout{display:flex;flex:1;overflow:hidden}
+
+.sidebar{width:205px;background:var(--sidebar);flex-shrink:0;overflow-y:auto;display:flex;flex-direction:column;padding-bottom:16px}
+.s-lbl{padding:16px 16px 5px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:rgba(255,255,255,.28)}
+.nav{display:flex;align-items:center;padding:9px 16px;cursor:pointer;font-size:13px;color:rgba(255,255,255,.65);border-left:3px solid transparent;user-select:none;transition:background .12s,color .12s}
+.nav:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.9)}
+.nav.on{background:rgba(107,99,181,.35);color:#fff;border-left-color:var(--purple-l)}
+.nav .ic{width:22px;font-size:14px;flex-shrink:0}
+.nav .lb{flex:1}
+.nav .ct{background:rgba(255,255,255,.12);border-radius:10px;padding:1px 7px;font-size:10.5px;font-weight:600}
+.nav.urg .ct{background:var(--red);color:#fff}
+.s-hr{margin:8px 14px;border:none;border-top:1px solid rgba(255,255,255,.08)}
+.s-foot{margin-top:auto;padding:14px 16px 0;border-top:1px solid rgba(255,255,255,.07)}
+.s-foot a{display:block;color:rgba(255,255,255,.3);text-decoration:none;font-size:11px;padding:4px 0;transition:.15s}
+.s-foot a:hover{color:rgba(255,255,255,.6)}
+
+.main{flex:1;overflow-y:auto;padding:22px 26px}
+.sec{display:none}
+.sec.on{display:block}
+
+.sh{margin-bottom:18px;padding-bottom:13px;border-bottom:2px solid var(--border);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.sh-t{font-size:20px;font-weight:700}
+.sh-s{font-size:12.5px;color:var(--muted)}
+
+.wg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:26px}
+.wb{border-radius:10px;padding:14px;border-left:4px solid}
+.wb.urg{background:#fef2f2;border-color:var(--red)}
+.wb.opn{background:#fff7ed;border-color:var(--orange)}
+.wb.que{background:#f0fdf4;border-color:var(--green)}
+.wb.mon{background:#eff6ff;border-color:var(--blue)}
+.wt{font-size:10px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px}
+.wb.urg .wt{color:var(--red)}.wb.opn .wt{color:var(--orange)}.wb.que .wt{color:var(--green)}.wb.mon .wt{color:var(--blue)}
+.wn{font-size:13.5px;font-weight:700;margin-bottom:4px;line-height:1.3}
+.wd{font-size:12px;color:var(--muted);line-height:1.5}
+.wo{font-size:11px;margin-top:8px;font-weight:600;color:var(--muted)}
+
+.sub{margin-bottom:22px}
+.sub-t{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.sub-t::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+
+.card{background:var(--card);border-radius:12px;padding:20px 22px;border:1px solid var(--border);display:flex;flex-direction:column;transition:box-shadow .15s,transform .15s}
+.card:hover{box-shadow:0 4px 20px rgba(0,0,0,.1);transform:translateY(-2px)}
+.card.feat{border-color:var(--purple);border-width:2px}
+.cm{display:flex;align-items:center;gap:7px;margin-bottom:10px;flex-wrap:wrap}
+.b{font-size:10px;font-weight:800;letter-spacing:.4px;padding:3px 10px;border-radius:20px;text-transform:uppercase}
+.b-can{background:var(--purple);color:#fff}
+.b-act{background:var(--green);color:#fff}
+.b-new{background:#fef3c7;color:#92400e}
+.b-log{background:#dbeafe;color:#1d4ed8}
+.cd{font-size:12px;color:var(--muted)}
+.ct2{font-size:16px;font-weight:700;line-height:1.35;margin-bottom:7px}
+.cd2{font-size:13.5px;color:var(--muted);line-height:1.6;flex:1;margin-bottom:16px}
+.cf{display:flex;justify-content:flex-end}
+.btn{display:inline-block;text-decoration:none;background:var(--purple);color:#fff;padding:7px 18px;border-radius:20px;font-size:13px;font-weight:600;transition:.15s;white-space:nowrap}
+.btn:hover{background:var(--purple-d)}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:rgba(0,0,0,.12);border-radius:3px}
+</style>
+</head>
+<body>
+<div class="app">
+
+<header class="topbar">
+  <h1>&#128269; Gurafa Intelligence Hub</h1>
+  <span class="ver">v2 &middot; Gurafa only</span>
+  <span class="sp"></span>
+  <span class="dt">17 &#4315;&#4304;&#4312;&#4321;&#4312;, 2026</span>
+  <a href="GURAFA_INDEX.html">&#8592; v1</a>
+</header>
+
+<div class="layout">
+<aside class="sidebar">
+  <div class="s-lbl">&#4315;&#4317;&#4316;&#4312;&#4311;&#4317;&#4320;&#4312;&#4316;&#4306;&#4312;</div>
+  <div class="nav urg on" onclick="sw('watch',this)"><span class="ic">&#127919;</span><span class="lb">Active Watch</span><span class="ct">4</span></div>
+
+  <hr class="s-hr">
+  <div class="s-lbl">&#4312;&#4316;&#4311;&#4308;&#4314;&#4312;&#4304;&#4306;&#4308;&#4316;&#4321;&#4312;</div>
+  <div class="nav" onclick="sw('comp',this)"><span class="ic">&#128373;&#65039;</span><span class="lb">Competitor Intel</span><span class="ct">3</span></div>
+  <div class="nav" onclick="sw('market',this)"><span class="ic">&#127959;&#65039;</span><span class="lb">Market Research</span><span class="ct">2</span></div>
+  <div class="nav" onclick="sw('ai',this)"><span class="ic">&#129302;</span><span class="lb">AI Scout</span><span class="ct">2</span></div>
+
+  <hr class="s-hr">
+  <div class="s-lbl">&#4315;&#4304;&#4320;&#4313;&#4308;&#4311;&#4312;&#4316;&#4306;&#4312;</div>
+  <div class="nav" onclick="sw('camp',this)"><span class="ic">&#128226;</span><span class="lb">Campaigns</span><span class="ct">1</span></div>
+  <div class="nav" onclick="sw('strat',this)"><span class="ic">&#128301;</span><span class="lb">Strategy</span><span class="ct">2</span></div>
+
+  <hr class="s-hr">
+  <div class="s-lbl">&#4311;&#4308;&#4325;&#4316;&#4312;&#4313;&#4304;</div>
+  <div class="nav" onclick="sw('site',this)"><span class="ic">&#127760;</span><span class="lb">BI Health Check</span><span class="ct">2</span></div>
+
+  <div class="s-foot">
+    <a href="GURAFA_INDEX.html">&#8592; Hub v1 (May 15)</a>
+  </div>
+</aside>
+
+<main class="main">
+
+<!-- ACTIVE WATCH -->
+<section id="watch" class="sec on">
+  <div class="sh">
+    <span class="sh-t">&#127919; Active Watch</span>
+    <span class="sh-s">&#4307;&#4326;&#4308;&#4321; &#4320;&#4312;&#4303;&#4308;&#4313;&#4312;&#4321; &#4321;&#4311;&#4304;&#4311;&#4323;&#4321;&#4312; &middot; May 17, 2026</span>
+  </div>
+
+  <div class="wg">
+    <div class="wb urg">
+      <div class="wt">&#128308; Urgent</div>
+      <div class="wn">Bivision &mdash; 0 Active Ads</div>
+      <div class="wd">3+ &#4313;&#4309;&#4312;&#4320;&#4304; &#4306;&#4304;&#4330;&#4323;&#4315;&#4308;&#4305;&#4304;. Calendly &#4326;&#4307;&#4308;&#4307;&#4304; + IG placement. Gegidze + Amadeo &#4309;&#4312;&#4566;&#4312;&#4305;&#4308;&#4314;&#4312;&#4304;.</div>
+      <div class="wo">Owner &#8594; Mariam &#8594; &#4307;&#4326;&#4308;&#4321;&#4309;&#4308;</div>
+    </div>
+    <div class="wb opn">
+      <div class="wt">&#128992; Open</div>
+      <div class="wn">Gegidze Counter</div>
+      <div class="wd">Sector-specific post &#8212; construction CFO. Gegidze AI automation active (Apr 29).</div>
+      <div class="wo">Mentari / Mariam</div>
+    </div>
+    <div class="wb que">
+      <div class="wt">&#128994; Queued &middot; May 19</div>
+      <div class="wn">Dastafe + DataStudio.ge</div>
+      <div class="wd">&#4320;&#4312;&#4300;&#4304;&#4316;&#4307;&#4308;&#4314;&#4312; &#4304;&#4307;&#4321; &#4321;&#4313;&#4304;&#4316;&#4312;. MCP Oris/Fina GitHub check.</div>
+      <div class="wo">Gurafa</div>
+    </div>
+    <div class="wb mon">
+      <div class="wt">&#128309; Monitor &middot; &#4304;&#4313;&#4313;&#4308;&#4305;&#4321;&#4304;&#4303;&#4312;&#4311;&#4304;</div>
+      <div class="wn">&#4316;&#4312;&#4316;&#4317; &#4306;&#4317;&#4320;&#4306;&#4304;&#4307;&#4566;&#4308;</div>
+      <div class="wd">LinkedIn + Facebook. Marketing automation, AI tools. ICP &#4306;&#4304;&#4325;&#4332;&#4309;&#4312;. Tornike &#4311;&#4304;&#4316;&#4304;&#4315;&#4317;&#4316;&#4312;&#4311;&#4317;&#4320;&#4312;.</div>
+      <div class="wo">Gurafa + Tornike &#8594; &#4325;&#4304;&#4316;&#4305;&#4304; &#8594; Mentari</div>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-t">&#4313;&#4309;&#4308;&#4314;&#4304; &#4332;&#4304;&#4321;&#4309;&#4323;&#4314;&#4304; &mdash; &#4306;&#4323;&#4320;&#4304;&#4323;&#4304;&#4321; &#4320;&#4308;&#4320;&#4311;&#4308;&#4305;&#4312;</div>
+    <div class="grid">
+      <div class="card feat">
+        <div class="cm"><span class="b b-can">Canonical</span><span class="cd">2026-05-15</span></div>
+        <div class="ct2">Competitor Hub &mdash; Full Scan Apr/May</div>
+        <div class="cd2">Amadeo, FMG SOFT, BDO, SMART GE, Apricot. BDO = abandoned. Gegidze = HIGH.</div>
+        <div class="cf"><a href="competitor-intel-2026-05-15.html" class="btn" target="_blank">&#8594; &#4306;&#4304;&#4334;&#4321;&#4316;&#4304;</a></div>
+      </div>
+      <div class="card feat">
+        <div class="cm"><span class="b b-new">Latest</span><span class="cd">2026-05-15</span></div>
+        <div class="ct2">AI Scout &mdash; May 15 Signals</div>
+        <div class="cd2">HIGH: ChatGPT Excel CFO. HIGH: Claude + HubSpot. MED: MCP Georgian ERP first-mover.</div>
+        <div class="cf"><a href="ai-scout-2026-05-15.html" class="btn" target="_blank">&#8594; &#4306;&#4304;&#4334;&#4321;&#4316;&#4304;</a></div>
+      </div>
+      <div class="card feat">
+        <div class="cm"><span class="b b-new">Latest</span><span class="cd">2026-05-15</span></div>
+        <div class="ct2">&#4321;&#4304;&#4315;&#4577;&#4308;&#4316;&#4308;&#4305;&#4314;&#4317; &mdash; &#4305;&#4304;&#4311;&#4323;&#4315;&#4312; + &#4325;&#4323;&#4311;&#4304;&#4312;&#4321;&#4312;</div>
+        <div class="cd2">234 developer &#4313;&#4317;&#4315;&#4320;&#4304;&#4316;&#4312;&#4304;. ICP-scored. Contact enrichment &#8594; LinkedIn + korter.ge.</div>
+        <div class="cf"><a href="construction-companies-batumi-kutaisi-2026-05-15.html" class="btn" target="_blank">&#8594; &#4306;&#4304;&#4334;&#4321;&#4316;&#4304;</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITOR -->
+<section id="comp" class="sec">
+  <div class="sh">
+    <span class="sh-t">&#128373;&#65039; Competitor Intel</span>
+    <span class="sh-s">&#4304;&#4307;&#4321; &#4321;&#4313;&#4304;&#4316;&#4308;&#4305;&#4312; + &#4315;&#4317;&#4316;&#4312;&#4311;&#4317;&#4320;&#4312;&#4316;&#4306;&#4312;</span>
+  </div>
+
+  <div class="sub">
+    <div class="sub-t">&#4313;&#4304;&#4316;&#4317;&#4316;&#4312;&#4313;&#4323;&#4320;&#4312;</div>
+    <div class="grid">
+      <div class="card feat">
+        <div class="cm"><span class="b b-can">Canonical</span><span class="cd">2026-05-15</span></div>
+        <div class="ct2">Full Competitor Scan &mdash; Apr/May 2026</div>
+        <div class="cd2">Amadeo, FMG SOFT, BDO, SMART GE, Apricot. Gegidze HIGH. Amadeo stable 10wk. BDO abandoned. Watch list &#4307;&#4304;&#4329;&#4312;&#4320;&#4308;&#4305;&#4323;&#4314;&#4312;.</div>
+        <div class="cf"><a href="competitor-intel-2026-05-15.html" class="btn" target="_blank">&#8594; &#4306;&#4304;&#4334;&#4321;&#4316;&#4304;</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-t">&#4321;&#4320;&#4323;&#4314;&#4312; &#4321;&#4313;&#4304;&#4316;&#4308;&#4305;&#4312;</div>
+    <div class="grid">
+      <div class="card">
+        <div class="cm"><span class="b b-log">Logged</span><span class="cd">2026-05-02</span></div>
+        <div class="ct2">Amadeo Deep Dive</div>
+        <div class="cd2">Analytics/AI layer, NOT ERP. ReportX + BOG discount. HIGH threat. FMG connector unverified.</div>
+        <div class="cf"><a href="2026-05-02 Amadeo Competitor Intel by Gurafa.html" class="btn" target="_blank">&#8594; &#4306;&#4304;&#4334;&#4321;&#4316;&#4304;</a></div>
+      </div>
+      <div class="card">
+        <div class="cm"><span class="b b-log">Logged</span><span class="cd">2026-05-01</span></div>
+        <div class="ct2">Gegidze FB Ads Baseline</div>
+        <div class="cd2">AI automation framing. A/B, FB+IG+Messenger. Construction targeting active.</div>
+        <div class="cf"><a href="2026-05-01 Gegidze vs Bivision FB Ads Baseline by Gurafa.html" class="btn" target="_blank">&#8594; &#4306;&#4304;&#4334;&#4321;&#4316;&#4304;</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET RESEARCH -->
+<section id="market" class="sec">
+  <div class="sh">
+    <span class="sh-t">&#127959;&#65039; Market Research</span>
+    <span class="sh-s">&#4321;&#4308;&#4313;&#4311;&#4317;&#4320;&#4323;&#4314;&#4312; &#4304;&#4316;&#4304;&#4314;&#4312;&#4566;&#4312; + prospects</span>
+  </div>
+
+  <div class="grid">
+    <div class="card feat">
+      <div class="cm"><span class="b b-new">Latest</span><span class="cd">2026-05-15</span></div>
+      <div class="ct2">&#4321;&#4304;&#4315;&#4577;&#4308;&#4316;&#4308;&#4305;&#4314;&#4317; &mdash; &#4305;&#4304;&#4311;&#4323;&#4315;&#4312; + &#4325;&#4323;&#4311;&#4304;&#4312;&#4321;&#4312;</div>
+      <div class="cd2">234 developer. ICP-scored. &#4313;&#4317;&#4316;&#4311;&#4304;&#4325;&#4311;&#4312;&#4321; &#4307;&#4304;&#4296;&#4319;&#4312;&#4320;&#4308;&#4305;&#4304; &#8594; LinkedIn + korter.ge + rs.ge.</div>
+      <div class="cf"><a href="construction-companies-batumi-kutaisi-2026-05-15.html" class="btn" target="_blank">&#8594; &#4306;&#4304;&#4334;&#4321;&#4316;&#4304;</a></div>
+    </div>
+    <div class="card feat">
+      <div class="cm"><span class="b b-new">Latest</span><span class="cd">2026-05-15</span></div>
+      <div class="ct2">Odoo Deep Analysis &mdash; GE Market</div>
+      <div class="cd2">Odoo threat level. ERP landscape. Bivision differentiation + pitch angles.</div>
+      <div class="cf"><a href="odoo-deep-analysis-2026-05-15.html" class="btn" target="_blank">&#8594; &#4306;&#4304;&#4334;&#4321;&#4316;&#4304;</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- AI SCOUT -->
+<section id="ai" class="sec">
+  <div class="sh">
+    <span class="sh-t">&#129302; AI Scout</span>
+    <span class="sh-s">Claude + AI &#4308;&#4313;&#4317;&#4321;&#4312;&#4321;&#4311;&#4308;&#4315;&#4304; &middot; Bivision &#4308;&#4307;&#4308;&#4315;&#4312;</span>
+  </div>
+
+  <div class="grid">
+    <div class="card feat">
+      <div class="cm"><span class="b b-new">Latest</span><span class="cd">2026-05-15</span></div>
+      <div class="ct2">AI Scout &mdash; May 15 Signals</div>
+      <div class="cd2">
+        <strong>HIGH:</strong> ChatGPT Excel &#8212; CFO objection handler.<br>
+        <strong>HIGH:</strong> Claude Small Business + HubSpot &#8212; Bivision lane.<br>
+        <strong>MED:</strong> MCP Georgian ERP first-mover window.
+      </div>
+      <div class="cf"><a href="ai-scout-2026-05-15.html" class="btn" target="_blank">&#8594; &#4306;&#4304;&#4334;&#4321;&#4316;&#4304;</a></div>
+    </div>
+    <div class="card feat">
+      <div class="cm"><span class="b b-act">Active</span><span class="cd">2026-05-16</span></div>
+      <div class="ct2">AI Productivity Course &mdash; Georgian Market</div>
+      <div class="cd2">8 session. n8n + Claude = primary stack. Lindy, OpenClaw, Manus, AutoGPT. Session 7: Bivision box. GitHub Pages live.</div>
+      <div class="cf"><a href="ai-productivity-course-2026-05-16.html" class="btn" target="_blank">&#8594; &#4306;&#4304;&#4334;&#4321;&#4316;&#4304;</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPAIGNS -->
+<section id="camp" class="sec">
+  <div class="sh">
+    <span class="sh-t">&#128226; Campaigns</span>
+    <span class="sh-s">Gurafa-authored &#4313;&#4304;&#4315;&#4320;&#4304;&#4316;&#4312;&#4304; &#4315;&#4304;&#4321;&#4304;&#4314;&#4312;</span>
+  </div>
+
+  <div class="grid">
+    <div class="card feat">
+      <div class="cm"><span class="b b-log">Logged</span><span class="cd">2026-05-10</span></div>
+      <div class="ct2">Cold Email Protocol v1 &mdash; Construction</div>
+      <div class="cd2">Protocol framework. BI Health Check hook. CFO/CEO target. Georgian cold email rules.</div>
+      <div class="cf"><a href="2026-05-10 Cold Email Protocol v1 Construction by Gurafa.html" class="btn" target="_blank">&#8594; &#4306;&#4304;&#4334;&#4321;&#4316;&#4304;</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGY -->
+<section id="strat" class="sec">
+  <div class="sh">
+    <span class="sh-t">&#128301; Strategy</span>
+    <span class="sh-s">Messaging &middot; Positioning &mdash; &#4313;&#4304;&#4316;&#4317;&#4316;&#4312;&#4313;&#4323;&#4320;&#4312; &#4307;&#4317;&#4313;&#4323;&#4315;&#4308;&#4316;&#4311;&#4308;&#4305;&#4312;</span>
+  </div>
+
+  <div class="grid">
+    <div class="card feat">
+      <div class="cm"><span class="b b-can">Canonical</span><span class="cd">2026-04-21</span></div>
+      <div class="ct2">Bivision Messaging Core v2</div>
+      <div class="cd2">ERP connectors (Fina / Oris / 1C / Balance). ICP: 1M&#8211;70M&#8382;, CFO+CEO. Georgian pain = ERP+Excel+human-as-system.</div>
+      <div class="cf"><a href="2026-04-21 Bivision Messaging V2 by Gurafa.html" class="btn" target="_blank">&#8594; &#4306;&#4304;&#4334;&#4321;&#4316;&#4304;</a></div>
+    </div>
+    <div class="card">
+      <div class="cm"><span class="b b-log">Logged</span><span class="cd">2026-04-29</span></div>
+      <div class="ct2">Bivision Dossier &mdash; External AI Brief</div>
+      <div class="cd2">&#4321;&#4320;&#4323;&#4314;&#4312; &#4313;&#4317;&#4316;&#4311;&#4308;&#4325;&#4321;&#4312;&#4321; &#4315;&#4317;&#4313;&#4314;&#4308;. Company, ICP, products, moats &#8212; external AI handoff.</div>
+      <div class="cf"><a href="2026-04-29 Bivision Dossier for AI Sharing by Gurafa.html" class="btn" target="_blank">&#8594; &#4306;&#4304;&#4334;&#4321;&#4316;&#4304;</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- SITE / BI HEALTH CHECK -->
+<section id="site" class="sec">
+  <div class="sh">
+    <span class="sh-t">&#127760; BI Health Check</span>
+    <span class="sh-s">&#4313;&#4314;&#4312;&#4308;&#4316;&#4311; &#4308;&#4316;&#4311;&#4320;&#4312; &#4320;&#4308;&#4317;&#4322;&#4308;&#4305;&#4312; &mdash; Gurafa-authored</span>
+  </div>
+
+  <div class="grid">
+    <div class="card feat">
+      <div class="cm"><span class="b b-act">Active</span><span class="cd">2026-05-10</span></div>
+      <div class="ct2">BI Health Check v3 &mdash; Construction</div>
+      <div class="cd2">Construction CFO entry product. 2&#8211;3&#4325;&#4309;&#4304;&#4324;&#4312; deploy promise.</div>
+      <div class="cf"><a href="2026-05-10 BI Health Check v3 Construction by Gurafa.html" class="btn" target="_blank">&#8594; &#4306;&#4304;&#4334;&#4321;&#4316;&#4304;</a></div>
+    </div>
+    <div class="card feat">
+      <div class="cm"><span class="b b-act">Active</span><span class="cd">2026-05-10</span></div>
+      <div class="ct2">BI Health Check v4 &mdash; IVF Medical</div>
+      <div class="cd2">Medical clinic CFO. Green lane &#8212; uncontested sector.</div>
+      <div class="cf"><a href="2026-05-10 BI Health Check v4 IVF Medical by Gurafa.html" class="btn" target="_blank">&#8594; &#4306;&#4304;&#4334;&#4321;&#4316;&#4304;</a></div>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+</div>
+
+<script>
+function sw(id,el){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.nav').forEach(n=>n.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  el.classList.add('on');
+  document.querySelector('.main').scrollTop=0;
+}
+</script>
+</body>
+</html>
