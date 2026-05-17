@@ -154,16 +154,16 @@
     <div class="changelog-entry"><div class="cl-date">May 9–10</div><div>lang="ka-GE" + og:locale=ka_GE ✅ · robots.txt AI bots (GPTBot/PerplexityBot/ClaudeBot) → Allow ✅ · Calendly → /thank-you-booking + fbq Schedule ✅ · GTM V12 ✅</div></div>
     <div class="changelog-entry"><div class="cl-date">May 11</div><div>CSP header LIVE ✅ · Wordfence CLEAN ✅ · llms.txt HTTP 200 ✅ · JSON-LD inLanguage ka-GE (6×) ✅ · 6 product pages title+meta+H1+schema ALL PASS ✅ · 5 sitemaps ✅</div></div>
     <div class="changelog-entry"><div class="cl-date">May 13–14</div><div>GIF → WebM/MP4 21/21 ✅ · Old URL 301 redirects LIVE (/direction/*, /media/*, /contact) ✅ · Mobile CTA justify-center fix ✅ · external cron confirmed ✅</div></div>
-    <div class="changelog-entry"><div class="cl-date">May 17</div><div>Double &lt;title&gt; → FIXED (Rank Math exclusive, add_theme_support commented) ✅ · www→non-www 301 ✅ · Alt tags bulk 124/Media Library patched (38 Gutenberg remaining) · FastCloud backup ✅ · <strong>Decision: CookieYes remove (Option A)</strong> · Master Audit v3 Final published · Dev Freeze decision</div></div>
+    <div class="changelog-entry"><div class="cl-date">May 17</div><div>Double &lt;title&gt; → FIXED ✅ · www→non-www 301 ✅ · Alt tags bulk 124/Media Library patched (38 Gutenberg remaining) · FastCloud backup ✅ · Master Audit v3 Final published · Dev Freeze decision · <strong>CookieYes REMOVED ✅ — Meta Pixel now unconditional · updateActiveCard JS errors RESOLVED ✅ (CookieYes + defer fix) — PASS confirmed 0 errors desktop+mobile, tab switching OK</strong></div></div>
   </div>
 
   <div class="stats">
     <div class="stat done"><div class="num">0</div><div class="label">🔴 P0 (ყველა fixed)</div></div>
-    <div class="stat orange"><div class="num">8</div><div class="label">🟠 P1 ღია</div></div>
-    <div class="stat yellow"><div class="num">15</div><div class="label">🟡 P2 ღია</div></div>
+    <div class="stat orange"><div class="num">6</div><div class="label">🟠 P1 ღია</div></div>
+    <div class="stat yellow"><div class="num">14</div><div class="label">🟡 P2 ღია</div></div>
     <div class="stat purple"><div class="num">3</div><div class="label">🟣 P3 backlog</div></div>
     <div class="stat teal"><div class="num">3</div><div class="label">🤖 AI SEO (3 open)</div></div>
-    <div class="stat done"><div class="num">20</div><div class="label">✅ Fixed May 3–17</div></div>
+    <div class="stat done"><div class="num">22</div><div class="label">✅ Fixed May 3–17</div></div>
   </div>
 
   <!-- P0 DONE -->
@@ -218,9 +218,9 @@
         <td><span class="tag new-may17">NEW May 17</span></td>
         <td><strong>CookieYes — ამოიღება (GelLa)</strong><br>
           Meta Pixel reject → conversion data დაკარგვა ყოველდღე. Decision: Option A — remove.</td>
-        <td><span class="tag unverified">⏳ DECIDED — pending execution</span></td>
-        <td>LOW</td>
-        <td>GE ≠ EU. GDPR არ ვრცელდება. Bonus: render-blocking script P2 ავტომატურად იხურება.</td>
+        <td><span class="tag verified">✅ DONE — GelLa May 17</span></td>
+        <td>—</td>
+        <td>GE ≠ EU. Meta Pixel now unconditional. Render-blocking script eliminated. Verified: CookieYes absent from HTML, GTM-KLWN32H3 active.</td>
       </tr>
 
       <tr class="immediate">
@@ -382,11 +382,11 @@
         <td><span class="tag wp-admin">LiteSpeed settings</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
       </tr>
-      <tr>
+      <tr class="done-row">
         <td>10</td><td>Conv.</td>
-        <td><strong>updateactivecard JS error</strong> — <span style="color:#DC2626;font-weight:700">85.71% of all JS errors</span> (Clarity). BeVision theme. Interactive element broken on product pages. Direct conversion impact → <strong>promoted P2→P1</strong>.</td>
-        <td><span class="tag code">Theme Editor → updateActiveCard</span></td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
+        <td><strong>updateactivecard JS error</strong> — was 85.71% of all JS errors (Clarity). <span class="tag verified">✅ FIXED May 17</span> CookieYes removal + defer fix. PASS: 0 JS errors, desktop+mobile, tab switching OK.</td>
+        <td><span class="tag verified">Resolved</span></td>
+        <td>—</td>
       </tr>
       <tr>
         <td>11</td><td>Perf.</td>
@@ -506,7 +506,7 @@
       </tr>
       <tr>
         <td>✅ Wordfence CLEAN (May 11)</td>
-        <td>✅ Analytics clean: 1 FB Pixel · GTM V12 · no Yandex</td>
+        <td>✅ Analytics clean: 1 FB Pixel (unconditional) · GTM V12 · no Yandex · <strong>no CookieYes (May 17)</strong></td>
         <td>✅ Calendly: fbq Schedule + /thank-you-booking</td>
       </tr>
       <tr>
