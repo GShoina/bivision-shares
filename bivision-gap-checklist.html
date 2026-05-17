@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>bivision.ge — SEO + Security Gap Checklist v5 (2026-05-12)</title>
+<title>bivision.ge — Gap Checklist v6 (2026-05-17)</title>
 <style>
   :root {
     --primary: #221A4C;
@@ -13,6 +13,7 @@
     --yellow: #CA8A04;
     --green: #16A34A;
     --purple: #7E22CE;
+    --teal: #0F766E;
     --gray-50: #F8F7FF;
     --gray-100: #F1F0F9;
     --gray-200: #E2E0F0;
@@ -30,7 +31,7 @@
   .header .meta { font-size: 13px; opacity: 0.7; }
   .ep0 { display: inline-block; background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-top: 10px; }
   .progress-bar { margin-top: 14px; background: rgba(255,255,255,0.1); border-radius: 4px; height: 6px; }
-  .progress-fill { height: 100%; background: linear-gradient(90deg, #4ade80, #16a34a); width: 72%; border-radius: 4px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, #4ade80, #16a34a); width: 78%; border-radius: 4px; }
   .progress-label { font-size: 12px; opacity: 0.6; margin-top: 4px; }
 
   .banner { border-radius: var(--radius); padding: 14px 18px; margin-bottom: 16px; font-size: 14px; }
@@ -38,6 +39,10 @@
   .banner.gate strong { color: var(--green); }
   .banner.warn { background: #FFF7ED; border: 1px solid #FED7AA; }
   .banner.warn strong { color: var(--orange); }
+  .banner.freeze { background: #FEF2F2; border: 2px solid #FECACA; }
+  .banner.freeze strong { color: var(--red); }
+  .banner.decision { background: #EFF6FF; border: 1px solid #BFDBFE; }
+  .banner.decision strong { color: #1D4ED8; }
 
   .stats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-bottom: 24px; }
   .stat { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 12px; text-align: center; }
@@ -50,6 +55,7 @@
   .stat.green .num { color: var(--green); }
   .stat.done { background: #F0FDF4; border-color: #BBF7D0; }
   .stat.done .num { color: var(--green); }
+  .stat.teal .num { color: var(--teal); }
 
   .section { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); margin-bottom: 20px; overflow: hidden; }
   .section-header { padding: 14px 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--gray-100); }
@@ -62,8 +68,8 @@
   .badge.arch { background: #FAF5FF; color: var(--purple); }
   .badge.good { background: #DCFCE7; color: var(--green); }
   .badge.done { background: #DCFCE7; color: var(--green); }
-  .badge.backlog { background: #F3F4F6; color: #6B7280; }
-  .badge.new { background: #EDE9FE; color: var(--purple); }
+  .badge.ai { background: #ECFDF5; color: var(--teal); border: 1px solid #6EE7B7; }
+  .badge.freeze { background: #FEE2E2; color: var(--red); }
 
   table { width: 100%; border-collapse: collapse; }
   th { background: var(--gray-100); padding: 9px 16px; text-align: left; font-size: 11px; font-weight: 700; color: var(--gray-700); text-transform: uppercase; letter-spacing: 0.05em; }
@@ -72,6 +78,7 @@
   tr:hover td { background: var(--gray-50); }
   tr.done-row td { opacity: 0.55; }
   tr.done-row td:first-child { text-decoration: line-through; }
+  tr.immediate td { background: #FFF7ED; }
 
   .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin: 1px; }
   .tag.wp-admin { background: #EFF6FF; color: #1D4ED8; }
@@ -83,7 +90,11 @@
   .tag.hypo { background: #F5F3FF; color: #6D28D9; border: 1px solid #DDD6FE; }
   .tag.unverified { background: #FFFBEB; color: #92400E; border: 1px solid #FDE68A; }
   .tag.verified { background: #DCFCE7; color: #15803D; border: 1px solid #BBF7D0; }
-  .tag.new-may11 { background: #EDE9FE; color: #5B21B6; border: 1px solid #DDD6FE; }
+  .tag.new-may17 { background: #FFF7ED; color: #C2410C; border: 1px solid #FED7AA; }
+  .tag.ai-seo { background: #ECFDF5; color: #0F766E; border: 1px solid #6EE7B7; }
+  .tag.no-code { background: #F0FDF4; color: #15803D; border: 1px solid #BBF7D0; }
+  .tag.freeze { background: #FEE2E2; color: #BE123C; border: 1px solid #FECDD3; }
+  .tag.decided { background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; }
 
   .effort { display: flex; align-items: center; gap: 3px; }
   .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gray-200); }
@@ -91,9 +102,12 @@
 
   .roadmap { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; }
   .roadmap h2 { font-size: 15px; font-weight: 700; margin-bottom: 16px; color: var(--primary); }
-  .phase { display: grid; grid-template-columns: 110px 1fr; gap: 12px; margin-bottom: 12px; align-items: start; }
+  .phase { display: grid; grid-template-columns: 120px 1fr; gap: 12px; margin-bottom: 12px; align-items: start; }
   .phase-label { background: var(--primary); color: #fff; border-radius: 6px; padding: 6px 10px; font-size: 11px; font-weight: 700; text-align: center; }
   .phase-label.done { background: var(--green); }
+  .phase-label.freeze { background: var(--red); }
+  .phase-label.safe { background: var(--teal); }
+  .phase-label.hold { background: #6B7280; }
   .phase-items { font-size: 13px; line-height: 1.7; }
 
   .changelog { background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: var(--radius); padding: 18px; margin-bottom: 20px; }
@@ -112,276 +126,327 @@
 <div class="container">
 
   <div class="header">
-    <div class="meta">Geo + Mentari · განახლდა: 2026-05-12 · v5 (live-verified May 3–12) · 9 სესია</div>
+    <div class="meta">Geo + Mentari + Viktor · განახლდა: 2026-05-17 · v6 · Source: Master Audit v3 Final</div>
     <h1>bivision.ge — Gap Checklist &amp; Execution Tracker</h1>
-    <div class="ep0">EP0: 9/10 (S) — P0 CLOSED · P2/P3 items remaining</div>
+    <div class="ep0">EP0: 8/10 (S) — P0 CLOSED · Dev Freeze active · AI SEO section added</div>
     <div class="progress-bar"><div class="progress-fill"></div></div>
-    <div class="progress-label">72% complete — P2: missing CSS/images/redirects · P1: JSON-LD/OG image</div>
+    <div class="progress-label">78% complete — P1: alt tags / iOS verify / LiteSpeed · P2: schema / OG / conversion items</div>
+  </div>
+
+  <!-- FREEZE BANNER -->
+  <div class="banner freeze">
+    <strong>🔴 Development Freeze — May 17:</strong> GelLa აქტიურად მუშაობს. არანაირი code ცვლილება სანამ GelLa არ დაასრულებს + owner გადაწყვეტს შემდეგ ნაბიჯს. safe items only: read-only checks + WP Admin low-risk.
+  </div>
+
+  <!-- DECISION BANNER -->
+  <div class="banner decision">
+    <strong>✅ Decision May 17 — CookieYes ამოიღება (Option A):</strong> Georgia ≠ EU → GDPR არ ვრცელდება. Meta Pixel always-on. GelLa ახორციელებს. Eliminates render-blocking script + unblocks conversion data.
+  </div>
+
+  <div class="banner warn">
+    <strong>⚠ Owner Gate:</strong> bivision.ge ნებისმიერი ცვლილება = explicit "შეიტანე" mandatory.
   </div>
 
   <!-- CHANGELOG -->
   <div class="changelog">
-    <h3>✅ May 3–12 Sprint — რაც გამოსწორდა</h3>
-    <div class="changelog-entry"><div class="cl-date">May 3–4</div><div>Yandex Metrica REMOVED · Clarity triple-load → GTM-only consent-tied · FB Pixel canonical (495329725412052) · 4 spam domains disavowed · Typo "პლატფრომა" → "პლატფორმა" · GTM V11 published · Data baseline reset</div></div>
-    <div class="changelog-entry"><div class="cl-date">May 9–10</div><div>lang="ka-GE" + og:locale=ka_GE LIVE ✅ · robots.txt: GPTBot/PerplexityBot/ClaudeBot/Google-Extended → Allow: / ✅ · Calendly → /thank-you-booking redirect + fbq('track','Schedule') ✅ · GTM V12 published ✅</div></div>
-    <div class="changelog-entry"><div class="cl-date">May 11</div><div>CSP header LIVE (cPanel) ✅ · Folders 3.1.6→3.1.7 ✅ · Wordfence scan CLEAN ✅ · shigotoba = bot probe CONFIRMED ✅ · llms.txt HTTP 200 + content VERIFIED ✅ · inLanguage JSON-LD ka-GE (6×) CONFIRMED ✅ · 6 product pages: title+meta+H1+schema ALL PASS ✅ · 5 sitemaps confirmed ✅</div></div>
-  </div>
-
-  <div class="banner warn">
-    <strong>⚠ Owner Gate Active:</strong> bivision.ge ცვლილება = explicit "შეიტანე" mandatory.
+    <h3>📋 Changelog — May 3–17</h3>
+    <div class="changelog-entry"><div class="cl-date">May 3–4</div><div>Yandex Metrica REMOVED · Clarity triple-load → GTM-only · FB Pixel canonical (495329725412052) · 4 spam domains disavowed · Typo fix · GTM V11 published</div></div>
+    <div class="changelog-entry"><div class="cl-date">May 9–10</div><div>lang="ka-GE" + og:locale=ka_GE ✅ · robots.txt AI bots (GPTBot/PerplexityBot/ClaudeBot) → Allow ✅ · Calendly → /thank-you-booking + fbq Schedule ✅ · GTM V12 ✅</div></div>
+    <div class="changelog-entry"><div class="cl-date">May 11</div><div>CSP header LIVE ✅ · Wordfence CLEAN ✅ · llms.txt HTTP 200 ✅ · JSON-LD inLanguage ka-GE (6×) ✅ · 6 product pages title+meta+H1+schema ALL PASS ✅ · 5 sitemaps ✅</div></div>
+    <div class="changelog-entry"><div class="cl-date">May 13–14</div><div>GIF → WebM/MP4 21/21 ✅ · Old URL 301 redirects LIVE (/direction/*, /media/*, /contact) ✅ · Mobile CTA justify-center fix ✅ · external cron confirmed ✅</div></div>
+    <div class="changelog-entry"><div class="cl-date">May 17</div><div>Double &lt;title&gt; → FIXED (Rank Math exclusive, add_theme_support commented) ✅ · www→non-www 301 ✅ · Alt tags bulk 124/Media Library patched (38 Gutenberg remaining) · FastCloud backup ✅ · <strong>Decision: CookieYes remove (Option A)</strong> · Master Audit v3 Final published · Dev Freeze decision</div></div>
   </div>
 
   <div class="stats">
     <div class="stat done"><div class="num">0</div><div class="label">🔴 P0 (ყველა fixed)</div></div>
-    <div class="stat orange"><div class="num">4</div><div class="label">🟠 P1 ღია</div></div>
-    <div class="stat yellow"><div class="num">17</div><div class="label">🟡 P2 ღია</div></div>
+    <div class="stat orange"><div class="num">7</div><div class="label">🟠 P1 ღია</div></div>
+    <div class="stat yellow"><div class="num">16</div><div class="label">🟡 P2 ღია</div></div>
     <div class="stat purple"><div class="num">3</div><div class="label">🟣 P3 backlog</div></div>
-    <div class="stat green"><div class="num">16</div><div class="label">✅ კარგია</div></div>
-    <div class="stat done"><div class="num">12</div><div class="label">✅ Fixed May 3–12</div></div>
+    <div class="stat teal"><div class="num">3</div><div class="label">🤖 AI SEO open</div></div>
+    <div class="stat done"><div class="num">20</div><div class="label">✅ Fixed May 3–17</div></div>
   </div>
 
-  <!-- P0 — ALL DONE -->
+  <!-- P0 DONE -->
   <div class="section">
     <div class="section-header">
       <span class="badge done">✅ P0 — ყველა CLOSED</span>
-      <h2>May 3–12 sprint-ში დაიხურა</h2>
+      <h2>May 3–17 sprint-ში დაიხურა</h2>
     </div>
     <table>
       <tr><th>#</th><th>პრობლემა</th><th>Fix</th><th>თარიღი</th></tr>
       <tr class="done-row">
-        <td>1</td>
-        <td><strong>lang="en-US"</strong> — Georgian SERP suppress</td>
-        <td><span class="tag verified">✓ FIXED</span> WP Settings → ka-GE. og:locale=ka_GE. LiteSpeed Purge All.</td>
-        <td>May 10</td>
+        <td>1</td><td><strong>lang="en-US"</strong> — Georgian SERP suppress</td>
+        <td><span class="tag verified">✓ FIXED</span> WP Settings → ka-GE. og:locale=ka_GE.</td><td>May 10</td>
       </tr>
       <tr class="done-row">
-        <td>2</td>
-        <td><strong>ორი H1</strong> — keyword signal split</td>
-        <td><span class="tag verified">✓ CLOSED</span> Owner confirmed: "საჯარო მონაცემების პლატფორმა" = bihub.ge showcase block, not bivision.ge main content. Not applicable.</td>
-        <td>May 10</td>
+        <td>2</td><td><strong>ორი H1</strong></td>
+        <td><span class="tag verified">✓ CLOSED</span> Not applicable — bihub.ge showcase block.</td><td>May 10</td>
       </tr>
       <tr class="done-row">
-        <td>3</td>
-        <td><strong>robots.txt: AI crawlers not allowed</strong></td>
-        <td><span class="tag verified">✓ FIXED</span> GPTBot · ChatGPT-User · PerplexityBot · ClaudeBot · Google-Extended · CCBot → Allow: /</td>
-        <td>May 10</td>
+        <td>3</td><td><strong>robots.txt: AI crawlers not allowed</strong></td>
+        <td><span class="tag verified">✓ FIXED</span> GPTBot · PerplexityBot · ClaudeBot · Google-Extended → Allow: /</td><td>May 10</td>
+      </tr>
+      <tr class="done-row">
+        <td>4</td><td><strong>Double &lt;title&gt; tag</strong> — Rank Math + theme duplicate</td>
+        <td><span class="tag verified">✓ FIXED May 17</span> add_theme_support('title-tag') commented. Verified: grep count = 1.</td><td>May 17</td>
+      </tr>
+      <tr class="done-row">
+        <td>5</td><td><strong>www → non-www missing 301</strong></td>
+        <td><span class="tag verified">✓ FIXED May 17</span> 301 confirmed live.</td><td>May 17</td>
+      </tr>
+      <tr class="done-row">
+        <td>6</td><td><strong>Old URL 404s</strong> — /direction/*, /media/*, /contact, /about-us/who-we-are</td>
+        <td><span class="tag verified">✓ FIXED May 14</span> Rank Math Redirections 301 → correct URLs.</td><td>May 14</td>
+      </tr>
+      <tr class="done-row">
+        <td>7</td><td><strong>GIF animations</strong> — 21 GIF &lt;img&gt; on site</td>
+        <td><span class="tag verified">✓ FIXED May 14–15</span> 21/21 converted → WebM/MP4.</td><td>May 15</td>
       </tr>
     </table>
   </div>
 
-  <!-- PRODUCT PAGES — VERIFIED -->
+  <!-- P1 HIGH — UPDATED -->
   <div class="section">
     <div class="section-header">
-      <span class="badge done">✓ LIVE-VERIFIED 2026-05-11</span>
-      <h2>Product pages — ყველა გადამოწმდა. 1 real gap.</h2>
+      <span class="badge p1">P1 — მაღალი (7 ღია)</span>
+      <h2>Safe-to-do + Lead Gen Critical items</h2>
+    </div>
+    <table>
+      <tr><th>#</th><th>პრობლემა</th><th>სად</th><th>risk</th><th>შენიშვნა</th></tr>
+
+      <tr class="immediate">
+        <td><span class="tag new-may17">NEW May 17</span></td>
+        <td><strong>CookieYes — ამოიღება (GelLa)</strong><br>
+          Meta Pixel reject → conversion data დაკარგვა ყოველდღე. Decision: Option A — remove.</td>
+        <td><span class="tag decided">✅ DECIDED</span> GelLa executes</td>
+        <td>LOW</td>
+        <td>GE ≠ EU. GDPR არ ვრცელდება. Bonus: render-blocking script P2 ავტომატურად იხურება.</td>
+      </tr>
+
+      <tr class="immediate">
+        <td><span class="tag new-may17">NEW May 17</span></td>
+        <td><strong>Alt tags — 38 empty homepage (Gutenberg inline)</strong><br>
+          Media Library 124 patched, 38 Gutenberg inline blocks = not covered.</td>
+        <td><span class="tag wp-admin">WP Admin → blocks</span> <span class="tag rankmath">Rank Math Image SEO</span></td>
+        <td>LOW</td>
+        <td>SEO + LLM image parsing. Rank Math → Image SEO → auto-generate from filename = fastest path.</td>
+      </tr>
+
+      <tr class="immediate">
+        <td><span class="tag new-may17">NEW May 17</span></td>
+        <td><strong>iOS Safari — real device verify</strong><br>
+          May 16 crash reverted by restore. Current CSS = standard. Unconfirmed without real device.</td>
+        <td><span class="tag no-code">Read-only</span> Real iPhone ≥ iOS 15</td>
+        <td>ZERO</td>
+        <td>20 min. BrowserStack free tier OK. Confirm restore completeness.</td>
+      </tr>
+
+      <tr class="immediate">
+        <td><span class="tag new-may17">NEW May 17</span></td>
+        <td><strong>LiteSpeed HTML Compression → explicit ON</strong><br>
+          Body size 264K→50K (5.3x) proves compression active. Content-Encoding header absent = anomaly. ON = fixes header + pre-compresses.</td>
+        <td><span class="tag wp-admin">LiteSpeed Cache → Page Optimization</span></td>
+        <td>LOW</td>
+        <td>5 min toggle. Compress HTML = ON. Purge after.</td>
+      </tr>
+
+      <tr>
+        <td>P1-A</td>
+        <td><strong>JSON-LD missing schemas: Service, FAQPage, BreadcrumbList</strong> <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><span class="tag rankmath">RankMath Schema</span></td>
+        <td>LOW</td>
+        <td>Google Rich Results Test first (read-only). Then add per page.</td>
+      </tr>
+
+      <tr>
+        <td>P1-B</td>
+        <td><strong>OG image: generic Optimole URL — not branded</strong> <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><span class="tag wp-admin">Media + RankMath OG</span></td>
+        <td>LOW</td>
+        <td>Branded 1200×630 PNG per product. ~3სთ design + upload.</td>
+      </tr>
+
+      <tr>
+        <td>P1-C</td>
+        <td><strong>H1 vs Title keyword gap</strong> — "2 კვირაში" Title-ში, H1-ში არ ჩანს</td>
+        <td><span class="tag wp-admin">Page Builder</span></td>
+        <td>LOW</td>
+        <td>H1 → "ბიზნეს ანალიტიკა 2 კვირაში – BI პლატფორმა". 2 წთ.</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- AI SEO — NEW SECTION -->
+  <div class="section">
+    <div class="section-header">
+      <span class="badge ai">🤖 AI SEO — 2025/2026 Forward</span>
+      <h2>Google AI Overviews + ChatGPT/Perplexity Citations — 3 open</h2>
+    </div>
+    <table>
+      <tr><th>#</th><th>პრობლემა</th><th>რატომ მნიშვნელოვანია</th><th>სად</th><th>risk</th></tr>
+
+      <tr>
+        <td><span class="tag ai-seo">AI-1</span></td>
+        <td><strong>llms.txt — missing lang:ka + no llms-full.txt</strong><br>
+          Current llms.txt: HTTP 200, content OK. Missing: <code>lang: ka</code> directive + full product descriptions in llms-full.txt.</td>
+        <td>ChatGPT Search + Perplexity reads llms.txt when citing companies. Georgian CFO/CEO-ები ეს სისტემები სულ უფრო იყენებენ. lang:ka = Georgian context signal.</td>
+        <td><span class="tag no-code">Content only</span> FTP ან cPanel File Manager</td>
+        <td>ZERO</td>
+      </tr>
+
+      <tr>
+        <td><span class="tag ai-seo">AI-2</span></td>
+        <td><strong>Schema @type validation — Google Rich Results Test</strong><br>
+          Organization + Place + WebSite + Article schemas exist. Not validated against Google's current requirements.</td>
+        <td>Google AI Overviews (GEO) pulls structured data. Unvalidated schema = missed rich snippet + AI citation opportunity. 2026-ში B2B SERP-ზე AI Overviews dominant.</td>
+        <td><span class="tag no-code">Read-only</span> search.google.com/test/rich-results</td>
+        <td>ZERO</td>
+      </tr>
+
+      <tr>
+        <td><span class="tag ai-seo">AI-3</span></td>
+        <td><strong>E-E-A-T სუსტია — AI citations block</strong><br>
+          Case studies = 0. Team page = 0. Blog = 0. AI systems cite authoritative sources first.</td>
+        <td>ChatGPT/Perplexity won't cite bivision.ge on "BI platform Georgia" queries if no E-E-A-T signals. Competitor with one case study = citation advantage.</td>
+        <td><span class="tag content">Content</span> <span class="tag owner-gate">Owner Gate</span></td>
+        <td>LOW</td>
+      </tr>
+    </table>
+    <div style="padding:12px 16px; font-size:13px; border-top:1px solid #E2E0F0; background:#ECFDF5;">
+      <strong>AI-1 + AI-2 = ახლავე შესრულებადი, 0 code risk.</strong> AI-1: llms.txt content edit only (5 min). AI-2: read-only browser check (10 min). AI-3: owner decision needed.
+    </div>
+  </div>
+
+  <!-- PRODUCT PAGES -->
+  <div class="section">
+    <div class="section-header">
+      <span class="badge done">✓ VERIFIED May 11</span>
+      <h2>Product pages — 1 real gap remaining</h2>
     </div>
     <table>
       <tr>
         <th>Check</th>
         <th>bifinance</th><th>biretail</th><th>bistock</th><th>biaudit</th><th>bidebitors</th><th>bimedical</th>
       </tr>
-      <tr>
-        <td><strong>HTTP status</strong></td>
-        <td>✅ 200</td><td>✅ 200</td><td>✅ 200</td><td>✅ 200</td><td>✅ 200</td><td>✅ 200</td>
-      </tr>
-      <tr>
-        <td><strong>Unique &lt;title&gt;</strong></td>
-        <td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td>
-      </tr>
-      <tr>
-        <td><strong>Meta description</strong></td>
-        <td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td>
-      </tr>
-      <tr>
-        <td><strong>H1 (count=1)</strong></td>
-        <td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td>
-      </tr>
-      <tr>
-        <td><strong>JSON-LD schema</strong></td>
-        <td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td>
-      </tr>
-      <tr>
-        <td><strong>lang / inLanguage</strong></td>
-        <td colspan="6">✅ VERIFIED — inLanguage JSON-LD = "ka-GE" (6×), May 11</td>
-      </tr>
+      <tr><td><strong>HTTP status</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+      <tr><td><strong>Unique &lt;title&gt;</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+      <tr><td><strong>Meta description</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+      <tr><td><strong>H1 (count=1)</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+      <tr><td><strong>JSON-LD schema</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+      <tr><td><strong>lang / inLanguage</strong></td><td colspan="6">✅ ka-GE (6×)</td></tr>
       <tr style="background:#FFF1F2;">
         <td><strong>Unique OG image</strong></td>
         <td>❌ generic</td><td>❌ generic</td><td>❌ generic</td><td>❌ generic</td><td>❌ generic</td><td>❌ generic</td>
       </tr>
     </table>
     <div style="padding:12px 16px;font-size:13px;border-top:1px solid #E2E0F0;">
-      <strong>P1 open:</strong> 6 product pages = ერთი generic OG image. → ყოველ product-ს უნიკალური 1200×630 OG სჭირდება. WP Media + RankMath per-page. ~3სთ.<br>
-      <strong>Known minor:</strong> sitemap slug typo "bevision_product" (should be "bivision") — low priority, URL works.
+      <strong>P1-B open:</strong> branded 1200×630 OG image per product. ~3სთ design + upload. Minor: sitemap slug typo "bevision_product" — low priority.
     </div>
   </div>
 
-  <!-- P1 HIGH -->
+  <!-- P2 -->
   <div class="section">
     <div class="section-header">
-      <span class="badge p1">P1 — მაღალი (4 ღია)</span>
-      <h2>Trust + Structured Data gaps</h2>
-    </div>
-    <table>
-      <tr><th>#</th><th>პრობლემა</th><th>სად</th><th>ძალ.</th><th>შენიშვნა</th></tr>
-      <tr class="done-row">
-        <td>4</td>
-        <td><strong>llms.txt content</strong></td>
-        <td><span class="tag verified">✓ VERIFIED May 11</span></td>
-        <td>—</td>
-        <td>HTTP 200. Content: Company/Services/Products/URLs — GOOD. Minor: no lang:ka. Optional llms-full.txt.</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td><strong>JSON-LD missing: Service, FAQPage, BreadcrumbList, AggregateRating, foundingDate</strong> <span class="tag hypo">HYPOTHESIS</span></td>
-        <td><span class="tag rankmath">RankMath Schema</span> <span class="tag code">Custom JSON-LD</span></td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
-        <td>Rich Results Test-ით verify first.</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td><strong>OG image: generic Optimole URL</strong> — not branded, fragile. <span class="tag hypo">HYPOTHESIS</span></td>
-        <td><span class="tag wp-admin">Media + RankMath OG</span></td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
-        <td>Branded 1200×630 PNG per product. ~3სთ.</td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td><strong>E-E-A-T სუსტია</strong> — case studies, team page, blog ნული. <span class="tag hypo">HYPOTHESIS</span></td>
-        <td><span class="tag content">Content</span> <span class="tag owner-gate">Owner Gate</span></td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div></td>
-        <td>Mentari drafts frame, owner fills real client data.</td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td><strong>H1 vs Title keyword gap</strong> — H1: "ბიზნეს ანალიტიკა – ზუსტი მართვა" / Title: "2 კვირაში". "2 კვირაში" H1-ში არ ჩანს.</td>
-        <td><span class="tag wp-admin">Page Builder / Elementor</span></td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
-        <td>H1 → "ბიზნეს ანალიტიკა 2 კვირაში – BI პლატფორმა". 2 წთ.</td>
-      </tr>
-    </table>
-  </div>
-
-  <!-- P2 — updated + new May 11 -->
-  <div class="section">
-    <div class="section-header">
-      <span class="badge p2">P2 — Visual / Copy / Performance / Technical (17)</span>
-      <h2>Conversion + Brand + Infrastructure Quality</h2>
+      <span class="badge p2">P2 — Conversion + Performance + Technical (16)</span>
+      <h2>Post-freeze implementation queue</h2>
     </div>
     <table>
       <tr><th>#</th><th>კატ.</th><th>პრობლემა</th><th>სად</th><th>ძალ.</th></tr>
       <tr style="background:#FAF5FF;">
-        <td><span class="tag new-may11">New May 11</span></td><td>Technical</td>
-        <td><strong>Missing theme CSS:</strong> <code>language-dropdown.css</code>, <code>testimonial-mobile-fix.css</code> — 404 in RankMath monitor. Mobile UI bugs possible.</td>
+        <td>P2-A</td><td>Technical</td>
+        <td><strong>Missing theme CSS:</strong> language-dropdown.css, testimonial-mobile-fix.css — 404. Mobile UI bugs possible.</td>
         <td><span class="tag code">Theme restore/recreate</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
       </tr>
       <tr style="background:#FAF5FF;">
-        <td><span class="tag new-may11">New May 11</span></td><td>Technical</td>
-        <td><strong>Missing images:</strong> <code>files/Illustration/qlik-in-finance-1.png</code> (2 hits), <code>qlik-in-finance-3.png</code> (3 hits) — broken content refs.</td>
+        <td>P2-B</td><td>Technical</td>
+        <td><strong>Missing images:</strong> qlik-in-finance-1.png (2 hits), qlik-in-finance-3.png (3 hits) — broken content.</td>
         <td><span class="tag wp-admin">Media Library</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
       </tr>
-      <tr style="background:#FAF5FF;">
-        <td><span class="tag new-may11">New May 11</span></td><td>SEO</td>
-        <td><strong>Old URL redirects missing:</strong> <code>/direction/*</code>, <code>/media/*</code>, <code>/contact</code>, <code>/about-us/who-we-are</code> → 404. Old site URLs, no 301.</td>
-        <td><span class="tag rankmath">Rank Math Redirections</span></td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
-      </tr>
       <tr>
-        <td>10</td><td>Visual</td>
-        <td>Inline styles — no design tokens. <span class="tag hypo">HYPOTHESIS</span></td>
-        <td><span class="tag code">Theme CSS</span></td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div></td>
-      </tr>
-      <tr>
-        <td>11</td><td>Visual</td>
-        <td>Font family='bold' — UseAnyFont artifact. <span class="tag hypo">HYPOTHESIS</span></td>
-        <td><span class="tag code">Theme fonts</span></td>
+        <td>P2-C</td><td>Perf.</td>
+        <td><strong>Render-blocking: jQuery</strong> — 1 remaining after CookieYes removed. jQuery without defer.</td>
+        <td><span class="tag code">Script load order</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>12</td><td>Visual</td>
-        <td>Logo: PNG only, no SVG, no dark variant. <span class="tag hypo">HYPOTHESIS</span></td>
-        <td><span class="tag wp-admin">Media + Header</span></td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
-      </tr>
-      <tr>
-        <td>13</td><td>Technical</td>
-        <td>Favicon: apple-touch-icon, manifest — needs audit. <span class="tag unverified">UNVERIFIED</span></td>
-        <td><span class="tag wp-admin">WP Admin</span></td>
+        <td>P2-D</td><td>Security</td>
+        <td><strong>wp-json Link header advertised</strong> — unauthenticated read. Promoted from P3 (v3 audit).</td>
+        <td><span class="tag wp-admin">WP Plugin</span> (no functions.php)</td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>14</td><td>Visual</td>
-        <td>Hard-coded hexes scattered — no CSS token tree. <span class="tag hypo">HYPOTHESIS</span></td>
-        <td><span class="tag code">CSS Variables</span></td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div></td>
+        <td>P2-E</td><td>Perf.</td>
+        <td><strong>Browser cache TTL: 300s → 3600s+</strong> — LiteSpeed Cache → Browser Cache TTL.</td>
+        <td><span class="tag wp-admin">LiteSpeed settings</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>15</td><td>Conv.</td>
+        <td>10</td><td>Security</td>
+        <td><strong>updateactivecard JS error</strong> — 85.71% JS errors (Clarity). BeVision theme. Interactive element broken.</td>
+        <td><span class="tag code">Theme Editor → updateActiveCard</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
+      </tr>
+      <tr>
+        <td>11</td><td>Perf.</td>
+        <td>Blog CLS=0.28 — img width/height missing. LCP 3.3s. <span class="tag verified">Clarity-verified</span></td>
+        <td><span class="tag code">img attributes</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
+      </tr>
+      <tr>
+        <td>12</td><td>Security</td>
+        <td>Wordfence 2FA — wp-login.php 200. <span class="tag verified">Wordfence confirmed</span></td>
+        <td><span class="tag wp-admin">Wordfence Login Security</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
+      </tr>
+      <tr>
+        <td>13</td><td>Conv.</td>
         <td>ორი primary CTA hero-ში ("დემო" + "შეხვედრა") — split attention. <span class="tag hypo">HYPOTHESIS</span></td>
         <td><span class="tag wp-admin">Page Builder</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>16</td><td>Copy</td>
-        <td>Social proof: "50+ პარტნიორი" მხოლოდ — no % savings, no ROI numbers. <span class="tag hypo">HYPOTHESIS</span></td>
+        <td>14</td><td>Copy</td>
+        <td>Social proof: "50+ პარტნიორი" only — no ROI %, no savings data. <span class="tag hypo">HYPOTHESIS</span></td>
         <td><span class="tag content">Content</span> <span class="tag owner-gate">Owner (data)</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>17</td><td>Trust</td>
-        <td>Testimonials: სახელი/ფოტო/კომპანია არ არის. <span class="tag hypo">HYPOTHESIS</span></td>
+        <td>15</td><td>Trust</td>
+        <td>Testimonials: სახელი/ფოტო/კომპანია = 0. <span class="tag hypo">HYPOTHESIS</span></td>
         <td><span class="tag content">Content</span> <span class="tag owner-gate">Owner</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>18</td><td>Conv.</td>
+        <td>16</td><td>Conv.</td>
         <td>Sticky CTA scroll-ზე არ არის. <span class="tag hypo">HYPOTHESIS</span></td>
         <td><span class="tag code">JS + CSS</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>19</td><td>Perf.</td>
-        <td>TTFB ~1300ms — LiteSpeed Cache active but FastCloud = Apache. <span class="tag unverified">UNVERIFIED improvement</span></td>
-        <td><span class="tag wp-admin">LiteSpeed Page Opt → Minify</span></td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
-      </tr>
-      <tr>
-        <td>20</td><td>Perf.</td>
-        <td>Blog CLS=0.28 — img width/height attributes missing. LCP 3.3s. <span class="tag verified">Clarity-verified</span></td>
-        <td><span class="tag code">img attributes</span></td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
-      </tr>
-      <tr>
-        <td>21</td><td>Perf.</td>
-        <td>3 custom fonts preloaded — LCP paint delay. <span class="tag hypo">HYPOTHESIS</span></td>
+        <td>17</td><td>Perf.</td>
+        <td>3 custom fonts preloaded — LCP delay. <span class="tag hypo">HYPOTHESIS</span></td>
         <td><span class="tag code">Theme header</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>22</td><td>Legal</td>
-        <td>Crisp chat loads before consent — GDPR risk EU. <span class="tag hypo">HYPOTHESIS</span></td>
-        <td><span class="tag code">Crisp load delay</span></td>
-        <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
-      </tr>
-      <tr>
-        <td>23</td><td>Security</td>
-        <td>JS Error "updateactivecard is not defined" — 85.71% JS errors (Clarity). BeVision theme. Homepage interactive element broken.</td>
-        <td><span class="tag code">Theme Editor → search updateActiveCard</span></td>
+        <td>18</td><td>Visual</td>
+        <td>Logo: PNG only, no SVG, no dark variant. <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><span class="tag wp-admin">Media + Header</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>24</td><td>Security</td>
-        <td>Wordfence 2FA — wp-login.php accessible (200). <span class="tag verified">Wordfence confirmed</span></td>
-        <td><span class="tag wp-admin">Wordfence Login Security</span></td>
+        <td>19</td><td>Technical</td>
+        <td>Favicon: apple-touch-icon, manifest — needs audit. <span class="tag unverified">UNVERIFIED</span></td>
+        <td><span class="tag wp-admin">WP Admin</span></td>
         <td><div class="effort"><div class="dot fill"></div><div class="dot"></div><div class="dot"></div></div></td>
       </tr>
       <tr>
-        <td>backlog</td><td>Visual</td>
-        <td><strong>Dark mode</strong> — Georgian B2B priority: LOW. <span class="tag hypo">HYPOTHESIS</span></td>
-        <td><span class="tag code">prefers-color-scheme</span></td>
-        <td>backlog</td>
+        <td>20</td><td>E-E-A-T</td>
+        <td><strong>E-E-A-T — case studies / team page / blog = 0</strong> <span class="tag hypo">HYPOTHESIS</span></td>
+        <td><span class="tag content">Content</span> <span class="tag owner-gate">Owner Gate</span></td>
+        <td><div class="effort"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div></td>
       </tr>
     </table>
   </div>
@@ -397,17 +462,17 @@
       <tr>
         <td>B1</td>
         <td><strong>hreflang ka — MISSING</strong></td>
-        <td>LOW IMPACT for mono-language site. Google reads lang=ka-GE. Backlog — Rank Math Advanced Tab when EN pages added.</td>
+        <td>LOW IMPACT mono-language site. Backlog — when EN pages added.</td>
       </tr>
       <tr>
         <td>B2</td>
-        <td><strong>wp-json Link header advertised</strong></td>
-        <td><code>remove_action('template_redirect','rest_output_link_header',11);</code> functions.php. Low risk.</td>
+        <td><strong>RSS Feed WP version visible</strong></td>
+        <td><code>remove_action('wp_head','wp_generator');</code> — cosmetic. functions.php = DO NOT TOUCH directly.</td>
       </tr>
       <tr>
         <td>B3</td>
-        <td><strong>RSS Feed WP version visible</strong></td>
-        <td><code>remove_action('wp_head','wp_generator');</code> functions.php. Cosmetic.</td>
+        <td><strong>sitemap slug typo "bevision_product"</strong></td>
+        <td>URL works. Cosmetic typo. Low priority.</td>
       </tr>
     </table>
   </div>
@@ -416,100 +481,137 @@
   <div class="section">
     <div class="section-header">
       <span class="badge good">✅ კარგია — regression test</span>
-      <h2>შენარჩუნება სავალდებულო</h2>
+      <h2>შენარჩუნება სავალდებულო — GelLa: verify after each deploy</h2>
     </div>
     <table>
       <tr>
-        <td>✅ HTTPS + HSTS</td>
-        <td>✅ Canonical tag</td>
-        <td>✅ WP Core 6.9.4</td>
+        <td>✅ HTTPS + HSTS max-age=31536000</td>
+        <td>✅ Canonical tag (non-www)</td>
+        <td>✅ Single &lt;title&gt; per page (May 17 fix)</td>
       </tr>
       <tr>
-        <td>✅ RankMath JSON-LD: Organization + Place + WebSite + Article</td>
-        <td>✅ 6/7 Security Headers (HSTS, X-Frame, nosniff, CSP, Referrer, Permissions)</td>
-        <td>✅ x-powered-by HIDDEN</td>
+        <td>✅ JSON-LD: Organization + Place + WebSite + Article</td>
+        <td>✅ 7/8 Security Headers (HSTS, X-Frame, nosniff, CSP, Referrer, Permissions, X-Content-Type)</td>
+        <td>✅ WP version not disclosed (ver= = hash)</td>
       </tr>
       <tr>
         <td>✅ lang="ka-GE" · og:locale=ka_GE · inLanguage=ka-GE (6×)</td>
-        <td>✅ sitemap_index.xml: 5 sitemaps, all HTTP 200</td>
+        <td>✅ sitemap_index.xml: 5 sitemaps, HTTP 200</td>
         <td>✅ 6 product pages: title+meta+H1+JSON-LD ALL PASS</td>
       </tr>
       <tr>
-        <td>✅ llms.txt HTTP 200 — complete content</td>
-        <td>✅ AI bots robots.txt: GPTBot/PerplexityBot/ClaudeBot/Google-Extended → Allow: /</td>
-        <td>✅ REST /users = 401 · Author enum = 404</td>
+        <td>✅ llms.txt HTTP 200 — content present</td>
+        <td>✅ AI bots: GPTBot/PerplexityBot/ClaudeBot/Google-Extended → Allow: /</td>
+        <td>✅ robots.txt clean</td>
       </tr>
       <tr>
-        <td>✅ Wordfence 8.2.0 CLEAN scan May 11</td>
-        <td>✅ Analytics clean: 1 FB Pixel · GTM V12 · Clarity consent-tied · no Yandex</td>
-        <td>✅ Calendly tracking: fbq Schedule + /thank-you-booking</td>
+        <td>✅ Wordfence CLEAN (May 11)</td>
+        <td>✅ Analytics clean: 1 FB Pixel · GTM V12 · no Yandex</td>
+        <td>✅ Calendly: fbq Schedule + /thank-you-booking</td>
       </tr>
       <tr>
-        <td>✅ shigotoba = bot probe only (not a hack)</td>
-        <td>✅ .git/config = 404 (not exposed)</td>
-        <td>✅ SSL valid · auto-renewal expected</td>
+        <td>✅ GIF → WebM/MP4 (21/21)</td>
+        <td>✅ Old URL 301 redirects live</td>
+        <td>✅ www → non-www 301 (May 17)</td>
+      </tr>
+      <tr>
+        <td>✅ Optimole CDN + WebP</td>
+        <td>✅ Static assets max-age=31536000</td>
+        <td>✅ External cron (DISABLE_WP_CRON + cPanel */5)</td>
       </tr>
     </table>
   </div>
 
-  <!-- ROADMAP -->
+  <!-- ROADMAP UPDATED -->
   <div class="roadmap">
-    <h2>Execution Roadmap — May 12+ (owner approval-ის შემდეგ)</h2>
+    <h2>Execution Roadmap — May 17 (freeze-aware)</h2>
     <div class="phase">
-      <div class="phase-label done">კვირა 1–2<br><small>✅ DONE</small></div>
-      <div class="phase-items">
-        <span style="text-decoration:line-through;color:#6B7280;">lang fix (#1) · H1 close (#2) · robots.txt AI bots (#3) · llms.txt verify (#4) · CSP header · Calendly tracking · Folders update · Wordfence scan</span> — ყველა May 3–12 sprint-ში ✅
+      <div class="phase-label done">May 3–17<br>✅ DONE</div>
+      <div class="phase-items" style="text-decoration:line-through;color:#6B7280;">
+        lang fix · robots.txt · llms.txt · CSP header · Calendly · GIF→WebM · Old URL 301s · Double title · www→301 · Mobile CTA · Bulk alt (partial) · Backup
       </div>
     </div>
     <div class="phase">
-      <div class="phase-label">ახლავე<br><small>P2 Technical</small></div>
+      <div class="phase-label freeze">FREEZE<br>GelLa active</div>
       <div class="phase-items">
-        Missing CSS files (language-dropdown.css, testimonial-mobile-fix.css) · Missing images (qlik-in-finance-1/3.png) · Old URL 301 redirects (/direction/*, /media/*, /contact) · updateactivecard JS error fix
+        <strong>GelLa finishes current work → owner review → decision.</strong><br>
+        Agents: no code changes. Read-only and WP Admin safe tasks only.
       </div>
     </div>
     <div class="phase">
-      <div class="phase-label">კვირა 3<br><small>P1 SEO</small></div>
+      <div class="phase-label safe">Safe NOW<br>0 code risk</div>
       <div class="phase-items">
-        H1 keyword fix (#8) · FAQPage schema (#5) · Service schema · Branded OG 1200×630 (#6) · CookieYes position (#22) · Blog CLS/LCP fix (#20)
+        🤖 AI-2: Google Rich Results Test (read-only, 10 min) ·
+        📱 iOS Safari real device verify (20 min) ·
+        🤖 AI-1: llms.txt add lang:ka + llms-full.txt (content only, 5 min)
       </div>
     </div>
     <div class="phase">
-      <div class="phase-label">კვირა 4<br><small>P2 Conv.</small></div>
+      <div class="phase-label">Post-Freeze P1<br>WP Admin</div>
       <div class="phase-items">
-        Single primary CTA (#15) · Sticky scroll CTA (#18) · Font preload → 1 only (#21) · Wordfence 2FA (#24) · Favicon audit (#13)
+        CookieYes remove (GelLa, decided) ·
+        Alt tags 38 remaining (Rank Math auto) ·
+        LiteSpeed Compress HTML = ON (5 min toggle) ·
+        H1 keyword fix (P1-C) ·
+        OG image branded 1200×630 (P1-B)
       </div>
     </div>
     <div class="phase">
-      <div class="phase-label">კვირა 5–7<br><small>Design Sys</small></div>
+      <div class="phase-label">Post-Freeze P2<br>Low Risk</div>
       <div class="phase-items">
-        CSS tokens (#10, #14) · Georgian variable font (#11) · SVG logo (#12) · Social proof data (#16) · Testimonials (#17)
+        wp-json header remove (plugin) ·
+        Browser cache TTL 3600+ ·
+        Missing CSS files (P2-A) ·
+        Missing images (P2-B) ·
+        Wordfence 2FA (P2-12) ·
+        updateactivecard fix (P2-10) ·
+        Blog CLS/LCP (P2-11)
       </div>
     </div>
     <div class="phase">
-      <div class="phase-label">Owner Decision<br><small>Architecture</small></div>
+      <div class="phase-label hold">Owner Decision<br>Architecture</div>
       <div class="phase-items">
-        E-E-A-T content (#7) · Case studies / team page · hreflang (when EN pages added)
+        E-E-A-T / case studies / team page (AI-3, P2-20) ·
+        Single hero CTA decision ·
+        Social proof data (real client numbers) ·
+        Testimonials with names/photos ·
+        MariaDB → Redis upgrade (~May 23, TTFB &lt;0.8s)
       </div>
     </div>
   </div>
 
-  <div class="section" style="background:#F8F7FF;">
-    <div style="padding:14px 20px; font-size:13px;">
-      <strong>Legend:</strong>&nbsp;
-      <span class="tag wp-admin">WP Admin</span> no code &nbsp;
-      <span class="tag rankmath">RankMath</span> plugin settings &nbsp;
-      <span class="tag code">Code</span> theme/file edit &nbsp;
-      <span class="tag arch">Architecture</span> major scope &nbsp;
-      <span class="tag content">Content</span> copy/media &nbsp;
-      <span class="tag owner-gate">Owner Gate</span> explicit approval &nbsp;
-      <span class="tag hypo">HYPOTHESIS</span> unverified finding &nbsp;
-      <span class="tag verified">VERIFIED</span> live-confirmed &nbsp;
-      <span class="tag new-may11">New May 11</span> newly discovered
+  <!-- PERMANENT RULES -->
+  <div class="section" style="border-color:#FECACA;">
+    <div class="section-header" style="background:#FEF2F2;">
+      <span class="badge freeze">🚫 Permanent Site Rules — May 17 locked</span>
+      <h2>GelLa + agents — always</h2>
     </div>
+    <table>
+      <tr>
+        <td><span class="tag freeze">NEVER</span> <strong>functions.php — CSS/hook/style inject directly</strong></td>
+        <td>bivision-custom.css ან WP plugin. May 16: 8 cascade mistakes, 9h outage.</td>
+      </tr>
+      <tr>
+        <td><span class="tag freeze">NEVER</span> <strong>dual-agent edit same file simultaneously</strong></td>
+        <td>May 16: GelLa+Geo functions.php → collision → 500.</td>
+      </tr>
+      <tr>
+        <td><span class="tag freeze">NEVER</span> <strong>echo '&lt;style&gt;' in PHP</strong></td>
+        <td>single-quote conflict → 500 error. Use wp_enqueue_style.</td>
+      </tr>
+      <tr>
+        <td><strong>FTP → curl -k flag</strong></td>
+        <td>FastCloud SSL cert bypass. <code>curl.exe -k -T file ftp://...</code></td>
+      </tr>
+      <tr>
+        <td><strong>Playwright OK ≠ iOS OK</strong></td>
+        <td>Real iPhone ≥ iOS 15 ან BrowserStack. Chrome overflow ≠ Safari.</td>
+      </tr>
+    </table>
   </div>
 
   <div style="text-align:center; color:#9CA3AF; font-size:12px; margin-top:20px;">
-    bivision.ge Gap Checklist v5 · 2026-05-12 · Geo + Mentari · Source: live Playwright/PowerShell audit May 3–12 · WEBSITE_STANDARD.md
+    bivision.ge Gap Checklist v6 · 2026-05-17 · Geo + Mentari + Viktor · Source: Master Audit v3 Final · WEBSITE_STANDARD.md
   </div>
 
 </div>
