@@ -740,10 +740,12 @@ footer{
 
 @media(max-width:960px){.pills{flex-wrap:wrap !important}}
 
-.hero-stats{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin:22px 0 16px}
-.hero-stat{text-align:center}
-.hero-stat strong{display:block;font-size:1.5rem;font-weight:800;color:var(--text);line-height:1.1}
-.hero-stat span{display:block;font-size:0.67rem;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px}
+.hero-stats{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin:18px 0 14px;align-items:center}
+.hero-stats .hs-item{font-size:0.82rem;font-weight:600;color:var(--text-dim)}
+.hero-stats .hs-dot{color:var(--muted);font-size:0.7rem;padding:0 2px}
+.hero-proof{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:14px}
+.hero-proof-item{font-size:0.78rem;color:var(--muted)}
+.hero-proof-item strong{color:var(--text);font-weight:700}
 .hero-cta-wrap{margin:16px 0 12px}
 .hero-cta-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 26px;border-radius:10px;background:linear-gradient(180deg,var(--cyan) 0%,var(--cyan-dim) 100%);color:#fff;font-weight:700;font-size:0.96rem;text-decoration:none;border:1px solid rgba(107,99,181,0.4);box-shadow:0 6px 20px rgba(107,99,181,0.26);transition:all 0.18s}
 .hero-cta-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(107,99,181,0.36)}
@@ -817,17 +819,20 @@ footer{
   </h1>
 
   <div class="hero-stats">
-    <div class="hero-stat"><strong>9,800+</strong><span>მომხმარებელი</span></div>
-    <div class="hero-stat"><strong>350+</strong><span>კომპანია</span></div>
-    <div class="hero-stat"><strong>16</strong><span>ანალიტიკური დეშბორდი</span></div>
-    <div class="hero-stat"><strong>12+</strong><span>წყარო</span></div>
+    <span class="hs-item">12+ წყარო</span><span class="hs-dot">·</span>
+    <span class="hs-item">16 ანალიტიკური დეშბორდი</span><span class="hs-dot">·</span>
+    <span class="hs-item">ერთი ინტერფეისი</span>
+  </div>
+  <div class="hero-proof">
+    <span class="hero-proof-item"><strong>9,800+</strong> მომხმარებელი</span>
+    <span class="hero-proof-item"><strong>350+</strong> კომპანია</span>
   </div>
   <div class="hero-cta-wrap">
     <a href="#" class="hero-cta-btn" onclick="if(window.openModal)openModal();return false;">უფასო წვდომა →</a>
   </div>
   <div class="hero-sources">
     <span class="hero-src-label">წყაროები:</span>
-    <span>reportal.ge</span><span>geostat.ge</span><span>ფინანსთა სამინისტრო</span><span>ჯანდაცვა</span><span>SPA</span>
+    <span>reportal</span><span>geostat</span><span>ფინანსთა სამინისტრო</span><span>ჯანდაცვა</span><span>დაზღვევა</span>
   </div>
 
   <div class="pills" role="tablist" aria-label="კატეგორიები">
