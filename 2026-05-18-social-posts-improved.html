@@ -55,11 +55,27 @@
   .diff td.mid{color:#9ca3af;width:10%;text-align:center;font-weight:700;}
 
   @media(max-width:700px){.grid{grid-template-columns:1fr;}}
+
+  /* tabs */
+  .tab-nav{display:flex;gap:0;max-width:1100px;margin:0 auto 0;border-bottom:2px solid #c4b5fd;}
+  .tab-btn{padding:12px 28px;font-size:14px;font-weight:700;font-family:'Noto Sans Georgian',sans-serif;background:none;border:none;cursor:pointer;color:#6b7280;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;}
+  .tab-btn.active{color:#4f46a8;border-bottom-color:#4f46a8;background:rgba(109,99,181,.06);border-radius:8px 8px 0 0;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
 </style>
 </head>
 <body>
 
-<h1>Bivision — Social Post: გაუმჯობესებული ვერსია</h1>
+<div style="padding:32px 20px 0;">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('tab1',this)">კოპი + სტრატეგია</button>
+    <button class="tab-btn" onclick="showTab('tab2',this)">A/B ტესტი — Ads Manager</button>
+  </div>
+</div>
+
+<div id="tab1" class="tab-panel active">
+
+<h1 style="margin-top:32px;">Bivision — Social Post: გაუმჯობესებული ვერსია</h1>
 <div class="subtitle">Mariam — ქვემოთ ახალი კოპი + ცვლილებების ლოგიკა. ვიზუალი შენზეა.</div>
 
 <div class="grid">
@@ -252,7 +268,6 @@
       <th style="padding:7px 8px;text-align:left;color:#4f46a8;font-weight:700;">ფორმატი</th>
       <th style="padding:7px 8px;text-align:left;color:#4f46a8;font-weight:700;">პრიორიტეტი</th>
     </tr>
-    <tr style="border-bottom:1px solid #f3f4f6;"><td style="padding:6px 8px;">BiFinance</td><td style="padding:6px 8px;">LinkedIn</td><td style="padding:6px 8px;">Sponsored → Demo form</td><td style="padding:6px 8px;"><span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:50px;font-size:11px;">P0</span></td></tr>
     <tr style="border-bottom:1px solid #f3f4f6;"><td style="padding:6px 8px;">BiFinance</td><td style="padding:6px 8px;">Facebook</td><td style="padding:6px 8px;">Lead Ad (native form)</td><td style="padding:6px 8px;"><span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:50px;font-size:11px;">P0</span></td></tr>
     <tr style="border-bottom:1px solid #f3f4f6;"><td style="padding:6px 8px;">BiRetail</td><td style="padding:6px 8px;">Facebook</td><td style="padding:6px 8px;">Lead Ad (native form)</td><td style="padding:6px 8px;"><span style="background:#dbeafe;color:#1e40af;padding:2px 8px;border-radius:50px;font-size:11px;">P1</span></td></tr>
     <tr><td style="padding:6px 8px;">BiRetail</td><td style="padding:6px 8px;">Instagram</td><td style="padding:6px 8px;">Feed (awareness, link bio)</td><td style="padding:6px 8px;"><span style="background:#f3f4f6;color:#6b7280;padding:2px 8px;border-radius:50px;font-size:11px;">P2</span></td></tr>
@@ -300,5 +315,206 @@
 </div>
 
 <div style="text-align:center;font-size:12px;color:#9ca3af;padding:24px 0 0;">GelLa · Bivision · 2026-05-18</div>
+
+</div><!-- /tab1 -->
+
+<!-- TAB 2: A/B TEST BRIEF -->
+<div id="tab2" class="tab-panel">
+<div style="max-width:900px;margin:0 auto;padding:32px 20px 60px;">
+
+  <h1 style="color:#1e1b4b;font-size:22px;margin-bottom:6px;">A/B ტესტი — Facebook Ads Manager</h1>
+  <div style="color:#6b7280;font-size:14px;margin-bottom:36px;">მარიამ — ეს არის ზუსტი ინსტრუქცია. ყველაფერი Ads Manager-ში კეთდება.</div>
+
+  <!-- WHAT -->
+  <div style="background:#f5f3ff;border-radius:12px;padding:20px 24px;margin-bottom:20px;">
+    <div style="font-size:13px;font-weight:700;color:#4f46a8;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">რა ვტესტავთ</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div style="background:#fff;border-radius:8px;padding:14px;border:2px solid #6B63B5;">
+        <div style="font-size:11px;font-weight:700;color:#6B63B5;margin-bottom:6px;">VERSION A — GelLa-ს ვარიანტი</div>
+        <div style="font-size:13px;color:#1e1b4b;font-weight:700;">"შენი 1C/Fina + AI — CFO ხედავს ყველაფერს 2 კვირაში"</div>
+        <div style="font-size:12px;color:#6b7280;margin-top:6px;">ERP-AI positioning angle</div>
+      </div>
+      <div style="background:#fff;border-radius:8px;padding:14px;border:2px solid #00A651;">
+        <div style="font-size:11px;font-weight:700;color:#00A651;margin-bottom:6px;">VERSION B — შენი ვარიანტი</div>
+        <div style="font-size:13px;color:#1e1b4b;font-weight:700;">შენი copy (გამოგვიგზავნე ან პირდაპირ Ads Manager-ში ჩაწერე)</div>
+        <div style="font-size:12px;color:#6b7280;margin-top:6px;">შენი refined version</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div style="background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;border:1px solid #ede9fe;">
+    <div style="font-size:13px;font-weight:700;color:#4f46a8;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px;">ვადა</div>
+    <div style="display:flex;align-items:stretch;gap:0;margin-bottom:16px;">
+      <div style="flex:1;background:#f5f3ff;border-radius:10px 0 0 10px;padding:14px 16px;text-align:center;">
+        <div style="font-size:24px;font-weight:900;color:#4f46a8;">10</div>
+        <div style="font-size:12px;color:#6b7280;">დღე — A/B ტესტი</div>
+        <div style="font-size:11px;color:#9ca3af;margin-top:4px;">ორი კრეატივი ერთდროულად</div>
+      </div>
+      <div style="width:40px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#c4b5fd;">→</div>
+      <div style="flex:1;background:#f0fdf4;border-radius:0;padding:14px 16px;text-align:center;">
+        <div style="font-size:24px;font-weight:900;color:#16a34a;">30-60</div>
+        <div style="font-size:12px;color:#6b7280;">დღე — გამარჯვებული</div>
+        <div style="font-size:11px;color:#9ca3af;margin-top:4px;">1 კრეატივი, boosted</div>
+      </div>
+      <div style="width:40px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#c4b5fd;">→</div>
+      <div style="flex:1;background:#fff3cd;border-radius:0 10px 10px 0;padding:14px 16px;text-align:center;">
+        <div style="font-size:24px;font-weight:900;color:#d97706;">?</div>
+        <div style="font-size:12px;color:#6b7280;">Scale ან ახალი ტესტი</div>
+        <div style="font-size:11px;color:#9ca3af;margin-top:4px;">შედეგებიდან გამომდინარე</div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:#6b7280;background:#f9fafb;border-radius:8px;padding:10px 14px;">
+      <strong>რატომ 10 დღე?</strong> Facebook-ს სჭირდება მინიმუმ 7 დღე learning phase-ისთვის. 10 დღე = სტაბილური მონაცემები შედარებისთვის.
+    </div>
+  </div>
+
+  <!-- BUDGET -->
+  <div style="background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;border:1px solid #ede9fe;">
+    <div style="font-size:13px;font-weight:700;color:#4f46a8;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px;">ბიუჯეტი</div>
+    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <tr style="background:#f5f3ff;">
+        <th style="padding:8px 10px;text-align:left;color:#4f46a8;font-weight:700;">ფაზა</th>
+        <th style="padding:8px 10px;text-align:left;color:#4f46a8;font-weight:700;">დღიური</th>
+        <th style="padding:8px 10px;text-align:left;color:#4f46a8;font-weight:700;">ვადა</th>
+        <th style="padding:8px 10px;text-align:left;color:#4f46a8;font-weight:700;">სულ</th>
+      </tr>
+      <tr style="border-bottom:1px solid #f3f4f6;">
+        <td style="padding:8px 10px;">A/B ტესტი (Version A)</td>
+        <td style="padding:8px 10px;font-weight:700;">$5/დღე</td>
+        <td style="padding:8px 10px;">10 დღე</td>
+        <td style="padding:8px 10px;">$50</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f3f4f6;">
+        <td style="padding:8px 10px;">A/B ტესტი (Version B)</td>
+        <td style="padding:8px 10px;font-weight:700;">$5/დღე</td>
+        <td style="padding:8px 10px;">10 დღე</td>
+        <td style="padding:8px 10px;">$50</td>
+      </tr>
+      <tr style="border-bottom:2px solid #e0e7ff;font-weight:700;background:#faf5ff;">
+        <td style="padding:8px 10px;">A/B ტესტი სულ</td>
+        <td style="padding:8px 10px;">$10/დღე</td>
+        <td style="padding:8px 10px;">10 დღე</td>
+        <td style="padding:8px 10px;color:#4f46a8;">$100</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f3f4f6;background:#f0fdf4;">
+        <td style="padding:8px 10px;font-weight:700;color:#166534;">გამარჯვებული კამპანია</td>
+        <td style="padding:8px 10px;font-weight:700;color:#166534;">$15/დღე</td>
+        <td style="padding:8px 10px;color:#166534;">30-60 დღე</td>
+        <td style="padding:8px 10px;color:#166534;">$450-900</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- AUDIENCE -->
+  <div style="background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;border:1px solid #ede9fe;">
+    <div style="font-size:13px;font-weight:700;color:#4f46a8;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px;">აუდიტორია — Ads Manager-ში ზუსტი პარამეტრები</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:13px;">
+      <div>
+        <div style="font-weight:700;color:#1e1b4b;margin-bottom:8px;">ადგილმდებარეობა + ასაკი</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;color:#374151;">
+          <li style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#6B63B5;font-weight:900;min-width:16px;">▸</span> Georgia (მხოლოდ)</li>
+          <li style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#6B63B5;font-weight:900;min-width:16px;">▸</span> ასაკი: 28–55</li>
+          <li style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#6B63B5;font-weight:900;min-width:16px;">▸</span> ენა: ქართული + რუსული</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-weight:700;color:#1e1b4b;margin-bottom:8px;">Placement</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;color:#374151;">
+          <li style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#00A651;font-weight:900;min-width:16px;">✓</span> Facebook Feed</li>
+          <li style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#00A651;font-weight:900;min-width:16px;">✓</span> Instagram Feed</li>
+          <li style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#ef4444;font-weight:900;min-width:16px;">✕</span> Stories, Reels, Audience Network — გამორთე</li>
+        </ul>
+      </div>
+      <div style="grid-column:1/-1;">
+        <div style="font-weight:700;color:#1e1b4b;margin-bottom:8px;">Detailed Targeting — Job Titles (ეს ველში ჩაწერე)</div>
+        <div style="background:#f5f3ff;border-radius:8px;padding:12px 14px;font-size:12px;color:#374151;line-height:1.8;">
+          Chief Financial Officer · Finance Director · Director of Finance · CFO ·
+          Chief Executive Officer · CEO · Business Owner · Managing Director ·
+          Commercial Director · Sales Director · General Manager
+        </div>
+        <div style="font-size:11px;color:#9ca3af;margin-top:6px;">Ads Manager-ში: Detailed Targeting → Browse → Demographics → Work → Job Titles</div>
+      </div>
+    </div>
+    <div style="margin-top:14px;background:#fef3c7;border-radius:8px;padding:10px 14px;font-size:12px;color:#92400e;">
+      <strong>მნიშვნელოვანი:</strong> A-ს ad set-ი და B-ს ad set-ი — <strong>ზუსტად ერთი targeting</strong>. განსხვავება მხოლოდ კრეატივია.
+    </div>
+  </div>
+
+  <!-- OBJECTIVE -->
+  <div style="background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;border:1px solid #ede9fe;">
+    <div style="font-size:13px;font-weight:700;color:#4f46a8;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px;">Ads Manager Setup</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:12px;">
+      <div style="background:#f5f3ff;border-radius:8px;padding:12px;text-align:center;">
+        <div style="font-size:11px;color:#9ca3af;margin-bottom:4px;">Campaign Objective</div>
+        <div style="font-weight:700;color:#4f46a8;">Leads</div>
+        <div style="font-size:11px;color:#6b7280;margin-top:4px;">(Lead Generation — native form)</div>
+      </div>
+      <div style="background:#f5f3ff;border-radius:8px;padding:12px;text-align:center;">
+        <div style="font-size:11px;color:#9ca3af;margin-bottom:4px;">Ad Format</div>
+        <div style="font-weight:700;color:#4f46a8;">Single Image</div>
+        <div style="font-size:11px;color:#6b7280;margin-top:4px;">1:1 ratio (1080×1080)</div>
+      </div>
+      <div style="background:#f5f3ff;border-radius:8px;padding:12px;text-align:center;">
+        <div style="font-size:11px;color:#9ca3af;margin-bottom:4px;">Optimization</div>
+        <div style="font-weight:700;color:#4f46a8;">Leads</div>
+        <div style="font-size:11px;color:#6b7280;margin-top:4px;">Lowest cost</div>
+      </div>
+    </div>
+    <div style="margin-top:12px;font-size:12px;color:#374151;background:#f9fafb;border-radius:8px;padding:10px 14px;">
+      <strong>Campaign სახელი:</strong> <code style="background:#ede9fe;padding:2px 6px;border-radius:4px;">BiFinance_AB_Test_2026-05</code><br>
+      <strong>Ad Set A:</strong> <code style="background:#ede9fe;padding:2px 6px;border-radius:4px;">BiFinance_VersionA_GelLa</code><br>
+      <strong>Ad Set B:</strong> <code style="background:#ede9fe;padding:2px 6px;border-radius:4px;">BiFinance_VersionB_Mariam</code>
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div style="background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;border:1px solid #ede9fe;">
+    <div style="font-size:13px;font-weight:700;color:#4f46a8;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px;">რა ვაკვირდებით — Kill Criteria</div>
+    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <tr style="background:#f5f3ff;">
+        <th style="padding:8px 10px;text-align:left;color:#4f46a8;font-weight:700;">Metric</th>
+        <th style="padding:8px 10px;text-align:left;color:#4f46a8;font-weight:700;">მიზანი</th>
+        <th style="padding:8px 10px;text-align:left;color:#4f46a8;font-weight:700;">Stop — თუ</th>
+      </tr>
+      <tr style="border-bottom:1px solid #f3f4f6;">
+        <td style="padding:8px 10px;">CTR</td>
+        <td style="padding:8px 10px;color:#16a34a;font-weight:700;">&gt; 0.8%</td>
+        <td style="padding:8px 10px;color:#ef4444;">&lt; 0.3% after 1,000 impressions</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f3f4f6;">
+        <td style="padding:8px 10px;">CPL (ერთი ლიდის ფასი)</td>
+        <td style="padding:8px 10px;color:#16a34a;font-weight:700;">&lt; $50</td>
+        <td style="padding:8px 10px;color:#ef4444;">$30 ხარჯი → 0 lead</td>
+      </tr>
+      <tr>
+        <td style="padding:8px 10px;">Leads / 10 დღე</td>
+        <td style="padding:8px 10px;color:#16a34a;font-weight:700;">2-4 სულ</td>
+        <td style="padding:8px 10px;color:#ef4444;">$50 ხარჯი → 0 lead → ორივე პოზა</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- WINNER -->
+  <div style="background:#f0fdf4;border-left:4px solid #00A651;border-radius:0 12px 12px 0;padding:16px 20px;font-size:13px;color:#166534;">
+    <strong style="font-size:14px;">გამარჯვებული → 1-2 თვიანი კამპანია</strong><br><br>
+    დღე 10: შეადარე CTR + CPL. მეტი ლიდი = გამარჯვებული.<br>
+    გამარჯვებული ad set: ბიუჯეტი $5 → <strong>$15/დღე</strong>.<br>
+    კამპანიის ხანგრძლივობა: <strong>30 ან 60 დღე</strong> (გელა ირჩევს შედეგებიდან).<br><br>
+    <strong>Creative rotation:</strong> 3 კვირაში ახალი კრეატივი — audience of 8-15K exhausts fast.
+  </div>
+
+</div>
+</div><!-- /tab2 -->
+
+<script>
+function showTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+
 </body>
 </html>
