@@ -123,7 +123,7 @@ nav{
   .live-chip{display:none}
   .btn{padding:6px 11px;font-size:0.74rem}
   .hero-headline{font-size:clamp(1.3rem,7vw,2rem)}
-  .footer-tagline{white-space:nowrap;font-size:0.68rem}
+  .footer-tagline{font-size:0.68rem}
 }
 
 /* ─── HERO ─── */
@@ -458,7 +458,8 @@ footer{
   align-items:center;gap:24px;flex-wrap:wrap;
 }
 @media (max-width:720px){footer{justify-content:center;text-align:center}}
-.footer-tagline{font-size:0.74rem;color:var(--muted);margin-top:4px}
+.footer-tagline{font-size:0.74rem;color:var(--text-dim);margin-top:4px}
+.footer-tagline-sub{font-size:0.68rem;color:var(--muted);margin-top:2px;text-align:right}
 .footer-nav{display:flex;gap:22px;justify-content:center}
 .footer-nav a{font-size:0.78rem;color:var(--text-dim);text-decoration:none;transition:color 0.15s}
 .footer-nav a:hover{color:var(--cyan)}
@@ -840,7 +841,6 @@ footer{
   <h1 class="hero-headline">
     <span class="h1-line l1">ბიზნეს და საჯარო მონაცემების</span>
     <span class="h1-line l2"><span class="uline-wrap">ანალიტიკა ერთ სივრცეში<svg class="drawn-line" viewBox="0 0 420 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none"><defs><linearGradient id="uline-grad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#10b981"/><stop offset="55%" stop-color="#6b63b5"/><stop offset="100%" stop-color="#10b981"/></linearGradient></defs><path class="drawn-path" d="M3 9 C 50 4, 100 13, 160 7 S 240 12, 300 6 S 370 11, 417 8" fill="none" stroke="url(#uline-grad)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
-    <span class="h1-line l3">Qlik Sense BI<span class="h1-plat"> პლატფორმაზე</span></span>
   </h1>
 
   <div class="hero-qlik-pill">Qlik Sense BI</div>
@@ -851,6 +851,7 @@ footer{
   </div>
   <div class="hero-cta-wrap">
     <a href="#" class="hero-cta-btn" onclick="if(window.openModal)openModal();return false;">უფასო წვდომა →</a>
+    <span class="hero-proof-badge">7,000+ მომხმარებელი ✓</span>
   </div>
   <div class="hero-sources">
     <span class="hero-src-label">წყაროები:</span>
@@ -1600,7 +1601,10 @@ footer{
           </svg>
           <span class="logo-word">bihub</span>
         </div>
-        <div class="footer-tagline" style="margin-top:0">Bivision მონაცემების ანალიტიკა</div>
+        <div style="text-align:right">
+          <div class="footer-tagline" style="margin-top:0">საქართველოს საჯარო მონაცემების ჰაბი<span style="margin-left:18px;font-weight:700;color:var(--emerald)">bihub</span></div>
+          <div class="footer-tagline-sub">Bivision მონაცემების ანალიტიკა</div>
+        </div>
       </div>
     </div>
   </footer>
@@ -1758,8 +1762,24 @@ footer{
     var el=document.getElementById('notify-email');
     var email=el?el.value.trim():'';
     if(!email||!email.includes('@')){if(el)el.style.borderColor='var(--rose)';return;}
-    el.value='';el.style.borderColor='var(--cyan)';el.placeholder='✓ გამოწერილია!';
-    var btn=el.nextElementSibling;if(btn){btn.textContent='✓';btn.style.background='var(--emerald)';}
+    var btn=el.nextElementSibling;
+    if(btn){btn.textContent='...';btn.disabled=true;}
+    fetch('https://bihub.ge/wp-json/bihub/v1/subscribe',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.ok){
+        el.value='';el.style.borderColor='var(--cyan)';el.placeholder='✓ გამოწერილია!';
+        if(btn){btn.textContent='✓';btn.style.background='var(--emerald)';btn.disabled=false;}
+      }else{
+        el.style.borderColor='var(--rose)';
+        if(btn){btn.textContent='↺';btn.disabled=false;}
+      }
+    }).catch(function(){
+      el.style.borderColor='var(--rose)';
+      if(btn){btn.textContent='!';btn.disabled=false;}
+    });
   }
 })();
 </script>
