@@ -90,7 +90,7 @@ nav{
 .nav-logo{display:flex;align-items:center;gap:8px}
 .nav-logo svg{display:block;flex-shrink:0}
 .logo-word{color:var(--text);font-weight:800;font-size:1.18rem;letter-spacing:-0.6px;line-height:1}
-.footer-biv-brand{display:flex;align-items:center;justify-content:space-between;white-space:nowrap;margin-top:6px}
+.footer-biv-brand{display:flex;align-items:center;justify-content:flex-start;gap:8px;flex-wrap:nowrap;white-space:nowrap;margin-top:6px}
 .footer-biv-text{font-size:0.68rem;color:var(--muted);font-weight:500}
 .live-chip{
   display:inline-flex;align-items:center;gap:6px;
@@ -1515,7 +1515,7 @@ footer{
 <!-- ─── FOOTER ─── -->
 <div class="footer-wrap">
   <footer>
-    <div>
+    <div style="width:100%">
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
         <div class="nav-logo" style="justify-content:flex-start">
           <svg width="28" height="24" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -1527,9 +1527,9 @@ footer{
         </div>
         <div class="footer-tagline" style="margin-top:0">საქართველოს საჯარო მონაცემების ჰაბი</div>
       </div>
-      <div class="footer-biv-brand" style="display:flex;align-items:center;justify-content:flex-start;gap:8px;flex-wrap:nowrap">
-        <span class="footer-biv-text" style="white-space:nowrap;flex-shrink:0">BI & მონაცემების ანალიტიკა</span>
-        <img src="https://bivision.ge/wp-content/uploads/2025/10/Logo-1.svg" alt="Bivision" style="height:16px;display:block;flex-shrink:0">
+      <div class="footer-biv-brand">
+        <span class="footer-biv-text">BI & მონაცემების ანალიტიკა</span>
+        <img src="https://bivision.ge/wp-content/uploads/2025/10/Logo-1.svg" alt="Bivision" style="height:14px;width:auto;display:block;flex-shrink:0">
       </div>
     </div>
   </footer>
@@ -1556,8 +1556,8 @@ footer{
   /* Inject CTA into every card-back */
   const ctaHTML = `<div class="card-back-cta">
     <button class="cbc-back" type="button" onclick="if(window._bihubCollapse)window._bihubCollapse()">← დაბრუნება</button>
-    <a href="https://bihub.ge/wp-login.php" class="cbc-login">შესვლა</a>
     <a href="https://bihub.ge/wp-login.php?action=register" class="cbc-reg">რეგისტრაცია → უფასოდ</a>
+    <a href="https://bihub.ge/wp-login.php" class="cbc-login">შესვლა</a>
   </div>`;
   $$('.card-back').forEach(cb=>cb.insertAdjacentHTML('beforeend', ctaHTML));
 
