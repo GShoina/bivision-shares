@@ -490,6 +490,7 @@ footer{
 .ticker-item .v{color:var(--text);font-weight:600}
 .ticker-item .up{color:var(--emerald-glow)}
 .ticker-item .dn{color:var(--rose)}
+.ticker-item .src{font-size:0.53rem;color:var(--muted);opacity:0.7;letter-spacing:0.2px;margin-left:3px;font-weight:400}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 .free-badge-back{display:inline-block;background:linear-gradient(135deg,var(--emerald-glow),var(--emerald));color:#04221a;font-size:0.6rem;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:10px;}
@@ -769,24 +770,24 @@ footer{
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-label"><span style="width:6px;height:6px;border-radius:50%;background:#06080f;display:inline-block"></span>LIVE FEED</div>
   <div class="ticker-track">
-    <span class="ticker-item"><span class="k">EXPORT</span><span class="v mono">$5.2B</span><span class="up mono">▴ 8.4%</span></span>
-    <span class="ticker-item"><span class="k">IMPORT</span><span class="v mono">$13.8B</span><span class="dn mono">▾ 2.1%</span></span>
-    <span class="ticker-item"><span class="k">GDP Q3</span><span class="v mono">7.5%</span><span class="up mono">▴ 0.4</span></span>
-    <span class="ticker-item"><span class="k">USD/GEL</span><span class="v mono">2.7142</span><span class="up mono">▴ 0.012</span></span>
-    <span class="ticker-item"><span class="k">EUR/GEL</span><span class="v mono">2.9418</span><span class="dn mono">▾ 0.008</span></span>
-    <span class="ticker-item"><span class="k">ინფლაცია</span><span class="v mono">2.1%</span><span class="up mono">▴ 0.2</span></span>
-    <span class="ticker-item"><span class="k">ტენდერები</span><span class="v mono">14,209</span><span class="up mono">▴ 312</span></span>
-    <span class="ticker-item"><span class="k">სამუშაო ძალა</span><span class="v mono">63.4%</span><span class="up mono">▴ 0.3</span></span>
-    <span class="ticker-item"><span class="k">ტურისტები</span><span class="v mono">7.4M</span><span class="up mono">▴ 18%</span></span>
-    <span class="ticker-item"><span class="k">EXPORT</span><span class="v mono">$5.2B</span><span class="up mono">▴ 8.4%</span></span>
-    <span class="ticker-item"><span class="k">IMPORT</span><span class="v mono">$13.8B</span><span class="dn mono">▾ 2.1%</span></span>
-    <span class="ticker-item"><span class="k">GDP Q3</span><span class="v mono">7.5%</span><span class="up mono">▴ 0.4</span></span>
-    <span class="ticker-item"><span class="k">USD/GEL</span><span class="v mono">2.7142</span><span class="up mono">▴ 0.012</span></span>
-    <span class="ticker-item"><span class="k">EUR/GEL</span><span class="v mono">2.9418</span><span class="dn mono">▾ 0.008</span></span>
-    <span class="ticker-item"><span class="k">ინფლაცია</span><span class="v mono">2.1%</span><span class="up mono">▴ 0.2</span></span>
-    <span class="ticker-item"><span class="k">ტენდერები</span><span class="v mono">14,209</span><span class="up mono">▴ 312</span></span>
-    <span class="ticker-item"><span class="k">სამუშაო ძალა</span><span class="v mono">63.4%</span><span class="up mono">▴ 0.3</span></span>
-    <span class="ticker-item"><span class="k">ტურისტები</span><span class="v mono">7.4M</span><span class="up mono">▴ 18%</span></span>
+    <span class="ticker-item"><span class="k">EXPORT</span><span class="v mono">$5.2B</span><span class="up mono">▴ 8.4%</span><span class="src">გეოსტატი · 2025</span></span>
+    <span class="ticker-item"><span class="k">IMPORT</span><span class="v mono">$13.8B</span><span class="dn mono">▾ 2.1%</span><span class="src">გეოსტატი · 2025</span></span>
+    <span class="ticker-item"><span class="k">GDP Q3</span><span class="v mono">7.5%</span><span class="up mono">▴ 0.4</span><span class="src">გეოსტატი · Q3 2025</span></span>
+    <span class="ticker-item"><span class="k">USD/GEL</span><span class="v mono">2.7142</span><span class="up mono">▴ 0.012</span><span class="src">NBG · დღეს</span></span>
+    <span class="ticker-item"><span class="k">EUR/GEL</span><span class="v mono">2.9418</span><span class="dn mono">▾ 0.008</span><span class="src">NBG · დღეს</span></span>
+    <span class="ticker-item"><span class="k">ინფლაცია</span><span class="v mono">2.1%</span><span class="up mono">▴ 0.2</span><span class="src">გეოსტატი · აპრ 2026</span></span>
+    <span class="ticker-item"><span class="k">ტენდერები</span><span class="v mono">14,209</span><span class="up mono">▴ 312</span><span class="src">SPA · 2026</span></span>
+    <span class="ticker-item"><span class="k">სამუშაო ძალა</span><span class="v mono">63.4%</span><span class="up mono">▴ 0.3</span><span class="src">გეოსტატი · 2025</span></span>
+    <span class="ticker-item"><span class="k">ტურისტები</span><span class="v mono">7.4M</span><span class="up mono">▴ 18%</span><span class="src">GNTA · 2025</span></span>
+    <span class="ticker-item"><span class="k">EXPORT</span><span class="v mono">$5.2B</span><span class="up mono">▴ 8.4%</span><span class="src">გეოსტატი · 2025</span></span>
+    <span class="ticker-item"><span class="k">IMPORT</span><span class="v mono">$13.8B</span><span class="dn mono">▾ 2.1%</span><span class="src">გეოსტატი · 2025</span></span>
+    <span class="ticker-item"><span class="k">GDP Q3</span><span class="v mono">7.5%</span><span class="up mono">▴ 0.4</span><span class="src">გეოსტატი · Q3 2025</span></span>
+    <span class="ticker-item"><span class="k">USD/GEL</span><span class="v mono">2.7142</span><span class="up mono">▴ 0.012</span><span class="src">NBG · დღეს</span></span>
+    <span class="ticker-item"><span class="k">EUR/GEL</span><span class="v mono">2.9418</span><span class="dn mono">▾ 0.008</span><span class="src">NBG · დღეს</span></span>
+    <span class="ticker-item"><span class="k">ინფლაცია</span><span class="v mono">2.1%</span><span class="up mono">▴ 0.2</span><span class="src">გეოსტატი · აპრ 2026</span></span>
+    <span class="ticker-item"><span class="k">ტენდერები</span><span class="v mono">14,209</span><span class="up mono">▴ 312</span><span class="src">SPA · 2026</span></span>
+    <span class="ticker-item"><span class="k">სამუშაო ძალა</span><span class="v mono">63.4%</span><span class="up mono">▴ 0.3</span><span class="src">გეოსტატი · 2025</span></span>
+    <span class="ticker-item"><span class="k">ტურისტები</span><span class="v mono">7.4M</span><span class="up mono">▴ 18%</span><span class="src">GNTA · 2025</span></span>
   </div>
 </div>
 
