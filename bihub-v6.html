@@ -1520,6 +1520,9 @@ footer{
     card.classList.add('card-focus');
     card.classList.add('flipped');
     focusedCard = card;
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      card.scrollIntoView({behavior:'smooth',block:'center'});
+    }));
   }
 
   function collapseCard(){
