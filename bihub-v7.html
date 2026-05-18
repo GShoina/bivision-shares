@@ -458,8 +458,7 @@ footer{
   align-items:center;gap:24px;flex-wrap:wrap;
 }
 @media (max-width:720px){footer{justify-content:center;text-align:center}}
-.footer-tagline{font-size:0.74rem;color:var(--text-dim);margin-top:4px}
-.footer-tagline-sub{font-size:0.68rem;color:var(--muted);margin-top:2px;text-align:right}
+.footer-tagline{font-size:0.74rem;color:var(--muted);margin-top:4px}
 .footer-nav{display:flex;gap:22px;justify-content:center}
 .footer-nav a{font-size:0.78rem;color:var(--text-dim);text-decoration:none;transition:color 0.15s}
 .footer-nav a:hover{color:var(--cyan)}
@@ -1591,20 +1590,19 @@ footer{
 <!-- ─── FOOTER ─── -->
 <div class="footer-wrap">
   <footer>
-    <div style="width:100%">
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
-        <div class="nav-logo" style="justify-content:flex-start">
-          <svg width="28" height="24" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x="0"    y="4"  width="9" height="20" rx="4.5" fill="#00A651"/>
-            <rect x="11.5" y="0"  width="9" height="28" rx="4.5" fill="#00A651"/>
-            <rect x="23"   y="6"  width="9" height="16" rx="4.5" fill="#00A651"/>
-          </svg>
-          <span class="logo-word">bihub</span>
-        </div>
-        <div style="text-align:right">
-          <div class="footer-tagline" style="margin-top:0">საქართველოს საჯარო მონაცემების ჰაბი<span style="margin-left:18px;font-weight:700;color:var(--emerald)">bihub</span></div>
-          <div class="footer-tagline-sub">Bivision მონაცემების ანალიტიკა</div>
-        </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:12px;width:100%;overflow:hidden">
+      <div class="nav-logo" style="justify-content:flex-start;flex-shrink:0">
+        <svg width="28" height="24" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="0"    y="4"  width="9" height="20" rx="4.5" fill="#00A651"/>
+          <rect x="11.5" y="0"  width="9" height="28" rx="4.5" fill="#00A651"/>
+          <rect x="23"   y="6"  width="9" height="16" rx="4.5" fill="#00A651"/>
+        </svg>
+        <span class="logo-word">bihub</span>
+      </div>
+      <div class="footer-tagline" style="margin:0;flex:1;text-align:center">საქართველოს საჯარო მონაცემების ჰაბი</div>
+      <div class="footer-biv-brand" style="margin-top:0;flex-shrink:0">
+        <span class="footer-biv-text">BI & მონაცემების ანალიტიკა</span>
+        <img src="https://bivision.ge/wp-content/uploads/2025/10/Logo-1.svg" alt="Bivision" style="height:14px;width:auto;display:block;flex-shrink:0">
       </div>
     </div>
   </footer>
