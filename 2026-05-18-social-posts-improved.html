@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bivision — გაუმჯობესებული Social Posts</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;700;900&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#f0eff8;font-family:'Noto Sans Georgian',sans-serif;padding:40px 20px;}
+  h1{text-align:center;color:#1e1b4b;font-size:22px;margin-bottom:8px;}
+  .subtitle{text-align:center;color:#6b7280;font-size:14px;margin-bottom:40px;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:1100px;margin:0 auto;}
+  .post-wrap{display:flex;flex-direction:column;gap:16px;}
+  .label{font-size:13px;font-weight:700;color:#6B63B5;text-transform:uppercase;letter-spacing:1px;}
+  .post{
+    width:100%;aspect-ratio:1/1;
+    background:linear-gradient(145deg,#0f0c29 0%,#1a1442 40%,#2d1b69 100%);
+    border-radius:20px;padding:32px;position:relative;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:space-between;
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
+  }
+  /* faint grid bg */
+  .post::before{
+    content:'';position:absolute;inset:0;
+    background:repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0px,rgba(255,255,255,.03) 1px,transparent 1px,transparent 40px),
+               repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0px,rgba(255,255,255,.03) 1px,transparent 1px,transparent 40px);
+    pointer-events:none;
+  }
+  .post-header{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1;}
+  .brand{font-size:20px;font-weight:900;color:#fff;letter-spacing:-0.5px;}
+  .brand span{color:#00A651;}
+  .product-tag{background:#fff;color:#1e1b4b;padding:6px 18px;border-radius:50px;font-size:14px;font-weight:700;}
+  .dots{color:rgba(255,255,255,.5);font-size:20px;letter-spacing:2px;}
+  .post-body{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;padding:20px 0 10px;}
+  .headline{font-size:26px;font-weight:900;color:#fff;line-height:1.3;margin-bottom:20px;}
+  .headline .green{color:#00A651;}
+  .bullets{list-style:none;display:flex;flex-direction:column;gap:8px;}
+  .bullets li{color:rgba(255,255,255,.9);font-size:14px;padding-left:18px;position:relative;line-height:1.4;}
+  .bullets li::before{content:'•';position:absolute;left:0;color:#00A651;font-weight:900;}
+  .proof{margin-top:14px;font-size:12px;color:rgba(255,255,255,.55);font-style:italic;}
+  .post-footer{display:flex;align-items:flex-end;justify-content:space-between;position:relative;z-index:1;}
+  .cta{background:#6B63B5;color:#fff;padding:10px 20px;border-radius:50px;font-size:13px;font-weight:700;display:inline-block;}
+  .cta-free{font-size:11px;color:rgba(255,255,255,.7);display:block;margin-top:3px;text-align:center;}
+  .site{writing-mode:vertical-lr;transform:rotate(180deg);color:rgba(255,255,255,.35);font-size:12px;letter-spacing:2px;}
+
+  /* diff table */
+  .diff{background:#fff;border-radius:12px;padding:20px;font-size:13px;}
+  .diff h3{color:#4f46a8;font-size:14px;margin-bottom:12px;border-bottom:1px solid #ede9fe;padding-bottom:6px;}
+  .diff table{width:100%;border-collapse:collapse;}
+  .diff td{padding:6px 8px;vertical-align:top;border-bottom:1px solid #f3f4f6;}
+  .diff td:first-child{color:#ef4444;width:45%;font-style:italic;}
+  .diff td:last-child{color:#16a34a;width:45%;}
+  .diff td.mid{color:#9ca3af;width:10%;text-align:center;font-weight:700;}
+
+  @media(max-width:700px){.grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<h1>Bivision — Social Post: გაუმჯობესებული ვერსია</h1>
+<div class="subtitle">Mariam — ქვემოთ ახალი კოპი + ცვლილებების ლოგიკა. ვიზუალი შენზეა.</div>
+
+<div class="grid">
+
+  <!-- BiFinance -->
+  <div class="post-wrap">
+    <div class="label">BiFinance — გაუმჯობესებული</div>
+    <div class="post">
+      <div class="post-header">
+        <div class="brand">B<span>·</span>VISION</div>
+        <div class="product-tag">BiFinance</div>
+        <div class="dots">···</div>
+      </div>
+      <div class="post-body">
+        <div class="headline">CFO-ი <span class="green">2 კვირაში</span> ხედავს ყველა ფინანსს — ერთ დეშბორდზე</div>
+        <ul class="bullets">
+          <li>P&amp;L: ნახე ვინ გამოიმუშავებს — სად იკარგება</li>
+          <li>Cash Flow: იცოდე სად მიდის ფული 3 თვეში</li>
+          <li>გეგმა VS ფაქტი — დღევანდელი სიზუსტით</li>
+          <li>ხარჯები, მომგებიანობა, რენტაბელობა</li>
+        </ul>
+        <div class="proof">30+ კომპანია საქართველოში</div>
+      </div>
+      <div class="post-footer">
+        <div>
+          <div class="cta">Demo მოითხოვეთ</div>
+          <div class="cta-free">უფასოა · bivision.ge</div>
+        </div>
+        <div class="site">bivision.ge</div>
+      </div>
+    </div>
+
+    <div class="diff">
+      <h3>რა შეიცვალა და რატომ</h3>
+      <table>
+        <tr>
+          <td>ყველა ფინანსური მონაცემი ერთ დეშბორდზე</td>
+          <td class="mid">→</td>
+          <td>CFO-ი 2 კვირაში ხედავს ყველა ფინანსს — ერთ დეშბორდზე</td>
+        </tr>
+        <tr>
+          <td>მოგება-ზარალი (P&amp;L)</td>
+          <td class="mid">→</td>
+          <td>P&amp;L: ნახე ვინ გამოიმუშავებს — სად იკარგება</td>
+        </tr>
+        <tr>
+          <td>ფულადი ნაკადები (Cash Flow)</td>
+          <td class="mid">→</td>
+          <td>Cash Flow: იცოდე სად მიდის ფული 3 თვეში</td>
+        </tr>
+        <tr>
+          <td>გაენაციოთ დეტალურად</td>
+          <td class="mid">→</td>
+          <td>Demo მოითხოვეთ (უფასოა)</td>
+        </tr>
+        <tr>
+          <td>— (არ იყო)</td>
+          <td class="mid">→</td>
+          <td>30+ კომპანია საქართველოში</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- BiRetail -->
+  <div class="post-wrap">
+    <div class="label">BiRetail — გაუმჯობესებული</div>
+    <div class="post">
+      <div class="post-header">
+        <div class="brand">B<span>·</span>VISION</div>
+        <div class="product-tag">BiRetail</div>
+        <div class="dots">···</div>
+      </div>
+      <div class="post-body">
+        <div class="headline">გაყიდვები, მარჟა, ტრენდები — <span class="green">ერთ ეკრანზე,</span> 2 კვირაში</div>
+        <ul class="bullets">
+          <li>SKU-ებით: ნახე რომელი პროდუქტი გამოაქვს ფულს</li>
+          <li>მარჟა კატეგორიებით — სად გტოვებ ფულს</li>
+          <li>არხის ეფექტურობა: online vs ოფლაინი</li>
+          <li>სეზონური ტრენდები — დაგეგმე წინასწარ</li>
+        </ul>
+        <div class="proof">30+ კომპანია საქართველოში</div>
+      </div>
+      <div class="post-footer">
+        <div>
+          <div class="cta">Demo მოითხოვეთ</div>
+          <div class="cta-free">უფასოა · bivision.ge</div>
+        </div>
+        <div class="site">bivision.ge</div>
+      </div>
+    </div>
+
+    <div class="diff">
+      <h3>რა შეიცვალა და რატომ</h3>
+      <table>
+        <tr>
+          <td>გაყიდვების ყველა მონაცემი ერთ დეშბორდზე</td>
+          <td class="mid">→</td>
+          <td>გაყიდვები, მარჟა, ტრენდები — ერთ ეკრანზე, 2 კვირაში</td>
+        </tr>
+        <tr>
+          <td>გაყიდვები კატეგორიებით (SKU)</td>
+          <td class="mid">→</td>
+          <td>SKU-ებით: ნახე რომელი პროდუქტი გამოაქვს ფულს</td>
+        </tr>
+        <tr>
+          <td>მარჟა და მოგება</td>
+          <td class="mid">→</td>
+          <td>მარჟა კატეგორიებით — სად გტოვებ ფულს</td>
+        </tr>
+        <tr>
+          <td>გაენაციოთ დეტალურად</td>
+          <td class="mid">→</td>
+          <td>Demo მოითხოვეთ (უფასოა)</td>
+        </tr>
+        <tr>
+          <td>— (არ იყო)</td>
+          <td class="mid">→</td>
+          <td>30+ კომპანია საქართველოში</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<div style="max-width:1100px;margin:32px auto 0;background:#fff;border-radius:12px;padding:20px 24px;font-size:13px;color:#374151;">
+  <strong style="color:#4f46a8;">Instagram-ისთვის (ახალი არხი):</strong>
+  ეს ფორმატი = Feed awareness post ✓.
+  პირდაპირი lead gen-ისთვის: Story + link sticker → /saas-products/bifinance/ ან Calendly demo link.
+  Bio-ში: ერთი link → demo booking გვერდი.
+</div>
+
+<div style="text-align:center;font-size:12px;color:#9ca3af;padding:24px 0 0;">GelLa · Bivision · 2026-05-18</div>
+</body>
+</html>
