@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bivision Academy — პროდუქტი & დიზაინის ბრიფი</title>
+<style>
+:root{--ink:#0f0f1e;--muted:#666;--accent:#00A651;--primary:#6B63B5;--bg:#f5f5fa;--card:#fff;--border:#e4e4ee;--radius:14px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:16px}
+
+/* LAYOUT */
+.wrap{max-width:900px;margin:0 auto;padding:0 28px 80px}
+
+/* COVER */
+.cover{background:linear-gradient(140deg,#0a0a18 0%,#1b1741 50%,#0c1a14 100%);color:#fff;padding:0;border-radius:0;margin-bottom:0;position:relative;overflow:hidden;min-height:380px;display:flex;flex-direction:column;justify-content:flex-end}
+.cover-bg{position:absolute;inset:0;pointer-events:none}
+.cover-glow{position:absolute;width:500px;height:500px;border-radius:50%;filter:blur(80px);opacity:.35}
+.cover-glow.g{background:#00A651;top:-100px;right:-80px}
+.cover-glow.p{background:#6B63B5;bottom:-120px;left:-60px}
+.cover-inner{position:relative;z-index:1;padding:56px 56px 52px;max-width:720px}
+.cover-tag{font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:#a8f0c8;margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.cover-tag::before{content:'';display:inline-block;width:20px;height:2px;background:#a8f0c8;border-radius:2px}
+.cover h1{font-size:clamp(30px,4vw,48px);font-weight:900;line-height:1.12;margin-bottom:18px}
+.cover h1 em{color:#a8f0c8;font-style:normal}
+.cover-sub{font-size:18px;color:rgba(255,255,255,.72);line-height:1.6;max-width:540px;margin-bottom:32px}
+.cover-meta{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid rgba(255,255,255,.12);padding-top:24px}
+.cover-meta-item{padding-right:28px;padding-bottom:4px}
+.cover-meta-item .label{font-size:10px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-bottom:2px}
+.cover-meta-item .val{font-size:13px;color:rgba(255,255,255,.85);font-weight:600}
+
+/* NAV (table of contents) */
+.toc{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;margin:36px 0 40px}
+.toc-title{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:14px}
+.toc-list{display:flex;flex-direction:column;gap:6px}
+.toc-list a{font-size:14px;color:var(--primary);text-decoration:none;display:flex;align-items:center;gap:10px}
+.toc-list a:hover{color:var(--accent)}
+.toc-list a .n{font-size:11px;font-weight:800;color:#fff;background:var(--primary);width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px}
+.toc-list a.g .n{background:var(--accent)}
+
+/* SECTIONS */
+.sec{margin-bottom:48px;scroll-margin-top:24px}
+.sec-header{margin-bottom:20px}
+.sec-header .num{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:6px}
+.sec-header h2{font-size:24px;font-weight:900;color:var(--ink);line-height:1.2;margin-bottom:4px}
+.sec-header .sub{font-size:14px;color:var(--muted)}
+hr.sec-rule{border:none;border-top:2px solid var(--border);margin-bottom:24px}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;margin-bottom:14px}
+.card.accent{border-left:4px solid var(--accent)}
+.card.primary{border-left:4px solid var(--primary)}
+.card.dark{background:#0f0f1e;color:#fff;border-color:transparent}
+.card h3{font-size:15px;font-weight:700;color:var(--primary);margin-bottom:10px;margin-top:16px}
+.card h3:first-child{margin-top:0}
+.card p{font-size:14.5px;color:#333;margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+.card.dark p{color:rgba(255,255,255,.75)}
+.card.dark h3{color:#a8f0c8}
+ul{padding-left:20px}
+li{margin-bottom:7px;font-size:14px;color:#333}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+@media(max-width:640px){.g2,.g3{grid-template-columns:1fr}}
+
+/* HIGHLIGHT CARD */
+.hcard{background:linear-gradient(135deg,#f0eeff 0%,#e8faf2 100%);border:1px solid #d0c8f0;border-radius:var(--radius);padding:22px 26px;margin-bottom:14px}
+.hcard p{color:#333;font-size:14.5px}
+
+/* TAGS */
+.tag{display:inline-block;padding:3px 11px;border-radius:20px;font-size:12px;font-weight:700;margin:3px 3px 0 0}
+.tag.g{background:#edfaf3;border:1px solid #b2e8cc;color:#007a3a}
+.tag.p{background:#f0eeff;border:1px solid #c5bfee;color:#4a449a}
+.tag.gray{background:#f0f0f4;border:1px solid #ddd;color:#555}
+
+/* SWATCHES */
+.swatches{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+.swatch{display:flex;align-items:center;gap:12px;background:#f8f8fc;border:1px solid var(--border);border-radius:10px;padding:10px 16px;min-width:200px}
+.sw-dot{width:36px;height:36px;border-radius:8px;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+.sw-info .hex{font-size:14px;font-weight:800;font-family:monospace}
+.sw-info .name{font-size:12px;color:var(--muted)}
+.sw-info .use{font-size:11px;color:#999}
+
+/* MOOD */
+.mood-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:600px){.mood-grid{grid-template-columns:1fr 1fr}}
+.mood-item{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-align:center}
+.mood-item .mi-icon{font-size:24px;margin-bottom:6px}
+.mood-item .mi-label{font-size:12px;font-weight:800;color:var(--ink);display:block}
+.mood-item .mi-desc{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* PERSONA */
+.persona{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px 22px}
+.persona .p-badge{font-size:10px;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.persona .p-name{font-size:15px;font-weight:800;margin-bottom:6px}
+.persona .p-desc{font-size:13px;color:#555;line-height:1.6}
+.persona.hot{border-left:3px solid var(--accent)}
+.persona.hot .p-badge{color:var(--accent)}
+
+/* SECTION MAP */
+.sm-list{display:flex;flex-direction:column;gap:8px}
+.sm-row{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--border);border-radius:10px;padding:13px 18px;transition:box-shadow .2s}
+.sm-row:hover{box-shadow:0 2px 12px rgba(107,99,181,.1)}
+.sm-row .sm-n{font-size:11px;font-weight:800;color:#fff;background:var(--primary);width:26px;height:26px;min-width:26px;border-radius:7px;display:flex;align-items:center;justify-content:center}
+.sm-row .sm-n.g{background:var(--accent)}
+.sm-row .sm-body{flex:1}
+.sm-row .sm-title{font-size:14px;font-weight:700;color:var(--ink)}
+.sm-row .sm-geo{font-size:12px;color:var(--primary);font-weight:600;margin-top:1px}
+.sm-row .sm-note{font-size:12px;color:var(--muted)}
+.sm-row .sm-star{font-size:11px;font-weight:700;color:var(--accent);background:#edfaf3;border:1px solid #b2e8cc;padding:2px 8px;border-radius:12px;white-space:nowrap}
+
+/* FUNNEL */
+.funnel{display:flex;flex-wrap:wrap;gap:0;margin:16px 0}
+.funnel-step{background:#fff;border:1px solid var(--border);padding:14px 18px;flex:1;min-width:120px;position:relative}
+.funnel-step:not(:last-child)::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);font-size:16px;color:var(--muted);z-index:1}
+.funnel-step:first-child{border-radius:10px 0 0 10px}
+.funnel-step:last-child{border-radius:0 10px 10px 0}
+.funnel-step .f-label{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
+.funnel-step .f-action{font-size:13px;font-weight:700;color:var(--ink);margin-top:4px}
+@media(max-width:600px){.funnel{flex-direction:column}.funnel-step::after{display:none}.funnel-step{border-radius:10px!important;margin-bottom:6px}}
+
+/* MODULE TABLE */
+.mod-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+.mod-table th{background:#f0eeff;color:var(--primary);font-weight:800;text-align:left;padding:10px 14px;border-bottom:2px solid var(--border)}
+.mod-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+.mod-table tr:hover td{background:#fafaf8}
+.mod-table .m-num{font-weight:800;color:var(--primary)}
+.mod-table .m-free{color:var(--accent);font-weight:700}
+
+/* QUIZ MATRIX */
+.matrix-wrap{overflow-x:auto}
+.matrix{border-collapse:collapse;font-size:12px;min-width:500px}
+.matrix th,.matrix td{padding:9px 12px;border:1px solid var(--border);text-align:center}
+.matrix th{background:#f0eeff;color:var(--primary);font-weight:800}
+.matrix td{color:#333}
+.matrix td.rec{color:var(--accent);font-weight:700}
+.matrix tr:first-child th:first-child{background:var(--bg)}
+
+/* ANIM LIST */
+.anim-list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.anim-row{display:flex;align-items:center;gap:12px;padding:8px 14px;background:#f8f8fc;border-radius:8px}
+.anim-row .a-time{font-family:monospace;font-size:12px;color:var(--accent);font-weight:700;min-width:42px}
+.anim-row .a-desc{font-size:13px;color:#333}
+
+/* COLLAPSIBLE PROMPT */
+.prompt-section{background:#0f0f1e;border-radius:var(--radius);overflow:hidden;margin-top:20px}
+.prompt-toggle{width:100%;background:none;border:none;cursor:pointer;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;color:#fff;font-size:15px;font-weight:700;font-family:inherit}
+.prompt-toggle:hover{background:rgba(255,255,255,.06)}
+.prompt-toggle .pt-tag{font-size:11px;font-weight:700;color:#a8f0c8;background:rgba(168,240,200,.12);border:1px solid rgba(168,240,200,.3);padding:3px 10px;border-radius:12px}
+.prompt-toggle .pt-arrow{font-size:18px;color:rgba(255,255,255,.4);transition:transform .3s}
+.prompt-toggle.open .pt-arrow{transform:rotate(180deg)}
+.prompt-body{display:none;padding:0 24px 24px}
+.prompt-body.open{display:block}
+.prompt-text{font-family:"Cascadia Code","Fira Mono","Consolas",monospace;font-size:13px;line-height:1.8;color:#e0e0f0;white-space:pre-wrap;word-break:break-word;margin-top:8px}
+.prompt-text .c{color:#a8f0c8}
+.prompt-text .y{color:#ffd770}
+.prompt-text .m{color:#c084fc}
+.copy-btn{background:var(--accent);color:#fff;border:none;padding:10px 22px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px;font-family:inherit;margin-bottom:16px;display:inline-flex;align-items:center;gap:6px;transition:background .2s}
+.copy-btn:hover{background:#008f45}
+.copy-btn.copied{background:#555}
+
+/* TECH RULES */
+.rule-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.rule-grid{grid-template-columns:1fr}}
+.rule-item{display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:#fff;border:1px solid var(--border);border-radius:10px}
+.rule-item .ri-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.rule-item .ri-text{font-size:13px;color:#333;line-height:1.5}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding-top:32px;margin-top:48px;text-align:center}
+.footer-logo{font-size:18px;font-weight:900;color:var(--ink);margin-bottom:6px}
+.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:13px;color:var(--muted)}
+
+@media(max-width:600px){
+  .cover-inner{padding:40px 28px 40px}
+  .wrap{padding:0 18px 60px}
+  .cover-meta{gap:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-bg">
+    <div class="cover-glow g"></div>
+    <div class="cover-glow p"></div>
+  </div>
+  <div class="cover-inner">
+    <div class="cover-tag">პროდუქტი &amp; დიზაინის ბრიფი</div>
+    <h1>Bivision <em>Academy</em><br>Landing Page</h1>
+    <p class="cover-sub">ეს დოკუმენტი სრულად აღწერს პროდუქტს, მიზნებს, ვიზუალურ სტილსა და ტექნიკურ სტრუქტურას — ყველასთვის, ვინც ამ გვერდის შექმნაში ან გააზრებაში მონაწილეობს.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><div class="label">კლიენტი</div><div class="val">Bivision.ge</div></div>
+      <div class="cover-meta-item"><div class="label">პროდუქტი</div><div class="val">Bivision Academy</div></div>
+      <div class="cover-meta-item"><div class="label">URL</div><div class="val">bivision.ge/academy</div></div>
+      <div class="cover-meta-item"><div class="label">თარიღი</div><div class="val">2026-05-18</div></div>
+      <div class="cover-meta-item"><div class="label">შემდგენელი</div><div class="val">Gurafa, Bivision AI</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-title">შინაარსი</div>
+  <div class="toc-list">
+    <a href="#s1"><span class="n">1</span> პროდუქტი — რა ვაშენებთ</a>
+    <a href="#s2"><span class="n">2</span> გვერდის მიზნები და კონვერსიის ლოგიკა</a>
+    <a href="#s3"><span class="n">3</span> სამიზნე აუდიტორია</a>
+    <a href="#s4"><span class="n">4</span> ბრენდი, ფერები და ვიზუალური სტილი</a>
+    <a href="#s5" class="g"><span class="n g">5</span> გვერდის სტრუქტურა — 10 სექცია</a>
+    <a href="#s6"><span class="n">6</span> Hero სექცია — დეტალები</a>
+    <a href="#s7"><span class="n">7</span> Quiz — პერსონალიზაციის ლოგიკა</a>
+    <a href="#s8"><span class="n">8</span> ტექნიკური მოთხოვნები</a>
+    <a href="#s9"><span class="n">9</span> AI ინსტრუქცია (დეველოპერი / AI tool)</a>
+  </div>
+</div>
+
+<!-- S1: PRODUCT -->
+<div class="sec" id="s1">
+  <div class="sec-header">
+    <div class="num">სექცია 01</div>
+    <h2>პროდუქტი — რა ვაშენებთ</h2>
+    <p class="sub">Bivision Academy-ის landing page. საქართველოს პირველი პრაქტიკული AI სასწავლო პლატფორმა.</p>
+  </div>
+  <hr class="sec-rule">
+
+  <div class="card accent">
+    <p><strong>Bivision Academy</strong> — ეს არ არის ზოგადი AI კურსი. ეს არის სტრუქტურირებული 6-მოდულიანი პროგრამა ქართველი ბიზნესმენებისთვის: მენეჯერები, ანალიტიკოსები, მეწარმეები, sales/marketing პროფესიონალები — ადამიანები, ვინც ბიზნესს მართავს და ჯერ კოდს ვერ წერს.</p>
+    <p>პრემისა: <strong>AI უკვე ანაცვლებს რუტინულ სამუშაოს. ვინც ისწავლის — გაიმარჯვებს. ვინც არ ისწავლის — ჩამორჩება.</strong> ეს landing page ამ შეგნების გამოწვევიდან ქმედებამდე გადასვლას ემსახურება.</p>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <h3>მოდული 01 — უფასო, სამუდამოდ</h3>
+      <p>Claude Cowork for Business. AI-ს მეხსიერება, წესები, შაბლონები. პირველი რეალური სამუშაო სესია AI-თან, როგორც ბიზნეს პარტნიორთან.</p>
+      <span class="tag g">უფასოდ</span> <span class="tag g">Entry point</span>
+    </div>
+    <div class="card">
+      <h3>მოდულები 02–06 — 750 ₾</h3>
+      <p>Marketing Automation, Vibe Coding (კოდის გარეშე), MCP Data Connectors, პირველი AI Agent, ავტონომიური Cloud Routines.</p>
+      <span class="tag p">ერთჯერადი გადახდა</span> <span class="tag p">Lifetime წვდომა</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>6 მოდულის სახელები</h3>
+    <table class="mod-table">
+      <thead>
+        <tr><th>#</th><th>სახელი</th><th>ძირითადი შინაარსი</th><th>ფასი</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="m-num">M01</td><td>Claude Cowork for Business</td><td>Memory, Rules, Templates, პირველი სესია</td><td class="m-free">უფასო</td></tr>
+        <tr><td class="m-num">M02</td><td>Marketing Automation</td><td>Email კამპანიები, CRM, სოც. მედია AI-ით</td><td>750 ₾ (სრული)</td></tr>
+        <tr><td class="m-num">M03</td><td>Vibe Coding</td><td>AI-ით აპ/ინსტრუმენტის შექმნა — კოდის გარეშე</td><td></td></tr>
+        <tr><td class="m-num">M04</td><td>MCP Data Connectors</td><td>Google Sheets, 1C, ERP — AI-ის პირდაპირ</td><td></td></tr>
+        <tr><td class="m-num">M05</td><td>პირველი AI Agent</td><td>ავტონომიური AI, workflow-ების ავტომატიზაცია</td><td></td></tr>
+        <tr><td class="m-num">M06</td><td>Cloud AI Routines</td><td>Cloud-ზე გაშვებული, ყოველდღიური AI სამუშაოები</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- S2: GOALS -->
+<div class="sec" id="s2">
+  <div class="sec-header">
+    <div class="num">სექცია 02</div>
+    <h2>გვერდის მიზნები და კონვერსიის ლოგიკა</h2>
+    <p class="sub">ამ გვერდს სამი მიზანი აქვს, მკაცრი პრიორიტეტით.</p>
+  </div>
+  <hr class="sec-rule">
+
+  <div class="g3">
+    <div class="card accent">
+      <h3>მთავარი მიზანი</h3>
+      <p>M01-ზე ელ-ფოსტის რეგისტრაცია. ვიზიტორი → ლიდი. უფასო entry point ყველაზე ძლიერი trigger-ია.</p>
+    </div>
+    <div class="card primary">
+      <h3>მეორადი მიზანი</h3>
+      <p>სრული კურიკულუმის ჩვენება. 750 ₾ სრული კურსი — ღირებულების გაცნობიერება.</p>
+    </div>
+    <div class="card">
+      <h3>მესამე მიზანი</h3>
+      <p>Bivision-ი = ქართული AI განათლების ავტორიტეტი. არა კურსის გამყიდველი — მოძრაობა.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>კონვერსიის ფანელი</h3>
+    <div class="funnel">
+      <div class="funnel-step"><div class="f-label">Arrive</div><div class="f-action">LinkedIn / რეკლამა / ბეჭედი</div></div>
+      <div class="funnel-step"><div class="f-label">Understand</div><div class="f-action">Hero + KPI strip</div></div>
+      <div class="funnel-step"><div class="f-label">Identify</div><div class="f-action">Quiz: ჩემი გზა</div></div>
+      <div class="funnel-step"><div class="f-label">Trust</div><div class="f-action">მოდულები + ვისთვის</div></div>
+      <div class="funnel-step"><div class="f-label">Act</div><div class="f-action">რეგისტრაცია / ყიდვა</div></div>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-top:10px">Quiz სექცია ყველაზე მაღალი engagement-ის წერტილია — "ვნახოთ შენი კურსი" პერსონალიზებულ შედეგს გასცემს, ენდობა.</p>
+  </div>
+</div>
+
+<!-- S3: AUDIENCE -->
+<div class="sec" id="s3">
+  <div class="sec-header">
+    <div class="num">სექცია 03</div>
+    <h2>სამიზნე აუდიტორია</h2>
+    <p class="sub">ქართველი ბიზნეს პროფესიონალები. არა დეველოპერები. არა სტუდენტები.</p>
+  </div>
+  <hr class="sec-rule">
+
+  <div class="hcard">
+    <p>ადამიანები, ვინც <strong>რამეს მართავს, ყიდის ან ანალიზს აკეთებს</strong> — და გრძნობს, რომ AI უკვე მათ გარეშე მიდის. სურთ შედეგი კვირებში, არა თვეებში. ქართული კონტექსტი მათთვის მნიშვნელოვანია: GEL ფასი, ადგილობრივი მაგალითები, ქართული ინტერფეისი.</p>
+  </div>
+
+  <div class="g2">
+    <div class="persona hot">
+      <div class="p-badge">პერსონა 1 — ყველაზე გავრცელებული</div>
+      <div class="p-name">Marketing Manager / Sales Lead</div>
+      <div class="p-desc">დღეში 3 საათს ხარჯავს ელ-ფოსტებში, პოსტებში, CRM-ში. იცის, რომ AI დაეხმარება. არასდროს ჰქონია სტრუქტურირებული გზა დასაწყებად.</div>
+    </div>
+    <div class="persona">
+      <div class="p-badge">პერსონა 2</div>
+      <div class="p-name">ბიზნეს მფლობელი / Founder</div>
+      <div class="p-desc">10–80 ადამიანის კომპანია. იხდის ინსტრუმენტებისთვის, რომლებსაც არავინ იყენებს. სკეპტიკოსია — ROI-ს ითხოვს.</div>
+    </div>
+    <div class="persona">
+      <div class="p-badge">პერსონა 3</div>
+      <div class="p-name">CFO / ანალიტიკოსი</div>
+      <div class="p-desc">ყოველ კვირა Excel-ში მუშაობს ხელით. გაუგია ავტომატიზებული dashboard-ების შესახებ. ანალიტიკური — proof სჭირდება.</div>
+    </div>
+    <div class="persona">
+      <div class="p-badge">პერსონა 4</div>
+      <div class="p-name">Tech-Adjacent Manager</div>
+      <div class="p-desc">ტექნოლოგია ესმის, კოდი არ ეწერება. შინაგანი AI ინსტრუმენტების შექმნა სურს დეველოპერის გარეშე. Vibe Coding-ის კონცეფცია იზიდავს.</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:4px">
+    <h3>რა ახდენს კლიკს</h3>
+    <ul>
+      <li><strong>სპეციფიკა > ინსპირაცია</strong> — "Email კამპანია AI-ით" სჯობს "Transform your business with AI"-ს</li>
+      <li><strong>უფასო M01 ყველაზე ძლიერი conversion trigger-ია</strong> — რისკი ნულზე დაიყვანება</li>
+      <li><strong>ქართული კონტექსტი</strong> — GEL ფასი, ადგილობრივი მაგალითები = სანდოობა</li>
+      <li><strong>Quiz პერსონალიზაცია</strong> — "ეს ჩემთვისაა" შეგრძნება = engagement-ის პიკი</li>
+    </ul>
+  </div>
+</div>
+
+<!-- S4: BRAND -->
+<div class="sec" id="s4">
+  <div class="sec-header">
+    <div class="num">სექცია 04</div>
+    <h2>ბრენდი, ფერები და ვიზუალური სტილი</h2>
+    <p class="sub">Bivision-ის ვიზუალური იდენტობა — უცვლელი ყველა პლატფორმაზე.</p>
+  </div>
+  <hr class="sec-rule">
+
+  <div class="card">
+    <h3>ფერის პალიტრა</h3>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="sw-dot" style="background:#6B63B5"></div>
+        <div class="sw-info"><div class="hex">#6B63B5</div><div class="name">Primary Purple</div><div class="use">ბრენდი, ავტორიტეტი, ნდობა</div></div>
+      </div>
+      <div class="swatch">
+        <div class="sw-dot" style="background:#00A651"></div>
+        <div class="sw-info"><div class="hex">#00A651</div><div class="name">Accent Green</div><div class="use">ქმედება, "უფასო", პოზიტიური</div></div>
+      </div>
+      <div class="swatch">
+        <div class="sw-dot" style="background:#EAEAF2"></div>
+        <div class="sw-info"><div class="hex">#EAEAF2</div><div class="name">Background</div><div class="use">ღია ნეიტრალი, სექციების ფონი</div></div>
+      </div>
+      <div class="swatch">
+        <div class="sw-dot" style="background:#1A1A2E"></div>
+        <div class="sw-info"><div class="hex">#1A1A2E</div><div class="name">Deep Navy</div><div class="use">Hero-ს ფონი, ტექსტი</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <h3>ვიზუალური განწყობა</h3>
+      <div class="mood-grid">
+        <div class="mood-item"><div class="mi-icon">🌑</div><span class="mi-label">Dark Hero</span><span class="mi-desc">სივრცის შეგრძნება, AI ხელსაწყოები ფონში</span></div>
+        <div class="mood-item"><div class="mi-icon">⚡</div><span class="mi-label">ენერგიული</span><span class="mi-desc">ეს არ არის პასიური სწავლა. ეს ტრანსფორმაციაა.</span></div>
+        <div class="mood-item"><div class="mi-icon">🎯</div><span class="mi-label">ზუსტი</span><span class="mi-desc">ყველა ელემენტი გამართლებული. სიჭარბე = 0.</span></div>
+        <div class="mood-item"><div class="mi-icon">🇬🇪</div><span class="mi-label">ქართული</span><span class="mi-desc">თბილი. პირდაპირი. ნამდვილი ნდობა, არა ჰაიფი.</span></div>
+        <div class="mood-item"><div class="mi-icon">🤖</div><span class="mi-label">AI-native</span><span class="mi-desc">მომავლის შეგრძნება, კორპორატიული ბროშურა — არა.</span></div>
+        <div class="mood-item"><div class="mi-icon">💎</div><span class="mi-label">Premium</span><span class="mi-desc">750 ₾ = სერიოზული ინვესტიცია. დიზაინი ამის შესაბამისი.</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>ტიპოგრაფია</h3>
+      <p>System font stack: <code>"Segoe UI", Arial, sans-serif</code>. გარე შრიფტი არ იტვირთება (Google Fonts = არა) — CLS ნულია.</p>
+      <p>Hero headline: <strong>900 weight</strong>, tight letter-spacing (-0.5px). Body: 400/600. Labels: ALL CAPS, 700 weight.</p>
+      <p>ქართული ტექსტი ყველა ზომაში მკაფიოდ უნდა იკითხებოდეს — ფონტებს, რომლებიც ქართულ გლიფებს ამახინჯებენ, მოვარიდებთ.</p>
+      <h3>ლოგო</h3>
+      <p>ყოველთვის <code>&lt;img&gt;</code> ტეგი. არასდროს ტექსტი. წყარო: <code>bivision.ge/wp-content/uploads/2025/10/Logo-1.svg</code>. მუქ ფონზე — თეთრი ვერსია. LCP ელემენტი — <code>fetchpriority="high"</code>.</p>
+      <h3>ტონნი</h3>
+      <p>თავდაჯერებული. პირდაპირი. თბილი, მაგრამ არა სუსტი. ბაზარული სიტყვები — არა. em-dash ყველგან — არა. ჭკვიანი მენტორი, არა გაყიდვების ბოტი.</p>
+    </div>
+  </div>
+</div>
+
+<!-- S5: SECTION MAP -->
+<div class="sec" id="s5">
+  <div class="sec-header">
+    <div class="num">სექცია 05</div>
+    <h2>გვერდის სტრუქტურა — 10 სექცია</h2>
+    <p class="sub">ზემოდან ქვემოთ, ვიზიტორის გზა.</p>
+  </div>
+  <hr class="sec-rule">
+
+  <div class="sm-list">
+    <div class="sm-row">
+      <div class="sm-n">1</div>
+      <div class="sm-body">
+        <div class="sm-title">Sticky Topbar</div>
+        <div class="sm-geo">სათაურის ზოლი</div>
+        <div class="sm-note">ლოგო მარცხნივ. "M01 — უფასოდ →" მწვანე ღილაკი მარჯვნივ. ყოველთვის ხილული.</div>
+      </div>
+    </div>
+    <div class="sm-row">
+      <div class="sm-n g">2</div>
+      <div class="sm-body">
+        <div class="sm-title">Hero Section</div>
+        <div class="sm-geo">მთავარი სექცია</div>
+        <div class="sm-note">მუქი ფონი. AI ხელსაწყოები ბლურ ფონში. H1: "ისწავლე AI ავტომატიზაცია / შენი ბიზნესისთვის". Typewriter. 2 CTA ღილაკი. Marketing strip ქვემოთ.</div>
+      </div>
+      <div class="sm-star">ყველაზე მნიშვნელოვანი</div>
+    </div>
+    <div class="sm-row">
+      <div class="sm-n">3</div>
+      <div class="sm-body">
+        <div class="sm-title">KPI Strip</div>
+        <div class="sm-geo">სტატისტიკის ზოლი</div>
+        <div class="sm-note">4 მაჩვენებელი: 6 მოდული / M01 უფასო / 750 ₾ / 100% პრაქტიკული.</div>
+      </div>
+    </div>
+    <div class="sm-row">
+      <div class="sm-n">4</div>
+      <div class="sm-body">
+        <div class="sm-title">What You Learn</div>
+        <div class="sm-geo">ნაკლები თეორია, რეალური AI & პრაქტიკა</div>
+        <div class="sm-note">4 ბარათი: Marketing Auto / Business Auto / Vibe Coding / AI Agent. Hover ეფექტები.</div>
+      </div>
+    </div>
+    <div class="sm-row">
+      <div class="sm-n g">5</div>
+      <div class="sm-body">
+        <div class="sm-title">Personalization Quiz</div>
+        <div class="sm-geo">ვნახოთ შენი კურსი</div>
+        <div class="sm-note">კითხვა 1: შენი როლი (2x2 grid). კითხვა 2: მთავარი მიზანი (2x2 grid). Submit → პერსონალიზებული მოდულები highlight-დება.</div>
+      </div>
+      <div class="sm-star">Engagement-ის პიკი</div>
+    </div>
+    <div class="sm-row">
+      <div class="sm-n">6</div>
+      <div class="sm-body">
+        <div class="sm-title">6 Module Cards</div>
+        <div class="sm-geo">მოდულები</div>
+        <div class="sm-note">M01: მწვანე ბორდერი + "უფასო" badge. M02–M06: "ჩაკეტილი". Quiz-ის შედეგი highlight-ავს შესაფერისებს.</div>
+      </div>
+    </div>
+    <div class="sm-row">
+      <div class="sm-n">7</div>
+      <div class="sm-body">
+        <div class="sm-title">For Whom</div>
+        <div class="sm-geo">ვისთვისაა</div>
+        <div class="sm-note">4 პერსონა. Marketing/Sales highlighted ("ყველაზე პოპულარული"). ხატი + როლი + 1 წინადადება.</div>
+      </div>
+    </div>
+    <div class="sm-row">
+      <div class="sm-n g">8</div>
+      <div class="sm-body">
+        <div class="sm-title">Registration Form</div>
+        <div class="sm-geo">დაიწყე M01 უფასოდ</div>
+        <div class="sm-note">Purple-dark gradient ფონი. ელ-ფოსტა + submit. "საკრედიტო ბარათი არ სჭირდება".</div>
+      </div>
+      <div class="sm-star">მთავარი CTA</div>
+    </div>
+    <div class="sm-row">
+      <div class="sm-n">9</div>
+      <div class="sm-body">
+        <div class="sm-title">Full Course CTA Banner</div>
+        <div class="sm-geo">სრული კურსი — 750 ₾</div>
+        <div class="sm-note">იგივე gradient. "M02–M06 სრული კურსი — 750 ₾". თეთრი ღილაკი. Lifetime წვდომა.</div>
+      </div>
+    </div>
+    <div class="sm-row">
+      <div class="sm-n">10</div>
+      <div class="sm-body">
+        <div class="sm-title">Footer</div>
+        <div class="sm-geo">ქვედა ბოლო</div>
+        <div class="sm-note">მუქი ფონი. © Bivision. BI Products ლინკები. მინიმალური.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S6: HERO DEEP DIVE -->
+<div class="sec" id="s6">
+  <div class="sec-header">
+    <div class="num">სექცია 06</div>
+    <h2>Hero სექცია — დეტალები</h2>
+    <p class="sub">ყველაზე რთული და ყველაზე მნიშვნელოვანი ნაწილი.</p>
+  </div>
+  <hr class="sec-rule">
+
+  <div class="card accent">
+    <h3>კონცეფცია: "AI უკვე ფონში მუშაობს"</h3>
+    <p>Hero-ს ფონი არის <strong>AI ხელსაწყოების ინტერფეისების ბლური კომპოზიცია</strong> — chat ფანჯარა, analytics dashboard, terminal log. <code>filter:blur(14px) brightness(0.42)</code>. ბრენდის ფერების glow overlay-ები. შეგრძნება: ეს AI-ი უკვე მუშაობს — ჩვენ ვასწავლით, როგორ მოიხმო.</p>
+    <p>ლოგოები (ChatGPT, Claude, Gemini, HubSpot, Mailchimp) ბლურ ფენაში ცურავენ — ეკოსისტემა ვიზუალურად.</p>
+  </div>
+
+  <div class="card">
+    <h3>Headline სტრუქტურა</h3>
+    <p><strong>ხაზი 1:</strong> "ისწავლე <span style="color:var(--accent);font-weight:700">AI ავტომატიზაცია</span>" — "AI ავტომატიზაცია" მწვანეში (#00A651) ხელნახატი SVG underline-ით, რომელიც ჩატვირთვისას "იხატება" (stroke-dasharray ანიმაცია).</p>
+    <p><strong>ხაზი 2:</strong> "შენი ბიზნესისთვის" — თეთრი, იმავე სიმძიმის.</p>
+    <p><strong>Typewriter subtitle:</strong> მბრუნავი მოკლე ფრაზები — "Marketing Automation-დან AI Agent-მდე", "Email კამპანიები ავტომატურად" და სხვ. გვერდი იტვირთება პირველი ფრაზა ჩანს — 2.6წ-ზე კრეფა იწყება.</p>
+  </div>
+
+  <div class="card">
+    <h3>ანიმაციების თანმიმდევრობა</h3>
+    <div class="anim-list">
+      <div class="anim-row"><div class="a-time">0.1s</div><div class="a-desc">Badge ("საქართველოს პირველი AI სასწავლო პლატფორმა") — fade in</div></div>
+      <div class="anim-row"><div class="a-time">0.2s</div><div class="a-desc">"ისწავლე" — slide up + fade in</div></div>
+      <div class="anim-row"><div class="a-time">0.45s</div><div class="a-desc">"AI ავტომატიზაცია" — slide up + fade in</div></div>
+      <div class="anim-row"><div class="a-time">0.7s</div><div class="a-desc">"შენი ბიზნესისთვის" — slide up + fade in</div></div>
+      <div class="anim-row"><div class="a-time">1.4s</div><div class="a-desc">CTA ღილაკები — fade in</div></div>
+      <div class="anim-row"><div class="a-time">1.8s</div><div class="a-desc">SVG underline — stroke-dashoffset 380 → 0 (1s-ში)</div></div>
+      <div class="anim-row"><div class="a-time">2.6s</div><div class="a-desc">Typewriter — იწყებს მომდევნო ფრაზების ბრუნვას</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- S7: QUIZ -->
+<div class="sec" id="s7">
+  <div class="sec-header">
+    <div class="num">სექცია 07</div>
+    <h2>Quiz — პერსონალიზაციის ლოგიკა</h2>
+    <p class="sub">ვინ ხარ + რა გინდა → შენი კურსი. Pure JS, library-ის გარეშე.</p>
+  </div>
+  <hr class="sec-rule">
+
+  <div class="g2" style="margin-bottom:14px">
+    <div class="card">
+      <h3>კითხვა 1: შენი როლი?</h3>
+      <p><span class="tag gray">👔 მენეჯერი</span> <span class="tag gray">📣 მარკეტინგი / Sales</span> <span class="tag gray">📊 ანალიტიკოსი / CFO</span> <span class="tag gray">🚀 მეწარმე / Founder</span></p>
+    </div>
+    <div class="card">
+      <h3>კითხვა 2: მთავარი მიზანი?</h3>
+      <p><span class="tag gray">📣 Marketing Auto</span> <span class="tag gray">⚙️ ბიზნეს ოპერაციები</span> <span class="tag gray">🚀 AI პროდუქტი</span> <span class="tag gray">📊 Data & Analytics</span></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>შედეგების მატრიცა (როლი × მიზანი → რეკომენდებული მოდულები)</h3>
+    <div class="matrix-wrap">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>როლი \ მიზანი</th>
+            <th>Marketing Auto</th>
+            <th>ბიზნეს ოპერ.</th>
+            <th>AI პროდუქტი</th>
+            <th>Data & Analytics</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>მენეჯერი</strong></td><td class="rec">M01, M02, M05</td><td class="rec">M01, M02, M04</td><td class="rec">M01, M03, M05</td><td class="rec">M01, M02, M04</td></tr>
+          <tr><td><strong>Marketing / Sales</strong></td><td class="rec">M01, M02, M05, M06</td><td class="rec">M01, M02, M05</td><td class="rec">M01, M03, M05</td><td class="rec">M01, M02, M04</td></tr>
+          <tr><td><strong>ანალიტიკოსი / CFO</strong></td><td class="rec">M01, M02, M05</td><td class="rec">M01, M02, M04</td><td class="rec">M01, M04, M06</td><td class="rec">M01, M04, M06</td></tr>
+          <tr><td><strong>მეწარმე / Founder</strong></td><td class="rec">M01, M02, M05</td><td class="rec">M01, M02, M05</td><td class="rec">M01, M03, M05</td><td class="rec">M01, M03, M04</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-top:12px">Submit-ის შემდეგ: რეკომენდებული მოდულები იღებენ მწვანე ბორდერს + "✓ შეგიფერება" badge-ს. დანარჩენები: opacity 0.2. ბანერი: "შენი კურსი: M01 → M02 → M05". Reset: "ყველა მოდულის ნახვა ↩".</p>
+  </div>
+</div>
+
+<!-- S8: TECHNICAL -->
+<div class="sec" id="s8">
+  <div class="sec-header">
+    <div class="num">სექცია 08</div>
+    <h2>ტექნიკური მოთხოვნები</h2>
+    <p class="sub">სავალდებულო სტანდარტები — პროდუქციული ვერსიისთვის.</p>
+  </div>
+  <hr class="sec-rule">
+
+  <div class="rule-grid">
+    <div class="rule-item"><div class="ri-icon">🌐</div><div class="ri-text"><strong>lang="ka"</strong> — HTML ელემენტზე. UTF-8 charset. ქართული ტექსტი კრიტიკულია.</div></div>
+    <div class="rule-item"><div class="ri-icon">📱</div><div class="ri-text"><strong>Mobile-first 375px</strong>. Touch targets მინ. 44px. Responsive ყველა breakpoint-ზე.</div></div>
+    <div class="rule-item"><div class="ri-icon">🔍</div><div class="ri-text"><strong>OG tags, canonical</strong> (<code>bivision.ge/academy/</code>), JSON-LD: Organization + WebPage schema.</div></div>
+    <div class="rule-item"><div class="ri-icon">⚡</div><div class="ri-text"><strong>LCP &lt; 1.5s</strong>. ლოგო: <code>fetchpriority="high"</code> + width/height attr. CLS = 0.</div></div>
+    <div class="rule-item"><div class="ri-icon">🎨</div><div class="ri-text">ყველა ანიმაცია: <code>transform/opacity</code> — GPU composited. Hover → <code>@media(hover:hover)</code>.</div></div>
+    <div class="rule-item"><div class="ri-icon">♿</div><div class="ri-text"><code>@media(prefers-reduced-motion:reduce)</code> — ყველა ანიმაცია გამოირთვება.</div></div>
+    <div class="rule-item"><div class="ri-icon">🚫</div><div class="ri-text">გარე შრიფტები — არა. JS library-ები — არა. Inline SVG სადაც შესაძლებელია.</div></div>
+    <div class="rule-item"><div class="ri-icon">📝</div><div class="ri-text">Registration form: <code>onsubmit="return false;"</code> — backend ჯერ არ არის. Smooth scroll: <code>html{scroll-behavior:smooth}</code>.</div></div>
+  </div>
+</div>
+
+<!-- S9: AI PROMPT (collapsible) -->
+<div class="sec" id="s9">
+  <div class="sec-header">
+    <div class="num">სექცია 09 — დანართი</div>
+    <h2>AI ინსტრუქცია</h2>
+    <p class="sub">Claude Designer, Lovable ან სხვა AI ხელსაწყოსთვის. ქვემოთ გახსენი და დაკოპირე.</p>
+  </div>
+  <hr class="sec-rule">
+
+  <div class="prompt-section">
+    <button class="prompt-toggle" onclick="togglePrompt(this)" id="ptoggle">
+      <span>📋 AI-ისთვის მზა ინსტრუქცია (Claude Designer / Lovable)</span>
+      <span style="display:flex;align-items:center;gap:10px">
+        <span class="pt-tag">Technical</span>
+        <span class="pt-arrow">▼</span>
+      </span>
+    </button>
+    <div class="prompt-body" id="pbody">
+      <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy full prompt</button>
+      <div class="prompt-text" id="ptext">
+<span class="c">## PROJECT</span>
+Build a single-page HTML landing page for <span class="y">Bivision Academy</span> — Georgia's first practical AI education platform. URL: bivision.ge/academy.
+
+<span class="c">## PRODUCT</span>
+6-module AI course for Georgian business professionals. M01 is free forever. M02-M06 = 750 GEL one-time, lifetime access. Value: people automate real business work (email, CRM, reports, agents) using Claude AI — no coding required.
+
+<span class="c">## BRAND</span>
+- Primary purple: #6B63B5
+- Accent green: #00A651
+- Background: #EAEAF2
+- Dark hero bg: #0a0a18 to #1A1A2E
+- Font: "Segoe UI", Arial, sans-serif (system stack — NO Google Fonts)
+- Logo: &lt;img src="https://bivision.ge/wp-content/uploads/2025/10/Logo-1.svg" alt="Bivision" width="144" height="30" fetchpriority="high"&gt;
+
+<span class="c">## DESIGN MOOD</span>
+Dark, premium, AI-native hero. Blurred AI tool interfaces (chat UI + analytics dashboard + terminal) in background at filter:blur(14px) brightness(0.42). Brand purple/green glow overlays. Sections below hero: clean white + #EAEAF2. Not a generic SaaS template. Georgian market — warm authority, not hype.
+
+<span class="c">## HERO H1 (exact text, do not translate)</span>
+Line 1: "ისწავლე [AI ავტომატიზაცია]" — "AI ავტომატიზაცია" in #00A651, with animated SVG hand-drawn underline (stroke-dasharray draw-in, 1s, 1.8s delay)
+Line 2: "შენი ბიზნესისთვის" — white
+Typewriter below: starts visible with "Marketing Automation-დან AI Agent-მდე", rotates short Georgian phrases at 2.6s
+
+<span class="c">## SECTIONS (in order)</span>
+1. Sticky topbar: logo + "M01 — უფასოდ →" green button
+2. Hero: dark bg + blurred AI tools BG + headline + typewriter + 2 CTAs + marketing strip
+3. KPI strip: 6 modules / M01 free / 750₾ / 100% practical
+4. "ნაკლები თეორია, რეალური AI & პრაქტიკა" — 4 learn cards
+5. Quiz: 2 questions (role + goal), 2x2 button grid each, "ვნახოთ შენი კურსი →" submit
+6. 6 Module cards: M01 (green border, free badge) + M02-M06 (locked)
+7. "ვისთვისაა" — 4 persona cards
+8. Registration (#register): purple-dark gradient, email + submit
+9. CTA banner: same gradient, "M02-M06 სრული კურსი — 750 ₾"
+10. Footer: dark
+
+<span class="c">## QUIZ LOGIC (vanilla JS)</span>
+Q1: manager / marketer / analyst / founder
+Q2: marketing / ops / product / data
+Matrix:
+manager×marketing=[1,2,5], manager×ops=[1,2,4], manager×product=[1,3,5], manager×data=[1,2,4]
+marketer×marketing=[1,2,5,6], marketer×ops=[1,2,5], marketer×product=[1,3,5], marketer×data=[1,2,4]
+analyst×marketing=[1,2,5], analyst×ops=[1,2,4], analyst×product=[1,4,6], analyst×data=[1,4,6]
+founder×marketing=[1,2,5], founder×ops=[1,2,5], founder×product=[1,3,5], founder×data=[1,3,4]
+After submit: recommended get green border + "✓ შეგიფერება". Others: opacity 0.2. Banner: "შენი კურსი: M01 → M02 → M05". Reset restores all.
+
+<span class="c">## TECHNICAL</span>
+- lang="ka", charset UTF-8, viewport, OG tags, canonical="https://bivision.ge/academy/"
+- JSON-LD: Organization + WebPage
+- Mobile-first 375px, touch targets min 44px
+- Hover states inside @media(hover:hover)
+- @media(prefers-reduced-motion:reduce): disable animations
+- No external fonts, no JS libraries
+- Animations: transform/opacity only
+- Form: onsubmit="return false;"
+- html { scroll-behavior: smooth }
+
+<span class="c">## OUTPUT</span>
+Single self-contained HTML. CSS in &lt;style&gt; in &lt;head&gt;. JS in &lt;script&gt; before &lt;/body&gt;.
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Bivision <span>Academy</span></div>
+  <p class="footer-sub">პროდუქტი &amp; დიზაინის ბრიფი &nbsp;·&nbsp; Gurafa, Bivision AI Intelligence &nbsp;·&nbsp; 2026-05-18 &nbsp;·&nbsp; <a href="https://bivision.ge" style="color:var(--primary)">bivision.ge</a></p>
+</footer>
+
+</div>
+
+<script>
+function togglePrompt(btn){
+  var body=document.getElementById('pbody');
+  var isOpen=body.classList.contains('open');
+  body.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+function copyPrompt(btn){
+  var el=document.getElementById('ptext');
+  navigator.clipboard.writeText(el.innerText).then(function(){
+    btn.textContent='✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(function(){btn.innerHTML='📋 Copy full prompt';btn.classList.remove('copied');},2500);
+  });
+}
+</script>
+</body>
+</html>
