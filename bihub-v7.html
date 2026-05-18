@@ -760,6 +760,30 @@ footer{
 
 .extra-b{display:none}
 .show-extra-b{display:inline-block;margin-top:4px;font-size:0.73rem;color:var(--cyan);cursor:pointer;text-decoration:underline;background:none;border:none;padding:0;font-family:inherit}
+
+.hero-qlik-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:20px;background:rgba(107,99,181,0.1);border:1px solid rgba(107,99,181,0.28);font-size:0.72rem;font-weight:600;color:#a5a0dc;letter-spacing:0.3px;margin-bottom:10px}
+.hs-item{font-size:0.88rem;font-weight:600;color:var(--text-dim)}
+.hs-dot{color:var(--muted);font-size:0.72rem;padding:0 2px}
+.hero-proof-badge{font-size:0.76rem;color:var(--emerald-glow);font-weight:500;white-space:nowrap}
+.notify-strip{background:rgba(107,99,181,0.04);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 24px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;text-align:center}
+.notify-text{font-size:0.86rem;color:var(--text-dim);font-weight:500}
+.notify-form-wrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+.notify-form-wrap span{font-size:0.8rem;color:var(--muted)}
+.notify-form-wrap input{padding:7px 12px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface);color:var(--text);font-family:inherit;font-size:0.8rem;width:180px;outline:none;transition:border-color 0.15s}
+.notify-form-wrap input:focus{border-color:var(--cyan)}
+.notify-form-wrap button{padding:7px 14px;border-radius:8px;background:var(--cyan);color:#fff;border:none;font-family:inherit;font-size:0.8rem;cursor:pointer;font-weight:600}
+
+@media (max-width:480px){
+  .hero{padding:20px 14px 14px}
+  .section{padding:16px 12px 24px}
+  .biv-section{padding:28px 14px 36px !important}
+  .reports-grid{grid-template-columns:1fr !important}
+  .hero-sources{padding:0 4px}
+  .pills{padding:0 2px;gap:6px}
+  .pill{font-size:0.72rem;padding:5px 12px}
+  .hero-cta-wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px}
+  .notify-strip{padding:16px 14px}
+}
 </style>
 </head>
 <body>
@@ -819,6 +843,7 @@ footer{
     <span class="h1-line l3">Qlik Sense BI<span class="h1-plat"> პლატფორმაზე</span></span>
   </h1>
 
+  <div class="hero-qlik-pill">Qlik Sense BI</div>
   <div class="hero-stats">
     <span class="hs-item">12+ წყარო</span><span class="hs-dot">·</span>
     <span class="hs-item">16 ანალიტიკური დეშბორდი</span><span class="hs-dot">·</span>
@@ -1510,6 +1535,16 @@ footer{
 </section>
 
 
+<!-- ─── NOTIFY STRIP ─── -->
+<section class="notify-strip">
+  <p class="notify-text">📬 ახალი ანალიტიკა ემატება.</p>
+  <div class="notify-form-wrap">
+    <span>გაგაფრთხილოთ?</span>
+    <input type="email" id="notify-email" placeholder="your@email.com">
+    <button onclick="handleNotifySubscribe()">გამოწერა →</button>
+  </div>
+</section>
+
 <!-- ─── BIVISION SECTION ─── -->
 <section class="biv-section" style="background:linear-gradient(160deg,#1A1A2E 0%,#2d2553 50%,#1a2e1a 100%);padding:24px 24px 60px;border-top:none;">
   <div class="biv-inner" style="display:flex;flex-direction:column;min-height:420px">
@@ -1718,6 +1753,14 @@ footer{
       if(eb&&eb.classList.contains('extra-b')){eb.style.display='inline';this.remove();}
     });
   });
+
+  function handleNotifySubscribe(){
+    var el=document.getElementById('notify-email');
+    var email=el?el.value.trim():'';
+    if(!email||!email.includes('@')){if(el)el.style.borderColor='var(--rose)';return;}
+    el.value='';el.style.borderColor='var(--cyan)';el.placeholder='✓ გამოწერილია!';
+    var btn=el.nextElementSibling;if(btn){btn.textContent='✓';btn.style.background='var(--emerald)';}
+  }
 })();
 </script>
 <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="48c9c1a2f592a0ada1074a48-|49" defer></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"16acd89a725b458a8cd5cc7ffefb9ecc","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
