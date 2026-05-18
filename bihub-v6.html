@@ -568,8 +568,8 @@ footer{
 }
 .biv-sub{
   display:inline-block;
-  font-size:0.78rem;font-weight:700;color:#00A651;
-  letter-spacing:1.4px;text-transform:uppercase;margin-bottom:18px;
+  font-size:1rem;font-weight:700;color:rgba(255,255,255,0.85);
+  letter-spacing:1.4px;text-transform:uppercase;margin-bottom:0;
 }
 .biv-h2{
   font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;
@@ -581,6 +581,9 @@ footer{
   max-width:640px;margin:0 auto 36px;
 }
 .biv-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.biv-draw-line{width:80%;max-width:520px;height:20px;display:block;margin:0 auto 28px;overflow:visible}
+.biv-draw-path{stroke-dasharray:640;stroke-dashoffset:640;transition:stroke-dashoffset 2s cubic-bezier(0.22,1,0.36,1);}
+.biv-draw-path.in{stroke-dashoffset:0}
 .biv-btn-primary{
   padding:13px 28px;border-radius:10px;
   background:linear-gradient(180deg,#6B63B5 0%,#5249a0 100%);
@@ -1468,13 +1471,14 @@ footer{
 
 
 <!-- ─── BIVISION SECTION ─── -->
-<section class="biv-section" style="background:linear-gradient(160deg,#1A1A2E 0%,#2d2553 50%,#1a2e1a 100%);padding:40px 24px 80px;border-top:none;">
+<section class="biv-section" style="background:linear-gradient(160deg,#1A1A2E 0%,#2d2553 50%,#1a2e1a 100%);padding:60px 24px 120px;border-top:none;">
   <div class="biv-inner">
     <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:18px">
-      <a href="https://bivision.ge" target="_blank" rel="noopener" style="display:inline-flex;align-items:center"><img src="https://bivision.ge/wp-content/uploads/2025/10/Logo-1.svg" alt="Bivision" style="height:18px;display:block"></a>
+      <a href="https://bivision.ge" target="_blank" rel="noopener" style="display:inline-flex;align-items:center"><img src="https://bivision.ge/wp-content/uploads/2025/10/Logo-1.svg" alt="Bivision" style="height:1em;display:block"></a>
       <span class="biv-sub" style="margin-bottom:0">მართე მონაცემებით</span>
     </div>
     <h2 class="biv-h2">ბიზნეს ანალიტიკა &mdash; ზუსტი მართვა რეალურ დროში</h2>
+    <svg class="biv-draw-line" viewBox="0 0 600 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none"><defs><linearGradient id="biv-lg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00A651" stop-opacity="0"/><stop offset="20%" stop-color="#00A651"/><stop offset="80%" stop-color="#6B63B5"/><stop offset="100%" stop-color="#6B63B5" stop-opacity="0"/></linearGradient></defs><path class="biv-draw-path" d="M5 11 C 80 4, 160 17, 260 10 S 420 15, 520 9 L 595 11" fill="none" stroke="url(#biv-lg)" stroke-width="2.2" stroke-linecap="round"/></svg>
     <p class="biv-desc" style="margin-top:3em">ნაცვლად ფრაგმენტული ცხრილებისა და ხელით აწყობილი რეპორტებისა &mdash; შექმენი მართვის ერთიანი, ავტომატიზებული სისტემა. Bivision CEO-სა და CFO-ს აძლევს ფინანსებისა და გაყიდვების სრულ ხილვადობას.</p>
     <div class="biv-ctas">
       <a href="https://calendly.com/bivision/courtest-meeting?utm_source=bihub&utm_medium=section" target="_blank" class="biv-btn-primary">მოითხოვე დემო</a>
@@ -1539,6 +1543,15 @@ footer{
   /* h1 stagger — JS-controlled so CSS default = visible (no broken blank state) */
   const hl = $('.hero-headline');
   if(hl) hl.classList.add('h1-animate');
+
+  /* biv-section draw-in — IntersectionObserver */
+  const bivPath = document.querySelector('.biv-draw-path');
+  if(bivPath && 'IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{if(e.isIntersecting){bivPath.classList.add('in');io.disconnect();}});
+    },{threshold:0.4});
+    io.observe(bivPath);
+  }
 
   /* Inject CTA into every card-back */
   const ctaHTML = `<div class="card-back-cta">
