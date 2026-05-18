@@ -148,13 +148,13 @@ nav{
   margin-bottom:54px;letter-spacing:-0.6px;
   color:var(--text);
 }
-@supports(-webkit-background-clip:text){
+@supports(-webkit-background-clip:text) or (background-clip:text){
   .hero-headline{
     background:linear-gradient(105deg,#008a43 0%,#6B63B5 22%,#b8b5de 45%,#6B63B5 68%,#008a43 100%);
     background-size:300% auto;
-    -webkit-background-clip:text;background-clip:text;color:transparent;
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
     animation:shimmer-sweep 9s linear infinite;
-    will-change:background-position;
   }
 }
 @keyframes shimmer-sweep{
