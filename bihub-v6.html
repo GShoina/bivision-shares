@@ -664,6 +664,12 @@ footer{
   box-shadow:0 2px 12px rgba(107,99,181,0.28);
 }
 .card-back-cta .cbc-reg:hover{background:var(--cyan-dim)}
+.card-back-cta .cbc-back{
+  padding:8px 14px;border-radius:9px;font-size:0.8rem;font-weight:600;
+  background:transparent;border:1px solid var(--border);color:var(--muted);
+  cursor:pointer;font-family:inherit;transition:background 0.15s,color 0.15s;white-space:nowrap;margin-right:auto;
+}
+.card-back-cta .cbc-back:hover{background:rgba(107,99,181,0.08);color:var(--text)}
 
 /* --- card expanded 45% overlay --- */
 .grid-expanded{
@@ -1519,11 +1525,6 @@ footer{
         <span class="footer-biv-text">BI & მონაცემების ანალიტიკა</span>
       </div>
     </div>
-    <nav class="footer-nav" aria-label="footer">
-      <a href="https://bihub.ge/cards/">რეპორტები</a>
-      <a href="https://bihub.ge/wp-login.php?action=register">რეგისტრაცია</a>
-      <a href="https://bivision.ge">კონტაქტი</a>
-    </nav>
   </footer>
 </div>
 
@@ -1538,12 +1539,12 @@ footer{
 
   /* Inject CTA into every card-back */
   const ctaHTML = `<div class="card-back-cta">
+    <button class="cbc-back" type="button" onclick="if(window._bihubCollapse)window._bihubCollapse()">← დაბრუნება</button>
     <a href="https://bihub.ge/wp-login.php" class="cbc-login">შესვლა</a>
     <a href="https://bihub.ge/wp-login.php?action=register" class="cbc-reg">რეგისტრაცია → უფასოდ</a>
   </div>`;
   $$('.card-back').forEach(cb=>cb.insertAdjacentHTML('beforeend', ctaHTML));
 
-  const stickyBar = document.getElementById('sticky-cta-bar');
 
   /* Card expand */
   const grid = $('#grid');
@@ -1558,7 +1559,6 @@ footer{
     card.classList.add('card-focus');
     card.classList.add('flipped');
     focusedCard = card;
-    if(stickyBar) stickyBar.classList.remove('show');
     setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'center'}),320);
   }
 
@@ -1569,7 +1569,6 @@ footer{
     grid.classList.remove('grid-expanded');
     grid.style.height = '';
     focusedCard = null;
-    if(stickyBar) stickyBar.classList.add('show');
   }
   window._bihubCollapse = collapseCard;
 
@@ -1654,24 +1653,6 @@ footer{
 })();
 </script>
 <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="48c9c1a2f592a0ada1074a48-|49" defer></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"16acd89a725b458a8cd5cc7ffefb9ecc","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-<div id="sticky-cta-bar">
-  <a href="https://bihub.ge/wp-login.php" class="sticky-btn-login">შესვლა</a>
-  <a href="https://bihub.ge/wp-login.php?action=register" class="sticky-btn-register">რეგისტრაცია &#8594; უფასოდ</a>
-  <button class="sticky-btn-back" type="button">დაბრუნება</button>
-</div>
-<script>
-(function(){
-  var bar=document.getElementById('sticky-cta-bar');
-  if(!bar)return;
-  function sync(){document.querySelector('.card-flip.flipped')?bar.classList.add('show'):bar.classList.remove('show');}
-  var mo=new MutationObserver(sync);
-  document.querySelectorAll('.card-flip').forEach(function(c){mo.observe(c,{attributes:true,attributeFilter:['class']});});
-  /* sticky back btn */
-  var backBtn=document.querySelector('.sticky-btn-back');
-  if(backBtn) backBtn.addEventListener('click',function(){
-    if(window._bihubCollapse) window._bihubCollapse();
-  });
-})();
 </script>
 </body>
 </html>
