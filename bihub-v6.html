@@ -146,11 +146,16 @@ nav{
   font-size:clamp(2rem,5.2vw,3.4rem);
   font-weight:800;line-height:1.35;
   margin-bottom:54px;letter-spacing:-0.6px;
-  background:linear-gradient(105deg,#008a43 0%,#6B63B5 22%,#b8b5de 45%,#6B63B5 68%,#008a43 100%);
-  background-size:300% auto;
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:shimmer-sweep 9s linear infinite;
-  will-change:background-position;
+  color:var(--text);
+}
+@supports(-webkit-background-clip:text){
+  .hero-headline{
+    background:linear-gradient(105deg,#008a43 0%,#6B63B5 22%,#b8b5de 45%,#6B63B5 68%,#008a43 100%);
+    background-size:300% auto;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:shimmer-sweep 9s linear infinite;
+    will-change:background-position;
+  }
 }
 @keyframes shimmer-sweep{
   0%{background-position:0% center}
@@ -179,9 +184,20 @@ nav{
 .drawn-path{
   stroke-dasharray:460;
   stroke-dashoffset:460;
-  animation:draw-line 1.6s cubic-bezier(0.22,1,0.36,1) 1.5s forwards;
+  animation:draw-line-loop 5s ease-in-out 1.5s infinite;
 }
-@keyframes draw-line{to{stroke-dashoffset:0}}
+@keyframes draw-line-loop{
+  0%   {stroke-dashoffset:460;opacity:0}
+  6%   {opacity:1}
+  45%  {stroke-dashoffset:0;opacity:1}
+  72%  {stroke-dashoffset:0;opacity:1}
+  90%  {stroke-dashoffset:460;opacity:0.2}
+  100% {stroke-dashoffset:460;opacity:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .h1-line{animation:none;opacity:1;transform:none;filter:none}
+  .drawn-path{animation:none;stroke-dashoffset:0;opacity:1}
+}
 .hero-sub{
   font-size:1.05rem;color:var(--text-dim);
   margin-bottom:32px;font-weight:400;
