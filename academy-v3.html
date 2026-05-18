@@ -1,17 +1,45 @@
 <!DOCTYPE html>
 <html lang="ka"><head>
+<!--
+  DEPLOY: configure these HTTP response headers on the server (nginx/cloudflare/vercel):
+
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://bivision.ge; connect-src 'self'; font-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+-->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bivision Academy — ისწავლე AI ავტომატიზაცია შენი ბიზნესისთვის</title>
-<meta name="description" content="საქართველოს პირველი პრაქტიკული AI სასწავლო პლატფორმა. 6 მოდული. M01 — უფასოდ. სრული კურსი — 750 ₾.">
+<meta name="description" content="Bivision Academy — საქართველოს პირველი პრაქტიკული AI სასწავლო პლატფორმა. 6 მოდული, M01 უფასოდ, სრული კურსი 750 ₾. Marketing Automation, Vibe Coding, AI Agents." />
+<meta name="keywords" content="AI კურსი, AI სწავლა საქართველო, Claude, marketing automation, AI agent, vibe coding, ბიზნეს AI, Bivision Academy" />
+<meta name="author" content="Bivision" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#1A1A2E" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="alternate" hreflang="ka" href="https://bivision.ge/academy/" />
+<link rel="alternate" hreflang="x-default" href="https://bivision.ge/academy/" />
+<link rel="preconnect" href="https://bivision.ge" />
+<link rel="dns-prefetch" href="https://bivision.ge" />
+<!-- SEO metas injected by Gurafa 2026-05-19 -->
 <link rel="canonical" href="https://bivision.ge/academy/">
 
 <meta property="og:title" content="Bivision Academy — AI ავტომატიზაცია შენი ბიზნესისთვის">
 <meta property="og:description" content="საქართველოს პირველი პრაქტიკული AI სასწავლო პლატფორმა. ისწავლე Marketing Automation-დან AI Agent-მდე.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://bivision.ge/academy/">
-<meta property="og:image" content="https://bivision.ge/wp-content/uploads/2025/10/Logo-1.svg">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://bivision.ge/academy/" />
+<meta property="og:site_name" content="Bivision Academy" />
+<meta property="og:locale" content="ka_GE" />
+<meta property="og:image" content="https://bivision.ge/academy/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Bivision Academy — AI ავტომატიზაცია შენი ბიზნესისთვის" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Bivision Academy — AI ავტომატიზაცია შენი ბიზნესისთვის" />
+<meta name="twitter:description" content="საქართველოს პირველი პრაქტიკული AI სასწავლო პლატფორმა. M01 უფასოდ." />
+<meta name="twitter:image" content="https://bivision.ge/academy/og-image.jpg" />
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"Bivision","url":"https://bivision.ge","logo":"https://bivision.ge/wp-content/uploads/2025/10/Logo-1.svg"}
@@ -19,10 +47,37 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebPage","name":"Bivision Academy","description":"საქართველოს პირველი პრაქტიკული AI სასწავლო პლატფორმა","url":"https://bivision.ge/academy/"}
 </script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Course", "name": "Claude Cowork for Business", "description": "AI-ის მეხსიერება, წესები, შაბლონები. პირველი რეალური სამუშაო სესია Claude-თან.", "provider": {"@type": "Organization", "name": "Bivision", "sameAs": "https://bivision.ge"}, "inLanguage": "ka", "educationalLevel": "Beginner", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GEL", "availability": "https://schema.org/InStock"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Course", "name": "Marketing Automation", "description": "Email კამპანიები, სოც. მედია, CRM ავტომატიზაცია AI-ის გვერდით. რეალური ქართული კონტექსტი.", "provider": {"@type": "Organization", "name": "Bivision", "sameAs": "https://bivision.ge"}, "inLanguage": "ka", "educationalLevel": "Beginner", "isAccessibleForFree": false, "offers": {"@type": "Offer", "price": "750", "priceCurrency": "GEL", "availability": "https://schema.org/InStock", "description": "სრული M02–M06 პაკეტი — 750 ₾ ერთჯერადი, Lifetime წვდომა"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Course", "name": "Vibe Coding", "description": "AI-ით აპლიკაცია ან შიდა ხელსაწყო — დეველოპერის გარეშე, კოდის გარეშე.", "provider": {"@type": "Organization", "name": "Bivision", "sameAs": "https://bivision.ge"}, "inLanguage": "ka", "educationalLevel": "Intermediate", "isAccessibleForFree": false, "offers": {"@type": "Offer", "price": "750", "priceCurrency": "GEL", "availability": "https://schema.org/InStock"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Course", "name": "MCP Data Connectors", "description": "Google Sheets, 1C, ERP — პირდაპირ AI-ისთვის. შენი მონაცემები ჭკვიანი, რეალურ დროში.", "provider": {"@type": "Organization", "name": "Bivision", "sameAs": "https://bivision.ge"}, "inLanguage": "ka", "educationalLevel": "Intermediate", "isAccessibleForFree": false, "offers": {"@type": "Offer", "price": "750", "priceCurrency": "GEL", "availability": "https://schema.org/InStock"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Course", "name": "პირველი AI Agent", "description": "ავტონომიური AI — workflow-ების ავტომატიზაცია. სამუშაო თვითონ მიდის, შენ აკონტროლებ.", "provider": {"@type": "Organization", "name": "Bivision", "sameAs": "https://bivision.ge"}, "inLanguage": "ka", "educationalLevel": "Advanced", "isAccessibleForFree": false, "offers": {"@type": "Offer", "price": "750", "priceCurrency": "GEL", "availability": "https://schema.org/InStock"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Course", "name": "Cloud AI Routines", "description": "Cloud-ზე გაშვებული ყოველდღიური AI სამუშაოები. ღამის ანგარიშები, ავტო-რეპორტი, scheduling.", "provider": {"@type": "Organization", "name": "Bivision", "sameAs": "https://bivision.ge"}, "inLanguage": "ka", "educationalLevel": "Advanced", "isAccessibleForFree": false, "offers": {"@type": "Offer", "price": "750", "priceCurrency": "GEL", "availability": "https://schema.org/InStock"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Product", "name": "Bivision Academy — სრული კურსი (M02–M06)", "description": "5 მოდული: Marketing Automation, Vibe Coding, MCP Data Connectors, AI Agent, Cloud Routines. Lifetime წვდომა.", "brand": {"@type": "Brand", "name": "Bivision Academy"}, "offers": {"@type": "Offer", "price": "750", "priceCurrency": "GEL", "availability": "https://schema.org/InStock", "url": "https://bivision.ge/academy/#full-cta"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "M01 ნამდვილად უფასოა?", "acceptedAnswer": {"@type": "Answer", "text": "კი, M01 (Claude Cowork for Business) უფასოა სამუდამოდ. საკრედიტო ბარათი არ სჭირდება."}}, {"@type": "Question", "name": "რა შედის 750 ₾-ში?", "acceptedAnswer": {"@type": "Answer", "text": "M02–M06 ხუთი მოდული, 35+ ვიდეო, 10+ პროექტი, lifetime updates, ცოცხალი მენტორის წვდომა, სერტიფიკატი."}}, {"@type": "Question", "name": "კოდის ცოდნა მჭირდება?", "acceptedAnswer": {"@type": "Answer", "text": "არა. პროგრამა შემუშავებულია ბიზნეს პროფესიონალებისთვის — Vibe Coding-ი მუშაობს AI-ის გვერდით, კოდის გარეშე."}}, {"@type": "Question", "name": "რა ენაზეაა კურსი?", "acceptedAnswer": {"@type": "Answer", "text": "სრულად ქართულად — ვიდეო, მასალა, მენტორობა, ცოცხალი მაგალითები ქართული ბიზნესიდან."}}, {"@type": "Question", "name": "როდენ მივიღებ წვდომა?", "acceptedAnswer": {"@type": "Answer", "text": "M01-ზე რეგისტრაციის შემდეგ — მყისიერად. M02–M06: გადახდის შემდეგ როგორც კურსში. Lifetime ნიშნავს — შენია დარესად შეგიძლია ახალი მოდულებს."}}, {"@type": "Question", "name": "გასცემა სერტიფიკატი?", "acceptedAnswer": {"@type": "Answer", "text": "კი, M02–M06-ის დამასრულებლებს გადაეცემათ Bivision Academy-ის სერტიფიკატი."}}]}
+</script>
 
 
 
 <style>
+  /* ── A11Y UTILS ─────────────────────────────────── */
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
   /* ── TOKENS ───────────────────────────────────────── */
   :root {
     --purple:       #6B63B5;
@@ -904,7 +959,7 @@
            alt="Bivision" width="144" height="30" fetchpriority="high"
            style="height:30px;width:auto;display:block;">
     </a>
-    <nav class="top-nav">
+    <nav class="top-nav" aria-label="მთავარი ნავიგაცია">
       <a href="#what">რას ისწავლი</a>
       <a href="#quiz">Quiz</a>
       <a href="#modules">მოდულები</a>
@@ -913,14 +968,14 @@
     <div class="top-cta">
       <a href="#register" class="btn btn-green">
         M01 — უფასოდ
-        <span class="arr">→</span>
+        <span class="arr" aria-hidden="true">→</span>
       </a>
     </div>
   </div>
 </header>
 
 <!-- ═══════ HERO ═══════ -->
-<section class="hero" data-screen-label="Hero">
+<section class="hero" role="region" aria-label="Hero — მთავარი სექცია" data-screen-label="Hero">
   <!-- blurred AI tool UI mocks in bg -->
   <div class="hero-bgs" aria-hidden="true">
     <div class="ai-card ai-1">
@@ -983,7 +1038,7 @@
     <h1>
       <span class="line1">ისწავლე</span>
       <span class="line2">
-        <span class="green-hl">AI ავტომატიზაცია<svg viewBox="0 0 400 18" preserveAspectRatio="none"><path d="M4 10 Q 100 2, 200 8 T 396 9"></path></svg></span>
+        <span class="green-hl">AI ავტომატიზაცია<svg aria-hidden="true" focusable="false" viewBox="0 0 400 18" preserveAspectRatio="none"><path d="M4 10 Q 100 2, 200 8 T 396 9"></path></svg></span>
       </span>
       <span class="line3">შენი ბიზნესისთვის.</span>
     </h1>
@@ -995,7 +1050,7 @@
     <div class="hero-ctas">
       <a href="#register" class="btn btn-green">
         დაიწყე M01 უფასოდ
-        <span class="arr">→</span>
+        <span class="arr" aria-hidden="true">→</span>
       </a>
       <a href="#modules" class="btn btn-ghost-light">
         ნახე სრული კურსი
@@ -1018,7 +1073,7 @@
 </section>
 
 <!-- ═══════ KPI STRIP ═══════ -->
-<section class="kpi" data-screen-label="KPI Strip">
+<section class="kpi" role="region" aria-label="სტატისტიკა" data-screen-label="KPI Strip">
   <div class="container">
     <div class="kpi-grid">
       <div class="kpi-item">
@@ -1042,18 +1097,18 @@
 </section>
 
 <!-- ═══════ WHAT YOU LEARN ═══════ -->
-<section class="block" id="what" data-screen-label="What You Learn">
+<section class="block" role="region" aria-labelledby="h2-what" id="what" data-screen-label="What You Learn">
   <div class="container">
     <div class="sec-head">
       <span class="eyebrow"><span class="dot"></span>რას ისწავლი</span>
-      <h2>ნაკლები თეორია, რეალური <em>AI &amp; პრაქტიკა</em></h2>
+      <h2 id="h2-what">ნაკლები თეორია, რეალური <em>AI &amp; პრაქტიკა</em></h2>
       <p>თითოეული მოდული ეფუძნება ცოცხალ ბიზნეს ქეისს — Email კამპანიიდან AI Agent-ის გაშვებამდე. არ ვასწავლით ცნებებს — ვაშენებთ ხელსაწყოებს, რომლებიც ხვალიდან მუშაობს.</p>
     </div>
 
     <div class="learn-grid">
       <div class="learn-card">
         <div class="ic">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"></path></svg>
+          <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"></path></svg>
         </div>
         <h3>Marketing Automation</h3>
         <p>Email კამპანიები, სოც. ქსელის posts, CRM-ის ავტომატიზაცია — AI-ის გვერდით.</p>
@@ -1061,7 +1116,7 @@
       </div>
       <div class="learn-card">
         <div class="ic">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 9h6v6H9z"></path></svg>
+          <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 9h6v6H9z"></path></svg>
         </div>
         <h3>ბიზნეს ოპერაციები</h3>
         <p>1C, Google Sheets, ERP — პირდაპირ AI-სთან. ანგარიშები, რომელიც თვითონ ეწერება.</p>
@@ -1069,7 +1124,7 @@
       </div>
       <div class="learn-card g">
         <div class="ic">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
         </div>
         <h3>Vibe Coding</h3>
         <p>AI-ით აპლიკაცია ან შიდა ხელსაწყო — დეველოპერის გარეშე, კოდის ცოდნის გარეშე.</p>
@@ -1077,7 +1132,7 @@
       </div>
       <div class="learn-card">
         <div class="ic">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
         </div>
         <h3>AI Agent</h3>
         <p>ავტონომიური AI — სამუშაო თვითონ მიმდინარეობს ფონში, შენ მონიტორინგ-ში ხარ.</p>
@@ -1088,11 +1143,11 @@
 </section>
 
 <!-- ═══════ QUIZ ═══════ -->
-<section class="block quiz" id="quiz" data-screen-label="Quiz">
+<section class="block quiz" role="region" aria-labelledby="h2-quiz" id="quiz" data-screen-label="Quiz">
   <div class="container">
     <div class="sec-head">
       <span class="eyebrow"><span class="dot"></span>პერსონალიზაცია · 30 წამი</span>
-      <h2>ვნახოთ <em>შენი</em> კურსი</h2>
+      <h2 id="h2-quiz">ვნახოთ <em>შენი</em> კურსი</h2>
       <p>ორი კითხვა — ვაჩვენებთ რომელი მოდულები გამოგადგება ყველაზე მეტად. Reset შესაძლებელია ნებისმიერ დროს.</p>
     </div>
 
@@ -1120,7 +1175,7 @@
       <div class="quiz-actions">
         <button class="btn btn-purple" id="quiz-submit">
           ვნახოთ შენი კურსი
-          <span class="arr">→</span>
+          <span class="arr" aria-hidden="true">→</span>
         </button>
         <span style="font-size:13px;color:var(--ink-3);">↓ მოდულები ქვემოთ აღინიშნება</span>
       </div>
@@ -1135,30 +1190,30 @@
 </section>
 
 <!-- ═══════ MODULES ═══════ -->
-<section class="block" id="modules" data-screen-label="Modules">
+<section class="block" role="region" aria-labelledby="h2-modules" id="modules" data-screen-label="Modules">
   <div class="container">
     <div class="sec-head">
       <span class="eyebrow"><span class="dot"></span>6 მოდული · სრული გზა</span>
-      <h2>დაიწყე უფასოდ. გააგრძელე <em class="g">750 ₾-ად</em>. წვდომა სამუდამოდ.</h2>
+      <h2 id="h2-modules">დაიწყე უფასოდ. გააგრძელე <em class="g">750 ₾-ად</em>. წვდომა სამუდამოდ.</h2>
       <p>M01 ყოველთვის უფასოა. M02-M06 ერთჯერადი 750 ₾ — სრული წვდომა, lifetime updates, ქართული ცოცხალი მენტორობა.</p>
     </div>
 
     <div class="mods-grid" id="mods">
-      <article class="mod-card free" data-mod="1">
+      <article class="mod-card free" data-mod="1" itemscope itemtype="https://schema.org/Course">
         <span class="free-badge">უფასოდ</span>
         <div class="num">M01</div>
-        <h3>Claude Cowork for Business</h3>
-        <p>AI-ის მეხსიერება, წესები, შაბლონები. პირველი რეალური სამუშაო სესია Claude-თან, როგორც ბიზნეს პარტნიორთან.</p>
+        <h3><span itemprop="name">Claude Cowork for Business</span></h3>
+        <p itemprop="description">AI-ის მეხსიერება, წესები, შაბლონები. პირველი რეალური სამუშაო სესია Claude-თან, როგორც ბიზნეს პარტნიორთან.</p>
         <div class="foot">
           <span class="price"><span class="gel">0 ₾</span> · სამუდამოდ</span>
           <a href="#register" class="link">დაიწყე <span>→</span></a>
         </div>
       </article>
 
-      <article class="mod-card locked" data-mod="2">
-        <span class="lock-tag"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>ჩაკეტილი</span>
+      <article class="mod-card locked" data-mod="2" itemscope itemtype="https://schema.org/Course">
+        <span class="lock-tag"><svg aria-hidden="true" focusable="false" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>ჩაკეტილი</span>
         <div class="num">M02</div>
-        <h3>Marketing Automation</h3>
+        <h3><span itemprop="name">Marketing Automation</span></h3>
         <p>Email კამპანიები, სოც. მედია, CRM ავტომატიზაცია — AI-ის გვერდით. რეალური საქართველოს კონტექსტი.</p>
         <div class="foot">
           <span class="price">სრულ კურსში</span>
@@ -1166,43 +1221,43 @@
         </div>
       </article>
 
-      <article class="mod-card locked" data-mod="3">
-        <span class="lock-tag"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>ჩაკეტილი</span>
+      <article class="mod-card locked" data-mod="3" itemscope itemtype="https://schema.org/Course">
+        <span class="lock-tag"><svg aria-hidden="true" focusable="false" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>ჩაკეტილი</span>
         <div class="num">M03</div>
-        <h3>Vibe Coding</h3>
-        <p>AI-ით აპლიკაცია ან შიდა ხელსაწყო — დეველოპერის გარეშე. შენი იდეა → მუშა პროდუქტი.</p>
+        <h3><span itemprop="name">Vibe Coding</span></h3>
+        <p itemprop="description">AI-ით აპლიკაცია ან შიდა ხელსაწყო — დეველოპერის გარეშე. შენი იდეა → მუშა პროდუქტი.</p>
         <div class="foot">
           <span class="price">სრულ კურსში</span>
           <a href="#full-cta" class="link">ნახე →</a>
         </div>
       </article>
 
-      <article class="mod-card locked" data-mod="4">
-        <span class="lock-tag"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>ჩაკეტილი</span>
+      <article class="mod-card locked" data-mod="4" itemscope itemtype="https://schema.org/Course">
+        <span class="lock-tag"><svg aria-hidden="true" focusable="false" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>ჩაკეტილი</span>
         <div class="num">M04</div>
-        <h3>MCP Data Connectors</h3>
-        <p>Google Sheets, 1C, ERP — პირდაპირ AI-ისთვის. შენი მონაცემები ჭკვიანი, რეალურ დროში.</p>
+        <h3><span itemprop="name">MCP Data Connectors</span></h3>
+        <p itemprop="description">Google Sheets, 1C, ERP — პირდაპირ AI-ისთვის. შენი მონაცემები ჭკვიანი, რეალურ დროში.</p>
         <div class="foot">
           <span class="price">სრულ კურსში</span>
           <a href="#full-cta" class="link">ნახე →</a>
         </div>
       </article>
 
-      <article class="mod-card locked" data-mod="5">
-        <span class="lock-tag"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>ჩაკეტილი</span>
+      <article class="mod-card locked" data-mod="5" itemscope itemtype="https://schema.org/Course">
+        <span class="lock-tag"><svg aria-hidden="true" focusable="false" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>ჩაკეტილი</span>
         <div class="num">M05</div>
-        <h3>პირველი AI Agent</h3>
-        <p>ავტონომიური AI — workflow-ების ავტომატიზაცია. სამუშაო თვითონ მიდის, შენ აკონტროლებ.</p>
+        <h3><span itemprop="name">პირველი AI Agent</span></h3>
+        <p itemprop="description">ავტონომიური AI — workflow-ების ავტომატიზაცია. სამუშაო თვითონ მიდის, შენ აკონტროლებ.</p>
         <div class="foot">
           <span class="price">სრულ კურსში</span>
           <a href="#full-cta" class="link">ნახე →</a>
         </div>
       </article>
 
-      <article class="mod-card locked" data-mod="6">
-        <span class="lock-tag"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>ჩაკეტილი</span>
+      <article class="mod-card locked" data-mod="6" itemscope itemtype="https://schema.org/Course">
+        <span class="lock-tag"><svg aria-hidden="true" focusable="false" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>ჩაკეტილი</span>
         <div class="num">M06</div>
-        <h3>Cloud AI Routines</h3>
+        <h3><span itemprop="name">Cloud AI Routines</span></h3>
         <p>Cloud-ზე გაშვებული ყოველდღიური AI სამუშაოები. ღამის ანგარიშები, ავტო-რეპორტი, scheduling.</p>
         <div class="foot">
           <span class="price">სრულ კურსში</span>
@@ -1218,11 +1273,11 @@
 </section>
 
 <!-- ═══════ FOR WHOM ═══════ -->
-<section class="block whom" id="whom" data-screen-label="For Whom">
+<section class="block whom" role="region" aria-labelledby="h2-whom" id="whom" data-screen-label="For Whom">
   <div class="container">
     <div class="sec-head">
       <span class="eyebrow"><span class="dot"></span>ვისთვისაა</span>
-      <h2>ბიზნეს პროფესიონალები, ვინც <em>შედეგს</em> ითხოვს</h2>
+      <h2 id="h2-whom">ბიზნეს პროფესიონალები, ვინც <em>შედეგს</em> ითხოვს</h2>
       <p>არ ხარ დეველოპერი. არ ხარ სტუდენტი. ხარ ის, ვინც ბიზნესს მართავს, ყიდის ან აანალიზებს — და ხედავ რომ AI უკვე შენს გვერდით მუშაობს.</p>
     </div>
 
@@ -1252,18 +1307,19 @@
 </section>
 
 <!-- ═══════ REGISTRATION ═══════ -->
-<section class="block register" id="register" data-screen-label="Registration">
+<section class="block register" role="region" aria-labelledby="h2-register" id="register" data-screen-label="Registration">
   <div class="container">
     <div class="reg-inner">
       <span class="eyebrow on-dark"><span class="dot" style="background: var(--green);"></span>M01 · უფასოდ · სამუდამოდ</span>
-      <h2>დაიწყე <em>დღესვე</em>.<br>Claude Cowork for Business.</h2>
+      <h2 id="h2-register">დაიწყე <em>დზესვე</em>.<br>Claude Cowork for Business.</h2>
       <p>დაარეგისტრირე ელ-ფოსტა. გავუგზავნით პირველ მოდულს — 6 ვიდეო, შაბლონები, პირველი სამუშაო სესია AI-თან.</p>
 
       <form class="reg-form" onsubmit="return false;" id="reg-form">
-        <input type="email" placeholder="შენი ელ-ფოსტა" aria-label="ელ-ფოსტა" required="">
+        <label for="reg-email" class="sr-only">ელ-ფოსტა</label>
+        <input type="email" id="reg-email" placeholder="შენი ელ-ფოსტა" aria-label="ელ-ფოსტა" autocomplete="email" required="">
         <button type="submit" class="btn btn-green">
           დაიწყე უფასოდ
-          <span class="arr">→</span>
+          <span class="arr" aria-hidden="true">→</span>
         </button>
       </form>
 
@@ -1276,7 +1332,7 @@
 </section>
 
 <!-- ═══════ FULL CTA ═══════ -->
-<section class="full-cta" id="full-cta" data-screen-label="Full Course CTA">
+<section class="full-cta" role="region" aria-labelledby="h2-fullcta" id="full-cta" data-screen-label="Full Course CTA">
   <div class="container">
     <div class="fcta-grid fcta">
       <div>
@@ -1284,11 +1340,11 @@
           <span style="width:6px;height:6px;border-radius:50%;background:var(--green);"></span>
           M02–M06 · სრული პროგრამა
         </span>
-        <h2>გააგრძელე — <em>750 ₾-ად</em>, სამუდამოდ შენი.</h2>
+        <h2 id="h2-fullcta">გააგრძელე — <em>750 ₾-ად</em>, სამუდამოდ შენი.</h2>
         <p>ხუთი მოდული, რომელიც M01-ის შემდეგ მოდის — Marketing Automation, Vibe Coding, Data Connectors, AI Agent, Cloud Routines. ერთჯერადი გადახდა, lifetime წვდომა.</p>
         <a href="#" class="btn btn-white">
           იყიდე სრული კურსი
-          <span class="arr">→</span>
+          <span class="arr" aria-hidden="true">→</span>
         </a>
       </div>
       <div class="fcta-side">
@@ -1461,6 +1517,25 @@
     }
   })();
 
+
+  // ── A11Y: mirror .on class to aria-checked on quiz options ──
+  (function() {
+    document.querySelectorAll('.opt').forEach(function(btn) {
+      btn.setAttribute('role', 'radio');
+      btn.setAttribute('aria-checked', 'false');
+    });
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('.opt');
+      if (!btn) return;
+      var group = btn.closest('.opts');
+      if (!group) return;
+      group.querySelectorAll('.opt').forEach(function(b) {
+        b.setAttribute('aria-checked', 'false');
+      });
+      btn.setAttribute('aria-checked', 'true');
+    });
+  })();
+
   // ── REGISTER (no backend) ──────────────────────────
   document.getElementById('reg-form').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -1471,7 +1546,7 @@
     btn.style.background = 'var(--green-soft)';
     input.disabled = true;
     setTimeout(() => {
-      btn.innerHTML = 'დაიწყე უფასოდ <span class="arr">→</span>';
+      btn.innerHTML = 'დაიწყე უფასოდ <span class="arr" aria-hidden="true">→</span>';
       btn.style.background = '';
       input.disabled = false;
       input.value = '';
