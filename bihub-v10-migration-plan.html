@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>bihub v10 — Migration Plan + Risk Audit</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f5f7; color: #1a1a2e; line-height: 1.6; }
+  .page { max-width: 900px; margin: 0 auto; padding: 40px 24px; }
+  h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+  .meta { font-size: 13px; color: #666; margin-bottom: 40px; }
+  .section { background: #fff; border-radius: 12px; padding: 28px 32px; margin-bottom: 24px; border: 1px solid #e5e7eb; }
+  .section h2 { font-size: 17px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .section h3 { font-size: 14px; font-weight: 700; color: #374151; margin: 20px 0 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .phase { border-left: 3px solid #6B63B5; padding-left: 16px; margin-bottom: 20px; }
+  .phase-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #6B63B5; }
+  .phase-note { font-size: 12px; color: #888; margin-top: 4px; }
+  ol, ul { padding-left: 20px; }
+  li { margin-bottom: 6px; font-size: 14px; }
+  code { background: #f0f0f5; padding: 2px 6px; border-radius: 4px; font-size: 13px; font-family: 'Cascadia Code', 'Fira Code', monospace; color: #5b21b6; }
+  .risk { display: flex; gap: 12px; padding: 12px 16px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
+  .risk-HIGH { background: #fef2f2; border-left: 4px solid #ef4444; }
+  .risk-MED  { background: #fffbeb; border-left: 4px solid #f59e0b; }
+  .risk-LOW  { background: #f0fdf4; border-left: 4px solid #22c55e; }
+  .risk-label { font-weight: 700; font-size: 11px; white-space: nowrap; margin-top: 2px; }
+  .risk-HIGH .risk-label { color: #dc2626; }
+  .risk-MED  .risk-label { color: #d97706; }
+  .risk-LOW  .risk-label { color: #16a34a; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: 11px; font-weight: 700; }
+  .badge-ok  { background: #dcfce7; color: #166534; }
+  .badge-wait { background: #fef9c3; color: #854d0e; }
+  .badge-block { background: #fee2e2; color: #991b1b; }
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .opt { border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; font-size: 14px; }
+  .opt-title { font-weight: 700; margin-bottom: 8px; }
+  .opt-rec { border-color: #6B63B5; background: #faf9ff; }
+  .opt-rec .opt-title { color: #6B63B5; }
+  .checklist li { list-style: none; padding-left: 0; }
+  .checklist li::before { content: '☐ '; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; padding: 8px 12px; background: #f8fafc; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #6b7280; border-bottom: 1px solid #e5e7eb; }
+  td { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+  .viktor { background: #1a1a2e; border-radius: 12px; padding: 28px 32px; margin-bottom: 24px; color: #e5e7eb; }
+  .viktor h2 { color: #fff; font-size: 17px; margin-bottom: 4px; }
+  .viktor .subtitle { font-size: 12px; color: #9ca3af; margin-bottom: 20px; }
+  .viktor .vitem { background: rgba(255,255,255,0.06); border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; font-size: 14px; }
+  .viktor .vitem .vtag { font-size: 11px; font-weight: 700; margin-bottom: 6px; }
+  .vtag-H { color: #f87171; }
+  .vtag-M { color: #fbbf24; }
+  .vtag-L { color: #86efac; }
+  .vtag-A { color: #93c5fd; }
+  .vtag-G { color: #c4b5fd; }
+  .verdict { display: flex; align-items: center; gap: 10px; background: rgba(107,99,181,0.2); border-radius: 8px; padding: 14px 16px; margin-top: 16px; font-size: 14px; color: #e0e7ff; font-weight: 600; }
+  @media (max-width: 600px) { .compare { grid-template-columns: 1fr; } .section { padding: 20px 16px; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>bihub v10 — Migration Plan</h1>
+  <div class="meta">Geo · 2026-05-19 · includes Viktor risk audit</div>
+
+  <!-- CURRENT STATE -->
+  <div class="section">
+    <h2>📍 Current State</h2>
+    <table>
+      <tr><th>Component</th><th>Value</th><th>Status</th></tr>
+      <tr><td>Server</td><td>185.229.111.201 · WAMP · Windows Server</td><td><span class="badge badge-ok">live</span></td></tr>
+      <tr><td>CMS</td><td>WordPress at <code>C:\wamp\www</code></td><td><span class="badge badge-ok">live</span></td></tr>
+      <tr><td>Reports</td><td><code>/r/*</code> → WordPress CPT → Qlik embed</td><td><span class="badge badge-ok">live</span></td></tr>
+      <tr><td>Registration</td><td><code>/wp-login.php</code> + WP user system</td><td><span class="badge badge-ok">live</span></td></tr>
+      <tr><td>v10 preview</td><td>gshoina.github.io/bivision-shares/bihub-v10.html</td><td><span class="badge badge-ok">live</span></td></tr>
+      <tr><td><code>/notify.php</code></td><td>Lead capture endpoint</td><td><span class="badge badge-block">NOT deployed</span></td></tr>
+      <tr><td>Cache</td><td>LiteSpeed Cache plugin</td><td><span class="badge badge-wait">must purge after deploy</span></td></tr>
+    </table>
+  </div>
+
+  <!-- APPROACH DECISION -->
+  <div class="section">
+    <h2>⚙️ Deploy Approach — Selected</h2>
+    <div class="compare">
+      <div class="opt opt-rec">
+        <div class="opt-title">✓ SELECTED: WP Page Template</div>
+        <ul>
+          <li>Create <code>template-v10.php</code> in active theme</li>
+          <li>Assign to new WP page, set as homepage</li>
+          <li>WordPress still handles <code>/r/*</code>, <code>/wp-login</code>, all routing</li>
+          <li>Rollback: change homepage setting (30s, no server access needed)</li>
+          <li>No Apache/LiteSpeed config changes</li>
+        </ul>
+      </div>
+      <div class="opt">
+        <div class="opt-title">✗ Apache Rewrite Rule</div>
+        <ul>
+          <li>Edit <code>httpd.conf</code> via WinRM</li>
+          <li>Risk: LiteSpeed may override Apache config</li>
+          <li>Risk: breaks <code>/r/*</code> routing if not ordered correctly</li>
+          <li>Rollback needs WinRM + Apache restart</li>
+          <li>More moving parts</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Why NOT Apache rewrite</h3>
+    <p style="font-size:14px;margin-top:8px;">Server uses LiteSpeed Cache plugin — this suggests LiteSpeed Web Server or at minimum LS cache integration. Apache <code>httpd.conf</code> edits may be ignored or override in unexpected ways. WP page template approach is lower risk, fully reversible without server access.</p>
+  </div>
+
+  <!-- MIGRATION PLAN -->
+  <div class="section">
+    <h2>🗺️ Migration Plan — Step by Step</h2>
+
+    <div class="phase">
+      <div class="phase-title">Phase 0 — Pre-flight (no changes to production)</div>
+      <ol>
+        <li>WinRM connect: verify access to 185.229.111.201:5985</li>
+        <li>Identify active theme: <code>C:\wamp\www\wp-content\themes\[active-theme]\</code></li>
+        <li>Verify <code>/r/konkurentebtan</code> works on live bihub.ge (smoke test)</li>
+        <li>Verify <code>/wp-login.php</code> reachable</li>
+        <li>Screenshot current bihub.ge homepage (rollback reference)</li>
+        <li>Deploy <code>/notify.php</code> — lead capture must be live BEFORE modal goes live</li>
+      </ol>
+      <div class="phase-note">⚠️ Do NOT proceed to Phase 1 if /notify.php is not deployed — leads will be lost silently (localStorage fallback only)</div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-title">Phase 1 — Staging on production server (zero downtime)</div>
+      <ol>
+        <li>Via WinRM: write <code>template-v10.php</code> to active theme directory (chunk-write, .NET ZipFile if needed)</li>
+        <li>Create new blank WordPress page "BiHub v10" — assign template-v10</li>
+        <li>Access <code>bihub.ge/?page_id=[new-page-id]</code> — verify v10 renders</li>
+        <li>Test: registration modal → bihub.ge/wp-login.php link works</li>
+        <li>Test: card click → bihub.ge/r/[slug] works (new tab)</li>
+        <li>Test: notify strip form submit → /notify.php returns 200</li>
+        <li>Screenshot: compare with GitHub Pages preview</li>
+      </ol>
+      <div class="phase-note">Current homepage still live. New page accessible by direct URL only.</div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-title">Phase 2 — Homepage swap (~30s visible change)</div>
+      <ol>
+        <li>WP Admin → Settings → Reading → "A static page" → set Front Page to "BiHub v10"</li>
+        <li>LiteSpeed Cache → Purge All</li>
+        <li>Immediately: <code>curl -I https://bihub.ge</code> — verify 200 + v10 content</li>
+        <li>Mobile smoke test (Playwright, 375px viewport)</li>
+        <li>Desktop smoke test (1440px viewport)</li>
+      </ol>
+      <div class="phase-note">If smoke test fails → immediately revert Reading settings → back to old homepage in 30s</div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-title">Phase 3 — GitHub deploy automation (optional, post-launch)</div>
+      <ol>
+        <li>Add <code>WINRM_HOST</code> + <code>WINRM_USER</code> + <code>WINRM_PASS</code> to GitHub Secrets</li>
+        <li>Create <code>.github/workflows/deploy.yml</code>: on push to <code>production</code> branch → WinRM deploy v10.html updates</li>
+        <li>Test: push change → verify auto-deploy</li>
+      </ol>
+      <div class="phase-note">Not required for go-live. Enables future push-to-deploy workflow. Credentials in GitHub Secrets = encrypted, never in code.</div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-title">Rollback Plan (any phase)</div>
+      <ol>
+        <li><strong>Phase 1 rollback:</strong> delete new WP page — zero impact</li>
+        <li><strong>Phase 2 rollback:</strong> WP Admin → Settings → Reading → set Front Page back to original — 30 seconds</li>
+        <li><strong>No DNS changes needed</strong> — server stays same throughout</li>
+        <li><strong>No backup required</strong> — original WP home untouched</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- RISK MATRIX -->
+  <div class="section">
+    <h2>⚡ Risk Matrix</h2>
+    <div class="risk risk-HIGH">
+      <div class="risk-label">HIGH</div>
+      <div><strong>/notify.php not deployed</strong> — modal submit goes to localStorage fallback. Leads silently lost from day 1. Must deploy before Phase 2.</div>
+    </div>
+    <div class="risk risk-HIGH">
+      <div class="risk-label">HIGH</div>
+      <div><strong>WordPress injects &lt;head&gt; content into page template</strong> — WP plugins (especially analytics, CookieYes) add scripts to every page including custom templates. v10 may load conflicting analytics or cookie banners. Must verify <code>wp_head()</code> output in template.</div>
+    </div>
+    <div class="risk risk-MED">
+      <div class="risk-label">MED</div>
+      <div><strong>LiteSpeed Cache serves stale homepage for 30+ min</strong> — Purge All required immediately after Phase 2 swap. If purge fails or is incomplete, users see old page. Verify with curl + <code>Cache-Control</code> header check.</div>
+    </div>
+    <div class="risk risk-MED">
+      <div class="risk-label">MED</div>
+      <div><strong>WinRM chunk-write for 134KB template file</strong> — previous incident: Compress-Archive fails on pre-1980 timestamps. Use .NET ZipFile method. Test file write before Phase 1 on a test file.</div>
+    </div>
+    <div class="risk risk-MED">
+      <div class="risk-label">MED</div>
+      <div><strong>WordPress &lt;head&gt; duplicate meta tags</strong> — v10 has its own full &lt;!DOCTYPE html&gt; + &lt;head&gt;. If WordPress page template wraps it in WP's own HTML structure, there will be nested &lt;html&gt; tags. Template must use <code>get_header()</code>-free approach OR suppress WP structure entirely.</div>
+    </div>
+    <div class="risk risk-LOW">
+      <div class="risk-label">LOW</div>
+      <div><strong>favicon.svg / apple-touch-icon.png missing on bihub.ge</strong> — v10 now points to <code>https://bihub.ge/favicon.svg</code>. If file doesn't exist on server, 404. Upload favicon.svg to server root in Phase 0.</div>
+    </div>
+    <div class="risk risk-LOW">
+      <div class="risk-label">LOW</div>
+      <div><strong>GitHub Actions WinRM credentials scope</strong> — if GitHub Actions deploy is set up, WinRM credentials in Secrets can access entire server (not just www directory). Scope risk if secrets are ever exposed.</div>
+    </div>
+  </div>
+
+  <!-- VIKTOR CHALLENGE -->
+  <div class="viktor">
+    <h2>⚔️ Viktor Challenge</h2>
+    <div class="subtitle">Independent audit — assumptions challenged, gaps surfaced</div>
+
+    <div class="vitem">
+      <div class="vtag vtag-H">CONFIRMED RISK [HIGH]</div>
+      <strong>WP page template = still WordPress overhead.</strong> Every request to the homepage will boot WordPress, load all active plugins, query the database — just to serve a static HTML file. If bihub.ge has heavy plugins (WooCommerce, ACF, security plugins), homepage TTFB will be 300-800ms vs &lt;50ms for a true static file. The "WP template" approach trades simplicity for performance. Acceptable for MVP but not for scale.
+    </div>
+
+    <div class="vitem">
+      <div class="vtag vtag-H">CONFIRMED RISK [HIGH]</div>
+      <strong>template-v10.php nested HTML structure.</strong> A WordPress page template that outputs a full HTML document (v10 has its own &lt;!DOCTYPE&gt;, &lt;head&gt;, &lt;body&gt;) will result in invalid HTML: two &lt;html&gt; roots if WP's get_header() is called, OR completely bypassed WP head if it's not — meaning WP plugins that hook into wp_head() (analytics, SEO, security nonces) won't run. Both outcomes have consequences. This requires explicit architectural decision: either (a) use WP as pure router and output raw HTML bypassing all WP head, or (b) strip v10's &lt;head&gt; and let WP own it. Neither is in the plan.
+    </div>
+
+    <div class="vitem">
+      <div class="vtag vtag-H">CONFIRMED RISK [HIGH] — GAP</div>
+      <strong>/notify.php — what does it do exactly?</strong> The plan says "deploy /notify.php" but there is no notify.php written yet. Who writes it? What does it save leads to? Database? Email? Third party? This is a lead capture endpoint that does not exist. "Deploy" implies a file exists somewhere to deploy. It does not. This is a blocker for Phase 0, not a Phase 3 item.
+    </div>
+
+    <div class="vitem">
+      <div class="vtag vtag-M">UNVERIFIED ASSUMPTION [MED]</div>
+      <strong>"No DNS changes needed."</strong> This assumes bihub.ge's DNS A record points to 185.229.111.201 and the plan keeps it there. Verified? If the domain is behind Cloudflare proxy (orange cloud), the actual server IP is masked. Cloudflare could have caching rules that serve a cached version of the old homepage for hours after the WP swap. Plan doesn't account for Cloudflare cache purge.
+    </div>
+
+    <div class="vitem">
+      <div class="vtag vtag-M">UNVERIFIED ASSUMPTION [MED]</div>
+      <strong>Active WP theme is known and editable.</strong> Plan says "write template-v10.php to active theme directory." Which theme is active? If it's a purchased theme with auto-updates enabled, a theme update could delete template-v10.php. If it's a child theme, inheritance may add unexpected styles. This is unverified.
+    </div>
+
+    <div class="vitem">
+      <div class="vtag vtag-M">GAP [MED]</div>
+      <strong>Registration modal links — post-migration path check.</strong> v10 modal hardcodes <code>https://bihub.ge/wp-login.php</code>. After migration, this should still work — but what about the registration confirmation email? Where does it redirect after WP registration? Currently it may redirect to the old WordPress homepage. Post-registration redirect = old WP page, not v10. User lands on wrong page. Not in plan.
+    </div>
+
+    <div class="vitem">
+      <div class="vtag vtag-L">GAP [LOW]</div>
+      <strong>GitHub Actions deploy = credentials risk surface.</strong> Adding WinRM credentials to GitHub Secrets connects the GitHub repo (public or private) to full server access. If the repo is public, a misconfigured workflow could expose the secrets. Recommend: create a dedicated deploy user with write-only access to <code>C:\wamp\www\wp-content\themes\[theme]\</code> only, not full WinRM admin.
+    </div>
+
+    <div class="verdict">
+      ⚖️ Plan is deployable IF: (1) notify.php is written first, (2) WP template HTML nesting is resolved explicitly, (3) Cloudflare cache is purged after swap. Everything else is manageable risk.
+    </div>
+  </div>
+
+  <!-- PRE-LAUNCH CHECKLIST -->
+  <div class="section">
+    <h2>✅ Pre-Launch Checklist</h2>
+    <ul class="checklist">
+      <li>notify.php written + deployed to C:\wamp\www\notify.php</li>
+      <li>WinRM connection verified: 185.229.111.201:5985</li>
+      <li>Active WP theme identified (name + path)</li>
+      <li>template-v10.php written: outputs raw HTML, bypasses WP head entirely (no get_header/footer)</li>
+      <li>favicon.svg uploaded to C:\wamp\www\favicon.svg</li>
+      <li>Phase 1: v10 accessible at bihub.ge/?page_id=XXX</li>
+      <li>Phase 1: /r/konkurentebtan opens Qlik embed (new tab from v10)</li>
+      <li>Phase 1: notify strip form → /notify.php → 200 OK</li>
+      <li>Phase 1: registration modal → bihub.ge/wp-login.php → WP login page</li>
+      <li>Phase 1: mobile (375px) — no overflow, no broken layout</li>
+      <li>Phase 2: Reading settings swapped</li>
+      <li>Phase 2: LiteSpeed Cache → Purge All</li>
+      <li>Phase 2: Cloudflare Cache → Purge Everything (if CF is active)</li>
+      <li>Phase 2: curl -I https://bihub.ge → 200 + v10 content confirmed</li>
+      <li>Phase 2: GA4 still firing (no double-fire from WP + v10 scripts)</li>
+    </ul>
+  </div>
+
+  <div style="text-align:center;font-size:12px;color:#9ca3af;margin-top:32px;">
+    bihub v10 migration plan · Geo · 2026-05-19
+  </div>
+</div>
+</body>
+</html>
