@@ -3956,12 +3956,15 @@ window.BIHUB_SOURCES = [
       </div>
     `;
     modal.dataset.open = "true";
+    const sb = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.paddingRight = sb + "px";
     document.body.style.overflow = "hidden";
     setTimeout(() => $("#m-email", modalContent)?.focus({ preventScroll: true }), 320);
   }
   function closeModal() {
     modal.dataset.open = "false";
     document.body.style.overflow = "";
+    document.body.style.paddingRight = "";
   }
   modal.addEventListener("click", (e) => {
     if (e.target === modal || e.target.closest("[data-close]")) closeModal();
@@ -3978,6 +3981,8 @@ window.BIHUB_SOURCES = [
 
   function openSearch() {
     searchOverlay.dataset.open = "true";
+    const sb = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.paddingRight = sb + "px";
     document.body.style.overflow = "hidden";
     setTimeout(() => {
       searchInput.focus({ preventScroll: true });
@@ -3988,6 +3993,7 @@ window.BIHUB_SOURCES = [
   function closeSearch() {
     searchOverlay.dataset.open = "false";
     document.body.style.overflow = "";
+    document.body.style.paddingRight = "";
   }
   function runSearch(q) {
     q = q.trim().toLowerCase();
@@ -4157,6 +4163,7 @@ window.BIHUB_SOURCES = [
     .finally(function() {
       modal.dataset.open = 'false';
       document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
       showToast('✓ მოგიმზადეთ წვდომა — შეამოწმე ფოსტა', false);
     });
   });
