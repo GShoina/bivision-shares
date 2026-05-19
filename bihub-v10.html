@@ -3744,10 +3744,9 @@ window.BIHUB_SOURCES = [
 
   renderGrid();
 
-  /* ---- free report opener (no registration gate) ---- */
+  /* ---- free report opener — Phase 1: modal until /r/ WP routes deployed ---- */
   function openFreeReport(r) {
-    const url = "https://bihub.ge/r/" + r.slug;
-    window.open(url, "_blank", "noopener");
+    openReportModal(r);
   }
 
   /* ---- modal ---- */
