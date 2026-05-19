@@ -662,86 +662,6 @@ a { color: inherit; text-decoration: none; }
 .section__sub { font-size: 14px; color: var(--ink-3); }
 .section__sub strong { color: var(--ink); font-weight: 600; }
 
-.toolbar {
-  position: sticky;
-  top: 60px;
-  z-index: 30;
-  background: rgba(246, 248, 252, 0.94);
-  backdrop-filter: saturate(180%) blur(10px);
-  -webkit-backdrop-filter: saturate(180%) blur(10px);
-  padding: 12px 0;
-  margin: 0 -16px 22px;
-  padding-left: 16px;
-  padding-right: 16px;
-  border-bottom: 1px solid var(--line);
-}
-.toolbar__inner {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.chips {
-  display: flex;
-  gap: 6px;
-  flex: 1;
-  min-width: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-  padding-bottom: 2px;
-  -webkit-overflow-scrolling: touch;
-}
-.chips::-webkit-scrollbar { display: none; }
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  height: 34px;
-  padding: 0 12px;
-  background: var(--paper);
-  border: 1px solid var(--line-2);
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink-2);
-  white-space: nowrap;
-  flex: none;
-  transition: all 0.12s ease;
-}
-.chip:hover { color: var(--ink); border-color: var(--line-3); }
-.chip--active {
-  background: var(--ink);
-  color: #fff;
-  border-color: var(--ink);
-}
-.chip__count {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  background: var(--bg);
-  padding: 1px 5px;
-  border-radius: 999px;
-  color: var(--ink-3);
-}
-.chip--active .chip__count { background: rgba(255,255,255,0.16); color: rgba(255,255,255,0.85); }
-
-.sort {
-  display: none; /* hide on mobile */
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  color: var(--ink-3);
-  flex: none;
-}
-.sort select {
-  font: inherit;
-  height: 34px;
-  padding: 0 28px 0 12px;
-  background: var(--paper) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'><path d='M3 4.5L6 7.5L9 4.5' stroke='%236C7395' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>") no-repeat right 10px center;
-  border: 1px solid var(--line-2);
-  border-radius: 8px;
-  color: var(--ink);
-  appearance: none;
-  font-weight: 500;
-}
 
 /* ==========================================================================
    Featured strip
@@ -1398,9 +1318,6 @@ a { color: inherit; text-decoration: none; }
   .hero { padding: 48px 0 36px; }
 
   .section { padding: 56px 0; }
-  .toolbar { top: 64px; padding: 14px 0; margin: 0 -24px 26px; padding-left: 24px; padding-right: 24px; }
-  .sort { display: inline-flex; }
-  .chips { flex-wrap: wrap; overflow: visible; }
 
   .featured { grid-template-columns: 1fr 1fr; }
   .featured__card { min-height: 260px; }
@@ -2842,20 +2759,6 @@ body{overflow-x:hidden}
       </p>
     </div>
 
-    <div class="toolbar">
-      <div class="toolbar__inner">
-        <div class="chips" id="chips" role="tablist" aria-label="კატეგორიები"></div>
-        <div class="sort">
-          <label for="sort">სორტ.</label>
-          <select id="sort" aria-label="სორტირება">
-            <option value="views">პოპულარული</option>
-            <option value="alpha">ანბანი</option>
-            <option value="recent">პერიოდი</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
     <!-- All 16 reports in one uniform grid -->
     <div class="grid" id="grid" aria-live="polite"></div>
     <noscript><div style="display:none" aria-hidden="true"><ul>
@@ -3751,33 +3654,8 @@ window.BIHUB_SOURCES = [
     });
   }
 
-  /* ---- category chips ---- */
-  const chipsHost = $("#chips");
-  const countByCat = {};
-  categories.forEach((c) => {
-    countByCat[c.id] = c.id === "all" ? reports.length : reports.filter((r) => r.category === c.id).length;
-  });
-  let activeCat = "all";
-  let activeSort = "views";
-
-  function renderChips() {
-    chipsHost.innerHTML = "";
-    categories.forEach((c) => {
-      const b = el(`
-        <button class="chip ${c.id === activeCat ? "chip--active" : ""}" data-cat="${c.id}">
-          ${c.label}
-          <span class="chip__count">${countByCat[c.id]}</span>
-        </button>
-      `);
-      b.addEventListener("click", () => {
-        activeCat = c.id;
-        renderChips();
-        renderGrid();
-      });
-      chipsHost.appendChild(b);
-    });
-  }
-  renderChips();
+  const activeCat = "all";
+  const activeSort = "views";
 
   /* ---- grid ---- */
   const gridHost = $("#grid");
@@ -3864,13 +3742,6 @@ window.BIHUB_SOURCES = [
     if (totalEl) totalEl.textContent = list.length;
   }
 
-  const sortSel = $("#sort");
-  if (sortSel) {
-    sortSel.addEventListener("change", (e) => {
-      activeSort = e.target.value;
-      renderGrid();
-    });
-  }
   renderGrid();
 
   /* ---- free report opener (no registration gate) ---- */
