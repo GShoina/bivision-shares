@@ -1,0 +1,4217 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================ CORE SEO ============================ -->
+<title>bihub — ბიზნეს და საჯარო მონაცემების ანალიტიკის ჰაბი | Bivision</title>
+<meta name="description" content="bihub.ge — საქართველოს ბიზნეს და საჯარო მონაცემების პირველი ღია ანალიტიკის ჰაბი. 16 ანალიტიკური დეშბორდი Qlik Sense BI პლატფორმაზე. სრულიად უფასო — მხოლოდ რეგისტრაცია. Bivision-ის პროდუქტი.">
+<meta name="keywords" content="bihub, საქართველო, ბიზნეს ანალიტიკა, საჯარო მონაცემები, Qlik Sense, BI, GEOSTAT, REPORTAL, ექსპორტი, იმპორტი, ტენდერები, ფინანსები, ჯანდაცვა, FDI, Bivision, business intelligence Georgia, public data Georgia">
+<meta name="author" content="Bivision">
+<meta name="theme-color" content="#6B63B5">
+<meta name="color-scheme" content="light">
+<meta name="format-detection" content="telephone=no">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://bihub.ge/">
+<link rel="alternate" hreflang="ka" href="https://bihub.ge/">
+<link rel="alternate" hreflang="x-default" href="https://bihub.ge/">
+
+<!-- ============================ SECURITY ============================ -->
+<!-- These headers MUST be set via HTTP response headers in production (Nginx/Apache/Cloudflare).
+     Meta-tag CSP / Permissions-Policy / X-Frame-Options are mostly NOT enforced via <meta>.
+     Production response headers (recommended):
+
+       Content-Security-Policy: default-src 'self'; img-src 'self' https: data:;
+         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+         font-src 'self' https://fonts.gstatic.com data:;
+         script-src 'self' 'unsafe-inline';
+         connect-src 'self' https:;
+         frame-ancestors 'self' https://bivision.ge https://*.bivision.ge;
+       X-Frame-Options: SAMEORIGIN
+       X-Content-Type-Options: nosniff
+       Referrer-Policy: strict-origin-when-cross-origin
+       Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+       Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+-->
+
+<!-- ============================ OPEN GRAPH ============================ -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="bihub">
+<meta property="og:title" content="bihub — ბიზნეს და საჯარო მონაცემების ანალიტიკის ჰაბი">
+<meta property="og:description" content="საქართველოს მონაცემთა ჰაბი — 16 ანალიტიკური დეშბორდი Qlik Sense BI პლატფორმაზე. სრულიად უფასო. Bivision-ის პროდუქტი.">
+<meta property="og:url" content="https://bihub.ge/">
+<meta property="og:locale" content="ka_GE">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://bihub.ge/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="bihub — საქართველოს მონაცემთა ჰაბი">
+
+<!-- ============================ TWITTER ============================ -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="bihub — ბიზნეს და საჯარო მონაცემების ანალიტიკის ჰაბი">
+<meta name="twitter:description" content="საქართველოს მონაცემთა ჰაბი — 16 ანალიტიკური დეშბორდი Qlik Sense BI პლატფორმაზე. სრულიად უფასო.">
+<meta name="twitter:image" content="https://bihub.ge/og-image.png">
+
+<!-- ============================ FAVICONS ============================ -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<!-- ============================ FONTS ============================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Georgian:wght@400;500;600;700;800&family=Noto+Sans+Georgian:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   BiHub — Mobile-first, Bivision blue palette
+   ========================================================================== */
+
+:root {
+  /* Brand — Bivision Purple + Green */
+  --blue: #6B63B5;
+  --blue-deep: #4A4290;
+  --blue-darker: #2E2867;
+  --blue-soft: #EFEDF7;
+  --blue-softer: #F6F5FB;
+  --blue-tint: #E5E2F2;
+
+  /* Bivision green accent (free / live / positive) */
+  --green: #00A651;
+  --green-deep: #007D3D;
+  --green-soft: #E1F5EA;
+
+  /* Surfaces */
+  --bg: #F7F6FB;
+  --paper: #FFFFFF;
+  --paper-warm: #FBFAFD;
+  --night: #1A1540;
+  --night-2: #2A2566;
+
+  /* Ink */
+  --ink: #14112E;
+  --ink-2: #403A60;
+  --ink-3: #6F698F;
+  --ink-4: #A6A2BD;
+
+  /* Lines */
+  --line: #E8E5F0;
+  --line-2: #D7D2E5;
+  --line-3: #BDB7D3;
+
+  /* Semantic */
+  --up: #00A651;
+  --up-soft: #E1F5EA;
+  --down: #C0381F;
+  --down-soft: #FBE9E4;
+  --warn: #C97A0E;
+
+  /* Type */
+  --font-display: "Noto Serif Georgian", "Noto Serif", Georgia, serif;
+  --font-sans: "Noto Sans Georgian", "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+
+  /* Sizing */
+  --container: 1240px;
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+
+  /* Shadow */
+  --shadow-sm: 0 1px 2px rgba(20, 17, 46, 0.04);
+  --shadow-md: 0 2px 8px rgba(20, 17, 46, 0.06), 0 1px 2px rgba(20, 17, 46, 0.04);
+  --shadow-lg: 0 12px 32px rgba(20, 17, 46, 0.08), 0 2px 6px rgba(20, 17, 46, 0.04);
+  --shadow-glow: 0 8px 28px rgba(107, 99, 181, 0.28);
+}
+
+/* ==========================================================================
+   Reset (mobile defaults)
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 60px; }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg { display: block; max-width: 100%; }
+button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+a { color: inherit; text-decoration: none; }
+[hidden] { display: none !important; }
+::selection { background: var(--blue); color: #fff; }
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  transition: transform 0.05s, background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.2s;
+}
+.btn:active { transform: translateY(1px); }
+.btn--ghost { color: var(--ink-2); }
+.btn--ghost:hover { color: var(--ink); background: var(--blue-soft); }
+.btn--outline { border-color: var(--line-2); color: var(--ink); background: var(--paper); }
+.btn--outline:hover { border-color: var(--blue); color: var(--blue); }
+.btn--primary { background: var(--ink); color: #fff; box-shadow: var(--shadow-sm); }
+.btn--primary:hover { background: var(--night); }
+.btn--blue { background: var(--blue); color: #fff; box-shadow: var(--shadow-glow); }
+.btn--blue:hover { background: var(--blue-deep); }
+.btn--white { background: #fff; color: var(--night); }
+.btn--white:hover { background: var(--blue-softer); }
+.btn--ghost-on-dark { color: #fff; border: 1px solid rgba(255,255,255,0.22); }
+.btn--ghost-on-dark:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); }
+.btn--lg { height: 50px; padding: 0 24px; font-size: 15px; }
+.btn--block { width: 100%; }
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(246, 248, 252, 0.88);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  gap: 12px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.brand__mark {
+  width: 26px; height: 26px;
+  border-radius: 7px;
+  background: var(--blue);
+  position: relative;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 10px rgba(31, 79, 224, 0.25);
+}
+.brand__mark::before {
+  content: "";
+  width: 11px; height: 11px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  transform: rotate(45deg);
+}
+.brand__bivision {
+  display: none; /* hidden on mobile */
+  white-space: nowrap;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-left: 6px;
+  padding-left: 10px;
+  border-left: 1px solid var(--line-2);
+}
+
+.site-nav { display: none; }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.header-actions .btn--ghost { display: none; }
+
+.search-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 10px;
+  background: var(--paper);
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  color: var(--ink-3);
+  font-size: 13px;
+  transition: border-color 0.15s, color 0.15s;
+}
+.search-trigger:hover { border-color: var(--line-3); color: var(--ink-2); }
+.search-trigger svg { color: var(--ink-3); }
+.search-trigger span:not(.kbd) { display: none; }
+.search-trigger .kbd { display: none; }
+
+/* ==========================================================================
+   Live ticker
+   ========================================================================== */
+
+.ticker {
+  background: var(--night);
+  color: #E5EAFA;
+  border-bottom: 1px solid #14245C;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  position: relative;
+}
+.ticker::before, .ticker::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+.ticker::before { left: 0; background: linear-gradient(to right, var(--night), transparent); }
+.ticker::after { right: 0; background: linear-gradient(to left, var(--night), transparent); }
+.ticker__rail {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  white-space: nowrap;
+}
+.ticker__label {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  background: var(--night);
+  padding: 4px 8px;
+  border: 1px solid #1E2D63;
+  border-radius: 999px;
+  z-index: 3;
+  color: #B7C3E8;
+}
+.ticker__dot {
+  width: 6px; height: 6px;
+  background: #4ADE80;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+.ticker__track {
+  display: flex;
+  animation: scroll 90s linear infinite;
+  padding-left: 90px;
+}
+.ticker:hover .ticker__track { animation-play-state: paused; }
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.tick {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 0 16px;
+  border-right: 1px solid #14245C;
+  font-size: 12px;
+  font-weight: 500;
+}
+.tick__label { color: #8C95C2; font-size: 10px; letter-spacing: 0.06em; }
+.tick__val { color: #fff; font-weight: 600; }
+.tick__delta {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+.tick__delta--up { color: #4ADE80; background: rgba(74, 222, 128, 0.1); }
+.tick__delta--down { color: #FB923C; background: rgba(251, 146, 60, 0.1); }
+.tick__delta--flat { color: #8C95C2; background: rgba(140, 149, 194, 0.1); }
+.tick__src { color: #6E76A0; font-size: 10px; }
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.hero { padding: 32px 0 24px; position: relative; overflow: hidden; }
+
+.hero__inner {
+  max-width: 880px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue-deep);
+  padding: 5px 10px;
+  background: var(--blue-soft);
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+.eyebrow__dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--blue);
+  animation: pulse-blue 2s infinite;
+}
+@keyframes pulse-blue {
+  0% { box-shadow: 0 0 0 0 rgba(31, 79, 224, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(31, 79, 224, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(31, 79, 224, 0); }
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 8vw, 76px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  margin: 0 0 18px;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.hero__title em {
+  font-style: italic;
+  color: var(--blue);
+  font-weight: 500;
+}
+.hero__title .hl {
+  background: linear-gradient(180deg, transparent 62%, var(--blue-soft) 62%);
+  padding: 0 4px;
+}
+
+.hero__lede {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin: 0 0 24px;
+  max-width: 580px;
+  text-wrap: pretty;
+}
+.hero__lede strong { color: var(--ink); font-weight: 600; }
+
+.hero__bullets {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 28px;
+  list-style: none;
+  padding: 0;
+}
+.hero__bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+.hero__bullets li::before {
+  content: "";
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--blue-soft);
+  flex: none;
+  margin-top: 1px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'><path d='M2.5 6.2l2.4 2.4 4.6-5.2' stroke='%236B63B5' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.hero__bullets li strong { color: var(--ink); font-weight: 600; }
+
+.hero__cta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.hero__cta-note {
+  font-size: 13px;
+  color: var(--ink-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero__cta-note svg { color: var(--up); flex: none; }
+
+.proof {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.proof__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.proof__num {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.proof__num span { color: var(--blue); }
+.proof__lbl {
+  font-size: 11px;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+/* Hero KPI panel */
+.hero__panel {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+.hero__panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper-warm);
+}
+.hero__panel-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.live-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--up);
+  animation: pulse-up 2s infinite;
+}
+@keyframes pulse-up {
+  0% { box-shadow: 0 0 0 0 rgba(15, 138, 79, 0.4); }
+  70% { box-shadow: 0 0 0 7px rgba(15, 138, 79, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(15, 138, 79, 0); }
+}
+.hero__panel-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+}
+.kpi {
+  background: var(--paper);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.kpi__label {
+  font-size: 10px;
+  color: var(--ink-3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.kpi__row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 2px;
+}
+.kpi__value {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.kpi__delta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+.kpi__delta--up { color: var(--up); background: var(--up-soft); }
+.kpi__delta--down { color: var(--down); background: var(--down-soft); }
+.kpi__source { font-size: 10px; color: var(--ink-4); font-family: var(--font-mono); letter-spacing: 0.04em; }
+.kpi__spark { margin-top: 4px; height: 24px; }
+
+.hero__panel-foot {
+  border-top: 1px solid var(--line);
+  padding: 11px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--ink-3);
+  background: var(--paper-warm);
+}
+.hero__panel-foot a {
+  color: var(--blue-deep);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.hero__panel-foot a:hover { color: var(--blue); }
+
+/* ==========================================================================
+   Sources strip
+   ========================================================================== */
+
+.sources {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
+  background: var(--paper-warm);
+}
+.sources__row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.sources__row::-webkit-scrollbar { display: none; }
+.sources__label {
+  flex: none;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 600;
+  padding-right: 16px;
+  border-right: 1px solid var(--line-2);
+}
+.sources__item {
+  flex: none;
+  font-size: 12px;
+  color: var(--ink-2);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Section header + toolbar
+   ========================================================================== */
+
+.section { padding: 40px 0; }
+.section--tight { padding: 28px 0; }
+
+.section__head { margin-bottom: 20px; }
+.section__title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 6vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 6px;
+  color: var(--ink);
+}
+.section__sub { font-size: 14px; color: var(--ink-3); }
+.section__sub strong { color: var(--ink); font-weight: 600; }
+
+.toolbar {
+  position: sticky;
+  top: 60px;
+  z-index: 30;
+  background: rgba(246, 248, 252, 0.94);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  padding: 12px 0;
+  margin: 0 -16px 22px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.toolbar__inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.chips {
+  display: flex;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+  -webkit-overflow-scrolling: touch;
+}
+.chips::-webkit-scrollbar { display: none; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 12px;
+  background: var(--paper);
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-2);
+  white-space: nowrap;
+  flex: none;
+  transition: all 0.12s ease;
+}
+.chip:hover { color: var(--ink); border-color: var(--line-3); }
+.chip--active {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+.chip__count {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  background: var(--bg);
+  padding: 1px 5px;
+  border-radius: 999px;
+  color: var(--ink-3);
+}
+.chip--active .chip__count { background: rgba(255,255,255,0.16); color: rgba(255,255,255,0.85); }
+
+.sort {
+  display: none; /* hide on mobile */
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--ink-3);
+  flex: none;
+}
+.sort select {
+  font: inherit;
+  height: 34px;
+  padding: 0 28px 0 12px;
+  background: var(--paper) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'><path d='M3 4.5L6 7.5L9 4.5' stroke='%236C7395' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>") no-repeat right 10px center;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  color: var(--ink);
+  appearance: none;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Featured strip
+   ========================================================================== */
+
+.featured {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.featured__card {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s, border-color 0.15s;
+}
+.featured__card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--line-3);
+}
+.featured__card--lead {
+  background: linear-gradient(135deg, var(--night) 0%, #15225C 100%);
+  color: #fff;
+  border-color: var(--night);
+}
+.featured__card--lead .feat__cat { color: #B0BCE8; }
+.featured__card--lead .feat__title { color: #fff; }
+.featured__card--lead .feat__short { color: #C6CFEB; }
+.featured__card--lead .feat__meta { color: #8995BD; border-color: rgba(255,255,255,0.12); }
+.featured__card--lead .feat__meta strong { color: #fff; }
+.featured__card--lead .feat__open { color: #fff; }
+
+.feat__cat {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--blue-deep);
+}
+.feat__title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+  text-wrap: balance;
+}
+.feat__short {
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.5;
+  text-wrap: pretty;
+  flex: 1;
+}
+.feat__viz { height: 70px; margin: -2px 0; position: relative; z-index: 1; }
+.feat__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  position: relative;
+  z-index: 1;
+}
+.feat__meta strong { color: var(--ink); font-weight: 600; font-family: var(--font-sans); }
+.feat__open {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--blue);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ==========================================================================
+   Reports grid
+   ========================================================================== */
+
+.grid {
+  display: grid;
+  gap: 12px;
+}
+
+.card {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 18px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.2s, border-color 0.15s;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--line-3);
+}
+.card:hover .card__open { color: var(--blue); }
+
+/* Thematic background watermark — fills lower portion of card */
+.card__bg {
+  position: absolute;
+  bottom: -24px;
+  right: -24px;
+  width: 200px;
+  height: 200px;
+  pointer-events: none;
+  opacity: 0.85;
+  z-index: 0;
+}
+.card__bg svg { width: 100%; height: 100%; }
+.card > * { position: relative; z-index: 1; }
+
+.card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.card__cat {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--blue-deep);
+  padding: 4px 10px;
+  background: var(--blue-soft);
+  border-radius: 999px;
+}
+.card__views {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.card__views svg { color: var(--up); }
+
+.card__title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+  text-wrap: balance;
+}
+.card__short {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin: 0;
+  text-wrap: pretty;
+  flex: 1;
+}
+
+.card__viz { height: 64px; margin: 2px 0; position: relative; z-index: 1; }
+.card__viz svg { width: 100%; height: 100%; overflow: visible; }
+
+.card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  gap: 8px;
+}
+.card__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  min-width: 0;
+}
+.card__period { color: var(--ink-2); font-weight: 500; }
+.card__src {
+  padding: 2px 6px;
+  background: var(--bg);
+  border-radius: 4px;
+  color: var(--ink-3);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.card__open {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--ink-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+.card__badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  background: var(--up);
+  color: #fff;
+  border-radius: 4px;
+  z-index: 2;
+}
+.card__lock {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* ==========================================================================
+   Bivision CTA
+   ========================================================================== */
+
+.bivision-cta {
+  background: var(--night);
+  color: #fff;
+  border-radius: var(--radius-xl);
+  padding: 32px 24px;
+  margin: 24px 0 32px;
+  position: relative;
+  overflow: hidden;
+  background-image:
+    radial-gradient(circle at 85% 20%, rgba(31, 79, 224, 0.4), transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(14, 45, 158, 0.25), transparent 50%);
+}
+.bivision-cta__inner { position: relative; z-index: 1; }
+.bivision-cta__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #B0BCE8;
+  margin-bottom: 18px;
+}
+.bivision-cta__eyebrow .bivision-mark {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  padding-right: 10px;
+  border-right: 1px solid rgba(255,255,255,0.18);
+}
+.bivision-cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 6vw, 44px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  margin: 0 0 14px;
+  color: #fff;
+  text-wrap: balance;
+}
+.bivision-cta h2 em { font-style: italic; color: #B0BCE8; }
+.bivision-cta p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: #C6CFEB;
+  margin: 0 0 24px;
+  text-wrap: pretty;
+}
+.bivision-cta p strong { color: #fff; }
+.bivision-cta__actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+.bivision-cta__list {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.bivision-cta__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  font-size: 13px;
+  color: #E5EAFA;
+  line-height: 1.4;
+}
+.bivision-cta__list strong { color: #fff; font-weight: 600; display: block; margin-bottom: 2px; }
+.bivision-cta__list svg { flex: none; color: #B0BCE8; margin-top: 2px; }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  padding: 32px 0 24px;
+}
+.footer-grid {
+  display: grid;
+  gap: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.footer-grid h4 {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 12px;
+  font-weight: 600;
+}
+.footer-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.footer-grid a { font-size: 14px; color: var(--ink-2); transition: color 0.15s; }
+.footer-grid a:hover { color: var(--blue); }
+.footer-blurb { font-size: 13px; color: var(--ink-3); line-height: 1.55; max-width: 340px; margin: 12px 0 0; }
+
+.footer-legal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  font-size: 12px;
+  color: var(--ink-3);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-legal__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--ink-2);
+}
+
+/* ==========================================================================
+   Modal
+   ========================================================================== */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 23, 64, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 100;
+  display: grid;
+  place-items: end center;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-out;
+}
+.modal-backdrop[data-open="true"] { opacity: 1; pointer-events: auto; }
+.modal {
+  width: 100%;
+  max-width: 480px;
+  background: var(--paper);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  box-shadow: 0 -10px 40px rgba(10, 23, 64, 0.3);
+  overflow: hidden;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+}
+.modal-backdrop[data-open="true"] .modal { transform: translateY(0); }
+.modal__head { padding: 24px 22px 8px; position: relative; flex: none; }
+.modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: var(--ink-3);
+}
+.modal__close:hover { background: var(--bg); color: var(--ink); }
+.modal__cat {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue-deep);
+  margin-bottom: 10px;
+}
+.modal__title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.modal__sub { font-size: 14px; color: var(--ink-2); margin: 0; line-height: 1.5; }
+.modal__body { padding: 14px 22px 8px; overflow-y: auto; flex: 1; }
+.modal__perks {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  background: var(--blue-softer);
+  border-radius: 10px;
+  list-style: none;
+}
+.modal__perks li { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--ink); }
+.modal__perks svg { color: var(--blue); flex: none; }
+
+.field { margin-bottom: 12px; }
+.field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+.field input {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--paper);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.field input:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-soft);
+}
+.modal__foot {
+  padding: 14px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+  flex: none;
+}
+.modal__foot .btn { width: 100%; }
+.modal__fineprint {
+  font-size: 12px;
+  color: var(--ink-3);
+  text-align: center;
+  line-height: 1.5;
+}
+.modal__fineprint a { color: var(--blue-deep); font-weight: 500; }
+
+/* ==========================================================================
+   Search overlay
+   ========================================================================== */
+
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 23, 64, 0.55);
+  backdrop-filter: blur(6px);
+  z-index: 100;
+  display: grid;
+  place-items: start center;
+  padding: 16px 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.search-overlay[data-open="true"] { opacity: 1; pointer-events: auto; }
+.search {
+  width: 100%;
+  max-width: 640px;
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 30px 80px rgba(10, 23, 64, 0.4);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 92vh;
+}
+.search__input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  flex: none;
+}
+.search__input-wrap svg { color: var(--ink-3); flex: none; }
+.search__input {
+  flex: 1;
+  font: inherit;
+  font-size: 16px;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: var(--ink);
+  min-width: 0;
+}
+.search__input::placeholder { color: var(--ink-3); }
+.search__esc {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 4px 8px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--ink-3);
+}
+.search__results { overflow-y: auto; padding: 8px; flex: 1; }
+.search__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 8px;
+  text-align: left;
+  transition: background 0.1s;
+}
+.search__item:hover, .search__item[data-active="true"] { background: var(--blue-softer); }
+.search__item-cat {
+  flex: none;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--blue-deep);
+  width: 80px;
+}
+.search__item-title { font-size: 14px; font-weight: 500; color: var(--ink); }
+.search__item-sub { font-size: 12px; color: var(--ink-3); display: none; }
+.search__item-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  margin-left: auto;
+  flex: none;
+}
+.search__empty { padding: 32px; text-align: center; color: var(--ink-3); font-size: 14px; }
+.search__hint {
+  padding: 10px 14px;
+  background: var(--paper-warm);
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  color: var(--ink-3);
+  display: none;
+  gap: 14px;
+  flex: none;
+}
+.search__hint kbd {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 2px 6px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   Misc
+   ========================================================================== */
+
+.fade-in { animation: fadeIn 0.4s ease-out both; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.empty {
+  grid-column: 1 / -1;
+  padding: 40px 20px;
+  text-align: center;
+  border: 1px dashed var(--line-2);
+  border-radius: var(--radius-lg);
+  color: var(--ink-3);
+  background: var(--paper);
+}
+.empty strong { color: var(--ink); display: block; font-size: 16px; margin-bottom: 6px; font-family: var(--font-display); }
+
+/* ==========================================================================
+   Tablet (≥640px)
+   ========================================================================== */
+
+@media (min-width: 640px) {
+  .container { padding: 0 24px; }
+  body { font-size: 15.5px; }
+
+  .site-header__inner { height: 64px; gap: 16px; }
+  .brand { font-size: 21px; gap: 10px; }
+  .brand__mark { width: 28px; height: 28px; }
+  .header-actions { gap: 8px; }
+  .header-actions .btn--ghost { display: inline-flex; }
+  .search-trigger { padding: 0 12px 0 14px; gap: 10px; min-width: 240px; }
+  .search-trigger span:not(.kbd) { display: inline; }
+  .search-trigger .kbd {
+    display: inline-block;
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 2px 6px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    color: var(--ink-3);
+  }
+
+  .ticker__rail { height: 44px; }
+  .ticker__label { left: 16px; font-size: 11px; padding: 4px 10px; gap: 8px; }
+  .ticker__track { padding-left: 130px; }
+  .tick { padding: 0 20px; font-size: 13px; }
+  .tick__label { font-size: 11px; }
+  .tick__delta { font-size: 11px; padding: 1px 6px; }
+  .tick__src { font-size: 10px; }
+
+  .hero { padding: 48px 0 36px; }
+
+  .section { padding: 56px 0; }
+  .toolbar { top: 64px; padding: 14px 0; margin: 0 -24px 26px; padding-left: 24px; padding-right: 24px; }
+  .sort { display: inline-flex; }
+  .chips { flex-wrap: wrap; overflow: visible; }
+
+  .featured { grid-template-columns: 1fr 1fr; }
+  .featured__card { min-height: 260px; }
+  .featured__card--lead { grid-column: 1 / -1; }
+  .feat__title { font-size: 24px; }
+
+  .grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .bivision-cta { padding: 44px 36px; }
+
+  .footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
+
+  .modal-backdrop { place-items: center; padding: 24px; }
+  .modal { border-radius: var(--radius-xl); transform: translateY(20px) scale(0.98); }
+  .modal-backdrop[data-open="true"] .modal { transform: translateY(0) scale(1); }
+  .modal__title { font-size: 26px; }
+
+  .search__hint { display: flex; }
+  .search__item-sub { display: block; }
+}
+
+/* ==========================================================================
+   Desktop (≥900px)
+   ========================================================================== */
+
+@media (min-width: 900px) {
+  body { font-size: 15px; }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    justify-content: center;
+  }
+  .site-nav a {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: var(--ink-2);
+    border-radius: 6px;
+    font-weight: 500;
+    transition: color 0.15s, background 0.15s;
+  }
+  .site-nav a:hover { color: var(--ink); background: var(--blue-soft); }
+  .brand__bivision { display: inline-block; }
+
+  .hero { padding: 64px 0 48px; }
+  .hero__inner { max-width: 940px; }
+  .hero__lede { font-size: 18px; }
+  .hero__bullets {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 32px;
+  }
+  .hero__bullets li { font-size: 15px; }
+
+  .featured { grid-template-columns: 1.5fr 1fr 1fr; gap: 14px; }
+  .featured__card--lead { grid-column: auto; grid-row: span 1; }
+  .feat__title { font-size: 26px; }
+
+  .grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .card { padding: 20px 20px 18px; gap: 14px; }
+  .card__title { font-size: 22px; }
+  .card__short { font-size: 14px; }
+
+  .bivision-cta__inner {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 44px;
+    align-items: center;
+  }
+  .bivision-cta__actions { margin-bottom: 0; }
+
+  .section__title { font-size: 40px; }
+}
+
+/* ==========================================================================
+   Wide (≥1200px)
+   ========================================================================== */
+
+@media (min-width: 1200px) {
+  .container { padding: 0 32px; }
+  .hero__title { font-size: 70px; }
+  .bivision-cta { padding: 64px 56px; }
+}
+
+/* ==========================================================================
+   v3 additions — proof-bar, Bivision branding, a11y
+   ========================================================================== */
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 8px;
+  z-index: 200;
+  background: var(--blue);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.skip-link:focus { left: 8px; outline: 3px solid #fff; outline-offset: 2px; }
+
+/* Focus-visible for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+.btn:focus-visible { outline-offset: 3px; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.05ms !important;
+    scroll-behavior: auto !important;
+  }
+  .ticker__track { animation: none !important; }
+}
+
+/* Hero spacing tighter without panel */
+.hero__title { margin-bottom: 22px; }
+.hero__cta { margin-bottom: 0; }
+
+/* v3.1 — centered hero */
+.hero__inner {
+  margin: 0 auto;
+  text-align: center;
+}
+.hero__inner .eyebrow { margin-left: auto; margin-right: auto; }
+.hero__lede {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 640px;
+}
+.hero__bullets {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+.hero__cta {
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.hero__title {
+  white-space: normal;
+  text-wrap: balance;
+}
+.hero__title em {
+  white-space: nowrap;
+}
+
+/* v3.2 — hero chip pills (replaces dense bullets) */
+.hero__chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 0 28px;
+}
+.hero__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--paper);
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--ink-2);
+  font-weight: 500;
+  transition: border-color 0.15s;
+  white-space: nowrap;
+}
+.hero__chip strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+.hero__chip--accent {
+  color: var(--green-deep);
+  border-color: var(--green);
+  background: var(--green-soft);
+}
+.hero__chip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse-green 2s infinite;
+}
+@keyframes pulse-green {
+  0% { box-shadow: 0 0 0 0 rgba(0, 166, 81, 0.5); }
+  70% { box-shadow: 0 0 0 7px rgba(0, 166, 81, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 166, 81, 0); }
+}
+
+/* Wider hero on large screens */
+@media (min-width: 900px) {
+  .hero__inner { max-width: 1080px; }
+  .hero__title { font-size: clamp(40px, 5vw, 72px); }
+  .hero__lede { max-width: 720px; font-size: 19px; }
+}
+
+/* ==========================================================================
+   v3.3 — H1 highlight sweep animation
+   ========================================================================== */
+
+.hero__title-em {
+  font-style: italic;
+  color: var(--blue);
+  font-weight: 500;
+  position: relative;
+  white-space: nowrap;
+  display: inline-block;
+}
+.hero__title-em::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  bottom: 0.06em;
+  height: 0.42em;
+  background: var(--blue-tint);
+  z-index: -1;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: hl-sweep 1100ms cubic-bezier(0.65, 0, 0.35, 1) 450ms forwards;
+}
+@keyframes hl-sweep {
+  to { transform: scaleX(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__title-em::after { transform: scaleX(1); animation: none; }
+}
+
+/* ==========================================================================
+   v3.3 — CTA note moved below buttons, centered
+   ========================================================================== */
+
+.hero__cta {
+  margin-bottom: 14px !important;
+}
+.hero__cta-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-3);
+  margin: 0 auto 0;
+  text-align: center;
+}
+.hero__cta-note svg { color: var(--green); flex: none; }
+
+/* ==========================================================================
+   v3.3 — Proof bar centered numbers
+   ========================================================================== */
+
+.proof-bar__stat { text-align: center; align-items: center; }
+
+/* ==========================================================================
+   v3.3 — Sources strip: gentle horizontal drift
+   ========================================================================== */
+
+.sources { overflow: hidden; }
+.sources__row {
+  /* container stays */
+  position: relative;
+}
+#sources-row {
+  display: flex !important;
+  gap: 32px !important;
+  animation: src-drift 60s linear infinite;
+  white-space: nowrap;
+  flex-wrap: nowrap !important;
+}
+#sources-row .sources__item {
+  flex: none;
+  position: relative;
+  transition: color 0.2s, transform 0.2s;
+}
+#sources-row .sources__item:hover {
+  color: var(--blue);
+  transform: translateY(-1px);
+}
+.sources:hover #sources-row { animation-play-state: paused; }
+@keyframes src-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #sources-row { animation: none; }
+}
+
+/* ==========================================================================
+   Proof bar (replaces old in-hero proof)
+   ========================================================================== */
+
+.proof-bar {
+  margin-top: 40px;
+  padding: 28px 24px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  box-shadow: var(--shadow-sm);
+}
+.proof-bar__stat { display: flex; flex-direction: column; gap: 4px; }
+.proof-bar__num {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+.proof-bar__num span { color: var(--blue); }
+.proof-bar__lbl {
+  font-size: 12px;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+@media (min-width: 640px) {
+  .proof-bar { grid-template-columns: repeat(3, 1fr); gap: 24px 32px; padding: 32px; }
+  .proof-bar__num { font-size: 36px; }
+}
+@media (min-width: 900px) {
+  .proof-bar {
+    grid-template-columns: repeat(5, 1fr);
+    margin-top: 48px;
+    padding: 32px 40px;
+    gap: 28px;
+  }
+  .proof-bar__num { font-size: 40px; }
+}
+
+/* ==========================================================================
+   Header — Bivision wordmark slot
+   ========================================================================== */
+
+.brand__bivision strong {
+  color: var(--blue);
+  font-weight: 700;
+  font-style: italic;
+  font-family: var(--font-display);
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   Bivision CTA — v3 (bigger branding, product grid)
+   ========================================================================== */
+
+.bivision-cta {
+  background: linear-gradient(135deg, var(--night) 0%, #142566 60%, #1A368F 100%);
+  background-image:
+    radial-gradient(circle at 85% 15%, rgba(31, 79, 224, 0.55), transparent 40%),
+    radial-gradient(circle at 12% 85%, rgba(14, 45, 158, 0.4), transparent 45%),
+    linear-gradient(135deg, var(--night) 0%, #142566 60%, #1A368F 100%);
+}
+
+.bivision-cta__brand-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+.bivision-logo {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-style: italic;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-decoration: none;
+  line-height: 1;
+}
+.bivision-logo__b {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 10px;
+  margin-right: 8px;
+  font-style: normal;
+  font-size: 22px;
+  box-shadow: 0 4px 14px rgba(31, 79, 224, 0.5);
+}
+.bivision-logo__ivision { color: #fff; }
+.bivision-cta__tagline {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #B0BCE8;
+  padding-left: 14px;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Override old eyebrow */
+.bivision-cta__eyebrow { display: none; }
+
+.bivision-cta__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.bivision-cta__list li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  font-size: 13px;
+  color: #C6CFEB;
+  line-height: 1.3;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+.bivision-cta__list li:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(31, 79, 224, 0.6);
+}
+.bivision-cta__product {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-style: italic;
+  font-size: 15px;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 640px) {
+  .bivision-cta__list { grid-template-columns: 1fr 1fr 1fr; }
+}
+@media (min-width: 900px) {
+  .bivision-cta__list { grid-template-columns: 1fr 1fr; }
+  .bivision-logo { font-size: 32px; }
+  .bivision-logo__b { width: 44px; height: 44px; font-size: 26px; }
+}
+
+/* ==========================================================================
+   Footer — Bivision link styling
+   ========================================================================== */
+
+.footer-bivision {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-style: italic;
+  color: var(--blue);
+  transition: color 0.15s;
+}
+.footer-bivision:hover { color: var(--blue-deep); }
+.footer-blurb .footer-bivision { font-style: italic; }
+
+/* ==========================================================================
+   Hero v3.3 — animated underline, centered CTAs, card layering
+   ========================================================================== */
+
+.hero__title-em {
+  position: relative;
+  display: inline-block;
+  font-style: italic;
+  color: var(--blue);
+  font-weight: 500;
+  padding-bottom: 0.08em;
+}
+.hero__underline {
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  bottom: -0.05em;
+  width: 104%;
+  height: 0.3em;
+  overflow: visible;
+  pointer-events: none;
+}
+.hero__underline path {
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+  animation: draw-underline 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+  filter: drop-shadow(0 1px 0 rgba(107, 99, 181, 0.15));
+}
+@keyframes draw-underline {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Hero entrance */
+.hero__title { animation: hero-rise 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) both; }
+.hero__lede  { animation: hero-rise 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.08s both; }
+.hero__chips { animation: hero-rise 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.16s both; }
+.hero__cta   { animation: hero-rise 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.24s both; }
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__underline path { animation: none !important; stroke-dashoffset: 0 !important; }
+  .hero__title, .hero__lede, .hero__chips, .hero__cta { animation: none !important; }
+}
+
+/* CTA — centered, with note BELOW */
+.hero__cta {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 0 !important;
+}
+.hero__cta-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-3);
+  margin: 14px 0 0;
+  width: 100%;
+  text-align: center;
+}
+.hero__cta-note svg { color: var(--green); flex: none; }
+
+/* KPI proof-bar — perfectly centered */
+.proof-bar__stat {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.proof-bar__num,
+.proof-bar__lbl { text-align: center; }
+
+/* Card layering — watermark stays under text & chart */
+.card { isolation: isolate; }
+.card__bg {
+  z-index: 0;
+  opacity: 0.7;
+  width: 220px;
+  height: 220px;
+  bottom: -32px;
+  right: -32px;
+}
+.card__head, .card__title, .card__short, .card__foot, .card__badge {
+  position: relative;
+  z-index: 2;
+}
+.card__viz {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(to top, var(--paper) 0%, rgba(255, 255, 255, 0.92) 55%, rgba(255, 255, 255, 0.5) 85%, transparent 100%);
+  border-radius: 4px;
+  padding: 4px 0;
+}
+
+/* Featured (non-lead) same treatment */
+.featured__card { isolation: isolate; }
+.featured__card:not(.featured__card--lead) .card__bg {
+  z-index: 0;
+  opacity: 0.65;
+  width: 260px;
+  height: 260px;
+  bottom: -36px;
+  right: -36px;
+}
+.featured__card:not(.featured__card--lead) .feat__cat,
+.featured__card:not(.featured__card--lead) .feat__title,
+.featured__card:not(.featured__card--lead) .feat__short,
+.featured__card:not(.featured__card--lead) .feat__meta {
+  position: relative;
+  z-index: 2;
+}
+.featured__card:not(.featured__card--lead) .feat__viz {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(to top, var(--paper) 0%, rgba(255, 255, 255, 0.92) 55%, transparent 100%);
+  border-radius: 4px;
+  padding: 4px 0;
+}
+
+/* ==========================================================================
+   Sources — animated marquee with sticky label
+   ========================================================================== */
+
+.sources { position: relative; }
+.sources__row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow: hidden !important;
+}
+.sources__label {
+  position: relative;
+  z-index: 3;
+  background: var(--paper-warm);
+  padding-right: 18px;
+  box-shadow: 14px 0 18px -8px var(--paper-warm);
+}
+.sources__viewport {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 36px, #000 calc(100% - 36px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 36px, #000 calc(100% - 36px), transparent 100%);
+}
+.sources__track {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  padding-left: 24px;
+  white-space: nowrap;
+  animation: sources-scroll 55s linear infinite;
+  will-change: transform;
+}
+.sources__row:hover .sources__track { animation-play-state: paused; }
+@keyframes sources-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.sources__item {
+  flex: none;
+  font-size: 12px;
+  color: var(--ink-2);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  transition: color 0.15s;
+}
+.sources__item:hover { color: var(--blue); }
+.sources__item::after {
+  content: "";
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--blue);
+  opacity: 0.35;
+  display: inline-block;
+  flex: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sources__track { animation: none !important; }
+}
+
+/* v3.4 — hide mini chart on grid cards (kept in featured/lead) */
+.grid .card .card__viz { display: none !important; }
+
+/* v3.5 — clean featured cards: no chart, no big watermark; dedupe handled in app.js */
+.featured .feat__viz { display: none !important; }
+.featured__card:not(.featured__card--lead) .card__bg { display: none !important; }
+.featured__card { min-height: auto !important; }
+.featured__card .feat__short { margin-bottom: 6px; }
+
+/* v3.6 — final card cleanup
+   - All cards same size, uniform grid
+   - Watermark fully behind, soft & symmetrical
+   - No chart in grid cards (already done), no chart strip distortion
+   - "kontkurentebtan…" cards (pinned) keep their accent but match height */
+.grid {
+  grid-auto-rows: 1fr;
+}
+.card {
+  height: 100%;
+  min-height: 230px;
+  padding: 22px 22px 18px;
+  gap: 14px;
+}
+.card__title {
+  font-size: 22px;
+  line-height: 1.2;
+}
+.card__short {
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* Watermark — cleaner, larger, centered to lower-right, never distorting */
+.card__bg {
+  position: absolute;
+  right: -36px;
+  bottom: -36px;
+  width: 240px;
+  height: 240px;
+  opacity: 0.55;
+  z-index: 0;
+  pointer-events: none;
+  display: block;
+}
+.card__bg svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Accent for pinned (top 3) — soft tint band on left edge */
+.card--pinned {
+  border-color: var(--blue-tint);
+  background:
+    linear-gradient(135deg, rgba(107, 99, 181, 0.04) 0%, transparent 32%),
+    var(--paper);
+}
+.card--pinned .card__cat {
+  background: var(--blue);
+  color: #fff;
+}
+
+/* Free-access card style */
+.card--free {
+  background:
+    linear-gradient(135deg, rgba(0, 166, 81, 0.05) 0%, transparent 28%),
+    var(--paper);
+  border-color: rgba(0, 166, 81, 0.32);
+}
+.card--free .card__cat {
+  background: var(--green);
+  color: #fff;
+}
+.card--free .card__badge {
+  background: var(--green);
+}
+
+/* Kill any leftover viz */
+.grid .card .card__viz { display: none !important; }
+
+/* v3.8 — taller, more breathable cards with confident proportions */
+.grid {
+  gap: 16px !important;
+}
+@media (min-width: 900px) {
+  .grid { gap: 18px !important; }
+}
+.grid .card {
+  min-height: 360px !important;
+  padding: 28px 26px 22px !important;
+  gap: 18px !important;
+}
+.grid .card .card__title {
+  font-size: 26px;
+  line-height: 1.16;
+  letter-spacing: -0.018em;
+  margin: 4px 0 0;
+}
+.grid .card .card__short {
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin-top: -2px;
+  -webkit-line-clamp: 5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.grid .card .card__foot {
+  padding-top: 16px;
+  margin-top: auto;
+}
+.grid .card .card__cat {
+  font-size: 10px;
+  padding: 5px 11px;
+  letter-spacing: 0.08em;
+}
+.grid .card .card__bg {
+  width: 280px !important;
+  height: 280px !important;
+  bottom: -48px !important;
+  right: -48px !important;
+  opacity: 0.5 !important;
+}
+@media (min-width: 900px) {
+  .grid .card { min-height: 380px !important; padding: 30px 28px 24px !important; }
+  .grid .card .card__title { font-size: 27px; }
+}
+
+/* Lead card — "კონკურენტებთან შედარება" — dark navy background like the previous featured lead */
+.grid .card--lead {
+  background: linear-gradient(135deg, #1A1540 0%, #2A2566 60%, #3A2D75 100%) !important;
+  color: #fff !important;
+  border-color: #1A1540 !important;
+}
+.grid .card--lead .card__title { color: #fff !important; }
+.grid .card--lead .card__short { color: #C6CFEB !important; }
+.grid .card--lead .card__cat {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #fff !important;
+}
+.grid .card--lead .card__views { color: #B5B0D8 !important; }
+.grid .card--lead .card__views svg { color: #00C26B !important; }
+.grid .card--lead .card__foot { border-color: rgba(255, 255, 255, 0.12) !important; }
+.grid .card--lead .card__meta { color: #B5B0D8 !important; }
+.grid .card--lead .card__period { color: #fff !important; }
+.grid .card--lead .card__src {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #C6CFEB !important;
+}
+.grid .card--lead .card__open { color: #fff !important; }
+.grid .card--lead .card__badge {
+  background: var(--green) !important;
+  color: #fff !important;
+}
+.grid .card--lead .card__bg {
+  opacity: 0.18 !important;
+}
+.grid .card--lead .card__bg svg path,
+.grid .card--lead .card__bg svg rect,
+.grid .card--lead .card__bg svg circle,
+.grid .card--lead .card__bg svg ellipse {
+  stroke: #FFFFFF !important;
+  fill-opacity: 0 !important;
+}
+.grid .card--lead .card__bg svg [fill]:not([fill="none"]):not([fill="#fff"]) {
+  fill: #FFFFFF !important;
+}
+
+/* ==========================================================================
+   Bivision CTA v4 — full editorial moment
+   ========================================================================== */
+
+.bivision-cta {
+  position: relative;
+  padding: 48px 28px;
+  color: #fff;
+  border-radius: var(--radius-xl);
+  background:
+    linear-gradient(135deg, #14102E 0%, #1A1540 35%, #2A2566 100%);
+  isolation: isolate;
+  overflow: hidden;
+}
+.bivision-cta__glows {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 85% 12%, rgba(107, 99, 181, 0.55), transparent 42%),
+    radial-gradient(circle at 8% 88%, rgba(0, 166, 81, 0.16), transparent 38%),
+    radial-gradient(circle at 50% 50%, rgba(74, 66, 144, 0.18), transparent 60%);
+}
+.bivision-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+}
+.bivision-cta > * { position: relative; z-index: 1; }
+
+/* Top row: wordmark + trust */
+.bivision-cta__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 28px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.bivision-logo {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-style: italic;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-decoration: none;
+  line-height: 1;
+}
+.bivision-logo__b {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 11px;
+  margin-right: 10px;
+  font-style: normal;
+  font-size: 26px;
+  box-shadow: 0 6px 20px rgba(107, 99, 181, 0.55);
+}
+.bivision-cta__trust {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.bivision-trust {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #C6CFEB;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.bivision-trust strong {
+  color: #fff;
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+/* Split: pitch + products */
+.bivision-cta__split {
+  display: grid;
+  gap: 36px;
+}
+.bivision-cta__h {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4vw, 38px);
+  line-height: 1.12;
+  letter-spacing: -0.022em;
+  font-weight: 600;
+  margin: 0 0 18px;
+  color: #fff;
+  text-wrap: balance;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.bivision-cta__h span:first-child { color: #9189D0; }
+.bivision-cta__h em { font-style: italic; color: var(--blue); }
+.bivision-cta__h strong { font-weight: 700; color: #fff; }
+.bivision-cta__h span:first-child strong { color: #C6CFEB; }
+.bivision-cta__lede {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #C6CFEB;
+  margin: 0 0 24px;
+  max-width: 540px;
+  text-wrap: pretty;
+}
+.bivision-cta__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Product grid */
+.bivision-products {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.bivision-prod {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+.bivision-prod:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateX(3px);
+}
+.bivision-prod__icon {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 38%, transparent);
+}
+.bivision-prod__icon svg { width: 22px; height: 22px; }
+.bivision-prod div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.bivision-prod strong {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.bivision-prod span {
+  font-size: 12.5px;
+  color: #B5B0D8;
+  line-height: 1.35;
+  margin-top: 2px;
+}
+
+/* Foot */
+.bivision-cta__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 13px;
+  color: #B5B0D8;
+}
+.bivision-cta__foot a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+.bivision-cta__foot a:hover { color: var(--blue); }
+.bivision-cta__contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+/* Tablet+ */
+@media (min-width: 720px) {
+  .bivision-cta { padding: 56px 44px; }
+  .bivision-cta__split { grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .bivision-products { grid-template-columns: 1fr 1fr; gap: 10px; }
+}
+@media (min-width: 1100px) {
+  .bivision-cta { padding: 64px 56px; }
+  .bivision-cta__split { grid-template-columns: 1fr 1.1fr; gap: 60px; }
+  .bivision-logo { font-size: 36px; }
+  .bivision-logo__b { width: 50px; height: 50px; font-size: 30px; }
+}
+
+/* Override stale old rules */
+.bivision-cta__inner { display: contents; }
+.bivision-cta__brand-row,
+.bivision-cta__tagline,
+.bivision-cta__eyebrow,
+.bivision-cta__list { display: none !important; }
+.bivision-cta__actions { margin-bottom: 0 !important; }
+.bivision-cta h2 { all: revert; }
+.bivision-cta p { all: revert; }
+
+/* ==========================================================================
+   Cards v4 — per-category color, hero number, fresh chip, hover reveal, breath
+   ========================================================================== */
+
+.grid .card {
+  /* category accent strip on left */
+  position: relative;
+  isolation: isolate;
+}
+.grid .card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--cat, var(--blue));
+  border-radius: 0 0 0 var(--radius-lg);
+  opacity: 0.7;
+  transition: width 0.2s ease, opacity 0.2s ease;
+}
+.grid .card:hover::before { width: 5px; opacity: 1; }
+
+/* Category badge — colored per category */
+.grid .card .card__cat {
+  background: color-mix(in srgb, var(--cat) 12%, transparent) !important;
+  color: var(--cat) !important;
+  border: 1px solid color-mix(in srgb, var(--cat) 24%, transparent);
+}
+.grid .card--lead .card__cat {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+.grid .card--free .card__cat {
+  background: color-mix(in srgb, var(--green) 14%, transparent) !important;
+  color: var(--green-deep) !important;
+  border-color: color-mix(in srgb, var(--green) 32%, transparent);
+}
+
+/* Fresh chip (right-side of head) */
+.card__fresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--ink-3);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.card__fresh-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+}
+.card__fresh-dot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.3;
+  animation: dot-pulse 2.4s ease-in-out infinite;
+  z-index: -1;
+}
+@keyframes dot-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.6); opacity: 0; }
+}
+.grid .card--lead .card__fresh { color: #B5B0D8; }
+
+/* HERO NUMBER block */
+.card__hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--cat) 8%, transparent) 0%, color-mix(in srgb, var(--cat) 2%, transparent) 100%);
+  border: 1px solid color-mix(in srgb, var(--cat) 18%, transparent);
+  border-radius: 12px;
+  margin: 4px 0 0;
+}
+.card__hero-val {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--cat);
+  line-height: 1;
+  flex: 1;
+  min-width: 0;
+}
+.card__hero-val[data-blur] {
+  filter: blur(4px);
+  user-select: none;
+  pointer-events: none;
+  position: relative;
+}
+.card__hero-val[data-blur] span {
+  display: inline-block;
+}
+.card__hero-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex: none;
+}
+.card__hero-label {
+  font-size: 10.5px;
+  color: var(--ink-3);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+}
+.card__hero-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--ink-4);
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+/* Lead card hero */
+.grid .card--lead .card__hero {
+  background: linear-gradient(135deg, rgba(107, 99, 181, 0.16) 0%, rgba(107, 99, 181, 0.04) 100%);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.grid .card--lead .card__hero-val { color: #fff; }
+.grid .card--lead .card__hero-label { color: #B5B0D8; }
+.grid .card--lead .card__hero-tag {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #B5B0D8;
+}
+
+/* Hover reveal — show full description */
+.card__long {
+  display: none;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin: 0;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line-2);
+}
+.grid .card--lead .card__long { color: #C6CFEB; border-top-color: rgba(255, 255, 255, 0.1); }
+
+@media (hover: hover) {
+  .grid .card:hover .card__short { display: none; }
+  .grid .card:hover .card__long {
+    display: block;
+    -webkit-line-clamp: 5;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    animation: reveal 0.25s ease-out both;
+  }
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Foot — views mini + cta */
+.card__views-mini {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.card__views-mini svg { color: var(--green); }
+.grid .card--lead .card__views-mini { color: #B5B0D8; }
+.grid .card--lead .card__views-mini svg { color: #00C26B; }
+
+.card__open {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.card__cta {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--cat, var(--ink-2));
+  transition: transform 0.15s;
+}
+.grid .card:hover .card__cta { transform: translateX(2px); }
+.grid .card--lead .card__cta { color: #fff; }
+.grid .card--free .card__cta { color: var(--green-deep); }
+
+/* Breathing watermark */
+.card__bg {
+  animation: breathe 7s ease-in-out infinite;
+  transform-origin: 70% 80%;
+}
+.grid .card:nth-child(2n) .card__bg { animation-delay: -2s; }
+.grid .card:nth-child(3n) .card__bg { animation-delay: -4s; }
+@keyframes breathe {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.5; }
+  50% { transform: scale(1.06) rotate(1.5deg); opacity: 0.6; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card__bg { animation: none; }
+}
+
+/* Hover bump for watermark */
+.grid .card:hover .card__bg {
+  opacity: 0.72;
+  transition: opacity 0.3s ease;
+}
+
+/* Tighter card padding to fit hero */
+.grid .card {
+  gap: 14px !important;
+}
+.grid .card .card__title { margin-top: 0; }
+
+/* ====== NOTIFY STRIP ====== */
+.notify-strip{background:rgba(107,99,181,0.05);border-top:1px solid rgba(107,99,181,0.12);border-bottom:1px solid rgba(107,99,181,0.12);padding:20px 0}
+.notify-strip__inner{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.notify-strip__text{display:flex;flex-direction:column;gap:2px;flex:1;min-width:200px}
+.notify-strip__text strong{font-size:.95rem;font-weight:700;color:var(--ink-1)}
+.notify-strip__text span{font-size:.82rem;color:var(--ink-4)}
+.notify-strip__form{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.notify-strip__input{padding:9px 14px;border:1px solid var(--line-2);border-radius:8px;font-family:inherit;font-size:.85rem;background:var(--surface);color:var(--ink-1);width:240px;transition:border-color .15s;outline:none}
+.notify-strip__input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(107,99,181,.12)}
+.notify-strip__success{display:flex;align-items:center;gap:6px;color:var(--green);font-size:.88rem;font-weight:600}
+@media(max-width:640px){.notify-strip__inner{flex-direction:column;align-items:stretch}.notify-strip__form{flex-direction:column}.notify-strip__input{width:100%}.notify-strip__btn{width:100%;justify-content:center}}
+/* ====== HOVER SAFETY (touch) ====== */
+@media(hover:none){.card:hover{transform:none !important;box-shadow:var(--shadow-card)}.card:active{transform:translateY(-1px)}}
+/* ====== MOBILE OVERFLOW ====== */
+body{overflow-x:hidden}
+.hero__title{overflow-wrap:break-word;word-break:break-word}
+@media(max-width:380px){.hero__title{font-size:clamp(1.4rem,7vw,2rem)}.hero__lede{font-size:.88rem}}
+
+</style>
+</head>
+<body>
+
+<!-- Skip to content for a11y -->
+<a class="skip-link" href="#reports">გადადი მთავარ შინაარსზე</a>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="#" class="brand" aria-label="bihub მთავარი გვერდი">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span>bihub</span>
+      <span class="brand__bivision">by <strong>Bivision</strong></span>
+    </a>
+
+    <nav class="site-nav" aria-label="მთავარი ნავიგაცია">
+      <a href="#reports">რეპორტები</a>
+      <a href="#sources">წყაროები</a>
+      <a href="#bivision">Bivision</a>
+      <a href="#" data-open-search>ძიება</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="search-trigger" data-open-search aria-label="ძიება ⌘K">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span>მოძებნე ანალიტიკა…</span>
+        <span class="kbd">⌘ K</span>
+      </button>
+      <a href="https://bihub.ge/wp-login.php" class="btn btn--ghost">შესვლა</a>
+      <button class="btn btn--primary" data-open-register>რეგისტრაცია</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ TICKER ============================ -->
+<section class="ticker" aria-label="რეალური დროის მაჩვენებლები">
+  <span class="ticker__label"><span class="ticker__dot" aria-hidden="true"></span>LIVE</span>
+  <div class="ticker__rail">
+    <div class="ticker__track" id="ticker"></div>
+  </div>
+</section>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__inner">
+      <span class="eyebrow">
+        <span class="eyebrow__dot" aria-hidden="true"></span>
+        <span lang="en">Qlik Sense BI</span> · საქართველოს მონაცემთა ჰაბი
+      </span>
+
+      <h1 class="hero__title">
+        ბიზნეს და საჯარო მონაცემები, <em class="hero__title-em">ერთ სივრცეში<svg class="hero__underline" viewBox="0 0 320 18" preserveAspectRatio="none" aria-hidden="true"><path d="M4 11 C 60 4, 140 16, 220 9 S 300 6, 316 12" fill="none" stroke="#6B63B5" stroke-width="4" stroke-linecap="round"/></svg></em>
+      </h1>
+
+      <p class="hero__lede">
+        16 ანალიტიკური დეშბორდი <span lang="en">Qlik Sense BI</span> პლატფორმაზე. ყველაფერი ერთად, სრულიად უფასოდ.
+      </p>
+
+      <div class="hero__chips" role="list">
+        <span class="hero__chip" role="listitem"><strong>16</strong> დეშბორდი</span>
+        <span class="hero__chip" role="listitem"><strong>12+</strong> წყარო</span>
+        <span class="hero__chip" role="listitem"><strong>2006–2026</strong> არქივი</span>
+        <span class="hero__chip hero__chip--accent" role="listitem"><span class="hero__chip-dot" aria-hidden="true"></span> სრულიად უფასო</span>
+      </div>
+
+      <div class="hero__cta">
+        <button class="btn btn--blue btn--lg" data-open-register>
+          წვდომა უფასოდ
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="btn btn--outline btn--lg" data-open-search>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          მოძებნე რეპორტი
+        </button>
+      </div>
+      <div class="hero__cta-note">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7.2l2.8 2.8L11 4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        ბარათის გარეშე · რეგისტრაცია 1 წუთში
+      </div>
+    </div>
+
+    <!-- Proof bar (big stats) -->
+    <div class="proof-bar" aria-label="bihub-ის სტატისტიკა">
+      <div class="proof-bar__stat">
+        <div class="proof-bar__num">7,000<span>+</span></div>
+        <div class="proof-bar__lbl">აქტიური მომხმარებელი</div>
+      </div>
+      <div class="proof-bar__stat">
+        <div class="proof-bar__num">150<span>+</span></div>
+        <div class="proof-bar__lbl">კომპანია</div>
+      </div>
+      <div class="proof-bar__stat">
+        <div class="proof-bar__num">16</div>
+        <div class="proof-bar__lbl">ანალიტიკური დეშბორდი</div>
+      </div>
+      <div class="proof-bar__stat">
+        <div class="proof-bar__num">12<span>+</span></div>
+        <div class="proof-bar__lbl">ოფიციალური წყარო</div>
+      </div>
+      <div class="proof-bar__stat">
+        <div class="proof-bar__num">5<span>+</span></div>
+        <div class="proof-bar__lbl">წელი ბაზარზე</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SOURCES ============================ -->
+<section class="sources" id="sources">
+  <div class="container">
+    <div class="sources__row">
+      <span class="sources__label">წყაროები</span>
+      <div class="sources__viewport">
+        <div id="sources-row" class="sources__track"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ REPORTS ============================ -->
+<main class="section" id="reports">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">ანალიტიკური რეპორტები</h2>
+      <p class="section__sub">
+        <strong id="grid-total">16</strong> ანალიტიკა · ოფიციალური წყაროებიდან · სრულიად უფასოდ
+      </p>
+    </div>
+
+    <div class="toolbar">
+      <div class="toolbar__inner">
+        <div class="chips" id="chips" role="tablist" aria-label="კატეგორიები"></div>
+        <div class="sort">
+          <label for="sort">სორტ.</label>
+          <select id="sort" aria-label="სორტირება">
+            <option value="views">პოპულარული</option>
+            <option value="alpha">ანბანი</option>
+            <option value="recent">პერიოდი</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- All 16 reports in one uniform grid -->
+    <div class="grid" id="grid" aria-live="polite"></div>
+    <noscript><div style="display:none" aria-hidden="true">
+      <ul>
+        <li>კონკურენტებთან შედარება — P&amp;L, Balance Sheet, Cash Flow. REPORTAL 2019–2020</li>
+        <li>საბაჟო დეკლარაციები — ექსპორტ-იმპორტი ღირებულებით. ფინანსთა სამინისტრო 2014–2026</li>
+        <li>საგარეო ვაჭრობა — ოფიციალური სტატისტიკა. GEOSTAT 2014–2026</li>
+        <li>საყოველთაო ჯანდაცვა — ანაზღაურება, პაციენტები. SSA 2015–2026</li>
+        <li>მშენებლობა &amp; ნებართვები — გაცემული ნებართვები. GEOSTAT 2010–2026</li>
+        <li>სახელმწიფო შესყიდვები — ტენდერები. SPA 2010–2026</li>
+        <li>მეცხოველეობა — პირუტყვი, რძე, ხორცი. GEOSTAT 2006–2025</li>
+        <li>თევზის წარმოება — მეთევზეობა, ფერმები. GEOSTAT 2006–2025</li>
+        <li>სასურსათო ბალანსი — წარმოება vs მოხმარება. GEOSTAT 2006–2025</li>
+        <li>ვებ ტრეფიკი — მოწყობილობები, ბრაუზერები. Statcounter 2009–2025</li>
+        <li>სადაზღვევო ფინანსური ანალიტიკა — პრემიები. ISSS 2017–2025</li>
+        <li>სადაზღვევო სტატისტიკა — ბაზრის დინამიკა. ISSS 2015–2025</li>
+        <li>ავტოპარკი — რეგისტრაცია, მარკები. MIA 2015–2025</li>
+        <li>ეროვნული გამოცდები — აბიტურიენტები. NAEC 2015–2022</li>
+        <li>ენერგეტიკა — ელ. ენერგია, მოთხოვნა/მიწოდება. ESCO 2010–2025</li>
+        <li>უცხოური ინვესტიციები — FDI სექტორი, ქვეყანა. GEOSTAT 2010–2025</li>
+      </ul>
+    </div></noscript>
+  </div>
+</main>
+
+<!-- ============================ NOTIFY STRIP ============================ -->
+<section class="notify-strip" aria-label="განახლებების გამოწერა">
+  <div class="container">
+    <div class="notify-strip__inner">
+      <div class="notify-strip__text">
+        <strong>გამოწერე განახლებები</strong>
+        <span>ახალი ანალიტიკა — პირდაპირ შენს ფოსტაში</span>
+      </div>
+      <form class="notify-strip__form" id="notify-form" novalidate>
+        <input type="email" id="notify-email" class="notify-strip__input" placeholder="შენი@email.com" autocomplete="email" inputmode="email" required>
+        <button type="submit" class="btn btn--blue notify-strip__btn" id="notify-btn">გამოწერა</button>
+      </form>
+      <div class="notify-strip__success" id="notify-success" hidden>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7.2l2.8 2.8L11 4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        გამოწერილია &#x2014; გილოცავ!
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ BIVISION CTA ============================ -->
+<section class="section section--tight" id="bivision">
+  <div class="container">
+    <div class="bivision-cta">
+      <!-- glow effects -->
+      <div class="bivision-cta__glows" aria-hidden="true"></div>
+
+      <div class="bivision-cta__top">
+        <a href="https://bivision.ge" class="bivision-logo" aria-label="Bivision">
+          <span class="bivision-logo__b">B</span><span class="bivision-logo__ivision">ivision</span>
+        </a>
+        <div class="bivision-cta__trust">
+          <span class="bivision-trust"><strong>Qlik</strong>-ის ექსკლუზიური პარტნიორი</span>
+          <span class="bivision-trust"><strong>2015</strong>-დან ბაზარზე</span>
+          <span class="bivision-trust"><strong>8.9</strong> NPS</span>
+          <span class="bivision-trust"><strong>50+</strong> პარტნიორი</span>
+        </div>
+      </div>
+
+      <div class="bivision-cta__split">
+        <div class="bivision-cta__pitch">
+          <h2 class="bivision-cta__h">
+            <span><strong>bihub</strong> გაჩვენებს ბაზარს.</span>
+            <span><strong>Bivision</strong> კი <em>შენი</em> ბიზნესის შიდა სურათს.</span>
+          </h2>
+          <p class="bivision-cta__lede">
+            ფინანსები, გაყიდვები, მარაგი, ოპერაცია — ერთიან, რეალურდროულ
+            დეშბორდში, რომელიც CEO-სა და CFO-ს აძლევს სრულ ხილვადობას
+            გადაწყვეტილების მიღების ეტაპზე.
+          </p>
+          <div class="bivision-cta__actions">
+            <a href="https://calendly.com/bivision/courtest-meeting?utm_source=bihub&utm_medium=cta" class="btn btn--white btn--lg">
+              მოითხოვე დემო
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://bivision.ge" class="btn btn--ghost-on-dark btn--lg">გაიგე მეტი →</a>
+          </div>
+        </div>
+
+        <ul class="bivision-products" role="list">
+          <li class="bivision-prod" style="--accent:#6B63B5;">
+            <span class="bivision-prod__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 19h16M6 19V9m4 10V5m4 14v-7m4 7v-10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </span>
+            <div>
+              <strong>BiFinance</strong>
+              <span>P&L, Balance, Cash Flow — ავტომატური</span>
+            </div>
+          </li>
+          <li class="bivision-prod" style="--accent:#00A651;">
+            <span class="bivision-prod__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M3 5h18l-2 13H5L3 5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 9v0M16 9v0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+            <div>
+              <strong>BiRetail</strong>
+              <span>გაყიდვები, არხები, რეგიონები</span>
+            </div>
+          </li>
+          <li class="bivision-prod" style="--accent:#E58E0E;">
+            <span class="bivision-prod__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 8l8-4 8 4v8l-8 4-8-4V8z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 8l8 4 8-4M12 12v8" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            </span>
+            <div>
+              <strong>BiStock</strong>
+              <span>მარაგი, ბრუნვადობა, შესყიდვები</span>
+            </div>
+          </li>
+          <li class="bivision-prod" style="--accent:#C0381F;">
+            <span class="bivision-prod__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 4h10l4 4v12H5V4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M15 4v4h4M8 13l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div>
+              <strong>BiAudit</strong>
+              <span>უწყვეტი აუდიტი და კონტროლი</span>
+            </div>
+          </li>
+          <li class="bivision-prod" style="--accent:#3FA9E0;">
+            <span class="bivision-prod__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18v3H3V6zM3 12h18v3H3v-3zM3 18h12v2H3v-2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            </span>
+            <div>
+              <strong>BiDebitors</strong>
+              <span>დებიტორები და ლიკვიდობა</span>
+            </div>
+          </li>
+          <li class="bivision-prod" style="--accent:#D946A8;">
+            <span class="bivision-prod__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12h2l1-2 2 4 1-2h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div>
+              <strong>BiMedical</strong>
+              <span>კლინიკის ოპერაცია და ფინანსები</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bivision-cta__foot">
+        <span>მართე მონაცემებით — <a href="https://bivision.ge">bivision.ge</a></span>
+        <span class="bivision-cta__contact">
+          <a href="mailto:info@bivision.ge">info@bivision.ge</a>
+          <a href="tel:+995593255385">+995 593 255 385</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="font-size:20px">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span>bihub</span>
+        </div>
+        <p class="footer-blurb">
+          საქართველოს ბიზნეს და საჯარო მონაცემების ანალიტიკის ჰაბი.
+          <span lang="en">Qlik Sense BI</span> პლატფორმაზე. <a href="https://bivision.ge" class="footer-bivision">Bivision</a>-ის პროდუქტი.
+        </p>
+      </div>
+      <div>
+        <h4>პროდუქტი</h4>
+        <ul role="list">
+          <li><a href="#reports">რეპორტები</a></li>
+          <li><a href="#" data-open-search>ძიება</a></li>
+          <li><a href="#sources">წყაროები</a></li>
+          <li><a href="#" data-open-register>რეგისტრაცია</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>კატეგორიები</h4>
+        <ul role="list">
+          <li><a href="#reports">ექსპორტ/იმპორტი</a></li>
+          <li><a href="#reports">სახ. შესყიდვები</a></li>
+          <li><a href="#reports">ფინანსები</a></li>
+          <li><a href="#reports">ჯანდაცვა</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Bivision</h4>
+        <ul role="list">
+          <li><a href="https://bivision.ge">ბიზნეს ანალიტიკა</a></li>
+          <li><a href="https://calendly.com/bivision/courtest-meeting">დემო შეხვედრა</a></li>
+          <li><a href="mailto:info@bivision.ge">info@bivision.ge</a></li>
+          <li><a href="https://bivision.ge">bivision.ge</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span>© 2026 bihub · <a href="https://bivision.ge" class="footer-bivision">Bivision</a>-ის პროდუქტი</span>
+      <span class="footer-legal__brand">მართე მონაცემებით</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================ MODAL ============================ -->
+<div class="modal-backdrop" id="modal" data-open="false" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<!-- ============================ SEARCH OVERLAY ============================ -->
+<div class="search-overlay" id="search-overlay" data-open="false" role="search" aria-label="ძიება">
+  <div class="search">
+    <div class="search__input-wrap">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.6"/><path d="M12.5 12.5L16 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <input id="search-input" class="search__input" type="text" placeholder="მოძებნე ანალიტიკა, წყარო, კატეგორია…" autocomplete="off" aria-label="ძიების ველი">
+      <button class="search__esc" data-close-search aria-label="ძიების დახურვა">ESC</button>
+    </div>
+    <div id="search-results" class="search__results"></div>
+    <div class="search__hint">
+      <span><kbd>↑↓</kbd> ნავიგაცია</span>
+      <span><kbd>↵</kbd> გახსნა</span>
+      <span><kbd>esc</kbd> დახურვა</span>
+      <span style="margin-left:auto">16 რეპორტი</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ STRUCTURED DATA (JSON-LD) ============================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "bihub",
+  "alternateName": "BiHub",
+  "url": "https://bihub.ge",
+  "logo": "https://bihub.ge/logo.svg",
+  "description": "ბიზნეს და საჯარო მონაცემების ანალიტიკის ჰაბი საქართველოში. Qlik Sense BI პლატფორმაზე.",
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "Bivision",
+    "url": "https://bivision.ge",
+    "logo": "https://bivision.ge/wp-content/uploads/2025/10/Logo-1.svg",
+    "foundingDate": "2015",
+    "description": "Bivision — Qlik exclusive partner in Georgia. Business Intelligence and Data Analytics."
+  },
+  "sameAs": [
+    "https://bivision.ge",
+    "https://www.facebook.com/bivision.ge/",
+    "https://www.linkedin.com/company/bivisionge"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "info@bivision.ge",
+    "contactType": "customer service",
+    "availableLanguage": ["ka", "en"]
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "bihub",
+  "alternateName": "ბიჰაბი",
+  "url": "https://bihub.ge",
+  "inLanguage": "ka-GE",
+  "description": "საქართველოს ბიზნეს და საჯარო მონაცემების ანალიტიკის ჰაბი. 16 დეშბორდი Qlik Sense BI პლატფორმაზე.",
+  "publisher": { "@type": "Organization", "name": "Bivision", "url": "https://bivision.ge" },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://bihub.ge/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- ItemList of 16 reports — generated at runtime from data.js -->
+<script type="application/ld+json" id="reports-jsonld">{}</script>
+
+<script>
+// BiHub — 16 ანალიტიკური რეპორტი
+window.BIHUB_REPORTS = [
+  {
+    id: "competitors",
+    slug: "konkurentebtan",
+    title: "კონკურენტებთან შედარება",
+    short: "შენი კომპანიის ფინანსური მაჩვენებლები შეადარე ბაზრის კონკურენტებთან — P&L, Balance Sheet, Cash Flow.",
+    long: "ბიზნესის ეფექტური ფუნქციონირებისა და სწრაფი განვითარებისთვის კონკურენცია უმნიშვნელოვანესი ფაქტორია. BiHub შესაძლებლობას გაძლევთ თქვენი ფინანსური შედეგები შეადაროთ კონკურენტებს — მოგება-ზარალი, ბალანსი, შემოსავლები, წმინდა მოგება, სამუშაო აქტივები. ასევე: Gross Margin, EBITDA Margin, ROA, ROE, Current Ratio, D/E.",
+    category: "finance",
+    categoryLabel: "ფინანსები",
+    views: 7400,
+    hero: { value: "+15", label: "ფინანსური KPI" },
+    period: "2019–2020",
+    fresh: "archive",
+    source: "REPORTAL",
+    free: true,
+    pinned: 1,
+    spark: "finance"
+  },
+  {
+    id: "customs",
+    slug: "sabajo-deklaraciebi",
+    title: "საბაჟო დეკლარაციები",
+    short: "დეკლარირებული ექსპორტ-იმპორტი ღირებულებითა და მოცულობით — ქვეყნები, კოდები, საქონლის ჯგუფები.",
+    long: "თუ ხართ იმპორტიორი/ექსპორტიორი კომპანიის წარმომადგენელი ან გადაზიდვების ბიზნესში — ეს ანალიტიკა თქვენთვისაა. პასუხები: რა ღირებულების/მოცულობის საქონლის იმპორტ-ექსპორტი ხორციელდება საქართველოში? როგორ იცვლებოდა ბაზრის პოტენციალი? რომელია უმსხვილესი იმპორტიორი/ექსპორტიორი ქვეყანა და ყველაზე ხშირი პროდუქტი ქვეყნის ჭრილში?",
+    category: "trade",
+    categoryLabel: "ექსპორტ/იმპორტი",
+    views: 23400,
+    hero: { value: "$19.4B", label: "წლიური ბრუნვა" },
+    period: "2014–2026",
+    fresh: "monthly",
+    source: "ფინანსთა სამინისტრო",
+    trending: true,
+    pinned: 2,
+    spark: "trade"
+  },
+  {
+    id: "foreign-trade",
+    slug: "sagareo-vachroba",
+    title: "საგარეო ვაჭრობა",
+    short: "ექსპორტ-იმპორტის ოფიციალური სტატისტიკა, პარტნიორი ქვეყნები, სასაქონლო ჯგუფები (4 და 6-ნიშნა კოდები).",
+    long: "ოფიციალური სტატისტიკა საქართველოს იმპორტ-ექსპორტზე. ჩვენი დეშბორდი პასუხობს: რა ღირებულების საქონლის იმპორტი/ექსპორტი ხორციელდება? რომელია Top სასაქონლო ჯგუფი? რომელია უმსხვილესი იმპორტიორი და ექსპორტიორი ქვეყნები? წყარო: საქართველოს სტატისტიკის ეროვნული სააგენტო.",
+    category: "trade",
+    categoryLabel: "ექსპორტ/იმპორტი",
+    views: 17600,
+    hero: { value: "$19.0B", label: "2025 ღირებულება" },
+    period: "2014–2026",
+    fresh: "monthly",
+    source: "GEOSTAT",
+    spark: "trade-alt"
+  },
+  {
+    id: "healthcare",
+    slug: "sayoveltao-jandacva",
+    title: "საყოველთაო ჯანდაცვა",
+    short: "ანაზღაურება, პაციენტები, კლინიკები, რეგიონები — საყოველთაო ჯანდაცვის პროგრამის სრული სურათი.",
+    long: "ერთ სივრცეში თავმოყრილი ისტორიული მონაცემები პასუხობს: როგორია პაციენტებისა და შემთხვევების დინამიკა რეგიონებში და ასაკობრივ კატეგორიებში? რომელი კლინიკები ლიდერობენ პაციენტებითა და ანაზღაურებული თანხით? როგორია მოთხოვნილი vs ანაზღაურებული თანხების თანაფარდობა? წყარო: სოციალური მომსახურების სააგენტო.",
+    category: "health",
+    categoryLabel: "ჯანდაცვა",
+    views: 12100,
+    hero: { value: "1.6M", label: "პაციენტი / წელი" },
+    period: "2015–2026",
+    fresh: "monthly",
+    source: "SSA",
+    spark: "health"
+  },
+  {
+    id: "construction",
+    slug: "msheneblba-nebartvebi",
+    title: "მშენებლობა & ნებართვები",
+    short: "თბილისში გაცემული ნებართვები, დასრულებული მშენებლობები, არქიტექტურის სამსახურის გადაწყვეტილებები.",
+    long: "მშენებლობაზე გაცემული ნებართვებისა და დასრულებული მშენებლობების სტატისტიკა, ქ. თბილისის არქიტექტურის სამსახურის გადაწყვეტილებები. რა ტიპის ნებართვებია გაცემული? როგორია გადაწყვეტილებების ვადები? როგორია თანხმობების vs უარყოფების თანაფარდობა? წყაროები: GEOSTAT, თბილისის არქიტექტურის სამსახური.",
+    category: "industry",
+    categoryLabel: "ინდუსტრია",
+    views: 5700,
+    hero: { value: "21,400", label: "ნებართვა · 2024" },
+    period: "2010–2026",
+    fresh: "monthly",
+    source: "GEOSTAT · ARCH",
+    spark: "construction"
+  },
+  {
+    id: "procurement",
+    slug: "saxelmwifo-shesyidvebi",
+    title: "სახელმწიფო შესყიდვები",
+    short: "ტენდერები, შემსყიდველი უწყებები, მიმწოდებლები, ფასები, კონკურენცია — ისტორიული მონაცემები.",
+    long: "ისტორიული მონაცემები პასუხობს: რომელია ლიდერი პრეტენდენტი? რომელია დომინანტი კომპანიები სახელმწიფო უწყებებში? რა თანხა დაზოგა კონკრეტულმა ტენდერმა? რამდენი უნიკალური კომპანია მონაწილეობს ტენდერში? როგორია კონკურენცია სექტორის მიხედვით? წყარო: tendermonitor.ge.",
+    category: "procurement",
+    categoryLabel: "სახ. შესყიდვები",
+    views: 13800,
+    hero: { value: "14,209", label: "ტენდერი · 2026" },
+    period: "2010–2026",
+    fresh: "live",
+    source: "SPA · TM",
+    trending: true,
+    pinned: 3,
+    spark: "procurement"
+  },
+  {
+    id: "livestock",
+    slug: "mecxoveloba",
+    title: "მეცხოველეობა",
+    short: "პირუტყვი, რძე, ხორცი — სულადობა, წარმოება, ფასები რეგიონების მიხედვით.",
+    long: "დეტალური ინფორმაცია პირუტყვის სულადობაზე, მეცხოველეობის პროდუქტების წარმოებასა და ფასებზე. როგორ იცვლებოდა სულადობა საქართველოსა და რეგიონებში? რა მოცულობის ხორცპროდუქტები იწარმოება? როგორი წველადობის დინამიკაა? წყარო: GEOSTAT.",
+    category: "agro",
+    categoryLabel: "სოფ. მეურნეობა",
+    views: 4300,
+    hero: { value: "510K", label: "სულადობა · მსხვ." },
+    period: "2006–2025",
+    fresh: "yearly",
+    source: "GEOSTAT",
+    spark: "livestock"
+  },
+  {
+    id: "fish",
+    slug: "tevzis-warmoeba",
+    title: "თევზის წარმოება",
+    short: "მეთევზეობა, ფერმები, ექსპორტი — სახეობები, რეგიონები, წყალსაცავები.",
+    long: "თევზის წარმოების დინამიკა საქართველოში — სახეობების მიხედვით რეგიონებში. წყალსაცავების, ტბორებისა და აუზების ფართობის ცვლილება რეგიონებში. წყარო: საქართველოს სტატისტიკის ეროვნული სააგენტო.",
+    category: "agro",
+    categoryLabel: "სოფ. მეურნეობა",
+    views: 4800,
+    hero: { value: "4,200 ტ", label: "წარმოება · წ." },
+    period: "2006–2025",
+    fresh: "yearly",
+    source: "GEOSTAT",
+    spark: "fish"
+  },
+  {
+    id: "food-balance",
+    slug: "sasursato-balansi",
+    title: "სასურსათო ბალანსი",
+    short: "წარმოება vs მოხმარება, ნათეს-აღებული ფართობები, თვითუზრუნველყოფა, ექსპორტ-იმპორტი.",
+    long: "სოფლის მეურნეობის პროდუქციის წარმოება/მოხმარება, ნათეს ფართობები, მოსავლიანობა, ექსპორტ-იმპორტი. რა არის თვითუზრუნველყოფის მაჩვენებლები? როგორია ადგილობრივი წარმოება vs იმპორტი? როგორ იცვლებოდა საშუალო მოსავლიანობა? წყარო: GEOSTAT.",
+    category: "agro",
+    categoryLabel: "სოფ. მეურნეობა",
+    views: 5100,
+    hero: { value: "78%", label: "თვითუზრუნველყოფა" },
+    period: "2006–2025",
+    fresh: "yearly",
+    source: "GEOSTAT",
+    spark: "food"
+  },
+  {
+    id: "autopark",
+    pinned: 5,
+    slug: "avtoparki",
+    title: "ავტოპარკი",
+    short: "რეგისტრაცია, აღრიცხვა, იმპორტი — მარკები, მოდელები, ფერი, რეგიონები.",
+    long: "რამდენი ავტომობილია რეგისტრირებული ან აღრიცხვიდან მოხსნილი? როგორ იცვლებოდა მოდელების პოპულარობა? რომელია ყველაზე ხანდაზმული ავტო კონკრეტული მარკის მიხედვით? რომელი მარკის, მოდელის და ფერის ავტოა ყველაზე გაყიდვადი? წყარო: Police.ge.",
+    category: "auto",
+    categoryLabel: "ავტოპარკი",
+    views: 7600,
+    hero: { value: "1.2M", label: "რეგისტრირებული" },
+    period: "2015–2025",
+    fresh: "monthly",
+    source: "MIA",
+    spark: "auto"
+  },
+  {
+    id: "insurance-finance",
+    slug: "sadazghvevo-finansuri",
+    title: "სადაზღვევო ფინანსური ანალიტიკა",
+    short: "კომპანიების ფინანსური უწყისები, პრემიები, ზარალიანობა, აქტივები — Top/Bottom 5.",
+    long: "სადაზღვევო ბაზრის ფინანსური შედეგების ანალიტიკა: ისტორიული დინამიკა, ლიდერი კომპანიების Top/Bottom 5, წილი სექტორში, მომგებიანობის მაჩვენებლები, აქტივებისა და კაპიტალის გამოყენების ეფექტურობა, ფინანსური სტაბილურობა, BS და P&L-ის დეტალური ანალიტიკა. წყარო: დაზღვევის სახელმწიფო ზედამხედველობის სამსახური.",
+    category: "finance",
+    categoryLabel: "ფინანსები",
+    views: 6400,
+    hero: { value: "₾890M", label: "პრემია · 2024" },
+    period: "2017–2025",
+    fresh: "yearly",
+    source: "ISSS",
+    spark: "insurance-fin"
+  },
+  {
+    id: "insurance-stats",
+    slug: "sadazghvevo-statistika",
+    title: "სადაზღვევო სტატისტიკა",
+    short: "ბაზრის დინამიკა, პრემიები, ანაზღაურებები, გადაზღვევა, პოლისების ფასი.",
+    long: "სადაზღვევო ბაზრის ისტორიული დინამიკა, ლიდერი კომპანიები სექტორისა და პროდუქტების მიხედვით, კომპანიების წილის ცვლილება. რომელია ყველაზე მოთხოვნადი სადაზღვევო პროდუქტი? როგორია გადაზღვევის წილი? რა არის პოლისების საშუალო ფასი? წყარო: დაზღვევის სახელმწიფო ზედამხედველობის სამსახური.",
+    category: "finance",
+    categoryLabel: "ფინანსები",
+    views: 5800,
+    hero: { value: "₾890M", label: "ბაზრის მოცულობა" },
+    period: "2015–2025",
+    fresh: "yearly",
+    source: "ISSS",
+    spark: "insurance-stats"
+  },
+  {
+    id: "web-traffic",
+    pinned: 4,
+    slug: "veb-trafiki",
+    title: "ვებ ტრეფიკი",
+    short: "მოწყობილობები, ბრაუზერები, OS, საძიებო სისტემები, სოც.მედია — საქართველოს ვებ აუდიტორია.",
+    long: "მარკეტინგული კომპანიების, UX/ვებ დიზაინერებისა და ანალიტიკოსებისთვის. რომელია ყველაზე გავრცელებული მობილური OS საქართველოში? რა ზომის ეკრანია ყველაზე გავრცელებული? რომელი სოც. მედია, ბრაუზერი და საძიებო სისტემაა მოთხოვნადი? წყარო: Statcounter (2M+ საიტი, 10B+ გვერდის ნახვა/თვე).",
+    category: "industry",
+    categoryLabel: "ინდუსტრია",
+    views: 7200,
+    hero: { value: "62%", label: "Android share" },
+    period: "2009–2025",
+    fresh: "monthly",
+    source: "Statcounter",
+    spark: "web"
+  },
+  {
+    id: "exams",
+    slug: "erovnuli-gamocdebi",
+    title: "ეროვნული გამოცდები",
+    short: "აბიტურიენტები, საგრანტო კონკურსი, უნივერსიტეტები, ფაკულტეტები, რეგიონები.",
+    long: "ერთიანი ეროვნული გამოცდების შედეგები: მაქსიმალური ქულები, საგრანტო კონკურსი, აბიტურიენტთა განაწილება რეგიონებისა და უნივერსიტეტების მიხედვით, ყველაზე პოპულარული საგანმანათლებლო დაწესებულებები და ფაკულტეტები — მრავალფეროვანი ანალიტიკა მულტი ჭრილში.",
+    category: "industry",
+    categoryLabel: "ინდუსტრია",
+    views: 6900,
+    hero: { value: "32,400", label: "აბიტურიენტი" },
+    period: "2015–2022",
+    fresh: "archive",
+    source: "NAEC",
+    spark: "exams"
+  },
+  {
+    id: "energy",
+    slug: "energetika",
+    title: "ენერგეტიკა",
+    short: "ელ. ენერგია — მოთხოვნა/მიწოდება, იმპორტ-ექსპორტი, ენგურჰესი, აფხაზეთის მოხმარება.",
+    long: "ელ. ენერგიის მოთხოვნა-მიწოდების დინამიკა, იმპორტ-ექსპორტი ქვეყნების მიხედვით, ენგურჰესის გამომუშავება, აფხაზეთის მოხმარების დინამიკა და სისტემის გამომუშავების წილი. წყარო: ელექტროენერგეტიკული ბაზრის ოპერატორი (ESCO).",
+    category: "energy",
+    categoryLabel: "ენერგეტიკა",
+    views: 5300,
+    hero: { value: "11.4 TWh", label: "მოხმარება · წ." },
+    period: "2010–2025",
+    fresh: "monthly",
+    source: "ESCO",
+    spark: "energy"
+  },
+  {
+    id: "fdi",
+    slug: "ucxouri-investiciebi",
+    title: "უცხოური ინვესტიციები",
+    short: "პირდაპირი უცხოური ინვესტიციები — სექტორი, ქვეყანა, რეგიონი, პერიოდი.",
+    long: "FDI-ის მოცულობა და დინამიკა საქართველოში: რომელი ქვეყნებიდან ხორციელდება ინვესტიციები? რომელ სექტორსა და რეგიონში მიდის კაპიტალი? წყარო: საქართველოს სტატისტიკის ეროვნული სააგენტო.",
+    category: "finance",
+    categoryLabel: "ფინანსები",
+    views: 6100,
+    hero: { value: "$2.1B", label: "FDI · 2024" },
+    period: "2010–2025",
+    fresh: "yearly",
+    source: "GEOSTAT",
+    spark: "fdi"
+  }
+];
+
+window.BIHUB_CATEGORIES = [
+  { id: "all", label: "ყველა", color: "#6B63B5" },
+  { id: "trade", label: "ექსპორტ/იმპორტი", color: "#3FA9E0" },
+  { id: "procurement", label: "სახ. შესყიდვები", color: "#E58E0E" },
+  { id: "health", label: "ჯანდაცვა", color: "#C0381F" },
+  { id: "finance", label: "ფინანსები", color: "#6B63B5" },
+  { id: "agro", label: "სოფ. მეურნეობა", color: "#00A651" },
+  { id: "industry", label: "ინდუსტრია", color: "#5A6B85" },
+  { id: "auto", label: "ავტოპარკი", color: "#1F4FE0" },
+  { id: "energy", label: "ენერგეტიკა", color: "#D946A8" }
+];
+
+window.BIHUB_TICKER = [
+  { label: "EXPORT", value: "$5.2B", delta: "+8.4%", dir: "up", src: "GEOSTAT", period: "2025" },
+  { label: "IMPORT", value: "$13.8B", delta: "−2.1%", dir: "down", src: "GEOSTAT", period: "2025" },
+  { label: "GDP Q3", value: "7.5%", delta: "+0.4", dir: "up", src: "GEOSTAT", period: "Q3 2025" },
+  { label: "USD/GEL", value: "2.7142", delta: "+0.012", dir: "up", src: "NBG", period: "დღეს" },
+  { label: "EUR/GEL", value: "2.9418", delta: "−0.008", dir: "down", src: "NBG", period: "დღეს" },
+  { label: "ინფლაცია", value: "2.1%", delta: "+0.2", dir: "up", src: "GEOSTAT", period: "აპრ 2026" },
+  { label: "ტენდერები", value: "14,209", delta: "+312", dir: "up", src: "SPA", period: "2026" },
+  { label: "სამუშაო ძალა", value: "63.4%", delta: "+0.3", dir: "up", src: "GEOSTAT", period: "2025" },
+  { label: "ტურისტები", value: "7.4M", delta: "+18%", dir: "up", src: "GNTA", period: "2025" },
+  { label: "Refi", value: "8.0%", delta: "0.0", dir: "flat", src: "NBG", period: "მაი 2026" }
+];
+
+window.BIHUB_SOURCES = [
+  "GEOSTAT", "REPORTAL", "ფინანსთა სამინისტრო", "NBG",
+  "tendermonitor.ge", "Police.ge", "ESCO", "Statcounter",
+  "სოც. მომსახურების სააგენტო", "თბილისის არქიტექტურის სამსახური",
+  "დაზღვევის სამსახური", "NAEC"
+];
+
+</script>
+<script>
+// BiHub — interactions (v2: blue palette, mobile-first, no hero chart, themed cards)
+
+(function () {
+  const reports = window.BIHUB_REPORTS;
+  const categories = window.BIHUB_CATEGORIES;
+  const tickerData = window.BIHUB_TICKER;
+  const sources = window.BIHUB_SOURCES;
+
+  /* helpers */
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const el = (html) => {
+    const t = document.createElement("template");
+    t.innerHTML = html.trim();
+    return t.content.firstElementChild;
+  };
+  const fmtViews = (n) => (n >= 1000 ? (n / 1000).toFixed(1).replace(".0", "") + "K" : String(n));
+
+  /* ticker */
+  const ticker = $("#ticker");
+  if (ticker) {
+    const html = tickerData
+      .map(
+        (t) => `
+      <div class="tick">
+        <span class="tick__label">${t.label}</span>
+        <span class="tick__val">${t.value}</span>
+        <span class="tick__delta tick__delta--${t.dir}">${t.delta}</span>
+        <span class="tick__src">${t.src} · ${t.period}</span>
+      </div>`
+      )
+      .join("");
+    ticker.innerHTML = html + html;
+  }
+
+  /* sources strip — duplicate for seamless marquee */
+  const sourcesRow = $("#sources-row");
+  if (sourcesRow) {
+    const items = sources.map((s) => `<span class="sources__item">${s}</span>`).join("");
+    sourcesRow.innerHTML = items + items;
+  }
+
+  /* ---- random helpers for sparklines ---- */
+  function mulberry32(seed) {
+    return function () {
+      let t = (seed += 0x6d2b79f5);
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function hashSeed(str) {
+    let h = 2166136261;
+    for (let i = 0; i < str.length; i++) h = Math.imul(h ^ str.charCodeAt(i), 16777619);
+    return h >>> 0;
+  }
+
+  /* mini sparkline */
+  function sparkPath(seed, w = 220, h = 48, points = 24) {
+    const rand = mulberry32(seed);
+    const ys = Array.from({ length: points }, (_, i) => {
+      const drift = (i / points) * 0.4 + 0.3;
+      return drift + (rand() - 0.5) * 0.3;
+    });
+    const max = Math.max(...ys), min = Math.min(...ys);
+    return ys
+      .map((v, i) => {
+        const px = (i / (points - 1)) * w;
+        const py = h - ((v - min) / (max - min || 1)) * (h - 6) - 3;
+        return `${i === 0 ? "M" : "L"} ${px.toFixed(1)} ${py.toFixed(1)}`;
+      })
+      .join(" ");
+  }
+  function sparklineSVG(slug, color = "#6B63B5") {
+    const seed = hashSeed(slug);
+    const d = sparkPath(seed);
+    const gid = "sp-" + slug.replace(/[^a-z0-9]/gi, "");
+    // End point: parse last L from d
+    const matches = [...d.matchAll(/[ML] (\S+) (\S+)/g)];
+    const last = matches[matches.length - 1];
+    const lx = last ? last[1] : 220;
+    const ly = last ? last[2] : 24;
+    return `
+      <svg viewBox="0 0 220 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="${color}" stop-opacity="0.22"/>
+            <stop offset="100%" stop-color="${color}" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="${d} L 220 48 L 0 48 Z" fill="url(#${gid})"/>
+        <path d="${d}" fill="none" stroke="${color}" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="${lx}" cy="${ly}" r="2.8" fill="${color}"/>
+      </svg>`;
+  }
+  function barsSVG(slug, color = "#6B63B5") {
+    const seed = hashSeed(slug);
+    const rand = mulberry32(seed);
+    const N = 18;
+    const w = 220, h = 48;
+    const gap = 2;
+    const bw = (w - gap * (N - 1)) / N;
+    // Heights with a gentle upward drift + noise
+    const heights = Array.from({ length: N }, (_, i) => {
+      const drift = 0.28 + (i / N) * 0.42;
+      return Math.max(0.18, Math.min(0.95, drift + (rand() - 0.5) * 0.45));
+    });
+    const max = Math.max(...heights);
+    const maxIdx = heights.indexOf(max);
+    const bars = heights
+      .map((v, i) => {
+        const bh = v * (h - 6);
+        const x = i * (bw + gap);
+        const y = h - bh;
+        const isMax = i === maxIdx;
+        const op = isMax ? 1 : 0.32 + v * 0.45;
+        return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${bh.toFixed(1)}" rx="1.2" fill="${color}" fill-opacity="${op.toFixed(2)}"/>`;
+      })
+      .join("");
+    // Trend line connecting bar tops
+    const linePts = heights
+      .map((v, i) => {
+        const px = i * (bw + gap) + bw / 2;
+        const py = h - v * (h - 6);
+        return `${i === 0 ? "M" : "L"} ${px.toFixed(1)} ${py.toFixed(1)}`;
+      })
+      .join(" ");
+    // End point dot on max
+    const dotX = maxIdx * (bw + gap) + bw / 2;
+    const dotY = h - max * (h - 6);
+    return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="${h - 0.5}" x2="${w}" y2="${h - 0.5}" stroke="${color}" stroke-opacity="0.12"/>
+      ${bars}
+      <path d="${linePts}" fill="none" stroke="${color}" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" stroke-opacity="0.65"/>
+      <circle cx="${dotX.toFixed(1)}" cy="${dotY.toFixed(1)}" r="2.6" fill="#fff" stroke="${color}" stroke-width="1.6"/>
+    </svg>`;
+  }
+  function donutSVG(slug, color = "#6B63B5") {
+    const seed = hashSeed(slug);
+    const rand = mulberry32(seed);
+    const parts = [0.4 + rand() * 0.25, 0.25 + rand() * 0.15];
+    const p3 = 1 - parts[0] - parts[1];
+    const segs = [parts[0], parts[1], p3].map((p) => p * 100);
+    let acc = 0;
+    const colors = [color, "#7B95EE", "#D7E0FB"];
+    return `<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" style="height:48px;width:48px;display:block;margin:0">
+      ${segs
+        .map((s, i) => {
+          const c = 2 * Math.PI * 17;
+          const dash = (s / 100) * c;
+          const r = `<circle cx="24" cy="24" r="17" fill="none" stroke="${colors[i]}" stroke-width="8" stroke-dasharray="${dash} ${c}" stroke-dashoffset="${-(acc / 100) * c}" transform="rotate(-90 24 24)" />`;
+          acc += s;
+          return r;
+        })
+        .join("")}
+    </svg>`;
+  }
+  function vizFor(slug, kind = "spark") {
+    if (kind === "bars") return barsSVG(slug);
+    if (kind === "donut") return donutSVG(slug);
+    return sparklineSVG(slug);
+  }
+  function vizKindFor(report) {
+    if (["agro", "energy"].includes(report.category)) return "bars";
+    if (["health"].includes(report.category)) return "donut";
+    if (report.id === "insurance-stats" || report.id === "web-traffic") return "donut";
+    return "spark";
+  }
+
+  /* ---- THEMATIC BACKGROUNDS (per category) ---- */
+  // Subtle watermark SVG drawn in card top-right corner, soft blue tint.
+  const THEMES = {
+    trade: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#6B63B5" stroke-width="1.2" stroke-linecap="round" opacity="0.18">
+        <circle cx="60" cy="60" r="38"/>
+        <ellipse cx="60" cy="60" rx="38" ry="14"/>
+        <ellipse cx="60" cy="60" rx="14" ry="38"/>
+        <path d="M22 60h76M60 22v76"/>
+      </g>
+      <g fill="#6B63B5" opacity="0.25">
+        <circle cx="60" cy="22" r="2.5"/>
+        <circle cx="98" cy="60" r="2.5"/>
+        <circle cx="60" cy="98" r="2.5"/>
+        <circle cx="22" cy="60" r="2.5"/>
+        <circle cx="86" cy="34" r="2"/>
+        <circle cx="34" cy="86" r="2"/>
+      </g>
+    </svg>`,
+    procurement: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#6B63B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.22">
+        <rect x="38" y="28" width="50" height="64" rx="3"/>
+        <rect x="28" y="38" width="50" height="64" rx="3" fill="#fff" fill-opacity="0.7"/>
+        <path d="M36 56h34M36 66h34M36 76h22"/>
+        <circle cx="74" cy="78" r="6" stroke="#0F8A4F" stroke-width="1.4"/>
+        <path d="M71 78l2 2 4-4" stroke="#0F8A4F"/>
+      </g>
+    </svg>`,
+    health: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#6B63B5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.22">
+        <path d="M14 64h22l6-14 10 30 8-22 6 6h40"/>
+      </g>
+      <g fill="#6B63B5" opacity="0.18">
+        <rect x="76" y="32" width="10" height="36" rx="1.5"/>
+        <rect x="64" y="44" width="34" height="10" rx="1.5"/>
+      </g>
+    </svg>`,
+    finance: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <g opacity="0.22">
+        <rect x="18" y="74" width="14" height="26" rx="2" fill="#6B63B5"/>
+        <rect x="38" y="60" width="14" height="40" rx="2" fill="#6B63B5"/>
+        <rect x="58" y="46" width="14" height="54" rx="2" fill="#6B63B5"/>
+        <rect x="78" y="32" width="14" height="68" rx="2" fill="#6B63B5"/>
+      </g>
+      <path d="M14 90 L40 70 L60 76 L86 40" fill="none" stroke="#6B63B5" stroke-width="1.6" stroke-linecap="round" opacity="0.5"/>
+      <circle cx="86" cy="40" r="3" fill="#6B63B5" opacity="0.7"/>
+    </svg>`,
+    agro: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="#6B63B5" opacity="0.2">
+        <path d="M60 18 C 36 32, 32 60, 60 100 C 88 60, 84 32, 60 18 Z"/>
+      </g>
+      <path d="M60 28 V 96" stroke="#6B63B5" stroke-width="1.4" stroke-linecap="round" opacity="0.35"/>
+      <g fill="none" stroke="#6B63B5" stroke-width="1.2" stroke-linecap="round" opacity="0.32">
+        <path d="M60 48 C 50 44, 44 42, 38 46"/>
+        <path d="M60 48 C 70 44, 76 42, 82 46"/>
+        <path d="M60 64 C 48 60, 40 58, 32 64"/>
+        <path d="M60 64 C 72 60, 80 58, 88 64"/>
+        <path d="M60 80 C 50 76, 44 74, 38 78"/>
+        <path d="M60 80 C 70 76, 76 74, 82 78"/>
+      </g>
+    </svg>`,
+    industry: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="#6B63B5" opacity="0.22">
+        <rect x="20" y="62" width="22" height="38" rx="1"/>
+        <rect x="46" y="48" width="26" height="52" rx="1"/>
+        <rect x="76" y="34" width="24" height="66" rx="1"/>
+      </g>
+      <g fill="#fff" opacity="0.7">
+        <rect x="26" y="70" width="4" height="4"/>
+        <rect x="34" y="70" width="4" height="4"/>
+        <rect x="26" y="80" width="4" height="4"/>
+        <rect x="34" y="80" width="4" height="4"/>
+        <rect x="52" y="56" width="4" height="4"/>
+        <rect x="60" y="56" width="4" height="4"/>
+        <rect x="52" y="66" width="4" height="4"/>
+        <rect x="60" y="66" width="4" height="4"/>
+        <rect x="52" y="76" width="4" height="4"/>
+        <rect x="60" y="76" width="4" height="4"/>
+        <rect x="82" y="42" width="4" height="4"/>
+        <rect x="90" y="42" width="4" height="4"/>
+        <rect x="82" y="52" width="4" height="4"/>
+        <rect x="90" y="52" width="4" height="4"/>
+        <rect x="82" y="62" width="4" height="4"/>
+        <rect x="90" y="62" width="4" height="4"/>
+      </g>
+    </svg>`,
+    auto: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="#6B63B5" opacity="0.22">
+        <path d="M20 76 L26 60 C28 56, 32 54, 36 54 L84 54 C88 54, 92 56, 94 60 L100 76 L100 86 L20 86 Z"/>
+      </g>
+      <g fill="#fff" stroke="#6B63B5" stroke-width="1.4" opacity="0.5">
+        <circle cx="38" cy="88" r="8"/>
+        <circle cx="84" cy="88" r="8"/>
+      </g>
+      <path d="M34 64 L48 56 L72 56 L86 64 Z" fill="#fff" opacity="0.6"/>
+    </svg>`,
+    energy: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="#6B63B5" opacity="0.22">
+        <path d="M64 16 L36 64 L56 64 L48 100 L84 50 L62 50 Z"/>
+      </g>
+      <g fill="none" stroke="#6B63B5" stroke-width="1" stroke-linecap="round" opacity="0.3">
+        <path d="M16 30 L30 30"/>
+        <path d="M16 90 L30 90"/>
+        <path d="M90 30 L104 30"/>
+        <path d="M90 90 L104 90"/>
+      </g>
+    </svg>`,
+  };
+  function themeBG(category, color) {
+    const tpl = THEMES[category] || THEMES.finance;
+    if (color && color !== "#6B63B5") {
+      return tpl.replace(/#6B63B5/g, color);
+    }
+    return tpl;
+  }
+
+  /* ---- hero panel: KPI sparks ---- */
+  $$("[data-kpi-spark]").forEach((node) => {
+    const key = node.dataset.kpiSpark;
+    const color = node.dataset.color || "#6B63B5";
+    node.innerHTML = sparklineSVG(key, color);
+  });
+
+  /* ---- featured (pinned first, then top by views) ---- */
+  const featuredHost = $("#featured");
+  if (featuredHost) {
+    const sorted = [...reports].sort((a, b) => {
+      const pa = a.pinned || 999;
+      const pb = b.pinned || 999;
+      if (pa !== pb) return pa - pb;
+      return b.views - a.views;
+    });
+    const top = sorted.slice(0, 3);
+    top.forEach((r, i) => {
+      const card = el(`
+        <button class="featured__card ${i === 0 ? "featured__card--lead" : ""}" data-report="${r.id}">
+          ${i !== 0 ? `<div class="card__bg">${themeBG(r.category)}</div>` : ""}
+          ${r.badge ? `<span class="card__badge">${r.badge}</span>` : ""}
+          <div class="feat__cat">${r.categoryLabel}${r.trending ? " · TRENDING" : ""}</div>
+          <h3 class="feat__title">${r.title}</h3>
+          <p class="feat__short">${r.short}</p>
+          <div class="feat__viz">${vizFor(r.slug, i === 0 ? "spark" : vizKindFor(r))}</div>
+          <div class="feat__meta">
+            <span><strong>${fmtViews(r.views)}</strong> ნახვა · ${r.period}</span>
+            <span class="feat__open">${r.free ? "უფასოდ →" : "გახსნა →"}</span>
+          </div>
+        </button>
+      `);
+      card.addEventListener("click", () => {
+        if (r.free) openFreeReport(r);
+        else openReportModal(r);
+      });
+      featuredHost.appendChild(card);
+    });
+  }
+
+  /* ---- category chips ---- */
+  const chipsHost = $("#chips");
+  const countByCat = {};
+  categories.forEach((c) => {
+    countByCat[c.id] = c.id === "all" ? reports.length : reports.filter((r) => r.category === c.id).length;
+  });
+  let activeCat = "all";
+  let activeSort = "views";
+
+  function renderChips() {
+    chipsHost.innerHTML = "";
+    categories.forEach((c) => {
+      const b = el(`
+        <button class="chip ${c.id === activeCat ? "chip--active" : ""}" data-cat="${c.id}">
+          ${c.label}
+          <span class="chip__count">${countByCat[c.id]}</span>
+        </button>
+      `);
+      b.addEventListener("click", () => {
+        activeCat = c.id;
+        renderChips();
+        renderGrid();
+      });
+      chipsHost.appendChild(b);
+    });
+  }
+  renderChips();
+
+  /* ---- grid ---- */
+  const gridHost = $("#grid");
+  const totalEl = $("#grid-total");
+  const featuredIds = new Set();
+
+  function renderGrid() {
+    let list = reports.filter((r) => !featuredIds.has(r.id));
+    if (activeCat !== "all") list = list.filter((r) => r.category === activeCat);
+    if (activeSort === "views") list.sort((a, b) => b.views - a.views);
+    if (activeSort === "alpha") list.sort((a, b) => a.title.localeCompare(b.title, "ka"));
+    if (activeSort === "recent") list.sort((a, b) => parseInt(b.period.slice(-4)) - parseInt(a.period.slice(-4)));
+    // Pinned always rise to top, ordered by pinned#
+    list.sort((a, b) => {
+      const pa = a.pinned || 999;
+      const pb = b.pinned || 999;
+      return pa - pb;
+    });
+
+    gridHost.innerHTML = "";
+    if (list.length === 0) {
+      gridHost.appendChild(el(`<div class="empty"><strong>რეპორტი ვერ მოიძებნა</strong>სცადე სხვა კატეგორია.</div>`));
+    } else {
+      list.forEach((r, i) => {
+        const isLead = r.pinned === 1;
+        const catColor = (categories.find((c) => c.id === r.category) || {}).color || "#6B63B5";
+        const freshMap = {
+          live: { dot: "var(--green)", label: "ცოცხალი" },
+          monthly: { dot: "#3FA9E0", label: "ყოველთვიური" },
+          yearly: { dot: "#E58E0E", label: "ყოველწლიური" },
+          archive: { dot: "var(--ink-4)", label: "ისტორიული" }
+        };
+        const fr = freshMap[r.fresh] || freshMap.archive;
+        const card = el(`
+          <button class="card fade-in${r.pinned ? " card--pinned" : ""}${r.free ? " card--free" : ""}${isLead ? " card--lead" : ""}" data-report="${r.id}" data-cat="${r.category}" style="--cat:${catColor}; animation-delay:${i * 25}ms">
+            <div class="card__bg" aria-hidden="true">${themeBG(r.category, catColor)}</div>
+            ${r.badge ? `<span class="card__badge">${r.badge}</span>` : ""}
+
+            <div class="card__head">
+              <span class="card__cat">${r.categoryLabel}</span>
+              <span class="card__fresh" title="მონაცემთა სიხშირე">
+                <span class="card__fresh-dot" style="background:${fr.dot}"></span>
+                ${fr.label}
+              </span>
+            </div>
+
+            <h3 class="card__title">${r.title}</h3>
+
+            ${r.hero ? `
+            <div class="card__hero" aria-hidden="true">
+              <div class="card__hero-val" data-blur><span>${r.hero.value}</span></div>
+              <div class="card__hero-meta">
+                <span class="card__hero-label">${r.hero.label}</span>
+                <span class="card__hero-tag">ნიმუში</span>
+              </div>
+            </div>` : ""}
+
+            <p class="card__short">${r.short}</p>
+
+            ${r.long ? `<p class="card__long">${r.long}</p>` : ""}
+
+            <div class="card__foot">
+              <div class="card__meta">
+                <span class="card__period">${r.period}</span>
+                <span class="card__src">${r.source}</span>
+              </div>
+              <span class="card__open">
+                <span class="card__views-mini">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 7L5 4L8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  ${fmtViews(r.views)}
+                </span>
+                <span class="card__cta">${r.free ? "უფასოდ" : "🔒"} →</span>
+              </span>
+            </div>
+          </button>
+        `);
+        card.addEventListener("click", () => {
+          if (r.free) openFreeReport(r);
+          else openReportModal(r);
+        });
+        gridHost.appendChild(card);
+      });
+    }
+    if (totalEl) totalEl.textContent = list.length;
+  }
+
+  const sortSel = $("#sort");
+  if (sortSel) {
+    sortSel.addEventListener("change", (e) => {
+      activeSort = e.target.value;
+      renderGrid();
+    });
+  }
+  renderGrid();
+
+  /* ---- free report opener (no registration gate) ---- */
+  function openFreeReport(r) {
+    const url = "https://bihub.ge/r/" + r.slug;
+    window.open(url, "_blank", "noopener");
+  }
+
+  /* ---- modal ---- */
+  const modal = $("#modal");
+  const modalContent = $("#modal-content");
+  function openReportModal(r) {
+    modalContent.innerHTML = `
+      <div class="modal__head">
+        <button class="modal__close" data-close aria-label="დახურვა">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <div class="modal__cat">${r.categoryLabel || ""}${r.period ? " · " + r.period : ""}</div>
+        <h2 class="modal__title">${r.title}</h2>
+        <p class="modal__sub">${r.short || ""}</p>
+      </div>
+      <div class="modal__body">
+        <ul class="modal__perks">
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7.2l2.8 2.8L11 4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> სრულიად უფასო — მხოლოდ რეგისტრაცია</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7.2l2.8 2.8L11 4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> 16 ანალიტიკაზე წვდომა Qlik Sense-ში</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7.2l2.8 2.8L11 4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> ბარათის მიბმის გარეშე</li>
+        </ul>
+        <div class="field">
+          <label for="m-name">სახელი და გვარი</label>
+          <input id="m-name" type="text" placeholder="გიორგი მაისურაძე" autocomplete="name"/>
+        </div>
+        <div class="field">
+          <label for="m-email">ელ. ფოსტა (სამუშაო)</label>
+          <input id="m-email" type="email" placeholder="name@company.ge" autocomplete="email" inputmode="email"/>
+        </div>
+        <div class="field">
+          <label for="m-company">კომპანია (არასავალდებულო)</label>
+          <input id="m-company" type="text" placeholder="კომპანიის სახელი" autocomplete="organization"/>
+        </div>
+      </div>
+      <div class="modal__foot">
+        <button class="btn btn--blue btn--lg" data-submit>გახსენი წვდომა →</button>
+        <div class="modal__fineprint">
+          რეგისტრაციით ეთანხმები <a href="#">პირობებსა</a> და <a href="#">კონფიდენციალურობას</a>.<br>
+          უკვე გაქვს ანგარიში? <a href="https://bihub.ge/wp-login.php">შემოდი</a>
+        </div>
+      </div>
+    `;
+    modal.dataset.open = "true";
+    document.body.style.overflow = "hidden";
+    setTimeout(() => $("#m-email", modalContent)?.focus({ preventScroll: true }), 320);
+  }
+  function closeModal() {
+    modal.dataset.open = "false";
+    document.body.style.overflow = "";
+  }
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal || e.target.closest("[data-close]")) closeModal();
+    if (e.target.closest("[data-submit]")) {
+      e.target.closest("[data-submit]").textContent = "მუშავდება…";
+      setTimeout(closeModal, 500);
+    }
+  });
+
+  /* ---- search overlay ---- */
+  const searchOverlay = $("#search-overlay");
+  const searchInput = $("#search-input");
+  const searchResults = $("#search-results");
+
+  function openSearch() {
+    searchOverlay.dataset.open = "true";
+    document.body.style.overflow = "hidden";
+    setTimeout(() => {
+      searchInput.focus({ preventScroll: true });
+      searchInput.value = "";
+      runSearch("");
+    }, 60);
+  }
+  function closeSearch() {
+    searchOverlay.dataset.open = "false";
+    document.body.style.overflow = "";
+  }
+  function runSearch(q) {
+    q = q.trim().toLowerCase();
+    const list = q
+      ? reports.filter(
+          (r) =>
+            r.title.toLowerCase().includes(q) ||
+            r.short.toLowerCase().includes(q) ||
+            r.categoryLabel.toLowerCase().includes(q) ||
+            r.source.toLowerCase().includes(q)
+        )
+      : [...reports].sort((a, b) => b.views - a.views).slice(0, 6);
+
+    searchResults.innerHTML = "";
+    if (list.length === 0) {
+      searchResults.appendChild(el(`<div class="search__empty">"${q}" — ვერაფერი მოიძებნა</div>`));
+      return;
+    }
+    list.forEach((r, i) => {
+      const b = el(`
+        <button class="search__item" ${i === 0 ? 'data-active="true"' : ""}>
+          <span class="search__item-cat">${r.categoryLabel}</span>
+          <div style="min-width:0; flex:1;">
+            <div class="search__item-title">${r.title}</div>
+            <div class="search__item-sub">${r.short.length > 90 ? r.short.slice(0, 90) + "…" : r.short}</div>
+          </div>
+          <span class="search__item-meta">${fmtViews(r.views)} · ${r.period}</span>
+        </button>
+      `);
+      b.addEventListener("click", () => {
+        closeSearch();
+        openReportModal(r);
+      });
+      searchResults.appendChild(b);
+    });
+  }
+
+  $$("[data-open-search]").forEach((b) => b.addEventListener("click", openSearch));
+  searchOverlay.addEventListener("click", (e) => {
+    if (e.target === searchOverlay || e.target.closest("[data-close-search]")) closeSearch();
+  });
+  searchInput.addEventListener("input", (e) => runSearch(e.target.value));
+
+  /* ---- keyboard ---- */
+  document.addEventListener("keydown", (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+      e.preventDefault();
+      if (searchOverlay.dataset.open === "true") closeSearch();
+      else openSearch();
+    }
+    if (e.key === "Escape") {
+      if (searchOverlay.dataset.open === "true") closeSearch();
+      if (modal.dataset.open === "true") closeModal();
+    }
+  });
+
+  /* ---- generic register CTAs ---- */
+  $$("[data-open-register]").forEach((b) => {
+    b.addEventListener("click", () => {
+      openReportModal({
+        title: "უფასო წვდომა · 16 ანალიტიკა",
+        categoryLabel: "BiHub",
+        period: "ყველა რეპორტი",
+        short: "ერთი ანგარიში — 16 ანალიტიკურ დეშბორდზე წვდომა Qlik Sense BI პლატფორმაზე.",
+      });
+    });
+  });
+})();
+
+
+/* ====== NOTIFY STRIP ====== */
+(function() {
+  var form = document.getElementById('notify-form');
+  var btn = document.getElementById('notify-btn');
+  var successEl = document.getElementById('notify-success');
+  if (!form) return;
+
+  function saveLocal(email) {
+    try {
+      var leads = JSON.parse(localStorage.getItem('bihub_leads') || '[]');
+      leads.push({ email: email, ts: Date.now(), source: 'notify-strip' });
+      localStorage.setItem('bihub_leads', JSON.stringify(leads));
+      console.warn('[bihub] notify.php unreachable — lead saved to localStorage. Key: bihub_leads');
+    } catch(e) {}
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var emailEl = document.getElementById('notify-email');
+    var email = emailEl ? emailEl.value.trim() : '';
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      emailEl && (emailEl.style.borderColor = '#c0392b');
+      setTimeout(function(){ emailEl && (emailEl.style.borderColor = ''); }, 2000);
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'იგზავნება…';
+
+    fetch('/notify.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, source: 'notify-strip' })
+    })
+    .then(function(r) { return r.ok ? r.json() : Promise.reject(r.status); })
+    .catch(function() { saveLocal(email); })
+    .finally(function() {
+      form.hidden = true;
+      successEl && (successEl.hidden = false);
+    });
+  });
+})();
+
+/* ====== MODAL POST FIX ====== */
+(function() {
+  var modal = document.getElementById('modal');
+  var modalContent = document.getElementById('modal-content');
+  if (!modal || !modalContent) return;
+
+  function showToast(msg, isError) {
+    var t = document.createElement('div');
+    t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);' +
+      'background:' + (isError ? '#c0392b' : '#00A651') + ';color:#fff;' +
+      'padding:10px 20px;border-radius:8px;font-size:0.85rem;font-weight:600;' +
+      'z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.2);transition:opacity 0.3s';
+    t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(function(){ t.style.opacity='0'; setTimeout(function(){ t.remove(); }, 300); }, 3000);
+  }
+
+  function saveLocal(payload) {
+    try {
+      var leads = JSON.parse(localStorage.getItem('bihub_leads') || '[]');
+      leads.push(Object.assign({}, payload, { ts: Date.now() }));
+      localStorage.setItem('bihub_leads', JSON.stringify(leads));
+      console.warn('[bihub] notify.php unreachable — lead saved to localStorage. Key: bihub_leads');
+    } catch(e) {}
+  }
+
+  modal.addEventListener('click', function(e) {
+    var submitBtn = e.target.closest('[data-submit]');
+    if (!submitBtn) return;
+    e.stopPropagation();
+
+    var name = (modal.querySelector('#m-name') || {}).value || '';
+    var email = (modal.querySelector('#m-email') || {}).value || '';
+    var company = (modal.querySelector('#m-company') || {}).value || '';
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      var emailField = modal.querySelector('#m-email');
+      if (emailField) { emailField.style.borderColor = '#c0392b'; emailField.focus(); }
+      setTimeout(function(){ var ef = modal.querySelector('#m-email'); if(ef) ef.style.borderColor=''; }, 2000);
+      return;
+    }
+
+    submitBtn.textContent = 'მუშავდება…';
+    submitBtn.disabled = true;
+
+    var payload = { name: name.trim(), email: email.trim(), company: company.trim(), source: 'register-modal' };
+
+    fetch('/notify.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(r) { return r.ok ? r.json() : Promise.reject(r.status); })
+    .catch(function() { saveLocal(payload); })
+    .finally(function() {
+      modal.dataset.open = 'false';
+      document.body.style.overflow = '';
+      showToast('✓ მოგიმზადეთ წვდომა — შეამოწმე ფოსტა', false);
+    });
+  });
+})();
+
+/* ====== COUNT-UP ANIMATION (proof bar) ====== */
+(function() {
+  var targets = document.querySelectorAll('.proof-bar__num');
+  if (!targets.length) return;
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function animateNum(el, target, duration, delay) {
+    if (reduced) return;
+    var suffix = el.querySelector('span') ? el.querySelector('span').textContent : '';
+    var inner = el.childNodes[0];
+    setTimeout(function() {
+      var start = null;
+      function step(ts) {
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var val = Math.round(easeOut(progress) * target);
+        var formatted = val >= 1000 ? val.toLocaleString('en-US') : String(val);
+        if (inner && inner.nodeType === 3) inner.textContent = formatted;
+        if (progress < 1) requestAnimationFrame(step);
+        else { if (inner && inner.nodeType === 3) inner.textContent = formatted; }
+      }
+      requestAnimationFrame(step);
+    }, delay);
+  }
+
+  var observed = false;
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting || observed) return;
+      observed = true;
+      io.disconnect();
+      var nums = [7000, 150, 16, 12, 5];
+      targets.forEach(function(el, i) {
+        animateNum(el, nums[i] || 0, 1400, i * 80);
+      });
+    });
+  }, { threshold: 0.5 });
+
+  var bar = document.querySelector('.proof-bar');
+  if (bar) io.observe(bar);
+})();
+
+</script>
+<script>
+// Generate ItemList structured data from BIHUB_REPORTS
+(function () {
+  if (!window.BIHUB_REPORTS) return;
+  const items = window.BIHUB_REPORTS.map((r, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "item": {
+      "@type": "Dataset",
+      "name": r.title,
+      "description": r.short,
+      "keywords": r.categoryLabel,
+      "temporalCoverage": r.period,
+      "isAccessibleForFree": !!r.free,
+      "url": "https://bihub.ge/r/" + r.slug,
+      "creator": { "@type": "Organization", "name": "Bivision", "url": "https://bivision.ge" },
+      "publisher": { "@type": "Organization", "name": "bihub", "url": "https://bihub.ge" },
+      "license": "https://bihub.ge/terms",
+      "inLanguage": "ka-GE"
+    }
+  }));
+  const ld = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "ანალიტიკური რეპორტები",
+    "numberOfItems": items.length,
+    "itemListElement": items
+  };
+  document.getElementById("reports-jsonld").textContent = JSON.stringify(ld);
+})();
+</script>
+
+</body>
+</html>
