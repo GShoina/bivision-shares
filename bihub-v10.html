@@ -2710,17 +2710,6 @@ a { color: inherit; text-decoration: none; }
 }
 .grid .card .card__title { margin-top: 0; }
 
-/* ====== NOTIFY STRIP ====== */
-.notify-strip{background:rgba(107,99,181,0.05);border-top:1px solid rgba(107,99,181,0.12);border-bottom:1px solid rgba(107,99,181,0.12);padding:20px 0}
-.notify-strip__inner{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
-.notify-strip__text{display:flex;flex-direction:column;gap:2px;flex:1;min-width:200px}
-.notify-strip__text strong{font-size:.95rem;font-weight:700;color:var(--ink-1)}
-.notify-strip__text span{font-size:.82rem;color:var(--ink-4)}
-.notify-strip__form{display:flex;gap:8px;align-items:center;flex-shrink:0}
-.notify-strip__input{padding:9px 14px;border:1px solid var(--line-2);border-radius:8px;font-family:inherit;font-size:.85rem;background:var(--surface);color:var(--ink-1);width:240px;transition:border-color .15s;outline:none}
-.notify-strip__input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(107,99,181,.12)}
-.notify-strip__success{display:flex;align-items:center;gap:6px;color:var(--green);font-size:.88rem;font-weight:600}
-@media(max-width:640px){.notify-strip__inner{flex-direction:column;align-items:stretch}.notify-strip__form{flex-direction:column}.notify-strip__input{width:100%}.notify-strip__btn{width:100%;justify-content:center}}
 /* ====== HOVER SAFETY ====== */
 @media(hover:none){.card:hover{transform:none !important;box-shadow:var(--shadow-card)}.card:active{transform:translateY(-1px)}}
 /* ====== MOBILE OVERFLOW ====== */
@@ -2896,25 +2885,6 @@ body{overflow-x:hidden}
   </div>
 </main>
 
-<!-- ============================ NOTIFY STRIP ============================ -->
-<section class="notify-strip" aria-label="განახლებების გამოწერა">
-  <div class="container">
-    <div class="notify-strip__inner">
-      <div class="notify-strip__text">
-        <strong>გამოწერე განახლებები</strong>
-        <span>ახალი ანალიტიკა &#x2014; პირდაპირ შენს ფოსტაში</span>
-      </div>
-      <form class="notify-strip__form" id="notify-form" novalidate>
-        <input type="email" id="notify-email" class="notify-strip__input" placeholder="შენი@email.com" autocomplete="email" inputmode="email" required>
-        <button type="submit" class="btn btn--blue notify-strip__btn" id="notify-btn">გამოწერა</button>
-      </form>
-      <div class="notify-strip__success" id="notify-success" hidden>
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7.2l2.8 2.8L11 4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        გამოწერილია &#x2014; გილოცავ!
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ============================ BIVISION CTA ============================ -->
 <section class="section section--tight" id="bivision">
@@ -4064,108 +4034,19 @@ window.BIHUB_SOURCES = [
 })();
 
 
-/* ====== NOTIFY STRIP ====== */
-(function() {
-  var form = document.getElementById('notify-form');
-  var btn = document.getElementById('notify-btn');
-  var successEl = document.getElementById('notify-success');
-  if (!form) return;
 
-  function saveLocal(email) {
-    try {
-      var leads = JSON.parse(localStorage.getItem('bihub_leads') || '[]');
-      leads.push({ email: email, ts: Date.now(), source: 'notify-strip' });
-      localStorage.setItem('bihub_leads', JSON.stringify(leads));
-      console.warn('[bihub] notify.php unreachable — lead saved to localStorage. Key: bihub_leads');
-    } catch(e) {}
-  }
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    var emailEl = document.getElementById('notify-email');
-    var email = emailEl ? emailEl.value.trim() : '';
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      emailEl && (emailEl.style.borderColor = '#c0392b');
-      setTimeout(function(){ emailEl && (emailEl.style.borderColor = ''); }, 2000);
-      return;
-    }
-    btn.disabled = true;
-    btn.textContent = 'იგზავნება…';
-
-    fetch('/notify.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, source: 'notify-strip' })
-    })
-    .then(function(r) { return r.ok ? r.json() : Promise.reject(r.status); })
-    .catch(function() { saveLocal(email); })
-    .finally(function() {
-      form.hidden = true;
-      successEl && (successEl.hidden = false);
-    });
-  });
-})();
-
-/* ====== MODAL POST FIX ====== */
+/* ====== MODAL REGISTER → WP ====== */
 (function() {
   var modal = document.getElementById('modal');
-  var modalContent = document.getElementById('modal-content');
-  if (!modal || !modalContent) return;
-
-  function showToast(msg, isError) {
-    var t = document.createElement('div');
-    t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);' +
-      'background:' + (isError ? '#c0392b' : '#00A651') + ';color:#fff;' +
-      'padding:10px 20px;border-radius:8px;font-size:0.85rem;font-weight:600;' +
-      'z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.2);transition:opacity 0.3s';
-    t.textContent = msg;
-    document.body.appendChild(t);
-    setTimeout(function(){ t.style.opacity='0'; setTimeout(function(){ t.remove(); }, 300); }, 3000);
-  }
-
-  function saveLocal(payload) {
-    try {
-      var leads = JSON.parse(localStorage.getItem('bihub_leads') || '[]');
-      leads.push(Object.assign({}, payload, { ts: Date.now() }));
-      localStorage.setItem('bihub_leads', JSON.stringify(leads));
-      console.warn('[bihub] notify.php unreachable — lead saved to localStorage. Key: bihub_leads');
-    } catch(e) {}
-  }
-
+  if (!modal) return;
   modal.addEventListener('click', function(e) {
     var submitBtn = e.target.closest('[data-submit]');
     if (!submitBtn) return;
     e.stopPropagation();
-
-    var name = (modal.querySelector('#m-name') || {}).value || '';
-    var email = (modal.querySelector('#m-email') || {}).value || '';
-    var company = (modal.querySelector('#m-company') || {}).value || '';
-
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      var emailField = modal.querySelector('#m-email');
-      if (emailField) { emailField.style.borderColor = '#c0392b'; emailField.focus(); }
-      setTimeout(function(){ var ef = modal.querySelector('#m-email'); if(ef) ef.style.borderColor=''; }, 2000);
-      return;
-    }
-
-    submitBtn.textContent = 'მუშავდება…';
-    submitBtn.disabled = true;
-
-    var payload = { name: name.trim(), email: email.trim(), company: company.trim(), source: 'register-modal' };
-
-    fetch('/notify.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    })
-    .then(function(r) { return r.ok ? r.json() : Promise.reject(r.status); })
-    .catch(function() { saveLocal(payload); })
-    .finally(function() {
-      modal.dataset.open = 'false';
-      document.body.style.overflow = '';
-      document.body.style.paddingRight = '';
-      showToast('✓ მოგიმზადეთ წვდომა — შეამოწმე ფოსტა', false);
-    });
+    modal.dataset.open = 'false';
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+    window.location.href = 'https://bihub.ge/wp-login.php?action=register';
   });
 })();
 
