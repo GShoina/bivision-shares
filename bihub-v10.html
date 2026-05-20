@@ -3034,9 +3034,9 @@ window.BIHUB_REPORTS = [
     fresh: "archive",
     source: "REPORTAL",
     free: true,
+    wpSlug: "shedareba",
     spark: "finance"
   },
-  ,
   {
     id: "customs",
     pinned: 2,
@@ -3052,9 +3052,9 @@ window.BIHUB_REPORTS = [
     fresh: "monthly",
     source: "ფინანსთა სამინისტრო",
     trending: true,
+    wpSlug: "export-importis-statistika",
     spark: "trade"
   },
-  ,
   {
     id: "foreign-trade",
     pinned: 3,
@@ -3069,9 +3069,9 @@ window.BIHUB_REPORTS = [
     period: "2014–2026",
     fresh: "monthly",
     source: "GEOSTAT",
+    wpSlug: "sagareo-vachroba-eqsport-importi-2014-2020",
     spark: "trade-alt"
   },
-  ,
   {
     id: "healthcare",
     pinned: 4,
@@ -3086,9 +3086,9 @@ window.BIHUB_REPORTS = [
     period: "2015–2026",
     fresh: "monthly",
     source: "SSA",
+    wpSlug: "sayoveltao-dazghvevis-analitika",
     spark: "health"
   },
-  ,
   {
     id: "construction",
     pinned: 5,
@@ -3103,9 +3103,9 @@ window.BIHUB_REPORTS = [
     period: "2010–2026",
     fresh: "monthly",
     source: "GEOSTAT · ARCH",
+    wpSlug: "mshenebloba-da-nebartvebis-analitika",
     spark: "construction"
   },
-  ,
   {
     id: "procurement",
     pinned: 6,
@@ -3121,9 +3121,9 @@ window.BIHUB_REPORTS = [
     fresh: "live",
     source: "SPA · TM",
     trending: true,
+    wpSlug: "tenderebi",
     spark: "procurement"
   },
-  ,
   {
     id: "livestock",
     pinned: 7,
@@ -3138,9 +3138,9 @@ window.BIHUB_REPORTS = [
     period: "2006–2025",
     fresh: "yearly",
     source: "GEOSTAT",
+    wpSlug: "meckhoveloebis-analitika-2006-2019",
     spark: "livestock"
   },
-  ,
   {
     id: "fish",
     pinned: 8,
@@ -3155,9 +3155,9 @@ window.BIHUB_REPORTS = [
     period: "2006–2025",
     fresh: "yearly",
     source: "GEOSTAT",
+    wpSlug: "tevzis-warmoeba-2006-2019",
     spark: "fish"
   },
-  ,
   {
     id: "food-balance",
     pinned: 9,
@@ -3172,9 +3172,9 @@ window.BIHUB_REPORTS = [
     period: "2006–2025",
     fresh: "yearly",
     source: "GEOSTAT",
+    wpSlug: "saursato-balansi-2006-2019",
     spark: "food"
   },
-  ,
   {
     id: "web-traffic",
     pinned: 10,
@@ -3189,9 +3189,9 @@ window.BIHUB_REPORTS = [
     period: "2009–2025",
     fresh: "monthly",
     source: "Statcounter",
+    wpSlug: "veb-trefiki-saqartveloshi-2009-2020",
     spark: "web"
   },
-  ,
   {
     id: "insurance-finance",
     pinned: 11,
@@ -3206,9 +3206,9 @@ window.BIHUB_REPORTS = [
     period: "2017–2025",
     fresh: "yearly",
     source: "ISSS",
+    wpSlug: "sadazghvevo-bazris-finansuri-analitika",
     spark: "insurance-fin"
   },
-  ,
   {
     id: "insurance-stats",
     pinned: 12,
@@ -3223,9 +3223,9 @@ window.BIHUB_REPORTS = [
     period: "2015–2025",
     fresh: "yearly",
     source: "ISSS",
+    wpSlug: "dazghvevis-statistika",
     spark: "insurance-stats"
   },
-  ,
   {
     id: "autopark",
     pinned: 13,
@@ -3240,9 +3240,9 @@ window.BIHUB_REPORTS = [
     period: "2015–2025",
     fresh: "monthly",
     source: "MIA",
+    wpSlug: "avtoparkis-analitika",
     spark: "auto"
   },
-  ,
   {
     id: "exams",
     pinned: 14,
@@ -3257,9 +3257,9 @@ window.BIHUB_REPORTS = [
     period: "2015–2022",
     fresh: "archive",
     source: "NAEC",
+    wpSlug: "ertiani-erovnuli-gamocdebis-shedegebi",
     spark: "exams"
   },
-  ,
   {
     id: "energy",
     pinned: 15,
@@ -3274,9 +3274,9 @@ window.BIHUB_REPORTS = [
     period: "2010–2025",
     fresh: "monthly",
     source: "ESCO",
+    wpSlug: "energetika-2012-2020",
     spark: "energy"
   },
-  ,
   {
     id: "fdi",
     pinned: 16,
@@ -3291,6 +3291,7 @@ window.BIHUB_REPORTS = [
     period: "2010–2025",
     fresh: "yearly",
     source: "GEOSTAT",
+    wpSlug: "pirdapiri-uckhouri-investiciebi-2009-2020",
     spark: "fdi"
   }
 ];
@@ -3647,8 +3648,7 @@ window.BIHUB_SOURCES = [
         </button>
       `);
       card.addEventListener("click", () => {
-        if (r.free) openFreeReport(r);
-        else openReportModal(r);
+        openFreeReport(r);
       });
       featuredHost.appendChild(card);
     });
@@ -3744,9 +3744,9 @@ window.BIHUB_SOURCES = [
 
   renderGrid();
 
-  /* ---- free report opener — Phase 1: modal until /r/ WP routes deployed ---- */
   function openFreeReport(r) {
-    openReportModal(r);
+    const url = r.wpSlug ? "https://bihub.ge/cards/" + r.wpSlug + "/" : "https://bihub.ge/cards/";
+    window.open(url, "_blank", "noopener");
   }
 
   /* ---- modal ---- */
