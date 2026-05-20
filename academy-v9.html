@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="ka"><head>
+<!--
+  DEPLOY: configure these HTTP response headers on the server (nginx/cloudflare/vercel):
+
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://bivision.ge; connect-src 'self'; font-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bivision Academy — ისწავლე AI ავტომატიზაცია შენი ბიზნესისთვის</title>
+<meta name="description" content="Bivision Academy — საქართველოს პირველი პრაქტიკული AI სასწავლო პლატფორმა. 6 მოდული, M01 უფასოდ, სრული კურსი 750 ₾. Marketing Automation, AI-ით შენება, AI Agents." />
+<meta name="keywords" content="AI კურსი, AI სწავლა საქართველო, Claude, marketing automation, AI agent, AI-ით შენება, ბიზნეს AI, Bivision Academy" />
+<meta name="author" content="Bivision" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#1A1A2E" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="alternate" hreflang="ka" href="https://bivision.ge/academy/" />
+<link rel="alternate" hreflang="x-default" href="https://bivision.ge/academy/" />
+<link rel="preconnect" href="https://bivision.ge" />
+<link rel="dns-prefetch" href="https://bivision.ge" />
+<!-- V8 by Gurafa — 2026-05-20 / changes: 5 personas + module renames -->
+<link rel="canonical" href="https://bivision.ge/academy/">
+
+<meta property="og:title" content="Bivision Academy — AI ავტომატიზაცია შენი ბიზნესისთვის">
+<meta property="og:description" content="საქართველოს პირველი პრაქტიკული AI სასწავლო პლატფორმა. ისწავლე Marketing Automation-დან AI Agent-მდე.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bivision.ge/academy/" />
+<meta property="og:site_name" content="Bivision Academy" />
+<meta property="og:locale" content="ka_GE" />
+<meta property="og:image" content="https://bivision.ge/academy/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Bivision Academy — AI ავტომატიზაცია შენი ბიზნესისთვის" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Bivision Academy — AI ავტომატიზაცია შენი ბიზნესისთვის" />
+<meta name="twitter:description" content="საქართველოს პირველი პრაქტიკული AI სასწავლო პლატფორმა. M01 უფასოდ." />
+<meta name="twitter:image" content="https://bivision.ge/academy/og-image.jpg" />
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Bivision","url":"https://bivision.ge","logo":"https://bivision.ge/wp-content/uploads/2025/10/Logo-1.svg"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Bivision Academy","description":"საქართველოს პირველი პრაქტიკული AI სასწავლო პლატფორმა","url":"https://bivision.ge/academy/"}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Course", "name": "Claude Cowork for Business", "description": "AI-ის მეხსიერება, წესები, შაბლონები. პირველი რეალური სამუშაო სესია Claude-თან.", "provider": {"@type": "Organization", "name": "Bivision", "sameAs": "https://bivision.ge"}, "inLanguage": "ka", "educationalLevel": "Beginner", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GEL", "availability": "https://schema.org/InStock"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Course", "name": "Marketing Automation", "description": "Email კამპანიები, სოც. მედია, CRM ავტომატიზაცია AI-ის გვერდით. რეალური ქართული კონტექსტი.", "provider": {"@type": "Organization", "name": "Bivision", "sameAs": "https://bivision.ge"}, "inLanguage": "ka", "educationalLevel": "Beginner", "isAccessibleForFree": false, "offers": {"@type": "Offer", "price": "750", "priceCurrency": "GEL", "availability": "https://schema.org/InStock", "description": "სრული M02–M06 პაკეტი — 750 ₾ ერთჯერადი, Lifetime წვდომა"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Course", "name": "AI-ით შენება", "description": "AI-ით აპლიკაცია ან შიდა ხელსაწყო — დეველოპერის გარეშე, კოდის გარეშე.", "provider": {"@type": "Organization", "name": "Bivision", "sameAs": "https://bivision.ge"}, "inLanguage": "ka", "educationalLevel": "Intermediate", "isAccessibleForFree": false, "offers": {"@type": "Offer", "price": "750", "priceCurrency": "GEL", "availability": "https://schema.org/InStock"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Course", "name": "სისტემების AI კავშირი", "description": "Google Sheets, 1C, ERP — პირდაპირ AI-ისთვის. შენი მონაცემები ჭკვიანი, რეალურ დროში.", "provider": {"@type": "Organization", "name": "Bivision", "sameAs": "https://bivision.ge"}, "inLanguage": "ka", "educationalLevel": "Intermediate", "isAccessibleForFree": false, "offers": {"@type": "Offer", "price": "750", "priceCurrency": "GEL", "availability": "https://schema.org/InStock"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Course", "name": "პირველი AI Agent", "description": "ავტონომიური AI — workflow-ების ავტომატიზაცია. სამუშაო თვითონ მიდის, შენ აკონტროლებ.", "provider": {"@type": "Organization", "name": "Bivision", "sameAs": "https://bivision.ge"}, "inLanguage": "ka", "educationalLevel": "Advanced", "isAccessibleForFree": false, "offers": {"@type": "Offer", "price": "750", "priceCurrency": "GEL", "availability": "https://schema.org/InStock"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Course", "name": "AI-ით მართული პროცესები", "description": "Cloud-ზე გაშვებული ყოველდღიური AI სამუშაოები. ღამის ანგარიშები, ავტო-რეპორტი, scheduling.", "provider": {"@type": "Organization", "name": "Bivision", "sameAs": "https://bivision.ge"}, "inLanguage": "ka", "educationalLevel": "Advanced", "isAccessibleForFree": false, "offers": {"@type": "Offer", "price": "750", "priceCurrency": "GEL", "availability": "https://schema.org/InStock"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Product", "name": "Bivision Academy — სრული კურსი (M02–M06)", "description": "5 მოდული: Marketing Automation, AI-ით შენება, სისტემების AI კავშირი, პირველი AI Agent, AI-ით მართული პროცესები. Lifetime წვდომა.", "brand": {"@type": "Brand", "name": "Bivision Academy"}, "offers": {"@type": "Offer", "price": "750", "priceCurrency": "GEL", "availability": "https://schema.org/InStock", "url": "https://bivision.ge/academy/#full-cta"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "M01 ნამდვილად უფასოა?", "acceptedAnswer": {"@type": "Answer", "text": "კი, M01 (Claude Cowork for Business) უფასოა სამუდამოდ. საკრედიტო ბარათი არ სჭირდება."}}, {"@type": "Question", "name": "რა შედის 750 ₾-ში?", "acceptedAnswer": {"@type": "Answer", "text": "M02–M06 ხუთი მოდული, 35+ ვიდეო, 10+ პროექტი, lifetime updates, ცოცხალი მენტორის წვდომა, სერტიფიკატი."}}, {"@type": "Question", "name": "კოდის ცოდნა მჭირდება?", "acceptedAnswer": {"@type": "Answer", "text": "არა. პროგრამა შემუშავებულია ბიზნეს პროფესიონალებისთვის — AI-ით შენება მუშაობს AI-ის გვერდით, კოდის გარეშე."}}, {"@type": "Question", "name": "რა ენაზეაა კურსი?", "acceptedAnswer": {"@type": "Answer", "text": "სრულად ქართულად — ვიდეო, მასალა, მენტორობა, ცოცხალი მაგალითები ქართული ბიზნესიდან."}}, {"@type": "Question", "name": "როდენ მივიღებ წვდომა?", "acceptedAnswer": {"@type": "Answer", "text": "M01-ზე რეგისტრაციის შემდეგ — მყისიერად. M02–M06: გადახდის შემდეგ როგორც კურსში. Lifetime ნიშნავს — შენია დარესად შეგიძლია ახალი მოდულებს."}}, {"@type": "Question", "name": "გასცემა სერტიფიკატი?", "acceptedAnswer": {"@type": "Answer", "text": "კი, M02–M06-ის დამასრულებლებს გადაეცემათ Bivision Academy-ის სერტიფიკატი."}}]}
+</script>
+
+
+
+<style>
+  /* ── A11Y UTILS ─────────────────────────────────── */
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+  /* ── TOKENS ───────────────────────────────────────── */
+  :root {
+    --purple:       #6B63B5;
+    --purple-soft:  #8A82CC;
+    --purple-deep:  #4A4290;
+    --green:        #00A651;
+    --green-soft:   #2DC471;
+    --bg:           #EAEAF2;
+    --bg-2:         #F4F4F8;
+    --navy:         #1A1A2E;
+    --navy-deep:    #0a0a18;
+    --ink:          #0F0F1E;
+    --ink-2:        #3A3A52;
+    --ink-3:        #6B6B82;
+    --line:         #D8D8E4;
+    --line-2:       #C4C4D6;
+    --white:        #FFFFFF;
+
+    --font: "Segoe UI", "Helvetica Neue", Arial, "Noto Sans Georgian", sans-serif;
+
+    --container: 1240px;
+    --gutter: 28px;
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  /* ── RESET ────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; padding: 0;
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: 0; background: 0; color: inherit; }
+  h1, h2, h3, h4, h5, h6 { margin: 0; }
+  p { margin: 0; }
+
+  /* ── PRIMITIVES ───────────────────────────────────── */
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+  section > .container > *:first-child { margin-top: 0; }
+  section > .container > *:last-child  { margin-bottom: 0; }
+  /* preserve "What You Learn" section density */
+  section#what.block { padding: 80px 0; }
+  #what .sec-head { margin-bottom: 32px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--purple);
+    padding: 8px 14px;
+    background: rgba(107, 99, 181, 0.10);
+    border: 1px solid rgba(107, 99, 181, 0.22);
+    border-radius: 100px;
+  }
+  .eyebrow.on-dark { color: #C5BEFF; background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); }
+  .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 10px;
+    padding: 13px 22px;
+    font-weight: 700; font-size: 14px;
+    border-radius: 12px;
+    background: var(--ink); color: var(--white);
+    transition: transform 0.15s ease, background 0.15s, box-shadow 0.2s;
+    line-height: 1;
+    min-height: 44px;
+  }
+  .btn .arr { transition: transform 0.2s ease; }
+  .btn:hover .arr { transform: translateX(4px); }
+  .btn-green { background: var(--green); color: var(--white); }
+  .btn-green:hover { background: var(--green-soft); box-shadow: 0 8px 24px rgba(0,166,81,0.32); }
+  .btn-purple { background: var(--purple); color: var(--white); }
+  .btn-purple:hover { background: var(--purple-soft); box-shadow: 0 8px 24px rgba(107,99,181,0.36); }
+  .btn-ghost-light {
+    background: transparent; color: var(--white);
+    border: 1.5px solid rgba(255,255,255,0.30);
+  }
+  .btn-ghost-light:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.55); }
+  .btn-white { background: var(--white); color: var(--navy); }
+  .btn-white:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+  @media (hover: hover) {
+    .btn:hover { transform: translateY(-2px); }
+  }
+
+  /* ── TOPBAR ───────────────────────────────────────── */
+  header.top {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .top-in {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 0;
+    gap: 24px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 700; font-size: 18px;
+    letter-spacing: -0.01em;
+  }
+  .brand-logo {
+    width: 144px; height: 30px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .brand img { display: block; }
+  .brand-mark {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--purple), var(--purple-deep));
+    color: var(--white);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 17px;
+    box-shadow: 0 4px 12px rgba(107,99,181,0.34);
+  }
+  .brand-text {
+    font-weight: 700; font-size: 18px;
+    letter-spacing: -0.005em; color: var(--ink);
+    display: flex; align-items: baseline; gap: 6px;
+  }
+  .brand-text em {
+    font-style: normal; font-weight: 600;
+    color: var(--purple);
+  }
+  .top-nav {
+    display: flex; gap: 28px;
+    flex: 1; justify-content: center;
+  }
+  .top-nav a {
+    font-size: 14px; font-weight: 500;
+    color: var(--ink-2);
+    padding: 6px 0; position: relative;
+  }
+  .top-nav a:hover { color: var(--ink); }
+  .top-cta { display: flex; gap: 10px; align-items: center; }
+  .top-cta .btn { padding: 11px 18px; min-height: 42px; font-size: 13.5px; }
+  .top-cta .ghost {
+    color: var(--ink-2); font-weight: 500; font-size: 14px;
+  }
+  .top-cta .ghost:hover { color: var(--ink); }
+
+  /* ── HERO ─────────────────────────────────────────── */
+  section.hero {
+    position: relative;
+    background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+    color: var(--white);
+    overflow: hidden;
+    padding: 56px 0 72px;
+    isolation: isolate;
+  }
+  .hero-bgs {
+    position: absolute; inset: 0;
+    filter: blur(14px) brightness(0.42);
+    opacity: 0.85;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .ai-card {
+    position: absolute;
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.10);
+    padding: 16px;
+    backdrop-filter: blur(6px);
+  }
+  .ai-1 { top: 4%; left: -2%; width: 360px; height: 240px; }
+  .ai-2 { top: 8%; right: -4%; width: 380px; height: 280px; }
+  .ai-3 { bottom: -2%; left: 4%; width: 420px; height: 260px; }
+  .ai-4 { bottom: 6%; right: 2%; width: 360px; height: 220px; }
+
+  .ai-chat-line {
+    height: 8px; border-radius: 4px;
+    background: rgba(255,255,255,0.14);
+    margin-bottom: 4px;
+  }
+  .ai-chat-line.short { width: 60%; }
+  .ai-chat-line.green { background: rgba(0,166,81,0.42); }
+  .ai-chat-line.purple { background: rgba(107,99,181,0.55); }
+  .ai-bubble {
+    padding: 10px 14px; border-radius: 10px;
+    background: rgba(107,99,181,0.30);
+    margin: 8px 0;
+  }
+  .ai-bar {
+    display: flex; align-items: flex-end; gap: 6px; height: 80px;
+    margin-top: 12px;
+  }
+  .ai-bar i {
+    flex: 1; background: linear-gradient(180deg, var(--purple-soft), var(--purple));
+    border-radius: 4px 4px 0 0;
+  }
+  .ai-bar i.green { background: linear-gradient(180deg, var(--green-soft), var(--green)); }
+  .ai-pill {
+    display: inline-block;
+    padding: 4px 10px; border-radius: 100px;
+    background: rgba(0,166,81,0.30);
+    font-size: 10px;
+    margin: 4px 4px 0 0;
+  }
+
+  /* color glow overlays */
+  .hero-glow {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  }
+  .hero-glow::before, .hero-glow::after {
+    content: ""; position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.45;
+  }
+  .hero-glow::before {
+    background: radial-gradient(circle, var(--purple) 0%, transparent 70%);
+    top: -200px; left: -200px;
+  }
+  .hero-glow::after {
+    background: radial-gradient(circle, var(--green) 0%, transparent 70%);
+    bottom: -300px; right: -200px;
+    opacity: 0.30;
+  }
+
+  .hero-inner { position: relative; z-index: 2; }
+
+  .hero-badge {
+    opacity: 0; transform: translateY(8px);
+    animation: fadeUp 0.7s 0.1s ease-out forwards;
+  }
+
+  .hero h1 {
+    font-size: clamp(34px, 5.2vw, 74px);
+    line-height: 1.04;
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    margin: 20px 0 16px;
+    max-width: 1080px;
+  }
+  .hero h1 .line1, .hero h1 .line2 {
+    display: block;
+    opacity: 0; transform: translateY(20px);
+  }
+  .hero h1 .line1 { animation: fadeUp 0.8s 0.20s ease-out forwards; }
+  .hero h1 .line2 { animation: fadeUp 0.8s 0.45s ease-out forwards; }
+  .hero h1 .line3 { display: block; opacity: 0; transform: translateY(20px);
+    animation: fadeUp 0.8s 0.70s ease-out forwards; }
+
+  .green-hl {
+    color: var(--green);
+    position: relative;
+    display: inline-block;
+    padding: 0 2px;
+  }
+  .green-hl svg {
+    position: absolute;
+    left: 0; right: 0; bottom: -8px;
+    width: 100%; height: 18px;
+    overflow: visible;
+  }
+  .green-hl svg path {
+    fill: none;
+    stroke: var(--green);
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-dasharray: 380;
+    stroke-dashoffset: 380;
+    animation: drawLine 1s 1.8s ease-out forwards;
+  }
+  @keyframes drawLine { to { stroke-dashoffset: 0; } }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  .typer {
+    font-size: clamp(15px, 1.5vw, 19px);
+    color: rgba(255,255,255,0.78);
+    margin-bottom: 24px;
+    height: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.0s ease-out forwards;
+  }
+  .typer .cursor {
+    display: inline-block;
+    width: 2px; height: 1em;
+    background: var(--green);
+    margin-left: 4px;
+    vertical-align: text-bottom;
+    animation: blink 1s infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .hero-ctas {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    opacity: 0; transform: translateY(10px);
+    animation: fadeUp 0.7s 1.4s ease-out forwards;
+  }
+
+  .hero-marketing {
+    margin-top: 44px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.10);
+    display: flex; gap: 60px;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.6s ease-out forwards;
+  }
+  .hero-marketing .label {
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); font-weight: 600;
+    flex-shrink: 0;
+  }
+  .hero-marketing .logos {
+    display: flex; gap: 40px; align-items: center; flex-wrap: wrap;
+  }
+  .ai-logo {
+    font-weight: 700; font-size: 17px;
+    color: rgba(255,255,255,0.62);
+    letter-spacing: -0.01em;
+    transition: color 0.2s;
+  }
+  .ai-logo:hover { color: rgba(255,255,255,0.95); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero h1 .line1, .hero h1 .line2, .hero h1 .line3,
+    .typer, .hero-ctas, .hero-marketing, .hero-badge,
+    .green-hl svg path {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+      stroke-dashoffset: 0 !important;
+    }
+  }
+
+  /* ── KPI STRIP ────────────────────────────────────── */
+  section.kpi {
+    background: var(--white);
+    border-bottom: 0;
+    padding: 32px 0;
+  }
+  .kpi-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  }
+  .kpi-item {
+    text-align: center;
+    padding: 4px 18px;
+    border-right: 1px solid var(--line);
+  }
+  .kpi-item:last-child { border-right: 0; }
+  .kpi-item .num {
+    font-size: clamp(30px, 3.4vw, 44px);
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .kpi-item .num .accent { color: var(--green); }
+  .kpi-item .num .accent-p { color: var(--purple); }
+  .kpi-item .lbl {
+    font-size: 12px; font-weight: 600;
+    color: var(--ink-3);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* ── BLOCK ────────────────────────────────────────── */
+  section.block { padding: 44px 0; }
+  .sec-head { text-align: center; margin: 0 auto 22px; max-width: 760px; }
+  .sec-head h2 {
+font-size: clamp(26px, 3.2vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 8px 0 8px;
+    color: var(--navy);
+  }
+  .sec-head h2 em { font-style: normal; color: var(--purple); }
+  .sec-head h2 em.g { color: var(--green); }
+  .sec-head p {
+    font-size: 15px;
+    color: var(--ink-2);
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* ── LEARN CARDS ──────────────────────────────────── */
+  .learn-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  .learn-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    border: 1px solid var(--line);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  @media (hover: hover) {
+    .learn-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(20,20,46,0.10);
+      border-color: var(--purple-soft);
+    }
+  }
+  .learn-card .ic {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(107,99,181,0.14), rgba(107,99,181,0.04));
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-bottom: 10px;
+    color: var(--purple);
+  }
+  .learn-card.g .ic {
+    background: linear-gradient(135deg, rgba(0,166,81,0.14), rgba(0,166,81,0.04));
+    color: var(--green);
+  }
+  .learn-card h3 {
+    font-size: 19px; font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+    color: var(--navy);
+  }
+  .learn-card p { font-size: 14.5px; color: var(--ink-2); line-height: 1.55; }
+  .learn-card .meta {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .learn-card .meta .mod { color: var(--purple); }
+
+  /* ── QUIZ ─────────────────────────────────────────── */
+  section.quiz {
+    background: linear-gradient(180deg, var(--bg), var(--bg-2));
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .quiz-box {
+    max-width: 880px; margin: 0 auto;
+    background: var(--white);
+    border-radius: 20px;
+    padding: 36px 36px 28px;
+    border: 1px solid var(--line);
+    box-shadow: 0 24px 64px rgba(20,20,46,0.06);
+  }
+  .quiz-step {
+    margin-bottom: 24px;
+  }
+  .quiz-step h3 {
+    font-size: 19px; font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .quiz-step h3 .num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--purple); color: var(--white);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+  }
+  .opts {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  }
+  .opt {
+    display: flex; align-items: center; gap: 14px;
+    padding: 18px 20px;
+    background: var(--bg-2);
+    border: 2px solid transparent;
+    border-radius: var(--radius);
+    font-weight: 600; font-size: 15px; color: var(--navy);
+    text-align: left;
+    transition: all 0.15s ease;
+    min-height: 64px;
+  }
+  .opt .emo { font-size: 22px; }
+  @media (hover: hover) {
+    .opt:hover { background: var(--white); border-color: var(--purple-soft); }
+  }
+  .opt.on {
+    background: rgba(107,99,181,0.10);
+    border-color: var(--purple);
+    color: var(--purple);
+  }
+  .quiz-actions {
+    margin-top: 4px;
+    display: flex; gap: 12px; align-items: center;
+    flex-wrap: wrap;
+  }
+  .quiz-result {
+    margin-top: 10px;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, rgba(107,99,181,0.10), rgba(0,166,81,0.08));
+    border: 1px solid var(--purple-soft);
+    border-radius: 12px;
+    display: none;
+    align-items: center; gap: 14px;
+    flex-wrap: wrap;
+    font-size: 15px;
+    color: var(--navy); font-weight: 600;
+  }
+  .quiz-result.on { display: flex; }
+  .quiz-result .pathlbl { color: var(--ink-3); font-weight: 500; margin-right: 6px; }
+  .quiz-result .arrow { color: var(--ink-3); }
+  .quiz-result .recmod { color: var(--purple); font-weight: 700; }
+  .quiz-result .reset {
+    margin-left: auto;
+    color: var(--ink-3); font-size: 13px; font-weight: 500;
+    text-decoration: underline;
+  }
+
+  /* ── MODULES ──────────────────────────────────────── */
+  .mods-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  .mod-card {
+    background: var(--white);
+    border: 2px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px 22px 20px;
+    position: relative;
+    transition: all 0.2s ease;
+    display: flex; flex-direction: column;
+    min-height: 260px;
+  }
+  .mod-card.free {
+    border-color: var(--green);
+    box-shadow: 0 10px 36px rgba(0,166,81,0.12);
+  }
+  .mod-card.locked .lock-tag {
+    position: absolute; top: 16px; right: 16px;
+    font-size: 11px; font-weight: 700;
+    color: var(--ink-3);
+    background: var(--bg);
+    padding: 5px 10px; border-radius: 100px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .free-badge {
+    position: absolute; top: 16px; right: 16px;
+    font-size: 11px; font-weight: 700;
+    color: var(--white);
+    background: var(--green);
+    padding: 5px 12px; border-radius: 100px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .mod-card .num {
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--purple);
+    margin-bottom: 14px;
+  }
+  .mod-card.free .num { color: var(--green); }
+  .mod-card h3 {
+    font-size: 19px; font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.18;
+  }
+  /* English subtitle under translated module names — SEO + recognition */
+  .mod-card h3 .sub,
+  .learn-card h3 .sub {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-3);
+    letter-spacing: 0.03em;
+    margin-top: 3px;
+    font-style: normal;
+    text-transform: none;
+  }
+  .mod-card p {
+    font-size: 14px;
+    color: var(--ink-2);
+    line-height: 1.55;
+    margin-bottom: auto;
+  }
+  .mod-card .foot {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .mod-card .price {
+    font-weight: 700; font-size: 14px;
+    color: var(--ink-2);
+  }
+  .mod-card .price .gel { font-weight: 800; color: var(--navy); font-size: 17px; }
+  .mod-card.free .price .gel { color: var(--green); }
+  .mod-card .link {
+    color: var(--purple); font-weight: 700; font-size: 14px;
+    display: inline-flex; gap: 6px; align-items: center;
+    transition: gap 0.2s;
+  }
+  .mod-card .link:hover { gap: 10px; }
+  .mod-card.match {
+    border-color: var(--green);
+    box-shadow: 0 10px 36px rgba(0,166,81,0.14);
+  }
+  .mod-card.match::after {
+    content: "✓ შეგიფერება";
+    position: absolute;
+    top: -10px; left: 20px;
+    background: var(--green); color: var(--white);
+    padding: 4px 12px; border-radius: 100px;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+  .mod-card.dim { opacity: 0.28; }
+
+  .mods-foot {
+    margin-top: 20px; text-align: center;
+    font-size: 14px; color: var(--ink-2);
+  }
+  .mods-foot strong { color: var(--navy); font-weight: 700; }
+  .mods-foot .gprice { color: var(--green); font-weight: 800; }
+
+  /* ── FOR WHOM ─────────────────────────────────────── */
+  section.whom { background: var(--white); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .whom-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+  }
+  .persona {
+    padding: 22px 18px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
+    position: relative;
+    display: flex; flex-direction: column;
+  }
+  .persona.feat {
+    background: linear-gradient(180deg, rgba(0,166,81,0.06), rgba(0,166,81,0.02));
+    border-color: var(--green);
+  }
+  .persona.feat::before {
+    content: "ყველაზე მაღალი intent";
+    position: absolute;
+    top: -10px; left: 16px;
+    background: var(--green); color: var(--white);
+    padding: 4px 10px; border-radius: 100px;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .persona .emo {
+    font-size: 30px;
+    margin-bottom: 10px;
+    line-height: 1;
+  }
+  .persona h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+    letter-spacing: -0.005em;
+    line-height: 1.2;
+  }
+  .persona .pain {
+    font-size: 13px;
+    color: var(--ink-3);
+    line-height: 1.5;
+    margin-bottom: auto;
+  }
+  .persona .outcome {
+    font-size: 13px;
+    color: var(--green);
+    font-weight: 600;
+    line-height: 1.45;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(0,166,81,0.30);
+    position: relative;
+  }
+  .persona .outcome::before {
+    content: "▸ ";
+    font-weight: 700;
+  }
+
+  /* ── REGISTER ─────────────────────────────────────── */
+  section.register {
+    background: linear-gradient(135deg, var(--purple-deep) 0%, var(--navy) 100%);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  section.register::before, section.register::after {
+    content: ""; position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.30;
+    pointer-events: none;
+  }
+  section.register::before {
+    background: var(--purple); top: -100px; left: -100px;
+  }
+  section.register::after {
+    background: var(--green); bottom: -200px; right: -100px;
+    opacity: 0.18;
+  }
+  .reg-inner {
+    text-align: center; max-width: 720px; margin: 0 auto;
+    position: relative; z-index: 2;
+  }
+  .reg-inner h2 {
+    font-size: clamp(26px, 3.4vw, 42px);
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin: 10px 0 8px;
+  }
+  .reg-inner h2 em { font-style: normal; color: var(--green); }
+  .reg-inner p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.80);
+    margin-bottom: 18px;
+    line-height: 1.55;
+  }
+  .reg-form {
+    display: flex; gap: 10px;
+    max-width: 520px; margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  .reg-form input {
+    flex: 1; min-width: 240px;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.10);
+    border: 1.5px solid rgba(255,255,255,0.20);
+    border-radius: 12px;
+    color: var(--white); font-size: 15px;
+    font-family: inherit;
+    transition: all 0.15s;
+    min-height: 48px;
+  }
+  .reg-form input::placeholder { color: rgba(255,255,255,0.50); }
+  .reg-form input:focus {
+    outline: none;
+    border-color: var(--green);
+    background: rgba(255,255,255,0.14);
+  }
+  .reg-note {
+    margin-top: 12px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.60);
+    display: flex; align-items: center; gap: 8px;
+    justify-content: center;
+  }
+  .reg-note .check { color: var(--green); }
+
+  /* ── FULL CTA ─────────────────────────────────────── */
+  section.full-cta {
+    background: linear-gradient(135deg, var(--purple) 0%, var(--purple-deep) 60%, var(--navy) 100%);
+    color: var(--white);
+    padding: 40px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .fcta-grid {
+    display: grid; grid-template-columns: 1.4fr 1fr;
+    gap: 36px; align-items: center;
+  }
+  .fcta-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 14px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.20);
+    border-radius: 100px;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.10em; text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .fcta h2 {
+    font-size: clamp(24px, 3vw, 38px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .fcta h2 em { font-style: normal; color: var(--green); }
+  .fcta p {
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.80);
+    margin-bottom: 24px;
+    max-width: 540px;
+  }
+  .fcta-side {
+    text-align: center;
+    padding: 24px 22px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 18px;
+    backdrop-filter: blur(8px);
+  }
+  .fcta-side .price {
+    font-size: 44px; font-weight: 900;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    line-height: 1; margin-bottom: 8px;
+  }
+  .fcta-side .price .gel { color: var(--green); font-size: 36px; }
+  .fcta-side .price .strike {
+    display: block; font-size: 14px; font-weight: 600;
+    color: rgba(255,255,255,0.50);
+    text-decoration: line-through;
+    margin-bottom: 6px;
+  }
+  .fcta-side .sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.62);
+    margin-bottom: 24px;
+    letter-spacing: 0.04em;
+  }
+  .fcta-list {
+    list-style: none; padding: 0; margin: 24px 0 0;
+    text-align: left;
+  }
+  .fcta-list li {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 5px 0;
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+  }
+  .fcta-list li::before {
+    content: "✓"; color: var(--green); font-weight: 700;
+  }
+
+  /* ── FOOTER ───────────────────────────────────────── */
+  footer.bot {
+    background: var(--navy-deep);
+    color: rgba(255,255,255,0.65);
+    padding: 32px 0 20px;
+  }
+  .ft-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .ft-brand p {
+    margin-top: 16px; max-width: 360px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.55;
+  }
+  .ft-col h5 {
+    font-size: 11px; letter-spacing: 0.10em;
+    text-transform: uppercase; font-weight: 700;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 16px;
+  }
+  .ft-col a {
+    display: block;
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    padding: 5px 0;
+  }
+  .ft-col a:hover { color: var(--white); }
+  .ft-bot {
+    padding-top: 16px;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 20px; flex-wrap: wrap;
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+  }
+  .ft-bot .socials { display: flex; gap: 16px; }
+  .ft-bot .socials a { color: rgba(255,255,255,0.55); }
+  .ft-bot .socials a:hover { color: var(--white); }
+
+  /* ── RESPONSIVE ───────────────────────────────────── */
+  @media (max-width: 1180px) {
+    .whom-grid { grid-template-columns: repeat(3, 1fr); }
+    .persona.feat::before { content: "მაღალი intent"; }
+  }
+  @media (max-width: 980px) {
+    .top-nav { display: none; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .kpi-item:nth-child(2) { border-right: 0; }
+    .kpi-item { padding: 24px; }
+    .kpi-item:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    .learn-grid { grid-template-columns: 1fr 1fr; }
+    .mods-grid { grid-template-columns: 1fr 1fr; }
+    .whom-grid { grid-template-columns: repeat(2, 1fr); }
+    .opts { grid-template-columns: 1fr; }
+    .fcta-grid { grid-template-columns: 1fr; gap: 32px; }
+    .ft-top { grid-template-columns: 1fr 1fr; }
+    .ai-card { transform: scale(0.7); }
+    .ai-1, .ai-2, .ai-3, .ai-4 { width: 280px; height: 200px; }
+    .hero-marketing { flex-direction: column; align-items: flex-start; gap: 18px; }
+  }
+  @media (max-width: 640px) {
+    section.block, section.full-cta { padding: 32px 0; }
+    section.hero { padding: 36px 0 48px; }
+    .sec-head { margin-bottom: 16px; }
+    .hero-marketing { margin-top: 20px; padding-top: 12px; }
+    .gutter { --gutter: 18px; }
+    .learn-grid, .mods-grid, .whom-grid, .ft-top { grid-template-columns: 1fr; }
+    .quiz-box { padding: 28px 20px; }
+    .brand-text { font-size: 16px; }
+    .top-cta .btn span:not(.arr) { display: inline; }
+    .reg-form input { width: 100%; }
+    .reg-form .btn { width: 100%; }
+    .hero-marketing .logos { gap: 24px; }
+    .ai-card { display: none; }
+    .hero-glow::before, .hero-glow::after { width: 400px; height: 400px; filter: blur(80px); }
+  }
+
+  /* ── MOBILE-FIRST ADDITIONS (V9) ─────────────────── */
+  /* Mobile-first methodology note: existing CSS is desktop-first with max-width
+     overrides. Below are NEW mobile-only behaviors using min-width queries +
+     base mobile defaults. New components only — not a methodology refactor of
+     existing rules. */
+
+  /* ── HAMBURGER BUTTON ─────────────────────────── */
+  .ham {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid var(--line);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .ham:hover { background: var(--bg-2); border-color: var(--line-2); }
+  .ham:active { transform: scale(0.96); }
+  .ham .bar {
+    display: block;
+    width: 18px; height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+  .ham[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .ham[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
+  .ham[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Hide hamburger on desktop */
+  @media (min-width: 981px) {
+    .ham { display: none; }
+  }
+
+  /* ── MOBILE DRAWER ─────────────────────────────── */
+  .drawer-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(15, 15, 30, 0.55);
+    backdrop-filter: blur(4px);
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    z-index: 90;
+  }
+  .drawer-backdrop.on { opacity: 1; visibility: visible; }
+
+  .drawer {
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    width: min(85vw, 360px);
+    background: var(--white);
+    z-index: 100;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex; flex-direction: column;
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.18);
+    overflow-y: auto;
+  }
+  .drawer.on { transform: translateX(0); }
+  .drawer-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--line);
+  }
+  .drawer-close {
+    width: 44px; height: 44px; border-radius: 10px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--bg-2);
+    font-size: 22px; color: var(--ink-2);
+    line-height: 1;
+  }
+  .drawer-close:hover { background: var(--line); color: var(--ink); }
+  .drawer nav {
+    flex: 1;
+    padding: 14px 0;
+    display: flex; flex-direction: column;
+  }
+  .drawer nav a {
+    padding: 16px 22px;
+    font-size: 16px; font-weight: 600;
+    color: var(--ink);
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between;
+    min-height: 56px;
+  }
+  .drawer nav a::after {
+    content: "→";
+    color: var(--ink-3);
+    font-weight: 400;
+  }
+  .drawer nav a:active { background: var(--bg-2); }
+  .drawer-foot {
+    padding: 20px 22px 28px;
+    border-top: 1px solid var(--line);
+    background: var(--bg-2);
+  }
+  .drawer-foot .btn { width: 100%; min-height: 52px; font-size: 15px; }
+  .drawer-foot .meta {
+    margin-top: 14px;
+    font-size: 12px; color: var(--ink-3);
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  /* Lock body scroll when drawer open */
+  body.drawer-open { overflow: hidden; }
+
+  /* ── STICKY BOTTOM CTA (mobile) ─────────────────── */
+  .sticky-cta {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 80;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid var(--line);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.06);
+  }
+  .sticky-cta.on { transform: translateY(0); }
+  .sticky-cta .btn {
+    width: 100%;
+    min-height: 52px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .sticky-cta .hint {
+    text-align: center;
+    font-size: 11px;
+    color: var(--ink-3);
+    margin-top: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  /* Hide sticky CTA on tablet+ */
+  @media (min-width: 741px) {
+    .sticky-cta { display: none; }
+  }
+
+  /* Account for sticky bottom on mobile — add padding to footer so content isn't hidden */
+  @media (max-width: 740px) {
+    footer.bot { padding-bottom: 100px; }
+  }
+
+  /* Hide topbar M01 button on mobile — sticky CTA replaces it (avoid duplication) */
+  @media (max-width: 740px) {
+    .top-cta .btn.btn-green { display: none; }
+  }
+
+  /* ── TAP TARGET AUDIT ──────────────────────────── */
+  /* Topbar nav: keep at >= 44px tap target on mobile drawer */
+  /* Footer links: increase padding for tap */
+  @media (max-width: 740px) {
+    .ft-col a { padding: 10px 0; font-size: 15px; }
+    .ft-col h5 { font-size: 12px; }
+    .ft-bot .socials a { padding: 8px 0; }
+  }
+
+  /* Persona cards — add subtle hover/active for touch feedback */
+  @media (hover: none) {
+    .persona:active { transform: scale(0.985); transition: transform 0.1s; }
+    .mod-card:active { transform: scale(0.99); transition: transform 0.1s; }
+    .learn-card:active { transform: scale(0.99); transition: transform 0.1s; }
+  }
+</style>
+<!-- V8 — module renames + 5 personas, 2026-05-20 -->
+</head>
+<body>
+
+<!-- ═══════ TOPBAR ═══════ -->
+<header class="top" data-screen-label="Topbar">
+  <div class="container top-in">
+    <a href="https://bivision.ge" class="brand" aria-label="Bivision">
+      <img src="https://bivision.ge/wp-content/uploads/2025/10/Logo-1.svg"
+           alt="Bivision" width="144" height="30" fetchpriority="high"
+           style="height:30px;width:auto;display:block;">
+    </a>
+    <nav class="top-nav" aria-label="მთავარი ნავიგაცია">
+      <a href="#what">რას ისწავლი</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#modules">მოდულები</a>
+      <a href="#whom">ვისთვისაა</a>
+    </nav>
+    <div class="top-cta">
+      <a href="#register" class="btn btn-green">
+        M01 — უფასოდ
+        <span class="arr" aria-hidden="true">→</span>
+      </a>
+      <button class="ham" id="ham-btn" aria-label="მენიუ" aria-expanded="false" aria-controls="drawer">
+        <span class="bar" aria-hidden="true"></span>
+        <span class="bar" aria-hidden="true"></span>
+        <span class="bar" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════ MOBILE DRAWER ═══════ -->
+<div class="drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="მთავარი ნავიგაცია" hidden>
+  <div class="drawer-head">
+    <a href="https://bivision.ge" class="brand" aria-label="Bivision">
+      <img src="https://bivision.ge/wp-content/uploads/2025/10/Logo-1.svg"
+           alt="Bivision" width="120" height="26"
+           style="height:26px;width:auto;display:block;">
+    </a>
+    <button class="drawer-close" id="drawer-close" aria-label="მენიუს დახურვა">×</button>
+  </div>
+  <nav aria-label="ნავიგაცია">
+    <a href="#what">რას ისწავლი</a>
+    <a href="#quiz">Quiz — შენი კურსი</a>
+    <a href="#modules">6 მოდული</a>
+    <a href="#whom">ვისთვისაა</a>
+    <a href="#full-cta">სრული კურსი — 750 ₾</a>
+  </nav>
+  <div class="drawer-foot">
+    <a href="#register" class="btn btn-green" id="drawer-cta">
+      M01 — დაიწყე უფასოდ
+      <span class="arr" aria-hidden="true">→</span>
+    </a>
+    <div class="meta">✓ საკრედიტო ბარათი არ სჭირდება</div>
+  </div>
+</aside>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero" role="region" aria-label="Hero — მთავარი სექცია" data-screen-label="Hero">
+  <!-- blurred AI tool UI mocks in bg -->
+  <div class="hero-bgs" aria-hidden="true">
+    <div class="ai-card ai-1">
+      <div style="display:flex; gap:6px; margin-bottom:14px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:#FF5F57;"></span>
+        <span style="width:8px;height:8px;border-radius:50%;background:#FFBD2E;"></span>
+        <span style="width:8px;height:8px;border-radius:50%;background:#28C940;"></span>
+      </div>
+      <div class="ai-chat-line"></div>
+      <div class="ai-chat-line short"></div>
+      <div class="ai-bubble"><div class="ai-chat-line"></div><div class="ai-chat-line short" style="margin-bottom:0;"></div></div>
+      <div class="ai-chat-line green"></div>
+      <div class="ai-chat-line short"></div>
+    </div>
+    <div class="ai-card ai-2">
+      <div class="ai-chat-line short purple"></div>
+      <div class="ai-bar">
+        <i style="height: 40%;"></i><i style="height: 65%;"></i>
+        <i class="green" style="height: 90%;"></i><i style="height: 55%;"></i>
+        <i style="height: 78%;"></i><i class="green" style="height: 45%;"></i>
+        <i style="height: 88%;"></i>
+      </div>
+      <div style="margin-top: 12px;">
+        <span class="ai-pill">↑ 24.3%</span><span class="ai-pill">CTR</span><span class="ai-pill">ROAS</span>
+      </div>
+    </div>
+    <div class="ai-card ai-3">
+      <div class="ai-chat-line green"></div>
+      <div class="ai-chat-line"></div>
+      <div class="ai-chat-line short"></div>
+      <div style="background:#000;border-radius:8px;padding:12px;margin-top:12px;font-family:monospace;font-size:11px;color:#0F0;">
+        $ claude --automate<br>
+        ✓ workflow ready<br>
+        ✓ 124 tasks queued<br>
+        → executing...
+      </div>
+    </div>
+    <div class="ai-card ai-4">
+      <div class="ai-chat-line purple short"></div>
+      <div class="ai-chat-line"></div>
+      <div class="ai-chat-line"></div>
+      <div class="ai-chat-line short"></div>
+      <div style="display:flex;gap:8px;margin-top:12px;">
+        <span class="ai-pill" style="background:rgba(107,99,181,0.32);">Email</span>
+        <span class="ai-pill" style="background:rgba(107,99,181,0.32);">CRM</span>
+        <span class="ai-pill">Send</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="container hero-inner">
+    <div class="hero-badge">
+      <span class="eyebrow on-dark">
+        <span class="dot" style="background: var(--green);"></span>
+        საქართველოს პირველი AI სასწავლო პლატფორმა
+      </span>
+    </div>
+
+    <h1>
+      <span class="line1">ისწავლე</span>
+      <span class="line2">
+        <span class="green-hl">AI ავტომატიზაცია<svg aria-hidden="true" focusable="false" viewBox="0 0 400 18" preserveAspectRatio="none"><path d="M4 10 Q 100 2, 200 8 T 396 9"></path></svg></span>
+      </span>
+      <span class="line3">შენი ბიზნესისთვის.</span>
+    </h1>
+
+    <div class="typer" id="typer">
+      <span id="typer-text">Marketing Automation-დან AI Agent-მდე</span><span class="cursor"></span>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="#register" class="btn btn-green">
+        დაიწყე M01 უფასოდ
+        <span class="arr" aria-hidden="true">→</span>
+      </a>
+      <a href="#modules" class="btn btn-ghost-light">
+        ნახე სრული კურსი
+      </a>
+    </div>
+
+    <div class="hero-marketing">
+      <span class="label">// ეკოსისტემა</span>
+      <div class="logos">
+        <span class="ai-logo">Claude</span>
+        <span class="ai-logo">ChatGPT</span>
+        <span class="ai-logo">Gemini</span>
+        <span class="ai-logo">HubSpot</span>
+        <span class="ai-logo">Mailchimp</span>
+        <span class="ai-logo">Notion</span>
+        <span class="ai-logo">Zapier</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ KPI STRIP ═══════ -->
+<section class="kpi" role="region" aria-label="სტატისტიკა" data-screen-label="KPI Strip">
+  <div class="container">
+    <div class="kpi-grid">
+      <div class="kpi-item">
+        <div class="num">6</div>
+        <div class="lbl">მოდული</div>
+      </div>
+      <div class="kpi-item">
+        <div class="num"><span class="accent">M01</span></div>
+        <div class="lbl">სამუდამოდ უფასო</div>
+      </div>
+      <div class="kpi-item">
+        <div class="num">750<span class="accent" style="font-size:0.6em;"> ₾</span></div>
+        <div class="lbl">სრული კურსი · Lifetime</div>
+      </div>
+      <div class="kpi-item">
+        <div class="num">100<span class="accent-p">%</span></div>
+        <div class="lbl">პრაქტიკული</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ WHAT YOU LEARN ═══════ -->
+<section class="block" role="region" aria-labelledby="h2-what" id="what" data-screen-label="What You Learn">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span class="dot"></span>რას ისწავლი</span>
+      <h2 id="h2-what">ნაკლები თეორია, რეალური <em>AI &amp; პრაქტიკა</em></h2>
+      <p>თითოეული მოდული ეფუძნება ცოცხალ ბიზნეს ქეისს — Email კამპანიიდან AI Agent-ის გაშვებამდე. არ ვასწავლით ცნებებს — ვაშენებთ ხელსაწყოებს, რომლებიც ხვალიდან მუშაობს.</p>
+    </div>
+
+    <div class="learn-grid">
+      <div class="learn-card">
+        <div class="ic">
+          <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"></path></svg>
+        </div>
+        <h3>Marketing Automation</h3>
+        <p>Email კამპანიები, სოც. ქსელის posts, CRM-ის ავტომატიზაცია — AI-ის გვერდით.</p>
+        <div class="meta"><span class="mod">M02</span> · 6 ვიდეო · 2 პროექტი</div>
+      </div>
+      <div class="learn-card">
+        <div class="ic">
+          <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 9h6v6H9z"></path></svg>
+        </div>
+        <h3>ბიზნეს ოპერაციები</h3>
+        <p>1C, Google Sheets, ERP — პირდაპირ AI-სთან. ანგარიშები, რომელიც თვითონ ეწერება.</p>
+        <div class="meta"><span class="mod">M04</span> · 5 ვიდეო · 3 connector</div>
+      </div>
+      <div class="learn-card g">
+        <div class="ic">
+          <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+        </div>
+        <h3>AI-ით შენება<span class="sub">Vibe Coding</span></h3>
+        <p>AI-ით აპლიკაცია ან შიდა ხელსაწყო — დეველოპერის გარეშე, კოდის ცოდნის გარეშე.</p>
+        <div class="meta"><span class="mod">M03</span> · 8 ვიდეო · ცოცხალი demo</div>
+      </div>
+      <div class="learn-card">
+        <div class="ic">
+          <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </div>
+        <h3>AI Agent</h3>
+        <p>ავტონომიური AI — სამუშაო თვითონ მიმდინარეობს ფონში, შენ მონიტორინგ-ში ხარ.</p>
+        <div class="meta"><span class="mod">M05</span> · 7 ვიდეო · live workflow</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ QUIZ ═══════ -->
+<section class="block quiz" role="region" aria-labelledby="h2-quiz" id="quiz" data-screen-label="Quiz">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span class="dot"></span>პერსონალიზაცია · 30 წამი</span>
+      <h2 id="h2-quiz">ვნახოთ <em>შენი</em> კურსი</h2>
+      <p>ორი კითხვა — ვაჩვენებთ რომელი მოდულები გამოგადგება ყველაზე მეტად. Reset შესაძლებელია ნებისმიერ დროს.</p>
+    </div>
+
+    <div class="quiz-box">
+      <div class="quiz-step">
+        <h3><span class="num">1</span>შენი როლი?</h3>
+        <div class="opts" id="q1">
+          <button class="opt" data-val="manager"><span class="emo">👔</span>მენეჯერი</button>
+          <button class="opt" data-val="marketer"><span class="emo">📣</span>Marketing / Sales</button>
+          <button class="opt" data-val="analyst"><span class="emo">📊</span>ანალიტიკოსი / CFO</button>
+          <button class="opt" data-val="founder"><span class="emo">🚀</span>მეწარმე / Founder</button>
+        </div>
+      </div>
+
+      <div class="quiz-step">
+        <h3><span class="num">2</span>მთავარი მიზანი?</h3>
+        <div class="opts" id="q2">
+          <button class="opt" data-val="marketing"><span class="emo">📣</span>Marketing Auto</button>
+          <button class="opt" data-val="ops"><span class="emo">⚙️</span>ბიზნეს ოპერაციები</button>
+          <button class="opt" data-val="product"><span class="emo">🚀</span>AI პროდუქტი</button>
+          <button class="opt" data-val="data"><span class="emo">📊</span>Data &amp; Analytics</button>
+        </div>
+      </div>
+
+      <div class="quiz-actions">
+        <button class="btn btn-purple" id="quiz-submit">
+          ვნახოთ შენი კურსი
+          <span class="arr" aria-hidden="true">→</span>
+        </button>
+        <span style="font-size:13px;color:var(--ink-3);">↓ მოდულები ქვემოთ აღინიშნება</span>
+      </div>
+
+      <div class="quiz-result" id="quiz-result">
+        <span class="pathlbl">შენი კურსი:</span>
+        <span id="quiz-path"></span>
+        <button class="reset" id="quiz-reset">ყველა მოდულის ნახვა ↩</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ MODULES ═══════ -->
+<section class="block" role="region" aria-labelledby="h2-modules" id="modules" data-screen-label="Modules">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span class="dot"></span>6 მოდული · სრული გზა</span>
+      <h2 id="h2-modules">დაიწყე უფასოდ. გააგრძელე <em class="g">750 ₾-ად</em>. წვდომა სამუდამოდ.</h2>
+      <p>M01 ყოველთვის უფასოა. M02-M06 ერთჯერადი 750 ₾ — სრული წვდომა, lifetime updates, ქართული ცოცხალი მენტორობა.</p>
+    </div>
+
+    <div class="mods-grid" id="mods">
+      <article class="mod-card free" data-mod="1" itemscope itemtype="https://schema.org/Course">
+        <span class="free-badge">უფასოდ</span>
+        <div class="num">M01</div>
+        <h3><span itemprop="name">Claude Cowork for Business</span></h3>
+        <p itemprop="description">AI-ის მეხსიერება, წესები, შაბლონები. პირველი რეალური სამუშაო სესია Claude-თან, როგორც ბიზნეს პარტნიორთან.</p>
+        <div class="foot">
+          <span class="price"><span class="gel">0 ₾</span> · სამუდამოდ</span>
+          <a href="#register" class="link">დაიწყე <span>→</span></a>
+        </div>
+      </article>
+
+      <article class="mod-card locked" data-mod="2" itemscope itemtype="https://schema.org/Course">
+        <span class="lock-tag"><svg aria-hidden="true" focusable="false" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>ჩაკეტილი</span>
+        <div class="num">M02</div>
+        <h3><span itemprop="name">Marketing Automation</span></h3>
+        <p>Email კამპანიები, სოც. მედია, CRM ავტომატიზაცია — AI-ის გვერდით. რეალური საქართველოს კონტექსტი.</p>
+        <div class="foot">
+          <span class="price">სრულ კურსში</span>
+          <a href="#full-cta" class="link">ნახე →</a>
+        </div>
+      </article>
+
+      <article class="mod-card locked" data-mod="3" itemscope itemtype="https://schema.org/Course">
+        <span class="lock-tag"><svg aria-hidden="true" focusable="false" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>ჩაკეტილი</span>
+        <div class="num">M03</div>
+        <h3><span itemprop="name">AI-ით შენება</span><span class="sub">Vibe Coding</span></h3>
+        <p itemprop="description">AI-ით აპლიკაცია ან შიდა ხელსაწყო — დეველოპერის გარეშე. შენი იდეა → მუშა პროდუქტი.</p>
+        <div class="foot">
+          <span class="price">სრულ კურსში</span>
+          <a href="#full-cta" class="link">ნახე →</a>
+        </div>
+      </article>
+
+      <article class="mod-card locked" data-mod="4" itemscope itemtype="https://schema.org/Course">
+        <span class="lock-tag"><svg aria-hidden="true" focusable="false" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>ჩაკეტილი</span>
+        <div class="num">M04</div>
+        <h3><span itemprop="name">სისტემების AI კავშირი</span><span class="sub">MCP Data Connectors</span></h3>
+        <p itemprop="description">Google Sheets, 1C, ERP — პირდაპირ AI-ისთვის. შენი მონაცემები ჭკვიანი, რეალურ დროში.</p>
+        <div class="foot">
+          <span class="price">სრულ კურსში</span>
+          <a href="#full-cta" class="link">ნახე →</a>
+        </div>
+      </article>
+
+      <article class="mod-card locked" data-mod="5" itemscope itemtype="https://schema.org/Course">
+        <span class="lock-tag"><svg aria-hidden="true" focusable="false" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>ჩაკეტილი</span>
+        <div class="num">M05</div>
+        <h3><span itemprop="name">პირველი AI Agent</span></h3>
+        <p itemprop="description">ავტონომიური AI — workflow-ების ავტომატიზაცია. სამუშაო თვითონ მიდის, შენ აკონტროლებ.</p>
+        <div class="foot">
+          <span class="price">სრულ კურსში</span>
+          <a href="#full-cta" class="link">ნახე →</a>
+        </div>
+      </article>
+
+      <article class="mod-card locked" data-mod="6" itemscope itemtype="https://schema.org/Course">
+        <span class="lock-tag"><svg aria-hidden="true" focusable="false" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>ჩაკეტილი</span>
+        <div class="num">M06</div>
+        <h3><span itemprop="name">AI-ით მართული პროცესები</span><span class="sub">Cloud AI Routines</span></h3>
+        <p>Cloud-ზე გაშვებული ყოველდღიური AI სამუშაოები. ღამის ანგარიშები, ავტო-რეპორტი, scheduling.</p>
+        <div class="foot">
+          <span class="price">სრულ კურსში</span>
+          <a href="#full-cta" class="link">ნახე →</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="mods-foot">
+      <strong>M02–M06 სრული პაკეტი</strong> · ერთჯერადი <span class="gprice">750 ₾</span> · Lifetime წვდომა · ცოცხალი მენტორობა
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FOR WHOM ═══════ -->
+<section class="block whom" role="region" aria-labelledby="h2-whom" id="whom" data-screen-label="For Whom">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span class="dot"></span>ვისთვისაა</span>
+      <h2 id="h2-whom">ბიზნეს პროფესიონალები, ვინც <em>შედეგს</em> ითხოვს</h2>
+      <p>არ ხარ დეველოპერი. არ ხარ სტუდენტი. ხარ ის, ვინც ბიზნესს მართავს, ყიდის ან აანალიზებს — და ხედავ რომ AI უკვე შენს გვერდით მუშაობს.</p>
+    </div>
+
+    <div class="whom-grid">
+      <div class="persona feat">
+        <div class="emo">🏢</div>
+        <h3>ბიზნეს Owner / მეწარმე</h3>
+        <p class="pain">ყველაფერს თავად ვაკეთებ — ადმინი, გაყიდვები, ფინანსი.</p>
+        <p class="outcome">AI-მ რუტინის 70% მიითვისა. მე — მხოლოდ გადაწყვეტილებები.</p>
+      </div>
+
+      <div class="persona">
+        <div class="emo">📣</div>
+        <h3>მარკეტოლოგი</h3>
+        <p class="pain">კონტენტი, ads, ანგარიში — 1 ადამიანზე, ყოველდღე.</p>
+        <p class="outcome">კამპანია ნახევარ დროში. AI წერს, ანალიზს უკეთებს, optimizes.</p>
+      </div>
+
+      <div class="persona">
+        <div class="emo">🤝</div>
+        <h3>გაყიდვები / Sales</h3>
+        <p class="pain">CRM, follow-up, proposal — ყველა manually. ლიდები ისპობა.</p>
+        <p class="outcome">AI follow-up, draft proposal, pipeline tracking. არაფერი ვარდება.</p>
+      </div>
+
+      <div class="persona">
+        <div class="emo">⚙️</div>
+        <h3>ოპერაციები / ადმინი</h3>
+        <p class="pain">Excel, email, coordination — 4 საათი/დღე ისეთ სამუშაოზე, რაც AI-ს შეუძლია.</p>
+        <p class="outcome">4 სთ → 40 წუთი. ოპერაციული overhead გაქრა.</p>
+      </div>
+
+      <div class="persona">
+        <div class="emo">💼</div>
+        <h3>ფრილანსერი / კონსულტანტი</h3>
+        <p class="pain">კლიენტი, deliverable, ინვოისი, pitch — მარტო ვარ, ყველაფერი ერთდროულად.</p>
+        <p class="outcome">AI = virtual ასისტენტი. კლიენტებს მეტი ყურადღება, ადმინს — ნაკლები.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ REGISTRATION ═══════ -->
+<section class="block register" role="region" aria-labelledby="h2-register" id="register" data-screen-label="Registration">
+  <div class="container">
+    <div class="reg-inner">
+      <span class="eyebrow on-dark"><span class="dot" style="background: var(--green);"></span>M01 · უფასოდ · სამუდამოდ</span>
+      <h2 id="h2-register">დაიწყე <em>დღესვე</em>.<br>Claude Cowork for Business.</h2>
+      <p>დაარეგისტრირე ელ-ფოსტა. გავუგზავნით პირველ მოდულს — 6 ვიდეო, შაბლონები, პირველი სამუშაო სესია AI-თან.</p>
+
+      <form class="reg-form" onsubmit="return false;" id="reg-form">
+        <label for="reg-email" class="sr-only">ელ-ფოსტა</label>
+        <input type="email" id="reg-email" placeholder="შენი ელ-ფოსტა" aria-label="ელ-ფოსტა" autocomplete="email" required="">
+        <button type="submit" class="btn btn-green">
+          დაიწყე უფასოდ
+          <span class="arr" aria-hidden="true">→</span>
+        </button>
+      </form>
+
+      <div class="reg-note">
+        <span class="check">✓</span>
+        საკრედიტო ბარათი არ სჭირდება · წვდომა მყისიერი
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FULL CTA ═══════ -->
+<section class="full-cta" role="region" aria-labelledby="h2-fullcta" id="full-cta" data-screen-label="Full Course CTA">
+  <div class="container">
+    <div class="fcta-grid fcta">
+      <div>
+        <span class="fcta-tag">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--green);"></span>
+          M02–M06 · სრული პროგრამა
+        </span>
+        <h2 id="h2-fullcta">გააგრძელე — <em>750 ₾-ად</em>, სამუდამოდ შენი.</h2>
+        <p>ხუთი მოდული, რომელიც M01-ის შემდეგ მოდის — Marketing Automation, AI-ით შენება, სისტემების AI კავშირი, პირველი AI Agent, AI-ით მართული პროცესები. ერთჯერადი გადახდა, lifetime წვდომა.</p>
+        <a href="#" class="btn btn-white">
+          იყიდე სრული კურსი
+          <span class="arr" aria-hidden="true">→</span>
+        </a>
+      </div>
+      <div class="fcta-side">
+        <span class="price strike">ცალ-ცალკე 1,250 ₾</span>
+        <div class="price">750<span class="gel"> ₾</span></div>
+        <div class="sub">ერთჯერადი · Lifetime · M01 უფასოდ რჩება</div>
+        <ul class="fcta-list">
+          <li>5 სრული მოდული · 35+ ვიდეო</li>
+          <li>10+ რეალური პროექტი</li>
+          <li>Lifetime updates</li>
+          <li>ცოცხალი მენტორის წვდომა</li>
+          <li>კურსდამთავრების სერტიფიკატი</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ STICKY BOTTOM CTA (mobile only) ═══════ -->
+<div class="sticky-cta" id="sticky-cta" aria-hidden="true">
+  <a href="#register" class="btn btn-green" id="sticky-cta-btn">
+    M01 — დაიწყე უფასოდ
+    <span class="arr" aria-hidden="true">→</span>
+  </a>
+  <div class="hint">✓ ბარათი არ სჭირდება · წვდომა მყისიერი</div>
+</div>
+
+<script>
+  // ── HAMBURGER + DRAWER ──────────────────────────
+  (function() {
+    const ham = document.getElementById('ham-btn');
+    const drawer = document.getElementById('drawer');
+    const backdrop = document.getElementById('drawer-backdrop');
+    const closeBtn = document.getElementById('drawer-close');
+    if (!ham || !drawer || !backdrop) return;
+
+    const open = () => {
+      drawer.hidden = false;
+      // RAF to allow display change before transition
+      requestAnimationFrame(() => {
+        drawer.classList.add('on');
+        backdrop.classList.add('on');
+      });
+      ham.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('drawer-open');
+    };
+    const close = () => {
+      drawer.classList.remove('on');
+      backdrop.classList.remove('on');
+      ham.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('drawer-open');
+      setTimeout(() => { drawer.hidden = true; }, 300);
+    };
+
+    ham.addEventListener('click', () => {
+      const isOpen = ham.getAttribute('aria-expanded') === 'true';
+      isOpen ? close() : open();
+    });
+    backdrop.addEventListener('click', close);
+    closeBtn.addEventListener('click', close);
+
+    // Close on nav link tap (after delay so the smooth scroll has the right target)
+    drawer.querySelectorAll('nav a, #drawer-cta').forEach(a => {
+      a.addEventListener('click', () => setTimeout(close, 100));
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && ham.getAttribute('aria-expanded') === 'true') close();
+    });
+
+    // Close if viewport grows past breakpoint while open
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 981 && ham.getAttribute('aria-expanded') === 'true') close();
+    });
+  })();
+
+  // ── STICKY BOTTOM CTA ───────────────────────────
+  // Shows after user scrolls past hero, hides when inside #register or near footer
+  (function() {
+    const cta = document.getElementById('sticky-cta');
+    if (!cta) return;
+
+    const hero = document.querySelector('section.hero');
+    const register = document.getElementById('register');
+    const footer = document.querySelector('footer.bot');
+
+    if (window.innerWidth >= 741) return; // mobile only
+
+    let showing = false;
+    const update = () => {
+      const scroll = window.scrollY;
+      const heroBot = hero ? hero.offsetTop + hero.offsetHeight - 100 : 400;
+
+      // hide while register section is in/near viewport
+      const regTop = register ? register.offsetTop - 200 : Infinity;
+      const regBot = register ? register.offsetTop + register.offsetHeight : Infinity;
+      const ftTop = footer ? footer.offsetTop - 100 : Infinity;
+
+      const inRegister = scroll + window.innerHeight > regTop && scroll < regBot;
+      const inFooter = scroll + window.innerHeight > ftTop;
+      const pastHero = scroll > heroBot;
+
+      const shouldShow = pastHero && !inRegister && !inFooter;
+      if (shouldShow !== showing) {
+        showing = shouldShow;
+        cta.classList.toggle('on', shouldShow);
+        cta.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
+      }
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+</script>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="bot" data-screen-label="Footer">
+  <div class="container">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="https://bivision.ge" class="brand" aria-label="Bivision">
+          <img src="https://bivision.ge/wp-content/uploads/2025/10/Logo-1.svg"
+               alt="Bivision" width="144" height="30"
+               style="height:28px;width:auto;display:block;filter:brightness(0) invert(1);">
+        </a>
+        <p>საქართველოს პირველი პრაქტიკული AI სასწავლო პლატფორმა. ვაშენებთ ბიზნეს პროფესიონალებს, ვინც AI-ით უკეთ მუშაობს.</p>
+      </div>
+      <div class="ft-col">
+        <h5>Bivision</h5>
+        <a href="#">მთავარი</a>
+        <a href="#">Academy</a>
+        <a href="#">Cowork</a>
+        <a href="#">AI Lab</a>
+      </div>
+      <div class="ft-col">
+        <h5>Academy</h5>
+        <a href="#modules">მოდულები</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#register">M01 უფასოდ</a>
+        <a href="#whom">ვისთვისაა</a>
+      </div>
+      <div class="ft-col">
+        <h5>კონტაქტი</h5>
+        <a href="/cdn-cgi/l/email-protection#aec7c0c8c1eeccc7d8c7ddc7c1c080c9cb"><span class="__cf_email__" data-cfemail="bad3d4dcd5fad8d3ccd3c9d3d5d494dddf">[email&#160;protected]</span></a>
+        <a href="#">დაგვირეკე</a>
+        <a href="#">პოლიტიკა</a>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>© 2026 Bivision LLC. ყველა უფლება დაცულია.</span>
+      <div class="socials">
+        <a href="https://www.linkedin.com/company/bivision-ge/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.facebook.com/bivision.ge" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.youtube.com/@bivision" target="_blank" rel="noopener">YouTube</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ── TYPEWRITER ──────────────────────────────────────
+  (function() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const phrases = [
+      "Marketing Automation-დან AI Agent-მდე",
+      "Email კამპანიები ავტომატურად",
+      "Excel-ის ანგარიში, რომელიც თვითონ ეწერება",
+      "შენი პირველი AI Agent — დღეს",
+      "კოდის გარეშე. შედეგი მიმდინარე კვირაში."
+    ];
+    const el = document.getElementById('typer-text');
+    if (!el) return;
+    let i = 0;
+    const cycle = () => {
+      i = (i + 1) % phrases.length;
+      el.style.opacity = '0';
+      el.style.transition = 'opacity 0.3s';
+      setTimeout(() => {
+        const next = phrases[i];
+        el.textContent = '';
+        el.style.opacity = '1';
+        let c = 0;
+        const tick = () => {
+          el.textContent = next.slice(0, c);
+          if (c < next.length) {
+            c++; setTimeout(tick, 28);
+          }
+        };
+        tick();
+      }, 300);
+    };
+    setTimeout(() => setInterval(cycle, 4200), 2600);
+  })();
+
+  // ── QUIZ ────────────────────────────────────────────
+  (function() {
+    const matrix = {
+      manager:  { marketing: [1,2,5], ops: [1,2,4], product: [1,3,5], data: [1,2,4] },
+      marketer: { marketing: [1,2,5,6], ops: [1,2,5], product: [1,3,5], data: [1,2,4] },
+      analyst:  { marketing: [1,2,5], ops: [1,2,4], product: [1,4,6], data: [1,4,6] },
+      founder:  { marketing: [1,2,5], ops: [1,2,5], product: [1,3,5], data: [1,3,4] },
+    };
+    const roleNames = {
+      manager: "მენეჯერი", marketer: "Marketing", analyst: "ანალიტიკოსი", founder: "Founder"
+    };
+    const goalNames = {
+      marketing: "Marketing Auto", ops: "ოპერაციები", product: "AI პროდუქტი", data: "Data"
+    };
+
+    let role = null, goal = null;
+    const wireGroup = (id, setter) => {
+      document.querySelectorAll(`#${id} .opt`).forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll(`#${id} .opt`).forEach(b => b.classList.remove('on'));
+          btn.classList.add('on');
+          setter(btn.dataset.val);
+        });
+      });
+    };
+    wireGroup('q1', v => role = v);
+    wireGroup('q2', v => goal = v);
+
+    document.getElementById('quiz-submit').addEventListener('click', () => {
+      if (!role || !goal) {
+        const msg = document.getElementById('quiz-result');
+        msg.classList.add('on');
+        msg.innerHTML = '<span class="pathlbl" style="color:var(--purple);font-weight:600;">აირჩიე ორივე კითხვაზე პასუხი ↑</span>';
+        return;
+      }
+      const mods = matrix[role][goal];
+      const path = mods.map(n => `M0${n}`).join(' → ');
+
+      document.querySelectorAll('.mod-card').forEach(c => {
+        c.classList.remove('match', 'dim');
+        if (mods.includes(parseInt(c.dataset.mod))) c.classList.add('match');
+        else c.classList.add('dim');
+      });
+
+      const r = document.getElementById('quiz-result');
+      r.classList.add('on');
+      r.innerHTML = `
+        <span class="pathlbl">შენი კურსი (${roleNames[role]} × ${goalNames[goal]}):</span>
+        <span class="recmod">${path}</span>
+        <button class="reset" id="quiz-reset">ყველა მოდულის ნახვა ↩</button>
+      `;
+      document.getElementById('quiz-reset').addEventListener('click', resetQuiz);
+
+      setTimeout(() => {
+        document.getElementById('modules').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 200);
+    });
+
+    function resetQuiz() {
+      document.querySelectorAll('.mod-card').forEach(c => c.classList.remove('match', 'dim'));
+      document.querySelectorAll('#q1 .opt, #q2 .opt').forEach(b => b.classList.remove('on'));
+      role = null; goal = null;
+      const r = document.getElementById('quiz-result');
+      r.classList.remove('on');
+      r.innerHTML = '';
+    }
+  })();
+
+  // ── A11Y: mirror .on class to aria-checked on quiz options ──
+  (function() {
+    document.querySelectorAll('.opt').forEach(function(btn) {
+      btn.setAttribute('role', 'radio');
+      btn.setAttribute('aria-checked', 'false');
+    });
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('.opt');
+      if (!btn) return;
+      var group = btn.closest('.opts');
+      if (!group) return;
+      group.querySelectorAll('.opt').forEach(function(b) {
+        b.setAttribute('aria-checked', 'false');
+      });
+      btn.setAttribute('aria-checked', 'true');
+    });
+  })();
+
+  // ── REGISTER (no backend) ──────────────────────────
+  document.getElementById('reg-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const input = this.querySelector('input');
+    const btn = this.querySelector('button');
+    if (!input.value) return;
+    btn.textContent = '✓ რეგისტრაცია მიღებულია';
+    btn.style.background = 'var(--green-soft)';
+    input.disabled = true;
+    setTimeout(() => {
+      btn.innerHTML = 'დაიწყე უფასოდ <span class="arr" aria-hidden="true">→</span>';
+      btn.style.background = '';
+      input.disabled = false;
+      input.value = '';
+    }, 3000);
+  });
+</script>
+
+</body></html>
