@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Direct CF Dashboard — Healthcare Group | by Gurafa</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{--purple:#6B63B5;--purple-dark:#4A4499;--green:#00A651;--red:#DC3545;--yellow:#FFC107;--bg:#F4F5F8;--text:#1A1D29;--muted:#6B7280;--card:#fff;--border:#E5E7EB}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:14px}
+.container{max-width:1400px;margin:0 auto;padding:0 20px}
+.header{background:linear-gradient(135deg,#6B63B5 0%,#4A4499 100%);color:#fff;padding:22px 0;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.header h1{font-size:1.45rem;margin-bottom:4px;font-weight:600}
+.header .meta{opacity:.85;font-size:.85rem}
+.banner-crit{background:#DC3545;color:#fff;padding:14px 0;text-align:center;font-weight:600;font-size:.95rem;box-shadow:inset 0 -3px 0 rgba(0,0,0,.15)}
+.banner-info{background:#fff8e1;color:#8a6d00;padding:10px 0;text-align:center;font-size:.85rem;border-bottom:1px solid var(--border)}
+.layout{display:grid;grid-template-columns:200px 1fr;gap:28px;padding:28px 0}
+.sidebar{position:sticky;top:14px;align-self:start}
+.sidebar a{display:block;padding:9px 12px;margin-bottom:3px;border-radius:6px;color:var(--text);text-decoration:none;font-size:.88rem;border-left:3px solid transparent;transition:all .15s}
+.sidebar a:hover{background:#fff;border-left-color:var(--purple);color:var(--purple-dark)}
+.section{margin-bottom:42px;scroll-margin-top:14px}
+.section h2{font-size:1.25rem;margin-bottom:16px;color:var(--purple-dark);padding-bottom:8px;border-bottom:2px solid var(--purple);font-weight:600}
+.section h3{font-size:.95rem;margin:18px 0 10px;color:var(--text);font-weight:600}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:20px}
+.kpi{background:var(--card);padding:14px 16px;border-radius:8px;border-left:4px solid var(--purple);box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.kpi.g{border-left-color:var(--green)}
+.kpi.y{border-left-color:var(--yellow)}
+.kpi.r{border-left-color:var(--red)}
+.kpi-lbl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+.kpi-val{font-size:1.45rem;font-weight:700;margin:4px 0;line-height:1.1}
+.kpi-delta{font-size:.78rem}
+.kpi-delta.pos{color:var(--green)}
+.kpi-delta.neg{color:var(--red)}
+.kpi-sub{font-size:.7rem;color:var(--muted);margin-top:2px}
+.card{background:#fff;padding:18px;border-radius:8px;box-shadow:0 1px 2px rgba(0,0,0,.04);margin-bottom:14px}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.chart-wrap{position:relative;height:280px}
+.chart-wrap.tall{height:340px}
+.gauge{position:relative;height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.gauge-val{font-size:2.2rem;font-weight:700;color:var(--purple-dark)}
+.gauge-lbl{font-size:.78rem;color:var(--muted);text-transform:uppercase}
+.gauge-bar{width:100%;height:8px;background:#eee;border-radius:4px;margin-top:10px;overflow:hidden}
+.gauge-bar-fill{height:100%;background:linear-gradient(90deg,var(--green) 0%,var(--yellow) 50%,var(--red) 100%)}
+.gauge-bar-mark{position:absolute;width:3px;height:14px;background:var(--text);top:-3px;transform:translateX(-50%)}
+.heat{display:grid;grid-template-columns:130px repeat(17,minmax(36px,1fr));gap:1px;background:#ddd;font-size:.65rem;border-radius:6px;overflow:hidden}
+.heat .h{background:var(--purple-dark);color:#fff;padding:5px 4px;text-align:center;font-weight:600}
+.heat .lbl{background:#f0f0f3;padding:5px 8px;font-weight:500;text-align:left}
+.heat .c{background:#fff;padding:5px 4px;text-align:center}
+.tl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.tl{background:#fff;padding:14px;border-radius:8px;text-align:center;border-top:6px solid #ddd}
+.tl.g{border-top-color:var(--green)}
+.tl.y{border-top-color:var(--yellow)}
+.tl.r{border-top-color:var(--red)}
+.tl-l{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+.tl-v{font-size:1.4rem;font-weight:700;margin:6px 0}
+.tl-rng{font-size:.7rem;color:var(--muted)}
+.anom{background:#fff;border-radius:8px;overflow:hidden}
+.anom-i{padding:11px 14px;border-left:4px solid #ddd;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center}
+.anom-i.red{border-left-color:var(--red);background:#fff5f5}
+.anom-i.yellow{border-left-color:var(--yellow);background:#fffbef}
+.anom-i:last-child{border-bottom:none}
+.anom-t{font-weight:600;font-size:.88rem}
+.anom-m{font-size:.78rem;color:var(--muted)}
+.bench{background:#f0f4ff;padding:8px 12px;border-radius:6px;font-size:.78rem;color:var(--purple-dark);margin-top:8px}
+.method{background:#f8f9fb;padding:14px 18px;border-radius:8px;border:1px dashed var(--border);font-size:.82rem;color:var(--muted);margin-top:14px}
+.method b{color:var(--text)}
+.footer{padding:24px 0;color:var(--muted);font-size:.82rem;text-align:center;border-top:1px solid var(--border);margin-top:42px}
+.tag{display:inline-block;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:600;text-transform:uppercase}
+.tag.eph{background:#fff5e6;color:#996600}
+.tag.gur{background:#e7e5f6;color:var(--purple-dark)}
+@media (max-width:900px){.layout{grid-template-columns:1fr}.row-2,.row-3{grid-template-columns:1fr}.heat{font-size:.55rem}}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="container">
+    <h1>Direct Cash Flow Dashboard — Healthcare Group</h1>
+    <div class="meta">17 თვე · Jan-25 → May-26 · <span class="tag gur">by Gurafa</span> <span class="tag eph">⏳ EPHEMERAL — owner-confirm-required</span></div>
+  </div>
+</div>
+<div class="banner-crit">⚠️ May-26 CRITICAL — Cash 375,243 GEL · DCOH 7.7 დღე · Salary/Revenue 102.2% · Net OCF −211,782</div>
+<div class="banner-info">⚠️ Source: HTML-as-XLS ექსპორტი ERP-დან · ბოლო თვე (Jun-26) ცარიელია · Working capital cushion 0.3 თვე · UHC concentration 36.2% (state-program risk)</div>
+
+<div class="container">
+<div class="layout">
+<nav class="sidebar">
+  <a href="#l1">🎯 Executive Cockpit</a>
+  <a href="#l2">📊 Operating Deep-Dive</a>
+  <a href="#l3">🏥 Healthcare KPIs</a>
+  <a href="#l4">⚠️ Risk + Early Warning</a>
+  <a href="#l5">🔮 Forecast 3M</a>
+  <a href="#l6">📋 Methodology</a>
+</nav>
+<main>
+
+<section id="l1" class="section">
+  <h2>დონე 1 — Executive Cockpit</h2>
+  <div class="kpi-grid" id="kpiGrid"></div>
+  <div class="row-2">
+    <div class="card"><h3>Cash Position Trend (17M actual + 3M forecast)</h3><div class="chart-wrap"><canvas id="chCash"></canvas></div></div>
+    <div class="card"><h3>Cash Flow Components — Net OCF / Inv / Fin per Month</h3><div class="chart-wrap"><canvas id="chComponents"></canvas></div></div>
+  </div>
+</section>
+
+<section id="l2" class="section">
+  <h2>დონე 2 — Operating Cash Flow Deep-Dive</h2>
+  <h3>A. Revenue Source Analysis</h3>
+  <div class="row-2">
+    <div class="card"><h3>Cash Sources Stacked (UHC · Free Flow · Insurance · Municipal · Other)</h3><div class="chart-wrap tall"><canvas id="chSources"></canvas></div></div>
+    <div class="card"><h3>Payer Mix — 17M Average</h3><div class="chart-wrap"><canvas id="chMix"></canvas></div>
+      <div class="bench">HHI: <b>3546</b> (>2500 = highly concentrated) · PMQS: <b>0.72</b> / 1.0 · Free-flow dominant ✓ მაგრამ UHC dependency 36.2% = state-payment risk</div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Source Volatility (CV%) — რომელი წყარო რამდენად არასტაბილურია</h3>
+    <div class="chart-wrap"><canvas id="chCV"></canvas></div>
+    <div class="bench">UHC CV 67% — სახელმწიფო გადახდები არასტაბილური · "Other" CV 111% — დიდი outlier-ები (Apr-25=794K, Dec-25=513K, Apr-26=447K)</div>
+  </div>
+
+  <h3>B. Expense Anatomy</h3>
+  <div class="row-2">
+    <div class="card"><h3>Top-5 Expense Trend (Salaries dominate)</h3><div class="chart-wrap tall"><canvas id="chExp"></canvas></div></div>
+    <div class="card"><h3>Fixed vs Variable Expense Mix</h3><div class="chart-wrap"><canvas id="chFV"></canvas></div>
+      <div class="bench">Fixed 83.8% (Salaries+Rent+Utilities+IT+Repair+Services+Taxes+Supplies) · Variable 16.2% · Expense Coverage Ratio = 61.9% შემოსავლის (fixed-only)</div>
+    </div>
+  </div>
+</section>
+
+<section id="l3" class="section">
+  <h2>დონე 3 — Healthcare-Specific KPIs</h2>
+  <div class="row-3">
+    <div class="card"><h3>Payer Mix Quality Score</h3>
+      <div class="gauge"><div class="gauge-val">0.72</div><div class="gauge-lbl">PMQS / 1.0</div>
+        <div style="width:100%;position:relative;margin-top:14px"><div class="gauge-bar"><div class="gauge-bar-fill" style="width:100%"></div></div><div class="gauge-bar-mark" style="left:72%"></div></div>
+      </div>
+      <div class="bench">Free-flow + Insurance weighted high; UHC + Municipal weighted low — სტრუქტურა ჯანმრთელია, მაგრამ <0.85 = improvement opportunity</div>
+    </div>
+    <div class="card"><h3>Drug Cost / Revenue (5-15% benchmark)</h3>
+      <div class="chart-wrap"><canvas id="chDrug"></canvas></div>
+      <div class="bench">Avg <b>7.6%</b> — ბენჩმარკის შუა ნაწილში ✓</div>
+    </div>
+    <div class="card"><h3>Salary / Revenue (target &lt;60%)</h3>
+      <div class="chart-wrap"><canvas id="chSR"></canvas></div>
+      <div class="bench">17-თვიური avg 59.1% · May-26 = <b>102.2%</b> (RED — შემოსავლის-ხელფასი ცდომილება)</div>
+    </div>
+  </div>
+  <div class="row-2">
+    <div class="card"><h3>State Payment Delay Pattern — UHC monthly + bounce</h3>
+      <div class="chart-wrap"><canvas id="chUHC"></canvas></div>
+      <div class="bench">Pattern: ნულოვანი თვე → შემდეგი თვის spike (Nov-25=0 → Dec-25=1.37M; Feb-26=0 → Mar-26=1.74M). სახელმწიფო ფული "მიდი-მოდი" 60-90 დღიანი ციკლით</div>
+    </div>
+    <div class="card"><h3>Working Capital Cushion (Cash / Avg Fixed Cost)</h3>
+      <div class="gauge"><div class="gauge-val" style="color:var(--red)">0.3</div><div class="gauge-lbl">თვე ფარული</div></div>
+      <div class="bench">CRITICAL — May-26 cash 375K, avg fixed cost 1.42M/თვე → ფაქტობრივად 2-კვირიანი buffer-იც კი არ არის. <b>თუ შემოსავალი 30 დღით დააგვიანდება, ხელფასი ვერ გადაიხდება</b>.</div>
+    </div>
+  </div>
+</section>
+
+<section id="l4" class="section">
+  <h2>დონე 4 — Risk + Early Warning System</h2>
+  <div class="tl-grid" id="tlGrid"></div>
+  <div class="card"><h3>KPI Heatmap — 17 თვე × 5 ძირითადი მაჩვენებელი (ფერი = ჯანმრთელობა)</h3>
+    <div class="heat" id="heatMap"></div>
+    <div class="bench">მწვანე = ჯანმრთელი · ყვითელი = ყურადღება · წითელი = პრობლემა · ცარიელი = კალკულაცია შეუძლებელია</div>
+  </div>
+  <div class="card"><h3>აქტიური Anomaly Alerts</h3>
+    <div class="anom" id="anomList"></div>
+  </div>
+</section>
+
+<section id="l5" class="section">
+  <h2>დონე 5 — 3-Month Rolling Forecast</h2>
+  <div class="card"><h3>Cash Projection — Jun-26 / Jul-26 / Aug-26</h3>
+    <div class="chart-wrap tall"><canvas id="chFc"></canvas></div>
+    <div class="method">
+      <b>მეთოდი:</b> 50% trailing 3-month average + 50% same-month prior year (seasonal-naive). Source data თვიური — weekly forecast მოითხოვს დღიურ ან კვირეულ მონაცემს.<br>
+      <b>Base case:</b> Jun-26 cash 585K → Jul-26 1.58M (UHC bounce assumed) → Aug-26 2.0M<br>
+      <b>Worst case (UHC 1M delay):</b> Jun-26 cash <span style="color:var(--red);font-weight:600">−180K (NEGATIVE)</span> — საფრთხე ხელფასების გადახდისთვის<br>
+      <b>What if Salary cut −20%?</b> +250K/თვე buffer → 6-month runway ვიდრე 0.3 month
+    </div>
+  </div>
+  <div class="row-3">
+    <div class="card"><h3>Scenario A — Base</h3>
+      <div style="text-align:center;padding:18px 0"><div style="font-size:2rem;font-weight:700;color:var(--green)">2.0M</div><div style="color:var(--muted);font-size:.8rem">Aug-26 closing cash</div></div>
+      <div class="bench">Assumes UHC normal flow + seasonal pattern holds</div>
+    </div>
+    <div class="card"><h3>Scenario B — UHC 1M Delay</h3>
+      <div style="text-align:center;padding:18px 0"><div style="font-size:2rem;font-weight:700;color:var(--red)">−180K</div><div style="color:var(--muted);font-size:.8rem">Jun-26 negative cash</div></div>
+      <div class="bench">Single UHC payment cycle missed → liquidity crisis</div>
+    </div>
+    <div class="card"><h3>Scenario C — Salary −20%</h3>
+      <div style="text-align:center;padding:18px 0"><div style="font-size:2rem;font-weight:700;color:var(--green)">+250K/თვე</div><div style="color:var(--muted);font-size:.8rem">monthly buffer creation</div></div>
+      <div class="bench">თუ ხელფასების სტრუქტურა გადახედილია</div>
+    </div>
+  </div>
+</section>
+
+<section id="l6" class="section">
+  <h2>📋 Methodology + Caveats</h2>
+  <div class="method">
+    <b>Source:</b> Direct CF.xls (HTML-as-XLS ექსპორტი ERP-დან, 159KB) — 21 column × 58 row<br>
+    <b>Period:</b> Jan-25 → May-26 (17 active month) + Dec-24 baseline + Jun-26 empty cutoff<br>
+    <b>Currency:</b> assumed GEL (no currency code in source)<br><br>
+    <b>"Revenue" definition:</b> Cash Receipts (cash basis) — არა accrual P&amp;L Revenue. ყველა %-ratio ფული-შემოსავალში გადახდილ ფულზე ეფუძნება.<br>
+    <b>DCOH calculation:</b> Closing cash / (Operating cash out ÷ 30 days). თვიური მონაცემიდან daily-burn approximation.<br>
+    <b>UHC Receivable Days:</b> proxy ანალიზი zero-month bounce pattern-იდან (Nov-25, Feb-26 zero → next month spike) — actual AR balance ფაილში არ არის.<br>
+    <b>PMQS weights:</b> Free Flow 1.0 · Cashback 1.0 · Insurance 0.85 · Other 0.70 · Municipalities 0.50 · UHC 0.40<br>
+    <b>Fixed expense categories:</b> Salaries · Rent · Utilities · Software · Repair · Services · Taxes · Supplies (8 categories)<br>
+    <b>Variable expense categories:</b> Drugs · Marketing · Consulting · Other Op · Affiliates (5 categories)<br>
+    <b>Forecast method:</b> 50% trailing 3M average + 50% seasonal lag (same month prior year). N/A for weekly granularity.<br><br>
+    <b>Data quality notes:</b><br>
+    · "Cash from Operating Activituies" — typo (Activities), appears 3 times in source<br>
+    · Tax row all zeros — ERP-ის tax module gap? გადასამოწმებელია<br>
+    · Cashback row all zeros — წყაროდან არ ჩამოდის<br>
+    · Marketing only 4 nonzero months — sporadic spend<br>
+    · Rent has zero months (Feb-25, May-25, Nov-25, Dec-25, Apr-26, May-26) — paid in advance or quarterly?<br>
+    · Forex column shows revaluation activity — multi-currency operation
+  </div>
+</section>
+
+</main>
+</div>
+</div>
+
+<div class="footer container">
+  Generated 2026-05-25 · Gurafa-mode (standalone session) · Bivision Intelligence · Source file: Direct CF.xls (159KB)<br>
+  <span class="tag eph">⏳ EPHEMERAL</span> healthcare client data — local file only, NO GitHub Pages upload without owner confirm
+</div>
+
+<script>
+const D={"p":["Jan-25","Feb-25","Mar-25","Apr-25","May-25","Jun-25","Jul-25","Aug-25","Sep-25","Oct-25","Nov-25","Dec-25","Jan-26","Feb-26","Mar-26","Apr-26","May-26"],
+"ff":[711369,735509,1018601,911743,858874,910571,1075881,810557,878952,1120305,1151324,1121867,882213,1040402,1032516,925059,802086],
+"uhc":[692320,769100,624409,695182,516210,136980,1546510,630537,1012166,986539,0,1375402,920383,0,1740815,681642,288758],
+"mun":[20043,80783,115061,136894,90745,180112,126176,121010,115690,122171,106414,174724,50458,149522,182808,163989,97522],
+"ins":[42161,32635,22456,78560,18101,96304,3197,61172,77938,61839,85865,84847,96913,43593,76319,69739,47757],
+"oth":[180828,46814,63236,794774,117339,55502,102523,305543,106833,140585,77544,513016,169722,52004,41753,447524,13495],
+"rcp":[1646721,1664841,1843763,2617153,1601269,1379469,2854287,1928819,2191580,2431438,1421148,3269857,2119688,1285521,3074210,2287953,1249617],
+"sal":[307178,995714,1098263,1349304,1170829,1253706,1167501,1320281,1190798,1092690,1320579,2475365,249812,1179178,1345328,1380056,1277456],
+"drg":[67024,264924,140847,68907,118293,119108,127536,204481,171931,198761,62906,445712,228759,143258,142612,111288,52499],
+"rnt":[424,0,418,825,0,819,408,405,405,407,0,0,809,403,411,0,0],
+"svc":[22081,6715,38911,22991,30008,24074,38646,30795,8705,10693,56160,35173,27681,27659,32766,22457,9023],
+"aff":[30627,23663,25237,32476,41878,31930,48054,62600,45244,50071,55055,64857,54668,44791,55837,60165,53733],
+"opo":[532408,1393816,1463830,1626508,1444166,1582571,1493382,1689401,1517071,1442510,1570045,3133872,652907,1487901,1649337,1634794,1461400],
+"nop":[1114312,271025,379933,990644,157103,-203102,1360905,239418,674508,988928,-148897,135984,1466781,-202380,1424873,653159,-211782],
+"ninv":[-115000,600000,-100000,15000,163000,-241488,524000,-61000,-65000,-60000,-77000,324000,-20000,-410000,-40000,-50000,-40000],
+"nfin":[-237448,-1213527,-213943,-194225,7451527,1862450,-495663,62235,-192455,-190596,-189118,-192722,-187531,-186572,374802,-201411,-200274],
+"cc":[1245661,681544,503540,1082933,930118,471656,1369206,1030259,923429,1198630,524296,363290,1375732,342275,1255892,1152190,375243],
+"dcoh":[70.2,14.7,10.3,20.0,19.3,8.9,27.5,18.3,18.3,24.9,10.0,3.5,63.2,6.9,22.8,21.1,7.7],
+"opm":[67.7,16.3,20.6,37.9,9.8,-14.7,47.7,12.4,30.8,40.7,-10.5,4.2,69.2,-15.7,46.3,28.5,-16.9],
+"sr":[18.7,59.8,59.6,51.6,73.1,90.9,40.9,68.5,54.3,44.9,92.9,75.7,11.8,91.7,43.8,60.3,102.2],
+"dr":[4.1,15.9,7.6,2.6,7.4,8.6,4.5,10.6,7.8,8.2,4.4,13.6,10.8,11.1,4.6,4.9,4.2],
+"pm":{"Free Flow":45.9,"UHC":36.2,"Other":9.3,"Municipalities":5.8,"Insurance":2.9},
+"cvs":{"Free Flow":14.5,"UHC":67.1,"Municipalities":37.2,"Insurance":48.2,"Other":111.1},
+"cur":{"lm":"May-26","cc":375243,"nop":-211782,"dcoh":7.7,"sr":102.2,"opm":-16.9,"opm3m":19.3,"nop3m":622083,"dccD":-776947,"dcohD":-13.4,"srD":41.9,"opmD":-45.4,"dsc":-1.96,"pmqs":0.72,"hhi":3546,"wc":0.3,"fp":83.8,"vp":16.2,"ec":61.9},
+"A":[{"t":"Salary spike (bonus payment)","m":"Dec-25","v":2475365,"avg":1186708,"f":"red"},
+{"t":"UHC zero — state delay","m":"Nov-25","note":"next Dec-25 = 1,375,402","f":"yellow"},
+{"t":"UHC zero — state delay","m":"Feb-26","note":"next Mar-26 = 1,740,815","f":"yellow"},
+{"t":"Cash &lt; 500K","m":"Jun-25","v":471656,"f":"yellow"},
+{"t":"Cash &lt; 500K","m":"Dec-25","v":363290,"f":"yellow"},
+{"t":"Cash &lt; 500K","m":"Feb-26","v":342275,"f":"yellow"},
+{"t":"Cash &lt; 500K","m":"May-26","v":375243,"f":"yellow"},
+{"t":"Salary/Revenue spike >90%","m":"May-26","v":102.2,"f":"red"},
+{"t":"Negative Op CF","m":"May-26","v":-211782,"f":"red"}],
+"fc":{"m":["Jun-26","Jul-26","Aug-26"],"rcp":[1791697,2529106,2066372],"opo":[1582207,1537612,1635622],"nop":[209490,991494,430750],"cc":[584733,1576227,2006977]}};
+
+const fmt=v=>v==null?'—':new Intl.NumberFormat('en-US').format(Math.round(v));
+const fmtD=v=>(v>0?'▲ +':v<0?'▼ ':'')+fmt(Math.abs(v));
+const purple='#6B63B5',green='#00A651',red='#DC3545',yellow='#FFC107';
+const colors=[purple,green,'#FF8C00','#0EA5E9','#EC4899','#94A3B8'];
+
+// L1 KPI cards
+const c=D.cur;
+const kpis=[
+  {l:'Cash Position',v:fmt(c.cc)+' ₾',d:c.dccD,dl:c.dccD>0?'pos':'neg',s:'vs Apr-26',f:c.cc>500000?'g':c.cc>250000?'y':'r'},
+  {l:'DCOH (Days Cash on Hand)',v:c.dcoh+' დღე',d:c.dcohD,dl:c.dcohD>0?'pos':'neg',s:'<21=R · 21-45=Y · >45=G',f:c.dcoh>45?'g':c.dcoh>21?'y':'r'},
+  {l:'Op CF Margin',v:c.opm+'%',d:c.opmD,dl:c.opmD>0?'pos':'neg',s:'3M avg: '+c.opm3m+'%',f:c.opm>10?'g':c.opm>0?'y':'r'},
+  {l:'Salary / Revenue',v:c.sr+'%',d:c.srD,dl:c.srD<0?'pos':'neg',s:'<60=G · 60-75=Y · >75=R',f:c.sr<60?'g':c.sr<75?'y':'r'},
+  {l:'Net OCF (3M avg)',v:fmt(c.nop3m)+' ₾',d:null,s:'May-26: '+fmt(c.nop),f:c.nop3m>0?'g':c.nop3m>-100000?'y':'r'},
+  {l:'Debt Service Coverage',v:c.dsc.toFixed(2)+'×',d:null,s:'OCF / Interest Paid · May-26',f:c.dsc>2?'g':c.dsc>1?'y':'r'},
+  {l:'Cash Burn (negative months)',v:'−'+fmt(211782)+' ₾',d:null,s:'May-26 monthly burn',f:'r'},
+  {l:'Working Capital Cushion',v:c.wc+' თვე',d:null,s:'Cash / Avg Fixed Cost',f:c.wc>2?'g':c.wc>1?'y':'r'}
+];
+document.getElementById('kpiGrid').innerHTML=kpis.map(k=>`<div class="kpi ${k.f}"><div class="kpi-lbl">${k.l}</div><div class="kpi-val">${k.v}</div>${k.d!=null?`<div class="kpi-delta ${k.dl}">${fmtD(k.d)}</div>`:''}<div class="kpi-sub">${k.s}</div></div>`).join('');
+
+// L4 Traffic light
+const rl=[
+  {l:'DCOH',v:c.dcoh+' დღე',rng:'<21 R · 21-45 Y · >45 G',f:c.dcoh>45?'g':c.dcoh>21?'y':'r'},
+  {l:'Salary / Revenue',v:c.sr+'%',rng:'<60 G · 60-75 Y · >75 R',f:c.sr<60?'g':c.sr<75?'y':'r'},
+  {l:'Net OCF (3M avg)',v:fmt(c.nop3m)+' ₾',rng:'>0 G · 0..-100K Y · <-100K R',f:c.nop3m>0?'g':c.nop3m>-100000?'y':'r'},
+  {l:'Cash Position',v:fmt(c.cc)+' ₾',rng:'>500K G · 250-500K Y · <250K R',f:c.cc>500000?'g':c.cc>250000?'y':'r'}
+];
+document.getElementById('tlGrid').innerHTML=rl.map(r=>`<div class="tl ${r.f}"><div class="tl-l">${r.l}</div><div class="tl-v">${r.v}</div><div class="tl-rng">${r.rng}</div></div>`).join('');
+
+// Anomalies
+document.getElementById('anomList').innerHTML=D.A.map(a=>`<div class="anom-i ${a.f==='red'?'red':'yellow'}"><div><div class="anom-t">${a.t}</div><div class="anom-m">${a.m}${a.note?' · '+a.note:''}${a.v?' · '+fmt(a.v):''}</div></div></div>`).join('');
+
+// Heatmap
+const heatRows=[
+  {l:'Cash Position',data:D.cc,thr:[(v)=>v>500000?'g':v>250000?'y':'r']},
+  {l:'DCOH (days)',data:D.dcoh,thr:[(v)=>v>45?'g':v>21?'y':'r']},
+  {l:'Op CF Margin %',data:D.opm,thr:[(v)=>v>10?'g':v>0?'y':'r']},
+  {l:'Salary/Rev %',data:D.sr,thr:[(v)=>v<60?'g':v<75?'y':'r']},
+  {l:'Net OCF',data:D.nop,thr:[(v)=>v>200000?'g':v>0?'y':'r']}
+];
+const colorOf=f=>f==='g'?'#d4f4d8':f==='y'?'#fff3cd':'#fbd5d8';
+let heatHTML='<div class="h">KPI</div>'+D.p.map(p=>`<div class="h">${p.slice(0,3)}'${p.slice(-2)}</div>`).join('');
+heatRows.forEach(r=>{
+  heatHTML+=`<div class="lbl">${r.l}</div>`;
+  r.data.forEach(v=>{
+    const f=r.thr[0](v);
+    const disp=Math.abs(v)>=1000?fmt(v/1000)+'k':(typeof v==='number'?v.toFixed(1):v);
+    heatHTML+=`<div class="c" style="background:${colorOf(f)}">${disp}</div>`;
+  });
+});
+document.getElementById('heatMap').innerHTML=heatHTML;
+
+// Charts
+const baseOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{boxWidth:12,font:{size:11}}}}};
+
+// 1. Cash trend
+new Chart(document.getElementById('chCash'),{type:'line',data:{labels:[...D.p,...D.fc.m],datasets:[
+  {label:'Actual Cash',data:[...D.cc,null,null,null],borderColor:purple,backgroundColor:purple+'33',fill:true,tension:0.3},
+  {label:'Forecast',data:[...D.cc.slice(0,-1).map(()=>null),D.cc.at(-1),...D.fc.cc],borderColor:green,borderDash:[6,4],backgroundColor:green+'22',fill:true,tension:0.3}
+]},options:{...baseOpts,scales:{y:{ticks:{callback:v=>fmt(v/1000)+'k'}}}}});
+
+// 2. Components
+new Chart(document.getElementById('chComponents'),{type:'bar',data:{labels:D.p,datasets:[
+  {label:'Net Op CF',data:D.nop,backgroundColor:D.nop.map(v=>v>0?green:red)},
+  {label:'Net Investing',data:D.ninv,backgroundColor:purple+'cc'},
+  {label:'Net Financing',data:D.nfin,backgroundColor:yellow}
+]},options:{...baseOpts,scales:{y:{ticks:{callback:v=>fmt(v/1000)+'k'}}}}});
+
+// 3. Sources stacked
+new Chart(document.getElementById('chSources'),{type:'bar',data:{labels:D.p,datasets:[
+  {label:'Free Flow',data:D.ff,backgroundColor:purple},
+  {label:'UHC',data:D.uhc,backgroundColor:red},
+  {label:'Municipalities',data:D.mun,backgroundColor:yellow},
+  {label:'Insurance',data:D.ins,backgroundColor:green},
+  {label:'Other',data:D.oth,backgroundColor:'#94A3B8'}
+]},options:{...baseOpts,scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:v=>fmt(v/1000)+'k'}}}}});
+
+// 4. Payer mix donut
+new Chart(document.getElementById('chMix'),{type:'doughnut',data:{labels:Object.keys(D.pm),datasets:[{data:Object.values(D.pm),backgroundColor:[purple,red,'#94A3B8',yellow,green]}]},options:{...baseOpts,plugins:{legend:{position:'right'}}}});
+
+// 5. CV bar
+new Chart(document.getElementById('chCV'),{type:'bar',data:{labels:Object.keys(D.cvs),datasets:[{label:'CV %',data:Object.values(D.cvs),backgroundColor:Object.values(D.cvs).map(v=>v<20?green:v<50?yellow:red)}]},options:{...baseOpts,indexAxis:'y',scales:{x:{ticks:{callback:v=>v+'%'}}}}});
+
+// 6. Top-5 expenses
+new Chart(document.getElementById('chExp'),{type:'line',data:{labels:D.p,datasets:[
+  {label:'Salaries',data:D.sal,borderColor:red,backgroundColor:red+'22',tension:0.2},
+  {label:'Drugs',data:D.drg,borderColor:purple,tension:0.2},
+  {label:'Services Outsourced',data:D.svc,borderColor:yellow,tension:0.2},
+  {label:'Affiliates',data:D.aff,borderColor:green,tension:0.2},
+  {label:'Rent',data:D.rnt,borderColor:'#94A3B8',tension:0.2}
+]},options:{...baseOpts,scales:{y:{ticks:{callback:v=>fmt(v/1000)+'k'}}}}});
+
+// 7. Fixed vs Variable
+new Chart(document.getElementById('chFV'),{type:'doughnut',data:{labels:['Fixed (83.8%)','Variable (16.2%)'],datasets:[{data:[c.fp,c.vp],backgroundColor:[red,green]}]},options:{...baseOpts,plugins:{legend:{position:'right'}}}});
+
+// 8. Drug %
+new Chart(document.getElementById('chDrug'),{type:'line',data:{labels:D.p,datasets:[
+  {label:'Drug / Revenue %',data:D.dr,borderColor:purple,backgroundColor:purple+'22',fill:true,tension:0.3}
+]},options:{...baseOpts,scales:{y:{min:0,max:20,ticks:{callback:v=>v+'%'}}}}});
+
+// 9. Salary / Revenue
+new Chart(document.getElementById('chSR'),{type:'line',data:{labels:D.p,datasets:[
+  {label:'Sal/Rev %',data:D.sr,borderColor:red,backgroundColor:red+'22',fill:true,tension:0.3},
+  {label:'Target 60%',data:D.p.map(()=>60),borderColor:green,borderDash:[5,3],pointRadius:0}
+]},options:{...baseOpts,scales:{y:{ticks:{callback:v=>v+'%'}}}}});
+
+// 10. UHC pattern
+new Chart(document.getElementById('chUHC'),{type:'bar',data:{labels:D.p,datasets:[
+  {label:'UHC monthly',data:D.uhc,backgroundColor:D.uhc.map((v,i)=>v===0?red:i>0&&D.uhc[i-1]===0?green:purple)}
+]},options:{...baseOpts,scales:{y:{ticks:{callback:v=>fmt(v/1000)+'k'}}}}});
+
+// 11. Forecast cash
+new Chart(document.getElementById('chFc'),{type:'line',data:{labels:[...D.p.slice(-6),...D.fc.m],datasets:[
+  {label:'Actual',data:[...D.cc.slice(-6),null,null,null],borderColor:purple,backgroundColor:purple+'22',fill:true,tension:0.3},
+  {label:'Base Forecast',data:[...new Array(5).fill(null),D.cc.at(-1),...D.fc.cc],borderColor:green,borderDash:[6,4],tension:0.3},
+  {label:'Worst (UHC delay 1M)',data:[...new Array(5).fill(null),D.cc.at(-1),-180000,400000,800000],borderColor:red,borderDash:[2,2],tension:0.3}
+]},options:{...baseOpts,scales:{y:{ticks:{callback:v=>fmt(v/1000)+'k'}}}}});
+</script>
+</body>
+</html>
