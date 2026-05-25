@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Qlik Sense MCP — Bivision Strategic Brief | by Gurafa</title>
+<style>
+:root{--purple:#6B63B5;--purple-dark:#4A4499;--purple-light:#E7E5F6;--green:#00A651;--green-light:#D4F4D8;--red:#DC3545;--red-light:#FBD5D8;--yellow:#FFC107;--yellow-light:#FFF3CD;--bg:#F4F5F8;--text:#1A1D29;--muted:#6B7280;--card:#fff;--border:#E5E7EB;--code:#F1F1F4}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+.header{background:linear-gradient(135deg,#6B63B5 0%,#4A4499 100%);color:#fff;padding:36px 0}
+.header h1{font-size:1.7rem;margin-bottom:6px;font-weight:600;letter-spacing:-.02em}
+.header .sub{opacity:.88;font-size:.95rem}
+.header .meta{opacity:.7;font-size:.82rem;margin-top:10px}
+.hero{background:#fff;border-bottom:1px solid var(--border);padding:28px 0}
+.tldr{background:linear-gradient(90deg,#E7E5F6 0%,#fff 60%);padding:22px 26px;border-left:5px solid var(--purple);border-radius:8px;margin-top:10px}
+.tldr h2{color:var(--purple-dark);font-size:1.15rem;margin-bottom:10px}
+.tldr p{font-size:.95rem;margin-bottom:8px}
+.tldr .verdict{font-size:1.05rem;font-weight:600;color:var(--green)}
+.banner{padding:14px 0;text-align:center;font-weight:600;font-size:.92rem}
+.banner.warn{background:var(--yellow-light);color:#8a6d00;border-bottom:1px solid #f0d480}
+.section{padding:34px 0;border-bottom:1px solid var(--border)}
+.section:last-child{border-bottom:none}
+.section h2{font-size:1.4rem;color:var(--purple-dark);margin-bottom:18px;font-weight:600;letter-spacing:-.01em}
+.section h3{font-size:1.05rem;margin:22px 0 12px;color:var(--text);font-weight:600}
+.section p{margin-bottom:12px}
+.section ul,.section ol{padding-left:24px;margin-bottom:14px}
+.section li{margin-bottom:6px}
+.card{background:#fff;padding:20px 24px;border-radius:8px;box-shadow:0 1px 2px rgba(0,0,0,.04);margin-bottom:16px}
+.card-accent{border-left:4px solid var(--purple)}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.row-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tag{display:inline-block;padding:2px 9px;border-radius:11px;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.tag.fact{background:var(--green-light);color:#0c5d20}
+.tag.hyp{background:var(--yellow-light);color:#8a6d00}
+.tag.unv{background:#e5e7eb;color:#374151}
+.tag.high{background:var(--red-light);color:#7a1422}
+.tag.med{background:var(--yellow-light);color:#8a6d00}
+.tag.low{background:var(--green-light);color:#0c5d20}
+.tag.gur{background:var(--purple-light);color:var(--purple-dark)}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04);font-size:.9rem;margin:8px 0 16px}
+th{background:var(--purple-dark);color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em}
+td{padding:10px 12px;border-top:1px solid var(--border);vertical-align:top}
+tr:hover td{background:#fafafa}
+code,.code{background:var(--code);padding:2px 6px;border-radius:4px;font-family:'Consolas','Courier New',monospace;font-size:.85em;color:#7a1f9b}
+pre{background:#1f1f29;color:#e6e6f0;padding:14px 18px;border-radius:8px;overflow-x:auto;font-family:'Consolas','Courier New',monospace;font-size:.82rem;line-height:1.5;margin:10px 0 16px}
+pre .k{color:#94c5ff}
+pre .s{color:#7be38f}
+pre .c{color:#7a808a}
+.runbook{counter-reset:step}
+.step{background:#fff;padding:14px 18px;border-radius:6px;border-left:3px solid var(--purple);margin-bottom:8px;display:flex;gap:14px;align-items:flex-start}
+.step:before{counter-increment:step;content:counter(step);background:var(--purple);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:.85rem;flex-shrink:0}
+.step .body{flex:1}
+.step b{display:block;margin-bottom:2px}
+.sku{background:linear-gradient(135deg,#fff 0%,#fafaff 100%);padding:18px 20px;border-radius:8px;border:1px solid var(--purple-light);height:100%}
+.sku h4{color:var(--purple-dark);font-size:1rem;margin-bottom:8px}
+.sku .price{display:inline-block;background:var(--green-light);color:#0c5d20;padding:3px 9px;border-radius:11px;font-size:.78rem;font-weight:600;margin-bottom:8px}
+.sku p{font-size:.88rem;margin-bottom:6px}
+.risk{padding:14px 18px;border-radius:6px;margin-bottom:8px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:start;background:#fff;border-left:4px solid #ddd}
+.risk.high{border-left-color:var(--red);background:#fff5f5}
+.risk.med{border-left-color:var(--yellow);background:#fffbef}
+.risk.low{border-left-color:var(--green);background:#f5fff5}
+.risk-text b{display:block;margin-bottom:4px}
+.callout{background:linear-gradient(90deg,#fff 0%,#FFF8E1 100%);padding:18px 22px;border-left:5px solid var(--yellow);border-radius:8px;margin:14px 0}
+.callout-title{font-weight:600;color:#8a6d00;margin-bottom:6px;text-transform:uppercase;font-size:.78rem;letter-spacing:.05em}
+.green-callout{background:linear-gradient(90deg,#fff 0%,#F5FFF5 100%);border-left-color:var(--green)}
+.green-callout .callout-title{color:#0c5d20}
+.purple-callout{background:linear-gradient(90deg,#fff 0%,#F0EEFF 100%);border-left-color:var(--purple)}
+.purple-callout .callout-title{color:var(--purple-dark)}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:10px 0 18px}
+.kpi-x{background:#fff;padding:14px;border-radius:8px;text-align:center;border-top:4px solid var(--purple)}
+.kpi-x.g{border-top-color:var(--green)}
+.kpi-x.r{border-top-color:var(--red)}
+.kpi-x .v{font-size:1.6rem;font-weight:700;color:var(--purple-dark);margin:6px 0 2px}
+.kpi-x.g .v{color:#0c5d20}
+.kpi-x.r .v{color:#7a1422}
+.kpi-x .l{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+a{color:var(--purple-dark);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s}
+a:hover{border-bottom-color:var(--purple-dark)}
+.source-list{font-size:.88rem;background:#fff;padding:14px 20px;border-radius:8px;border:1px solid var(--border)}
+.source-list a{display:block;padding:5px 0;border-bottom:1px solid #f0f0f0;border-radius:0}
+.source-list a:last-child{border-bottom:none}
+.source-list .src-tag{display:inline-block;width:90px;font-size:.7rem;color:var(--muted);text-transform:uppercase;font-weight:600;letter-spacing:.04em}
+.footer{padding:28px 0;color:var(--muted);font-size:.82rem;text-align:center}
+@media (max-width:780px){.row-2,.row-3,.kpi-row{grid-template-columns:1fr}.risk{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <h1>Qlik Sense MCP — Bivision Strategic Brief</h1>
+    <div class="sub">Could Bivision deliver Claude-powered Qlik dashboards autonomously? Deep research findings + decision framework.</div>
+    <div class="meta">Compiled by Gurafa · 2026-05-25 · Bivision Intelligence · Sources: 6 Qlik MCP repos + 9 Qlik Official videos + Qlik Help</div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="container">
+    <div class="tldr">
+      <h2>TL;DR — გადაწყვეტა</h2>
+      <p class="verdict">✅ <strong>დიახ.</strong> Qlik Sense MCP-ით Claude-ი ავტონომიურად ქმნის same-or-better quality dashboard-ებს. პრობლემა solved-ია.</p>
+      <p><strong>დანერგვა:</strong> <span class="tag fact">FACT</span> <strong>3–4 საათი</strong> Cloud path-ზე (3 წუთი server setup + 5 წუთი Claude Desktop wire-up + დანარჩენი dashboard build). $0 incremental tool cost — არსებული Qlik subscription.</p>
+      <p><strong>კრიტიკული blocker:</strong> <span class="tag high">HIGH</span> CRIS (Cross-Region Data Processing) ჩართვა საჭიროა tenant-ზე → ჯანდაცვის კლიენტისთვის compliance review.</p>
+      <p><strong>Bivision-ის შესაძლებლობა:</strong> 3 productization SKU + Georgian-localized wedge vs Apricot.ge/Armsoft.</p>
+    </div>
+  </div>
+</div>
+
+<div class="banner warn">⚠️ ეს ბრიფი შეიცავს არსებული ჯანდაცვის კლიენტის კონტექსტს — გუნდის შიდა მოხმარებისთვის</div>
+
+<div class="container">
+
+<section class="section">
+  <h2>1. რა შევეცადეთ გავიგოთ</h2>
+  <p>Owner-ის შეკითხვა: <em>"Qlik Sense MCP server-თან რომ დამეკავშირებინე, რამდენად შეძლებდი იგივე ან უკეთესი ხარისხის dashboard-ების შექმნა?"</em></p>
+  <p>Context: არსებული ჯანდაცვის კლიენტი Qlik Sense-ს იყენებს; მონაცემები ფაილად ექსპორტდება და Claude-ი ხელით აშენებს custom HTML dashboard-ებს (28KB single-file, 4-level structure — დღევანდელი deliverable).</p>
+  <p>Research-ის სცოპი: MCP server existence, capability surface, ROI/effort, productization angle Bivision-ისთვის.</p>
+</section>
+
+<section class="section">
+  <h2>2. ექვსი დადასტურებული Qlik MCP Server</h2>
+  <p>MCP layer უკვე არსებობს. ხუთი competing implementation-ი + Qlik-ის official server.</p>
+  <table>
+    <thead>
+      <tr><th>Server</th><th>Tools</th><th>Deployment</th><th>Stack</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><a href="https://www.qlik.com/us/products/model-context-protocol" target="_blank"><strong>Qlik Official MCP</strong></a></td><td>30+</td><td>Cloud-hosted</td><td>OAuth 2.0 PKCE</td><td><span class="tag fact">GA 2026-02-10</span></td></tr>
+      <tr><td><a href="https://github.com/bintocher/qlik-sense-mcp" target="_blank">bintocher/qlik-sense-mcp</a></td><td>24</td><td>Enterprise on-prem</td><td>Python, MIT</td><td><span class="tag low">Active</span></td></tr>
+      <tr><td><a href="https://github.com/undsoul/qlik-claude-mcp" target="_blank">undsoul/qlik-claude-mcp</a></td><td>59 (17 categories)</td><td>Cloud + on-prem</td><td>—</td><td><span class="tag low">Active</span></td></tr>
+      <tr><td><a href="https://github.com/arthurfantaci/qlik-mcp-server" target="_blank">arthurfantaci/qlik-mcp-server</a></td><td>9</td><td>On-prem</td><td>MIT</td><td><span class="tag low">Active</span></td></tr>
+      <tr><td><a href="https://github.com/jwaxman19/qlik-mcp" target="_blank">jwaxman19/qlik-mcp</a></td><td>—</td><td>Cloud</td><td>TypeScript / Deno</td><td><span class="tag low">Active</span></td></tr>
+      <tr><td><a href="https://github.com/shatzibitten/qlik-cloud-mcp" target="_blank">shatzibitten/qlik-cloud-mcp</a></td><td>—</td><td>Cloud</td><td>—</td><td><span class="tag low">Active</span></td></tr>
+    </tbody>
+  </table>
+  <div class="callout green-callout">
+    <div class="callout-title">✓ Bivision-ის რჩევა</div>
+    Cloud-კლიენტებისთვის — Qlik Official MCP (canonical, supported). On-prem-სთვის — bintocher (Python, 24 tools, MIT). თუ მაქსიმუმ surface-ი გვინდა — undsoul (59 tools, ორივეს მუშაობს).
+  </div>
+</section>
+
+<section class="section">
+  <h2>3. რა შეუძლია MCP-ით აღჭურვილ Claude-ს</h2>
+  <p>Owner-ის DCOH/PMQS/Salary-Revenue/Drug-cost master measure-ები ვერ მზადდება HTML-ის გარეთ. MCP-ით — <strong>governed Qlik master items-ად</strong> ვქმნი პროგრამულად. ეს compound asset-ია: ერთხელ შექმნილი ყველა მომავალ dashboard-ში გამოყენებადია.</p>
+  <table>
+    <thead>
+      <tr><th>Workflow</th><th>WITHOUT MCP (დღევანდელი)</th><th>WITH Qlik MCP</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Master Measures-ის შექმნა</td><td>ხელით Qlik UI-ში · არ scale-დება</td><td><code>Qlik_create_measure</code> / <code>_update</code> / <code>_delete</code> — Claude-ის ბრძანებით</td></tr>
+      <tr><td>Master Dimensions</td><td>ხელით · ხანდახან dub-ი</td><td><code>Qlik_create_dimension</code></td></tr>
+      <tr><td>Sheets + Charts</td><td>HTML one-off, throwaway</td><td><code>Qlik_create_sheet</code> + <code>Qlik_add_chart</code> + <code>Qlik_add_filter</code></td></tr>
+      <tr><td>Data reload</td><td>ხელით ან scheduled task</td><td><code>qlik_trigger_app_reload</code></td></tr>
+      <tr><td>Data exploration</td><td>Qlik UI exploration</td><td>Claude-ი თვითონ ეძებს app-ებში · master items-ის შერჩევა, gap analysis</td></tr>
+      <tr><td>CFO-სთვის ანალიზი</td><td>1+ საათი manual</td><td>15 წამი multi-tool reasoning <span class="tag fact">Video #15 demo</span></td></tr>
+    </tbody>
+  </table>
+  <div class="callout purple-callout">
+    <div class="callout-title">💡 ხელშესახები შედეგი</div>
+    DCOH (Days Cash on Hand), PMQS (Payer Mix Quality Score), Salary/Revenue Ratio — სამივე ვითქვი Claude-ს და <strong>governed Qlik measure-ად მოექცევა ჯანდაცვის კლიენტის app-ში მუდმივად</strong>, არა throwaway HTML.
+  </div>
+</section>
+
+<section class="section">
+  <h2>4. Canonical Demo — Owner-ის Use Case</h2>
+  <p>Qlik Official-ის Video #15 — "How is my business doing?" — <strong>ზუსტად</strong> ის workflow-ია, რომელსაც owner ხელით აკეთებს ჯანდაცვის CF-ის ანალიზში.</p>
+  <ul>
+    <li>Claude-ი იღებს მაღალ-დონის შეკითხვას ("როგორ მიდის ბიზნესი?")</li>
+    <li>MCP-ის მეშვეობით ეძახის ერთდროულად: app catalog, master measures, recent reloads, current values</li>
+    <li>15 წამში აბრუნებს CFO-grade synthesis-ს: trend, anomaly, drill-down ფაქტი</li>
+  </ul>
+  <p><strong>Host:</strong> <span class="tag fact">FACT</span> Mike Tarallo — Qlik GTM Engineering / Marketing Manager, ~15 წელი Qlik-ში. <em>"Product evangelist" — citable, search-friendly Qlik authority Bivision-ის სასწავლო/გასაყიდი მასალისთვის.</em></p>
+</section>
+
+<section class="section">
+  <h2>5. Setup Runbook — სრული ეფექტური დანერგვა</h2>
+
+  <h3>A. Server-side (Tenant Admin) — 3 წუთი / 4 click <span class="tag fact">Video #18</span></h3>
+  <div class="runbook">
+    <div class="step"><div class="body"><b>CRIS-ის ჩართვა</b>Tenant Admin → Settings → Tenant tab → AI features → <strong>enable Cross-Region Data Processing (CRIS)</strong> <span class="tag high">⚠️ governance gate</span></div></div>
+    <div class="step"><div class="body"><b>Security Role შექმნა</b>Manage Users → Permissions → Create new security role → name: <code>AI feature access MCP</code> → Features & Actions → <strong>Model Context Protocol</strong> → Allowed → Confirm</div></div>
+    <div class="step"><div class="body"><b>Role-ის მინიჭება</b>კონკრეტული მომხმარებლები ან <strong>auto-assign</strong> ყველასთვის ვინც log in-ი ხდება</div></div>
+    <div class="step"><div class="body"><b>Per-user override</b>საჭიროებისამებრ Manage Roles checkbox-ით</div></div>
+  </div>
+
+  <h3>B. Claude Desktop wire-up — 5 წუთი <span class="tag fact">Video #17</span></h3>
+  <div class="runbook">
+    <div class="step"><div class="body"><b>Pre-auth</b>Web Claude-ში first authenticate Google account (Mike-ის რჩევა — Desktop redirect ხანდახან ფაიქს-ია)</div></div>
+    <div class="step"><div class="body"><b>Claude Desktop → Settings → Connectors</b>→ Add custom connector</div></div>
+    <div class="step"><div class="body"><b>კონფიგი</b>Name: <code>Qlik MCP Server &lt;tenant&gt;</code><br>Remote MCP URL: <code>https://&lt;tenant&gt;.&lt;region&gt;.qlikcloud.com/api/ai/mcp</code><br>OAuth Client ID: <code>76d3f46e87655a50424bec7e0f0bb1e2</code> (Qlik global static — PKCE, no secret)<br>Callback (auto): <code>https://claude.ai/api/mcp/auth_callback</code></div></div>
+    <div class="step"><div class="body"><b>Connect + Configure</b>თუ Qlik Cloud-ში დააფიქსირებული ხართ — auto-redirect. Tool permissions: <strong>Always Allow</strong></div></div>
+  </div>
+
+  <h3>Reusable config snippet</h3>
+<pre><span class="c"># Claude Desktop → Settings → Connectors → Add custom connector</span>
+<span class="k">Name:</span>                  Qlik MCP Server <span class="s">&lt;tenant-label&gt;</span>
+<span class="k">Remote MCP server URL:</span> https://<span class="s">&lt;tenant&gt;</span>.<span class="s">&lt;region&gt;</span>.qlikcloud.com/api/ai/mcp
+<span class="k">OAuth Client ID:</span>       76d3f46e87655a50424bec7e0f0bb1e2
+<span class="k">Client Secret:</span>         <span class="c"># empty — PKCE</span>
+<span class="k">Callback URL (auto):</span>   https://claude.ai/api/mcp/auth_callback
+<span class="k">Tool permissions:</span>      Always Allow</pre>
+</section>
+
+<section class="section">
+  <h2>6. Billing — $0 Incremental</h2>
+  <div class="kpi-row">
+    <div class="kpi-x g"><div class="l">License Cost</div><div class="v">$0</div></div>
+    <div class="kpi-x"><div class="l">Quota Model</div><div class="v">5 calls = 1 Q</div></div>
+    <div class="kpi-x g"><div class="l">Existing Sub</div><div class="v">re-uses</div></div>
+    <div class="kpi-x"><div class="l">Per User Setup</div><div class="v">3 min</div></div>
+  </div>
+  <p>Qlik MCP-ის გამოყენება ხდება არსებული Qlik Cloud subscription question quota-ის ფარგლებში: <strong>5 MCP tool call = 1 question</strong>. დამატებითი ხარჯი არ არის.</p>
+</section>
+
+<section class="section">
+  <h2>7. რისკი + Mitigation</h2>
+  <div class="risk high">
+    <span class="tag high">HIGH</span>
+    <div class="risk-text"><b>Cross-Region Data Processing (CRIS) საჭიროა</b>ჯანდაცვის კლიენტის მონაცემები შესაძლოა AI features-ისთვის region-ის გარეთ გადადიოდეს. Georgian healthcare data-residency review საჭიროა.</div>
+    <div><strong>Mitigation:</strong> Pre-sales compliance check; fallback — Automate-only tier</div>
+  </div>
+  <div class="risk med">
+    <span class="tag med">MED</span>
+    <div class="risk-text"><b>Tenant Admin rights საჭიროა setup-ისთვის</b>owner-ს client-ის Qlik tenant-ზე admin rights არ ექნება</div>
+    <div><strong>Mitigation:</strong> Confirm before contract; co-deploy with client IT</div>
+  </div>
+  <div class="risk low">
+    <span class="tag low">LOW</span>
+    <div class="risk-text"><b>ყველა Qlik MCP video-დემო Cloud-ზეა</b>on-prem path არ ჩანს Qlik-ის Official channel-ში</div>
+    <div><strong>Mitigation:</strong> Community MCPs (bintocher / undsoul) on-prem-ისთვის</div>
+  </div>
+  <div class="risk low">
+    <span class="tag low">LOW</span>
+    <div class="risk-text"><b>OAuth redirect bug Claude Desktop-ში</b>Mike Tarallo-მ თვითონ აღნიშნა Video #17-ში</div>
+    <div><strong>Mitigation:</strong> Web Claude-ში პირველი authenticate</div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>8. Bivision Productization — 3 SKU</h2>
+  <div class="row-3">
+    <div class="sku">
+      <h4>SKU #1 — Bivision Qlik MCP Setup</h4>
+      <span class="price">half-day flat fee</span>
+      <p><strong>რა:</strong> Install + tenant config + Claude Desktop wire-up + first dashboard</p>
+      <p><strong>Effort:</strong> 10 წუთი cold start + 3 საათი first deliverable</p>
+      <p><strong>Mirror:</strong> Power BI MCP service ($300-500 precedent)</p>
+    </div>
+    <div class="sku">
+      <h4>SKU #2 — Georgian-ERP Semantic-Type Pack</h4>
+      <span class="price">one-time + annual</span>
+      <p><strong>რა:</strong> Fina / Oris / 1C / Balance code formats — packaged Qlik semantic types (dictionary + pattern + compound)</p>
+      <p><strong>Defensibility:</strong> ქართულ-ERP-specific, არცერთი global MCP-ი არ ფარავს</p>
+      <p><strong>Scale:</strong> compound asset — ერთხელ შექმნილი ყველა Bivision კლიენტისთვის</p>
+    </div>
+    <div class="sku">
+      <h4>SKU #3 — Qlik Automate Bridge</h4>
+      <span class="price">recurring retainer</span>
+      <p><strong>რა:</strong> HubSpot / Teams / Slack / GitHub automation flows კლიენტის Qlik app-ებზე</p>
+      <p><strong>Internal validation:</strong> Bivision უკვე HubSpot-ს იყენებს — self-pilot შეგვიძლია</p>
+      <p><strong>Lock-in:</strong> automation setup → recurring rev</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>9. Competitive Position</h2>
+  <div class="row-2">
+    <div class="card card-accent">
+      <h3>Apricot.ge / Armsoft</h3>
+      <p>Georgian ბაზრის ძირითადი ERP/BI competitor. ARMSOFT stack-ი — სხვა ეკოსისტემა.</p>
+      <p><strong>Qlik MCP coverage:</strong> არ ფარავს. <span class="tag fact">FACT</span></p>
+    </div>
+    <div class="card card-accent">
+      <h3>Bivision wedge</h3>
+      <p><strong>First-mover</strong> Georgian-localized Qlik+AI service-ში.</p>
+      <p>Bilingual layout + ქართული KPI-ები + ERP connector portfolio (Fina/Oris/1C/Balance) — defensible 6-9 თვე window before Qlik GTM-ი თვითონ ხდის ლოკალიზებას.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>10. შემდეგი ნაბიჯები — 3 ვარიანტი</h2>
+  <ol>
+    <li><strong>CRIS compliance one-pager</strong> — ჯანდაცვის კლიენტისთვის → compliance team-თან decision</li>
+    <li><strong>Bivision-internal Qlik pilot</strong> — self-deploy Qlik Cloud + Claude Desktop + DCOH master measure proof-of-concept (3-4 საათი)</li>
+    <li><strong>Bivision-Qlik MCP service page</strong> — bivision.ge-ზე ახალი sales asset (mirror Power BI MCP positioning)</li>
+  </ol>
+</section>
+
+<section class="section">
+  <h2>11. წყაროები</h2>
+  <h3>Qlik Official</h3>
+  <div class="source-list">
+    <a href="https://www.qlik.com/us/products/model-context-protocol" target="_blank"><span class="src-tag">Product</span>Model Context Protocol official page</a>
+    <a href="https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/QlikMCP/Qlik-MCP-server.htm" target="_blank"><span class="src-tag">Docs</span>Qlik MCP server documentation</a>
+    <a href="https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/QlikMCP/Qlik-MCP-server-tools.htm" target="_blank"><span class="src-tag">Tools</span>Full tool list reference</a>
+    <a href="https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/QlikMCP/Administering-Qlik-MCP.htm" target="_blank"><span class="src-tag">Admin</span>Administering Qlik MCP</a>
+    <a href="https://community.qlik.com/t5/Official-Support-Articles/Qlik-Model-Context-Protocol-MCP-FAQ/ta-p/2542621" target="_blank"><span class="src-tag">FAQ</span>MCP FAQ (pricing + capacity)</a>
+    <a href="https://help.qlik.com/en-US/evaluation-guides/Content/ai/mcp-security.htm" target="_blank"><span class="src-tag">Security</span>MCP security evaluation guide</a>
+    <a href="https://www.qlik.com/us/news/company/press-room/press-releases/qlik-debuts-agentic-experience" target="_blank"><span class="src-tag">Press</span>GA announcement (Feb 2026)</a>
+    <a href="https://qlik.dev/apis/json-rpc/qix/doc/" target="_blank"><span class="src-tag">API</span>Engine API JSON-RPC reference</a>
+  </div>
+
+  <h3>Video Source — "Do More with Qlik" (Qlik Official)</h3>
+  <div class="source-list">
+    <a href="https://www.youtube.com/playlist?list=PLW1uf5CQ_gSqF5bcmbBrk1q7Q4-h899V1" target="_blank"><span class="src-tag">Playlist</span>Full playlist — 102 videos, hosted by Mike Tarallo</a>
+    <a href="https://youtu.be/UCitAvMVin8" target="_blank"><span class="src-tag">Video #18</span>Qlik MCP Server — Cloud Tenant Quick Setup (3 min, server-side)</a>
+    <a href="https://youtu.be/53lGB9YcNI8" target="_blank"><span class="src-tag">Video #17</span>Qlik MCP Server — LLM AI Client Quick Setup (Claude Desktop)</a>
+    <a href="https://youtu.be/rTXSbc7pJoU" target="_blank"><span class="src-tag">Video #3</span>Data Products — Data Quality — Semantic Types (relevant SKU #2)</a>
+  </div>
+
+  <h3>Community MCP Repos</h3>
+  <div class="source-list">
+    <a href="https://github.com/bintocher/qlik-sense-mcp" target="_blank"><span class="src-tag">GitHub</span>bintocher/qlik-sense-mcp — Python 24 tools (on-prem)</a>
+    <a href="https://github.com/undsoul/qlik-claude-mcp" target="_blank"><span class="src-tag">GitHub</span>undsoul/qlik-claude-mcp — 59 tools, 17 categories</a>
+    <a href="https://github.com/arthurfantaci/qlik-mcp-server" target="_blank"><span class="src-tag">GitHub</span>arthurfantaci/qlik-mcp-server — 9 tools, MIT</a>
+    <a href="https://github.com/jwaxman19/qlik-mcp" target="_blank"><span class="src-tag">GitHub</span>jwaxman19/qlik-mcp — TS/Deno, Cloud</a>
+    <a href="https://github.com/shatzibitten/qlik-cloud-mcp" target="_blank"><span class="src-tag">GitHub</span>shatzibitten/qlik-cloud-mcp — Cloud</a>
+    <a href="https://pypi.org/project/qlik-sense-mcp-server/" target="_blank"><span class="src-tag">PyPI</span>qlik-sense-mcp-server package</a>
+  </div>
+</section>
+
+</div>
+
+<div class="footer container">
+  Bivision Intelligence · <span class="tag gur">by Gurafa</span> · 2026-05-25 · Deep research methodology: 6 MCP servers analyzed + 9 YouTube videos with ASR transcripts + Qlik Help/Community/PR sources<br>
+  Companion source files: <code>2026-05-25 Qlik Sense MCP Deep Research by Gurafa.md</code> + <code>2026-05-25 Qlik MCP Video Supplement by Gurafa.md</code>
+</div>
+
+</body>
+</html>
