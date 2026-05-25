@@ -103,7 +103,8 @@ a:hover{border-bottom-color:var(--purple-dark)}
       <p class="verdict">✅ <strong>დიახ.</strong> Qlik Sense MCP-ით Claude-ი ავტონომიურად ქმნის same-or-better quality dashboard-ებს. პრობლემა solved-ია.</p>
       <p><strong>დანერგვა:</strong> <span class="tag fact">FACT</span> <strong>3–4 საათი</strong> Cloud path-ზე (3 წუთი server setup + 5 წუთი Claude Desktop wire-up + დანარჩენი dashboard build). $0 incremental tool cost — არსებული Qlik subscription.</p>
       <p><strong>კრიტიკული blocker:</strong> <span class="tag high">HIGH</span> CRIS (Cross-Region Data Processing) ჩართვა საჭიროა tenant-ზე → ჯანდაცვის კლიენტისთვის compliance review.</p>
-      <p><strong>Bivision-ის შესაძლებლობა:</strong> 3 productization SKU + Georgian-localized wedge vs Apricot.ge/Armsoft.</p>
+      <p><strong>Bivision-ის შესაძლებლობა:</strong> 4 productization SKU + Georgian-localized wedge vs Apricot.ge/Armsoft.</p>
+      <p style="margin-top:10px;padding-top:10px;border-top:1px dashed #c5c0e0"><strong>🚨 Update 2026-05-25 (owner-flagged gap):</strong> Parquet layer-ი დაემატა. Qlik native Parquet (Feb 2024-დან) + Qlik Open Lakehouse (GA 2025-09-16, Apache Iceberg) + DuckDB+MCP no-Qlik path → ახალი SKU #4 "Bivision Lite" 1M-10M ₾ კლიენტებისთვის. იხილე სექცია 10.</p>
     </div>
   </div>
 </div>
@@ -265,8 +266,66 @@ a:hover{border-bottom-color:var(--purple-dark)}
   </div>
 </section>
 
+<section class="section" id="parquet" style="background:linear-gradient(180deg,#FFFBF0 0%,#fff 100%);border-radius:12px;padding:34px 28px;margin-top:14px;border:1px solid #f0d480">
+  <div style="display:inline-block;background:#FFC107;color:#5a4900;padding:4px 12px;border-radius:14px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px">🚨 Update — Owner-flagged Gap closed 2026-05-25</div>
+  <h2 style="border-bottom:2px solid #FFC107;color:#8a6d00">10. Parquet — The Missing Data Layer</h2>
+  <p>Owner-მა აღმოაჩინა, რომ პირველი ბრიფი <strong>Parquet-ის გარეშე</strong> incomplete-ი იყო. ეს არ არის nice-to-have — Parquet არის modern AI+MCP data exchange-ის standard format. სამი ფაქტობრივი findings რომელიც <strong>არსებითად ცვლის ბრიფის სცოპს</strong>:</p>
+
+  <h3>🎯 Finding #1 — Qlik native Parquet (FACT, since Feb 2024)</h3>
+  <div class="card card-accent">
+    <p>Qlik Cloud + Enterprise on Windows: <strong>single-line STORE statement</strong> ქმნის Parquet ფაილს. ნულოვანი learning curve Qlik dev-ისთვის. 15 <code>$parquet-*</code> type-control tags. JSON-RPC integration. Multi-table single Parquet ("mart" pattern per <a href="https://qlikdork.com/2025/01/diving-into-parquet/" target="_blank">qlikdork.com</a>).</p>
+<pre><span class="c">// Qlik load script — owner's healthcare client TODAY, zero new tools</span>
+<span class="k">STORE</span> * <span class="k">FROM</span> CashFlow
+  <span class="k">INTO</span> [lib://DataFiles/snapshots/cf_$(=Date(Today(),'YYYYMMDD')).parquet] (parquet);</pre>
+    <p><strong>შედეგი:</strong> dated Parquet snapshot ყოველი reload-ის შემდეგ → queryable Claude-ის მიერ DuckDB MCP-ით, Excel Power Query-ით, Python-ით — <strong>5-15× პატარა ვიდრე Excel, type-fidelity preserved</strong>. <span style="background:#FFE0B3;padding:2px 6px;border-radius:4px;font-weight:600">Excel-ი ხდება არასაჭირო brittle handoff layer.</span></p>
+  </div>
+
+  <h3>🏗️ Finding #2 — Qlik Open Lakehouse (FACT, GA 2025-09-16)</h3>
+  <div class="card card-accent">
+    <p>Qlik-მა შექმნა <strong>fully managed Apache Iceberg service</strong> Qlik Talend Cloud-ში, BYOC კლიენტის VPC-ში. Multi-engine access: Snowflake / Athena / Spark / Trino / Databricks.</p>
+    <table style="margin-top:10px">
+      <thead><tr><th>Metric</th><th>Qlik-reported</th></tr></thead>
+      <tbody>
+        <tr><td>Infrastructure cost</td><td>−50%</td></tr>
+        <tr><td>Ingestion cost</td><td>−80%</td></tr>
+        <tr><td>Query speed</td><td>2.5–5× faster</td></tr>
+        <tr><td>December 2025</td><td>+ Kafka / Kinesis streaming</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:10px"><strong>Bivision-ისთვის ორი implication:</strong></p>
+    <ul>
+      <li><strong>50M+ ₾ prospect-ი ჰკითხავს "lakehouse გაქვს?"</strong> → პასუხი ახლა <em>დიახ via Qlik</em></li>
+      <li><strong>Qlik თვითონ ფსონს დებს open Parquet/Iceberg-ზე</strong> → Bivision-Qlik partnership future-aligned-ი რჩება</li>
+    </ul>
+  </div>
+
+  <h3>🦆 Finding #3 — DuckDB + Parquet + MCP = production "no-Qlik" stack</h3>
+  <div class="card card-accent">
+    <p><strong>MotherDuck remote MCP</strong> — launched Dec 2025. <strong>Local DuckDB MCP</strong> — 5 წუთში install Claude Desktop-ში. DuckDB stream-ავს Parquet-ს <strong>filter + projection pushdown-ით</strong> → Claude query-ობს 100MB+ datasets SQL-ით, raw bytes context-ში არ შემოდის.</p>
+    <p><strong>ეს არის SKU #4 — "Bivision Lite"</strong> — ICP segment რომელიც Qlik license cost-ის გამო ამოვარდა იყო:</p>
+    <div class="sku" style="margin-top:10px;max-width:520px">
+      <h4>SKU #4 — Bivision Lite (DuckDB + Parquet + Claude MCP)</h4>
+      <span class="price" style="background:#FFF3CD;color:#8a6d00">NEW — 1M–10M ₾ კლიენტი</span>
+      <p><strong>რა:</strong> ERP → Parquet daily export → DuckDB MCP → Claude → HTML dashboard (Qlik license-ის გარეშე)</p>
+      <p><strong>Stack cost:</strong> $0 (DuckDB free + MotherDuck local MCP free) + client-ის Claude Pro $20/თვე</p>
+      <p><strong>Bivision-ის ფასი (proposed):</strong> 1,500–2,500 ₾ setup + 250–400 ₾/თვე</p>
+      <p><strong>Validate:</strong> ერთი prospect existing pipeline-დან productize-ის წინ</p>
+    </div>
+  </div>
+
+  <div class="callout green-callout" style="margin-top:18px">
+    <div class="callout-title">✅ Revised Recommendation</div>
+    Qlik MCP SKU რჩება როგორც-არის (#1-3). + <strong>Parquet snapshot bridge</strong> (one-line STORE) ემატება ჯანდაცვის კლიენტს ამ კვირაში — portability win. + <strong>SKU #4 Bivision Lite</strong> — open-ი ICP segment 1M-10M ₾, Qlik license-ის გარეშე. <strong>Parquet არ ცვლის Qlik-ს — ავსებს მას + ხსნის ახალ product line-ს.</strong>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">⚠️ Strategic Read</div>
+    Qlik-ის ფსონი ღია Parquet/Iceberg-ზე ნიშნავს, რომ "vendor lock-in" კონცერნი ნელდება — IP-ი ცოცხლობს Parquet-ში, Qlik მხოლოდ visualization layer. ეს Bivision-ის positioning-ის wedge-ი ხდება: <em>"ჩვენ შეგვიძლია Qlik-ში დაგიყენოთ visualization-ი, მაგრამ თქვენი data ცოცხლობს open Parquet-ში — ნებისმიერ AI/ანალიტიკურ tool-ში ხელმისაწვდომი"</em>.
+  </div>
+</section>
+
 <section class="section">
-  <h2>9. Competitive Position</h2>
+  <h2>11. Competitive Position</h2>
   <div class="row-2">
     <div class="card card-accent">
       <h3>Apricot.ge / Armsoft</h3>
@@ -282,16 +341,29 @@ a:hover{border-bottom-color:var(--purple-dark)}
 </section>
 
 <section class="section">
-  <h2>10. შემდეგი ნაბიჯები — 3 ვარიანტი</h2>
+  <h2>12. შემდეგი ნაბიჯები — 5 ვარიანტი (Parquet-update-ის შემდეგ)</h2>
   <ol>
+    <li><strong>Parquet snapshot bridge — ამ კვირაში ship</strong> 🆕 — ერთი STORE ხაზი ჯანდაცვის კლიენტის Qlik reload script-ში → dated Parquet snapshot ყოველ reload-ზე → Claude/DuckDB-MCP-ით queryable → Excel handoff ქრება</li>
     <li><strong>CRIS compliance one-pager</strong> — ჯანდაცვის კლიენტისთვის → compliance team-თან decision</li>
-    <li><strong>Bivision-internal Qlik pilot</strong> — self-deploy Qlik Cloud + Claude Desktop + DCOH master measure proof-of-concept (3-4 საათი)</li>
+    <li><strong>Bivision-internal Qlik+Parquet pilot</strong> — self-deploy Qlik Cloud + Claude Desktop + DCOH master measure + Parquet snapshot bridge proof-of-concept (3-4 საათი)</li>
     <li><strong>Bivision-Qlik MCP service page</strong> — bivision.ge-ზე ახალი sales asset (mirror Power BI MCP positioning)</li>
+    <li><strong>"Bivision Lite" SKU validation</strong> 🆕 — ერთი 1M-10M ₾ prospect existing pipeline-დან → DuckDB+Parquet+Claude MCP proof → ფასის + setup process-ის validation productize-ის წინ</li>
   </ol>
 </section>
 
 <section class="section">
-  <h2>11. წყაროები</h2>
+  <h2>13. წყაროები</h2>
+
+  <h3>🆕 Parquet + Lakehouse + DuckDB MCP</h3>
+  <div class="source-list">
+    <a href="https://qlikdork.com/2025/01/diving-into-parquet/" target="_blank"><span class="src-tag">Article</span>Qlik Dork (DaltonRuer) — Diving into Parquet (Jan 2025) — multi-table mart pattern, S3 external store, metadata-companion technique</a>
+    <a href="https://www.qlik.com/us/products/qlik-open-lakehouse" target="_blank"><span class="src-tag">Lakehouse</span>Qlik Open Lakehouse — Apache Iceberg fully managed (GA 2025-09-16)</a>
+    <a href="https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/LoadData/store-parquet-files.htm" target="_blank"><span class="src-tag">Qlik Docs</span>STORE to Parquet — official load script reference</a>
+    <a href="https://duckdb.org/docs/data/parquet/overview.html" target="_blank"><span class="src-tag">DuckDB</span>DuckDB Parquet read/write — filter + projection pushdown</a>
+    <a href="https://motherduck.com/blog/duckdb-mcp/" target="_blank"><span class="src-tag">MotherDuck</span>MotherDuck MCP launch (Dec 2025)</a>
+    <a href="https://iceberg.apache.org/" target="_blank"><span class="src-tag">Apache</span>Apache Iceberg — open table format</a>
+  </div>
+
   <h3>Qlik Official</h3>
   <div class="source-list">
     <a href="https://www.qlik.com/us/products/model-context-protocol" target="_blank"><span class="src-tag">Product</span>Model Context Protocol official page</a>
