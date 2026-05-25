@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<title>Claude Core Playbook — 4 Capabilities (Gurafa)</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Arial, sans-serif; max-width: 880px; margin: 2rem auto; padding: 0 1.2rem; line-height: 1.55; color: #1a1a1a; }
+  h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 0.3rem; }
+  h2 { font-size: 1.2rem; margin-top: 2rem; background: #f0f4f8; padding: 0.4rem 0.7rem; border-left: 4px solid #2b6cb0; }
+  h3 { font-size: 1rem; margin-top: 1.3rem; color: #333; }
+  .ep0 { background: #f0f4f8; padding: 0.5rem 0.8rem; border-left: 4px solid #2b6cb0; font-weight: 600; margin: 0.6rem 0 1rem; }
+  table { border-collapse: collapse; width: 100%; margin: 0.6rem 0; font-size: 0.93rem; }
+  th, td { border: 1px solid #ccc; padding: 0.45rem 0.65rem; vertical-align: top; text-align: left; }
+  th { background: #f4f4f4; }
+  .use { background: #e8f5e9; border-left: 4px solid #2e7d32; padding: 0.7rem 0.9rem; margin: 0.8rem 0; }
+  .skip { background: #fff3cd; border-left: 4px solid #f57c00; padding: 0.7rem 0.9rem; margin: 0.8rem 0; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.8rem; margin-right: 4px; font-weight: 500; }
+  .fact { background: #c8e6c9; color: #1b5e20; }
+  .inference { background: #fff3cd; color: #664d03; }
+  .untested { background: #ffcdd2; color: #b71c1c; }
+  .status { background: #fff8e1; padding: 0.5rem 0.8rem; border-left: 4px solid #f57c00; margin: 1rem 0; }
+  .note { background: #f5f5f5; padding: 0.6rem 0.9rem; border-left: 3px solid #757575; margin-top: 1.2rem; font-size: 0.95rem; }
+  a { color: #2b6cb0; }
+  code { background: #f0f0f0; padding: 1px 5px; border-radius: 3px; font-size: 0.88em; }
+  ul { margin: 0.3rem 0 0.6rem 1.3rem; padding: 0; }
+</style>
+</head>
+<body>
+
+<h1>Claude Core — 4 Capability Playbook Bivision-ისთვის</h1>
+<p><em>Source: Gurafa | 2026-04-20 | Owner directive: tools skip, HOW-TO harvest</em></p>
+
+<div class="ep0">EP0: 8/10 (O) — Owner-მოთხოვნილი HOW-TO რუკა. ოთხი capability Bivision-ის scale-ზე Claude Code-ში უკვე შესაძლებელია. ქვემოთ: მექანიზმი, GitHub reference, Bivision-ის კონკრეტული სტარტ-წერტილი.</div>
+
+<p><strong>Core principle:</strong> Claude Code = "verb", არა new tool. თითო capability აგებულია 3 building block-ით — <strong>Skill</strong> (markdown ფაილი, workflow-ს ასწავლის), <strong>Knowledge base</strong> (Bivision-ის მონაცემი/voice/ICP), <strong>MCP</strong> (external data/browser/CRM hook). ერთი ფორმულა, ოთხი გამოყენება.</p>
+
+<!-- 1. LEAD SCRAPING -->
+<h2>1. Lead Scraping — როგორ Claude-ით</h2>
+
+<h3>მექანიზმი</h3>
+<p>Claude-ს პირდაპირ web-ზე წვდომა აქვს 3 გზით:</p>
+<ul>
+<li><strong>MCP server</strong> (external service): Firecrawl MCP, eGet MCP, Exa MCP — structured extraction, batch, LLM post-processing</li>
+<li><strong>Playwright MCP</strong> (browser automation): JS-rendered pages, auth-walled content, LinkedIn/FB-ის behind-login</li>
+<li><strong>WebFetch + WebSearch</strong> (built-in): public docs, blog, domain audit, HTML parsing curl-ით</li>
+</ul>
+
+<h3>Bivision-ისთვის რა მუშაობს</h3>
+
+<table>
+  <tr><th>Use case</th><th>Mechanism</th><th>Starter action</th></tr>
+  <tr><td>Prospect company site audit (BI pain detection)</td><td>Firecrawl/Exa MCP + Claude summarize</td><td>10 Georgian mid-market site-ის batch scan, BI/reporting keyword pattern</td></tr>
+  <tr><td>LinkedIn post reaction-ებიდან warm-lead extraction</td><td>Playwright MCP + owner session</td><td>Bivision-ის 3 LinkedIn post-ზე commenter/liker სია</td></tr>
+  <tr><td>Georgian competitor client-logo scrape</td><td>Firecrawl + Claude extraction prompt</td><td>Widgera.com client wall → logo list → overlap check Bivision-ის 29 account-თან</td></tr>
+</table>
+
+<h3>GitHub references</h3>
+<ul>
+<li><a href="https://github.com/vishwajeetdabholkar/eget_mcp">eget_mcp</a> — local web scraper MCP for Claude</li>
+<li>Firecrawl MCP (cloud + self-host) — LLM-powered extraction</li>
+<li>Playwright MCP — უკვე active ამ სესიაში (<code>mcp__playwright__*</code>)</li>
+<li><a href="https://github.com/VoltAgent/awesome-agent-skills">awesome-agent-skills</a> — 1000+ skill browser, scraping სექცია</li>
+</ul>
+
+<div class="use">
+<strong>რას ვიყენებთ:</strong> Playwright MCP + Firecrawl MCP Bivision-ისთვის. Scale = <em>targeted curation</em>, არა mass scrape. პირველი ცდა: Widgera client overlap + 10 Georgian prospect site audit.
+</div>
+
+<!-- 2. LEAD SCORING -->
+<h2>2. Lead Scoring (ICP Match) — როგორ Claude-ით</h2>
+
+<h3>მექანიზმი</h3>
+<p>GTM Repository pattern (2026 standard): markdown ფაილების ნაკრები git repo-ში. Claude Code კითხულობს, ქულიანდ-ს აძლევს.</p>
+<ol>
+<li><code>icp/definition.md</code> — ვინ არის ideal client (industry, size, tech stack, pain)</li>
+<li><code>icp/signal-library.md</code> — რას ვხედავთ როგორც positive/negative signal (e.g., "hires BI analyst" = +10, "legacy SAP" = +5, "Odoo ERP-ით კმაყოფილი" = -8)</li>
+<li><code>icp/scoring-skill.md</code> — skill definition: input = account description, output = tier (A/B/C/D) + reasoning</li>
+</ol>
+<p>Claude Code კითხულობს 3 ფაილს ავტომატურად როცა skill გამოიძახება. n8n automation-ი არ სჭირდება.</p>
+
+<h3>Bivision-ისთვის რა მუშაობს</h3>
+
+<table>
+  <tr><th>Use case</th><th>Input</th><th>Output</th></tr>
+  <tr><td>29 არსებული account-ის tier</td><td>HubSpot export + revenue + usage data</td><td>A (champion), B (growth), C (at-risk), D (churn inevitable)</td></tr>
+  <tr><td>LinkedIn 10K network-ის 100 top prospect</td><td>Title + company + industry</td><td>A-B-C tier list, outreach priority</td></tr>
+  <tr><td>Inbound lead auto-scoring</td><td>HubSpot form submission</td><td>Real-time tier + next action suggestion (demo/nurture/drop)</td></tr>
+</table>
+
+<h3>GitHub references</h3>
+<ul>
+<li><a href="https://knowledge.gtmstrategist.com/p/the-gtm-repository-for-claude-code">GTM Repository pattern</a> — Account Research + ICP Scoring skill structure</li>
+<li><a href="https://github.com/alirezarezvani/claude-skills">alirezarezvani/claude-skills</a> — 232+ skills, marketing/C-level advisory sections</li>
+<li><a href="https://github.com/coreyhaines31/marketingskills">coreyhaines31/marketingskills</a> — growth engineering, analytics skills</li>
+</ul>
+
+<div class="use">
+<strong>რას ვიყენებთ:</strong> GTM Repository pattern. <code>BI_gurafa/skills/icp-scoring/</code> directory — 3 markdown ფაილი. პირველი ცდა: 29 არსებული account-ი tier-ად. HubSpot connector-ს არ ელოდება (manual export-ით ვიწყებთ).
+</div>
+
+<!-- 3. LEAD MAGNET -->
+<h2>3. Lead Magnet Generation — როგორ Claude-ით</h2>
+
+<h3>მექანიზმი</h3>
+<p>Claude-ს "artifacts-builder" pattern: Claude Code-მ React/Tailwind/shadcn ან plain HTML + JS-ით interactive calculator, assessment, quiz, mini-tool 5-30 წუთში აგებს. gated email-ით (ContactForm → HubSpot).</p>
+<p>3 tier:</p>
+<ol>
+<li><strong>Static calculator</strong> — 1 HTML file, localStorage, simple math (ROI, payback, cost)</li>
+<li><strong>Assessment / quiz</strong> — 10-15 კითხვა → score + PDF report Claude-generated</li>
+<li><strong>Micro-SaaS free tool</strong> — fully functional mini-app (e.g., "BI dashboard template builder", saves to localStorage)</li>
+</ol>
+
+<h3>Bivision-ისთვის რა მუშაობს</h3>
+
+<table>
+  <tr><th>Lead magnet</th><th>Tier</th><th>Target ICP</th></tr>
+  <tr><td><strong>BI Health Check</strong> — 12 Q quiz "რა მდგომარეობაშია თქვენი reporting?", score + რეკომენდაციები</td><td>Assessment</td><td>CFO/COO of Georgian mid-market</td></tr>
+  <tr><td><strong>Qlik ROI Calculator</strong> — input თანამშრომელთა რაოდენობა + reporting hours, output annual savings</td><td>Static</td><td>Finance leaders, decision time</td></tr>
+  <tr><td><strong>Dashboard Template Gallery</strong> — 5 free BiFinance/BiRetail-style mini-dashboards, embeddable</td><td>Micro-SaaS</td><td>Demo-curious prospects</td></tr>
+</table>
+
+<h3>GitHub references</h3>
+<ul>
+<li><a href="https://github.com/rohitg00/awesome-claude-code-toolkit">awesome-claude-code-toolkit</a> — <code>artifacts-builder</code> skill (React + Tailwind + shadcn)</li>
+<li><a href="https://github.com/ComposioHQ/awesome-claude-skills">awesome-claude-skills</a> — Lead Magnet Builder skill references</li>
+<li><a href="https://github.com/Micro-SaaS-Examples/Best-Micro-SaaS-Tools">Micro-SaaS Examples</a> — 200+ free-tool lead magnet patterns (not Claude-specific, inspiration)</li>
+</ul>
+
+<div class="use">
+<strong>რას ვიყენებთ:</strong> BI Health Check quiz პირველი ცდა, 2 საათი. Static HTML + localStorage + HubSpot form embed. LinkedIn-ზე post "30 წამში გაიგე შენი BI-ის მდგომარეობა" → inbound lead.
+</div>
+
+<!-- 4. COPYWRITING -->
+<h2>4. Copywriting (Bivision voice) — როგორ Claude-ით</h2>
+
+<h3>მექანიზმი</h3>
+<p>3-layer skill stack — Claude-ს რომ Bivision-ისავით დაწეროს, არა generic ChatGPT voice-ით:</p>
+<ol>
+<li><strong>Brand voice skill</strong> — <code>skills/bivision-voice/SKILL.md</code> + <code>voice-guide.md</code> + <code>examples/</code> (20-50 გვერდი existing copy: Proposal v2, client emails, LinkedIn posts, Owner-ის podcast/interview თუ არის)</li>
+<li><strong>Content-type skill</strong> — <code>skills/linkedin-post/</code>, <code>skills/proposal/</code>, <code>skills/cold-outreach/</code>, თითო თავისი structure-ით</li>
+<li><strong>SEO/angle skill</strong> — keyword list, pain language map, internal link strategy</li>
+</ol>
+<p>Claude Code-ი ყველა 3-ს ავტომატურად ჩატვირთავს roskal one prompt-ში.</p>
+
+<h3>Bivision-ისთვის რა მუშაობს</h3>
+
+<table>
+  <tr><th>Use case</th><th>Input</th><th>Output</th></tr>
+  <tr><td>LinkedIn post-ი daily/weekly</td><td>Topic trigger (e.g., new prospect story, industry news)</td><td>Bivision-voice LinkedIn post draft, Mariam-ის edit-ს საჭიროებს</td></tr>
+  <tr><td>Proposal personalization</td><td>Prospect name + industry + pain identified</td><td>Proposal v2 template + voice-matched intro/closing</td></tr>
+  <tr><td>Cold outreach sequence</td><td>ICP tier A list (from #2 above)</td><td>3-touch sequence, თითო 50-80 სიტყვა, Bivision-voice</td></tr>
+  <tr><td>Blog/thought leadership</td><td>Owner-ის dictated idea (voice → text)</td><td>800-word article, Bivision-voice, SEO-mapped</td></tr>
+</table>
+
+<h3>GitHub references</h3>
+<ul>
+<li><a href="https://github.com/boraoztunc/skills">boraoztunc/skills</a> — copywriting + SEO + design skills, markdown-ready</li>
+<li><a href="https://github.com/coreyhaines31/marketingskills">coreyhaines31/marketingskills</a> — CRO, copywriting, growth engineering</li>
+<li><a href="https://github.com/alirezarezvani/claude-skills">alirezarezvani/claude-skills</a> — C-level advisory + marketing sections</li>
+<li><a href="https://www.novoslo.com/blog/claude-skills-for-writing">Novoslo article</a> — brand voice skill methodology</li>
+<li>Bivision-ში უკვე: <code>bivision-knowledge-base</code> skill (3 აგენტში confirmed) — foundation layer</li>
+</ul>
+
+<div class="use">
+<strong>რას ვიყენებთ:</strong> <code>skills/bivision-voice/</code> build — existing copy-ის 20-30 გვერდი ამოვიღო (Proposal v2, owner-ის LinkedIn history, client emails თუ owner მოგვცემს). Layer 1 = voice, layer 2 = LinkedIn post, layer 3 = cold outreach. პირველი ცდა: Ready-სტატუსიანი LinkedIn posts-ის regen Bivision-voice-ით.
+</div>
+
+<!-- ORDER -->
+<h2>რა თანმიმდევრობით</h2>
+
+<table>
+  <tr><th>#</th><th>Capability</th><th>დრო (first version)</th><th>Prereq</th></tr>
+  <tr><td>1</td><td>Copywriting — <code>bivision-voice</code> skill</td><td>2-3 საათი</td><td>Owner-ის 20-30 გვერდი existing copy</td></tr>
+  <tr><td>2</td><td>Lead magnet — BI Health Check quiz</td><td>2 საათი</td><td>უკვე შესაძლებელია</td></tr>
+  <tr><td>3</td><td>Lead scoring — 29 account tier</td><td>1-2 საათი</td><td>HubSpot manual export</td></tr>
+  <tr><td>4</td><td>Lead scraping — Widgera client overlap</td><td>1 საათი</td><td>Firecrawl MCP install ან Playwright</td></tr>
+</table>
+
+<p><strong>Rationale:</strong> Copywriting voice = prerequisite ყველა outbound-ზე. ამის გარეშე LinkedIn posts, cold outreach, proposal-ი generic რჩება. პირველი layer-ი ამიტომ voice.</p>
+
+<!-- SKIP / CAUTION -->
+<div class="skip">
+<h2>რის თავიდან ავიცილოთ</h2>
+<ul>
+<li><strong>Skill inflation</strong> — 20 skill build-ი ერთდროულად = maintenance ნაგავი. 4 capability, 4 skill, start lean.</li>
+<li><strong>n8n parallel workflow</strong> — Noah-ს n8n-ი Claude-ს ჩაანაცვლა. Bivision Architecture A-ში n8n paused — ნუ ავაშენებთ.</li>
+<li><strong>"Claude-ს ყველაფერი უნდა დავატეხოთ"</strong> — owner-ი verification loop-ში რჩება. Claude output = draft, human judgment = final.</li>
+</ul>
+</div>
+
+<div class="status"><strong>სტატუსი:</strong> Ready — 4 capability HOW-TO on disk, ერთი recommendation queue-ში</div>
+
+<p><strong>ფაილი:</strong> <code>outputs/2026-04-20 Claude Core Capabilities Playbook by Gurafa.html</code></p>
+
+<div class="note">
+<strong>ოპერაციული შენიშვნა:</strong> ერთი რეკომენდაცია — ვიწყებ <code>bivision-voice</code> skill-ის scaffold-ს <code>BI_gurafa/skills/bivision-voice/</code>-ში: SKILL.md + voice-guide.md placeholder + examples/ directory. შენ მოგაწოდებ request list: რომელი 5-10 ფაილი გავდოთ examples-ში (Proposal v2 + რა კიდევ). 2 საათიანი first version. თუ სხვა capability-ის ჯერ გინდა, მითხარი.
+</div>
+
+<p>Sources: <a href="https://github.com/VoltAgent/awesome-agent-skills">awesome-agent-skills</a>, <a href="https://github.com/alirezarezvani/claude-skills">claude-skills</a>, <a href="https://github.com/rohitg00/awesome-claude-code-toolkit">awesome-claude-code-toolkit</a>, <a href="https://github.com/coreyhaines31/marketingskills">marketingskills</a>, <a href="https://github.com/boraoztunc/skills">boraoztunc/skills</a>, <a href="https://knowledge.gtmstrategist.com/p/the-gtm-repository-for-claude-code">GTM Repository pattern</a>, <a href="https://github.com/vishwajeetdabholkar/eget_mcp">eget_mcp</a>, <a href="https://www.novoslo.com/blog/claude-skills-for-writing">Claude Skills for Writing</a>.</p>
+
+</body>
+</html>

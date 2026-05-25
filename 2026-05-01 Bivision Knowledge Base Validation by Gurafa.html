@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<title>2026-05-01 Bivision Knowledge Base Validation — Gurafa Pass</title>
+<style>
+body { font-family: -apple-system, "Segoe UI", sans-serif; max-width: 920px; margin: 2em auto; padding: 0 1em; color: #222; line-height: 1.5; }
+h1 { font-size: 1.4em; border-bottom: 2px solid #333; padding-bottom: .3em; }
+h2 { font-size: 1.15em; margin-top: 1.6em; color: #1a4d8c; }
+h3 { font-size: 1em; margin-top: 1em; color: #555; }
+table { border-collapse: collapse; width: 100%; margin: .8em 0; font-size: .92em; }
+th, td { border: 1px solid #ccc; padding: .4em .6em; text-align: left; vertical-align: top; }
+th { background: #f0f4f8; }
+.flag { background: #fff5e6; }
+.add { background: #e8f5e9; }
+.warn { color: #b00; font-weight: bold; }
+.ok { color: #060; }
+code { background: #f4f4f4; padding: 0 .3em; border-radius: 3px; font-size: .9em; }
+.ep0 { font-weight: bold; color: #1a4d8c; }
+ul { margin: .3em 0; padding-left: 1.4em; }
+.workflow { background: #e3f2fd; padding: .8em; border-left: 4px solid #1976d2; margin: 1em 0; }
+</style>
+</head>
+<body>
+
+<h1>Bivision Knowledge Base — Gurafa Validation Pass</h1>
+<p class="ep0">EP0: 9/10 (S) — Gurafa-domain disk cross-check vs canonical bivision-knowledge-base.md</p>
+<p><strong>Date:</strong> 2026-05-01 · <strong>Author:</strong> Gurafa · <strong>Trigger:</strong> owner directive — each agent validate from own knowledge before final SSOT lock</p>
+
+<h2>Scope — Gurafa domain</h2>
+<ul>
+<li>Competitors / market signals</li>
+<li>ICP / positioning / moats</li>
+<li>OKR alignment</li>
+<li>Product suite completeness (catalog-level)</li>
+<li>External AI/tooling overlap</li>
+</ul>
+<p><em>Out of scope:</em> sales flow, pricing accuracy, objections (Mentari), evidence audit (Viktor), bivision.ge web tech (Geo).</p>
+
+<h2>Flags (5 corrections required)</h2>
+
+<table>
+<tr><th>#</th><th>Field</th><th>Current</th><th>Should be</th><th>Source memory</th><th>Action</th></tr>
+
+<tr class="flag">
+<td>F1</td>
+<td>Product suite</td>
+<td>7 products listed (BiRetail · BiFinance · BiAudit · BiMedical · BiDebitors · BiStock · Direct CF)</td>
+<td><strong>9 products</strong> — add <strong>BiPriceMonitoring</strong> + <strong>BiDistribution</strong></td>
+<td><code>reference_bivision_keywords.md</code> (owner-authored Apr 26)</td>
+<td class="add">ADD 2 sections</td>
+</tr>
+
+<tr class="flag">
+<td>F2</td>
+<td>OKR / strategic context</td>
+<td><span class="warn">ABSENT</span></td>
+<td>OKR1 ARR 68K→95K + 12 new customers · OKR2 Power BI+AI products 2mo · OKR3 brand/lead-gen · OKR4 R&D</td>
+<td><code>project_bivision_okrs_2026.md</code> Apr 22 canonical (Apr 23 KR1 corrected 950K→95K)</td>
+<td class="add">ADD section</td>
+</tr>
+
+<tr class="flag">
+<td>F3</td>
+<td>Competitor: Amadeo</td>
+<td>"ვებსაიტზე არაფერი, სიახლეები მხოლოდ social-იდან"</td>
+<td>"<strong>ACTIVE-WATCH</strong> — Balance ERP overlap detected Apr 28; same ICP financial-vertical"</td>
+<td><code>project_gurafa_brief_apr28.md</code></td>
+<td>UPDATE</td>
+</tr>
+
+<tr class="flag">
+<td>F4</td>
+<td>Competitor: Dastafe</td>
+<td>"ძალიან მცირე web presence"</td>
+<td><strong>DROP from list</strong> — Apr 28 mis-identification (DataFest conference, not BI vendor)</td>
+<td><code>project_gurafa_brief_apr28.md</code></td>
+<td>REMOVE</td>
+</tr>
+
+<tr class="flag">
+<td>F5</td>
+<td>Positioning / moats</td>
+<td>"Qlik Sense = no DW/ETL · all-in price · 3-month free cancellation · agile · 9+ years"</td>
+<td>add: "<strong>ქართული ERP connector stack (Fina · Oris · 1C · Balance)</strong> · 1M-70M₾ ICP · <strong>2-3 კვირა deployment</strong> · Qlik+Claude MCP layer (internal-only marketing claim)"</td>
+<td><code>project_bivision_positioning.md</code> Apr 21 owner survey</td>
+<td>EXPAND</td>
+</tr>
+
+</table>
+
+<h2>What I did NOT flag (within Gurafa scope, verified consistent)</h2>
+<ul class="ok">
+<li>Revenue 942K₾ declining from 1M — matches <code>project_bivision_okrs_2026.md</code></li>
+<li>Accounts 29, 4/9 champion-dependent — consistent with sprint state</li>
+<li>Team 7 people, 200+ projects — matches <code>project_team_roster.md</code></li>
+<li>Pricing structure (850₾ base + add-ons) — matches owner Apr 21 SME positioning, no override signal</li>
+<li>Sales flow 5-step — matches Apr 17 Gamma deck (1.4 ✅) — no Gurafa override</li>
+</ul>
+
+<h2>Cross-agent workflow proposal</h2>
+
+<div class="workflow">
+<h3>Validation pass cadence</h3>
+<ol>
+<li><strong>Mentari</strong> reviews: products / sales flow / pricing / objections / accounts / OKR-execution-state. Flags to <code>BI_C-Suite/docs/AUDIT_REQUEST.md#validation-bivision-kb</code></li>
+<li><strong>Viktor</strong> reviews: logical consistency / claim verification / evidence gaps / unverified-as-fact items</li>
+<li><strong>Gurafa</strong> reviewed (this document) ✓</li>
+<li><strong>Geo</strong> reviews: bivision.ge URL accuracy / tech claims (Qlik Sense Cloud SaaS) / public-facing fields</li>
+<li><strong>Mentari consolidates</strong> 4 flag-lists → single diff proposal HTML</li>
+<li><strong>Owner approves</strong> diff → Mentari writes final to <code>Mentari_VCS/skills/bivision-knowledge-base.md</code> SSOT</li>
+<li><strong>Cadence:</strong> 1× per quarter validation pass to prevent re-drift (lessons.md L4 entry)</li>
+</ol>
+</div>
+
+<h2>Status</h2>
+<ul>
+<li>Gurafa pass: <span class="ok">complete</span> — 5 flags surfaced</li>
+<li>Other 3 agents: pending owner trigger in own sessions</li>
+<li>SSOT lock: pending consolidated diff + owner approve</li>
+<li>Drift cadence: every 3 months (preventive lesson)</li>
+</ul>
+
+<h2>Recommendation (per `feedback_assessment_not_questions.md`)</h2>
+<p>Owner triggers Mentari → Viktor → Geo in their own sessions, each does same validation pass on canonical SSOT. Owner copy-pastes this prompt:</p>
+<blockquote style="background:#fffae6;padding:.8em;border-left:3px solid #c80;">
+<code>"Validate Mentari_VCS/skills/bivision-knowledge-base.md from your own knowledge domain. Flag corrections/additions/removals to BI_C-Suite/docs/AUDIT_REQUEST.md#validation-bivision-kb. Reference: outputs/2026-05-01 Bivision Knowledge Base Validation by Gurafa.html"</code>
+</blockquote>
+
+<p>Workflow ETA: Mentari 30 min · Viktor 30 min · Geo 15 min · Mentari consolidate 30 min · owner-approve 10 min. <strong>Total ~2 hours over 4 sessions.</strong></p>
+
+<p style="font-size: .85em; color: #666; margin-top: 2em; border-top: 1px solid #ccc; padding-top: .5em;">
+Disk-grounded: 6 memory files cross-checked · 5 flags · 1 source review (BIVISION_CONTEXT.md Apr 6 = stale, knowledge-base.md Apr 14-28 = curated) · EP1: FACT (memory citations) · EP1: HYPOTHESIS (sources older than current owner-Mentari sessions might add more — owner verifies).<br>
+Author: Gurafa · L2 verify-skip avoided (memory cross-checked before flag) · Self-improvement loop applied.
+</p>
+
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Odoo Deep Analysis — Bivision Context | 2026-05-15</title>
+<style>
+  :root {
+    --purple: #6B63B5; --purple-light: #f0effa;
+    --green: #00A651; --green-light: #e6f7ef;
+    --red: #e53e3e; --red-light: #fff5f5;
+    --orange: #dd6b20; --orange-light: #fffaf0;
+    --yellow: #d69e2e; --yellow-light: #fffff0;
+    --gray: #718096; --gray-light: #f7f8fa;
+    --text: #1a202c; --border: #e2e8f0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.6; color: var(--text); background: #f4f5f9; padding: 20px 14px; }
+  .container { max-width: 1000px; margin: 0 auto; }
+
+  .header { background: var(--purple); color: white; border-radius: 12px; padding: 22px 26px; margin-bottom: 18px; }
+  .header h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .header .meta { font-size: 12px; opacity: 0.75; }
+  .ep0 { display: inline-block; background: rgba(255,255,255,0.18); border-radius: 5px; padding: 3px 10px; font-size: 12px; font-weight: 600; margin-top: 8px; }
+
+  .verdict-box { border-radius: 10px; padding: 16px 20px; margin-bottom: 18px; }
+  .verdict-box.threat { background: var(--orange-light); border: 1px solid var(--orange); }
+  .verdict-box.opportunity { background: var(--green-light); border: 1px solid var(--green); }
+  .verdict-box h2 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+  .verdict-box.threat h2 { color: var(--orange); }
+  .verdict-box.opportunity h2 { color: var(--green); }
+  .verdict-box p { font-size: 13px; margin-bottom: 6px; }
+  .verdict-box p:last-child { margin-bottom: 0; }
+
+  .section { background: white; border-radius: 10px; box-shadow: var(--shadow); margin-bottom: 16px; overflow: hidden; }
+  .section-head { padding: 14px 18px; background: var(--gray-light); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+  .section-head h2 { font-size: 15px; font-weight: 700; flex: 1; }
+  .section-body { padding: 16px 18px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media(max-width:640px) { .grid2 { grid-template-columns: 1fr; } }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  @media(max-width:720px) { .grid3 { grid-template-columns: 1fr 1fr; } }
+  @media(max-width:480px) { .grid3 { grid-template-columns: 1fr; } }
+
+  .module-card { background: var(--gray-light); border-radius: 8px; padding: 12px 14px; }
+  .module-card h3 { font-size: 13px; font-weight: 700; color: var(--purple); margin-bottom: 6px; }
+  .module-card ul { list-style: none; padding: 0; }
+  .module-card li { font-size: 12px; padding: 2px 0 2px 12px; position: relative; }
+  .module-card li::before { content: '▸'; position: absolute; left: 0; color: var(--purple); font-size: 10px; top: 4px; }
+
+  .ai-card { background: var(--purple-light); border-radius: 8px; padding: 12px 14px; }
+  .ai-card h3 { font-size: 13px; font-weight: 700; color: var(--purple); margin-bottom: 6px; }
+  .ai-card ul { list-style: none; padding: 0; }
+  .ai-card li { font-size: 12px; padding: 2px 0 2px 12px; position: relative; }
+  .ai-card li::before { content: '🤖'; position: absolute; left: 0; font-size: 10px; top: 3px; }
+
+  .limit-card { background: var(--red-light); border-radius: 8px; padding: 12px 14px; border-left: 3px solid var(--red); }
+  .limit-card h3 { font-size: 13px; font-weight: 700; color: var(--red); margin-bottom: 6px; }
+  .limit-card ul { list-style: none; padding: 0; }
+  .limit-card li { font-size: 12px; padding: 2px 0 2px 16px; position: relative; }
+  .limit-card li::before { content: '⚠'; position: absolute; left: 0; font-size: 10px; top: 3px; }
+
+  .bivision-card { background: var(--green-light); border-radius: 8px; padding: 12px 14px; border-left: 3px solid var(--green); }
+  .bivision-card h3 { font-size: 13px; font-weight: 700; color: var(--green); margin-bottom: 6px; }
+  .bivision-card ul { list-style: none; padding: 0; }
+  .bivision-card li { font-size: 12px; padding: 2px 0 2px 14px; position: relative; }
+  .bivision-card li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-size: 10px; top: 3px; }
+
+  /* COMPARISON TABLE */
+  .comp-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .comp-table th { background: var(--purple); color: white; padding: 8px 10px; text-align: left; font-weight: 600; font-size: 11px; }
+  .comp-table td { padding: 7px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .comp-table tr:nth-child(even) td { background: var(--gray-light); }
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-table .col-odoo { background: #fdf6e3 !important; }
+  .badge { font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 3px; white-space: nowrap; }
+  .badge.win { background: var(--green-light); color: var(--green); }
+  .badge.lose { background: var(--red-light); color: var(--red); }
+  .badge.tie { background: var(--yellow-light); color: var(--yellow); }
+  .tag { font-size: 10px; border-radius: 3px; padding: 1px 4px; }
+  .tag.f { background: var(--purple-light); color: var(--purple); }
+  .tag.h { background: var(--yellow-light); color: var(--yellow); }
+
+  .highlight { background: var(--yellow-light); border: 1px solid var(--yellow); border-radius: 6px; padding: 10px 14px; font-size: 13px; font-weight: 600; margin: 10px 0; }
+
+  .footer { text-align: center; font-size: 11px; color: var(--gray); margin-top: 20px; padding: 12px; background: white; border-radius: 8px; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
+  .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>Odoo Deep Analysis — ERP + Analytics + AI</h1>
+  <div class="meta">Gurafa | 2026-05-15 | Bivision context: FMG SOFT = Odoo Gold Partner GE</div>
+  <div class="ep0">EP0: 7/10 (S) — ფაქტებზე დაფუძნებული. Odoo-ს BI = Bivision-ის შესაძლებლობა, არა საფრთხე.</div>
+</div>
+
+<!-- VERDICTS -->
+<div class="verdict-box threat">
+  <h2>⚠ Odoo = საფრთხე (ERP bundling)</h2>
+  <p>FMG SOFT Odoo Gold Partner-ი. Construction prospects-ს ERP + basic analytics-ი "უფასოდ" სთავაზობს. CFO-ს შეიძლება ეკმაროს — Bivision-ი ვეღარ შევა.</p>
+  <p><strong>ყველაზე სახიფათო სცენარი:</strong> Prospect ახალია, Odoo-ს ყიდულობს FMG-დან → Power BI built-in → Bivision bypass. <span class="tag h">INFERENCE</span></p>
+</div>
+
+<div class="verdict-box opportunity">
+  <h2>✓ Odoo = შესაძლებლობა (BI gap)</h2>
+  <p><strong>ფაქტი:</strong> "90% of Odoo customers need Power BI on top" (MuchConsulting, 2026). Odoo-ს native BI = basic charts + pivot. CFO-grade analysis = Odoo ვერ იძლევა.</p>
+  <p><strong>Bivision strategy:</strong> FMG/Odoo ინსტალაციები → Bivision = analytics upgrade. "Odoo-ს გქონდეს — BI ON TOP-ი ჩვენ." Cross-ERP (Oris+Fina+Odoo) = Odoo-ს ვერ შეუძლია.</p>
+</div>
+
+<!-- SECTION 1: ERP MODULES -->
+<div class="section">
+  <div class="section-head">
+    <h2>1. Odoo ERP — ძირითადი მოდულები</h2>
+    <span style="font-size:12px;color:var(--gray);">40+ official | 40,000+ community</span>
+  </div>
+  <div class="section-body">
+    <div class="grid3">
+
+      <div class="module-card">
+        <h3>💰 Accounting & Finance</h3>
+        <ul>
+          <li>General Ledger, AR/AP</li>
+          <li>Bank reconciliation (AI-assisted)</li>
+          <li>OCR invoice processing (98% accuracy)</li>
+          <li>Multi-currency, multi-company</li>
+          <li>Tax reports (GE localization via FMG)</li>
+          <li>Cash flow, P&L, Balance Sheet</li>
+          <li>SARAS reports (via Nexia/FMG)</li>
+        </ul>
+      </div>
+
+      <div class="module-card">
+        <h3>📊 Sales & CRM</h3>
+        <ul>
+          <li>Pipeline management</li>
+          <li>AI lead scoring</li>
+          <li>Quotations & contracts</li>
+          <li>Email integration</li>
+          <li>Revenue forecasting</li>
+        </ul>
+      </div>
+
+      <div class="module-card">
+        <h3>🏗️ Construction-Relevant</h3>
+        <ul>
+          <li>Project management</li>
+          <li>Inventory / materials tracking</li>
+          <li>Purchase & procurement</li>
+          <li>CRM for property sales</li>
+          <li>Property management module (FMG-built)</li>
+          <li>Digital neighbourhood app (FMG)</li>
+        </ul>
+      </div>
+
+      <div class="module-card">
+        <h3>👥 HR & Payroll</h3>
+        <ul>
+          <li>Employee records</li>
+          <li>Payroll (GE localization)</li>
+          <li>AI recruitment screening</li>
+          <li>Attrition prediction</li>
+          <li>Attendance & leaves</li>
+        </ul>
+      </div>
+
+      <div class="module-card">
+        <h3>🏭 Manufacturing</h3>
+        <ul>
+          <li>BOM & routing</li>
+          <li>MRP planning</li>
+          <li>Quality control</li>
+          <li>Maintenance</li>
+          <li>AI demand forecasting</li>
+        </ul>
+      </div>
+
+      <div class="module-card">
+        <h3>🌐 eCommerce & Marketing</h3>
+        <ul>
+          <li>Website builder</li>
+          <li>Email campaigns</li>
+          <li>Social media integration</li>
+          <li>SEO tools</li>
+          <li>Events management</li>
+        </ul>
+      </div>
+
+    </div>
+    <div style="margin-top:10px;font-size:12px;color:var(--gray);">წყარო: <a href="https://ahex.co/what-is-odoo-erp-complete-guide/" target="_blank" style="color:var(--purple);">Odoo Complete Guide 2026 ↗</a> | <a href="https://www.odoo.com/app/artificial-intelligence" target="_blank" style="color:var(--purple);">odoo.com/app/artificial-intelligence ↗</a></div>
+  </div>
+</div>
+
+<!-- SECTION 2: ANALYTICS / BI -->
+<div class="section">
+  <div class="section-head"><h2>2. Analytics & BI — რეალობა vs პრომო</h2></div>
+  <div class="section-body">
+    <div class="grid2">
+
+      <div>
+        <div class="label" style="margin-bottom:8px;">Odoo-ს Native BI (რაც გვაქვს)</div>
+        <div class="module-card">
+          <ul>
+            <li>Real-time dashboards (module-level)</li>
+            <li>Pivot tables — basic cross-tab</li>
+            <li>Bar / line / pie charts</li>
+            <li>Built-in spreadsheet (Odoo data integration)</li>
+            <li>Odoo 19: unified KPI dashboard (sales+CRM+inventory+finance)</li>
+            <li>"Ask Odoo" — natural language query (Odoo 19)</li>
+            <li>Demand forecasting (inventory module)</li>
+            <li>Export: Excel / CSV / PDF</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="label" style="margin-bottom:8px;">Odoo BI-ს შეზღუდვები (ფაქტები)</div>
+        <div class="limit-card" style="height:100%;">
+          <ul>
+            <li>Performance issues — DB 10GB+ ყვება analytics queries-ზე <span class="tag f">FACT</span></li>
+            <li>Basic viz only — advanced interactivity არ არის <span class="tag f">FACT</span></li>
+            <li>Single-source — Odoo data only. Google Analytics, Facebook Ads, Excel — ვერ აერთიანებს <span class="tag f">FACT</span></li>
+            <li>No data versioning — temporal / comparative analysis შეზღუდულია <span class="tag f">FACT</span></li>
+            <li>"Users want more detail. Often also want data from other systems." — Odoo consultant <span class="tag f">FACT</span></li>
+            <li><strong>"90% of Odoo customers need Power BI on top"</strong> — MuchConsulting 2026 <span class="tag f">FACT</span></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="highlight" style="margin-top:14px;">
+      💡 Odoo-ს native analytics = operational reporting. CFO-grade financial analysis, cross-ERP aggregation, Qlik-level visualization = Odoo ვერ იძლევა. <strong>ეს Bivision-ის pitch space.</strong>
+    </div>
+
+    <div style="margin-top:10px;font-size:12px;color:var(--gray);">
+      წყარო: <a href="https://muchconsulting.com/blog/odoo-2/odoo-bi-72" target="_blank" style="color:var(--purple);">MuchConsulting — Odoo BI limits ↗</a> |
+      <a href="https://www.captivea.com/blog/captivea-blog-4/top-5-bi-features-in-odoo-erp-in-2026-1093" target="_blank" style="color:var(--purple);">Captivea — Top 5 BI features ↗</a> |
+      <a href="https://ecosire.com/compare/power-bi-vs-tableau-vs-looker-for-odoo" target="_blank" style="color:var(--purple);">Power BI vs Odoo BI ↗</a>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: AI -->
+<div class="section">
+  <div class="section-head"><h2>3. Odoo AI — რეალური შესაძლებლობები 2025-2026</h2></div>
+  <div class="section-body">
+    <div class="grid3">
+
+      <div class="ai-card">
+        <h3>Finance & Accounting AI</h3>
+        <ul>
+          <li>OCR invoices: 98% accuracy, bulk processing</li>
+          <li>Auto-reconciliation (learns from history)</li>
+          <li>Fraud detection — anomaly algorithms</li>
+          <li>Expense auto-classification (GL codes)</li>
+          <li>Duplicate payment detection</li>
+        </ul>
+      </div>
+
+      <div class="ai-card">
+        <h3>"Ask Odoo" — NL Query (v19)</h3>
+        <ul>
+          <li>"Show all POs over $10K overdue 30+ days" → instant report</li>
+          <li>Natural language → filters + grouping auto-built</li>
+          <li>Works across Sales, PO, Invoices</li>
+          <li>Semantic search across contracts, invoices, KB</li>
+          <li>Powered by LLMs (ChatGPT or Claude)</li>
+        </ul>
+      </div>
+
+      <div class="ai-card">
+        <h3>CRM & Sales AI</h3>
+        <ul>
+          <li>AI lead scoring (historical data)</li>
+          <li>Revenue forecasting</li>
+          <li>AI writing assistant (emails, proposals)</li>
+          <li>Next action recommendations</li>
+        </ul>
+      </div>
+
+      <div class="ai-card">
+        <h3>Operations AI</h3>
+        <ul>
+          <li>Smart inventory forecasting (ML demand)</li>
+          <li>MRP AI suggestions</li>
+          <li>Quality control anomaly detection</li>
+          <li>AI server actions (plain language automation)</li>
+        </ul>
+      </div>
+
+      <div class="ai-card">
+        <h3>HR AI</h3>
+        <ul>
+          <li>Resume screening + auto-ranking</li>
+          <li>Attrition prediction</li>
+          <li>Sentiment analysis (employee feedback)</li>
+          <li>Performance management assist</li>
+        </ul>
+      </div>
+
+      <div class="ai-card">
+        <h3>Odoo 20 — Agentic AI (Oct 2026)</h3>
+        <ul>
+          <li>Proactive workflows (no prompt needed)</li>
+          <li>Multi-step automation — agent executes</li>
+          <li>AI-driven procurement suggestions</li>
+          <li>AI customer service (autonomous)</li>
+          <li>Read-replica DB for performance</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div style="margin-top:12px;font-size:12px;color:var(--gray);">
+      წყარო: <a href="https://www.odoo.com/documentation/19.0/applications/productivity/ai.html" target="_blank" style="color:var(--purple);">Odoo 19 AI docs ↗</a> |
+      <a href="https://www.braincuber.com/blog/odoo-roadmap-2026-where-ai-fits-in" target="_blank" style="color:var(--purple);">Odoo Roadmap 2026 ↗</a> |
+      <a href="https://www.odooskillz.com/blog/odoo-skillz-insights-1/odoo-20-preview-agentic-ai-read-replica-database-and-what-it-means-for-your-business-288" target="_blank" style="color:var(--purple);">Odoo 20 Agentic AI preview ↗</a>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: COMPETITOR COMPARISON -->
+<div class="section">
+  <div class="section-head"><h2>4. Odoo vs კონკურენტები — SME ERP 2026</h2></div>
+  <div class="section-body">
+    <table class="comp-table">
+      <tr>
+        <th>კრიტერიუმი</th>
+        <th class="col-odoo">Odoo</th>
+        <th>SAP Business One</th>
+        <th>MS Dynamics 365 BC</th>
+        <th>ERPNext</th>
+      </tr>
+      <tr>
+        <td><strong>ფასი / user / თვე</strong></td>
+        <td class="col-odoo"><span class="badge win">$7.25 ✓</span></td>
+        <td>$94 + impl $20-80K</td>
+        <td>$65–180 (per module)</td>
+        <td>$10 / თვე ან free (self-host)</td>
+      </tr>
+      <tr>
+        <td><strong>Implementation</strong></td>
+        <td class="col-odoo"><span class="badge win">კვირები</span></td>
+        <td>6–12 თვე, €50-200K+</td>
+        <td>3–6 თვე</td>
+        <td>კვირები (developer needed)</td>
+      </tr>
+      <tr>
+        <td><strong>GE Localization</strong></td>
+        <td class="col-odoo"><span class="badge win">✓ FMG-ს მიერ</span></td>
+        <td><span class="badge lose">❌ (FMG შეწყვიტა)</span></td>
+        <td>SMART Business GE <span class="badge tie">partial</span></td>
+        <td><span class="badge lose">❌ არ არსებობს</span></td>
+      </tr>
+      <tr>
+        <td><strong>Native BI / Analytics</strong></td>
+        <td class="col-odoo"><span class="badge tie">Basic dashboards</span></td>
+        <td><span class="badge tie">Crystal Reports (basic)</span></td>
+        <td><span class="badge win">Power BI native ✓</span></td>
+        <td><span class="badge lose">Minimal</span></td>
+      </tr>
+      <tr>
+        <td><strong>AI Features</strong></td>
+        <td class="col-odoo"><span class="badge win">Advanced (v19-20)</span></td>
+        <td><span class="badge tie">Limited</span></td>
+        <td><span class="badge win">Copilot AI (M365)</span></td>
+        <td><span class="badge lose">Minimal</span></td>
+      </tr>
+      <tr>
+        <td><strong>მოდულების სიგანე</strong></td>
+        <td class="col-odoo"><span class="badge win">40+ official, 40K+ community</span></td>
+        <td>Core ERP, limited add-ons</td>
+        <td>Core ERP + M365 ecosystem</td>
+        <td>Core ERP only</td>
+      </tr>
+      <tr>
+        <td><strong>Cross-ERP aggregation</strong></td>
+        <td class="col-odoo"><span class="badge lose">❌ Odoo-only</span></td>
+        <td><span class="badge lose">❌</span></td>
+        <td><span class="badge lose">❌ M365-only</span></td>
+        <td><span class="badge lose">❌</span></td>
+      </tr>
+      <tr>
+        <td><strong>ICP fit (GE SME 2M-50M₾)</strong></td>
+        <td class="col-odoo"><span class="badge win">HIGH ✓</span></td>
+        <td><span class="badge lose">ძალიან ძვირი</span></td>
+        <td><span class="badge tie">MEDIUM</span></td>
+        <td><span class="badge tie">LOW (no GE support)</span></td>
+      </tr>
+      <tr>
+        <td><strong>Open Source</strong></td>
+        <td class="col-odoo"><span class="badge win">Community edition free</span></td>
+        <td><span class="badge lose">❌</span></td>
+        <td><span class="badge lose">❌</span></td>
+        <td><span class="badge win">✓ MIT License</span></td>
+      </tr>
+    </table>
+    <div style="margin-top:10px;font-size:12px;color:var(--gray);">
+      წყარო: <a href="https://www.groenewold-it.solutions/en/comparisons/erp-systems-comparison" target="_blank" style="color:var(--purple);">ERP Systems Comparison 2026 ↗</a> |
+      <a href="https://www.erpresearch.com/compare/erpnext-vs-odoo" target="_blank" style="color:var(--purple);">ERPNext vs Odoo ↗</a> |
+      <a href="https://objects.ws/blog/odoo-vs-other-erp-software/" target="_blank" style="color:var(--purple);">Odoo vs SAP vs Dynamics ↗</a>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: BIVISION ANGLE -->
+<div class="section">
+  <div class="section-head"><h2>5. Bivision-ისთვის — პრაქტიკული დასკვნები</h2></div>
+  <div class="section-body">
+    <div class="grid2">
+
+      <div class="bivision-card">
+        <h3>Bivision-ის Advantage vs Odoo</h3>
+        <ul>
+          <li>Qlik — professional viz, Odoo-ს ვერ შეუძლია ამ დონეზე</li>
+          <li>Cross-ERP: Oris + Fina + 1C + Odoo + Balance = ერთ dashboard-ზე — Odoo-ს ვერ შეუძლია</li>
+          <li>CFO-grade financial storytelling — Odoo pivot vs Bivision narrative</li>
+          <li>2-3 კვირა deployment — Odoo BI setup-ი + Power BI = 1-3 თვე</li>
+          <li>No Microsoft lock-in — Odoo + Power BI = Microsoft dependency</li>
+          <li>"90% need external BI" = Bivision-ის market = ყველა Odoo client</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="limit-card" style="margin-bottom:12px;">
+          <h3>Odoo-ს Threat — Construction სცენარი</h3>
+          <ul>
+            <li>FMG Odoo ყიდის construction prospect-ს → built-in reports "საკმარისია" CFO-სთვის <span class="tag h">RISK</span></li>
+            <li>Odoo 20 Agentic AI (Oct 2026) — "Ask Odoo CFO questions" → Bivision-ის pitch space შეიძლება შემცირდეს <span class="tag h">RISK</span></li>
+            <li>Microsoft Dynamics + Power BI bundle = ორმაგი threat greenfield-ზე <span class="tag h">RISK</span></li>
+          </ul>
+        </div>
+        <div class="bivision-card">
+          <h3>Recommended Pitch — Odoo Client-ზე</h3>
+          <ul>
+            <li>"Odoo-ს გქონდეს — მაგრამ Odoo-ს CFO dashboard = basic. ჩვენ ვაძლევთ Qlik-grade visualization ON TOP."</li>
+            <li>"Odoo-ს finance data + Oris legacy data + Excel = ჩვენ ვაერთიანებთ. Odoo ვერ."</li>
+            <li>"2-3 კვირა — Odoo-ს BI setup + Power BI = 3 თვე + Microsoft license."</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="highlight" style="margin-top:14px;">
+      🎯 <strong>Key Insight:</strong> Odoo-ს AI სწრაფად ვითარდება — Odoo 20 (Oct 2026) Agentic AI. Bivision-ი უნდა შეუდგეს <strong>Qlik + AI narrative-ის</strong> build-ს ახლავე, სანამ Odoo-ს native BI გაძლიერდება. 6 თვის window.
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: FMG + ODOO IN GE -->
+<div class="section">
+  <div class="section-head"><h2>6. FMG SOFT + Odoo Georgia — Bivision Context</h2></div>
+  <div class="section-body">
+    <div class="grid2">
+      <div class="module-card">
+        <h3>FMG SOFT-ის Odoo Stack (GE)</h3>
+        <ul>
+          <li>Gold Partner (2024, first year in GE)</li>
+          <li>GE localization: interface + tax + banking</li>
+          <li>20 projects: construction, pharmacy, retail, real estate</li>
+          <li>Construction modules: CRM + property mgmt + neighbourhood app</li>
+          <li>150+ emp — distribution moat</li>
+          <li>Armenia + Azerbaijan expansion planned</li>
+          <li>Clients: 4,500+ (Odoo წილი = UNVERIFIED)</li>
+        </ul>
+      </div>
+      <div class="module-card">
+        <h3>Odoo-ს Analytics-ი FMG Client-ზე</h3>
+        <ul>
+          <li>FMG ნერგავს Odoo → client იღებს basic dashboards</li>
+          <li>Odoo construction client: project costs, materials, invoices — basic pivot only</li>
+          <li>CFO-grade: cash flow cross-projects, P&L per property, margin analysis = Odoo ვერ</li>
+          <li>FMG = ERP. Bivision = analytics. ეს complementary, არა competing</li>
+          <li>FMG-Amadeo connector = Amadeo trying same angle <span class="tag h">WATCH</span></li>
+          <li>Bivision-ი FMG-ს პარტნიორობის შეთავაზება? = სტრატეგიული კითხვა owner-ისთვის</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Gurafa | Bivision | 2026-05-15 | 💾 PERSISTENT<br>
+  <span style="font-size:10px;">
+    Sources: <a href="https://ahex.co/what-is-odoo-erp-complete-guide/" target="_blank" style="color:var(--purple);">Odoo Guide ↗</a> |
+    <a href="https://muchconsulting.com/blog/odoo-2/odoo-bi-72" target="_blank" style="color:var(--purple);">Odoo BI Limits ↗</a> |
+    <a href="https://www.braincuber.com/blog/odoo-roadmap-2026-where-ai-fits-in" target="_blank" style="color:var(--purple);">Odoo Roadmap ↗</a> |
+    <a href="https://propertygeorgia.ge/en/media/news/1790-fmg-soft-leader-digitalisation-development-companies-georgia" target="_blank" style="color:var(--purple);">FMG SOFT GE ↗</a>
+  </span>
+</div>
+
+</div>
+</body>
+</html>

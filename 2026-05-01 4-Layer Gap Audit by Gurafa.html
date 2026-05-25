@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<title>2026-05-01 4-Layer Gap Audit — Bivision (CLAUDE.md / Memory / Skills / Subagents / MCPs)</title>
+<style>
+body { font-family: -apple-system, "Segoe UI", sans-serif; max-width: 920px; margin: 2em auto; padding: 0 1em; color: #222; line-height: 1.5; }
+h1 { font-size: 1.4em; border-bottom: 2px solid #333; padding-bottom: .3em; }
+h2 { font-size: 1.15em; margin-top: 1.6em; color: #1a4d8c; }
+table { border-collapse: collapse; width: 100%; margin: .8em 0; font-size: .92em; }
+th, td { border: 1px solid #ccc; padding: .4em .6em; text-align: left; vertical-align: top; }
+th { background: #f0f4f8; }
+.gap { background: #fff5e6; }
+.fix { background: #e8f5e9; }
+code { background: #f4f4f4; padding: 0 .3em; border-radius: 3px; font-size: .9em; }
+.ep0 { font-weight: bold; color: #1a4d8c; }
+.high { color: #b00; font-weight: bold; }
+.mid { color: #c80; }
+.low { color: #888; }
+ul { margin: .3em 0; padding-left: 1.4em; }
+li { margin: .15em 0; }
+.action { background: #e3f2fd; padding: .6em; border-left: 4px solid #1976d2; margin: .8em 0; }
+</style>
+</head>
+<body>
+
+<h1>4-Layer Gap Audit — Bivision setup</h1>
+<p class="ep0">EP0: 8/10 (S) — disk-grounded gap audit, 5 concrete fixes ranked</p>
+<p><strong>Date:</strong> 2026-05-01 · <strong>Author:</strong> Gurafa · <strong>Trigger:</strong> maboroshi_mario "Claude Code Customization: Rules / Skills / Subagents / MCPs" decision tree (LinkedIn 2026-05-01)</p>
+
+<h2>Inventory (disk-verified)</h2>
+<table>
+<tr><th>Layer</th><th>Count</th><th>Location</th></tr>
+<tr><td>CLAUDE.md (Rules)</td><td>5+</td><td>Global ~/.claude + 4 project roots (Mentari, BI_C-Suite, BI_gurafa, Nikacho)</td></tr>
+<tr><td>Memory (auto)</td><td>100+ files</td><td>~/.claude/projects/.../memory/</td></tr>
+<tr><td>Skills — global</td><td>14 skills (40 .md)</td><td>~/.claude/skills/ (mostly SEO/Ads)</td></tr>
+<tr><td>Skills — project</td><td>21 skills</td><td>BI_gurafa(7) + BI_C-Suite(4) + Mentari(5) + Nikacho(3) + .. </td></tr>
+<tr><td>Subagents</td><td>4</td><td>Mentari · Viktor · Gurafa · Geo</td></tr>
+<tr><td>MCPs available</td><td>12+</td><td>HubSpot · Gmail · Drive · Mailchimp · Slack · Playwright · context7 · context-mode · WordPress · Mercury</td></tr>
+</table>
+
+<h2>5 ფაქტიური gap (priority-ranked)</h2>
+
+<table>
+<tr><th>#</th><th>Gap</th><th>Layer mismatch</th><th>Severity</th><th>Fix</th><th>Effort</th></tr>
+
+<tr class="gap">
+<td>G1</td>
+<td><code>bivision-knowledge-base.md</code> 3 ასლი (BI_gurafa + BI_C-Suite + Mentari)</td>
+<td>Skill drift — should be 1 SSOT</td>
+<td class="high">HIGH</td>
+<td class="fix">1 canonical (BI_gurafa) + 2 pointer files (10-line reference). Edit-on-1 propagation manual.</td>
+<td>15 min</td>
+</tr>
+
+<tr class="gap">
+<td>G2</td>
+<td>Meta Ads CLI Apr 29 = NEW, 0 skill</td>
+<td>Skill missing — 4 <code>ads/</code>, no <code>ads-meta-cli/</code></td>
+<td class="high">HIGH</td>
+<td class="fix">Add <code>~/.claude/skills/ads-meta-cli/SKILL.md</code> + 2 references: <code>auto-pause-procedure.md</code> · <code>insights-pull-cron.md</code>. სრულდება Use Case 1+2 owner-pending.</td>
+<td>1hr</td>
+</tr>
+
+<tr class="gap">
+<td>G3</td>
+<td>Daily Claude scout = Memory rule (<code>feedback_claude_daily_scout.md</code>), არა Skill</td>
+<td>Layer mismatch — procedural ≠ Memory</td>
+<td class="mid">MID</td>
+<td class="fix">Move to <code>BI_gurafa/skills/daily-scout.md</code>. Memory entry → 1-line pointer. Reduces memory bloat + invokable by name.</td>
+<td>20 min</td>
+</tr>
+
+<tr class="gap">
+<td>G4</td>
+<td>12+ MCPs available, 0 SKILL teach when-to-use-which</td>
+<td>Skill missing — MCP routing</td>
+<td class="mid">MID</td>
+<td class="fix"><code>~/.claude/skills/mcp-router/SKILL.md</code>: HubSpot=CRM read/write · Gmail=email automation · Drive=doc share · Mailchimp=campaign · context-mode=large-output · Playwright=UI verify. 1-page table.</td>
+<td>30 min</td>
+</tr>
+
+<tr class="gap">
+<td>G5</td>
+<td>Memory feedback overlap — 5+ files overlap (<code>efficiency_directive · token_efficiency · result_over_bureaucracy · max_autonomy · meta_work_not_deliverable</code>)</td>
+<td>Memory bloat — same theme 5 files</td>
+<td class="low">LOW</td>
+<td class="fix">Consolidate → 1 <code>feedback_execution_principles.md</code> + obsolete-mark 4. MEMORY.md prune 4 lines.</td>
+<td>30 min</td>
+</tr>
+
+</table>
+
+<h2>Action — დღეს ship</h2>
+
+<div class="action">
+<strong>Phase 1 (1.5hr, HIGH-impact):</strong>
+<ul>
+<li><strong>G1</strong> — bivision-knowledge-base SSOT (15 min)</li>
+<li><strong>G2</strong> — ads-meta-cli skill write (1hr) — automatic Meta Ads CLI use case 1+2 ready</li>
+</ul>
+</div>
+
+<div class="action">
+<strong>Phase 2 (50 min, MID-impact, optional today):</strong>
+<ul>
+<li><strong>G3</strong> — daily-scout skill move</li>
+<li><strong>G4</strong> — mcp-router skill</li>
+</ul>
+</div>
+
+<div class="action">
+<strong>Phase 3 (cleanup, defer):</strong>
+<ul>
+<li><strong>G5</strong> — memory consolidation (next prune cycle)</li>
+</ul>
+</div>
+
+<h2>What I do NOT recommend</h2>
+<ul>
+<li>❌ "Decision matrix doc" — theater. Real value = fix 5 above, not write 4×4 grid.</li>
+<li>❌ Audit all 100 memory files — 30-min scan said overlap is 5; rest = unique.</li>
+<li>❌ Refactor all 21 skills — only G1 has drift; rest fine.</li>
+</ul>
+
+<h2>Owner decision needed</h2>
+<p><strong>Phase 1 ship NOW (1.5hr)?</strong> — G1 + G2 today, Phase 2 ხვალ ან parallel session.</p>
+
+<p style="font-size: .85em; color: #666; margin-top: 2em; border-top: 1px solid #ccc; padding-top: .5em;">
+Reference: maboroshi_mario "Claude Code Customization: When to Use Rules, Skills, Subagents, and MCPs" (LinkedIn 2026-05-01) · trq212 Anthropic "How We Use Skills" · Anthropic Code best practices.<br>
+Output by: Gurafa · Disk-grounded: 4 Glob + 0 fabrication · EP1: FACT (skill counts, file paths) · EP1: HYPOTHESIS (severity ranking — owner can re-rank).
+</p>
+
+</body>
+</html>

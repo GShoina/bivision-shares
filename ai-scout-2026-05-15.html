@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="retention" content="persistent">
+<title>AI Scout — 2026-05-15 | Gurafa</title>
+<style>
+  :root {
+    --purple: #6B63B5;
+    --green: #00A651;
+    --red: #DC2626;
+    --orange: #EA580C;
+    --yellow: #D97706;
+    --gray: #6B7280;
+    --bg: #F8F7FF;
+    --card-bg: #FFFFFF;
+    --border: #E5E7EB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: #1F2937; line-height: 1.6; }
+
+  .header {
+    background: linear-gradient(135deg, var(--purple) 0%, #4B44A0 100%);
+    color: white; padding: 28px 32px; border-bottom: 4px solid var(--green);
+  }
+  .header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .header .meta { font-size: 13px; opacity: 0.85; display: flex; gap: 20px; flex-wrap: wrap; margin-top: 8px; }
+  .header .ep0 { font-size: 15px; font-weight: 600; margin-top: 6px; }
+  .retention-badge {
+    display: inline-block; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4);
+    padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-top: 8px;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 28px 24px; }
+
+  .filter-note {
+    background: #EFF6FF; border: 1px solid #BFDBFE; border-left: 4px solid #2563EB;
+    border-radius: 8px; padding: 14px 18px; margin-bottom: 24px; font-size: 13px; color: #1E40AF;
+  }
+
+  .signal-card {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+    margin-bottom: 24px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .signal-header {
+    padding: 16px 20px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--border);
+  }
+  .signal-level {
+    font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;
+  }
+  .HIGH { background: #FEE2E2; color: var(--red); }
+  .MED { background: #FEF3C7; color: var(--yellow); }
+  .signal-title { font-size: 16px; font-weight: 700; color: #111827; flex: 1; }
+  .signal-date { font-size: 12px; color: var(--gray); white-space: nowrap; }
+
+  .signal-body { padding: 18px 20px; }
+  .signal-body p { font-size: 14px; color: #374151; margin-bottom: 10px; }
+  .signal-body strong { color: #111827; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+  .fact-box {
+    background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 8px; padding: 12px 14px;
+  }
+  .fact-box h4 { font-size: 12px; font-weight: 700; color: #15803D; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .fact-box ul { font-size: 13px; color: #166534; padding-left: 16px; }
+  .fact-box li { margin-bottom: 4px; }
+
+  .risk-box {
+    background: #FFF7ED; border: 1px solid #FED7AA; border-radius: 8px; padding: 12px 14px;
+  }
+  .risk-box h4 { font-size: 12px; font-weight: 700; color: #C2410C; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .risk-box ul { font-size: 13px; color: #9A3412; padding-left: 16px; }
+  .risk-box li { margin-bottom: 4px; }
+
+  .action-strip {
+    background: var(--purple); color: white; padding: 12px 18px; border-radius: 8px; margin-top: 14px;
+    font-size: 13px; font-weight: 600;
+  }
+  .action-strip span { font-weight: 400; opacity: 0.9; }
+
+  .counter-box {
+    background: #EEF2FF; border: 1px solid #C7D2FE; border-radius: 8px; padding: 12px 14px; margin-top: 12px;
+  }
+  .counter-box h4 { font-size: 12px; font-weight: 700; color: #3730A3; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .counter-box p { font-size: 13px; color: #3730A3; margin-bottom: 6px; }
+  .counter-box strong { font-weight: 700; }
+
+  .tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-right: 4px; font-weight: 600; }
+  .tag-fact { background: #D1FAE5; color: #065F46; }
+  .tag-hyp { background: #FEF3C7; color: #92400E; }
+  .tag-inf { background: #EDE9FE; color: #5B21B6; }
+
+  .source-link { font-size: 12px; color: var(--purple); text-decoration: none; }
+  .source-link:hover { text-decoration: underline; }
+
+  .section-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--gray); margin: 28px 0 12px;
+  }
+
+  .watch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 12px; }
+  .watch-item {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px 14px; font-size: 13px;
+  }
+  .watch-item .wlabel { font-size: 11px; color: var(--gray); margin-bottom: 4px; }
+  .watch-item .wval { font-weight: 600; color: #111827; }
+
+  .ep-tag { font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 4px; }
+  .ep-fact { background: #D1FAE5; color: #065F46; }
+  .ep-inf { background: #EDE9FE; color: #5B21B6; }
+  .ep-unv { background: #FEF3C7; color: #92400E; }
+
+  .footer { text-align: center; font-size: 12px; color: var(--gray); padding: 24px; border-top: 1px solid var(--border); margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>AI Scout — May 15, 2026</h1>
+  <div class="ep0">EP0: 7/10 (S) — 2 HIGH signals, 1 MEDIUM. Claude + ChatGPT moves this week directly affect Bivision pitch narrative and operations.</div>
+  <div class="meta">
+    <span>🔍 Gurafa Intelligence Layer</span>
+    <span>📅 სკანი: May 12–15, 2026</span>
+    <span>📊 Mission A — AI/Tooling Watch</span>
+    <span>🎯 3 signals filtered (noise dropped)</span>
+  </div>
+  <div class="retention-badge">💾 PERSISTENT — archive reference (weekly review)</div>
+</div>
+
+<div class="container">
+
+  <div class="filter-note">
+    <strong>Gurafa Filter:</strong> ამ კვირაში მნიშვნელოვანი 2 HIGH + 1 MEDIUM სიგნალი. GPT-5.5 Instant, Realtime Voice, AWS GA — noise, Bivision-ისთვის irrelevant. ქვემოთ მხოლოდ ის, რაც pitch-ს ან operations-ს ეხება.
+  </div>
+
+  <!-- SIGNAL 1 -->
+  <div class="signal-card">
+    <div class="signal-header">
+      <span class="signal-level HIGH">HIGH</span>
+      <div class="signal-title">ChatGPT ახლა Excel-სა და Google Sheets-ში — CFO-ებს ეკითხება "რატომ Bivision?"</div>
+      <div class="signal-date">May 5, 2026</div>
+    </div>
+    <div class="signal-body">
+      <p>
+        <span class="ep-tag ep-fact">FACT</span>
+        OpenAI-მ ChatGPT for Excel &amp; Google Sheets გაუშვა ყველა plan-ისთვის (Free-დან Enterprise-მდე), GPT-5.5-ზე. Sidebar-ი Excel-შია, native. Business plan-ისთვის free preview June 2-მდე, შემდეგ credits.
+      </p>
+      <p>
+        <span class="ep-tag ep-inf">INFERENCE</span>
+        ეს არის ყველაზე პირდაპირი objection Bivision pitch-ში 2026-ში: "ჩვენ ChatGPT გვაქვს Excel-ში, რატომ გვჭირდება Bivision?"
+      </p>
+
+      <div class="two-col">
+        <div class="risk-box">
+          <h4>რისკი</h4>
+          <ul>
+            <li>CFO ხედავს "AI in Excel" — free</li>
+            <li>Bivision pitch = ბრმა კედელს ეჯახება</li>
+            <li>Gegidze-ს "AI automation" narrative + ChatGPT Excel = double pressure</li>
+            <li>Georgian SMEs budget-conscious: free → პრემიუმს არ ყიდულობს</li>
+          </ul>
+        </div>
+        <div class="fact-box">
+          <h4>Bivision Counter (FACT-based)</h4>
+          <ul>
+            <li>ChatGPT Excel = ერთი workbook, manual upload</li>
+            <li>0 Oris/Fina/1C/Balance sync — no ERP connection</li>
+            <li>No cross-system aggregation (Oris + HR + Bank)</li>
+            <li>No automation: ყოველ თვე owner ხელით export-ს აკეთებს</li>
+            <li>Bivision = 2-3 კვირაში ავტომატური pipeline, CFO-grade viz</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="action-strip">
+        🎯 Action (Mentari-სთვის): <span>pitch deck-ში ახალი "ChatGPT vs Bivision" slide. კონკრეტული: "ChatGPT Excel = manual, single-source. Bivision = ავტომატური, cross-ERP, Georgian-native." Construction CFO pitch-ში first objection-ად გასათვალისწინებელია.</span>
+      </div>
+
+      <p style="margin-top:10px; font-size:12px;">
+        <a href="https://openai.com/index/chatgpt-for-excel/" class="source-link">📎 OpenAI — ChatGPT for Excel announcement</a> &nbsp;|&nbsp;
+        <a href="https://techcrunch.com/2026/05/05/openai-releases-gpt-5-5-instant-a-new-default-model-for-chatgpt/" class="source-link">📎 TechCrunch — GPT-5.5 Instant</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- SIGNAL 2 -->
+  <div class="signal-card">
+    <div class="signal-header">
+      <span class="signal-level HIGH">HIGH</span>
+      <div class="signal-title">Claude for Small Business — HubSpot + QuickBooks connectors, 15 ready workflows</div>
+      <div class="signal-date">May 13, 2026</div>
+    </div>
+    <div class="signal-body">
+      <p>
+        <span class="ep-tag ep-fact">FACT</span>
+        Anthropic-მა May 13 გაუშვა "Claude for Small Business" — Claude Team/Enterprise plan-ზე. 15 ready-to-run agentic workflow: payroll planning, month-end close, invoice chasing, lead triage, cash-flow monitoring, business pulse reporting. Connectors: <strong>QuickBooks, PayPal, HubSpot, Canva, DocuSign, Google Workspace, Microsoft 365, Slack, Square, Stripe, Webflow.</strong>
+      </p>
+
+      <div class="two-col">
+        <div class="fact-box">
+          <h4>Bivision-ისთვის შესაძლებლობა</h4>
+          <ul>
+            <li><strong>HubSpot connector</strong> — Bivision იყენებს HubSpot! Owner-მა უნდა გამოსცადოს</li>
+            <li>"cash-flow monitoring" + "business pulse" = Bivision-ის exact pitch → competitor is now Anthropic too</li>
+            <li>Workflow templates = Bivision-ს შეუძლია ანალოგიური client onboarding-ი</li>
+          </ul>
+        </div>
+        <div class="risk-box">
+          <h4>Bivision Moat — ეს არ ემუქრება</h4>
+          <ul>
+            <li>Zero Georgian ERPs: Oris ❌, Fina ❌, 1C ❌, Balance ❌</li>
+            <li>QuickBooks = US-only, Georgian SMEs არ იყენებენ</li>
+            <li>Cross-ERP aggregation: Claude for Small Business = single-source only</li>
+            <li>Power BI viz quality vs Claude native = სხვა კლასი</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="counter-box">
+        <h4>სტრატეგიული კითხვა (Owner-ისთვის)</h4>
+        <p><strong>თუ Bivision ახლავე ბაზარზე "Claude + Georgian ERP" pitch-ს გააკეთებს</strong>, პოზიციონირება = "Anthropic-ის Georgian partner for ERP analytics". Amadeo ან FMG SOFT-მა სანამ ეს ნიშა არ ამოიკვანძა.</p>
+        <p><span class="ep-tag ep-inf">INFERENCE</span> 3-6 თვე დარჩება სანამ Amadeo გაიგებს და pivot-ს გააკეთებს. Bivision = first mover window ახლა.</p>
+      </div>
+
+      <div class="action-strip">
+        🎯 Action 1 (Owner, ამ კვირაში): <span>Claude for Small Business → HubSpot workflow გამოცადე. იდეა: lead triage automation Bivision HubSpot-ში.</span><br>
+        🎯 Action 2 (Gurafa → Mentari): <span>LinkedIn post — "Claude for Small Business = US ERPs. ქართული ბიზნესი კი Oris/Fina/1C-ს იყენებს. ამ gap-ს Bivision ხურავს." Construction segment pitch-სთვის.</span>
+      </div>
+
+      <p style="margin-top:10px; font-size:12px;">
+        <a href="https://techcrunch.com/2026/05/13/anthropic-courts-a-new-kind-of-customer-small-business-owners/" class="source-link">📎 TechCrunch — Claude for Small Business</a> &nbsp;|&nbsp;
+        <a href="https://siliconangle.com/2026/05/13/anthropic-launches-claude-small-business-new-automation-workflows/" class="source-link">📎 SiliconAngle — 15 workflows detail</a> &nbsp;|&nbsp;
+        <a href="https://9to5mac.com/2026/05/13/anthropics-latest-claude-release-turns-your-mac-into-a-small-business-powerhouse/" class="source-link">📎 9to5Mac</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- SIGNAL 3 -->
+  <div class="signal-card">
+    <div class="signal-header">
+      <span class="signal-level MED">MEDIUM</span>
+      <div class="signal-title">MCP Ecosystem — 500+ servers, Georgian ERP connectors ჯერ არ არსებობს</div>
+      <div class="signal-date">Q2 2026 confirmed</div>
+    </div>
+    <div class="signal-body">
+      <p>
+        <span class="ep-tag ep-fact">FACT</span>
+        MCP ecosystem: 500+ public servers. Claude-ს 75+ official connector. Ecosystem-ში: GitHub, Slack, PostgreSQL, Stripe, Figma, Salesforce, HubSpot, monday.com. <strong>Georgian ERPs (Oris, Fina, 1C, Balance) = zero MCP servers.</strong>
+      </p>
+
+      <div class="counter-box">
+        <h4>First-Mover Opportunity</h4>
+        <p>Bivision-მა თუ ააშენებს <strong>Oris ან Fina MCP server</strong>, ეს გახდება Georgian BI automation-ის de facto standard. ვერც Amadeo, ვერც FMG SOFT ამ connector-ს არ ქმნის (UNVERIFIED — მაგრამ ეკოსისტემაში არ ჩანს).</p>
+        <p><span class="ep-tag ep-inf">INFERENCE</span> Oris MCP = 2-4 კვირის dev work. Payoff: ყველა Oris-client Claude-სთვის = Bivision connector-ის user.</p>
+      </div>
+
+      <div class="action-strip">
+        🎯 Action (Gurafa → Owner, decision needed): <span>Oris/Fina API documentation გაქვს? თუ გვაქვს, Geo-ს შეუძლია MCP server 2-3 კვირაში. ეს = Georgian market tech moat 2026-2027.</span>
+      </div>
+
+      <p style="margin-top:10px; font-size:12px;">
+        <a href="https://blog.modelcontextprotocol.io/posts/2026-mcp-roadmap/" class="source-link">📎 MCP Blog — 2026 Roadmap</a> &nbsp;|&nbsp;
+        <a href="https://thenewstack.io/model-context-protocol-roadmap-2026/" class="source-link">📎 The New Stack — MCP production growing pains</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- DROPPED (noise) -->
+  <div class="section-label">🔇 Dropped as Noise (not Bivision-relevant)</div>
+  <div class="watch-grid">
+    <div class="watch-item">
+      <div class="wlabel">GPT-5.5 Instant (May 5)</div>
+      <div class="wval">Better model, fewer hallucinations. No Bivision action.</div>
+    </div>
+    <div class="watch-item">
+      <div class="wlabel">Claude Managed Agents — "Dreaming"</div>
+      <div class="wval">Agents self-improve between sessions. Gurafa/Mentari internal — worth testing, no urgent action.</div>
+    </div>
+    <div class="watch-item">
+      <div class="wlabel">Claude Platform on AWS (GA)</div>
+      <div class="wval">Enterprise cloud deployment. Bivision = desktop agents, not AWS. Irrelevant now.</div>
+    </div>
+    <div class="watch-item">
+      <div class="wlabel">OpenAI Realtime Voice Models</div>
+      <div class="wval">Voice API updates. No Georgian market play visible.</div>
+    </div>
+  </div>
+
+  <!-- WATCH NEXT -->
+  <div class="section-label" style="margin-top:28px;">👁 Watch Next Week</div>
+  <div class="signal-card" style="border-left: 4px solid var(--purple);">
+    <div class="signal-body">
+      <ul style="font-size:13px; color:#374151; padding-left:18px;">
+        <li><strong>Claude for Small Business</strong> — competitor adoption: Amadeo/FMG SOFT გამოიყენებენ? კვირა-ორ კვირაში გამოჩნდება LinkedIn-ზე.</li>
+        <li><strong>Odoo 19 "Ask Odoo" NL</strong> — beta rollout timeline. Q3 2026 expected. Early signal = Bivision pitch-ის window ვიწროვდება.</li>
+        <li><strong>MCP Oris/Fina</strong> — ვინმე ბაზარზე ამ connector-ს აშენებს? GitHub search-ი May 19 სკანზე.</li>
+        <li><strong>Gegidze + Amadeo</strong> — ads library weekly scan May 19 (DataStudio + Dastafe first scan).</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EP0 BLOCK -->
+  <div class="section-label">📋 სტატუსი</div>
+  <div class="signal-card">
+    <div class="signal-body">
+      <p><strong>მთავარი შედეგი:</strong> 2 HIGH სიგნალი შობს პირდაპირ pitch narrative-ის ცვლილებას. ChatGPT Excel = first CFO objection 2026-ში. Claude for Small Business = US-only gap = Bivision moat confirmed. MCP Georgian ERP = first-mover window open.</p>
+      <p><strong>სტატუსი:</strong> Scout 3 დღის შეფერხებით (May 12→15). ყველა deliverable disk-ზეა. Competitor Intel HTML (May 15), Construction Companies HTML (May 15), Odoo Analysis HTML (May 15) — ყველა outputs/-ში.</p>
+      <p><strong>გზა:</strong> (1) Owner — HubSpot Claude connector-ი გამოსცადე ამ კვირაში. (2) Mentari — "ChatGPT vs Bivision" slide + construction pitch. (3) Gurafa → Owner decision: Oris MCP feasibility.</p>
+      <p><strong>Op Note:</strong> Scout cadence გადასაბრუნებელია daily-ზე. 3-დღიანი gap-ი = signal მიჭედება. ყველა 3 HIGH signal ამ სამ დღეში გამოჩნდა.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Gurafa Intelligence Layer — Bivision | 2026-05-15 | Mission A: AI/Tooling Watch<br>
+  PERSISTENT artifact — outputs/ weekly review გადაამოწმე June 1-ზე
+</div>
+
+</body>
+</html>

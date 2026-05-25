@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Competitor Intel — Bivision | 2026-05-15</title>
+<style>
+  :root {
+    --purple: #6B63B5;
+    --purple-light: #f0effa;
+    --green: #00A651;
+    --green-light: #e6f7ef;
+    --red: #e53e3e;
+    --red-light: #fff5f5;
+    --orange: #dd6b20;
+    --orange-light: #fffaf0;
+    --yellow: #d69e2e;
+    --yellow-light: #fffff0;
+    --gray: #718096;
+    --gray-light: #f7f8fa;
+    --text: #1a202c;
+    --border: #e2e8f0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 15px; line-height: 1.6; color: var(--text); background: #f4f5f9; padding: 24px 16px; }
+  .container { max-width: 980px; margin: 0 auto; }
+
+  .header { background: var(--purple); color: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; }
+  .header h1 { font-size: 21px; font-weight: 700; margin-bottom: 4px; }
+  .header .meta { font-size: 13px; opacity: 0.75; }
+  .ep0 { display: inline-block; background: rgba(255,255,255,0.18); border-radius: 6px; padding: 4px 12px; font-size: 13px; font-weight: 600; margin-top: 10px; }
+
+  /* THREAT CARDS */
+  .threat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; margin-bottom: 18px; }
+  .tc { background: white; border-radius: 9px; padding: 14px; box-shadow: var(--shadow); border-left: 4px solid var(--border); }
+  .tc.h { border-left-color: var(--red); }
+  .tc.mh { border-left-color: var(--orange); }
+  .tc.m { border-left-color: var(--yellow); }
+  .tc.l { border-left-color: var(--green); }
+  .tc .n { font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+  .tc .lv { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
+  .tc.h .lv { color: var(--red); } .tc.mh .lv { color: var(--orange); } .tc.m .lv { color: var(--yellow); } .tc.l .lv { color: var(--green); }
+  .tc .nt { font-size: 12px; color: var(--gray); margin-top: 3px; }
+
+  /* ACTION BANNER */
+  .action-banner { background: var(--green-light); border: 1px solid var(--green); border-radius: 10px; padding: 18px 22px; margin-bottom: 20px; }
+  .action-banner h2 { color: var(--green); font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+  .pitch { font-size: 15px; font-weight: 700; background: white; border: 2px solid var(--green); border-radius: 8px; padding: 10px 14px; margin: 6px 0; }
+  .action-banner p { font-size: 13px; color: #2d6a4f; margin-top: 6px; }
+
+  /* SECTION LABEL */
+  .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray); margin: 24px 0 10px; padding-left: 4px; }
+
+  /* PROFILE CARDS (always visible) */
+  .profiles { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  @media(max-width: 640px) { .profiles { grid-template-columns: 1fr; } }
+  .profile { background: white; border-radius: 10px; box-shadow: var(--shadow); overflow: hidden; }
+  .profile-head { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--border); background: var(--gray-light); }
+  .profile-head .pname { font-weight: 700; font-size: 14px; flex: 1; }
+  .profile-body { padding: 12px 16px; }
+  .profile-body ul { list-style: none; padding: 0; }
+  .profile-body li { font-size: 13px; padding: 3px 0 3px 14px; position: relative; border-bottom: 1px solid #f5f5f5; }
+  .profile-body li:last-child { border-bottom: none; }
+  .profile-body li::before { content: '▸'; position: absolute; left: 0; color: var(--purple); font-size: 11px; top: 5px; }
+  .profile-body li.risk::before { color: var(--red); content: '⚠'; }
+  .profile-body li.ok::before { color: var(--green); content: '✓'; }
+  .src { font-size: 11px; color: var(--gray); margin-top: 8px; padding-top: 6px; border-top: 1px solid var(--border); }
+  .src a { color: var(--purple); text-decoration: none; }
+
+  /* BADGE */
+  .badge { font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.3px; }
+  .badge.h { background: var(--red-light); color: var(--red); }
+  .badge.mh { background: var(--orange-light); color: var(--orange); }
+  .badge.m { background: var(--yellow-light); color: var(--yellow); }
+  .badge.l { background: var(--green-light); color: var(--green); }
+  .badge.new { background: var(--purple-light); color: var(--purple); }
+  .badge.stab { background: var(--gray-light); color: var(--gray); }
+
+  /* WEEKLY INTEL (collapsible) */
+  .week { background: white; border-radius: 10px; box-shadow: var(--shadow); margin-bottom: 12px; overflow: hidden; }
+  .week summary { padding: 14px 18px; cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; font-weight: 700; font-size: 14px; background: var(--gray-light); border-bottom: 1px solid var(--border); user-select: none; }
+  .week summary::-webkit-details-marker { display: none; }
+  .week summary::after { content: '▼'; font-size: 11px; color: var(--gray); transition: transform 0.2s; }
+  .week[open] summary::after { transform: rotate(180deg); }
+  .week-date { font-size: 11px; background: var(--purple); color: white; border-radius: 4px; padding: 2px 8px; font-weight: 600; }
+  .week-body { padding: 16px 18px; }
+
+  /* SIGNAL ENTRY */
+  .signal { border-left: 3px solid var(--border); padding: 10px 14px; margin-bottom: 12px; border-radius: 0 6px 6px 0; background: #fafbfc; }
+  .signal:last-child { margin-bottom: 0; }
+  .signal.red { border-left-color: var(--red); background: var(--red-light); }
+  .signal.orange { border-left-color: var(--orange); background: var(--orange-light); }
+  .signal.yellow { border-left-color: var(--yellow); background: var(--yellow-light); }
+  .signal.green { border-left-color: var(--green); background: var(--green-light); }
+  .signal.purple { border-left-color: var(--purple); background: var(--purple-light); }
+  .signal .s-head { font-weight: 700; font-size: 13px; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+  .signal p { font-size: 13px; margin-top: 4px; }
+  .signal .s-src { font-size: 11px; color: var(--gray); margin-top: 6px; }
+  .signal .s-src a { color: var(--purple); text-decoration: none; }
+  .tag { font-size: 10px; border-radius: 3px; padding: 1px 5px; }
+  .tag.f { background: var(--purple-light); color: var(--purple); }
+  .tag.h { background: var(--yellow-light); color: var(--yellow); }
+  .tag.u { background: var(--red-light); color: var(--red); }
+
+  /* STRATEGY */
+  .strategy { background: var(--purple-light); border-radius: 10px; padding: 18px 22px; margin-bottom: 20px; }
+  .strategy h2 { color: var(--purple); font-size: 15px; font-weight: 700; margin-bottom: 12px; }
+  .strat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media(max-width: 600px) { .strat-grid { grid-template-columns: 1fr; } }
+  .strat-card { background: white; border-radius: 8px; padding: 12px 14px; }
+  .strat-card h3 { font-size: 13px; font-weight: 700; color: var(--purple); margin-bottom: 6px; }
+  .strat-card ul { list-style: none; padding: 0; }
+  .strat-card li { font-size: 12px; padding: 3px 0 3px 12px; position: relative; }
+  .strat-card li::before { content: '▸'; position: absolute; left: 0; color: var(--purple); font-size: 10px; top: 5px; }
+
+  /* WATCH TABLE */
+  .wt { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .wt th { background: var(--purple); color: white; padding: 8px 12px; text-align: left; font-weight: 600; font-size: 12px; }
+  .wt td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  .wt tr:last-child td { border-bottom: none; }
+  .wt tr:nth-child(even) td { background: var(--gray-light); }
+
+  .footer { text-align: center; font-size: 12px; color: var(--gray); margin-top: 20px; padding: 14px; background: white; border-radius: 8px; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 10px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<div class="header">
+  <h1>Competitor Intelligence — Bivision</h1>
+  <div class="meta">Gurafa | 2026-05-15 | კომპილაცია: Apr–May 2026</div>
+  <div class="ep0">EP0: 7/10 (S) — 2 სტრუქტურული სიგნალი. FMG threat upgraded. BDO Digital ახალი შემომსვლელი.</div>
+</div>
+
+<!-- THREAT DASHBOARD -->
+<div class="threat-grid">
+  <div class="tc h"><div class="n">Amadeo.ge</div><div class="lv">🔴 HIGH</div><div class="nt">Oris/FINA/FMG/Balance. BOG 50%. GITA-funded.</div></div>
+  <div class="tc mh"><div class="n">FMG SOFT</div><div class="lv">🟠 MED-HIGH ↑</div><div class="nt">Odoo Gold. 4,500 clients. Construction push.</div></div>
+  <div class="tc m"><div class="n">Gegidze</div><div class="lv">🟡 MEDIUM</div><div class="nt">AI automation campaign. A/B. ფართო scope.</div></div>
+  <div class="tc m"><div class="n">BDO Digital GE</div><div class="lv">🟡 MEDIUM ✦</div><div class="nt">Power BI + AI. Audit→BI bundled. CFO buyer.</div></div>
+  <div class="tc l"><div class="n">SMART Business GE</div><div class="lv">🟢 LOW-MED ✦</div><div class="nt">Dynamics 365 + Power BI. Greenfield only.</div></div>
+  <div class="tc l"><div class="n">Apricot.ge</div><div class="lv">🟢 LOW-MED</div><div class="nt">Armsoft GE. Stable. Connector opportunity.</div></div>
+</div>
+
+<!-- ACTION -->
+<div class="action-banner">
+  <h2>📍 ერთი ქმედება — Construction Outreach Pitch Pivot</h2>
+  <div class="pitch">"BI ON TOP of your existing ERP (Oris / Fina / 1C / Odoo) — cross-system, CFO-grade, 2-3 weeks"</div>
+  <p>FMG installations = Bivision leads, არა blockers. 465 construction prospect ჯერ კიდევ ღიაა — pitch text უნდა განახლდეს.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     COMPETITOR PROFILES (always visible)
+     ═══════════════════════════════════════════ -->
+<div class="section-label">კონკურენტის პროფაილი — ფონური ინფო</div>
+<div class="profiles">
+
+  <div class="profile">
+    <div class="profile-head">
+      <div class="pname">Amadeo.ge</div>
+      <span class="badge h">HIGH</span>
+    </div>
+    <div class="profile-body">
+      <ul>
+        <li>დაარსება: 2024. მოვიდა: Dec 2024 (GITA + ინვესტორები)</li>
+        <li>ფუნდები: GITA 150K₾ + 21 Axel Angel ინვესტორი <span class="tag f">Dec 2024</span></li>
+        <li>გუნდი: 8 ადამიანი. Giorgi Chugoshvili (ex-TBC), Maro Koshadze</li>
+        <li class="risk">ERP connectors: Oris, FINA, Apricot, FMG, Balance — Bivision ICP-ის სრული overlap</li>
+        <li class="risk">BOG 50% ფასდაკლება — 40K+ BOG SME addressable</li>
+        <li>Nexia 4SME partnership — ავტომატური SARAS reports <span class="tag f">Dec 2024</span></li>
+        <li>Positioning: "integrates with existing ERP, doesn't replace" — Bivision-ის იმავე ფრეიმი</li>
+        <li class="ok">0 public case studies — Bivision-ის advantage</li>
+        <li class="ok">Founder focus გაყოფილი: amadeo.ge + retain.ge + amadeo.tech</li>
+        <li>Forbes GE "ყველაზე პერსპექტიული სტარტაპი"</li>
+      </ul>
+      <div class="src">
+        <a href="https://www.entrepreneur.com/ka/siakhleebi-da-tendentsiebi/amadeo-programuli/484574" target="_blank">entrepreneur.com/ka (Dec 19, 2024) ↗</a> |
+        <a href="https://www.facebook.com/amadeo.ge/" target="_blank">Facebook ↗</a> |
+        <a href="https://www.linkedin.com/in/giochugo/" target="_blank">Founder LinkedIn ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile">
+    <div class="profile-head">
+      <div class="pname">FMG SOFT</div>
+      <span class="badge mh">MED-HIGH</span>
+    </div>
+    <div class="profile-body">
+      <ul>
+        <li>2010-დან. 150+ emp, 4,500+ კლიენტი, 6 international partnership</li>
+        <li class="risk">Odoo Gold Partner (2024, first year) — GE localization: interface + tax + banking</li>
+        <li class="risk">Construction vertical: CRM + property management + digital neighbourhood app</li>
+        <li class="risk">"Leader in digitalization of development companies in Georgia" — propertygeorgia.ge</li>
+        <li>20 Odoo project (production, sales, pharmacy, service, construction, real estate)</li>
+        <li>გაფართოება: სომხეთი + აზერბაიჯანი (declared)</li>
+        <li class="ok">ERP-first, არა BI-first — BI layer-ი ჯერ bundled/basic</li>
+        <li>FMG-Amadeo connector: Amadeo list-ში ჩანს <span class="tag u">UNVERIFIED</span></li>
+      </ul>
+      <div class="src">
+        <a href="https://propertygeorgia.ge/en/media/news/1790-fmg-soft-leader-digitalisation-development-companies-georgia" target="_blank">propertygeorgia.ge სტატია ↗</a> |
+        <a href="https://www.odoo.com/partners/fmg-soft-llc-20134876" target="_blank">Odoo Partner ↗</a> |
+        <a href="https://www.odoo.com/blog/customer-reviews-6/fmg-soft-empowering-business-with-odoo-1716" target="_blank">Odoo Blog ↗</a> |
+        <a href="https://fmgsoft.ge" target="_blank">fmgsoft.ge ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile">
+    <div class="profile-head">
+      <div class="pname">BDO Digital Georgia</div>
+      <span class="badge new">✦ NEW</span><span class="badge m" style="margin-left:4px">MEDIUM</span>
+    </div>
+    <div class="profile-body">
+      <ul>
+        <li>BDO International-ის GE brand. 200-500 emp.</li>
+        <li class="risk">სერვისი: BI/analytics, Power BI, AI insights, data automation — CFO buyer</li>
+        <li class="risk">Audit client → BI conversation = Bivision bypass risk</li>
+        <li class="ok">ოუნერის ინფო: BDO Digital ვერ გაასუბლა BI — გუნდი დაიშალა. ინერციული.</li>
+        <li class="ok">Balance.ge (BDO-დან გამოეყო) = Amadeo-ს connector + Bivision-ის email partner</li>
+      </ul>
+      <div class="src">
+        <a href="https://bdodigital.ge/en/services/business-analytics-bi/" target="_blank">bdodigital.ge BI სერვისი ↗</a> |
+        <a href="https://www.bdo.ge/en-gb/services/bdo-digital" target="_blank">bdo.ge ↗</a> |
+        <a href="https://ge.linkedin.com/company/bdodigitalgeorgia" target="_blank">LinkedIn ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile">
+    <div class="profile-head">
+      <div class="pname">Gegidze</div>
+      <span class="badge m">MEDIUM</span>
+    </div>
+    <div class="profile-body">
+      <ul>
+        <li>ფართო scope: branding + dev + BI — არა pure-play BI competitor</li>
+        <li>BI dashboards: KPI across departments (confirmed)</li>
+        <li class="risk">AI agents for automation: active offering</li>
+        <li>Messaging: "Excel-pain", "eliminate manual work", "AI automation"</li>
+        <li class="ok">Wider scope = less focused on Bivision's exact CFO/ERP niche</li>
+      </ul>
+      <div class="src">gegidze.com/services/digital | Meta Ads Library</div>
+    </div>
+  </div>
+
+  <div class="profile">
+    <div class="profile-head">
+      <div class="pname">Apricot.ge (Armsoft GE)</div>
+      <span class="badge l">LOW-MED</span>
+    </div>
+    <div class="profile-body">
+      <ul>
+        <li>Armsoft GE reseller (Armsoft = 1987, Armenia market leader)</li>
+        <li>AS-Accountant 6 + AS-Trade 6. Founded 2014.</li>
+        <li>TBC/BOG/ProCredit bank API integrations <span class="tag u">UNVERIFIED</span></li>
+        <li class="ok">Connector opportunity: Bivision pulling Apricot data = pending owner verify</li>
+      </ul>
+      <div class="src"><a href="https://www.apricot.ge/?p=about_us&lang=en" target="_blank">apricot.ge ↗</a></div>
+    </div>
+  </div>
+
+  <div class="profile">
+    <div class="profile-head">
+      <div class="pname">Dastafe / DataStudio / Others</div>
+      <span class="badge stab">NOT SCANNED</span>
+    </div>
+    <div class="profile-body">
+      <ul>
+        <li>Dastafe: invisible online. Owner intel: 500-700K GEL, 3-4 clients, Power BI + AI WhatsApp <span class="tag u">UNVERIFIED</span></li>
+        <li>DataStudio.ge: "9-11 people, Power BI, 50+ projects" <span class="tag u">UNVERIFIED</span></li>
+        <li>Intelligence Georgia: "5 people, Power BI reseller, NBG/Cartu" <span class="tag u">UNVERIFIED</span></li>
+        <li>SMART Business GE: Dynamics 365 + Power BI, greenfield threat only</li>
+      </ul>
+      <div class="src">First scan scheduled: 2026-05-19</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════
+     WEEKLY INTEL LOG (collapsible, delta only)
+     ═══════════════════════════════════════════ -->
+<div class="section-label">კვირის სიგნალი — მხოლოდ ახალი / შეცვლილი</div>
+
+<!-- MAY 13–15 -->
+<details class="week" open>
+  <summary>
+    მაისი 13–15, 2026
+    <span class="week-date">ბოლო სკანი</span>
+  </summary>
+  <div class="week-body">
+
+    <div class="signal orange">
+      <div class="s-head">FMG SOFT — Threat Upgraded <span class="badge mh">MED-HIGH ↑</span></div>
+      <p><strong>ახალი:</strong> Odoo Gold Partner სტატუსი დადასტურდა (2024, first year). Construction vertical push ვერიფიცირდა — propertygeorgia.ge-ზე "leader in digitalization of development companies" <span class="tag f">FACT</span></p>
+      <p><strong>Bivision action:</strong> pitch pivot → "BI ON TOP of Odoo/FMG" framing.</p>
+      <div class="s-src">
+        <a href="https://propertygeorgia.ge/en/media/news/1790-fmg-soft-leader-digitalisation-development-companies-georgia" target="_blank">propertygeorgia.ge სტატია ↗</a> |
+        <a href="https://www.odoo.com/partners/fmg-soft-llc-20134876" target="_blank">Odoo Partner ↗</a>
+      </div>
+    </div>
+
+    <div class="signal purple">
+      <div class="s-head">BDO Digital Georgia — New Entrant Confirmed <span class="badge new">✦ NEW</span></div>
+      <p><strong>ახალი:</strong> bdodigital.ge-ზე BI for Business Analytics სერვისი ვერიფიცირდა. Power BI + AI + data automation. CFO buyer. <span class="tag f">FACT</span></p>
+      <p><strong>კონტექსტი:</strong> ოუნერის ინფოთი — BDO Digital ინერციული, გუნდი ადრე დაიშალა. საშიშია relationship-ით, არა product depth-ით.</p>
+      <div class="s-src"><a href="https://bdodigital.ge/en/services/business-analytics-bi/" target="_blank">bdodigital.ge ↗</a></div>
+    </div>
+
+    <div class="signal yellow">
+      <div class="s-head">SMART Business Georgia — New Entrant Confirmed <span class="badge new">✦ NEW</span></div>
+      <p><strong>ახალი:</strong> Dynamics 365 Business Central + GE localization. Built-in Power BI integration. Greenfield prospects-ისთვის შეიძლება Bivision-ი bypass-ოს. <span class="tag f">FACT</span></p>
+      <p><strong>კონტექსტი:</strong> Bivision-ის Fina/Oris/1C moat = SMART-ის წინაშე ძლიერი. მხოლოდ Excel-only prospects-ზე საფრთხე.</p>
+    </div>
+
+    <div class="signal" style="border-left-color:#ccc;">
+      <div class="s-head">Amadeo — No Delta <span class="badge stab">Stable</span></div>
+      <p>ამ კვირაში ახალი პროდუქტი, hiring, ან campaign არ გამოჩნდა. Risk level = HIGH (unchanged). ფონური ინფო → პროფაილი.</p>
+    </div>
+
+  </div>
+</details>
+
+<!-- MAY 1–12 -->
+<details class="week">
+  <summary>
+    მაისი 1–12, 2026
+    <span class="week-date">2026-05-08 / 05-12</span>
+  </summary>
+  <div class="week-body">
+
+    <div class="signal red">
+      <div class="s-head">Amadeo — ERP Connectors Confirmed <span class="badge h">HIGH ↑</span></div>
+      <p><strong>ახალი (May 8):</strong> Apricot + FMG connectors დამატებულია. ადრე Viktor-ს ჰქონდა მხოლოდ Orio 7 + Balance. ახლა 5 connector: Oris, FINA, Apricot, FMG, Balance = Bivision-ის ICP-ის სრული ERP stack coverage. <span class="tag f">FACT — 3 sources</span></p>
+      <p><strong>Pending:</strong> Bivision-ს აქვს Apricot + FMG connectors? Owner-ის verification დასჭირდება.</p>
+      <div class="s-src">saasargeblo.ge | entrepreneur.com/ka | amadeo.ge Facebook</div>
+    </div>
+
+    <div class="signal orange">
+      <div class="s-head">Gegidze — New Campaign <span class="badge m">MEDIUM</span></div>
+      <p><strong>ახალი (May 11):</strong> Apr 29 campaign — AI automation, A/B test, FB+IG+Messenger. Messaging: "eliminate manual work". <span class="tag f">FACT</span></p>
+      <p><strong>Counter:</strong> construction CFO sector-specific proof post — Mentari/Mariam pending.</p>
+      <div class="s-src">Meta Ads Library</div>
+    </div>
+
+    <div class="signal red">
+      <div class="s-head">Bivision — 0 Active Ads ⚠ <span class="badge" style="background:#fff0f0;color:#c53030;">OWN GAP</span></div>
+      <p><strong>May 11-12 verified:</strong> Bivision-ს 0 active ad. Gegidze + Amadeo ორივე visible. 3+ კვირა silence. <span class="tag f">FACT</span></p>
+      <p><strong>Status:</strong> Meta Lead Gen rebuild planned post May 19 BiMedical. Owner: Meta App Live mode pending.</p>
+    </div>
+
+  </div>
+</details>
+
+<!-- APRIL -->
+<details class="week">
+  <summary>
+    აპრილი 2026 — Baseline
+    <span class="week-date">2026-04-07 / 04-15</span>
+  </summary>
+  <div class="week-body">
+
+    <div class="signal" style="border-left-color:#ccc;">
+      <div class="s-head">Apr 15 Scan — No Signal</div>
+      <p>DataMind, DataStudio, FINA, Amadeo, Dastafe — baseline scan. Web-ზე indexed content მინიმალური. Amadeo: 0 results. Dastafe: 0 results. Local competitors mostly live on LinkedIn/Facebook (not indexed). <span class="tag f">FACT</span></p>
+      <p><strong>Pattern:</strong> routine web scan = low signal for GE local market. Event-triggered model adopted.</p>
+    </div>
+
+    <div class="signal red">
+      <div class="s-head">Viktor Intel — Amadeo BOG Deal (Apr 7)</div>
+      <p><strong>ახალი (Apr 7):</strong> BOG 50% ფასდაკლება — ეს partnership კი არ არის, discount agreement. New Wave Hotel client. Axel investment. 8 employees. <span class="tag f">FACT — Viktor independent research</span></p>
+    </div>
+
+  </div>
+</details>
+
+<!-- STRATEGY -->
+<div class="section-label">სამოქმედო სტრატეგია</div>
+<div class="strategy">
+  <h2>🎯 Bivision — კონკურენტული პასუხი | მაისი 2026</h2>
+  <div class="strat-grid">
+    <div class="strat-card">
+      <h3>Construction Pitch — Immediate</h3>
+      <ul>
+        <li>ძველი: "analytics მიიღე" → ახალი: "BI ON TOP of your Oris/Fina/1C/Odoo"</li>
+        <li>FMG ERP installation = Bivision lead source</li>
+        <li>197 CFO email სია მზადაა — subject + body განახლება სჭირდება</li>
+      </ul>
+    </div>
+    <div class="strat-card">
+      <h3>Amadeo Counter</h3>
+      <ul>
+        <li>Case studies გამოქვეყნება — Amadeo-ს 0 public case study</li>
+        <li>Power BI viz quality demo vs Amadeo in-house dashboard</li>
+        <li>"2-3 კვირა deployment" — verify და advertise</li>
+        <li>Depth framing: Bivision = CFO-grade; Amadeo = SMB no-tech</li>
+      </ul>
+    </div>
+    <div class="strat-card">
+      <h3>SEO Keyword Gap</h3>
+      <ul>
+        <li>"oris ანალიტიკა" — 0 competitor targeting</li>
+        <li>"fina dashboard" — low competition, high ICP intent</li>
+        <li>"ფინანსური ანგარიშგება ავტომატიზაცია" — Amadeo targets, Bivision doesn't</li>
+        <li>"1C BI", "balance BI" — connector-specific gaps</li>
+      </ul>
+    </div>
+    <div class="strat-card">
+      <h3>Balance.ge Risk</h3>
+      <ul>
+        <li>Balance.ge = Amadeo connector + Bivision email partner — conflict</li>
+        <li>Alternative distribution needed if Balance.ge → Amadeo side</li>
+        <li>Bivision-ის own channel (Meta/email) = priority build</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- WATCH LIST -->
+<details class="week">
+  <summary>Watch List — სრული სია <span class="week-date">2026-05-15</span></summary>
+  <div class="week-body">
+    <table class="wt">
+      <tr><th>Competitor</th><th>Risk</th><th>Last Scan</th><th>Next</th></tr>
+      <tr><td><strong>Amadeo.ge</strong></td><td><span class="badge h">HIGH</span></td><td>2026-05-13</td><td>Weekly — case study counter</td></tr>
+      <tr><td><strong>FMG SOFT</strong></td><td><span class="badge mh">MED-HIGH ↑</span></td><td>2026-05-13</td><td>Monitor construction vertical</td></tr>
+      <tr><td><strong>Gegidze</strong></td><td><span class="badge m">MEDIUM</span></td><td>2026-05-12</td><td>Construction CFO counter post</td></tr>
+      <tr><td><strong>BDO Digital GE</strong></td><td><span class="badge m">MEDIUM</span></td><td>2026-05-15</td><td>Monitor. No immediate action.</td></tr>
+      <tr><td>SMART Business GE</td><td><span class="badge l">LOW-MED</span></td><td>2026-05-13</td><td>Watch. Low priority.</td></tr>
+      <tr><td>Apricot.ge</td><td><span class="badge l">LOW-MED</span></td><td>2026-05-13</td><td>Connector verify (owner)</td></tr>
+      <tr><td>DataStudio.ge</td><td>—</td><td>—</td><td>2026-05-19 (priority)</td></tr>
+      <tr><td>Dastafe</td><td>—</td><td>—</td><td>2026-05-19 (first scan)</td></tr>
+      <tr><td>Intelligence Georgia</td><td>—</td><td>—</td><td>2026-05-26</td></tr>
+      <tr><td>Widgera</td><td>—</td><td>—</td><td>2026-05-26 (re-teardown)</td></tr>
+    </table>
+  </div>
+</details>
+
+<div class="footer">
+  Gurafa — Intelligence Layer | Bivision | 2026-05-15<br>
+  <span style="font-size:10px;">💾 PERSISTENT — კვირეული მიმოხილვა სავალდებულოა</span>
+</div>
+
+</div>
+</body>
+</html>

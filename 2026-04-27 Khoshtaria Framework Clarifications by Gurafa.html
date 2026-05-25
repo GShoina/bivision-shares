@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ka-GE">
+<head>
+<meta charset="utf-8">
+<title>Khoshtaria Framework — Bivision-სპეციფიკური დაზუსტებები — 2026-04-27</title>
+<style>
+body{font-family:-apple-system,system-ui,"Segoe UI",sans-serif;max-width:920px;margin:2rem auto;padding:0 1.2rem;color:#1a1a1a;line-height:1.55;font-size:14.5px}
+h1{font-size:1.55rem;margin:0 0 .3rem;border-bottom:2px solid #333;padding-bottom:.3em}
+h2{font-size:1.18rem;margin:1.6rem 0 .5rem;color:#1a4d80;border-left:4px solid #1a4d80;padding-left:.5rem}
+h3{font-size:1rem;margin:1rem 0 .4rem}
+.meta{color:#666;font-size:.85rem;margin-bottom:1.2rem}
+.q{background:#fff8e1;border-left:4px solid #f5a623;padding:.7rem 1rem;margin:.5rem 0;border-radius:4px;font-weight:600}
+.a{background:#eefbe6;border-left:4px solid #10b981;padding:.7rem 1rem;margin:.3rem 0 .8rem;border-radius:4px}
+table{border-collapse:collapse;width:100%;margin:.6rem 0;font-size:.92rem}
+th,td{border:1px solid #ccc;padding:.4rem .55rem;text-align:left;vertical-align:top}
+th{background:#1a4d80;color:#fff}
+ul,ol{margin:.3rem 0 .5rem 1.4rem}
+hr{border:none;border-top:1px solid #ddd;margin:1.5rem 0}
+.tag{display:inline-block;padding:.1rem .45rem;border-radius:3px;font-size:.72rem;font-weight:700;background:#c0392b;color:#fff}
+</style>
+</head>
+<body>
+
+<h1>Khoshtaria Framework — Bivision დაზუსტებები</h1>
+<div class="meta">2026-04-27 · Gurafa · ჩემი წინა file-ში 3 gap აღიარებული, აქ ფიქსი</div>
+
+<h2>კითხვა 1: Inga როგორ ერთვება პროცესში?</h2>
+
+<div class="q">წინა ფაილში "Inga executes" — აბსტრაქტული. რეალური workflow მე არ აღვწერე.</div>
+
+<div class="a">
+<b>Inga-ს დღიური მოქმედება (concrete):</b>
+<ol>
+<li><b>დილა (15 წთ):</b> HubSpot-დან 5-prospect cohort-ის today-list ვუღებს (filter: Day-of-cycle per prospect)</li>
+<li><b>გაგზავნა (15 წთ):</b> per-prospect appropriate Day-message აგზავნის LinkedIn-ში — შენი ან Bivision-ის company profile-დან, არა Inga-ს პერსონალური</li>
+<li><b>Logging (5 წთ):</b> reply-ი HubSpot-ში ან Google Sheet-ში: prospect / day / sent / reply Y/N / reply content</li>
+<li><b>Escalation:</b> positive reply (interest signal) → owner-ს ეცნობება დაუყოვნებლივ → discovery call booking</li>
+<li><b>კვირაში 1-ჯერ:</b> Mentari-სთვის report — 5 cohort × 5 prospect = 25 prospect, X reply-rate, Y discovery booked</li>
+</ol>
+
+<b>Inga responsibility = execution-only:</b> ვინც message-ს ვწერ — Mentari + owner approve. Inga მხოლოდ აგზავნის + log-ი + tracking-ი. სცენარის change-ი = owner approve.
+
+<b>კრიტიკული ცნობა:</b> Bivision-ის LinkedIn outreach უნდა გადიოდეს <b>შენი (გელა) პერსონალური profile-დან</b>, არა Inga-ს — owner-CEO-ს direct DM-ი 3-5x conversion-ი აქვს industry data-ში. Inga = backend ops, არა sender.
+</div>
+
+<h2>კითხვა 2: Day-ები როდიდან ითვლი? Day 0 რა არის?</h2>
+
+<div class="q">"Day 1" — წარვიდგენდით calendar date, მაგრამ ეს per-prospect anchor-ია, არა shared calendar.</div>
+
+<div class="a">
+<b>Khoshtaria-ს framework: per-prospect timeline.</b>
+
+<b>Day 0 = anchor moment</b>, განსხვავებული 3 entry-ის მიხედვით:
+
+<table>
+<tr><th>Prospect type</th><th>Day 0 = რა moment</th><th>Sequence start</th></tr>
+<tr><td>Cold (not connected)</td><td>დღე როცა connect request გავგზავნე</td><td>Day 0: connect → Day 2: DM → Day 4: post → Day 6: resource → Day 13: question → Day 20+: email</td></tr>
+<tr><td>Already connected, ცივი</td><td>დღე როცა cycle ვიწყებ</td><td>Day 0: opening DM → Day 2: post → Day 4: resource → Day 11: question → Day 18+: email</td></tr>
+<tr><td>Already DMed prior</td><td>დღე როცა re-engage ვიწყებ</td><td>Day 0: resource share → Day 7: question → Day 14+: email</td></tr>
+</table>
+
+<b>აბსოლუტური cadence:</b> 0, +2, +4, +6, +13, +20 (Khoshtaria default). თითო prospect-ს თავისი Day 0 აქვს, რა დღესაც cycle იწყება.
+
+<b>Inga-ს tracking column:</b> "cycle_start_date" + "current_day" auto-calc HubSpot-ში ან sheet-ში.
+</div>
+
+<h2>კითხვა 3: Bivision-სპეციფიკური adaptations</h2>
+
+<div class="q">წინა ფაილში 2 template (CFO + Owner). Gap: სხვადასხვა audience არ მოვიცვი + already-connected path-ი არ ვაჩვენე + day-spacing შენ swisht ხედავ რომ დიდია.</div>
+
+<div class="a">
+
+<h3>3.1 Audience differentiation — 4 entry archetype</h3>
+
+<table>
+<tr><th>Target role</th><th>Day-0 / Day-3 hook</th><th>Pain anchor</th></tr>
+<tr><td><b>CFO</b></td><td>"ფინანსური ანალიზი Excel-ში 3 დღე იწელება — ცდომილებები ხშირი"</td><td>Time + accuracy</td></tr>
+<tr><td><b>CEO/Owner</b></td><td>"ბუღალტერია და BI ცალკე-ცალკე — ერთობლივი სურათი დაგვიანებული"</td><td>Decision delay</td></tr>
+<tr><td><b>COO/Operations</b></td><td>"ოპერაციული dashboard რეალურ დროში — გაქვთ ერთობლივი ხედვა?"</td><td>Tempo</td></tr>
+<tr><td><b>IT/CTO</b></td><td>"ERP connector (Fina/Oris/Balance) + Qlik integration — ხელით კოდი?"</td><td>Technical efficiency</td></tr>
+</table>
+
+<h3>3.2 Already-connected prospects — bypass paths</h3>
+
+<table>
+<tr><th>Status</th><th>Action path</th><th>დრო</th></tr>
+<tr><td>Connected, ცივი (no contact 6+ months)</td><td>Day 0 opening DM (audience-tuned hook) → Day 2 post → Day 4 resource → Day 11 question</td><td>~14 day-cycle</td></tr>
+<tr><td>Connected, recent DM (3-6 months)</td><td>Day 0 resource share + brief context — "ბოლოს ვისაუბრეთ X-ზე, ეს Health Check შეიძლება გადახედო" → Day 7 question</td><td>~14 day shorter</td></tr>
+<tr><td>Already replied prior, fell silent</td><td>Day 0 genuine question — re-engage with specific value</td><td>1-day touch</td></tr>
+<tr><td>Cold (not connected)</td><td>Full 21-day Khoshtaria default</td><td>21 day</td></tr>
+</table>
+
+<h3>3.3 Day-spacing — შემოკლებული Bivision variant</h3>
+
+შენი observation მართალია — 21 day Western SaaS data-ზე ეფუძნება. ქართული B2B small market = different. <b>Bivision-ის variant (HYPOTHESIS, pilot-ში ვერიფიცირდება):</b>
+
+| Variant | Cycle | Cadence (absolute days) |
+|---|---|---|
+| <b>Cold full</b> | 14 day | 0, 2, 4, 6, 9, 13 |
+| <b>Connected ცივი</b> | 11 day | 0, 2, 4, 7, 10 |
+| <b>Connected warm</b> | 7 day | 0, 3, 6 |
+| <b>Re-engage</b> | 3 day | 0, 2 |
+
+<span class="tag">[HYPOTHESIS]</span> — Khoshtaria's 21-day Western data, Georgian market untested. Pilot-ში ერთ cohort-ზე 21-day default + სხვა cohort-ზე 14-day variant — A/B test reply rate.
+
+</div>
+
+<h2>რა შევცვალე წინა Mentari handoff file-ში</h2>
+
+<p>`BI_C-Suite/docs/GURAFA_TO_MENTARI_KHOSHTARIA_21DAY_LINKEDIN.md` განახლდება v2-ად ამ 3 ცვლილებით:</p>
+
+<ol>
+<li>Inga workflow concrete daily playbook (5 step)</li>
+<li>Per-prospect Day-0 anchor + audience matrix + connected-bypass paths</li>
+<li>4 cycle variant (cold full / connected cold / connected warm / re-engage) — A/B test pilot</li>
+</ol>
+
+<h2>Owner-decide</h2>
+
+<ol>
+<li><b>"Adopt v2 ინსტრუქციით"</b> — Mentari handoff file v2 ship-ი + Inga briefing</li>
+<li><b>"Cycle variant default Bivision-სთვის"</b> — 14-day cold OR 21-day Khoshtaria default? შენი call</li>
+<li><b>"Sender = შენი profile-დან"</b> — confirmed?</li>
+<li><b>"Inga LinkedIn account-ი"</b> — Inga-ს რა LinkedIn role-ი აქვს Bivision-ის outreach-ში დღეს? (ცარიელი ცნობა ჩემს მხრიდან)</li>
+</ol>
+
+<hr>
+<p style="font-size:.82rem;color:#666">
+წინა ფაილი: <a href="https://gshoina.github.io/bivision-shares/khoshtaria-21day-bivision.html">khoshtaria-21day-bivision.html</a> · ეს ფაილი = clarification + 3 gap-ის ფიქსი
+</p>
+
+<p style="font-size:.82rem;color:#666">
+Memory rules applied: [EP0 ✓ / readable-Georgian ✓ / 4-block ✓ /
+visibility-not-urgency ✓ /
+no-fabrication ✓ (Bivision cycle variants HYPOTHESIS-tagged) /
+probe-discipline ✓ (Western data Georgian-untested explicitly flagged) /
+HTML-policy ✓]
+</p>
+
+</body>
+</html>

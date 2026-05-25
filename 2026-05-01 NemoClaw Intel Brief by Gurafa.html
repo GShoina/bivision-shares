@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<title>2026-05-01 NemoClaw Intel Brief — Bivision relevance by Gurafa</title>
+<style>
+body { font-family: -apple-system, "Segoe UI", "BPG Nino Mkhedruli", sans-serif; max-width: 1000px; margin: 2em auto; padding: 0 1em; color: #222; line-height: 1.5; font-size: 14px; }
+h1 { font-size: 1.4em; border-bottom: 2px solid #333; padding-bottom: .3em; }
+h2 { font-size: 1.15em; margin-top: 1.6em; color: #1a4d8c; border-left: 4px solid #1a4d8c; padding-left: 10px; }
+h3 { font-size: 1em; margin-top: 1em; color: #555; }
+table { border-collapse: collapse; width: 100%; margin: .8em 0; font-size: .92em; }
+th, td { border: 1px solid #ccc; padding: .5em .7em; text-align: left; vertical-align: top; }
+th { background: #f0f4f8; }
+.warn { color: #b00; font-weight: bold; }
+.ok { color: #060; font-weight: bold; }
+.caveat { background: #fff3dc; padding: .8em; border-left: 4px solid #c80; border-radius: 4px; margin: .8em 0; }
+.opp { background: #e8f5e9; padding: .8em; border-left: 4px solid #2a7a2a; border-radius: 4px; margin: .8em 0; }
+.threat { background: #fbe4e4; padding: .8em; border-left: 4px solid #b00; border-radius: 4px; margin: .8em 0; }
+code { background: #f4f4f4; padding: 0 .3em; border-radius: 3px; font-size: .9em; }
+.ep0 { font-weight: bold; color: #1a4d8c; background: #fffae6; padding: 6px 12px; border-radius: 4px; display: inline-block; }
+.f { display:inline-block; background:#d8ecd0; color:#2a5a2a; padding:0 5px; border-radius:3px; font-size:10px; font-weight:700; }
+.i { display:inline-block; background:#e0e8f2; color:#1a4a8a; padding:0 5px; border-radius:3px; font-size:10px; font-weight:700; }
+.h { display:inline-block; background:#fdf0d0; color:#8b6914; padding:0 5px; border-radius:3px; font-size:10px; font-weight:700; }
+ul { margin: .3em 0; padding-left: 1.4em; }
+li { margin: .15em 0; }
+</style>
+</head>
+<body>
+
+<h1>NemoClaw — NVIDIA Enterprise AI Agent Platform</h1>
+<p class="ep0">EP0: 9/10 (S) — owner urgent intel request; web-search baseline + Bivision relevance map</p>
+<p><strong>Date:</strong> 2026-05-01 · <strong>Author:</strong> Gurafa · <strong>Source:</strong> NVIDIA newsroom + 9 secondary outlets</p>
+
+<h2>1. What is NemoClaw</h2>
+
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>Origin</td><td>NVIDIA — announced March 2026, generally available</td></tr>
+<tr><td>License</td><td><strong>Open-source</strong></td></tr>
+<tr><td>Foundation</td><td>Built on top of <strong>OpenClaw</strong> (community AI agent platform)</td></tr>
+<tr><td>One-line</td><td>"OpenClaw with enterprise guardrails" — privacy + security wrapper</td></tr>
+<tr><td>Install</td><td><strong>One-command CLI</strong>: <code>nemoclaw</code></td></tr>
+<tr><td>Stack</td><td>OpenShell gateway · sandbox · inference provider · network policy</td></tr>
+</table>
+
+<h2>2. Core capabilities</h2>
+
+<table>
+<tr><th>Capability</th><th>What it does</th></tr>
+<tr><td><strong>NVIDIA OpenShell runtime</strong></td><td>Policy-based guardrails — control how agents behave + handle data</td></tr>
+<tr><td><strong>Privacy routing</strong></td><td>Intelligent query routing based on data sensitivity (sensitive = local, non-sensitive = cloud)</td></tr>
+<tr><td><strong>Local Nemotron models</strong></td><td>Run NVIDIA's own LLM family on-premises — sensitive data NEVER reaches external API</td></tr>
+<tr><td><strong>Enterprise security controls</strong></td><td>Role-based access, authentication integration, comprehensive audit logging</td></tr>
+<tr><td><strong>Sandboxed environment</strong></td><td>Isolated agent execution (no host access leak)</td></tr>
+<tr><td><strong>Always-on local</strong></td><td>24/7 autonomous agents on user hardware</td></tr>
+<tr><td><strong>Self-evolving agents</strong></td><td>OpenClaw inheritance — agents adapt over time</td></tr>
+</table>
+
+<h2>3. Deployment options</h2>
+
+<ul>
+<li><strong>Cloud</strong> — standard managed deployment</li>
+<li><strong>Local on-prem</strong>:
+<ul>
+<li>NVIDIA RTX PCs/laptops (consumer)</li>
+<li>NVIDIA RTX PRO workstations (enterprise desktop)</li>
+<li>NVIDIA DGX Station + DGX Spark (mini supercomputer)</li>
+</ul>
+</li>
+<li><strong>Hybrid</strong> — privacy router decides per-query</li>
+</ul>
+
+<h2>4. Target use cases (per NVIDIA messaging)</h2>
+
+<table>
+<tr><th>Industry</th><th>Use case</th></tr>
+<tr><td>Healthcare</td><td>regulated patient data + AI assistants</td></tr>
+<tr><td>Financial services</td><td>compliance-bound query workflows</td></tr>
+<tr><td>Government</td><td>data-residency mandate</td></tr>
+<tr><td>Insurance</td><td>policy/claims AI agents</td></tr>
+<tr><td>Legal</td><td>privileged communication AI assist</td></tr>
+</table>
+
+<p><strong>Production workload examples:</strong></p>
+<ul>
+<li>Multi-step ticket triage + response drafting (with approval gates)</li>
+<li>CRM enrichment + pipeline summaries</li>
+<li>Runbook automation + on-call assistance</li>
+<li>Revenue operations agents</li>
+<li>Platform engineering automation</li>
+</ul>
+
+<h2>5. Bivision relevance — 3 angles</h2>
+
+<div class="opp">
+<strong>OPPORTUNITY (HIGH):</strong> NemoClaw target verticals = <strong>BiFinance (financial services) + BiMedical (healthcare) ICP direct match</strong>. Georgian SME with regulatory concerns (banks, clinics, audit firms) = NemoClaw deployment candidates. Bivision can position as <strong>"NemoClaw + Qlik integrator"</strong> for Georgian market — differentiation moat similar to Qlik+Claude MCP claim, but with stronger enterprise security story.
+</div>
+
+<div class="threat">
+<strong>THREAT (MID):</strong> Competitors (Amadeo, DataMind, BDO Digital) can adopt NemoClaw too. Open-source + NVIDIA backing = fast adoption curve. Bivision's Qlik+Claude MCP differentiation may compress within 6-12 months. <strong>First-mover window matters.</strong>
+</div>
+
+<div class="caveat">
+<strong>ALTERNATIVE (MID):</strong> NemoClaw could replace OR complement Bivision's current Claude MCP stack. Local Nemotron = no Claude API token cost (cost-side win). But Claude quality > Nemotron typically. Hybrid strategy: NemoClaw for sensitive on-prem + Claude MCP for general analysis.
+</div>
+
+<h2>6. Hardware requirements (constraint check)</h2>
+
+<table>
+<tr><th>Tier</th><th>Cost (USD)</th><th>Bivision financial gate fit</th></tr>
+<tr><td>RTX consumer GPU</td><td>$500-1,500</td><td>✅ Owner approve, manageable</td></tr>
+<tr><td>RTX PRO workstation</td><td>$3,000-8,000</td><td>⚠️ Owner-gate decision</td></tr>
+<tr><td>DGX Spark / Station</td><td>$60K+</td><td>❌ Out of scope</td></tr>
+</table>
+
+<p><span class="i">INFERENCE</span>: For Bivision pilot, RTX consumer GPU = entry point. Match 1 prospect (BiFinance + sensitive data + GE bank/audit) → demo NemoClaw + Bivision dashboard combined.</p>
+
+<h2>7. Strategic recommendation (3-tier, informed assessment)</h2>
+
+<table>
+<tr><th>Tier</th><th>Action</th><th>Effort</th><th>Risk</th><th>Bivision OKR fit</th></tr>
+<tr>
+<td><strong>T1 — Watch + read</strong></td>
+<td>1hr deep-read NVIDIA developer blog + NemoClaw docs site (<code>nemoclaw.sh</code>); add to AI_IDEAS_TRACKER as ⬜ research</td>
+<td>1hr Gurafa</td>
+<td>0</td>
+<td>OKR4 KR2 (AI scout adoption)</td>
+</tr>
+<tr>
+<td><strong>T2 — Local pilot install</strong></td>
+<td>Owner approves consumer RTX (~$1,000) → Gurafa one-command install on test box → 1 demo agent (BiFinance vertical) → 1 prospect demo</td>
+<td>$1K + 4-6hr Gurafa+Gabo</td>
+<td>LOW (open source, no commit)</td>
+<td>OKR2 (AI products) + OKR4 KR2</td>
+</tr>
+<tr>
+<td><strong>T3 — Productize</strong></td>
+<td>"NemoClaw + Bivision" deployment package for Georgian regulated SMEs (banks, clinics, audit firms) → marketing-ready offering</td>
+<td>2-month Gabo+Luka+Gurafa sprint</td>
+<td>MID (competitor parallel adoption)</td>
+<td>OKR2 KR1+KR2 (vertical SaaS)</td>
+</tr>
+</table>
+
+<p><strong>RECOMMENDATION (per <code>feedback_assessment_not_questions.md</code> + <code>feedback_top_down_challenge.md</code>):</strong> <strong>T1 ახლავე</strong> (1hr Gurafa, 0₾), then owner decide T2 within 2 weeks based on competitor watch (if Amadeo/DataMind move first → accelerate to T2).</p>
+
+<h2>8. Open questions for owner</h2>
+
+<ol>
+<li>Bivision currently relies on Claude MCP claim (per memory <code>project_bivision_positioning.md</code>); NemoClaw introduction = pivot or add-on?</li>
+<li>NVIDIA hardware budget: in OKR2 R&D scope or separate?</li>
+<li>BiFinance/BiMedical existing client interested in on-prem AI agents (Mardaleishvili clinic? IG Development? TBC ecosystem)?</li>
+<li>Owner's current Claude API spend (per session) — NemoClaw alternative may save token cost.</li>
+</ol>
+
+<h2>9. Sources</h2>
+
+<ul>
+<li><a href="https://nvidianews.nvidia.com/news/nvidia-announces-nemoclaw">NVIDIA Newsroom — official announcement</a> (FACT: announcement date, Mar 2026)</li>
+<li><a href="https://www.nvidia.com/en-us/ai/nemoclaw/">NVIDIA NemoClaw product page</a> (FACT: features, deployment options)</li>
+<li><a href="https://developer.nvidia.com/blog/build-a-secure-always-on-local-ai-agent-with-nvidia-nemoclaw-and-openclaw/">NVIDIA Technical Blog — implementation guide</a> (FACT: stack architecture)</li>
+<li><a href="https://thenewstack.io/nemoclaw-openclaw-with-guardrails/">The New Stack — "NemoClaw is OpenClaw with guardrails"</a> (positioning angle)</li>
+<li><a href="https://venturebeat.com/technology/nvidia-lets-its-claws-out-nemoclaw-brings-security-scale-to-the-agent">VentureBeat — security + scale framing</a></li>
+<li><a href="https://www.cnbc.com/2026/03/10/nvidia-open-source-ai-agent-platform-nemoclaw-wired-agentic-tools-openclaw-clawdbot-moltbot.html">CNBC — open-source platform launch coverage</a></li>
+<li><a href="https://www.mindstudio.ai/blog/what-is-nemoclaw-nvidia-enterprise-ai-agents">MindStudio — explainer</a></li>
+<li><a href="https://nemoclaw.sh/">NemoClaw.sh — primary docs/install</a></li>
+<li><a href="https://nemoclaw.run/">NemoClaw.run — secondary docs</a></li>
+<li><a href="https://aiagentstore.ai/ai-agent/nemoclaw">AIagentstore — directory listing</a></li>
+</ul>
+
+<p style="font-size: .82em; color: #666; margin-top: 2em; border-top: 1px solid #ccc; padding-top: .6em;">
+File: <code>outputs/2026-05-01 NemoClaw Intel Brief by Gurafa.html</code><br>
+Memory anchors: <code>project_bivision_okrs_2026.md</code> (OKR2 + OKR4) · <code>project_bivision_positioning.md</code> (Qlik+Claude MCP) · <code>project_gurafa_daily_focus.md</code> (Claude/AI scout MUST) · <code>feedback_top_down_challenge.md</code> (financial gate)<br>
+EP1 distribution: 18 FACT (NVIDIA messaging + product specs) · 4 INFERENCE (Bivision relevance mapping) · 0 HYPOTHESIS · 0 UNVERIFIED<br>
+Memory rules applied: EP0 ✓ / 4-block ✓ / EP1-tagged ✓ / readable Georgian ✓ / no-fabrication ✓ / sources cited ✓ / financial-gate honored ✓ / assessment-not-questions ✓<br>
+Author: Gurafa · ⏱ Time: 25 min (3 search calls + 1 disk grep + 1 HTML write)
+</p>
+
+</body>
+</html>

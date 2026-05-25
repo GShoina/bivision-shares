@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ka-GE">
+<head>
+<meta charset="utf-8">
+<title>HyperFrames + Claude Design — Bivision-სთვის ანალიზი — 2026-04-27</title>
+<style>
+body{font-family:-apple-system,system-ui,"Segoe UI",sans-serif;max-width:920px;margin:2rem auto;padding:0 1.2rem;color:#1a1a1a;line-height:1.55;font-size:14.5px}
+h1{font-size:1.55rem;margin:0 0 .3rem;border-bottom:2px solid #333;padding-bottom:.3em}
+h2{font-size:1.18rem;margin:1.6rem 0 .5rem;color:#1a4d80;border-left:4px solid #1a4d80;padding-left:.5rem}
+h3{font-size:1rem;margin:1rem 0 .4rem}
+.meta{color:#666;font-size:.85rem;margin-bottom:1.2rem}
+.fact{background:#eefbe6;border-left:4px solid #10b981;padding:.7rem 1rem;margin:.5rem 0;border-radius:4px}
+.hyp{background:#fff8e1;border-left:4px solid #f5a623;padding:.7rem 1rem;margin:.5rem 0;border-radius:4px}
+.risk{background:#fde7e9;border-left:4px solid #c0392b;padding:.7rem 1rem;margin:.5rem 0;border-radius:4px}
+table{border-collapse:collapse;width:100%;margin:.6rem 0;font-size:.92rem}
+th,td{border:1px solid #ccc;padding:.4rem .55rem;text-align:left;vertical-align:top}
+th{background:#1a4d80;color:#fff}
+code{background:#eef2f7;padding:.05rem .35rem;border-radius:3px;font-family:Consolas,monospace;font-size:.86rem}
+pre{background:#0B2545;color:#D4A574;padding:.7rem;border-radius:4px;overflow-x:auto;font-size:.83rem}
+.tag{display:inline-block;padding:.15rem .55rem;border-radius:3px;font-size:.78rem;font-weight:700}
+.t-fact{background:#10b981;color:#fff}
+.t-hyp{background:#f5a623;color:#fff}
+.t-mini{background:#2563eb;color:#fff}
+ul,ol{margin:.3rem 0 .6rem 1.4rem}
+hr{border:none;border-top:1px solid #ddd;margin:1.5rem 0}
+</style>
+</head>
+<body>
+
+<h1>HyperFrames + Claude Design — Bivision-სთვის ანალიზი</h1>
+<div class="meta">2026-04-27 · Gurafa · MINI-tier audit per Validation Master Prompt v2 · owner-triggered adoption (don't auto-ADOPT)</div>
+
+<h2>1. Verified facts (multi-source <span class="tag t-fact">FACT</span>)</h2>
+
+<div class="fact">
+<b>HyperFrames</b> (heygen-com/hyperframes) — open-source HTML→MP4 video framework by HeyGen. Apache 2.0. 11.6k stars, v0.4.31 (April 2026), 513 commits, active maintenance. Tech: Puppeteer + Chrome + FFmpeg + GSAP + TypeScript. NOT Remotion-based (independent, inspired). Production-ready. CLI: <code>init/preview/render/lint/transcribe/tts/doctor</code>. Limitation: single-machine rendering today, requires Node.js ≥22 + FFmpeg.
+</div>
+
+<div class="fact">
+<b>Claude Design</b> = Anthropic feature at <code>claude.ai/design</code>. Generates motion graphics from natural-language prompts. Outputs ZIP project compatible with HyperFrames via <code>docs/guides/claude-design-hyperframes.md</code> attached as guide file in chat.
+</div>
+
+<div class="fact">
+<b>Performance comparison (multi-source confirmed):</b> HyperFrames render 60s → 4MB. Remotion render 162s + 4min build → 14MB. ~3x faster + 3.5x smaller files.
+</div>
+
+<div class="hyp">
+<b>"Awesome-AI-Pulse-Georgia GitHub collection"</b> — owner-mentioned, <span class="tag t-hyp">HYPOTHESIS</span> not located in public search. Likely owner's curated list OR alternate repo name. No verification yet. Owner-side input would unblock.
+</div>
+
+<h2>2. Bivision applicability — per use case</h2>
+
+<table>
+<tr><th>Use case (owner list)</th><th>Bivision channel</th><th>Fit</th><th>Note</th></tr>
+<tr><td>ბრენდის წარდგენის ვიდეო</td><td>LinkedIn / YouTube</td><td>HIGH</td><td>"10 წელი, 30+ პროექტი" hero video — direct trust signal</td></tr>
+<tr><td>სოციალური ქსელის მოძრავი პოსტი</td><td>LinkedIn / FB</td><td>HIGH</td><td>per Apr 22 Mariam directive: Reels 0→2/week — exactly this gap</td></tr>
+<tr><td>პროდუქტის მოკლე საჩვენებელი</td><td>BiFinance / BiRetail demos</td><td>HIGH</td><td>HubSpot-confirmed 1,000 ₾ products — visual demo > text spec</td></tr>
+<tr><td>სტარტაპის საპრეზენტაციო ვიდეო</td><td>Sales pitch material</td><td>MEDIUM</td><td>Bivision არა startup, magram pitch deck animation valid</td></tr>
+<tr><td>განმარტებითი ანიმაცია</td><td>Bihub content amplification</td><td>HIGH</td><td>Bihub-ის text articles → animated explainers</td></tr>
+<tr><td>ახალი ფუნქციის წარდგენა</td><td>Qlik MCP / new connector announce</td><td>HIGH</td><td>Apr 21 Qlik MCP LinkedIn post text-only → animation = engagement boost</td></tr>
+<tr><td>მონაცემების მოძრავი ვიზუალი</td><td>Bivision core moat — BI dashboard demos</td><td>VERY HIGH</td><td>Bivision = data company; data-animation = brand-fit perfection</td></tr>
+<tr><td>ვიდეოგრაფიკა (ტექსტი + გადასვლები)</td><td>Bihub + LinkedIn carousel replacement</td><td>MEDIUM</td><td>Mariam current: text carousels; video alternative</td></tr>
+</table>
+
+<h2>3. Cost-symmetric pre-mortem</h2>
+
+<h3>Side A — cost of doing wrong</h3>
+<ul>
+<li>Learning curve: Node.js + FFmpeg + Claude Design workflow (Mariam OR Geo? — capacity owner unclear)</li>
+<li>Brand visual consistency risk first 3-5 iterations (AI-generated → may diverge from Bivision palette/typography)</li>
+<li>Multi-tool failure surface: Claude Design + HyperFrames + AI agent (Claude Code/Cursor) — 3 dependencies</li>
+<li>Initial output quality may underwhelm; refinement loop time</li>
+<li>Compute cost: video render = local CPU/GPU; Bivision dev machine spec UNVERIFIED</li>
+</ul>
+
+<h3>Side B — cost of NOT doing</h3>
+<ul>
+<li>LinkedIn algorithm strongly favors video over text (industry benchmark, multi-source) — Bivision text-only = reach ceiling</li>
+<li>Mariam Reels 0→2/week directive Apr 22 — without video tooling = directive misses</li>
+<li>Bihub content amplification cap — text-only blog = single channel</li>
+<li>Competitor (Gegidze ad-strategy Apr 22 audit shows video usage) — Bivision lag widens</li>
+<li>BiFinance/BiRetail product pages = static; video demo = conversion lever unbuilt</li>
+<li>Bivision "data company" positioning + no animated data viz = positioning gap</li>
+</ul>
+
+<h3>Decision per V2 cost-symmetric rule</h3>
+<p><b>Side B &gt; Side A</b> — cost-of-not-doing exceeds cost-of-doing-wrong. Side A risks mitigatable via pilot scope. Side B compounds weekly (Mariam directive misses, LinkedIn reach ceiling).</p>
+<p><b>Verdict:</b> <span class="tag t-mini">SHIP MINI PILOT</span>. NOT auto-ADOPT (Karpathy lesson Apr 27 same session — visibility ≠ urgency). Owner-trigger required for pilot start.</p>
+
+<h2>4. Pilot proposal (1-week scope, owner-trigger only)</h2>
+
+<table>
+<tr><th>Step</th><th>Action</th><th>Owner</th><th>Time</th></tr>
+<tr><td>0</td><td>Owner trigger: "ship pilot"</td><td>Owner</td><td>—</td></tr>
+<tr><td>1</td><td>Pilot scope = <b>1 video</b>: BiFinance 30-60 second product demo. Why: HubSpot-confirmed price (1,000 ₾), HIGH-fit use case, narrow brief</td><td>Mariam + Gurafa coord</td><td>Day 1</td></tr>
+<tr><td>2</td><td>HyperFrames + Claude Design install (Node.js ≥22 + FFmpeg verify)</td><td>Geo (per Apr 25 site-execute rule expanded to tooling)</td><td>Day 1 — 30-60 min</td></tr>
+<tr><td>3</td><td>Brief draft: 4-slot framework (HOOK/COMMIT/PROOF/MICRO-CTA per Apr 22 ad strategy) + Bivision palette + product fact list</td><td>Mariam</td><td>Day 2</td></tr>
+<tr><td>4</td><td>Claude Design first draft (text → ZIP)</td><td>Gurafa</td><td>Day 2 — 1 hour</td></tr>
+<tr><td>5</td><td>HyperFrames refine (lint + preview + render) in Claude Code</td><td>Gurafa</td><td>Day 3-4 — iteration</td></tr>
+<tr><td>6</td><td>Owner review + sign-off</td><td>Owner</td><td>Day 5 — 15 min</td></tr>
+<tr><td>7</td><td>LinkedIn ship + measure (engagement vs prior text post baseline)</td><td>Mariam</td><td>Day 5-7</td></tr>
+</table>
+
+<h3>Pass criterion (BML measure)</h3>
+<ul>
+<li>1 video shipped to LinkedIn within 7 days of trigger</li>
+<li>Engagement (impressions + CTR + comments) baseline-comparable to recent text post (Apr 21 Qlik MCP post = 5 likes / 1 comment per Apr 21 Mentari sweep — low bar)</li>
+<li>Render time + brand-fit owner verdict subjective Y/N</li>
+<li>Production hours actual vs 1-week budget</li>
+</ul>
+
+<h3>If pass → scale (8-12 weeks)</h3>
+<p>2-3 video/month → Mariam directive (Reels 0→2/week) on track. Use case ladder: BiFinance demo → Qlik MCP feature reveal → Bihub explainer.</p>
+
+<h3>If fail → root cause</h3>
+<ul>
+<li>If quality fail → adjust brief discipline; not tool fault</li>
+<li>If time fail → batch render queue OR external Mariam help</li>
+<li>If brand-fit fail → palette/typography lock + style guide JSON for Claude Design</li>
+</ul>
+
+<h2>5. Risks (no-fabrication, hypothesis-tagged)</h2>
+
+<div class="risk">
+<b>R1 [HYPOTHESIS]:</b> Compute spec — single-machine render requires CPU/GPU; Bivision dev machine capacity UNVERIFIED. Mitigation: lint/preview lightweight (Day 1 verify on owner laptop).
+</div>
+
+<div class="risk">
+<b>R2 [HYPOTHESIS]:</b> Mariam capacity per Apr 22 directive already stretched (Reels + Bihub + brand). Pilot adds 1 brief + 1 review session = ~2-3 hours. Mitigation: pilot brief = 1-page, review = 15-min slot.
+</div>
+
+<div class="risk">
+<b>R3 [FACT]:</b> Apache 2.0 license = commercial-OK, but HeyGen ≠ Anthropic; if Anthropic Claude Design TOS forbids ZIP export to non-Anthropic tools, pilot blocked. Mitigation: verify TOS Day 1 before time invested.
+</div>
+
+<div class="risk">
+<b>R4 [HYPOTHESIS]:</b> "Awesome-AI-Pulse-Georgia" GitHub collection owner-mentioned not located. May contain Bivision-relevant additional tools (Video Use referenced too — also not located). Mitigation: owner pastes link.
+</div>
+
+<h2>6. Honest verdict</h2>
+
+<p><b>HyperFrames + Claude Design pipeline is real, mature, license-clean, performance-strong.</b> Bivision marketing video gap is real (Mariam Reels directive + LinkedIn algorithm + Bihub amplification). Pilot is low-risk, high-leverage, narrowly scoped.</p>
+
+<p><b>BUT</b> per Karpathy lesson Apr 27 same session: don't auto-ADOPT after repo discovery. Default = pilot-proposal-with-owner-trigger, not directive. Owner-trigger gates the 1-week pilot.</p>
+
+<h2>7. Owner-trigger options</h2>
+
+<ol>
+<li><b>"Ship pilot"</b> → 1-week BiFinance demo pilot starts</li>
+<li><b>"Defer 2 weeks"</b> → backlog, revisit after current Geo bivision.ge batch closes</li>
+<li><b>"Skip"</b> → too much current load; revisit Q3</li>
+<li><b>"Different use case"</b> → owner picks different first video (Qlik MCP feature / Bihub explainer / data viz)</li>
+</ol>
+
+<hr>
+<p style="font-size:.82rem;color:#666">
+Sources: <a href="https://github.com/heygen-com/hyperframes">heygen-com/hyperframes</a> ·
+<a href="https://hyperframes.heygen.com/guides/claude-design">HyperFrames Claude Design guide</a> ·
+<a href="https://github.com/heygen-com/hyperframes/blob/main/docs/guides/claude-design-hyperframes.md">guide file</a> ·
+<a href="https://www.mindstudio.ai/blog/ai-video-editing-claude-code-hyperframes">MindStudio workflow</a> ·
+<a href="https://ai-engineering-trend.medium.com/heygens-hyperframes-the-open-source-framework-challenging-remotion-in-html-based-video-creation-c10437f0afca">Medium comparison</a>
+</p>
+
+<p style="font-size:.82rem;color:#666">
+Memory rules applied: [EP0 ✓ / readable-Georgian ✓ / 4-block ✓ /
+visibility-not-urgency ✓ (pilot proposal, not auto-ADOPT) /
+no-fabrication ✓ (FACT vs HYPOTHESIS tagged) /
+probe-discipline ✓ (multi-source verified) /
+HTML-policy ✓]
+</p>
+
+</body>
+</html>

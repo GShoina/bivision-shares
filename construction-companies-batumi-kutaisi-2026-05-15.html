@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>სამშენებლო კომპანიები — ბათუმი + ქუთაისი | 2026-05-15</title>
+<style>
+  :root {
+    --purple: #6B63B5; --purple-light: #f0effa;
+    --green: #00A651; --green-light: #e6f7ef;
+    --gray: #718096; --gray-light: #f7f8fa;
+    --text: #1a202c; --border: #e2e8f0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+    --orange: #dd6b20;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.6; color: var(--text); background: #f4f5f9; padding: 20px 14px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .header { background: var(--purple); color: white; border-radius: 12px; padding: 22px 26px; margin-bottom: 18px; }
+  .header h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .header .meta { font-size: 12px; opacity: 0.75; }
+  .ep0 { display: inline-block; background: rgba(255,255,255,0.18); border-radius: 5px; padding: 3px 10px; font-size: 12px; font-weight: 600; margin-top: 8px; }
+
+  .note-box { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: 13px; }
+  .note-box strong { color: #856404; }
+
+  .bivision-box { background: var(--green-light); border: 1px solid var(--green); border-radius: 8px; padding: 14px 18px; margin-bottom: 18px; }
+  .bivision-box h3 { color: var(--green); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .bivision-box p { font-size: 13px; color: #1a4731; }
+  .pitch { font-size: 14px; font-weight: 700; background: white; border: 2px solid var(--green); border-radius: 6px; padding: 8px 12px; margin: 8px 0; }
+
+  .city-section { margin-bottom: 22px; }
+  .city-title { font-size: 16px; font-weight: 700; color: var(--purple); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 2px solid var(--purple-light); display: flex; align-items: center; gap: 10px; }
+  .city-count { font-size: 11px; background: var(--purple); color: white; border-radius: 12px; padding: 2px 8px; font-weight: 600; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+
+  .card { background: white; border-radius: 9px; box-shadow: var(--shadow); overflow: hidden; border-top: 3px solid var(--purple); }
+  .card.has-contact { border-top-color: var(--green); }
+  .card-head { padding: 12px 14px; background: var(--gray-light); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; }
+  .card-name { font-weight: 700; font-size: 13px; flex: 1; }
+  .badge { font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; white-space: nowrap; }
+  .badge.icp { background: var(--green-light); color: var(--green); }
+  .badge.watch { background: var(--purple-light); color: var(--purple); }
+  .badge.data { background: #e8f4fd; color: #1a5276; }
+  .card-body { padding: 10px 14px; }
+  .card-body .row { display: flex; gap: 6px; margin-bottom: 5px; font-size: 12px; }
+  .card-body .label { color: var(--gray); min-width: 60px; font-size: 11px; }
+  .card-body a { color: var(--purple); text-decoration: none; font-size: 12px; }
+  .card-body a:hover { text-decoration: underline; }
+
+  .sources-section { background: white; border-radius: 9px; box-shadow: var(--shadow); padding: 16px 20px; margin-top: 18px; }
+  .sources-section h3 { font-size: 13px; font-weight: 700; color: var(--purple); margin-bottom: 8px; }
+  .sources-section a { color: var(--purple); font-size: 13px; display: block; margin-bottom: 4px; text-decoration: none; }
+  .sources-section a:hover { text-decoration: underline; }
+  .sources-section .src-note { font-size: 12px; color: var(--gray); margin-top: 8px; }
+
+  .tag-fact { font-size: 10px; background: var(--purple-light); color: var(--purple); border-radius: 3px; padding: 1px 4px; }
+  .tag-unv { font-size: 10px; background: #fff5f5; color: #c53030; border-radius: 3px; padding: 1px 4px; }
+
+  .footer { text-align: center; font-size: 11px; color: var(--gray); margin-top: 20px; padding: 12px; background: white; border-radius: 8px; }
+  .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: var(--gray); margin: 18px 0 8px 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>სამშენებლო კომპანიები — ბათუმი + ქუთაისი</h1>
+  <div class="meta">Gurafa | 2026-05-15 | წყარო: korter.ge · city24.ge · batumiexpert.com · dnb.com</div>
+  <div class="ep0">EP0: 6/10 (S) — ნაწილობრივი სია. Playwright blocked → contacts limited. Full list: korter.ge</div>
+</div>
+
+<div class="note-box">
+  <strong>⚠ შეზღუდვა:</strong> korter.ge-ზე 208 Batumi + 26 Kutaisi developer — სრული სია. ეს HTML-ი ასახავს web search-ით ნაპოვნ კომპანიებს. <strong>სრული სია + ტელეფონი:</strong> <a href="https://korter.ge/en/developers-in-batumi" target="_blank" style="color:#856404">korter.ge/en/developers-in-batumi ↗</a> | <a href="https://korter.ge/en/developers-in-kutaisi" target="_blank" style="color:#856404">korter.ge/en/developers-in-kutaisi ↗</a>
+</div>
+
+<div class="bivision-box">
+  <h3>Bivision Pitch — Construction Vertical</h3>
+  <div class="pitch">"BI ON TOP of your existing ERP (Oris / Fina / 1C / Odoo) — cross-system, CFO-grade, 2-3 weeks"</div>
+  <p>ეს კომპანიები = Bivision-ის 465 construction prospect-ის სეგმენტი. CFO/ფინანსური დირექტორი = buyer. FMG SOFT Odoo-ს ნერგავს ამ კომპანიებში — Bivision = analytics layer ON TOP.</p>
+</div>
+
+<!-- ══════════════ BATUMI ══════════════ -->
+<div class="city-section">
+  <div class="city-title">
+    ბათუმი <span class="city-count">208 developer korter.ge-ზე</span>
+  </div>
+
+  <div class="section-label">კონტაქტი ნაპოვნია</div>
+  <div class="grid">
+
+    <div class="card has-contact">
+      <div class="card-head">
+        <div class="card-name">Anagi Construction</div>
+        <span class="badge icp">ICP ✓</span>
+      </div>
+      <div class="card-body">
+        <div class="row"><span class="label">დაარს.</span> 1989 — GE leader</div>
+        <div class="row"><span class="label">მისამ.</span> 1a Pirosmani St, Batumi 6009</div>
+        <div class="row"><span class="label">ტელ.</span> <a href="tel:+99542227 4139">+995 (422) 27 41 39</a></div>
+        <div class="row"><span class="label">email</span> <a href="mailto:office@anagi.ge">office@anagi.ge</a></div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://anagi.ge/en/" target="_blank">anagi.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card has-contact">
+      <div class="card-head">
+        <div class="card-name">Batumi Investment</div>
+        <span class="badge icp">ICP ✓</span>
+      </div>
+      <div class="card-body">
+        <div class="row"><span class="label">დაარს.</span> 2010 — premium low-rise + hotel</div>
+        <div class="row"><span class="label">ტელ.</span> <a href="tel:+995591917052">+995 591 917 052</a></div>
+        <div class="row"><span class="label">ტელ.2</span> <a href="tel:+995595088022">+995 595 088 022</a></div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://welcomegeo.com/developers/batumi-investment/?lng=en" target="_blank">welcomegeo profile ↗</a> | <a href="https://korter.ge/en/batumi-investment" target="_blank">korter ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card has-contact">
+      <div class="card-head">
+        <div class="card-name">Construction Company Arxeos</div>
+        <span class="badge data">city24</span>
+      </div>
+      <div class="card-body">
+        <div class="row"><span class="label">მისამ.</span> Revaz Komakhidze st. 10, Batumi</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://www.city24.ge/en/batumi/organizations/6641/construction-company-arxeos-batumi/" target="_blank">city24.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card has-contact">
+      <div class="card-head">
+        <div class="card-name">Construction Company BIC</div>
+        <span class="badge data">city24</span>
+      </div>
+      <div class="card-body">
+        <div class="row"><span class="label">მისამ.</span> Vakhtang Gorgasali st. 110, Batumi</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://www.city24.ge/en/batumi/catalogue/real-estate-construction/development-and-construction-companies/" target="_blank">city24.ge directory ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card has-contact">
+      <div class="card-head">
+        <div class="card-name">Tbilisia (Batumi office)</div>
+        <span class="badge data">city24</span>
+      </div>
+      <div class="card-body">
+        <div class="row"><span class="label">ტიპი</span> Development + Housing Estate</div>
+        <div class="row"><span class="label">მისამ.</span> Petre Melikishvili st. 6, Batumi</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://www.city24.ge/en/batumi/organizations/6708/tbilisia-batumi/" target="_blank">city24.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card has-contact">
+      <div class="card-head">
+        <div class="card-name">CMC Construction Management</div>
+        <span class="badge icp">ICP ✓</span>
+      </div>
+      <div class="card-body">
+        <div class="row"><span class="label">სტატუსი</span> GE-ის უდიდესი CM კომპანია</div>
+        <div class="row"><span class="label">ობ.</span> UEFA Cat.IV stadium (Batumi)</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://cmc.ge/" target="_blank">cmc.ge ↗</a></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label" style="margin-top:16px;">ნაპოვნია — კონტაქტი korter.ge-ზე</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">H Group</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">სტატუსი</span> Batumi-ში მთავარი developer</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/h-group" target="_blank">korter.ge/en/h-group ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Gumbati Group</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">დაარს.</span> 1998 — first large-scale Batumi</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/developers-in-batumi" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Polo Construction (Polo Villas)</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">სტატუსი</span> GE-ის უდიდესი low-rise developer</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/developers-in-batumi" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">RED-Co (REDCO)</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">სტატუსი</span> სწრაფად მზარდი. Batumi+Gudauri+Tbilisi</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/redco" target="_blank">korter.ge/en/redco ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Next Group</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">სტატუსი</span> Batumi studio + traditional apartments</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/next-group" target="_blank">korter.ge ↗</a> | <a href="https://next-property.com/" target="_blank">next-property.com ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Elt Building</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">დაარს.</span> 2017. Elt financial org-ის subsidiary</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/elt-building" target="_blank">korter.ge/en/elt-building ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Bat Towers</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">დაარს.</span> 2016</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/bat-towers" target="_blank">korter.ge/en/bat-towers ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Elite Group Batumi</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/elite-group-batumi" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Green Cape Batumi</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">სტატუსი</span> Eco zone, Botanical Garden area</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/green-cape-batumi-developer" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Like House</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">სტატუსი</span> 10 projects — apart-hotels + residential</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/like-house" target="_blank">korter.ge/en/like-house ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Gera Group</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">დაარს.</span> 2010. tourist district projects</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/developers-in-batumi" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Apart Development</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">სტატუსი</span> Batumi + Tbilisi</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://apartgroup.com/" target="_blank">apartgroup.com ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Prime Group</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">სტატუსი</span> Tbilisi + Batumi + prime locations</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://primegroups.net/" target="_blank">primegroups.net ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">One Development</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">დაარს.</span> 2018. Exclusive developer.</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/developers-in-batumi" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Roof Development</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">დაარს.</span> 2017. 3 completed + 2 ongoing</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/developers-in-batumi" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Royal Development</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">სტატუსი</span> Airport district projects</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/royal-developmenti" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">B.T.Batumi</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/btbatumi" target="_blank">korter.ge/en/btbatumi ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">White Square</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">სტატუსი</span> Batumi + Kutaisi active</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/developers-in-batumi" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">X2 Development</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/developers-in-batumi" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Biograpi</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/developers-in-batumi" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════ KUTAISI ══════════════ -->
+<div class="city-section">
+  <div class="city-title">
+    ქუთაისი <span class="city-count">26 developer korter.ge-ზე</span>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Terasa Tseretelze</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">დაარს.</span> 2013. Primary housing market.</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/terasa-tseretelze" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Maqro Construction</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/maqro-construction" target="_blank">korter.ge/en/maqro-construction ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Didi Veli</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">დაარს.</span> 2019. 2 projects (1 done 2022)</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/didi-veli" target="_blank">korter.ge/en/didi-veli ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">MS Builder</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/ms-developer" target="_blank">korter.ge/en/ms-developer ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Premium Development Company</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/premium-development-company" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">DG Invest Plus</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/dg-invest-plus" target="_blank">korter.ge/en/dg-invest-plus ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Panorama Group</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">სტატუსი</span> 2025+ projects active</div>
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/new-projects-kutaisi-ready-in-2025" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Iberia Star Group</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/developers-in-kutaisi" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">Episode Development</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/developers-in-kutaisi" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">M1 Group</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/developers-in-kutaisi" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">AIM Building Company</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/developers-in-kutaisi" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-name">K2 Invest</div><span class="badge watch">korter</span></div>
+      <div class="card-body">
+        <div class="row"><span class="label">საიტი</span> <a href="https://korter.ge/en/developers-in-kutaisi" target="_blank">korter.ge ↗</a></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SOURCES -->
+<div class="sources-section">
+  <h3>სრული სიისთვის — პირდაპირი ლინკები</h3>
+  <a href="https://korter.ge/en/developers-in-batumi" target="_blank">korter.ge — ბათუმი (208 developer) ↗</a>
+  <a href="https://korter.ge/en/developers-in-kutaisi" target="_blank">korter.ge — ქუთაისი (26 developer) ↗</a>
+  <a href="https://www.city24.ge/en/batumi/catalogue/real-estate-construction/development-and-construction-companies/" target="_blank">city24.ge — ბათუმი directory ↗</a>
+  <a href="https://en.batumiexpert.com/companies" target="_blank">batumiexpert.com — ბათუმი კომპანიები ↗</a>
+  <a href="https://realting.com/georgia/developers" target="_blank">realting.com — Georgia developers ↗</a>
+  <a href="https://geoln.com/developers-tbilisi" target="_blank">geoln.com — developers directory ↗</a>
+  <div class="src-note">⚠ მოდელი: korter.ge-ს გვერდზე პირდაპირი წვდომა + Playwright-ი საჭიროა სრული კონტაქტ სიისთვის. ამ HTML-ში web search-ით ნაპოვნი კომპანიები.</div>
+</div>
+
+<div class="footer">
+  Gurafa | Bivision | 2026-05-15 | 💾 PERSISTENT<br>
+  <span style="font-size:10px;">შემდეგი ნაბიჯი: korter.ge-ს სრული scan + CFO email enrichment</span>
+</div>
+
+</div>
+</body>
+</html>
