@@ -105,7 +105,7 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--t
     <div class="meta">17 თვე · Jan-25 → May-26 · <span class="tag gur">by Gurafa</span> <span class="tag eph">⏳ EPHEMERAL — local only</span> · click <strong>ⓘ</strong> on any KPI/chart for Qlik formula</div>
   </div>
 </div>
-<div class="banner-crit">⚠️ May-26 CRITICAL — Cash 375,243 ₾ · DCOH 7.7 დღე · Salary/Revenue 102.2% · Net OCF −211,782 · WC Cushion 0.30 თვე</div>
+<div class="banner-crit">⚠️ May-26 CRITICAL — Cash 317,831 ₾ · DCOH 7.7 დღე · Salary/Revenue 102.2% · Net OCF −179,379 · WC Cushion 0.30 თვე</div>
 <div class="banner-info">v3 changes: KPI cockpit 8→10 (HHI + Cash Δ added) · PMQS + WC Cushion promoted to L1 · Annual CF view added · Formulas → ⓘ popup (cleaner dashboard) · Anomaly section removed (pending validation)</div>
 
 <div class="container">
@@ -127,14 +127,14 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--t
 
   <div class="kpi-group-label"><span class="dot a"></span><span>A — Liquidity (3)</span></div>
   <div class="kpi-grid">
-    <div class="kpi y"><button class="kpi-info" onclick="openF('cash')">i</button><div class="kpi-lbl">1. Cash Position</div><div class="kpi-val">375,243 ₾</div><div class="kpi-delta neg">▼ −776,947 vs Apr-26</div><div class="kpi-sub">🟢&gt;500K · 🟡250-500K · 🔴&lt;250K</div></div>
+    <div class="kpi y"><button class="kpi-info" onclick="openF('cash')">i</button><div class="kpi-lbl">1. Cash Position</div><div class="kpi-val">317,831 ₾</div><div class="kpi-delta neg">▼ −658,074 vs Apr-26</div><div class="kpi-sub">🟢&gt;500K · 🟡250-500K · 🔴&lt;250K</div></div>
     <div class="kpi r"><button class="kpi-info" onclick="openF('dcoh')">i</button><div class="kpi-lbl">2. DCOH</div><div class="kpi-val">7.7 დღე</div><div class="kpi-delta neg">▼ −13.4 vs Apr-26</div><div class="kpi-sub">🟢&gt;45 · 🟡21-45 · 🔴&lt;21</div></div>
     <div class="kpi r"><button class="kpi-info" onclick="openF('wc')">i</button><div class="kpi-lbl">3. WC Cushion <span class="tag promoted">↑L1</span></div><div class="kpi-val">0.30 თვე</div><div class="kpi-delta neg">≈ 9 დღე buffer</div><div class="kpi-sub">🟢&gt;2 · 🟡1-2 · 🔴&lt;1 თვე</div></div>
   </div>
 
   <div class="kpi-group-label"><span class="dot b"></span><span>B — Operating Performance (3)</span></div>
   <div class="kpi-grid">
-    <div class="kpi g"><button class="kpi-info" onclick="openF('netop')">i</button><div class="kpi-lbl">4. Net OCF 3M Avg</div><div class="kpi-val">622,083 ₾</div><div class="kpi-delta neg">May: −211,782</div><div class="kpi-sub">🟢&gt;0 · 🟡0..−100K · 🔴&lt;−100K</div></div>
+    <div class="kpi g"><button class="kpi-info" onclick="openF('netop')">i</button><div class="kpi-lbl">4. Net OCF 3M Avg</div><div class="kpi-val">526,904 ₾</div><div class="kpi-delta neg">May: −179,379</div><div class="kpi-sub">🟢&gt;0 · 🟡0..−100K · 🔴&lt;−100K</div></div>
     <div class="kpi r"><button class="kpi-info" onclick="openF('opm')">i</button><div class="kpi-lbl">5. Op CF Margin %</div><div class="kpi-val">−16.9%</div><div class="kpi-delta neg">▼ −45.4 pp</div><div class="kpi-sub">3M avg: 19.3%</div></div>
     <div class="kpi r"><button class="kpi-info" onclick="openF('sr')">i</button><div class="kpi-lbl">6. Salary / Revenue</div><div class="kpi-val">102.2%</div><div class="kpi-delta neg">▲ +41.9 pp</div><div class="kpi-sub">🟢&lt;60% · 🟡60-75% · 🔴&gt;75%</div></div>
   </div>
@@ -205,7 +205,7 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--t
     </div>
     <div class="card"><button class="card-info" onclick="openF('wc')">i</button><h3>Working Capital Cushion (Cash / Avg Fixed Cost)</h3>
       <div class="gauge"><div class="gauge-val" style="color:var(--red)">0.30</div><div class="gauge-lbl">თვე ფარული</div></div>
-      <div class="bench">CRITICAL — May-26 cash 375K, avg fixed 1.27M/თვე → 9 დღე buffer. იხ. <a href="#l6" style="color:var(--purple-dark);font-weight:600">→ Detail Calc</a></div>
+      <div class="bench">CRITICAL — May-26 cash 318K, avg fixed 1.27M/თვე → 9 დღე buffer. იხ. <a href="#l6" style="color:var(--purple-dark);font-weight:600">→ Detail Calc</a></div>
     </div>
   </div>
 </section>
@@ -216,8 +216,8 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--t
   <div class="tl-grid">
     <div class="tl r"><div class="tl-l">DCOH</div><div class="tl-v">7.7 დღე</div><div class="tl-rng">&lt;21 R · 21-45 Y · &gt;45 G</div></div>
     <div class="tl r"><div class="tl-l">Salary / Revenue</div><div class="tl-v">102.2%</div><div class="tl-rng">&lt;60 G · 60-75 Y · &gt;75 R</div></div>
-    <div class="tl g"><div class="tl-l">Net OCF (3M avg)</div><div class="tl-v">622,083 ₾</div><div class="tl-rng">&gt;0 G · 0..−100K Y · &lt;−100K R</div></div>
-    <div class="tl y"><div class="tl-l">Cash Position</div><div class="tl-v">375,243 ₾</div><div class="tl-rng">&gt;500K G · 250-500K Y · &lt;250K R</div></div>
+    <div class="tl g"><div class="tl-l">Net OCF (3M avg)</div><div class="tl-v">526,904 ₾</div><div class="tl-rng">&gt;0 G · 0..−100K Y · &lt;−100K R</div></div>
+    <div class="tl y"><div class="tl-l">Cash Position</div><div class="tl-v">317,831 ₾</div><div class="tl-rng">&gt;500K G · 250-500K Y · &lt;250K R</div></div>
   </div>
   <div class="card"><button class="card-info" onclick="openF('heatmap')">i</button><h3>KPI Heatmap — 17 თვე × 5 მაჩვენებელი</h3>
     <div class="heat" id="heatMap"></div>
@@ -232,15 +232,15 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--t
     <div class="chart-wrap tall"><canvas id="chFc"></canvas></div>
     <div class="method">
       <b>მეთოდი:</b> 50% trailing 3-month avg + 50% same-month prior year (seasonal-naive). Source data თვიური — weekly მოითხოვს daily.<br>
-      <b>Base case:</b> Jun-26 cash 585K → Jul-26 1.58M (UHC bounce) → Aug-26 2.0M<br>
-      <b>Worst (UHC 1M delay):</b> Jun-26 cash <span style="color:var(--red);font-weight:600">−180K NEGATIVE</span><br>
-      <b>What if Salary −20%:</b> +250K/თვე buffer → 6-month runway
+      <b>Base case:</b> Jun-26 cash 495K → Jul-26 1.33M (UHC bounce) → Aug-26 1.70M<br>
+      <b>Worst (UHC delay):</b> Jun-26 cash <span style="color:var(--red);font-weight:600">−152K NEGATIVE</span><br>
+      <b>What if Salary −20%:</b> +212K/თვე buffer → 6-month runway
     </div>
   </div>
   <div class="row-3">
-    <div class="card"><h3>Scenario A — Base</h3><div style="text-align:center;padding:18px 0"><div style="font-size:2rem;font-weight:700;color:var(--green)">2.0M</div><div style="color:var(--muted);font-size:.8rem">Aug-26 closing cash</div></div><div class="bench">UHC normal flow + seasonal pattern holds</div></div>
-    <div class="card"><h3>Scenario B — UHC 1M Delay</h3><div style="text-align:center;padding:18px 0"><div style="font-size:2rem;font-weight:700;color:var(--red)">−180K</div><div style="color:var(--muted);font-size:.8rem">Jun-26 negative cash</div></div><div class="bench">UHC cycle missed → liquidity crisis</div></div>
-    <div class="card"><h3>Scenario C — Salary −20%</h3><div style="text-align:center;padding:18px 0"><div style="font-size:2rem;font-weight:700;color:var(--green)">+250K/თვე</div><div style="color:var(--muted);font-size:.8rem">monthly buffer creation</div></div><div class="bench">ხელფასების სტრუქტურის გადახედვა</div></div>
+    <div class="card"><h3>Scenario A — Base</h3><div style="text-align:center;padding:18px 0"><div style="font-size:2rem;font-weight:700;color:var(--green)">1.70M</div><div style="color:var(--muted);font-size:.8rem">Aug-26 closing cash</div></div><div class="bench">UHC normal flow + seasonal pattern holds</div></div>
+    <div class="card"><h3>Scenario B — UHC 1M Delay</h3><div style="text-align:center;padding:18px 0"><div style="font-size:2rem;font-weight:700;color:var(--red)">−152K</div><div style="color:var(--muted);font-size:.8rem">Jun-26 negative cash</div></div><div class="bench">UHC cycle missed → liquidity crisis</div></div>
+    <div class="card"><h3>Scenario C — Salary −20%</h3><div style="text-align:center;padding:18px 0"><div style="font-size:2rem;font-weight:700;color:var(--green)">+212K/თვე</div><div style="color:var(--muted);font-size:.8rem">monthly buffer creation</div></div><div class="bench">ხელფასების სტრუქტურის გადახედვა</div></div>
   </div>
 </section>
 
@@ -252,9 +252,9 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--t
   <div class="card">
     <div class="calc-step"><div class="lbl">Step 1 — Fixed Cost Categories (8)</div><div>Salaries · Rent · Utilities · Software/IT · Repair · Services Outsourced · Taxes · Supplies</div></div>
     <div class="calc-step"><div class="lbl">Step 2 — Sum Per Month</div><div class="v">FixedCost(month) = Salaries + Rent + Utilities + Software + Repair + Services + Taxes + Supplies</div></div>
-    <div class="calc-step"><div class="lbl">Step 3 — Average Across All Periods</div><div class="v">AvgFixed = mean(FixedCost across 17 months) = <strong>1,270,325 ₾</strong></div></div>
-    <div class="calc-step"><div class="lbl">Step 4 — Latest Cash Position</div><div class="v">LatestCash = Sum(ClosingCash, May-26) = <strong>375,243 ₾</strong></div></div>
-    <div class="calc-final"><div class="lbl">Final — Working Capital Cushion (months)</div><div class="v">375,243 ÷ 1,270,325 = <strong>0.30 თვე</strong> (≈ 9 დღე)</div></div>
+    <div class="calc-step"><div class="lbl">Step 3 — Average Across All Periods</div><div class="v">AvgFixed = mean(FixedCost across 17 months) = <strong>1,075,965 ₾</strong></div></div>
+    <div class="calc-step"><div class="lbl">Step 4 — Latest Cash Position</div><div class="v">LatestCash = Sum(ClosingCash, May-26) = <strong>317,831 ₾</strong></div></div>
+    <div class="calc-final"><div class="lbl">Final — Working Capital Cushion (months)</div><div class="v">317,831 ÷ 1,075,965 = <strong>0.30 თვე</strong> (≈ 9 დღე)</div></div>
     <div class="bench" style="margin-top:14px;background:#fff8e1;color:#8a6d00">⚠️ May-26 ფული ფარავს მხოლოდ ~9 დღის fixed cost-ს. თუ შემოსავალი 30 დღით დააგვიანდება — ხელფასი ვერ გადაიხდება.</div>
     <button class="card-info" style="position:static;margin-top:14px;width:auto;padding:8px 14px;border-radius:6px" onclick="openF('wc')">📋 Qlik Implementation Formula</button>
   </div>
@@ -297,32 +297,34 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--t
 
 <div class="footer container">
   Generated 2026-05-25 · v3 (analyst-handoff + restored v1 visuals) · <span class="tag gur">by Gurafa</span> · Bivision Intelligence<br>
-  Source: Direct CF.xls (159KB) · v1: <code>2026-05-25-direct-cf-dashboard.html</code> · v2: <code>2026-05-25-direct-cf-dashboard-v2.html</code><br>
+  Source: Direct CF.xls (anonymized × 0.847) · v1: <code>2026-05-25-direct-cf-dashboard.html</code><br>
+  <strong style="color:#FFC107">⚠ Numbers obfuscated for confidentiality — ratios + KPI thresholds + analytical findings preserved for demo</strong><br>
   <span class="tag eph">⏳ EPHEMERAL</span> healthcare client data · local + bivision-shares · NO indexing
 </div>
 
 <script>
+// Numbers obfuscated for confidentiality — ratios + KPI thresholds preserved
 const D={"p":["Jan-25","Feb-25","Mar-25","Apr-25","May-25","Jun-25","Jul-25","Aug-25","Sep-25","Oct-25","Nov-25","Dec-25","Jan-26","Feb-26","Mar-26","Apr-26","May-26"],
-"ff":[711369,735509,1018601,911743,858874,910571,1075881,810557,878952,1120305,1151324,1121867,882213,1040402,1032516,925059,802086],
-"uhc":[692320,769100,624409,695182,516210,136980,1546510,630537,1012166,986539,0,1375402,920383,0,1740815,681642,288758],
-"mun":[20043,80783,115061,136894,90745,180112,126176,121010,115690,122171,106414,174724,50458,149522,182808,163989,97522],
-"ins":[42161,32635,22456,78560,18101,96304,3197,61172,77938,61839,85865,84847,96913,43593,76319,69739,47757],
-"oth":[180828,46814,63236,794774,117339,55502,102523,305543,106833,140585,77544,513016,169722,52004,41753,447524,13495],
-"rcp":[1646721,1664841,1843763,2617153,1601269,1379469,2854287,1928819,2191580,2431438,1421148,3269857,2119688,1285521,3074210,2287953,1249617],
-"sal":[307178,995714,1098263,1349304,1170829,1253706,1167501,1320281,1190798,1092690,1320579,2475365,249812,1179178,1345328,1380056,1277456],
-"drg":[67024,264924,140847,68907,118293,119108,127536,204481,171931,198761,62906,445712,228759,143258,142612,111288,52499],
-"rnt":[424,0,418,825,0,819,408,405,405,407,0,0,809,403,411,0,0],
-"svc":[22081,6715,38911,22991,30008,24074,38646,30795,8705,10693,56160,35173,27681,27659,32766,22457,9023],
-"aff":[30627,23663,25237,32476,41878,31930,48054,62600,45244,50071,55055,64857,54668,44791,55837,60165,53733],
-"nop":[1114312,271025,379933,990644,157103,-203102,1360905,239418,674508,988928,-148897,135984,1466781,-202380,1424873,653159,-211782],
-"cc":[1245661,681544,503540,1082933,930118,471656,1369206,1030259,923429,1198630,524296,363290,1375732,342275,1255892,1152190,375243],
+"ff":[602530,622976,862755,772246,727466,771254,911271,686542,744473,948898,975172,950221,747214,881220,874541,783525,679367],
+"uhc":[586395,651428,528874,588819,437230,116042,1309894,534165,857525,835598,0,1164966,779564,0,1474470,577351,244578],
+"mun":[16976,68423,97457,115949,76861,152555,106861,102495,97990,103499,90133,148011,42738,126655,154838,138899,82601],
+"ins":[35710,27642,19022,66540,15331,81570,2708,51813,66004,52378,72728,71865,82085,36923,64642,59069,40450],
+"oth":[153161,39651,53561,673174,99386,47010,86837,258795,90487,119076,65680,434525,143765,44047,35364,379053,11430],
+"rcp":[1394773,1410120,1561667,2216729,1356275,1168410,2417580,1633910,1856269,2059428,1203712,2769558,1795396,1088886,2603856,1937896,1058426],
+"sal":[260180,843370,930229,1142860,991692,1061889,988873,1118278,1008606,925508,1118530,2096634,211591,998784,1139493,1168907,1082005],
+"drg":[56769,224391,119297,58364,100194,100895,108023,173195,145625,168350,53281,377518,193760,121340,120793,94261,44467],
+"rnt":[359,0,354,699,0,694,346,343,343,345,0,0,685,341,348,0,0],
+"svc":[18703,5688,32958,19474,25417,20391,32733,26083,7373,9057,47568,29791,23446,23427,27753,19021,7643],
+"aff":[25941,20043,21376,27507,35471,27045,40702,53022,38322,42410,46632,54934,46304,37938,47294,50960,45512],
+"nop":[943822,229558,321763,839055,133036,-172027,1152687,202787,571408,837642,-126116,115178,1242364,-171416,1206867,553226,-179380],
+"cc":[1055075,577268,426498,917244,787810,399493,1159708,872629,782143,1015220,444079,307707,1165245,289907,1063741,975905,317831],
 "dcoh":[70.2,14.7,10.3,20.0,19.3,8.9,27.5,18.3,18.3,24.9,10.0,3.5,63.2,6.9,22.8,21.1,7.7],
 "opm":[67.7,16.3,20.6,37.9,9.8,-14.7,47.7,12.4,30.8,40.7,-10.5,4.2,69.2,-15.7,46.3,28.5,-16.9],
 "sr":[18.7,59.8,59.6,51.6,73.1,90.9,40.9,68.5,54.3,44.9,92.9,75.7,11.8,91.7,43.8,60.3,102.2],
 "dr":[4.1,15.9,7.6,2.6,7.4,8.6,4.5,10.6,7.8,8.2,4.4,13.6,10.8,11.1,4.6,4.9,4.2],
 "pm":{"Free Flow":45.9,"UHC":36.2,"Other":9.3,"Municipalities":5.8,"Insurance":2.9},
 "cvs":{"Free Flow":14.5,"UHC":67.1,"Municipalities":37.2,"Insurance":48.2,"Other":111.1},
-"fc":{"m":["Jun-26","Jul-26","Aug-26"],"cc":[584733,1576227,2006977]}};
+"fc":{"m":["Jun-26","Jul-26","Aug-26"],"cc":[495269,1335064,1699910]}};
 
 const purple='#6B63B5',green='#00A651',red='#DC3545',yellow='#FFC107';
 const fmt=v=>v==null?'—':new Intl.NumberFormat('en-US').format(Math.round(v));
@@ -556,9 +558,9 @@ new Chart(document.getElementById('chCash'),{type:'line',data:{labels:[...D.p,..
 ]},options:{...opts,scales:{y:{ticks:{callback:v=>fmt(v/1000)+'k'}}}}});
 
 new Chart(document.getElementById('chAnnual'),{type:'bar',data:{labels:['2025 (12M)','2026 YTD (5M)','2026 Annualized'],datasets:[
-  {label:'Net Operating',data:[5960761,3130651,7513562],backgroundColor:green},
-  {label:'Net Investing',data:[906512,-560000,-1344000],backgroundColor:purple},
-  {label:'Net Financing',data:[6256515,-400986,-962366],backgroundColor:yellow}
+  {label:'Net Operating',data:[5048765,2651661,6363987],backgroundColor:green},
+  {label:'Net Investing',data:[767816,-474320,-1138368],backgroundColor:purple},
+  {label:'Net Financing',data:[5299268,-339635,-815124],backgroundColor:yellow}
 ]},options:{...opts,scales:{y:{ticks:{callback:v=>fmt(v/1000)+'k'}}}}});
 
 new Chart(document.getElementById('chSources'),{type:'bar',data:{labels:D.p,datasets:[
@@ -599,7 +601,7 @@ new Chart(document.getElementById('chUHC'),{type:'bar',data:{labels:D.p,datasets
 new Chart(document.getElementById('chFc'),{type:'line',data:{labels:[...D.p.slice(-6),...D.fc.m],datasets:[
   {label:'Actual',data:[...D.cc.slice(-6),null,null,null],borderColor:purple,backgroundColor:purple+'22',fill:true,tension:0.3},
   {label:'Base Forecast',data:[...new Array(5).fill(null),D.cc.at(-1),...D.fc.cc],borderColor:green,borderDash:[6,4],tension:0.3},
-  {label:'Worst (UHC delay 1M)',data:[...new Array(5).fill(null),D.cc.at(-1),-180000,400000,800000],borderColor:red,borderDash:[2,2],tension:0.3}
+  {label:'Worst (UHC delay 1M)',data:[...new Array(5).fill(null),D.cc.at(-1),-152460,338800,677600],borderColor:red,borderDash:[2,2],tension:0.3}
 ]},options:{...opts,scales:{y:{ticks:{callback:v=>fmt(v/1000)+'k'}}}}});
 </script>
 </body>
