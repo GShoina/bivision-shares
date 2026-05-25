@@ -80,7 +80,7 @@ pre .c{color:#7a808a}
       <h2>TL;DR — გადაწყვეტა</h2>
       <p class="verdict">✅ <strong>Microsoft Official</strong> Power BI Modeling MCP — 18+ tools, MIT license, Public Preview. ნებისმიერი AI (Claude, GPT) წერს Power BI model-ს ბუნებრივი ენით.</p>
       <p><strong>ფასი:</strong> <span class="tag free">$0</span> incremental — მხოლოდ არსებული Power BI Desktop (FREE) ან Pro ($10/user).</p>
-      <p><strong>Bivision-ის შესაძლებლობა:</strong> "AI Power BI model audit + optimization" service — <strong>~$300-500 / engagement</strong>. ცარიელი niche ქართულ ბაზარზე.</p>
+      <p><strong>Bivision-ის შესაძლებლობა:</strong> "AI Power BI model audit + optimization" service — fixed-price packages (GE ბაზრის ფასწარმოქმნა). სამიზნე: Pro AND Premium license holders (ორივე გვაქვს GE-ში).</p>
     </div>
   </div>
 </div>
@@ -123,84 +123,120 @@ pre .c{color:#7a808a}
 </section>
 
 <section class="section" style="background:linear-gradient(180deg,#FFFEF5 0%,#fff 100%);border-radius:12px;padding:32px 28px;border:1px solid #FFE680">
-  <div style="display:inline-block;background:#F2C811;color:#5a4900;padding:4px 12px;border-radius:14px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px">🇬🇪 OODA Strategic Analysis</div>
-  <h2 style="color:var(--pbi-dark);border-bottom-color:var(--pbi)">3. Georgian SME — რა ნიშნავს ეს Bivision-ისთვის</h2>
+  <div style="display:inline-block;background:#F2C811;color:#5a4900;padding:4px 12px;border-radius:14px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px">💼 Business Impact</div>
+  <h2 style="color:var(--pbi-dark);border-bottom-color:var(--pbi)">3. რა შეიცვალა Power BI Workflow-ში — დიდი სურათი</h2>
 
-  <h3>🎯 ცენტრალური Arbitrage</h3>
-  <div class="card card-pbi">
-    <p><strong>MCP democratizes Premium-Copilot-level capability to $10/user Pro tier.</strong> Microsoft-ის ფიქირი (Premium-only AI features) აქამდე ღირდა საათობრივ $5,000+. ახლა Power BI Pro user-ი (10₾/თვე) იღებს იგივე modeling automation-ს უფასოდ. <strong>ეს არის Bivision-ის opportunity-window-ი ქართულ ბაზარზე.</strong></p>
-  </div>
+  <p><strong>MCP-ი არ არის ცალკე tool — ეს არის AI Integration-ის გზა Power BI-ში.</strong> ცვლის modeling, ETL, optimization და documentation workflow-ს. ქვემოთ — 4-დონიანი ცვლილების მატრიცა, შემდეგ პერსონების მიხედვით, შემდეგ ეკოსისტემის ხედი.</p>
 
-  <h3>📊 GE ბაზრის რეალობა</h3>
+  <h3>📊 4-დონიანი Workflow Change Matrix</h3>
   <table>
-    <thead><tr><th style="width:28%">Segment</th><th style="width:14%">Penetration GE</th><th style="width:30%">რა გვაქვს</th><th style="width:28%">Bivision opportunity</th></tr></thead>
+    <thead><tr><th style="width:22%">სამუშაო ეტაპი</th><th style="width:30%">MCP-მდე</th><th style="width:30%">MCP+AI-ით</th><th style="width:18%">რეალური ცვლილება</th></tr></thead>
     <tbody>
-      <tr style="background:#F0FFF4"><td><strong>Power BI Pro მფლობელები</strong></td><td>~100s SME</td><td>10₾/user/თვე უკვე იხდის · MCP არ იცის</td><td><strong>✅ PRIMARY — fastest path</strong></td></tr>
-      <tr><td>Power BI Free Desktop</td><td>~5-10% SME</td><td>$0 license · უფრო ძნელია convince</td><td>Phase 2 (Q3) — Pro upgrade hook</td></tr>
-      <tr><td>Excel-only segment</td><td>~85% SME</td><td>Power BI არ აქვს · longer sales cycle</td><td>Long-term, bigger TAM</td></tr>
-      <tr style="background:#FFF5F5"><td>Power BI Premium ($5K+/თვე Capacity)</td><td>~0 SME (rare)</td><td>თითზე ჩამოსათვლელი ქართული org</td><td>❌ DROP — wasted effort</td></tr>
+      <tr><td><strong>მოდელის სტრუქტურა</strong></td><td>Developer ხელით აშენებს · trial-and-error · სანამ work-ი არ აიწყობს</td><td>AI იყენებს best-practice patterns (star schema, calc groups) · atomic rollback თუ შეცდა</td><td><strong>2-3 დღე → 2-3 საათი</strong></td></tr>
+      <tr><td><strong>ETL / Power Query</strong></td><td>Hand-written M code · parameter management ხელით · data source switch = rewrite</td><td>AI გენერირებს M code-ს ბუნებრივი ენიდან · auto-parameterization · source switch = 1 ცვლადი</td><td><strong>-50-60% დრო</strong></td></tr>
+      <tr><td><strong>DAX measures</strong></td><td>Manual copy-paste · pattern memorization · debug ხელით</td><td>AI გენერირებს + ვალიდირებს + refactor Calculation Group-ად · benchmark V1 vs V2</td><td><strong>-70% დრო per measure</strong></td></tr>
+      <tr><td><strong>დიდი მოდელის ოპტიმიზაცია</strong></td><td>DAX expert საათობრივად აანალიზებს · trace events ხელით კითხავს</td><td>AI ხედავს redundant measures · suggests Calc Group refactor · trace_operations performance debug</td><td><strong>Expert 2x · ახალბედა → Expert</strong></td></tr>
+      <tr><td><strong>დოკუმენტაცია</strong></td><td>Manual descriptions რომელიც არცერთს არ აქვს ენერგია გააკეთოს</td><td>AI bulk auto-generate · ყველა measure/column/table · Mermaid diagram რეფერეცებით</td><td><strong>კვირები → საათები</strong></td></tr>
+      <tr><td><strong>Naming + Translations</strong></td><td>Convention drift · ქართულად შეუძლებელი masal-ად</td><td>AI bulk rename pattern-ით · bulk translate (ქართულზე მუშავდება)</td><td><strong>შეუძლებელი → trivial</strong></td></tr>
     </tbody>
   </table>
 
-  <h3>⚖️ Pro vs Premium — რა ფარავს MCP</h3>
+  <h3>👥 პერსონების მიხედვით — Honest Answers</h3>
   <div class="row-2">
     <div class="card" style="border-left:4px solid var(--green)">
-      <h3 style="color:var(--green);font-size:1rem">Power BI Pro ($10/user) — საკმარისი 99% SME-სთვის</h3>
-      <ul style="padding-left:20px;line-height:1.8;font-size:.9rem;margin:0">
-        <li>✅ ყველა 18 MCP tool (measures, DAX, RLS, translations)</li>
-        <li>✅ Calculation Groups, Perspectives, Hierarchies</li>
-        <li>✅ Bulk model refactor, multilingual</li>
-        <li>✅ TMDL + PBIP (Git-based development)</li>
-        <li>✅ Atomic transactions (rollback)</li>
+      <h3 style="color:var(--green);font-size:1rem">👨‍💻 Developer-ისთვის (ცოდნით)</h3>
+      <ul style="padding-left:20px;line-height:1.85;font-size:.92rem;margin:0">
+        <li>Bulk operations: <strong>95%</strong> დროის economy</li>
+        <li>Documentation: <strong>80%</strong></li>
+        <li>Translations: <strong>90%</strong></li>
+        <li>New measures: <strong>50-70%</strong> (review needed)</li>
+        <li>Initial architecture: <strong>30%</strong> (human-led decision)</li>
+        <li><strong>Senior:</strong> +30-50% productivity overall</li>
+        <li><strong>Junior:</strong> +100% (mistakes prevented by AI guidance)</li>
       </ul>
     </div>
-    <div class="card" style="border-left:4px solid var(--muted)">
-      <h3 style="color:var(--muted);font-size:1rem">Power BI Premium — Edge რომელიც GE SME-ს არ ეხება</h3>
-      <ul style="padding-left:20px;line-height:1.8;font-size:.9rem;margin:0">
-        <li>Models >1GB size — SME-ს არასოდეს</li>
-        <li>XMLA write endpoint advanced</li>
-        <li>Dataflows + Datamarts</li>
-        <li>Paginated reports, AI insights native</li>
-        <li>Auto-scale Capacity</li>
+    <div class="card" style="border-left:4px solid var(--yellow)">
+      <h3 style="color:#cc9500;font-size:1rem">📊 ბიზნეს მომხარებელი ChatGPT-დან რეპორტი</h3>
+      <p style="font-size:.92rem;margin-bottom:8px"><strong>HONEST:</strong> Modeling MCP-ით <strong>NOT</strong> — ეს არის მოდელის layer, არა report visuals.</p>
+      <ul style="padding-left:20px;line-height:1.7;font-size:.9rem;margin:0">
+        <li>✅ <strong>Power BI Copilot</strong> (Premium-only) — natural language → visual generation</li>
+        <li>✅ <strong>MCP + Q&amp;A natural language</strong> — model-ის შესახებ კითხვა Pro-ზე</li>
+        <li>⚠️ <strong>DAX-ის გარეშე ბიზნეს მომხარებელი = limited</strong></li>
+        <li>✅ <strong>DAX basic ცოდნით ბიზნეს მომხარებელი</strong> = ძალიან productive</li>
       </ul>
     </div>
   </div>
 
-  <div class="callout">
-    <div class="label">✓ Bottom Line</div>
-    GE SME-ის 99%-ისთვის Pro საკმარისია. Premium-ის edge = irrelevant. <strong>$10/user-ი + Bivision-ის audit/optimization service = სრული value</strong>.
+  <h3>🧩 AI Integration ეკოსისტემა — Stack View</h3>
+  <div class="card card-pbi">
+<pre style="background:#fff;color:var(--text);border:1px solid var(--border);font-size:.85rem;line-height:1.4">┌─────────────────────────────────────┐
+│  Claude / ChatGPT / GitHub Copilot  │ ← AI clients (any)
+└──────────────┬──────────────────────┘
+               │ MCP protocol
+               ▼
+┌─────────────────────────────────────┐
+│  Power BI Modeling MCP Server       │ ← 18 tools, bridge layer
+└──────────────┬──────────────────────┘
+               │ XMLA / TMDL
+               ▼
+┌─────────────────────────────────────┐
+│  Power BI Semantic Model (Pro/Prem) │ ← ერთნაირად ცხოვრობს ორივეზე
+└─────────────────────────────────────┘
+               │
+       ┌───────┴───────┐
+       ▼               ▼
+   Pro tier:        Premium tier:
+   - MCP all 18      - MCP all 18
+   - Q&A NL          - Q&A NL
+                     - Copilot visuals
+                     - Dataflows AI
+                     - >1GB models</pre>
+    <p style="margin-top:10px;font-size:.92rem"><strong>კონცეპცია:</strong> MCP არ ცვლის Power BI-ს — ცვლის როგორ ვმუშავდებით მასთან. AI ხდება საშუალო ფენა model designer-სა და deliverable-ს შორის. Pro-ი იღებს MCP modeling automation-ს, Premium ემატება Copilot natural-language visuals + Dataflows AI.</p>
   </div>
 
-  <h3>🗺️ Strategic Options — A/B/C Decision</h3>
+  <h3>🇬🇪 GE ბაზრის რეალობა — Pro AND Premium ორივე გვაქვს</h3>
   <table>
-    <thead><tr><th>Option</th><th>Target</th><th>Effort</th><th>Ticket</th><th>Verdict</th></tr></thead>
+    <thead><tr><th style="width:24%">Segment</th><th style="width:30%">რა გვაქვს</th><th style="width:46%">Bivision opportunity</th></tr></thead>
     <tbody>
-      <tr style="background:#F0FFF4"><td><strong>A. Pro user audit</strong></td><td>Bivision client + GE Pro-მფლობელი SMEs</td><td>Low</td><td>$300-500 audit · $500-1000 optimization</td><td><strong style="color:var(--green)">✅ SELECTED — Q2 priority</strong></td></tr>
-      <tr><td>B. Excel→PowerBI bundle</td><td>85% segment</td><td>High (longer sales)</td><td>$1,500-3,000</td><td style="color:#cc9500">⏸️ Phase 2 (Q3 priority)</td></tr>
-      <tr><td>C. Premium enterprise</td><td>~0 GE orgs</td><td>Wasted</td><td>$5,000+</td><td style="color:var(--red)">❌ DROP — no TAM in GE</td></tr>
+      <tr style="background:#F0FFF4"><td><strong>Power BI Pro მფლობელი SME</strong></td><td>ფიქსირებული license payer · MCP არ იცის</td><td><strong>✅ PRIMARY target — fastest path · model audit + optimization</strong></td></tr>
+      <tr style="background:#FFF8DC"><td><strong>Power BI Premium customer</strong> (GE-ში არსებობს)</td><td>ფინანსური / საფინანსო / ხორხის ენტერპრიზე · ფიქსირებული Capacity ხარჯი</td><td><strong>✅ TARGET — higher-value engagement · Premium+MCP combined audit</strong></td></tr>
+      <tr><td>Power BI Free Desktop</td><td>$0 license</td><td>Phase 2 — Pro upgrade hook</td></tr>
+      <tr><td>Excel-only segment</td><td>Power BI არ აქვს · longer sales cycle</td><td>Long-term — Power BI implementation bundle</td></tr>
     </tbody>
   </table>
 
-  <h3>⚡ Action Plan — 4 კვირა, 5 ნაბიჯი</h3>
+  <h3>💼 Bivision SKU — Fixed-Price Packages</h3>
+  <p style="font-size:.88rem;color:var(--muted);margin-bottom:10px">GE ბაზრის ფასწარმოქმნა — საათობრივი არარელევანტურია, ფიქსირებული პაკეტი.</p>
+  <table>
+    <thead><tr><th>SKU</th><th>რა შედის</th><th>Target</th><th>ფიქსირებული ფასი</th></tr></thead>
+    <tbody>
+      <tr><td><strong>A. Power BI Model Audit</strong></td><td>AI-driven model review · naming consistency · missing descriptions · redundancy detection · Markdown report + Mermaid diagram</td><td>Pro მფლობელი SME (იდეალური entry)</td><td><strong>1,500 ₾ flat</strong></td></tr>
+      <tr><td><strong>B. Model Optimization</strong></td><td>Refactor measures → Calc Groups · Power Query parameterization · DAX benchmark · multilingual support (ქართული + ENG)</td><td>Pro ან Premium მფლობელი</td><td><strong>3,500 ₾ flat</strong></td></tr>
+      <tr><td><strong>C. Premium MCP Stack Setup</strong></td><td>MCP + Copilot integration · Dataflows AI config · custom DAX patterns · 1 თვის support</td><td>Premium customer (higher-value)</td><td><strong>6,000 ₾ flat</strong></td></tr>
+      <tr><td><strong>D. Power BI → Qlik Bridge</strong></td><td>Audit + migration plan · TMDL → Qlik load script translation · lead-gen for Qlik MCP service</td><td>კლიენტი vendor evaluation-ში</td><td><strong>4,500 ₾ flat</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>⚡ Action Plan — 4 კვირა</h3>
   <table>
     <thead><tr><th style="width:6%">#</th><th style="width:14%">Week</th><th>Action</th><th style="width:14%">Owner Gate</th></tr></thead>
     <tbody>
-      <tr><td>1</td><td>Week 1</td><td><strong>Bivision-internal pilot</strong> — install MCP + ტესტი Bivision-ის own PBIX-ზე (3-4 საათი, $0)</td><td>🔓 Gurafa autonomous</td></tr>
-      <tr><td>2</td><td>Week 1</td><td><strong>Pro user list</strong> — HubSpot filter: Bivision client + Power BI Pro tier (10-20 prospects)</td><td>🔓 Gurafa autonomous</td></tr>
-      <tr><td>3</td><td>Week 2</td><td><strong>Outreach</strong> — "10-min უფასო AI Power BI audit, Bivision იხდის tool-ს" → 10-20 send</td><td>⛔ Owner approves Mariam-edited copy</td></tr>
-      <tr><td>4</td><td>Week 2</td><td><strong>Run 2-3 free audits</strong> → Markdown report + Mermaid diagram delivery</td><td>🔓 Gurafa autonomous</td></tr>
-      <tr><td>5</td><td>Week 3-4</td><td><strong>Convert 1-2 → paid optimization</strong> ($500-1000 each) → first revenue + case study</td><td>⛔ Owner pricing + proposal sign-off</td></tr>
+      <tr><td>1</td><td>Week 1</td><td><strong>Bivision-internal pilot</strong> — MCP install + Bivision-ის own PBIX-ზე ტესტი</td><td>🔓 Gurafa autonomous</td></tr>
+      <tr><td>2</td><td>Week 1</td><td><strong>Prospect list</strong> — HubSpot filter Pro AND Premium მფლობელ SME (15-25 prospects)</td><td>🔓 Gurafa autonomous</td></tr>
+      <tr><td>3</td><td>Week 2</td><td><strong>Outreach copy</strong> — "უფასო AI Power BI model audit" hook · LinkedIn post + DM template</td><td>⛔ Owner approves Mariam-edited copy</td></tr>
+      <tr><td>4</td><td>Week 2-3</td><td><strong>Run 3-4 free audits</strong> → SKU A delivery template (Markdown + Mermaid)</td><td>🔓 Gurafa autonomous</td></tr>
+      <tr><td>5</td><td>Week 3-4</td><td><strong>Convert 1-2 → SKU B/C/D</strong> — first paid engagements + case study</td><td>⛔ Owner proposal sign-off</td></tr>
     </tbody>
   </table>
 
   <div class="callout callout-yellow">
     <div class="label">⚠️ Risk</div>
-    <strong>Public Preview status</strong> — Microsoft შესაძლოა API შეცვალოს GA-მდე. Mitigation: Bivision SKU prices lock-ი per quarter, refresh runbook ყოველ შემოწმებაზე. **Privacy:** model metadata + DAX + query results LLM provider-თან გადადის → privacy review healthcare/ფინანსურ კლიენტებზე.
+    <strong>Public Preview status</strong> — Microsoft შესაძლოა API შეცვალოს GA-მდე. <strong>Privacy:</strong> model metadata + DAX + query results LLM provider-თან გადადის → healthcare/ფინანსურ კლიენტებზე pre-engagement privacy review.
   </div>
 
   <div class="callout">
     <div class="label">🎯 Success Metric (30 დღე)</div>
-    2 paid engagements within 30 days = <strong>$1,000-2,000 first-month revenue</strong> + 1 case study → bivision.ge service page launch + LinkedIn post (Power BI MCP arbitrage angle).
+    2 paid engagements within 30 days (mix Pro + Premium) → <strong>5,000-9,500 ₾ first-month revenue</strong> + 1 case study → bivision.ge service page launch + LinkedIn post ("AI რეფაქტორი 2 დღეში — 17 tool" angle).
   </div>
 </section>
 
