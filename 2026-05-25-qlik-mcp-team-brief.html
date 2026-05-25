@@ -324,8 +324,96 @@ a:hover{border-bottom-color:var(--purple-dark)}
   </div>
 </section>
 
+<section class="section" id="architecture" style="background:linear-gradient(180deg,#F0F4FF 0%,#fff 100%);border-radius:12px;padding:34px 28px;margin-top:14px;border:1px solid #c5c0e0">
+  <div style="display:inline-block;background:#6B63B5;color:#fff;padding:4px 12px;border-radius:14px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px">🔧 Architectural Correction — 2026-05-25</div>
+  <h2 style="border-bottom:2px solid #6B63B5;color:#4A4499">11. როგორ მუშაობს MCP + Parquet — სიმართლე</h2>
+
+  <p>წინა Parquet სექციამ მოგვცა შთაბეჭდილება, რომ Parquet არის "Qlik → Parquet → Claude" path-ი. <strong>ეს არ შეესაბამება სიმართლეს Qlik MCP workflow-ში.</strong> ვასწორებთ ახლა.</p>
+
+  <h3>🎯 MCP-ის რეალური ბუნება — Tool Calling, NOT Bulk Transfer</h3>
+  <div class="card card-accent">
+    <p>MCP არის <strong>tool-calling interface</strong>. რეალური workflow:</p>
+    <ol>
+      <li>Claude ვაგზავნი tool call: <code>qlik_create_hypercube(app_id, dimensions, measures, max_rows=5000)</code></li>
+      <li>Qlik computes-ს ცხრილს server-side</li>
+      <li>JSON აბრუნდება Claude-ის context window-ში</li>
+    </ol>
+    <p><strong>Hard limits:</strong></p>
+    <ul>
+      <li>Bintocher MCP: <code>engine_create_hypercube</code> rejects <strong>max_rows &gt; 5000</strong> OR <strong>columns × max_rows &gt; 9900</strong> with structured error + set-analysis/top-N hint</li>
+      <li>Qlik Engine: error <strong>7009 calc-pages-too-large</strong> for &gt;10,000 cells per page</li>
+    </ul>
+    <p>ეს არ არის bug — <strong>ეს არის design</strong>. MCP გათვლილია "ერთი კონცენტრირებული პასუხი per call".</p>
+  </div>
+
+  <h3>✅ რა შესაძლებელია · ❌ რა შეუძლებელია MCP-ით</h3>
+  <table>
+    <thead><tr><th style="width:60%">Use case</th><th>MCP support</th></tr></thead>
+    <tbody>
+      <tr><td>KPI ციფრის გამოთვლა (DCOH, PMQS, sal/rev)</td><td style="color:var(--green);font-weight:600">✅ კარგად</td></tr>
+      <tr><td>Filtered aggregated sum ("Q1 payer-ის ჭრილში")</td><td style="color:var(--green);font-weight:600">✅ კარგად</td></tr>
+      <tr><td>Aggregated time series (17 თვე × 10 metrics = 170 ციფრი)</td><td style="color:var(--green);font-weight:600">✅ Easy fit</td></tr>
+      <tr><td>Natural-language Q&amp;A real data-ზე ("ნახე payer mix trend")</td><td style="color:var(--green);font-weight:600">✅ ეს არის magic</td></tr>
+      <tr><td>Raw transaction-level data (1M+ rows)</td><td style="color:var(--red);font-weight:600">❌ Context overflow</td></tr>
+      <tr><td>მთლიანი dataset export</td><td style="color:var(--red);font-weight:600">❌ Design limit</td></tr>
+    </tbody>
+  </table>
+
+  <h3>📐 Parquet-ის რეალური ადგილი — Infrastructure Layer, NOT Transport</h3>
+  <div class="card card-accent">
+    <p><strong>Parquet არის Qlik-ის ქვემოთ</strong>, არა Qlik-სა და Claude-ს შორის MCP workflow-ში. Claude-ი ვერ "ხსნის" Parquet-ს Qlik MCP-ით — Claude აკეთებს API calls Qlik-თან. Parquet binary format-ია, არ ჯდება LLM context-ში.</p>
+
+    <p><strong>რეალური Qlik MCP architecture:</strong></p>
+<pre>[Source Systems (Fina/Oris/1C/Balance/Bank APIs)]
+         ↓ ETL pipeline
+[Parquet files in S3/Azure Blob/local lake]
+         ↓ Qlik Data Gateway / Direct Query / Load Script
+[Qlik Cloud App — semantic model + master measures]
+         ↓ MCP (tool calls, NOT bulk transfer)
+[Claude / LLM client]</pre>
+
+    <p><strong>SKU #4 "Bivision Lite" სხვა path-ია:</strong> Claude → DuckDB MCP → SQL on Parquet. Parquet ARI ხელმისაწვდომი Claude-ისთვის DuckDB layer-ის გავლით — Qlik-license-less ICP-სთვის. ვალიდურია, მაგრამ ნუ აღვრევთ Qlik MCP path-თან.</p>
+  </div>
+
+  <h3>⚠️ 4 Gotchas რომელიც წინა brief-ში არ ვახსენე</h3>
+  <table>
+    <thead><tr><th>Gotcha</th><th>მნიშვნელობა Bivision-ისთვის</th></tr></thead>
+    <tbody>
+      <tr><td><b>Context window vs Data volume</b></td><td>Claude ~200K tokens. 170 ციფრი ჯდება. 1M+ rows = computation IN Qlik, NOT transfer to Claude</td></tr>
+      <tr><td><b>Stateless interactions</b></td><td>ყოველი MCP call independent. Temp tables არ რჩება. Multi-step analyses უნდა იყოს wrapped OR pre-registered Master Items-ად</td></tr>
+      <tr><td><b>Latency</b></td><td>~1-3 წამი per call. 20 sequential = 30-60 წამი dashboard build. User ხედავს "loop"-ი</td></tr>
+      <tr><td><b>Costs</b></td><td>Qlik question quota იხარჯება. Professional tier შეიძლება სწრაფად ამოვწუროთ. Enterprise = უპრობლემო</td></tr>
+    </tbody>
+  </table>
+
+  <h3>🏗️ Recommended 4-Phase Workflow</h3>
+  <div class="row-2">
+    <div class="sku">
+      <h4>Phase 1 — Foundation (data team)</h4>
+      <p>Qlik app star schema · Fact table: transaction-level CF · Dimensions: Calendar, Account/COA, Payment Source, Department, Service Line</p>
+    </div>
+    <div class="sku">
+      <h4>Phase 2 — KPI Specification (CFO)</h4>
+      <p>ერთჯერადი 4-8 საათიანი spec — 10-15 KPI clear definition. წლების მანძილზე scale-ი.</p>
+    </div>
+    <div class="sku">
+      <h4>Phase 3 — Master Items (Claude via MCP)</h4>
+      <p>Set analysis expressions ვწერ Qlik-ში პროგრამულად. Owner validates.</p>
+    </div>
+    <div class="sku">
+      <h4>Phase 4 — Self-Service Layer (THE MAGIC)</h4>
+      <p><strong>არა dashboard building.</strong> CFO ეკითხება ბუნებრივ ენაზე: "Show payer mix trend Q1" → Claude returns real-data answer. <em>"Qlik analyst-ის შემცვლელი"</em>.</p>
+    </div>
+  </div>
+
+  <div class="callout green-callout">
+    <div class="callout-title">✅ Bivision-ის ცენტრალური Insight</div>
+    MCP magic NOT in dashboard building — that's a one-time setup. MCP magic IS in <strong>continuous interactive analysis</strong>. CFO + Claude უხდება ცოცხალი Q&amp;A. ეს არის Bivision Lite + Qlik MCP-ის ერთიანი value proposition: კლიენტს ვაძლევთ "Qlik analyst" 24/7-ზე, ერთეული საათიანი setup investment-ით.
+  </div>
+</section>
+
 <section class="section">
-  <h2>11. Competitive Position</h2>
+  <h2>12. Competitive Position</h2>
   <div class="row-2">
     <div class="card card-accent">
       <h3>Apricot.ge / Armsoft</h3>
@@ -341,7 +429,7 @@ a:hover{border-bottom-color:var(--purple-dark)}
 </section>
 
 <section class="section">
-  <h2>12. შემდეგი ნაბიჯები — 5 ვარიანტი (Parquet-update-ის შემდეგ)</h2>
+  <h2>13. შემდეგი ნაბიჯები — 5 ვარიანტი (Parquet-update-ის შემდეგ)</h2>
   <ol>
     <li><strong>Parquet snapshot bridge — ამ კვირაში ship</strong> 🆕 — ერთი STORE ხაზი ჯანდაცვის კლიენტის Qlik reload script-ში → dated Parquet snapshot ყოველ reload-ზე → Claude/DuckDB-MCP-ით queryable → Excel handoff ქრება</li>
     <li><strong>CRIS compliance one-pager</strong> — ჯანდაცვის კლიენტისთვის → compliance team-თან decision</li>
@@ -352,7 +440,7 @@ a:hover{border-bottom-color:var(--purple-dark)}
 </section>
 
 <section class="section">
-  <h2>13. წყაროები</h2>
+  <h2>14. წყაროები</h2>
 
   <h3>🆕 Parquet + Lakehouse + DuckDB MCP</h3>
   <div class="source-list">
