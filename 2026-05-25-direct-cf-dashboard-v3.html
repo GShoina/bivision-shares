@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Direct CF Dashboard v3 — Healthcare Group | by Gurafa</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{--purple:#6B63B5;--purple-dark:#4A4499;--purple-light:#E7E5F6;--green:#00A651;--green-light:#D4F4D8;--red:#DC3545;--red-light:#FBD5D8;--yellow:#FFC107;--yellow-light:#FFF3CD;--bg:#F4F5F8;--text:#1A1D29;--muted:#6B7280;--card:#fff;--border:#E5E7EB;--code:#1f1f29;--code-text:#e6e6f0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:14px}
+.container{max-width:1400px;margin:0 auto;padding:0 20px}
+.header{background:linear-gradient(135deg,#6B63B5 0%,#4A4499 100%);color:#fff;padding:22px 0;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.header h1{font-size:1.45rem;margin-bottom:4px;font-weight:600}
+.header .meta{opacity:.85;font-size:.85rem}
+.banner-crit{background:#DC3545;color:#fff;padding:14px 0;text-align:center;font-weight:600;font-size:.95rem;box-shadow:inset 0 -3px 0 rgba(0,0,0,.15)}
+.banner-info{background:#fff8e1;color:#8a6d00;padding:10px 0;text-align:center;font-size:.85rem;border-bottom:1px solid var(--border)}
+.layout{display:grid;grid-template-columns:200px 1fr;gap:28px;padding:28px 0}
+.sidebar{position:sticky;top:14px;align-self:start}
+.sidebar a{display:block;padding:9px 12px;margin-bottom:3px;border-radius:6px;color:var(--text);text-decoration:none;font-size:.88rem;border-left:3px solid transparent;transition:all .15s}
+.sidebar a:hover{background:#fff;border-left-color:var(--purple);color:var(--purple-dark)}
+.section{margin-bottom:42px;scroll-margin-top:14px}
+.section h2{font-size:1.25rem;margin-bottom:16px;color:var(--purple-dark);padding-bottom:8px;border-bottom:2px solid var(--purple);font-weight:600}
+.section h3{font-size:.95rem;margin:18px 0 10px;color:var(--text);font-weight:600}
+.kpi-group-label{display:flex;align-items:center;gap:10px;margin:14px 0 6px}
+.kpi-group-label .dot{width:8px;height:8px;border-radius:50%}
+.kpi-group-label .dot.a{background:#0EA5E9}.kpi-group-label .dot.b{background:var(--purple)}.kpi-group-label .dot.c{background:var(--green)}
+.kpi-group-label span{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;font-weight:700;color:var(--muted)}
+.kpi-group-label::after{content:'';flex:1;height:1px;background:var(--border);margin-left:6px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:10px;margin-bottom:14px}
+.kpi{background:var(--card);padding:14px 16px;border-radius:8px;border-left:4px solid var(--purple);box-shadow:0 1px 2px rgba(0,0,0,.04);position:relative;transition:all .15s}
+.kpi:hover{box-shadow:0 3px 10px rgba(0,0,0,.08);transform:translateY(-1px)}
+.kpi.g{border-left-color:var(--green)}.kpi.y{border-left-color:var(--yellow)}.kpi.r{border-left-color:var(--red)}
+.kpi-info{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;background:var(--purple-light);color:var(--purple-dark);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.78rem;font-weight:700;border:none;transition:all .15s;font-family:Georgia,serif;font-style:italic}
+.kpi-info:hover{background:var(--purple);color:#fff;transform:scale(1.1)}
+.kpi-lbl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:600;padding-right:26px}
+.kpi-val{font-size:1.45rem;font-weight:700;margin:4px 0;line-height:1.1}
+.kpi-delta{font-size:.78rem;font-weight:600}
+.kpi-delta.pos{color:var(--green)}.kpi-delta.neg{color:var(--red)}
+.kpi-sub{font-size:.68rem;color:var(--muted);margin-top:2px}
+.card{background:#fff;padding:18px;border-radius:8px;box-shadow:0 1px 2px rgba(0,0,0,.04);margin-bottom:14px;position:relative}
+.card-info{position:absolute;top:14px;right:14px;width:26px;height:26px;border-radius:50%;background:var(--purple-light);color:var(--purple-dark);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.85rem;font-weight:700;border:none;transition:all .15s;font-family:Georgia,serif;font-style:italic;z-index:2}
+.card-info:hover{background:var(--purple);color:#fff}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.chart-wrap{position:relative;height:280px}.chart-wrap.tall{height:340px}
+.gauge{position:relative;height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.gauge-val{font-size:2.2rem;font-weight:700;color:var(--purple-dark)}
+.gauge-lbl{font-size:.78rem;color:var(--muted);text-transform:uppercase}
+.gauge-bar{width:100%;height:8px;background:#eee;border-radius:4px;margin-top:10px;overflow:hidden;position:relative}
+.gauge-bar-fill{height:100%;background:linear-gradient(90deg,var(--green) 0%,var(--yellow) 50%,var(--red) 100%)}
+.gauge-bar-mark{position:absolute;width:3px;height:14px;background:var(--text);top:-3px;transform:translateX(-50%)}
+.heat{display:grid;grid-template-columns:130px repeat(17,minmax(36px,1fr));gap:1px;background:#ddd;font-size:.65rem;border-radius:6px;overflow:hidden}
+.heat .h{background:var(--purple-dark);color:#fff;padding:5px 4px;text-align:center;font-weight:600}
+.heat .lbl{background:#f0f0f3;padding:5px 8px;font-weight:500;text-align:left}
+.heat .c{background:#fff;padding:5px 4px;text-align:center}
+.tl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.tl{background:#fff;padding:14px;border-radius:8px;text-align:center;border-top:6px solid #ddd;position:relative}
+.tl.g{border-top-color:var(--green)}.tl.y{border-top-color:var(--yellow)}.tl.r{border-top-color:var(--red)}
+.tl-l{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+.tl-v{font-size:1.4rem;font-weight:700;margin:6px 0}
+.tl-rng{font-size:.7rem;color:var(--muted)}
+.bench{background:#f0f4ff;padding:8px 12px;border-radius:6px;font-size:.78rem;color:var(--purple-dark);margin-top:8px}
+.method{background:#f8f9fb;padding:14px 18px;border-radius:8px;border:1px dashed var(--border);font-size:.82rem;color:var(--muted);margin-top:14px}
+.method b{color:var(--text)}
+.footer{padding:24px 0;color:var(--muted);font-size:.82rem;text-align:center;border-top:1px solid var(--border);margin-top:42px}
+.tag{display:inline-block;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:600;text-transform:uppercase}
+.tag.gur{background:var(--purple-light);color:var(--purple-dark)}.tag.v3{background:var(--green);color:#fff}.tag.eph{background:#fff5e6;color:#996600}.tag.new{background:#FFC107;color:#5a4900}.tag.promoted{background:var(--purple);color:#fff}
+.calc-step{background:#FAFAFB;border:1px solid var(--border);padding:10px 14px;border-radius:6px;margin-bottom:8px;font-size:.85rem}
+.calc-step .lbl{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:600;margin-bottom:3px}
+.calc-step .v{font-family:'Consolas',monospace;font-size:.9rem;color:var(--purple-dark);font-weight:600}
+.calc-final{background:linear-gradient(90deg,var(--purple-light) 0%,#fff 60%);border-left:4px solid var(--purple);padding:14px 18px;border-radius:6px;margin-top:10px}
+.calc-final .lbl{font-size:.75rem;color:var(--purple-dark);text-transform:uppercase;letter-spacing:.04em;font-weight:700;margin-bottom:4px}
+.calc-final .v{font-family:'Consolas',monospace;font-size:1.1rem;color:var(--purple-dark);font-weight:700}
+
+/* ===== MODAL POPUP for Qlik Formulas ===== */
+.modal-backdrop{position:fixed;inset:0;background:rgba(20,20,30,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
+.modal-backdrop.on{display:flex}
+.modal{background:#fff;border-radius:12px;max-width:720px;width:100%;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.4);animation:modalIn .2s ease-out}
+@keyframes modalIn{from{transform:scale(.96);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-header{background:linear-gradient(135deg,#6B63B5 0%,#4A4499 100%);color:#fff;padding:18px 24px;display:flex;justify-content:space-between;align-items:center}
+.modal-header h3{font-size:1.05rem;font-weight:600;margin:0}
+.modal-header .badge{display:inline-block;background:rgba(255,255,255,.2);padding:3px 9px;border-radius:10px;font-size:.7rem;margin-left:8px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.modal-close{background:rgba(255,255,255,.2);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.modal-close:hover{background:rgba(255,255,255,.35);transform:rotate(90deg)}
+.modal-body{padding:20px 24px;overflow-y:auto;flex:1}
+.modal-body .logic{background:#F0F4FF;padding:14px 16px;border-radius:6px;font-size:.88rem;margin-bottom:14px;border-left:3px solid var(--purple)}
+.modal-body .logic b{color:var(--purple-dark)}
+.modal-body pre{background:var(--code);color:var(--code-text);padding:14px 18px;border-radius:8px;font-family:'Consolas','Courier New',monospace;font-size:.82rem;line-height:1.55;overflow-x:auto;white-space:pre-wrap;margin-bottom:10px}
+.modal-body pre .k{color:#94c5ff}
+.modal-body pre .s{color:#7be38f}
+.modal-body pre .c{color:#7a808a;font-style:italic}
+.modal-body pre .n{color:#ffd178}
+.modal-body .copy-btn{background:var(--purple);color:#fff;border:none;padding:7px 14px;border-radius:6px;font-size:.78rem;font-weight:600;cursor:pointer;margin-top:6px}
+.modal-body .copy-btn:hover{background:var(--purple-dark)}
+
+@media (max-width:900px){.layout{grid-template-columns:1fr}.row-2,.row-3,.kpi-grid{grid-template-columns:1fr}.heat{font-size:.55rem}.tl-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <h1>Direct Cash Flow Dashboard — Healthcare Group <span class="tag v3">v3</span></h1>
+    <div class="meta">17 თვე · Jan-25 → May-26 · <span class="tag gur">by Gurafa</span> <span class="tag eph">⏳ EPHEMERAL — local only</span> · click <strong>ⓘ</strong> on any KPI/chart for Qlik formula</div>
+  </div>
+</div>
+<div class="banner-crit">⚠️ May-26 CRITICAL — Cash 375,243 ₾ · DCOH 7.7 დღე · Salary/Revenue 102.2% · Net OCF −211,782 · WC Cushion 0.30 თვე</div>
+<div class="banner-info">v3 changes: KPI cockpit 8→10 (HHI + Cash Δ added) · PMQS + WC Cushion promoted to L1 · Annual CF view added · Formulas → ⓘ popup (cleaner dashboard) · Anomaly section removed (pending validation)</div>
+
+<div class="container">
+<div class="layout">
+<nav class="sidebar">
+  <a href="#l1">🎯 Executive Cockpit</a>
+  <a href="#l2">📊 Operating Deep-Dive</a>
+  <a href="#l3">🏥 Healthcare KPIs</a>
+  <a href="#l4">⚠️ Risk + Heatmap</a>
+  <a href="#l5">🔮 Forecast 3M</a>
+  <a href="#l6">📐 WC Cushion Detail</a>
+  <a href="#l7">📋 Methodology</a>
+</nav>
+<main>
+
+<!-- ===================== L1 — Executive Cockpit ===================== -->
+<section id="l1" class="section">
+  <h2>დონე 1 — Executive Cockpit (10 KPI)</h2>
+
+  <div class="kpi-group-label"><span class="dot a"></span><span>A — Liquidity (3)</span></div>
+  <div class="kpi-grid">
+    <div class="kpi y"><button class="kpi-info" onclick="openF('cash')">i</button><div class="kpi-lbl">1. Cash Position</div><div class="kpi-val">375,243 ₾</div><div class="kpi-delta neg">▼ −776,947 vs Apr-26</div><div class="kpi-sub">🟢&gt;500K · 🟡250-500K · 🔴&lt;250K</div></div>
+    <div class="kpi r"><button class="kpi-info" onclick="openF('dcoh')">i</button><div class="kpi-lbl">2. DCOH</div><div class="kpi-val">7.7 დღე</div><div class="kpi-delta neg">▼ −13.4 vs Apr-26</div><div class="kpi-sub">🟢&gt;45 · 🟡21-45 · 🔴&lt;21</div></div>
+    <div class="kpi r"><button class="kpi-info" onclick="openF('wc')">i</button><div class="kpi-lbl">3. WC Cushion <span class="tag promoted">↑L1</span></div><div class="kpi-val">0.30 თვე</div><div class="kpi-delta neg">≈ 9 დღე buffer</div><div class="kpi-sub">🟢&gt;2 · 🟡1-2 · 🔴&lt;1 თვე</div></div>
+  </div>
+
+  <div class="kpi-group-label"><span class="dot b"></span><span>B — Operating Performance (3)</span></div>
+  <div class="kpi-grid">
+    <div class="kpi g"><button class="kpi-info" onclick="openF('netop')">i</button><div class="kpi-lbl">4. Net OCF 3M Avg</div><div class="kpi-val">622,083 ₾</div><div class="kpi-delta neg">May: −211,782</div><div class="kpi-sub">🟢&gt;0 · 🟡0..−100K · 🔴&lt;−100K</div></div>
+    <div class="kpi r"><button class="kpi-info" onclick="openF('opm')">i</button><div class="kpi-lbl">5. Op CF Margin %</div><div class="kpi-val">−16.9%</div><div class="kpi-delta neg">▼ −45.4 pp</div><div class="kpi-sub">3M avg: 19.3%</div></div>
+    <div class="kpi r"><button class="kpi-info" onclick="openF('sr')">i</button><div class="kpi-lbl">6. Salary / Revenue</div><div class="kpi-val">102.2%</div><div class="kpi-delta neg">▲ +41.9 pp</div><div class="kpi-sub">🟢&lt;60% · 🟡60-75% · 🔴&gt;75%</div></div>
+  </div>
+
+  <div class="kpi-group-label"><span class="dot c"></span><span>C — Quality + Risk (4)</span></div>
+  <div class="kpi-grid">
+    <div class="kpi y"><button class="kpi-info" onclick="openF('pmqs')">i</button><div class="kpi-lbl">7. PMQS <span class="tag promoted">↑L1</span></div><div class="kpi-val">0.72/1.0</div><div class="kpi-delta">17M weighted</div><div class="kpi-sub">🟢&gt;0.85 · 🟡0.65-0.85 · 🔴&lt;0.65</div></div>
+    <div class="kpi r"><button class="kpi-info" onclick="openF('hhi')">i</button><div class="kpi-lbl">8. HHI Concentration <span class="tag new">NEW</span></div><div class="kpi-val">3,517</div><div class="kpi-delta neg">Highly conc.</div><div class="kpi-sub">🟢&lt;1500 · 🟡1500-2500 · 🔴&gt;2500</div></div>
+    <div class="kpi g"><button class="kpi-info" onclick="openF('dr')">i</button><div class="kpi-lbl">9. Drug / Revenue</div><div class="kpi-val">4.2%</div><div class="kpi-delta">avg 7.6%</div><div class="kpi-sub">5-15% benchmark ✓</div></div>
+    <div class="kpi r"><button class="kpi-info" onclick="openF('dsc')">i</button><div class="kpi-lbl">10. Debt Service Coverage</div><div class="kpi-val">−1.96×</div><div class="kpi-delta neg">May-26 negative</div><div class="kpi-sub">🟢&gt;2× · 🟡1-2× · 🔴&lt;1×</div></div>
+  </div>
+
+  <div class="row-2" style="margin-top:18px">
+    <div class="card"><button class="card-info" onclick="openF('cashTrend')">i</button><h3>Cash Position Trend (17M actual + 3M forecast)</h3><div class="chart-wrap"><canvas id="chCash"></canvas></div></div>
+    <div class="card"><button class="card-info" onclick="openF('annual')">i</button><h3>CF Components — Annual View <span class="tag new">NEW</span></h3><div class="chart-wrap"><canvas id="chAnnual"></canvas></div></div>
+  </div>
+</section>
+
+<!-- ===================== L2 — Operating Deep-Dive ===================== -->
+<section id="l2" class="section">
+  <h2>დონე 2 — Operating Cash Flow Deep-Dive</h2>
+
+  <h3>A. Revenue Source Analysis</h3>
+  <div class="row-2">
+    <div class="card"><button class="card-info" onclick="openF('sources')">i</button><h3>Cash Sources Stacked (UHC · Free Flow · Insurance · Municipal · Other)</h3><div class="chart-wrap tall"><canvas id="chSources"></canvas></div></div>
+    <div class="card"><button class="card-info" onclick="openF('mix')">i</button><h3>Payer Mix — 17M Average</h3><div class="chart-wrap"><canvas id="chMix"></canvas></div>
+      <div class="bench">HHI: <b>3,517</b> (>2500 = highly concentrated) · PMQS: <b>0.72/1.0</b> · Free-flow dominant ✓ მაგრამ UHC dependency 36.2%</div>
+    </div>
+  </div>
+  <div class="card"><button class="card-info" onclick="openF('cv')">i</button>
+    <h3>Source Volatility (CV%) <span class="tag new">NEW</span> — რომელი წყარო რამდენად არასტაბილურია</h3>
+    <div class="chart-wrap"><canvas id="chCV"></canvas></div>
+    <div class="bench">UHC CV 67% — სახელმწიფო გადახდები არასტაბილური · "Other" CV 111% — outlier-ები (Apr-25=794K, Dec-25=513K, Apr-26=447K) · Free Flow CV 14.5% (ყველაზე სტაბილური)</div>
+  </div>
+
+  <h3>B. Expense Anatomy</h3>
+  <div class="row-2">
+    <div class="card"><button class="card-info" onclick="openF('exp')">i</button><h3>Top-5 Expense Trend (Salaries dominate)</h3><div class="chart-wrap tall"><canvas id="chExp"></canvas></div></div>
+    <div class="card"><button class="card-info" onclick="openF('fv')">i</button><h3>Fixed vs Variable Expense Mix</h3><div class="chart-wrap"><canvas id="chFV"></canvas></div>
+      <div class="bench">Fixed 83.8% · Variable 16.2% · Expense Coverage Ratio (fixed-only) = 61.9% შემოსავლის</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== L3 — Healthcare KPIs ===================== -->
+<section id="l3" class="section">
+  <h2>დონე 3 — Healthcare-Specific KPIs</h2>
+  <div class="row-3">
+    <div class="card"><button class="card-info" onclick="openF('pmqs')">i</button><h3>Payer Mix Quality Score</h3>
+      <div class="gauge"><div class="gauge-val">0.72</div><div class="gauge-lbl">PMQS / 1.0</div>
+        <div style="width:100%;position:relative;margin-top:14px"><div class="gauge-bar"><div class="gauge-bar-fill" style="width:100%"></div></div><div class="gauge-bar-mark" style="left:72%"></div></div>
+      </div>
+      <div class="bench">Free-flow + Insurance weighted high; UHC + Municipal weighted low</div>
+    </div>
+    <div class="card"><button class="card-info" onclick="openF('dr')">i</button><h3>Drug Cost / Revenue (5-15% bench)</h3>
+      <div class="chart-wrap"><canvas id="chDrug"></canvas></div>
+      <div class="bench">Avg <b>7.6%</b> — ბენჩმარკის შუა ნაწილში ✓</div>
+    </div>
+    <div class="card"><button class="card-info" onclick="openF('sr')">i</button><h3>Salary / Revenue (target &lt;60%)</h3>
+      <div class="chart-wrap"><canvas id="chSR"></canvas></div>
+      <div class="bench">17M avg 59.1% · May-26 = <b>102.2%</b> (RED)</div>
+    </div>
+  </div>
+  <div class="row-2">
+    <div class="card"><button class="card-info" onclick="openF('uhc')">i</button><h3>UHC Payment Pattern — Zero-Month Bounce</h3>
+      <div class="chart-wrap"><canvas id="chUHC"></canvas></div>
+      <div class="bench">Nov-25=0 → Dec-25=1.37M · Feb-26=0 → Mar-26=1.74M — სახელმწიფო 60-90 დღიანი ციკლი</div>
+    </div>
+    <div class="card"><button class="card-info" onclick="openF('wc')">i</button><h3>Working Capital Cushion (Cash / Avg Fixed Cost)</h3>
+      <div class="gauge"><div class="gauge-val" style="color:var(--red)">0.30</div><div class="gauge-lbl">თვე ფარული</div></div>
+      <div class="bench">CRITICAL — May-26 cash 375K, avg fixed 1.27M/თვე → 9 დღე buffer. იხ. <a href="#l6" style="color:var(--purple-dark);font-weight:600">→ Detail Calc</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== L4 — Risk + Heatmap ===================== -->
+<section id="l4" class="section">
+  <h2>დონე 4 — Risk + Early Warning</h2>
+  <div class="tl-grid">
+    <div class="tl r"><div class="tl-l">DCOH</div><div class="tl-v">7.7 დღე</div><div class="tl-rng">&lt;21 R · 21-45 Y · &gt;45 G</div></div>
+    <div class="tl r"><div class="tl-l">Salary / Revenue</div><div class="tl-v">102.2%</div><div class="tl-rng">&lt;60 G · 60-75 Y · &gt;75 R</div></div>
+    <div class="tl g"><div class="tl-l">Net OCF (3M avg)</div><div class="tl-v">622,083 ₾</div><div class="tl-rng">&gt;0 G · 0..−100K Y · &lt;−100K R</div></div>
+    <div class="tl y"><div class="tl-l">Cash Position</div><div class="tl-v">375,243 ₾</div><div class="tl-rng">&gt;500K G · 250-500K Y · &lt;250K R</div></div>
+  </div>
+  <div class="card"><button class="card-info" onclick="openF('heatmap')">i</button><h3>KPI Heatmap — 17 თვე × 5 მაჩვენებელი</h3>
+    <div class="heat" id="heatMap"></div>
+    <div class="bench">🟢 ჯანმრთელი · 🟡 ყურადღება · 🔴 პრობლემა</div>
+  </div>
+</section>
+
+<!-- ===================== L5 — Forecast ===================== -->
+<section id="l5" class="section">
+  <h2>დონე 5 — 3-Month Rolling Forecast</h2>
+  <div class="card"><button class="card-info" onclick="openF('forecast')">i</button><h3>Cash Projection — Jun-26 / Jul-26 / Aug-26</h3>
+    <div class="chart-wrap tall"><canvas id="chFc"></canvas></div>
+    <div class="method">
+      <b>მეთოდი:</b> 50% trailing 3-month avg + 50% same-month prior year (seasonal-naive). Source data თვიური — weekly მოითხოვს daily.<br>
+      <b>Base case:</b> Jun-26 cash 585K → Jul-26 1.58M (UHC bounce) → Aug-26 2.0M<br>
+      <b>Worst (UHC 1M delay):</b> Jun-26 cash <span style="color:var(--red);font-weight:600">−180K NEGATIVE</span><br>
+      <b>What if Salary −20%:</b> +250K/თვე buffer → 6-month runway
+    </div>
+  </div>
+  <div class="row-3">
+    <div class="card"><h3>Scenario A — Base</h3><div style="text-align:center;padding:18px 0"><div style="font-size:2rem;font-weight:700;color:var(--green)">2.0M</div><div style="color:var(--muted);font-size:.8rem">Aug-26 closing cash</div></div><div class="bench">UHC normal flow + seasonal pattern holds</div></div>
+    <div class="card"><h3>Scenario B — UHC 1M Delay</h3><div style="text-align:center;padding:18px 0"><div style="font-size:2rem;font-weight:700;color:var(--red)">−180K</div><div style="color:var(--muted);font-size:.8rem">Jun-26 negative cash</div></div><div class="bench">UHC cycle missed → liquidity crisis</div></div>
+    <div class="card"><h3>Scenario C — Salary −20%</h3><div style="text-align:center;padding:18px 0"><div style="font-size:2rem;font-weight:700;color:var(--green)">+250K/თვე</div><div style="color:var(--muted);font-size:.8rem">monthly buffer creation</div></div><div class="bench">ხელფასების სტრუქტურის გადახედვა</div></div>
+  </div>
+</section>
+
+<!-- ===================== L6 — WC Cushion Detail ===================== -->
+<section id="l6" class="section">
+  <h2>📐 Working Capital Cushion — Detailed Calculation</h2>
+  <p style="color:var(--muted);font-size:.88rem;margin-bottom:14px">Cash / Avg Monthly Fixed Cost — სრული ლოგიკა Qlik analyst-ისთვის</p>
+
+  <div class="card">
+    <div class="calc-step"><div class="lbl">Step 1 — Fixed Cost Categories (8)</div><div>Salaries · Rent · Utilities · Software/IT · Repair · Services Outsourced · Taxes · Supplies</div></div>
+    <div class="calc-step"><div class="lbl">Step 2 — Sum Per Month</div><div class="v">FixedCost(month) = Salaries + Rent + Utilities + Software + Repair + Services + Taxes + Supplies</div></div>
+    <div class="calc-step"><div class="lbl">Step 3 — Average Across All Periods</div><div class="v">AvgFixed = mean(FixedCost across 17 months) = <strong>1,270,325 ₾</strong></div></div>
+    <div class="calc-step"><div class="lbl">Step 4 — Latest Cash Position</div><div class="v">LatestCash = Sum(ClosingCash, May-26) = <strong>375,243 ₾</strong></div></div>
+    <div class="calc-final"><div class="lbl">Final — Working Capital Cushion (months)</div><div class="v">375,243 ÷ 1,270,325 = <strong>0.30 თვე</strong> (≈ 9 დღე)</div></div>
+    <div class="bench" style="margin-top:14px;background:#fff8e1;color:#8a6d00">⚠️ May-26 ფული ფარავს მხოლოდ ~9 დღის fixed cost-ს. თუ შემოსავალი 30 დღით დააგვიანდება — ხელფასი ვერ გადაიხდება.</div>
+    <button class="card-info" style="position:static;margin-top:14px;width:auto;padding:8px 14px;border-radius:6px" onclick="openF('wc')">📋 Qlik Implementation Formula</button>
+  </div>
+</section>
+
+<!-- ===================== L7 — Methodology ===================== -->
+<section id="l7" class="section">
+  <h2>📋 Methodology + Caveats</h2>
+  <div class="method">
+    <b>Source:</b> Direct CF.xls (HTML-as-XLS ERP export, 159KB)<br>
+    <b>Period:</b> Jan-25 → May-26 (17 month active) + Dec-24 baseline + Jun-26 empty<br>
+    <b>Currency:</b> assumed GEL (₾) — source-ში არ არის currency code<br><br>
+    <b>"Revenue" = Cash Receipts</b> (cash basis, არა accrual P&amp;L). ყველა %-ratio cash basis-ზე.<br>
+    <b>Sign convention:</b> receipts positive, expenses stored negative — Qlik formula-ში <code>Abs()</code> ratio-ებისთვის.<br>
+    <b>v3 dropped from v1:</b> Anomaly alerts section (calc validation pending) · გადარჩა: ყველა ვიზუალი + chart<br>
+    <b>v3 added from v2:</b> HHI KPI · Cash Δ explicit · Annual CF view · PMQS+WC promoted to L1 · WC detail calc · ⓘ popup formulas<br><br>
+    <b>Data quality notes:</b><br>
+    · "Cash from Operating Activituies" — typo, 3 ჯერ source-ში<br>
+    · Tax row all zeros — ERP-ის module gap?<br>
+    · Cashback row all zeros<br>
+    · Marketing only 4 nonzero months — sporadic<br>
+    · Rent has zero months — paid in advance ან quarterly?
+  </div>
+</section>
+
+</main>
+</div>
+</div>
+
+<!-- ===================== FORMULA POPUP MODAL ===================== -->
+<div class="modal-backdrop" id="modalBackdrop" onclick="if(event.target===this)closeF()">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Qlik Formula <span class="badge" id="modalBadge">measure</span></h3>
+      <button class="modal-close" onclick="closeF()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<div class="footer container">
+  Generated 2026-05-25 · v3 (analyst-handoff + restored v1 visuals) · <span class="tag gur">by Gurafa</span> · Bivision Intelligence<br>
+  Source: Direct CF.xls (159KB) · v1: <code>2026-05-25-direct-cf-dashboard.html</code> · v2: <code>2026-05-25-direct-cf-dashboard-v2.html</code><br>
+  <span class="tag eph">⏳ EPHEMERAL</span> healthcare client data · local + bivision-shares · NO indexing
+</div>
+
+<script>
+const D={"p":["Jan-25","Feb-25","Mar-25","Apr-25","May-25","Jun-25","Jul-25","Aug-25","Sep-25","Oct-25","Nov-25","Dec-25","Jan-26","Feb-26","Mar-26","Apr-26","May-26"],
+"ff":[711369,735509,1018601,911743,858874,910571,1075881,810557,878952,1120305,1151324,1121867,882213,1040402,1032516,925059,802086],
+"uhc":[692320,769100,624409,695182,516210,136980,1546510,630537,1012166,986539,0,1375402,920383,0,1740815,681642,288758],
+"mun":[20043,80783,115061,136894,90745,180112,126176,121010,115690,122171,106414,174724,50458,149522,182808,163989,97522],
+"ins":[42161,32635,22456,78560,18101,96304,3197,61172,77938,61839,85865,84847,96913,43593,76319,69739,47757],
+"oth":[180828,46814,63236,794774,117339,55502,102523,305543,106833,140585,77544,513016,169722,52004,41753,447524,13495],
+"rcp":[1646721,1664841,1843763,2617153,1601269,1379469,2854287,1928819,2191580,2431438,1421148,3269857,2119688,1285521,3074210,2287953,1249617],
+"sal":[307178,995714,1098263,1349304,1170829,1253706,1167501,1320281,1190798,1092690,1320579,2475365,249812,1179178,1345328,1380056,1277456],
+"drg":[67024,264924,140847,68907,118293,119108,127536,204481,171931,198761,62906,445712,228759,143258,142612,111288,52499],
+"rnt":[424,0,418,825,0,819,408,405,405,407,0,0,809,403,411,0,0],
+"svc":[22081,6715,38911,22991,30008,24074,38646,30795,8705,10693,56160,35173,27681,27659,32766,22457,9023],
+"aff":[30627,23663,25237,32476,41878,31930,48054,62600,45244,50071,55055,64857,54668,44791,55837,60165,53733],
+"nop":[1114312,271025,379933,990644,157103,-203102,1360905,239418,674508,988928,-148897,135984,1466781,-202380,1424873,653159,-211782],
+"cc":[1245661,681544,503540,1082933,930118,471656,1369206,1030259,923429,1198630,524296,363290,1375732,342275,1255892,1152190,375243],
+"dcoh":[70.2,14.7,10.3,20.0,19.3,8.9,27.5,18.3,18.3,24.9,10.0,3.5,63.2,6.9,22.8,21.1,7.7],
+"opm":[67.7,16.3,20.6,37.9,9.8,-14.7,47.7,12.4,30.8,40.7,-10.5,4.2,69.2,-15.7,46.3,28.5,-16.9],
+"sr":[18.7,59.8,59.6,51.6,73.1,90.9,40.9,68.5,54.3,44.9,92.9,75.7,11.8,91.7,43.8,60.3,102.2],
+"dr":[4.1,15.9,7.6,2.6,7.4,8.6,4.5,10.6,7.8,8.2,4.4,13.6,10.8,11.1,4.6,4.9,4.2],
+"pm":{"Free Flow":45.9,"UHC":36.2,"Other":9.3,"Municipalities":5.8,"Insurance":2.9},
+"cvs":{"Free Flow":14.5,"UHC":67.1,"Municipalities":37.2,"Insurance":48.2,"Other":111.1},
+"fc":{"m":["Jun-26","Jul-26","Aug-26"],"cc":[584733,1576227,2006977]}};
+
+const purple='#6B63B5',green='#00A651',red='#DC3545',yellow='#FFC107';
+const fmt=v=>v==null?'—':new Intl.NumberFormat('en-US').format(Math.round(v));
+const opts={responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{boxWidth:12,font:{size:11}}}}};
+
+// ===== FORMULA POPUP CONTENT =====
+const F={
+  cash:{t:'Cash Position (latest closing)',b:'measure',logic:'ბოლო თვის closing cash position · Δ = current − previous month',code:`<span class="c">// Variables (reuse across measures)</span>
+<span class="k">SET</span> vLatestPeriod = <span class="s">Max(Period)</span>;
+<span class="k">SET</span> vPrevPeriod   = <span class="s">Date(AddMonths(Max(Period),-1),'YYYYMM')</span>;
+
+<span class="c">// Master Measure — Cash Position</span>
+<span class="k">Sum</span>({&lt;Period={<span class="s">"$(vLatestPeriod)"</span>}&gt;} ClosingCash)
+
+<span class="c">// Δ vs previous month</span>
+<span class="k">Sum</span>({&lt;Period={<span class="s">"$(vLatestPeriod)"</span>}&gt;} ClosingCash) -
+<span class="k">Sum</span>({&lt;Period={<span class="s">"$(vPrevPeriod)"</span>}&gt;} ClosingCash)`},
+  dcoh:{t:'DCOH — Days Cash on Hand',b:'measure',logic:'Closing Cash ÷ (Operating Cash Out ÷ 30). რამდენი დღე გაგრძელდება ფული თუ შემოსავალი შეჩერდება.',code:`<span class="c">// Master Measure — DCOH</span>
+<span class="k">Sum</span>({&lt;Period={<span class="s">"$(vLatestPeriod)"</span>}&gt;} ClosingCash)
+  /
+(<span class="k">Sum</span>({&lt;Period={<span class="s">"$(vLatestPeriod)"</span>}&gt;} <span class="k">Abs</span>(OperatingCashOut)) / <span class="n">30</span>)`},
+  wc:{t:'Working Capital Cushion (months)',b:'measure',logic:'Cash / Avg Monthly Fixed Cost. რამდენი თვის ფიქსირებული ხარჯი დაფარულია არსებული ფულით. დეტალური logic-ი → L6 სექციაში.',code:`<span class="c">// Step A: Tag expense categories in load script</span>
+<span class="k">LOAD</span> Period, Account, Amount,
+  <span class="k">IF</span>(<span class="k">Match</span>(Account,
+    <span class="s">'Salaries'</span>,<span class="s">'Rent'</span>,<span class="s">'Utilities'</span>,<span class="s">'Software'</span>,
+    <span class="s">'Repair'</span>,<span class="s">'Services'</span>,<span class="s">'Taxes'</span>,<span class="s">'Supplies'</span>
+  ), <span class="s">'Fixed'</span>, <span class="s">'Variable'</span>) <span class="k">as</span> ExpenseType
+<span class="k">FROM</span> CashFlow;
+
+<span class="c">// Step B: Avg monthly fixed cost</span>
+<span class="k">Avg</span>(<span class="k">Aggr</span>(
+  <span class="k">Sum</span>({&lt;ExpenseType={<span class="s">'Fixed'</span>}&gt;} <span class="k">Abs</span>(Amount)),
+  Period
+))
+
+<span class="c">// Step C: Working Capital Cushion (months) — FINAL</span>
+<span class="k">Sum</span>({&lt;Period={<span class="s">"$(vLatestPeriod)"</span>}&gt;} ClosingCash)
+  /
+<span class="k">Avg</span>(<span class="k">Aggr</span>(
+  <span class="k">Sum</span>({&lt;ExpenseType={<span class="s">'Fixed'</span>}&gt;} <span class="k">Abs</span>(Amount)),
+  Period
+))
+
+<span class="c">// Alt — cushion in DAYS (×30)</span>
+<span class="k">Sum</span>({&lt;Period={<span class="s">"$(vLatestPeriod)"</span>}&gt;} ClosingCash) /
+(<span class="k">Avg</span>(<span class="k">Aggr</span>(<span class="k">Sum</span>({&lt;ExpenseType={<span class="s">'Fixed'</span>}&gt;} <span class="k">Abs</span>(Amount)),Period)) / <span class="n">30</span>)`},
+  netop:{t:'Net OCF — 3-Month Avg',b:'measure',logic:'Trailing 3-month moving average of Net Operating Cash Flow',code:`<span class="c">// Master Measure — Net OCF 3M Avg</span>
+<span class="k">Avg</span>(<span class="k">Aggr</span>(
+  <span class="k">Sum</span>({&lt;Period={<span class="s">">=$(=Date(AddMonths(Max(Period),-2),'YYYYMM'))"</span>}&gt;} NetOpCF),
+  Period
+))
+
+<span class="c">// Or chart-context alternative</span>
+<span class="k">RangeAvg</span>(<span class="k">Above</span>(<span class="k">Sum</span>(NetOpCF), <span class="n">0</span>, <span class="n">3</span>))`},
+  opm:{t:'Operating CF Margin %',b:'measure',logic:'Net OCF / Total Cash Receipts — ოპერაციული მარჟა cash basis-ზე',code:`<span class="k">Sum</span>({&lt;Period={<span class="s">"$(vLatestPeriod)"</span>}&gt;} NetOpCF)
+  /
+<span class="k">Sum</span>({&lt;Period={<span class="s">"$(vLatestPeriod)"</span>}&gt;} TotalReceipts)
+  * <span class="n">100</span>`},
+  sr:{t:'Salary / Revenue %',b:'measure',logic:'Salaries / Revenue. >100% = ხელფასი ვერ იფარება ერთი თვის შემოსავლით',code:`<span class="k">Sum</span>({&lt;Period={<span class="s">"$(vLatestPeriod)"</span>}&gt;} <span class="k">Abs</span>(Salaries))
+  /
+<span class="k">Sum</span>({&lt;Period={<span class="s">"$(vLatestPeriod)"</span>}&gt;} TotalReceipts)
+  * <span class="n">100</span>
+
+<span class="c">// Note: expenses stored negative — Abs() ratio-ისთვის</span>`},
+  pmqs:{t:'PMQS — Payer Mix Quality Score',b:'measure',logic:'Weighted avg — private cash sources მაღალი წონა (1.0), state programs დაბალი (0.4)',code:`<span class="c">// Weights: FreeFlow=1.0 · Insurance=0.85 · Cashback=1.0</span>
+<span class="c">//          Other=0.7 · Mun=0.5 · UHC=0.4</span>
+
+(<span class="k">Sum</span>(FreeFlow)*<span class="n">1.0</span>
+ + <span class="k">Sum</span>(Insurance)*<span class="n">0.85</span>
+ + <span class="k">Sum</span>(Cashback)*<span class="n">1.0</span>
+ + <span class="k">Sum</span>(Other)*<span class="n">0.7</span>
+ + <span class="k">Sum</span>(Municipalities)*<span class="n">0.5</span>
+ + <span class="k">Sum</span>(UHC)*<span class="n">0.4</span>)
+  /
+<span class="k">Sum</span>(TotalReceipts)`},
+  hhi:{t:'HHI — Herfindahl-Hirschman Index',b:'measure',logic:'Payer source-ების კონცენტრაცია (კვადრატული წილების ჯამი ×100²). >2500 = highly concentrated (US DOJ standard)',code:`<span class="c">// Step 1 — long-form data needed: PayerSource | Period | Amount</span>
+<span class="c">// (Cross-table inflows into single "PayerSource" field)</span>
+
+<span class="c">// Master Measure — HHI</span>
+<span class="k">Sum</span>(<span class="k">Aggr</span>(
+  <span class="k">Pow</span>(
+    <span class="k">Sum</span>(Amount) / <span class="k">Sum</span>({1} <span class="k">TOTAL</span> Amount) * <span class="n">100</span>,
+    <span class="n">2</span>
+  ),
+  PayerSource
+))
+
+<span class="c">// Interpretation:</span>
+<span class="c">// &lt;1500 unconcentrated · 1500-2500 moderate · &gt;2500 high</span>`},
+  dr:{t:'Drug Cost / Revenue %',b:'measure',logic:'Drugs & Medicines / Revenue — სამედიცინო ინდუსტრიის benchmark 5-15%',code:`<span class="k">Sum</span>({&lt;Period={<span class="s">"$(vLatestPeriod)"</span>}&gt;} <span class="k">Abs</span>(Drugs))
+  /
+<span class="k">Sum</span>({&lt;Period={<span class="s">"$(vLatestPeriod)"</span>}&gt;} TotalReceipts)
+  * <span class="n">100</span>`},
+  dsc:{t:'Debt Service Coverage',b:'measure',logic:'Net OCF / Interest Paid. რამდენჯერ ფარავს ოპერაციული ფული ვალის %-ს',code:`<span class="k">Sum</span>({&lt;Period={<span class="s">"$(vLatestPeriod)"</span>}&gt;} NetOpCF)
+  /
+<span class="k">Sum</span>({&lt;Period={<span class="s">"$(vLatestPeriod)"</span>}&gt;} <span class="k">Abs</span>(InterestPaid))`},
+  cashTrend:{t:'Cash Position Trend Chart',b:'chart',logic:'Line chart — actual closing cash 17 months + 3-month forecast (gradient fill, dashed forecast)',code:`<span class="c">// X-axis: Period (Jan-25 → Aug-26 incl. forecast)</span>
+<span class="c">// Series 1 — Actual</span>
+<span class="k">Sum</span>(ClosingCash)
+
+<span class="c">// Series 2 — Forecast (separate field or computed)</span>
+<span class="c">// Forecast logic: 50% trailing 3M avg + 50% same-month prior year</span>
+<span class="k">RangeAvg</span>(
+  <span class="k">RangeAvg</span>(<span class="k">Above</span>(<span class="k">Sum</span>(NetOpCF), <span class="n">0</span>, <span class="n">3</span>)),
+  <span class="k">Above</span>(<span class="k">Sum</span>(NetOpCF), <span class="n">12</span>)
+)`},
+  annual:{t:'Annual CF Components Chart',b:'chart',logic:'Grouped bar — 2025 full · 2026 YTD · 2026 annualized projection. 3 series: Net Op, Net Inv, Net Fin',code:`<span class="c">// In load script — derive Year field</span>
+<span class="k">Year</span>(Period) <span class="k">as</span> ReportingYear,
+<span class="k">Month</span>(Period) <span class="k">as</span> ReportingMonth
+
+<span class="c">// Dimension: ReportingYear</span>
+<span class="c">// Measures:</span>
+<span class="k">Sum</span>(NetOpCF) <span class="c">// Net Operating</span>
+<span class="k">Sum</span>(NetInvesting)
+<span class="k">Sum</span>(NetFinancing)
+
+<span class="c">// Annualized projection (when partial year)</span>
+<span class="k">Sum</span>(NetOpCF) * <span class="n">12</span> /
+<span class="k">Count</span>(<span class="k">DISTINCT</span> Period)`},
+  sources:{t:'Cash Sources Stacked Chart',b:'chart',logic:'Stacked bar — 17 months × 5 payer sources. Time-series view of revenue mix',code:`<span class="c">// Dimension: Period</span>
+<span class="c">// Stacked Measures:</span>
+<span class="k">Sum</span>(FreeFlow), <span class="k">Sum</span>(UHC), <span class="k">Sum</span>(Municipalities),
+<span class="k">Sum</span>(Insurance), <span class="k">Sum</span>(Other)
+
+<span class="c">// OR — long-form approach (recommended)</span>
+<span class="c">// Dim: Period, Color: PayerSource, Measure: Sum(Amount)</span>`},
+  mix:{t:'Payer Mix Donut',b:'chart',logic:'Doughnut — 17-month average payer mix %. Free Flow 45.9% · UHC 36.2% · Other 9.3% · Mun 5.8% · Ins 2.9%',code:`<span class="c">// Dimension: PayerSource (long-form)</span>
+<span class="c">// Measure: share % of total</span>
+
+<span class="k">Sum</span>(Amount) / <span class="k">Sum</span>({1} <span class="k">TOTAL</span> Amount) * <span class="n">100</span>`},
+  cv:{t:'Source Volatility (CV%)',b:'chart',logic:'Coefficient of Variation per source — Stdev/Avg × 100. Relative volatility (lower = more stable)',code:`<span class="c">// CV per Payer Source (dim = PayerSource)</span>
+<span class="k">Stdev</span>(<span class="k">Aggr</span>(<span class="k">Sum</span>(Amount), Period))
+  /
+<span class="k">Avg</span>(<span class="k">Aggr</span>(<span class="k">Sum</span>(Amount), Period))
+  * <span class="n">100</span>
+
+<span class="c">// Single-source variable (UHC example)</span>
+<span class="k">SET</span> vCV_UHC = <span class="s">'Stdev(Aggr(Sum({&lt;Source={"UHC"}&gt;} Amount), Period))</span>
+<span class="s">                / Avg(Aggr(Sum({&lt;Source={"UHC"}&gt;} Amount), Period)) * 100'</span>;
+
+<span class="c">// Source Dependence (UHC % of total)</span>
+<span class="k">Sum</span>({&lt;Source={<span class="s">"UHC"</span>}&gt;} Amount) /
+<span class="k">Sum</span>({1} <span class="k">TOTAL</span> Amount) * <span class="n">100</span>`},
+  exp:{t:'Top-5 Expense Trend Chart',b:'chart',logic:'Multi-line — Salaries, Drugs, Services, Affiliates, Rent across 17 months. Detects spikes (Dec-25 salary 2.47M)',code:`<span class="c">// Multi-series line chart</span>
+<span class="c">// Dim: Period · 5 measures:</span>
+
+<span class="k">Sum</span>(<span class="k">Abs</span>(Salaries))
+<span class="k">Sum</span>(<span class="k">Abs</span>(Drugs))
+<span class="k">Sum</span>(<span class="k">Abs</span>(ServicesOutsourced))
+<span class="k">Sum</span>(<span class="k">Abs</span>(Affiliates))
+<span class="k">Sum</span>(<span class="k">Abs</span>(Rent))`},
+  fv:{t:'Fixed vs Variable Donut',b:'chart',logic:'Doughnut — operating expense split into Fixed (8 categories) vs Variable (5 categories). Avg 83.8% / 16.2%',code:`<span class="c">// Requires ExpenseType field (see WC Cushion popup)</span>
+
+<span class="c">// Measure 1 — Fixed %</span>
+<span class="k">Sum</span>({&lt;ExpenseType={<span class="s">'Fixed'</span>}&gt;} <span class="k">Abs</span>(Amount))
+  /
+<span class="k">Sum</span>(<span class="k">Abs</span>(Amount)) * <span class="n">100</span>
+
+<span class="c">// Measure 2 — Variable %</span>
+<span class="k">Sum</span>({&lt;ExpenseType={<span class="s">'Variable'</span>}&gt;} <span class="k">Abs</span>(Amount))
+  /
+<span class="k">Sum</span>(<span class="k">Abs</span>(Amount)) * <span class="n">100</span>`},
+  uhc:{t:'UHC Pattern — Zero-Month Bounce',b:'chart',logic:'Bar chart — UHC monthly receipts. Red = zero month (state delay), green = bounce-back month after zero',code:`<span class="c">// Dim: Period · Measure:</span>
+<span class="k">Sum</span>({&lt;Source={<span class="s">"UHC"</span>}&gt;} Amount)
+
+<span class="c">// Color expression (Qlik color-by-expression)</span>
+<span class="k">IF</span>(<span class="k">Sum</span>({&lt;Source={<span class="s">"UHC"</span>}&gt;} Amount) = <span class="n">0</span>,
+  <span class="k">RGB</span>(<span class="n">220</span>,<span class="n">53</span>,<span class="n">69</span>),    <span class="c">// red — zero month</span>
+  <span class="k">IF</span>(<span class="k">Above</span>(<span class="k">Sum</span>({&lt;Source={<span class="s">"UHC"</span>}&gt;} Amount)) = <span class="n">0</span>,
+    <span class="k">RGB</span>(<span class="n">0</span>,<span class="n">166</span>,<span class="n">81</span>),   <span class="c">// green — bounce after zero</span>
+    <span class="k">RGB</span>(<span class="n">107</span>,<span class="n">99</span>,<span class="n">181</span>)) <span class="c">// purple — normal</span>
+)`},
+  heatmap:{t:'KPI Heatmap (17M × 5 KPI)',b:'object',logic:'Matrix table with color-by-expression. Rows: Cash Position, DCOH, Op Margin, Sal/Rev, Net OCF. Cols: 17 months.',code:`<span class="c">// Qlik object: "Pivot Table" or "Straight Table"</span>
+<span class="c">// Dimensions: KPI (row), Period (col)</span>
+<span class="c">// Color cells using "Background color expression":</span>
+
+<span class="k">IF</span>(KPI = <span class="s">'DCOH'</span>,
+  <span class="k">IF</span>(<span class="k">Sum</span>(Value) &gt; <span class="n">45</span>, <span class="k">RGB</span>(<span class="n">212</span>,<span class="n">244</span>,<span class="n">216</span>),
+    <span class="k">IF</span>(<span class="k">Sum</span>(Value) &gt; <span class="n">21</span>, <span class="k">RGB</span>(<span class="n">255</span>,<span class="n">243</span>,<span class="n">205</span>),
+       <span class="k">RGB</span>(<span class="n">251</span>,<span class="n">213</span>,<span class="n">216</span>))),
+  <span class="c">// ... repeat per KPI with respective thresholds ...</span>
+)`},
+  forecast:{t:'Cash Projection — 3M Forecast',b:'chart',logic:'Line chart — actual cash + base/worst/salary-cut scenarios. Method: 50% trailing 3M avg + 50% same-month prior year (seasonal-naive)',code:`<span class="c">// Forecast measure (uses As-Of or Calendar table)</span>
+<span class="c">// Base forecast formula:</span>
+
+(<span class="k">RangeAvg</span>(<span class="k">Above</span>(<span class="k">Sum</span>(NetOpCF), <span class="n">0</span>, <span class="n">3</span>)) +
+ <span class="k">Above</span>(<span class="k">Sum</span>(NetOpCF), <span class="n">12</span>)) / <span class="n">2</span>
+
+<span class="c">// Worst case — UHC delay 1M</span>
+<span class="c">// Adjust forecast by −1,000,000 in target month</span>
+
+<span class="c">// What-if: Salary −20%</span>
+<span class="c">// Use Variable Input for sliders:</span>
+<span class="k">SET</span> vSalaryAdjust = <span class="n">-0.20</span>;
+<span class="k">Sum</span>(<span class="k">Abs</span>(Salaries)) * (<span class="n">1</span> + <span class="s">$(vSalaryAdjust)</span>)`}
+};
+
+function openF(id){
+  const f=F[id]; if(!f)return;
+  document.getElementById('modalTitle').innerHTML=f.t+' <span class="badge">'+f.b+'</span>';
+  document.getElementById('modalBody').innerHTML='<div class="logic"><b>ლოგიკა:</b> '+f.logic+'</div><pre>'+f.code+'</pre><button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText);this.innerText=\'✓ Copied\'">📋 Copy Formula</button>';
+  document.getElementById('modalBackdrop').classList.add('on');
+}
+function closeF(){document.getElementById('modalBackdrop').classList.remove('on')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeF()});
+
+// Heatmap
+const heatRows=[
+  {l:'Cash Position',data:D.cc,thr:v=>v>500000?'g':v>250000?'y':'r'},
+  {l:'DCOH (days)',data:D.dcoh,thr:v=>v>45?'g':v>21?'y':'r'},
+  {l:'Op CF Margin %',data:D.opm,thr:v=>v>10?'g':v>0?'y':'r'},
+  {l:'Salary/Rev %',data:D.sr,thr:v=>v<60?'g':v<75?'y':'r'},
+  {l:'Net OCF',data:D.nop,thr:v=>v>200000?'g':v>0?'y':'r'}
+];
+const colorOf=f=>f==='g'?'#d4f4d8':f==='y'?'#fff3cd':'#fbd5d8';
+let heatHTML='<div class="h">KPI</div>'+D.p.map(p=>`<div class="h">${p.slice(0,3)}'${p.slice(-2)}</div>`).join('');
+heatRows.forEach(r=>{
+  heatHTML+=`<div class="lbl">${r.l}</div>`;
+  r.data.forEach(v=>{
+    const f=r.thr(v);
+    const disp=Math.abs(v)>=1000?fmt(v/1000)+'k':(typeof v==='number'?v.toFixed(1):v);
+    heatHTML+=`<div class="c" style="background:${colorOf(f)}">${disp}</div>`;
+  });
+});
+document.getElementById('heatMap').innerHTML=heatHTML;
+
+// Charts
+new Chart(document.getElementById('chCash'),{type:'line',data:{labels:[...D.p,...D.fc.m],datasets:[
+  {label:'Actual Cash',data:[...D.cc,null,null,null],borderColor:purple,backgroundColor:purple+'33',fill:true,tension:0.3},
+  {label:'Forecast',data:[...D.cc.slice(0,-1).map(()=>null),D.cc.at(-1),...D.fc.cc],borderColor:green,borderDash:[6,4],backgroundColor:green+'22',fill:true,tension:0.3}
+]},options:{...opts,scales:{y:{ticks:{callback:v=>fmt(v/1000)+'k'}}}}});
+
+new Chart(document.getElementById('chAnnual'),{type:'bar',data:{labels:['2025 (12M)','2026 YTD (5M)','2026 Annualized'],datasets:[
+  {label:'Net Operating',data:[5960761,3130651,7513562],backgroundColor:green},
+  {label:'Net Investing',data:[906512,-560000,-1344000],backgroundColor:purple},
+  {label:'Net Financing',data:[6256515,-400986,-962366],backgroundColor:yellow}
+]},options:{...opts,scales:{y:{ticks:{callback:v=>fmt(v/1000)+'k'}}}}});
+
+new Chart(document.getElementById('chSources'),{type:'bar',data:{labels:D.p,datasets:[
+  {label:'Free Flow',data:D.ff,backgroundColor:purple},
+  {label:'UHC',data:D.uhc,backgroundColor:red},
+  {label:'Municipalities',data:D.mun,backgroundColor:yellow},
+  {label:'Insurance',data:D.ins,backgroundColor:green},
+  {label:'Other',data:D.oth,backgroundColor:'#94A3B8'}
+]},options:{...opts,scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:v=>fmt(v/1000)+'k'}}}}});
+
+new Chart(document.getElementById('chMix'),{type:'doughnut',data:{labels:Object.keys(D.pm),datasets:[{data:Object.values(D.pm),backgroundColor:[purple,red,'#94A3B8',yellow,green]}]},options:{...opts,plugins:{legend:{position:'right'}}}});
+
+new Chart(document.getElementById('chCV'),{type:'bar',data:{labels:Object.keys(D.cvs),datasets:[{label:'CV %',data:Object.values(D.cvs),backgroundColor:Object.values(D.cvs).map(v=>v<20?green:v<50?yellow:red)}]},options:{...opts,indexAxis:'y',scales:{x:{ticks:{callback:v=>v+'%'}}}}});
+
+new Chart(document.getElementById('chExp'),{type:'line',data:{labels:D.p,datasets:[
+  {label:'Salaries',data:D.sal,borderColor:red,backgroundColor:red+'22',tension:0.2},
+  {label:'Drugs',data:D.drg,borderColor:purple,tension:0.2},
+  {label:'Services Outsourced',data:D.svc,borderColor:yellow,tension:0.2},
+  {label:'Affiliates',data:D.aff,borderColor:green,tension:0.2},
+  {label:'Rent',data:D.rnt,borderColor:'#94A3B8',tension:0.2}
+]},options:{...opts,scales:{y:{ticks:{callback:v=>fmt(v/1000)+'k'}}}}});
+
+new Chart(document.getElementById('chFV'),{type:'doughnut',data:{labels:['Fixed (83.8%)','Variable (16.2%)'],datasets:[{data:[83.8,16.2],backgroundColor:[red,green]}]},options:{...opts,plugins:{legend:{position:'right'}}}});
+
+new Chart(document.getElementById('chDrug'),{type:'line',data:{labels:D.p,datasets:[
+  {label:'Drug/Rev %',data:D.dr,borderColor:purple,backgroundColor:purple+'22',fill:true,tension:0.3}
+]},options:{...opts,scales:{y:{min:0,max:20,ticks:{callback:v=>v+'%'}}}}});
+
+new Chart(document.getElementById('chSR'),{type:'line',data:{labels:D.p,datasets:[
+  {label:'Sal/Rev %',data:D.sr,borderColor:red,backgroundColor:red+'22',fill:true,tension:0.3},
+  {label:'Target 60%',data:D.p.map(()=>60),borderColor:green,borderDash:[5,3],pointRadius:0}
+]},options:{...opts,scales:{y:{ticks:{callback:v=>v+'%'}}}}});
+
+new Chart(document.getElementById('chUHC'),{type:'bar',data:{labels:D.p,datasets:[
+  {label:'UHC monthly',data:D.uhc,backgroundColor:D.uhc.map((v,i)=>v===0?red:i>0&&D.uhc[i-1]===0?green:purple)}
+]},options:{...opts,scales:{y:{ticks:{callback:v=>fmt(v/1000)+'k'}}}}});
+
+new Chart(document.getElementById('chFc'),{type:'line',data:{labels:[...D.p.slice(-6),...D.fc.m],datasets:[
+  {label:'Actual',data:[...D.cc.slice(-6),null,null,null],borderColor:purple,backgroundColor:purple+'22',fill:true,tension:0.3},
+  {label:'Base Forecast',data:[...new Array(5).fill(null),D.cc.at(-1),...D.fc.cc],borderColor:green,borderDash:[6,4],tension:0.3},
+  {label:'Worst (UHC delay 1M)',data:[...new Array(5).fill(null),D.cc.at(-1),-180000,400000,800000],borderColor:red,borderDash:[2,2],tension:0.3}
+]},options:{...opts,scales:{y:{ticks:{callback:v=>fmt(v/1000)+'k'}}}}});
+</script>
+</body>
+</html>
