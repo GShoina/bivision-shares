@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Direct CF Dashboard v3 — Healthcare Group | by Gurafa</title>
+<title>Direct CF Dashboard v4 — Analyst Verification Edition | by Gurafa</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 :root{--purple:#6B63B5;--purple-dark:#4A4499;--purple-light:#E7E5F6;--green:#00A651;--green-light:#D4F4D8;--red:#DC3545;--red-light:#FBD5D8;--yellow:#FFC107;--yellow-light:#FFF3CD;--bg:#F4F5F8;--text:#1A1D29;--muted:#6B7280;--card:#fff;--border:#E5E7EB;--code:#1f1f29;--code-text:#e6e6f0}
@@ -101,12 +101,12 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--t
 
 <div class="header">
   <div class="container">
-    <h1>Direct Cash Flow Dashboard — Healthcare Group <span class="tag v3">v3</span></h1>
-    <div class="meta">17 თვე · Jan-25 → May-26 · <span class="tag gur">by Gurafa</span> <span class="tag eph">⏳ EPHEMERAL — local only</span> · click <strong>ⓘ</strong> on any KPI/chart for Qlik formula</div>
+    <h1>Direct Cash Flow Dashboard — Healthcare Group <span class="tag v3" style="background:#0EA5E9;color:#fff">v4 · Analyst Verification</span></h1>
+    <div class="meta">17 თვე · Jan-25 → May-26 · <span class="tag gur">by Gurafa</span> · <span class="tag new">📋 +Verification Trail</span> · click <strong>ⓘ</strong> on any KPI for Qlik formula · §8 for full validation table</div>
   </div>
 </div>
 <div class="banner-crit">⚠️ May-26 CRITICAL — Cash 317,831 ₾ · DCOH 7.7 დღე · Salary/Revenue 102.2% · Net OCF −179,379 · WC Cushion 0.30 თვე</div>
-<div class="banner-info">v3 changes: KPI cockpit 8→10 (HHI + Cash Δ added) · PMQS + WC Cushion promoted to L1 · Annual CF view added · Formulas → ⓘ popup (cleaner dashboard) · Anomaly section removed (pending validation)</div>
+<div class="banner-info"><strong>v4 = v3 + Verification Edition</strong> — for analyst colleague review · 📋 KPI verification table (input→formula→output) · ⚖ sign convention reference · 🏷️ Fixed/Variable category mapping · 🔒 anonymization disclosure (multiplier × 0.847)</div>
 
 <div class="container">
 <div class="layout">
@@ -118,6 +118,7 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--t
   <a href="#l5">🔮 Forecast 3M</a>
   <a href="#l6">📐 WC Cushion Detail</a>
   <a href="#l7">📋 Methodology</a>
+  <a href="#l8" style="background:#E0F2FE;border-left-color:#0EA5E9;color:#0369A1;font-weight:600">🔍 Verification Trail</a>
 </nav>
 <main>
 
@@ -280,6 +281,114 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--t
   </div>
 </section>
 
+<!-- ===================== L8 — VERIFICATION TRAIL (v4 addition) ===================== -->
+<section id="l8" class="section" style="background:linear-gradient(180deg,#E0F2FE 0%,#fff 100%);border-radius:12px;padding:28px 24px;border:1px solid #93C5FD">
+  <div style="display:inline-block;background:#0EA5E9;color:#fff;padding:4px 12px;border-radius:14px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px">🔍 v4 Addition — Analyst Verification</div>
+  <h2 style="color:#0369A1;border-bottom-color:#0EA5E9">8. Verification Trail (for colleague review)</h2>
+  <p style="color:var(--muted);font-size:.9rem;margin-bottom:16px">ეს სექცია გადატანილია v4-ში, რომ colleague-მა გადაამოწმოს work correctness. ყოველი KPI: input → formula → computed output → status.</p>
+
+  <h3>📊 KPI Verification Table (May-26 latest period)</h3>
+  <table style="width:100%;font-size:.82rem;margin-bottom:18px">
+    <thead><tr><th style="width:14%">KPI</th><th style="width:32%">Input (May-26)</th><th style="width:22%">Formula</th><th style="width:14%">Computed</th><th style="width:9%">Status</th><th style="width:9%">Threshold</th></tr></thead>
+    <tbody>
+      <tr><td><b>Cash Position</b></td><td>ClosingCash = 317,831</td><td>Sum(ClosingCash) latest</td><td>317,831 ₾</td><td style="color:#cc9500">🟡 Yellow</td><td>250-500K</td></tr>
+      <tr><td><b>Cash Δ</b></td><td>cur−prev = 317,831 − 975,905</td><td>diff(latest, prev)</td><td>−658,074 ₾</td><td style="color:var(--red)">🔴 Red</td><td>67% drop</td></tr>
+      <tr><td><b>DCOH</b></td><td>Cash=317,831 · OpCashOut=1,237,806</td><td>Cash / (OpOut/30)</td><td>7.70 days</td><td style="color:var(--red)">🔴 Red</td><td>&lt;21</td></tr>
+      <tr><td><b>WC Cushion</b></td><td>Cash=317,831 · AvgFixed=1,075,965</td><td>Cash / AvgFixed</td><td>0.30 თვე</td><td style="color:var(--red)">🔴 Red</td><td>&lt;1 თვე</td></tr>
+      <tr><td><b>Net OCF 3M</b></td><td>mean(Mar+Apr+May): 1,206,867+553,226−179,379</td><td>RangeAvg last 3</td><td>526,905 ₾</td><td style="color:var(--green)">🟢 Green</td><td>&gt;0</td></tr>
+      <tr><td><b>Op CF Margin</b></td><td>NetOp=−179,379 · Receipts=1,058,426</td><td>NetOp/Rev × 100</td><td>−16.9%</td><td style="color:var(--red)">🔴 Red</td><td>&lt;0%</td></tr>
+      <tr><td><b>Salary / Rev</b></td><td>Abs(Sal)=1,082,005 · Receipts=1,058,426</td><td>Abs(Sal)/Rev × 100</td><td>102.2%</td><td style="color:var(--red)">🔴 Red</td><td>&gt;75%</td></tr>
+      <tr><td><b>PMQS</b></td><td>Σ(FF×1.0+Ins×0.85+Cash×1.0+Oth×0.7+Mun×0.5+UHC×0.4) / Σ all</td><td>weighted sum/total</td><td>0.72 / 1.0</td><td style="color:#cc9500">🟡 Yellow</td><td>0.65-0.85</td></tr>
+      <tr><td><b>HHI</b></td><td>Σ(share<sup>2</sup>): FF²+UHC²+Mun²+Ins²+Oth² · shares ×100</td><td>Sum(Pow(share×100,2))</td><td>3,517</td><td style="color:var(--red)">🔴 Red</td><td>&gt;2500 high</td></tr>
+      <tr><td><b>Drug / Rev</b></td><td>Abs(Drugs)=44,467 · Receipts=1,058,426</td><td>Abs(Drug)/Rev × 100</td><td>4.20%</td><td style="color:var(--green)">🟢 Green</td><td>5-15% ben.</td></tr>
+      <tr><td><b>DSC</b></td><td>NetOp=−179,379 · Abs(Interest)=91,720</td><td>NetOp/Abs(Int)</td><td>−1.96×</td><td style="color:var(--red)">🔴 Red</td><td>&lt;1×</td></tr>
+    </tbody>
+  </table>
+
+  <h3>⚖ Sign Convention Reference</h3>
+  <table style="width:100%;font-size:.85rem;margin-bottom:18px">
+    <thead><tr><th style="width:30%">Field (source row)</th><th style="width:18%">Storage</th><th style="width:30%">Interpretation</th><th style="width:22%">Usage in Ratios</th></tr></thead>
+    <tbody>
+      <tr><td>Cash Receipts: FF, UHC, Mun, Ins, Oth (rows 2-6)</td><td>Positive</td><td>Cash inflow</td><td>Direct use</td></tr>
+      <tr><td>Operating Cash Out total (row 8)</td><td>Negative</td><td>Cash outflow</td><td><code>Abs()</code> for daily-burn</td></tr>
+      <tr><td>Per-category expenses (rows 9-21)</td><td>Negative</td><td>Cash outflow</td><td><code>Abs()</code> for ratio</td></tr>
+      <tr><td>Net Operating CF (row 22)</td><td>Signed (+/−)</td><td>+ surplus · − deficit</td><td>Direct use</td></tr>
+      <tr><td>Net Investing (row 23)</td><td>Signed</td><td>+ inflow · − outflow</td><td>Direct use</td></tr>
+      <tr><td>Net Financing (row 37)</td><td>Signed</td><td>+ borrowing · − repayment</td><td>Direct use</td></tr>
+      <tr><td>Interest Paid (row 50)</td><td>Negative</td><td>Cash outflow</td><td><code>Abs()</code> for DSC</td></tr>
+      <tr><td>Opening/Closing Cash (rows 55-56)</td><td>Positive</td><td>Balance</td><td>Direct use</td></tr>
+    </tbody>
+  </table>
+
+  <h3>🏷️ Fixed vs Variable Expense Mapping (8 + 5 categories)</h3>
+  <div class="row-2">
+    <div class="card" style="border-left:4px solid var(--red)">
+      <h3 style="color:var(--red);font-size:1rem">Fixed (8 categories) — 83.8% avg of opex</h3>
+      <ul style="padding-left:20px;line-height:1.9;margin:0;font-size:.88rem">
+        <li><b>Salaries</b> (row 10) — dominant, ~59% revenue avg</li>
+        <li><b>Rent</b> (row 16) — sporadic / quarterly</li>
+        <li><b>Utilities &amp; Communication</b> (row 11)</li>
+        <li><b>Software &amp; IT Support</b> (row 13)</li>
+        <li><b>Repair &amp; Maintenance</b> (row 12)</li>
+        <li><b>Services Outsourced</b> (row 17)</li>
+        <li><b>Taxes</b> (row 18) — all zeros · ERP gap?</li>
+        <li><b>Supplies &amp; Stationary</b> (row 19)</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:4px solid var(--green)">
+      <h3 style="color:var(--green);font-size:1rem">Variable (5 categories) — 16.2% avg of opex</h3>
+      <ul style="padding-left:20px;line-height:1.9;margin:0;font-size:.88rem">
+        <li><b>Drugs &amp; Medicines</b> (row 9) — 4-13% revenue</li>
+        <li><b>Marketing</b> (row 14) — only 4 nonzero months</li>
+        <li><b>Consulting &amp; Audit</b> (row 15)</li>
+        <li><b>Other Operating Expenses</b> (row 20)</li>
+        <li><b>Affiliates</b> (row 21)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:18px">🧪 Sanity Check Test Cases</h3>
+  <table style="width:100%;font-size:.85rem;margin-bottom:18px">
+    <thead><tr><th>Scenario</th><th>Expected behavior</th><th>Current data validates?</th></tr></thead>
+    <tbody>
+      <tr><td>UHC = 0 in single month</td><td>Receipts drop → DCOH drops</td><td>✓ Nov-25 UHC=0 · DCOH=10.0 (vs Oct-25=24.9)</td></tr>
+      <tr><td>UHC zero followed by bounce</td><td>Net OCF turns positive next month</td><td>✓ Nov-25 NetOp=−126,116 → Dec-25 NetOp=+115,178</td></tr>
+      <tr><td>Salary spike Dec-25 (bonus)</td><td>Sal/Rev spikes that month</td><td>✓ Dec-25 Sal/Rev=75.7% (vs 17M avg 59.1%)</td></tr>
+      <tr><td>Annualized 2026 vs 2025 actual</td><td>Trend consistent</td><td>✓ 2025 NetOp=5.05M · 2026 ann.=6.36M (+26%)</td></tr>
+      <tr><td>HHI &gt; 2500 = highly concentrated</td><td>One source &gt;30%</td><td>✓ UHC=36.2% · HHI=3517</td></tr>
+    </tbody>
+  </table>
+
+  <h3>🔒 Anonymization Disclosure (for internal verification)</h3>
+  <div class="card" style="background:#FFF8E1;border-left:4px solid #FFC107">
+    <p><strong>Multiplier applied:</strong> <code>× 0.847</code> uniformly to ALL monetary values (cash inflows + outflows + balances + forecasts).</p>
+    <p style="margin-top:10px"><strong>Preserved (NOT scaled):</strong></p>
+    <ul style="padding-left:22px;margin-top:6px;line-height:1.7">
+      <li>All percentage ratios (Op CF Margin, Sal/Rev, Drug/Rev, DSC)</li>
+      <li>KPI thresholds (500K, 250K, 21d, 45d, 60%, 75%)</li>
+      <li>HHI calculation result (numerator and denominator scale equally)</li>
+      <li>PMQS calculation result (weighted ratio)</li>
+      <li>Days, months, dates, CV percentages</li>
+    </ul>
+    <p style="margin-top:12px"><strong>Internal recovery:</strong> divide any displayed monetary value by <code>0.847</code> to reconstruct original.</p>
+    <p style="margin-top:10px"><strong>Why this works for verification:</strong> all RATIOS, THRESHOLDS, RELATIVE COMPARISONS are intact. Analyst verifies METHODOLOGY using anonymized numbers, then re-runs against real data in Qlik with same formulas — outputs match true numbers.</p>
+  </div>
+
+  <h3 style="margin-top:18px">📞 Colleague Review Workflow</h3>
+  <ol style="padding-left:22px;line-height:1.9">
+    <li><strong>Review KPI table</strong> — confirm each formula matches expected Qlik implementation</li>
+    <li><strong>Review sign convention</strong> — confirm <code>Abs()</code> usage in ratios where expenses negative</li>
+    <li><strong>Review Fixed/Variable mapping</strong> — confirm category assignment aligns with company's chart of accounts</li>
+    <li><strong>Verify sanity check test cases</strong> — pattern matching against current data</li>
+    <li><strong>Optional internal step:</strong> recover real numbers (÷ 0.847), re-run Qlik formulas, compare</li>
+    <li><strong>Feedback to Gurafa:</strong> what's missing? What threshold is wrong? What category should be Fixed instead of Variable? What additional KPI to add?</li>
+  </ol>
+
+  <div class="bench" style="margin-top:14px;background:#E0F2FE;color:#0369A1">
+    <strong>v4 vs v3:</strong> v3 has popup Qlik formulas per KPI (analyst handoff). v4 adds the verification table + sign convention + category mapping + multiplier disclosure (colleague review). Use both together: v3 popups give "how to implement in Qlik", v4 trail gives "is the computation correct".
+  </div>
+</section>
+
 </main>
 </div>
 </div>
@@ -296,7 +405,7 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--t
 </div>
 
 <div class="footer container">
-  Generated 2026-05-25 · v3 (analyst-handoff + restored v1 visuals) · <span class="tag gur">by Gurafa</span> · Bivision Intelligence<br>
+  Generated 2026-05-25 · v4 (analyst verification edition — v3 + verification trail) · <span class="tag gur">by Gurafa</span> · Bivision Intelligence<br>
   Source: ERP cash flow export (anonymized × random multiplier for confidentiality) · Companion: Reader Edition <code>2026-05-25-cash-flow-anatomy.html</code><br>
   <strong style="color:#FFC107">⚠ Numbers obfuscated — ratios + KPI thresholds + analytical findings preserved for demo</strong><br>
   <span class="tag eph">⏳ EPHEMERAL</span> healthcare client data · local + bivision-shares · NO indexing
