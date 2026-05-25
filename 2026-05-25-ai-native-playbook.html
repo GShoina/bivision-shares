@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI-Native Company Playbook — Bivision Insights | by Gurafa</title>
+<style>
+:root{--purple:#6B63B5;--purple-dark:#4A4499;--purple-light:#E7E5F6;--green:#00A651;--green-light:#D4F4D8;--red:#DC3545;--red-light:#FBD5D8;--yellow:#FFC107;--yellow-light:#FFF3CD;--bg:#F4F5F8;--text:#1A1D29;--muted:#6B7280;--card:#fff;--border:#E5E7EB;--code:#F1F1F4}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+.header{background:linear-gradient(135deg,#6B63B5 0%,#4A4499 100%);color:#fff;padding:36px 0}
+.header h1{font-size:1.7rem;margin-bottom:6px;font-weight:600;letter-spacing:-.02em}
+.header .sub{opacity:.88;font-size:.95rem}
+.header .meta{opacity:.7;font-size:.82rem;margin-top:10px}
+.hero{background:#fff;border-bottom:1px solid var(--border);padding:28px 0}
+.tldr{background:linear-gradient(90deg,#E7E5F6 0%,#fff 60%);padding:22px 26px;border-left:5px solid var(--purple);border-radius:8px;margin-top:10px}
+.tldr h2{color:var(--purple-dark);font-size:1.15rem;margin-bottom:12px}
+.tldr ol{padding-left:22px;margin-bottom:8px}
+.tldr ol li{margin-bottom:8px;font-size:.95rem}
+.banner-correction{background:#FFF3CD;color:#5a4900;padding:16px 0;text-align:center;font-weight:500;font-size:.9rem;border-bottom:1px solid #f0d480}
+.banner-correction b{color:#7a1422}
+.section{padding:32px 0;border-bottom:1px solid var(--border)}
+.section:last-child{border-bottom:none}
+.section h2{font-size:1.4rem;color:var(--purple-dark);margin-bottom:18px;font-weight:600;letter-spacing:-.01em}
+.section h3{font-size:1.05rem;margin:22px 0 12px;color:var(--text);font-weight:600}
+.section p{margin-bottom:12px}
+.section ul,.section ol{padding-left:24px;margin-bottom:14px}
+.section li{margin-bottom:6px}
+.card{background:#fff;padding:20px 24px;border-radius:8px;box-shadow:0 1px 2px rgba(0,0,0,.04);margin-bottom:14px}
+.card-accent{border-left:4px solid var(--purple)}
+.row-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tag{display:inline-block;padding:2px 9px;border-radius:11px;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.tag.fact{background:var(--green-light);color:#0c5d20}
+.tag.hyp{background:var(--yellow-light);color:#8a6d00}
+.tag.unv{background:#e5e7eb;color:#374151}
+.tag.gur{background:var(--purple-light);color:var(--purple-dark)}
+.tag.imp{background:var(--red-light);color:#7a1422}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04);font-size:.88rem;margin:8px 0 16px}
+th{background:var(--purple-dark);color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+td{padding:11px 12px;border-top:1px solid var(--border);vertical-align:top}
+tr:hover td{background:#fafafa}
+.score{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:1rem}
+.score.s10{background:var(--green)}
+.score.s9{background:#3a9d33}
+.score.s8{background:#7a9b2a}
+.score.s7{background:#b89a1f}
+code{background:var(--code);padding:2px 6px;border-radius:4px;font-family:'Consolas','Courier New',monospace;font-size:.85em;color:#7a1f9b}
+.callout{background:linear-gradient(90deg,#fff 0%,#FFF8E1 100%);padding:18px 22px;border-left:5px solid var(--yellow);border-radius:8px;margin:14px 0}
+.callout-title{font-weight:600;color:#8a6d00;margin-bottom:6px;text-transform:uppercase;font-size:.78rem;letter-spacing:.05em}
+.green-callout{background:linear-gradient(90deg,#fff 0%,#F5FFF5 100%);border-left-color:var(--green)}
+.green-callout .callout-title{color:#0c5d20}
+.red-callout{background:linear-gradient(90deg,#fff 0%,#FFF5F5 100%);border-left-color:var(--red)}
+.red-callout .callout-title{color:#7a1422}
+.exp{background:#fff;padding:18px 22px;border-radius:8px;border:1px solid var(--border);margin-bottom:12px;border-left:4px solid var(--green)}
+.exp h4{color:var(--purple-dark);margin-bottom:8px;font-size:1rem}
+.exp .meta{font-size:.78rem;color:var(--muted);margin-top:8px}
+.exp .meta b{color:var(--text)}
+.q{background:#fff;padding:14px 18px;border-radius:6px;border-left:4px solid var(--purple);margin-bottom:8px}
+.q .num{display:inline-block;background:var(--purple);color:#fff;width:24px;height:24px;border-radius:50%;text-align:center;line-height:24px;font-weight:700;font-size:.8rem;margin-right:10px}
+a{color:var(--purple-dark);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s}
+a:hover{border-bottom-color:var(--purple-dark)}
+.source-list{font-size:.88rem;background:#fff;padding:14px 20px;border-radius:8px;border:1px solid var(--border)}
+.source-list a{display:block;padding:5px 0;border-bottom:1px solid #f0f0f0;border-radius:0}
+.source-list a:last-child{border-bottom:none}
+.source-list .src-tag{display:inline-block;width:90px;font-size:.7rem;color:var(--muted);text-transform:uppercase;font-weight:600;letter-spacing:.04em}
+.footer{padding:28px 0;color:var(--muted);font-size:.82rem;text-align:center}
+@media (max-width:780px){.row-3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <h1>AI-Native Company Playbook — Bivision Insights</h1>
+    <div class="sub">12-Skill Operating System + Anthropic's 2026 founder roadmap → Bivision-specific extract</div>
+    <div class="meta">Compiled by Gurafa · 2026-05-25 · Sources: Linas Beliūnas Substack (FinTech, 379k subs) + Anthropic founder playbook excerpt</div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="container">
+    <div class="tldr">
+      <h2>TL;DR — 3 ცვლილება ბივიჟენში ამ კვირაში</h2>
+      <ol>
+        <li><strong>Skill INPUT-architecture retrofit</strong> — top 5 აქტიური T2 skill-ს (ads / analytics / seo / emails / competitors) დაუმატე "WHERE ARE YOU?" diagnostic header. 2 საათი. ერთჯერადი ხარჯი, ყოველი reuse-ის compound effect.</li>
+        <li><strong>Bivision Lite reposition</strong> — landing copy რეფრეიმი: <em>"Big-4 analytics for 5M GEL companies — what Anthropic won't build."</em> Anthropic-ის own playbook validates ICP-ს.</li>
+        <li><strong>"12 Skills" public article</strong> — bivision.ge-ზე ქართულ-ENGLISH-ლი 12-section piece "12 Skills a Georgian SMB CFO Needs from AI". Lead magnet + email capture → BiMedical/IVF sequence.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="banner-correction">
+  ⚠️ <b>Attribution correction:</b> Owner-ის brief-ში წყარო Tom Blomfield-ად იყო ნახსენები. რეალურად ავტორი = <strong>Linas Beliūnas</strong> (FinTech Substack, 379k+ subscribers). lnkd.in/dv7-ZRVc → linas.substack.com/p/onepersonunicorn. Blomfield-ის ვიდეო ამ post-ში არ არის. თუ ცალკე arsebobs — სხვა ბმულზე.
+</div>
+
+<div class="container">
+
+<section class="section">
+  <h2>1. ფაქტობრივი ფონი</h2>
+  <p><strong>Source 1 (Beliūnas):</strong> 12 Claude Skills, weeks of work, tested end-to-end. Thesis: <em>"AI outputs are only as good as the architecture and data behind them. Change the architecture, and the outputs change completely."</em> — output quality = INPUT ARCHITECTURE, არა prompt cleverness.</p>
+  <p><strong>Source 2 (Anthropic playbook via Beliūnas):</strong> [<span class="tag hyp">HYPOTHESIS</span> original Anthropic paper URL = HTTP 404, paywalled per-domain analysis] — Anthropic ჩვენთვის რეკომენდაცია 2026-ისთვის: build for SMB/consumer (Anthropic იქირავებს მხოლოდ enterprise lane-ისთვის), depth not wrapper, domain integration.</p>
+  <div class="callout red-callout">
+    <div class="callout-title">⚠️ Verification Gap</div>
+    Beliūnas-ის "self-improving loop" — <strong>promised, not demonstrated</strong>. ის თვითონ აღიარებს: <em>"that data doesn't exist yet."</em> ეს არ არის dismissal — ეს Bivision-ის leapfrog შესაძლებლობაა (Experiment C).
+  </div>
+</section>
+
+<section class="section">
+  <h2>2. Top 5 Ranked Insights (10/10 = ship this week)</h2>
+  <table>
+    <thead>
+      <tr><th style="width:50px">Score</th><th>Insight</th><th>Source</th><th>Bivision Action</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="score s10">10</span></td>
+        <td><strong>Output quality = INPUT ARCHITECTURE</strong>: diagnostics + decision trees + frameworks + anti-patterns inside skills (not prompt cleverness)</td>
+        <td>Beliūnas <span class="tag fact">FACT</span></td>
+        <td>67 skill გვაქვს; თითქმის არცერთს არ აქვს journey-state diagnostic front-ში. Top 5 T2 skill retrofit — 2 საათი.</td>
+      </tr>
+      <tr>
+        <td><span class="score s10">10</span></td>
+        <td><strong>Anthropic = enterprise only</strong>; consumer/SMB layer wide open</td>
+        <td>Anthropic via Beliūnas <span class="tag hyp">HYPOTHESIS</span></td>
+        <td>Bivision-ის 1M-70M ₾ ICP ზუსტად ამ white space-შია. Bivision Lite copy: "what Anthropic won't build."</td>
+      </tr>
+      <tr>
+        <td><span class="score s9">9</span></td>
+        <td><strong>Skills as SYSTEM, არა template collection</strong> — cross-references = compounding moat</td>
+        <td>Beliūnas <span class="tag fact">FACT</span></td>
+        <td>Bivision skills currently silo'd per agent. "see also: X" line per skill — ერთი კვირა.</td>
+      </tr>
+      <tr>
+        <td><span class="score s9">9</span></td>
+        <td><strong>Recursive self-improving loop</strong> requires outcome-capture + skill-version-stamp + diff-back. Beliūnas DOESN'T HAVE IT.</td>
+        <td>Beliūnas <span class="tag fact">FACT</span> (admits gap)</td>
+        <td>Weekly Mon 03:00 UTC skill-refinement cron, Viktor proposes 1 diff per agent. Bivision leapfrogs.</td>
+      </tr>
+      <tr>
+        <td><span class="score s9">9</span></td>
+        <td><strong>Q1 2026 VCs stopped funding thin wrappers</strong> — depth (workflow + domain + integration) = wedge</td>
+        <td>Anthropic playbook <span class="tag hyp">HYPOTHESIS</span></td>
+        <td>BiFinance + Bivision Lite deck-ში anti-wrapper frame: "Not a Claude wrapper — ERP+CFO workflow with Claude inside."</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:.85rem;color:var(--muted)">სრული 10-insight ranking + full source attribution: deep MD report <code>outputs/2026-05-25 AI-Native Company Playbook by Gurafa.md</code></p>
+</section>
+
+<section class="section">
+  <h2>3. Bivision-ის Defensible Moat-ი vs Anthropic Roadmap</h2>
+  <table>
+    <thead>
+      <tr><th>Moat</th><th>რატომ ვაჩერებთ</th><th>Confidence</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>ქართული ენა + market</strong></td><td>Anthropic ვერ aśheven Georgian-specific KPIs, DCOH calibrated to Georgian SMB cash patterns, bilingual layouts. ბაზარი ძალიან პატარაა მათთვის.</td><td><span class="tag fact">FACT</span></td></tr>
+      <tr><td><strong>ERP integration depth</strong></td><td>Global vendor არცერთი არ ინვესტირებს Fina/Oris/1C/Balance connector-ებში. Bivision-ის connector library = pure white space.</td><td><span class="tag fact">FACT</span></td></tr>
+      <tr><td><strong>Services layer Claude+Qlik/PowerBI და deliverable-ს შორის</strong></td><td>Owner-ის manual export-to-HTML workflow = moat (per Qlik MCP research).</td><td><span class="tag fact">FACT</span></td></tr>
+      <tr><td><strong>Trust + relationship 2M-50M ₾ ICP-ში</strong></td><td>Anthropic = self-service ან enterprise. Mid-market Tbilisi SMB-ს ადამიანი სჭირდება ვინც გვერდით დადგება.</td><td><span class="tag hyp">HYPOTHESIS</span></td></tr>
+      <tr><td><strong>Bivision Academy + content</strong></td><td>Education + tooling combo. Anthropic docs-ს ქმნის, არა ქართულ-ენოვან SMB curriculum-ს.</td><td><span class="tag fact">FACT</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="section">
+  <h2>4. 3 Week-1 Experiments</h2>
+
+  <div class="exp">
+    <h4>🅰️ Experiment A — Skill Diagnostic Retrofit (T2 active 5 skills)</h4>
+    <p><strong>რა:</strong> 5-line "WHERE ARE YOU?" diagnostic header → <code>ads</code> / <code>analytics</code> / <code>seo</code> / <code>emails</code> / <code>competitors</code> skill files.</p>
+    <p><strong>Measure:</strong> next 3 owner uses — output feel less generic? Owner subjective 1-10 rating.</p>
+    <div class="meta"><b>Time:</b> 2 საათი · <b>Owner:</b> Gurafa drafts → owner approves · <b>Cost:</b> ერთჯერადი, compound forever</div>
+  </div>
+
+  <div class="exp">
+    <h4>🅱️ Experiment B — Publish "12 Skills a Georgian SMB CFO Needs from AI"</h4>
+    <p><strong>რა:</strong> bivision.ge content + downloadable lead magnet. existing canonical-ებიდან + skills tier map-იდან public 12-section article.</p>
+    <p><strong>Positioning:</strong> mirror Beliūnas — <em>"what you would pay 10K ₾ to a consultant for, now in a Claude folder."</em></p>
+    <p><strong>Funnel:</strong> Lead magnet → email capture → BiMedical/IVF v3 sequence</p>
+    <div class="meta"><b>Time:</b> 4-6 საათი (Gurafa draft + Geo page + GelLa positioning sweep) · <b>Measure:</b> organic traffic + sign-ups 30 დღეში</div>
+  </div>
+
+  <div class="exp">
+    <h4>🅲 Experiment C — Weekly Skill Refinement Cron (Mon 03:00 UTC)</h4>
+    <p><strong>რა:</strong> Scheduled task <code>weekly-skill-refinement</code> კითხულობს ბოლო 7 დღის <code>SESSION_OPEN_ITEMS.md</code> + agent-ების <code>lessons.md</code> deltas → Viktor pass → 1 proposed diff per agent → <code>proposed_skill_updates/</code></p>
+    <p><strong>Owner workflow:</strong> Monday standup-ზე review + apply (15 წუთი/კვირა)</p>
+    <p><strong>Measure:</strong> 4 კვირაში skill measurably improved? A/B subjective rating: old skill vs new skill same prompt.</p>
+    <div class="meta"><b>Time:</b> 3 საათი scaffold · <b>Recurring:</b> 15 წუთი/კვირა owner cost · <b>Strategic:</b> ეს არის ის "self-improving loop" რომელიც Beliūnas-ს არ აქვს — Bivision leapfrogs</div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>5. Open Questions ვისიც გადაწყვეტას ვითხოვ</h2>
+  <div class="q"><span class="num">1</span>Experiment A — Gurafa draft-ი ახლავე ვაკეთო თუ შემდეგ session-ში?</div>
+  <div class="q"><span class="num">2</span>"12 Skills for Georgian SMB CFO" public article = Q2 OKR3 priority თუ ჯერ Power BI MCP service ship?</div>
+  <div class="q"><span class="num">3</span>Beliūnas-ის paid Substack subscribe ($X/თვე) per-domain Anthropic playbook unlock-ისთვის, თუ alternative URL-ით ვცადო Anthropic-ის original report-ი?</div>
+  <div class="q"><span class="num">4</span>Weekly skill-refinement cron — Viktor-owned თუ split-ი 4 agent-ზე?</div>
+</section>
+
+<section class="section">
+  <h2>6. წყაროები</h2>
+  <div class="source-list">
+    <a href="https://linas.substack.com/p/onepersonunicorn" target="_blank"><span class="src-tag">Beliūnas</span>One-Person Unicorn — 12 Claude Skills (Linas Beliūnas, FinTech Substack)</a>
+    <a href="https://linas.substack.com/p/anthropic-claude-study-ai-startup-playbook" target="_blank"><span class="src-tag">Anthropic</span>Anthropic Claude Study / AI Startup Playbook (Beliūnas summary)</a>
+    <a href="https://www.anthropic.com/research" target="_blank"><span class="src-tag">Primary</span>Anthropic Research index (original paper URL 404 — search needed)</a>
+    <a href="https://linas.substack.com" target="_blank"><span class="src-tag">Author</span>Linas Beliūnas — FinTech Substack (379k+ subs) — monitoring source candidate</a>
+  </div>
+</section>
+
+</div>
+
+<div class="footer container">
+  Bivision Intelligence · <span class="tag gur">by Gurafa</span> · 2026-05-25 · Deep methodology: 2 Substack fetches + attribution verification + Bivision-specific synthesis<br>
+  Companion deep MD: <code>2026-05-25 AI-Native Company Playbook by Gurafa.md</code> (full 10 insights + 3 experiments + 4 questions + open issues)
+</div>
+
+</body>
+</html>
