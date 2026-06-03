@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BI და AI ერთად — Bivision</title>
+<style>
+  :root{ --p:#6653C6; --p2:#534b9c; --g:#2FCA02; --gd:#1e8e3e; --ink:#23232e; --mut:#6b6b78; --line:#e7e7ee; --bg:#ffffff; --soft:#f5f3fb; --red:#c0392b; }
+  *{box-sizing:border-box}
+  body{font-family:'Segoe UI','Noto Sans Georgian',system-ui,sans-serif;color:var(--ink);background:#eef0f4;margin:0;line-height:1.62;font-size:15.5px}
+  .page{max-width:880px;margin:24px auto;background:var(--bg);border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+  .hero{background:linear-gradient(135deg,#6653C6,#46408a);color:#fff;padding:28px 40px}
+  .hero .logo{background:#fff;display:inline-block;padding:9px 14px;border-radius:9px;margin-bottom:14px}
+  .hero h1{margin:0 0 5px;font-size:23px;font-weight:700}
+  .hero p{margin:0;opacity:.92;font-size:14.5px}
+  .body{padding:8px 40px 34px}
+  h2{font-size:17.5px;color:var(--p);margin:28px 0 9px;display:flex;align-items:center;gap:9px}
+  h2 .n{background:var(--p);color:#fff;width:25px;height:25px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:13.5px;flex:none}
+  p.lead{color:var(--mut)}
+  /* action box */
+  .action{background:linear-gradient(135deg,#f3fbef,#eafaf0);border:1px solid #bfe9c4;border-radius:14px;padding:22px 24px;margin:18px 0 6px}
+  .action h2{margin-top:0;color:var(--gd)}
+  .steps{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0}
+  .stp{flex:1;min-width:170px;background:#fff;border:1px solid #d5ecd8;border-radius:10px;padding:13px 15px}
+  .stp .k{display:inline-block;background:var(--gd);color:#fff;width:22px;height:22px;border-radius:50%;text-align:center;line-height:22px;font-size:12px;font-weight:700;margin-bottom:6px}
+  .stp b{display:block;margin-bottom:2px}
+  .stp span{font-size:13px;color:var(--mut)}
+  .pricebar{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+  .pb{flex:1;min-width:200px;background:#fff;border:1px solid #d5ecd8;border-radius:10px;padding:14px 16px}
+  .pb .big{font-size:21px;font-weight:700;color:var(--gd);margin:3px 0}
+  .flow{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0;align-items:stretch}
+  .step{flex:1;min-width:150px;background:var(--soft);border:1px solid #e3def5;border-radius:10px;padding:13px 15px}
+  .step b{color:var(--p)}
+  .arrow{align-self:center;color:var(--p);font-weight:700;font-size:20px}
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--soft);color:var(--p);font-weight:600}
+  .yes{color:var(--gd);font-weight:600}.no{color:var(--red);font-weight:600}
+  .pc{flex:1;min-width:200px;border:1px solid var(--line);border-radius:12px;padding:15px 18px}
+  .pc .big{font-size:21px;font-weight:700;margin:4px 0}
+  .price{display:flex;gap:14px;flex-wrap:wrap;margin:12px 0}
+  .pc.p{border-color:#e6c0bb;background:#fdf4f3}.pc.p .big{color:var(--red)}
+  .pc.q{border-color:var(--g);background:#f3fbef}.pc.q .big{color:var(--gd)}
+  .note{background:#fff8ec;border-left:4px solid #e0a52e;border-radius:8px;padding:12px 16px;margin:12px 0;font-size:14px}
+  .real{background:#eef3ff;border-left:4px solid #3b6fd4;border-radius:8px;padding:12px 16px;margin:12px 0;font-size:14px}
+  code{background:#f0eef8;padding:1px 6px;border-radius:5px;font-size:12.5px;color:var(--p2)}
+  ul{margin:7px 0;padding-left:20px}li{margin:4px 0}
+  .cta{background:var(--p);color:#fff;border-radius:12px;padding:20px 24px;margin:24px 0 4px;text-align:center}
+  .cta b{font-size:17px}
+  .foot{padding:16px 40px;background:var(--soft);color:var(--mut);font-size:13px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .mono{font-size:13px;color:var(--p2)}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <span class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" width="148" height="27" viewBox="0 0 144 26" fill="none" role="img" aria-label="Bivision">
+        <path d="M56.8281 0.919434V25.0884H63.5676V0.919434H56.8281Z" fill="#6653C6"/>
+        <path d="M76.1284 10.0346C72.7799 9.2725 71.9509 8.79009 71.9509 7.6834V7.61651C71.9509 6.75101 72.7495 6.05983 74.371 6.05983C76.5094 6.05983 78.9275 6.89087 81.1409 8.44349L84.4894 3.71266C81.8605 1.6067 78.6498 0.5 74.5433 0.5C68.7402 0.5 65.1871 3.74509 65.1871 8.23472V8.30566C65.1871 13.2777 69.1598 14.7249 74.3021 15.9025C77.5837 16.6606 78.3782 17.214 78.3782 18.2153V18.2821C78.3782 19.3179 77.4053 19.9422 75.6115 19.9422C72.8164 19.9422 70.1571 18.9389 67.7734 17.0417L64.0459 21.4928C67.0153 24.1521 71.0935 25.5 75.3703 25.5C81.2402 25.5 85.14 22.563 85.14 17.6275V17.5565C85.14 13.0345 81.6902 11.2366 76.1284 10.0306V10.0346Z" fill="#6653C6"/>
+        <path d="M86.416 0.919434V25.0884H93.1515V0.919434H86.416Z" fill="#6653C6"/>
+        <path d="M136.379 0.919434V13.6931L126.439 0.919434H120.19V25.0884H126.818V11.8283L137.142 25.0884H143.012V0.919434H136.379Z" fill="#6653C6"/>
+        <path d="M49.0915 0.919434L43.6067 16.2146L38.1117 0.919434H30.6182L40.4244 25.2627H46.6409L56.4472 0.919434H49.0915Z" fill="#6653C6"/>
+        <path d="M16.8092 12.4526C18.9517 11.5202 20.5408 9.86017 20.5408 7.06505V6.99411C20.5408 5.33811 19.957 4.06116 18.9841 3.09634C17.5693 1.6775 15.4309 0.919434 12.3926 0.919434H0V25.0884H12.4615C18.2281 25.0884 21.6151 22.5669 21.6151 18.4239V18.357C21.6151 15.0754 19.7503 13.4194 16.8113 12.4526H16.8092ZM6.52059 6.30293H10.8724C12.873 6.30293 13.9087 7.06505 13.9087 8.37444V8.44538C13.9087 9.86017 12.7736 10.5513 10.7386 10.5513H6.52059V6.30293ZM14.9161 17.4895C14.9161 18.9083 13.7384 19.7029 11.7014 19.7029H6.52262V15.2477H11.6386C13.8803 15.2477 14.9181 16.1092 14.9181 17.4226V17.4895H14.9161Z" fill="#6653C6"/>
+        <path d="M29.8513 4.75031C29.8513 6.86844 28.1345 8.58321 26.0184 8.58321C23.9023 8.58321 22.1875 6.86844 22.1875 4.75031C22.1875 2.63218 23.9023 0.919434 26.0184 0.919434C28.1345 0.919434 29.8513 2.63421 29.8513 4.75031Z" fill="#2FCA02"/>
+        <path d="M110.086 17.1556C109.166 17.9015 107.996 18.3474 106.719 18.3474C103.764 18.3474 101.368 15.9516 101.368 12.9963C101.368 10.2336 103.466 7.9574 106.162 7.67566V0.926025C99.7486 1.21993 94.6367 6.51018 94.6367 12.9963C94.6367 19.4825 100.047 25.0828 106.719 25.0828C109.857 25.0828 112.715 23.8869 114.861 21.9269L110.086 17.1556Z" fill="#6653C6"/>
+        <path d="M107.275 0.925537V7.67517C109.971 7.95692 112.069 10.2331 112.069 12.9958C112.069 14.2728 111.623 15.4464 110.873 16.3666L115.649 21.138C117.613 18.9915 118.804 16.1335 118.804 12.9958C118.804 6.5097 113.689 1.21741 107.275 0.925537Z" fill="#2FCA02"/>
+      </svg>
+    </span>
+    <h1>გადააქციე შენი Qlik dashboard AI-ანალიტიკოსად</h1>
+    <p>ელაპარაკე შენს მონაცემებს ბუნებრივ ენაზე. დამატებითი ლიცენზიის გარეშე, კონტროლირებადი ხარჯით.</p>
+  </div>
+
+  <div class="body">
+
+    <!-- ACTION BOX -->
+    <div class="action">
+      <h2>შენთვის: 3 ნაბიჯი</h2>
+      <div class="steps">
+        <div class="stp"><span class="k">1</span><b>30-წთ დემო</b><span>შენს რეალურ მონაცემზე ვაჩვენებთ, როგორ მუშაობს ცოცხლად.</span></div>
+        <div class="stp"><span class="k">2</span><b>უფასო საპილოტე</b><span>1 use-case-ს ვუერთებთ AI-ფენას (მაგ. payer mix ან DCOH).</span></div>
+        <div class="stp"><span class="k">3</span><b>გაზომილი ხარჯი</b><span>ფაქტობრივ თვიურ ციფრს ხედავ და წყვეტ, აფართოვებ თუ არა.</span></div>
+      </div>
+      <div class="pricebar">
+        <div class="pb"><div>ტიპური ხარჯი (პატარა გუნდი)</div><div class="big">≈ $100–300 / თვე</div><div style="font-size:13px;color:#6b6b78">ჭერით, რომ არასდროს გადააჭარბოს ბიუჯეტს</div></div>
+        <div class="pb"><div>დამატებითი ლიცენზია</div><div class="big">0 ₾</div><div style="font-size:13px;color:#6b6b78">MCP უფასოა, Qlik ლიცენზია უკვე გაქვს</div></div>
+      </div>
+    </div>
+
+    <!-- HOW REAL -->
+    <h2><span class="n">✓</span> რამდენად რეალურია ეს დღეს</h2>
+    <div class="real">
+      ეს არ არის ექსპერიმენტი. <b>Qlik MCP</b> ოფიციალურად ხელმისაწვდომია (Qlik Connect 2026, agentic analytics). <b>MCP</b> ღია, გამოქვეყნებული სტანდარტია, რომელსაც მთელი ინდუსტრია იყენებს. <b>Claude API</b> production-სერვისია. ერთ რთულ CFO-ანალიზს, რომელსაც ხელით 1+ საათი სჭირდება, ცოცხალ დემოში წამებში ვაკეთებთ.
+    </div>
+
+    <h2><span class="n">1</span> რატომ ჯერ BI, მერე AI</h2>
+    <p>AI იმდენად ზუსტია, რამდენადაც ის მონაცემი, რომელსაც აწვდი. არეული მონაცემი იძლევა არასანდო პასუხს. BI ამზადებს სანდო საფუძველს, AI კი მასზე საუბრის ენაა.</p>
+    <div class="flow">
+      <div class="step"><b>1. წყაროები</b><br>ERP, ბანკი, Excel, CRM</div>
+      <div class="arrow">→</div>
+      <div class="step"><b>2. Qlik (BI)</b><br>გაწმენდა, მოდელირება, ერთი სანდო წყარო</div>
+      <div class="arrow">→</div>
+      <div class="step"><b>3. Claude (AI)</b><br>ბუნებრივ ენაზე კითხვა, ანალიზი</div>
+    </div>
+
+    <h2><span class="n">2</span> როდის BI, როდის AI</h2>
+    <table>
+      <tr><th>BI, როცა გჭირდება:</th><th>AI, როცა გჭირდება:</th></tr>
+      <tr><td>ზუსტი, განმეორებადი რეპორტი და KPI</td><td>სწრაფი პასუხი ბუნებრივ ენაზე</td></tr>
+      <tr><td>ფინანსური სიზუსტე, აუდიტი</td><td>დიდი მონაცემის შეჯამება, ინსაიტი</td></tr>
+      <tr><td>ვიზუალური dashboard, ტრენდი</td><td>განმეორებადი ანალიზის ავტომატიზაცია</td></tr>
+    </table>
+
+    <h2><span class="n">3</span> რა შეუძლია MCP-ს და რა არა</h2>
+    <table>
+      <tr><th>Use case</th><th>MCP</th></tr>
+      <tr><td>KPI გამოთვლა (DCOH, PMQS, Salary/Revenue)</td><td class="yes">✅ კარგად</td></tr>
+      <tr><td>გაფილტრული ჯამი („Q1, payer-ის ჭრილში")</td><td class="yes">✅ კარგად</td></tr>
+      <tr><td>აგრეგირებული time series (17 თვე × 10 metric)</td><td class="yes">✅ ზუსტი ჯდება</td></tr>
+      <tr><td>ბუნებრივ-ენოვანი Q&amp;A („payer mix-ის ტრენდი")</td><td class="yes">✅ აქ არის ღირებულება</td></tr>
+      <tr><td>Raw transaction მონაცემი (1M+ row)</td><td class="no">❌ არ ჯდება</td></tr>
+      <tr><td>მთლიანი dataset-ის export</td><td class="no">❌ Design limit</td></tr>
+    </table>
+    <p class="lead">MCP ძლიერია კონცენტრირებულ, გათვლილ პასუხებში. ის გათვლებს Qlik-ის მხარეს აკეთებს და მხოლოდ მზა შედეგს აბრუნებს, არა მილიონ row-ს (technical limit: <code>max_rows ≤ 5000</code> per call). ეს design-ია, არა ხარვეზი.</p>
+
+    <h2><span class="n">4</span> რას აშენებ ერთხელ და გამოიყენებ სამუდამოდ</h2>
+    <p>master measure-ები (DCOH, PMQS, Salary/Revenue, Drug-cost) დღეს ხელით იქმნება და არ მასშტაბირდება. MCP-ით Claude მათ პროგრამულად ქმნის governed Qlik master item-ებად. ერთხელ შექმნილი, ყველა მომავალ dashboard-ში მუშაობს.</p>
+    <table>
+      <tr><th>სამუშაო</th><th>დღეს (ხელით)</th><th>Qlik MCP-ით</th></tr>
+      <tr><td>Master Measures / Dimensions</td><td>ხელით, არ მასშტაბირდება</td><td>Claude ქმნის ბრძანებით</td></tr>
+      <tr><td>Sheets და Charts</td><td>ერთჯერადი</td><td>ავტომატურად, განმეორებადი</td></tr>
+      <tr><td>CFO-ანალიზი</td><td>1+ საათი</td><td>≈ 15 წამი</td></tr>
+    </table>
+
+    <h2><span class="n">5</span> ხარჯი და ბიუჯეტის კონტროლი</h2>
+    <p>API უფასო არ არის და ხარჯი მოხმარებაზეა დამოკიდებული. მაგრამ <b>ის სრულად კონტროლირებადია</b>. ორი გზაა:</p>
+    <table>
+      <tr><th>გზა</th><th>ვისთვის</th><th>ხარჯი</th></tr>
+      <tr><td>გამოწერა (Claude Max)</td><td>პროგნოზირებადი, ფიქსირებული</td><td>≈ $100–200 / თვე per user</td></tr>
+      <tr><td>API (pay-as-you-go) ჭერით</td><td>მოქნილი, მოხმარებაზე</td><td>≈ $100–300 / თვე პატარა გუნდისთვის</td></tr>
+    </table>
+    <div class="note">
+      <b>ბიუჯეტის ჭერი (მნიშვნელოვანი):</b> Claude API-საც აქვს ფიქსირებული თვიური spend-limit, ისევე როგორც GPT-ს. Anthropic Console-ში აყენებ თვიურ ჭერს და alert-ებს, ხარჯი ამ ზღვარს ვერ გადააჭარბებს. ანუ „გაუკონტროლებელი ხარჯის" რისკი არ არსებობს, შენ ადგენ ლიმიტს წინასწარ.
+    </div>
+    <div class="price">
+      <div class="pc p"><div>Power BI Copilot</div><div class="big">$5,259 / თვე</div><div class="lead">ფიქსირებული Fabric F64 ლიცენზია, ≈ 15,000 ₾+/თვე</div></div>
+      <div class="pc q"><div>Qlik + Claude (MCP)</div><div class="big">$100–300 / თვე</div><div class="lead">ჭერით, მოხმარებაზე. იხდი იმდენს, რამდენსაც იყენებ</div></div>
+    </div>
+
+  </div>
+
+  <div class="cta">
+    <b>შემდეგი ნაბიჯი: 30-წუთიანი დემო შენს მონაცემზე</b><br>
+    <span style="opacity:.9">ცოცხლად ვაჩვენებთ შედეგს და ვიტყვით ზუსტ ხარჯს შენს შემთხვევაში.</span>
+  </div>
+
+  <div class="foot">
+    <span>Bivision · BI &amp; Analytics &amp; AI · bivision.ge</span>
+    <span class="mono">სანდო მონაცემი. ჭკვიანი ანალიტიკა.</span>
+  </div>
+
+</div>
+</body>
+</html>
