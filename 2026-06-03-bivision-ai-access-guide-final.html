@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bivision AI Access | Qlik + GPT + Claude</title>
+  <meta name="description" content="როგორ გამოიყენოთ Qlik-ის მონაცემები ChatGPT-სა და Claude-ში, უსაფრთხოდ და კონტროლირებადი ბიუჯეტით." />
+  <style>
+    :root{
+      --ink:#17223b;
+      --muted:#64708a;
+      --line:#e4e8f1;
+      --bg:#f7f9fd;
+      --card:#ffffff;
+      --brand:#45359c;
+      --brand2:#6557d8;
+      --green:#2aae78;
+      --green-soft:#e8f8f1;
+      --purple-soft:#f0efff;
+      --amber:#f8b84e;
+      --amber-soft:#fff7e8;
+      --red:#d65757;
+      --red-soft:#fff0f0;
+      --shadow:0 16px 40px rgba(41,48,88,.10);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, "Segoe UI", Arial, sans-serif;
+      color:var(--ink);
+      background:linear-gradient(180deg,#f7f8fe 0%,#ffffff 42%,#f7fafb 100%);
+      line-height:1.58;
+    }
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1180px;margin:auto;padding:0 24px}
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      background:rgba(255,255,255,.90);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(228,232,241,.9);
+    }
+    .topbar .inner{
+      min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:18px
+    }
+    .logo{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.08em}
+    .brand-logo{display:block;width:190px;max-width:42vw;height:auto}
+    .logo small{font-size:11px;letter-spacing:.03em;color:var(--muted);display:block;font-weight:650;white-space:nowrap}
+    .top-actions{display:flex;gap:10px;align-items:center}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:12px 16px;border-radius:12px;border:1px solid transparent;
+      font-weight:750;font-size:14px;cursor:pointer;text-decoration:none!important;
+      transition:.2s ease;
+    }
+    .btn-primary{background:var(--brand);color:#fff;box-shadow:0 9px 20px rgba(69,53,156,.20)}
+    .btn-primary:hover{transform:translateY(-1px);background:#382983}
+    .btn-light{border-color:var(--line);background:#fff;color:var(--ink)}
+    .hero{padding:68px 0 34px}
+    .hero-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:30px;align-items:stretch}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border-radius:999px;background:var(--purple-soft);color:var(--brand);font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+    h1{font-size:clamp(36px,5vw,66px);line-height:1.06;letter-spacing:-.045em;margin:18px 0 18px}
+    h2{font-size:30px;line-height:1.2;letter-spacing:-.025em;margin:0 0 14px}
+    h3{font-size:18px;margin:0 0 8px}
+    .hero p{font-size:19px;max-width:760px;color:#56617a;margin:0}
+    .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}
+    .hero-note{font-size:13px;color:var(--muted);margin-top:14px}
+    .visual-card{
+      background:linear-gradient(145deg,#211a55,#493ba9 62%,#315b71);
+      border-radius:26px;padding:22px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);
+      min-height:360px;
+    }
+    .visual-card:before{content:"";position:absolute;width:270px;height:270px;border-radius:50%;background:rgba(255,255,255,.08);right:-95px;top:-85px}
+    .visual-card:after{content:"";position:absolute;width:190px;height:190px;border-radius:50%;background:rgba(42,174,120,.28);left:-80px;bottom:-88px}
+    .vc-head{position:relative;z-index:2;font-size:12px;opacity:.85;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .pipeline{position:relative;z-index:2;margin-top:23px;display:grid;gap:10px}
+    .pipe{
+      display:flex;align-items:center;gap:12px;padding:14px;border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.11);border-radius:15px;backdrop-filter:blur(7px)
+    }
+    .pipe b{display:block;font-size:14px}.pipe span{display:block;font-size:12px;opacity:.8}
+    .icon{height:35px;width:35px;display:grid;place-items:center;border-radius:11px;background:rgba(255,255,255,.15);font-size:17px}
+    .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:5px 0 38px}
+    .metric{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 16px 14px;box-shadow:0 8px 24px rgba(35,47,84,.05)}
+    .metric strong{display:block;font-size:23px;line-height:1.15;color:var(--brand)}
+    .metric span{font-size:12px;color:var(--muted)}
+    .tabs-shell{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:60px}
+    .tab-nav{display:flex;gap:5px;padding:9px;background:#f4f6fb;border-bottom:1px solid var(--line);overflow:auto}
+    .tab-btn{
+      border:0;background:transparent;padding:12px 14px;border-radius:10px;white-space:nowrap;
+      color:#65718b;font-weight:760;cursor:pointer;font-size:13px
+    }
+    .tab-btn.active{background:#fff;color:var(--brand);box-shadow:0 3px 10px rgba(36,42,78,.08)}
+    .tab-panel{display:none;padding:28px}
+    .tab-panel.active{display:block}
+    .intro{font-size:17px;color:#56617a;max-width:900px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+    .card{border:1px solid var(--line);border-radius:16px;padding:17px;background:#fff}
+    .card.soft{background:#fbfcff}
+    .card p{margin:4px 0 0;color:var(--muted);font-size:14px}
+    .tag{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:800;margin-bottom:9px}
+    .tag.green{background:var(--green-soft);color:#197d55}
+    .tag.purple{background:var(--purple-soft);color:var(--brand)}
+    .tag.amber{background:var(--amber-soft);color:#a0690a}
+    .tag.red{background:var(--red-soft);color:#a63b3b}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+    .step{padding:17px;border-radius:16px;background:#fbfcff;border:1px solid var(--line)}
+    .num{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#fff;background:var(--brand);font-size:12px;font-weight:800;margin-bottom:10px}
+    .callout{border-radius:16px;padding:16px 18px;margin:17px 0;background:var(--green-soft);border:1px solid #cdeedd}
+    .callout.amber{background:var(--amber-soft);border-color:#f5dda9}
+    .callout.red{background:var(--red-soft);border-color:#f1cccc}
+    .callout p{margin:0;color:#43506a;font-size:14px}
+    .questions{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;margin-top:14px}
+
+    .forecast-card{
+      margin-top:16px;
+      border:1px solid #d9d4ff;
+      background:linear-gradient(135deg,#f7f5ff 0%,#ffffff 52%,#eefaf5 100%);
+      border-radius:18px;
+      padding:20px;
+      position:relative;
+      overflow:hidden;
+    }
+    .forecast-card:after{
+      content:"";
+      position:absolute;
+      width:180px;height:180px;border-radius:50%;
+      right:-70px;top:-80px;
+      background:rgba(101,87,216,.08);
+    }
+    .forecast-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;position:relative;z-index:1}
+    .forecast-points{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:12px}
+    .forecast-point{padding:11px 12px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:13px}
+    .forecast-note{padding:14px;border-radius:14px;background:#fff;border:1px solid #dce8e3}
+    .forecast-note h4{margin:0 0 8px;font-size:14px}
+    .forecast-note ul{margin:0;padding-left:18px;font-size:13px;color:var(--muted)}
+    .forecast-note li{margin:5px 0}
+    .question{padding:14px 15px;border-radius:14px;background:#fbfcff;border:1px solid var(--line);font-size:14px}
+    .question:before{content:"“";font-size:21px;color:var(--brand);font-weight:900;margin-right:5px}
+    table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px}
+    th,td{padding:13px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+    th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);background:#fafbfe}
+    .check{color:var(--green);font-weight:900}.dash{color:#a4acc0}
+    .budget-box{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .estimator{border:1px solid var(--line);border-radius:16px;padding:17px;background:#fbfcff}
+    label{display:block;font-size:13px;font-weight:780;margin-top:10px}
+    input,select{width:100%;margin-top:6px;border:1px solid #d9deea;border-radius:10px;padding:10px;background:#fff;color:var(--ink)}
+    .estimate{margin-top:15px;padding:15px;border-radius:13px;background:var(--purple-soft);font-size:14px}
+    .estimate strong{font-size:22px;color:var(--brand)}
+    details{border:1px solid var(--line);border-radius:13px;padding:13px 15px;background:#fff;margin-top:9px}
+    summary{cursor:pointer;font-weight:760}
+    details p{font-size:14px;color:var(--muted)}
+    .footer{padding:25px 0 40px;color:var(--muted);font-size:12px}
+    .source-list{padding-left:18px}
+    .disclaimer{margin-top:15px;padding-top:13px;border-top:1px solid var(--line);font-size:12px;color:#78839a}
+    @media(max-width:900px){
+      .hero-grid,.budget-box{grid-template-columns:1fr}
+      .steps,.grid-3{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:640px){
+      .wrap{padding:0 15px}.hero{padding-top:42px}
+      .brand-logo{width:145px;max-width:46vw}
+      .logo small{display:none}
+      .top-actions .btn-light{display:none}
+      .metrics,.grid-2,.grid-3,.steps,.questions,.forecast-grid,.forecast-points{grid-template-columns:1fr}
+      .tab-panel{padding:18px}
+      h1{font-size:42px}
+    }
+  </style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap inner">
+    <div class="logo">
+      <img src="data:image/png;base64,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" alt="Bivision logo" class="brand-logo" />
+      <small>BUSINESS INTELLIGENCE · QLIK PARTNER</small>
+    </div>
+    <div class="top-actions">
+      <a class="btn btn-light" href="#guide">გაიგე როგორ მუშაობს</a>
+      <a class="btn btn-primary" href="#start">მოითხოვე AI დემო</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Bivision AI Access · Qlik MCP</span>
+        <h1>დაუსვი კითხვები შენს ბიზნეს მონაცემებს</h1>
+        <p>შენი Qlik აპლიკაცია უკვე აერთიანებს სანდო მონაცემებს. ახლა შეგიძლია ChatGPT-ს ან Claude-ს ბუნებრივ ენაზე ჰკითხო გაყიდვების, ფინანსების, მარაგებისა და დებიტორების შესახებ.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#start">დაგეგმე 30-წუთიანი დემო</a>
+          <a class="btn btn-light" href="#guide">ნახე გამოყენების მაგალითები</a>
+        </div>
+        <div class="hero-note">პირველი ეტაპი: მცირე, კონტროლირებადი პილოტი შენსავე Qlik აპლიკაციაზე.</div>
+      </div>
+      <div class="visual-card" aria-label="Qlik MCP architecture">
+        <div class="vc-head">როგორ გადის მოთხოვნა</div>
+        <div class="pipeline">
+          <div class="pipe"><div class="icon">👤</div><div><b>მომხმარებელი</b><span>სვამს ბიზნეს კითხვას ჩვეულებრივ ენაზე</span></div></div>
+          <div class="pipe"><div class="icon">✦</div><div><b>ChatGPT ან Claude</b><span>არჩევს საჭირო ინსტრუმენტს და აანალიზებს პასუხს</span></div></div>
+          <div class="pipe"><div class="icon">⇄</div><div><b>Qlik MCP Server</b><span>უსაფრთხოდ უკავშირდება Qlik Cloud-ს</span></div></div>
+          <div class="pipe"><div class="icon">▦</div><div><b>შენი Qlik აპლიკაცია</b><span>აბრუნებს მხოლოდ უფლებებით დაშვებულ მონაცემებს</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="metrics">
+      <div class="metric"><strong>1</strong><span>არსებული Qlik აპლიკაცია, ახალი AI ფენით</span></div>
+      <div class="metric"><strong>2</strong><span>არჩევანი: ChatGPT ან Claude</span></div>
+      <div class="metric"><strong>30 დღე</strong><span>რეკომენდებული კონტროლირებადი პილოტი</span></div>
+    </section>
+
+    <section id="guide" class="tabs-shell">
+      <nav class="tab-nav" aria-label="Guide tabs">
+        <button class="tab-btn active" data-tab="overview">მთავარი იდეა</button>
+        <button class="tab-btn" data-tab="cases">გამოყენების ქეისები</button>
+        <button class="tab-btn" data-tab="clients">GPT თუ Claude?</button>
+        <button class="tab-btn" data-tab="process">როგორ მუშაობს</button>
+        <button class="tab-btn" data-tab="security">უსაფრთხოება</button>
+        <button class="tab-btn" data-tab="budget">ბიუჯეტი</button>
+        <button class="tab-btn" data-tab="start">ჩართვის პროცესი</button>
+        <button class="tab-btn" data-tab="faq">FAQ</button>
+      </nav>
+
+      <div id="overview" class="tab-panel active">
+        <h2>BI გაძლევს სანდო სურათს. AI გეხმარება უფრო სწრაფად ჩაუღრმავდე.</h2>
+        <p class="intro">AI არ ანაცვლებს Qlik dashboard-ს. ის ამარტივებს მასთან მუშაობას: მენეჯერი აღარ ეძებს პასუხს მრავალ ტაბში, არამედ სვამს კითხვას და იღებს კონკრეტულ ანალიზს, შემდეგ კი საჭიროების შემთხვევაში ამოწმებს დეტალებს Qlik-ში.</p>
+        <div class="grid-3">
+          <div class="card soft"><span class="tag purple">BI საფუძველი</span><h3>ერთი სანდო მონაცემთა წყარო</h3><p>ERP, Excel, CRM, ბანკი და სხვა წყაროები გაწმენდილია, გაერთიანებულია და მოდელირებულია Qlik-ში.</p></div>
+          <div class="card soft"><span class="tag green">AI ფენა</span><h3>საუბარი მონაცემებთან</h3><p>სვამ კითხვას ბუნებრივ ენაზე და იღებ შეჯამებას, შედარებას ან შემდგომი ანალიზის მიმართულებას.</p></div>
+          <div class="card soft"><span class="tag amber">მენეჯერული შედეგი</span><h3>უფრო სწრაფი გადაწყვეტილება</h3><p>AI გეხმარება დაინახო გადახრები, რისკები და გასარკვევი საკითხები იქ, სადაც ყურადღებაა საჭირო.</p></div>
+        </div>
+        <div class="callout">
+          <p><b>სწორი მოლოდინი:</b> საუკეთესო შედეგი მიიღება მაშინ, როცა Qlik აპლიკაციაში KPI-ები, master measures და ბიზნეს ტერმინები სწორად არის აღწერილი. AI-ის ხარისხი დამოკიდებულია მონაცემთა ხარისხსა და აპლიკაციის მზადყოფნაზე.</p>
+        </div>
+      </div>
+
+      <div id="cases" class="tab-panel">
+        <h2>რა შეგიძლიათ ჰკითხოთ თქვენს მონაცემებს</h2>
+        <p class="intro">ქვემოთ მოცემული კითხვები მხოლოდ საწყისი მაგალითებია. პილოტის დროს Bivision ქმნის თქვენს აპლიკაციაზე მორგებულ prompt library-ს.</p>
+        <div class="grid-2">
+          <div class="card">
+            <span class="tag purple">BiFinance</span><h3>ფინანსური ანალიზი</h3>
+            <div class="questions">
+              <div class="question">რა შეიცვალა მოგებაში წინა თვესთან შედარებით?</div>
+              <div class="question">რომელი ხარჯებია ყველაზე მეტად გადახრილი ბიუჯეტიდან?</div>
+              <div class="question">შეაჯამე cash flow-ის მთავარი რისკები მენეჯმენტისთვის.</div>
+              <div class="question">რომელი კომპანიები ან ფილიალები აუარესებს EBITDA-ს?</div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="tag green">BiRetail / Sales</span><h3>გაყიდვები და მარჟა</h3>
+            <div class="questions">
+              <div class="question">სად გაიზარდა გაყიდვები, მაგრამ შემცირდა მარჟა?</div>
+              <div class="question">რომელი 10 პროდუქტი ჩამორჩება გეგმას ყველაზე მეტად?</div>
+              <div class="question">შეადარე ფილიალები გაყიდვებით, რაოდენობით და მოგებით.</div>
+              <div class="question">რომელი მომხმარებლების აქტივობა შემცირდა ბოლო 90 დღეში?</div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="tag amber">BiStock</span><h3>მარაგები და სამუშაო კაპიტალი</h3>
+            <div class="questions">
+              <div class="question">რომელი SKU-ებია Overstock-ის ყველაზე მაღალი რისკით?</div>
+              <div class="question">სად გვაქვს Stock-out და დაკარგული გაყიდვის რისკი?</div>
+              <div class="question">რომელი ნაშთებია გაყინული ყველაზე დიდ თანხაში?</div>
+              <div class="question">რომელი პროდუქტების ბრუნვადობა გაუარესდა?</div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="tag red">BiDebitors</span><h3>დებიტორები და ამოღება</h3>
+            <div class="questions">
+              <div class="question">რომელი კლიენტები ქმნის overdue დავალიანების უდიდეს ნაწილს?</div>
+              <div class="question">რომელი მომხმარებლების DSO გაუარესდა?</div>
+              <div class="question">დამილაგე ამოსაღები თანხები რისკის მიხედვით.</div>
+              <div class="question">მომიმზადე კვირის collection priority list.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="forecast-card">
+          <span class="tag purple">Forecast &amp; Scenario Planning</span>
+          <div class="forecast-grid">
+            <div>
+              <h3>დაინახეთ არა მხოლოდ რა მოხდა, არამედ რა შეიძლება მოხდეს შემდეგ</h3>
+              <p style="margin:4px 0 0;color:var(--muted);font-size:14px">
+                ისტორიული მონაცემების, სეზონურობისა და მიმდინარე დინამიკის საფუძველზე შეაფასეთ მომავალი პერიოდის შესაძლო სურათი.
+              </p>
+              <div class="questions">
+                <div class="question">როგორი შეიძლება იყოს გაყიდვების დინამიკა მომდევნო 3 თვის განმავლობაში?</div>
+                <div class="question">რომელი პროდუქტების ან ფილიალების შემთხვევაში ჩანს შემცირების მაღალი რისკი?</div>
+                <div class="question">არსებული ტენდენციის გაგრძელების შემთხვევაში, როგორ შეიცვლება cash flow?</div>
+                <div class="question">როგორ იცვლება შედეგი ოპტიმისტური, საბაზისო და პესიმისტური სცენარებით?</div>
+                <div class="question">რამდენად მაღალია პროგნოზის confidence level?</div>
+                <div class="question">რა დამატებითი მონაცემებია საჭირო პროგნოზის გასაუმჯობესებლად?</div>
+              </div>
+            </div>
+            <div class="forecast-note">
+              <h4>სწორი მოლოდინი</h4>
+              <ul>
+                <li>Forecast არის მიმართულების მაჩვენებელი და არა გარანტირებული შედეგი.</li>
+                <li>პასუხში უნდა ჩანდეს confidence level და ძირითადი დაშვებები.</li>
+                <li>ხარისხი დამოკიდებულია ისტორიული მონაცემების მოცულობასა და სისუფთავეზე.</li>
+                <li>გასათვალისწინებელია სეზონურობა, ბაზრის ცვლილებები და მონაცემების განახლების სიხშირე.</li>
+                <li>სერიოზული პროგნოზისთვის საჭიროა შესაბამისი forecasting model და ცალკე შეფასება.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout amber"><p><b>რას არ უნდა ელოდოთ:</b> MCP არ არის მილიონობით raw transaction row-ის ერთჯერადი export-ის ინსტრუმენტი. მისი ღირებულება არის კონცენტრირებული, გამოთვლილი პასუხები და განმეორებადი მენეჯერული ანალიზი.</p></div>
+      </div>
+
+      <div id="clients" class="tab-panel">
+        <h2>ChatGPT თუ Claude?</h2>
+        <p class="intro">ორივე შეიძლება დაუკავშირდეს Qlik MCP Server-ს. არჩევანი დამოკიდებულია თქვენს სამუშაო სტილზე, გუნდის წესებზე და სასურველ ინტერფეისზე. Bivision დაგეხმარებათ შესაფერისი ვარიანტის არჩევასა და გამართვაში.</p>
+        <table>
+          <thead><tr><th>საკითხი</th><th>ChatGPT</th><th>Claude</th></tr></thead>
+          <tbody>
+            <tr><td><b>ვისთვის არის მოსახერხებელი</b></td><td>მენეჯმენტი, CFO, გაყიდვების ხელმძღვანელი, ყოველდღიური ბიზნეს კითხვები</td><td>ანალიტიკოსი, უფრო ღრმა კვლევა, Claude Desktop / Claude Code workflow</td></tr>
+            <tr><td><b>Qlik MCP კავშირი</b></td><td><span class="check">✓</span> მხარდაჭერილია Qlik-ის ოფიციალურ ინსტრუქციაში</td><td><span class="check">✓</span> მხარდაჭერილია Qlik-ის ოფიციალურ ინსტრუქციაში</td></tr>
+            <tr><td><b>კორპორაციული გამოყენება</b></td><td>რეკომენდებულია ChatGPT Business ან შესაბამისი enterprise workspace</td><td>რეკომენდებულია Claude Team / Enterprise ან ორგანიზაციის მიერ დამტკიცებული გარემო</td></tr>
+            <tr><td><b>API-ზე დაფუძნებული საკუთარი ასისტენტი</b></td><td><span class="check">✓</span> OpenAI API + MCP</td><td><span class="check">✓</span> Anthropic API + MCP</td></tr>
+          </tbody>
+        </table>
+        <div class="callout"><p><b>რეკომენდაცია:</b> პირველ პილოტში აირჩიეთ ერთი ძირითადი AI კლიენტი. პარალელურად ორი ინტერფეისის ჩართვა ზრდის onboarding-სა და მხარდაჭერის დატვირთვას, მაგრამ შეიძლება გამართლდეს სხვადასხვა როლის მქონე მომხმარებლებისთვის.</p></div>
+      </div>
+
+      <div id="process" class="tab-panel">
+        <h2>როგორ მუშაობს Qlik MCP</h2>
+        <p class="intro">MCP, ანუ Model Context Protocol, არის სტანდარტიზებული კავშირი AI ასისტენტსა და Qlik Cloud-ს შორის. MCP თავად არ არის AI მოდელი და არ ქმნის პასუხებს. ის უსაფრთხოდ გადასცემს AI კლიენტს უფლებებით დაშვებულ მონაცემებსა და Qlik-ის ინსტრუმენტებს.</p>
+        <div class="steps">
+          <div class="step"><div class="num">1</div><h3>კითხვა</h3><p>მომხმარებელი სვამს ბიზნეს კითხვას ChatGPT-ში ან Claude-ში.</p></div>
+          <div class="step"><div class="num">2</div><h3>Tool call</h3><p>AI ირჩევს Qlik MCP-ის საჭირო ინსტრუმენტს.</p></div>
+          <div class="step"><div class="num">3</div><h3>Qlik პასუხი</h3><p>Qlik აბრუნებს მხოლოდ დაშვებულ, შესაბამის მონაცემებს.</p></div>
+          <div class="step"><div class="num">4</div><h3>ანალიზი</h3><p>AI აჯამებს შედეგს და გაძლევს შემდგომ მიმართულებას.</p></div>
+        </div>
+        <div class="callout amber"><p><b>მნიშვნელოვანი განსხვავება:</b> Qlik ასრულებს მონაცემთა გამოთვლასა და governed access-ს. AI ასისტენტი ქმნის ინტერპრეტაციას. კრიტიკული ფინანსური გადაწყვეტილების წინ შედეგი კვლავ უნდა გადაამოწმოთ Qlik dashboard-ში.</p></div>
+      </div>
+
+      <div id="security" class="tab-panel">
+        <h2>წვდომა კონტროლდება Qlik-ის არსებული წესებით</h2>
+        <p class="intro">Qlik MCP არ არის უსაფრთხოების გვერდის ავლით მონაცემების მიღების გზა. კავშირი იყენებს OAuth 2.0 ავტორიზაციას და კონკრეტული მომხმარებლის Qlik უფლებებს.</p>
+        <div class="grid-3">
+          <div class="card soft"><span class="tag green">OAuth 2.0</span><h3>იდენტიფიცირებული მომხმარებელი</h3><p>ყველა მოთხოვნა მიბმულია დამოწმებულ Qlik მომხმარებელზე. ანონიმური წვდომა არ მიიღება.</p></div>
+          <div class="card soft"><span class="tag purple">Section Access</span><h3>იგივე მონაცემთა შეზღუდვები</h3><p>მომხმარებელი ხედავს მხოლოდ იმას, რაზეც Qlik-ში უკვე აქვს წვდომა.</p></div>
+          <div class="card soft"><span class="tag amber">LLM Policy</span><h3>AI პროვაიდერის წესები</h3><p>როდესაც მონაცემი Qlik-ის საზღვრებს ტოვებს, მოქმედებს არჩეული AI პროვაიდერის მონაცემთა პოლიტიკა.</p></div>
+        </div>
+        <div class="callout red"><p><b>რატომ არის საჭირო წინასწარი შეფასება:</b> Bivision activation-მდე ამოწმებს სივრცეებს, მომხმარებლებს, Section Access-ს, დაშვებულ ინსტრუმენტებსა და ტესტურ კითხვებს. საწყის ეტაპზე რეკომენდებულია read-only ანალიტიკური რეჟიმი.</p></div>
+      </div>
+
+      <div id="budget" class="tab-panel">
+        <h2>ბიუჯეტი შედგება რამდენიმე ცალკე კომპონენტისგან</h2>
+        <p class="intro">MCP Server ხელმისაწვდომია Qlik Cloud subscription-ებში, მაგრამ გამოყენება მოიხმარს Qlik Questions capacity-ს. არჩეული AI კლიენტის subscription ან API მოხმარება ცალკე ფასდება.</p>
+        <table>
+          <thead><tr><th>კომპონენტი</th><th>რას მოიცავს</th><th>როგორ ფასდება</th></tr></thead>
+          <tbody>
+            <tr><td><b>Qlik Cloud</b></td><td>არსებული Qlik აპლიკაცია და მონაცემთა მოდელი</td><td>თქვენი მოქმედი subscription-ის მიხედვით</td></tr>
+            <tr><td><b>Qlik MCP Questions</b></td><td>MCP tool call-ებით Qlik-ის გამოყენება</td><td>5 MCP tool call = 1 Qlik Question. quota დამოკიდებულია subscription-ზე</td></tr>
+            <tr><td><b>AI კლიენტი</b></td><td>ChatGPT ან Claude ინტერფეისი</td><td>არჩეული subscription ან API მოხმარება</td></tr>
+            <tr><td><b>Bivision AI Enablement</b></td><td>გამართვა, უსაფრთხოების audit, prompt library, onboarding და monitoring</td><td>პილოტისა და scope-ის მიხედვით</td></tr>
+          </tbody>
+        </table>
+        <div class="budget-box">
+          <div class="estimator">
+            <h3>ChatGPT Business seat estimator</h3>
+            <label>მომხმარებლების რაოდენობა<input id="gptUsers" type="number" min="2" value="3"/></label>
+            <label>გადახდის რეჟიმი<select id="gptBilling"><option value="20">წლიური: $20 / user / month</option><option value="25">ყოველთვიური: $25 / user / month</option></select></label>
+            <div class="estimate">საორიენტაციო subscription: <strong id="gptEstimate">$60</strong> / თვე</div>
+          </div>
+          <div class="estimator">
+            <h3>Claude Max seat estimator</h3>
+            <label>მომხმარებლების რაოდენობა<input id="claudeUsers" type="number" min="1" value="1"/></label>
+            <label>გეგმა<select id="claudePlan"><option value="100">Max 5x: $100 / user / month</option><option value="200">Max 20x: $200 / user / month</option></select></label>
+            <div class="estimate">საორიენტაციო subscription: <strong id="claudeEstimate">$100</strong> / თვე</div>
+          </div>
+        </div>
+        <div class="callout amber"><p><b>რას არ ვითვლით აქ:</b> დამატებითი Qlik Questions capacity-ის ფასი და API მოხმარება ინდივიდუალურია. პილოტის დროს usage-ის გაზომვის შემდეგ Bivision გაძლევთ უფრო ზუსტ ბიუჯეტს.</p></div>
+        <div class="disclaimer">ფასები მოცემულია საორიენტაციოდ და არ წარმოადგენს კომერციულ შეთავაზებას. საბოლოო პირობები დამოკიდებულია პროვაიდერის მოქმედ ტარიფებზე, რეგიონზე, subscription-ზე და გამოყენების ინტენსივობაზე.</div>
+      </div>
+
+      <div id="start" class="tab-panel">
+        <h2>როგორ იწყება 30-დღიანი პილოტი</h2>
+        <p class="intro">პილოტის მიზანია არა უბრალოდ ტექნიკური კავშირის შექმნა, არამედ პასუხის გაცემა სამ კითხვაზე: ქმნის თუ არა AI რეალურ ღირებულებას, რამდენად ზუსტია შედეგები და როგორი იქნება მოსალოდნელი თვიური ბიუჯეტი.</p>
+        <div class="steps">
+          <div class="step"><div class="num">1</div><h3>Eligibility check</h3><p>ვამოწმებთ Qlik Cloud გარემოს, აპს, მომხმარებლებსა და წვდომებს.</p></div>
+          <div class="step"><div class="num">2</div><h3>Read-only setup</h3><p>ვრთავთ MCP-ს შეზღუდული, უსაფრთხო ანალიტიკური ინსტრუმენტებით.</p></div>
+          <div class="step"><div class="num">3</div><h3>Prompt library</h3><p>ვქმნით 15–20 ბიზნეს კითხვას თქვენი აპლიკაციის მიხედვით.</p></div>
+          <div class="step"><div class="num">4</div><h3>Measured rollout</h3><p>ვზომავთ გამოყენებას, ხარისხს, დაზოგილ დროსა და სავარაუდო ბიუჯეტს.</p></div>
+        </div>
+        <div class="callout"><p><b>რეკომენდებული პილოტის scope:</b> 1–2 Qlik აპლიკაცია, 2 მომხმარებელი, 30 დღე, მხოლოდ read-only ანალიზი, ყოველკვირეული usage review.</p></div>
+        <p><a class="btn btn-primary" href="https://bivision.ge/#contact">დაგვიკავშირდი დემოსთვის</a></p>
+      </div>
+
+      <div id="faq" class="tab-panel">
+        <h2>ხშირად დასმული კითხვები</h2>
+        <details open><summary>არის თუ არა MCP დამატებითი Qlik ლიცენზია?</summary><p>Qlik MCP Server ხელმისაწვდომია Qlik Cloud subscription-ებში, მაგრამ გამოყენება მოიხმარს Questions capacity-ს. არჩეული AI პროვაიდერის subscription ან API მოხმარება ცალკე ფასდება.</p></details>
+        <details><summary>მომხმარებელი სხვა კლიენტის მონაცემებს ხომ ვერ დაინახავს?</summary><p>Qlik MCP იყენებს კონკრეტული მომხმარებლის Qlik credentials-სა და უფლებებს. თუმცა activation-მდე აუცილებელია space permissions-ისა და Section Access-ის audit.</p></details>
+        <details><summary>შეიძლება თუ არა ChatGPT-ისა და Claude-ის ერთდროულად გამოყენება?</summary><p>დიახ. Qlik ოფიციალურად აღწერს ორივე კავშირის გზას. პრაქტიკაში პირველ პილოტში უმჯობესია ერთი ძირითადი AI კლიენტის არჩევა, რათა onboarding და მონიტორინგი მარტივი იყოს.</p></details>
+        <details><summary>AI შეცდომას ხომ არ დაუშვებს?</summary><p>შეიძლება. ამიტომ AI პასუხი უნდა აღვიქვათ როგორც სწრაფი ანალიტიკური ასისტენტი და არა როგორც უკონტროლო საბოლოო გადაწყვეტილება. მნიშვნელოვანი შედეგები გადაამოწმეთ Qlik dashboard-ში.</p></details>
+        <details><summary>შეიძლება თუ არა სრულად საკუთარი Bivision AI Assistant-ის შექმნა?</summary><p>დიახ. შემდეგ ეტაპზე შესაძლებელია საკუთარი ინტერფეისის შექმნა OpenAI API-ს ან Anthropic API-ს გამოყენებით, Qlik MCP Server-თან კავშირის შენარჩუნებით.</p></details>
+      </div>
+    </section>
+
+    <section class="card" style="margin-bottom:28px">
+      <h3>ოფიციალური წყაროები</h3>
+      <ol class="source-list">
+        <li><a href="https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/QlikMCP/Administering-Qlik-MCP.htm" target="_blank">Qlik: Deploying Qlik MCP Server for a tenant</a></li>
+        <li><a href="https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/QlikMCP/Connecting-Qlik-MCP-server.htm" target="_blank">Qlik: Connecting to the Qlik MCP Server</a></li>
+        <li><a href="https://help.qlik.com/en-US/evaluation-guides/Content/ai/mcp-security.htm" target="_blank">Qlik: MCP Server Security Architecture and Controls</a></li>
+        <li><a href="https://community.qlik.com/t5/Official-Support-Articles/Qlik-Model-Context-Protocol-MCP-FAQ/ta-p/2542621" target="_blank">Qlik: Model Context Protocol FAQ</a></li>
+        <li><a href="https://help.openai.com/en/articles/8792536-managing-billing-and-seats-in-chatgpt-business" target="_blank">OpenAI: ChatGPT Business billing and seats</a></li>
+        <li><a href="https://support.claude.com/en/articles/11049741-what-is-the-max-plan" target="_blank">Anthropic: Claude Max plan pricing</a></li>
+      </ol>
+    </section>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <b>BIVISION</b> · BI & Analytics · Qlik Partner<br/>
+    სანდო მონაცემი. უფრო სწრაფი გადაწყვეტილება.
+  </div>
+</footer>
+
+<script>
+  const buttons = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  function activateTab(id){
+    buttons.forEach(b=>b.classList.toggle('active', b.dataset.tab===id));
+    panels.forEach(p=>p.classList.toggle('active', p.id===id));
+    if(history.replaceState) history.replaceState(null,null,'#'+id);
+  }
+  buttons.forEach(b=>b.addEventListener('click',()=>activateTab(b.dataset.tab)));
+  const requested = location.hash.replace('#','');
+  if(requested && document.getElementById(requested)) activateTab(requested);
+
+  function calc(){
+    const gu = Math.max(2, Number(document.getElementById('gptUsers').value || 2));
+    const gp = Number(document.getElementById('gptBilling').value);
+    document.getElementById('gptEstimate').textContent = '$' + (gu*gp).toLocaleString();
+
+    const cu = Math.max(1, Number(document.getElementById('claudeUsers').value || 1));
+    const cp = Number(document.getElementById('claudePlan').value);
+    document.getElementById('claudeEstimate').textContent = '$' + (cu*cp).toLocaleString();
+  }
+  ['gptUsers','gptBilling','claudeUsers','claudePlan'].forEach(id=>document.getElementById(id).addEventListener('input',calc));
+  calc();
+</script>
+</body>
+</html>
