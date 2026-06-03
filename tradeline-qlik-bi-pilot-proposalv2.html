@@ -171,6 +171,15 @@
       .section,.hero{box-shadow:none;break-inside:avoid}
     }
   </style>
+  <!-- Microsoft Clarity — invisible engagement analytics (no design/text impact) -->
+  <script type="text/javascript">
+    window.__CLARITY_PROJECT_ID = "u4t63ze49d"; /* Bivision Clarity project */
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", window.__CLARITY_PROJECT_ID);
+  </script>
 </head>
 <body>
   <div class="page">
@@ -364,5 +373,99 @@
       </footer>
     </div>
   </div>
+
+  <!-- Microsoft Clarity engagement tracking — invisible, no UI. Recipient = opaque rid only. -->
+  <script type="text/javascript">
+  (function(){
+    "use strict";
+    if (typeof window.clarity !== "function") return;
+
+    /* ---- 1. Recipient token from URL (?rid=...) — opaque only, never name/email ---- */
+    var rid = null;
+    try {
+      var raw = new URLSearchParams(window.location.search).get("rid");
+      if (raw) {
+        rid = raw.trim().slice(0, 64).replace(/[^A-Za-z0-9_-]/g, "");
+        if (!rid) rid = null;
+      }
+    } catch (e) { rid = null; }
+
+    /* ---- 2. Identify API + custom tag (only when rid present) ---- */
+    if (rid) {
+      try {
+        /* clarity("identify", customId, customSessionId, customPageId, friendlyName) */
+        window.clarity("identify", rid, undefined, "tradeline-qlik-pilot-proposal");
+        window.clarity("set", "proposal_recipient", rid);
+      } catch (e) {}
+    }
+
+    /* ---- once-per-session guard (sessionStorage, keyed by rid) ---- */
+    var SKEY = "clarity_evt_" + (rid || "anon");
+    var fired = {};
+    try { fired = JSON.parse(sessionStorage.getItem(SKEY) || "{}") || {}; } catch (e) { fired = {}; }
+    function sendOnce(name){
+      if (fired[name]) return;
+      fired[name] = 1;
+      try { sessionStorage.setItem(SKEY, JSON.stringify(fired)); } catch (e) {}
+      try { window.clarity("event", name); } catch (e) {}
+    }
+
+    /* ---- 3a. page open ---- */
+    sendOnce("proposal_open");
+
+    /* ---- 3b. section views: fire only after >=4s continuously in viewport ---- */
+    var sectionMap = { "4":"section_04_scope_view", "6":"section_06_technology_view", "11":"section_11_pricing_view" };
+    function startSectionObservers(){
+      if (!("IntersectionObserver" in window)) return;
+      var timers = new WeakMap();
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          var name = en.target.__evt;
+          if (en.isIntersecting){
+            if (!timers.get(en.target)){
+              timers.set(en.target, setTimeout(function(){
+                sendOnce(name); io.unobserve(en.target); timers.delete(en.target);
+              }, 4000));
+            }
+          } else {
+            var t = timers.get(en.target);
+            if (t){ clearTimeout(t); timers.delete(en.target); }
+          }
+        });
+      }, { threshold: 0.01 });
+      document.querySelectorAll("section.section").forEach(function(s){
+        var numEl = s.querySelector(".num");
+        if (!numEl) return;
+        var key = (numEl.textContent || "").trim();
+        var evt = sectionMap[key];
+        if (evt && !fired[evt]){ s.__evt = evt; io.observe(s); }
+      });
+    }
+
+    /* ---- 3c. scroll depth 75% / 95% ---- */
+    function startScrollDepth(){
+      var ticking = false;
+      function check(){
+        ticking = false;
+        var doc = document.documentElement;
+        var top = window.pageYOffset || doc.scrollTop || 0;
+        var winH = window.innerHeight || doc.clientHeight || 0;
+        var full = Math.max(doc.scrollHeight, document.body.scrollHeight);
+        if (full <= winH){ sendOnce("proposal_75_scroll"); sendOnce("proposal_95_scroll"); cleanup(); return; }
+        var pct = (top + winH) / full * 100;
+        if (pct >= 75) sendOnce("proposal_75_scroll");
+        if (pct >= 95){ sendOnce("proposal_95_scroll"); cleanup(); }
+      }
+      function onScroll(){ if (!ticking){ ticking = true; (window.requestAnimationFrame || setTimeout)(check); } }
+      function cleanup(){ window.removeEventListener("scroll", onScroll); }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      check();
+    }
+
+    function init(){ startSectionObservers(); startScrollDepth(); }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+    else init();
+  })();
+  </script>
 </body>
 </html>
