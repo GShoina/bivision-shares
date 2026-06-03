@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>კომერციული ანალიტიკის საპილოტე პროექტი · Tradeline / Dressup | Bivision</title>
+<style>
+  :root{ --p:#6653C6; --p2:#534b9c; --g:#2FCA02; --gd:#1e8e3e; --ink:#23232e; --mut:#6b6b78; --line:#e7e7ee; --bg:#ffffff; --soft:#f5f3fb; --red:#c0392b; }
+  *{box-sizing:border-box}
+  body{font-family:'Segoe UI','Noto Sans Georgian',system-ui,sans-serif;color:var(--ink);background:#eef0f4;margin:0;line-height:1.62;font-size:15.5px}
+  .page{max-width:900px;margin:24px auto;background:var(--bg);border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+  .hero{background:linear-gradient(135deg,#6653C6,#46408a);color:#fff;padding:30px 44px}
+  .hero .logo{background:#fff;display:inline-block;padding:9px 14px;border-radius:9px;margin-bottom:16px}
+  .hero h1{margin:0 0 6px;font-size:24px;font-weight:700;line-height:1.3}
+  .hero p{margin:0;opacity:.93;font-size:14.5px}
+  .hero .tags{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+  .hero .tag{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 13px;font-size:13px}
+  .body{padding:10px 44px 36px}
+  h2{font-size:18px;color:var(--p);margin:30px 0 10px;display:flex;align-items:center;gap:10px}
+  h2 .n{background:var(--p);color:#fff;width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:14px;flex:none}
+  h3{font-size:15px;color:var(--p2);margin:16px 0 6px}
+  p.lead{color:var(--mut)}
+  .big-idea{background:linear-gradient(135deg,#f5f3fb,#eef0f4);border:1px solid #ded8f3;border-left:5px solid var(--p);border-radius:14px;padding:20px 24px;margin:18px 0}
+  .big-idea p{margin:0 0 10px}.big-idea p:last-child{margin:0}
+  .kpibar{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0 6px}
+  .kpi{flex:1;min-width:170px;background:var(--soft);border:1px solid #e3def5;border-radius:12px;padding:15px 18px;text-align:center}
+  .kpi .big{font-size:22px;font-weight:700;color:var(--p);margin:2px 0}
+  .kpi span{font-size:13px;color:var(--mut)}
+  .grid{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0}
+  .card{flex:1;min-width:240px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .card.block{border-top:3px solid var(--p)}
+  .card h3{margin-top:0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--soft);color:var(--p);font-weight:600}
+  td .wk{display:inline-block;background:#efeafc;color:var(--p2);border-radius:6px;padding:1px 9px;font-size:12.5px;font-weight:600;white-space:nowrap}
+  .resp{display:flex;gap:14px;flex-wrap:wrap;margin:12px 0}
+  .resp .col{flex:1;min-width:260px;border:1px solid var(--line);border-radius:12px;padding:6px 20px 14px}
+  .resp .col.c{border-top:3px solid var(--gd)}
+  .resp .col.b{border-top:3px solid var(--p)}
+  .note{background:#fff8ec;border-left:4px solid #e0a52e;border-radius:8px;padding:13px 17px;margin:14px 0;font-size:14px}
+  .real{background:#eef3ff;border-left:4px solid #3b6fd4;border-radius:8px;padding:13px 17px;margin:14px 0;font-size:14px}
+  .excl{background:#fdf4f3;border:1px solid #e6c0bb;border-radius:12px;padding:6px 22px 14px;margin:12px 0}
+  .excl li{color:#8a4a42}
+  .price{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0}
+  .pc{flex:1;min-width:210px;border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+  .pc.m{border-color:var(--g);background:#f3fbef}.pc.m .big{color:var(--gd)}
+  .pc.t{border-color:#d3cdf0;background:var(--soft)}.pc.t .big{color:var(--p)}
+  .pc .big{font-size:23px;font-weight:700;margin:4px 0}
+  .pc span{font-size:13px;color:var(--mut)}
+  code{background:#f0eef8;padding:1px 6px;border-radius:5px;font-size:12.5px;color:var(--p2)}
+  ul{margin:7px 0;padding-left:20px}li{margin:5px 0}
+  .cta{background:var(--p);color:#fff;border-radius:14px;padding:24px 28px;margin:26px 0 6px}
+  .cta h2{color:#fff;margin-top:0}.cta h2 .n{background:#fff;color:var(--p)}
+  .cta a{color:#fff;font-weight:600}
+  .foot{padding:18px 44px;background:var(--soft);color:var(--mut);font-size:13px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .mono{font-size:13px;color:var(--p2)}
+  @media(max-width:560px){.body,.hero,.foot{padding-left:22px;padding-right:22px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <span class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" width="148" height="27" viewBox="0 0 144 26" fill="none" role="img" aria-label="Bivision">
+        <path d="M56.8281 0.919434V25.0884H63.5676V0.919434H56.8281Z" fill="#6653C6"/>
+        <path d="M76.1284 10.0346C72.7799 9.2725 71.9509 8.79009 71.9509 7.6834V7.61651C71.9509 6.75101 72.7495 6.05983 74.371 6.05983C76.5094 6.05983 78.9275 6.89087 81.1409 8.44349L84.4894 3.71266C81.8605 1.6067 78.6498 0.5 74.5433 0.5C68.7402 0.5 65.1871 3.74509 65.1871 8.23472V8.30566C65.1871 13.2777 69.1598 14.7249 74.3021 15.9025C77.5837 16.6606 78.3782 17.214 78.3782 18.2153V18.2821C78.3782 19.3179 77.4053 19.9422 75.6115 19.9422C72.8164 19.9422 70.1571 18.9389 67.7734 17.0417L64.0459 21.4928C67.0153 24.1521 71.0935 25.5 75.3703 25.5C81.2402 25.5 85.14 22.563 85.14 17.6275V17.5565C85.14 13.0345 81.6902 11.2366 76.1284 10.0306V10.0346Z" fill="#6653C6"/>
+        <path d="M86.416 0.919434V25.0884H93.1515V0.919434H86.416Z" fill="#6653C6"/>
+        <path d="M136.379 0.919434V13.6931L126.439 0.919434H120.19V25.0884H126.818V11.8283L137.142 25.0884H143.012V0.919434H136.379Z" fill="#6653C6"/>
+        <path d="M49.0915 0.919434L43.6067 16.2146L38.1117 0.919434H30.6182L40.4244 25.2627H46.6409L56.4472 0.919434H49.0915Z" fill="#6653C6"/>
+        <path d="M16.8092 12.4526C18.9517 11.5202 20.5408 9.86017 20.5408 7.06505V6.99411C20.5408 5.33811 19.957 4.06116 18.9841 3.09634C17.5693 1.6775 15.4309 0.919434 12.3926 0.919434H0V25.0884H12.4615C18.2281 25.0884 21.6151 22.5669 21.6151 18.4239V18.357C21.6151 15.0754 19.7503 13.4194 16.8113 12.4526H16.8092ZM6.52059 6.30293H10.8724C12.873 6.30293 13.9087 7.06505 13.9087 8.37444V8.44538C13.9087 9.86017 12.7736 10.5513 10.7386 10.5513H6.52059V6.30293ZM14.9161 17.4895C14.9161 18.9083 13.7384 19.7029 11.7014 19.7029H6.52262V15.2477H11.6386C13.8803 15.2477 14.9181 16.1092 14.9181 17.4226V17.4895H14.9161Z" fill="#6653C6"/>
+        <path d="M29.8513 4.75031C29.8513 6.86844 28.1345 8.58321 26.0184 8.58321C23.9023 8.58321 22.1875 6.86844 22.1875 4.75031C22.1875 2.63218 23.9023 0.919434 26.0184 0.919434C28.1345 0.919434 29.8513 2.63421 29.8513 4.75031Z" fill="#2FCA02"/>
+        <path d="M110.086 17.1556C109.166 17.9015 107.996 18.3474 106.719 18.3474C103.764 18.3474 101.368 15.9516 101.368 12.9963C101.368 10.2336 103.466 7.9574 106.162 7.67566V0.926025C99.7486 1.21993 94.6367 6.51018 94.6367 12.9963C94.6367 19.4825 100.047 25.0828 106.719 25.0828C109.857 25.0828 112.715 23.8869 114.861 21.9269L110.086 17.1556Z" fill="#6653C6"/>
+        <path d="M107.275 0.925537V7.67517C109.971 7.95692 112.069 10.2331 112.069 12.9958C112.069 14.2728 111.623 15.4464 110.873 16.3666L115.649 21.138C117.613 18.9915 118.804 16.1335 118.804 12.9958C118.804 6.5097 113.689 1.21741 107.275 0.925537Z" fill="#2FCA02"/>
+      </svg>
+    </span>
+    <h1>კომერციული ანალიტიკის საპილოტე პროექტი</h1>
+    <p>შეთავაზება Tradeline / Dressup-ისთვის · მომზადებულია Bivision-ის მიერ</p>
+    <div class="tags">
+      <span class="tag">Qlik Sense</span>
+      <span class="tag">3-თვიანი საპილოტე</span>
+      <span class="tag">კომერციული გადაწყვეტილების გარემო</span>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <h2><span class="n">1</span> მთავარი არსი</h2>
+    <div class="big-idea">
+      <p>Tradeline-ში უკვე შექმნილია მნიშვნელოვანი რეპორტინგული ბაზა Power BI-ში. ამ პროექტის მიზანი არ არის არსებული ანგარიშების მექანიკური გადატანა ან კიდევ ერთი dashboard-ის დამატება.</p>
+      <p>ჩვენი ამოცანაა გაყიდვების, გეგმების, sell-out-ის, მარჟისა და მარაგების ძირითადი მაჩვენებლების ერთიან კომერციულ გარემოში მოქცევა, რათა მენეჯმენტმა სწრაფად დაინახოს სრული სურათი და საჭიროების შემთხვევაში მარტივად ჩააღრმაოს ანალიზი.</p>
+      <p>3 თვეში Tradeline მიიღებს Qlik Sense-ზე დაფუძნებულ საპილოტე გარემოს, რომელიც დღეს გაფანტულ მაჩვენებლებს გააერთიანებს და ინფორმაციის საცავს გადააქცევს გადაწყვეტილების მხარდამჭერ ინსტრუმენტად.</p>
+    </div>
+    <div class="kpibar">
+      <div class="kpi"><span>ხანგრძლივობა</span><div class="big">3 თვე</div><span>4 მიწოდების ფაზა</span></div>
+      <div class="kpi"><span>ანალიტიკური არქიტექტურა</span><div class="big">5 ბლოკი</div><span>+ Ad Hoc Report Builder</span></div>
+      <div class="kpi"><span>ყოველთვიური ღირებულება</span><div class="big">3 500 ₾</div><span>დღგ-ს გარეშე</span></div>
+    </div>
+
+    <h2><span class="n">2</span> არსებული გამოწვევები</h2>
+    <p class="lead">დაკვირვება ეფუძნება შეხვედრას, სადაც გავეცანით არსებულ Power BI გარემოს. პრობლემა არ არის რეპორტების ნაკლებობა. პრობლემა არის ინფორმაციული ფრაგმენტაცია.</p>
+    <div class="grid">
+      <div class="card block">
+        <h3>ერთიანი კომერციული ხედის არარსებობა</h3>
+        ერთ ეკრანზე ერთად არ ჩანს გაყიდვები თანხაში და რაოდენობაში, მარჟა, გეგმა-ფაქტი, sell-out, მარაგები, ბრენდები, კატეგორიები და არხები. მომხმარებელი თავად აერთიანებს მონაცემებს რამდენიმე tab-იდან.
+      </div>
+      <div class="card block">
+        <h3>რეპორტების სიმრავლე, დაბალი გამოყენებადობა</h3>
+        ბევრი რეპორტი ავტომატურად არ ნიშნავს ძლიერ BI-ს. მთავარი კითხვაა: რამდენად სწრაფად იღებს კომერციული დირექტორი მოქმედებისთვის საჭირო პასუხს.
+      </div>
+      <div class="card block">
+        <h3>Excel-ის ლოგიკა BI ინსტრუმენტში</h3>
+        Power BI-ის გამოყენების მიუხედავად, გამოცდილება კვლავ ცხრილურია. ეს ზრდის დროს, კოგნიტურ დატვირთვას და tab-ებს შორის გადაადგილების საჭიროებას.
+      </div>
+      <div class="card block">
+        <h3>საჭიროა პარტნიორი, არა მხოლოდ შემსრულებელი</h3>
+        ანალიტიკის რეალური ღირებულება ჩნდება მაშინ, როცა გუნდი სვამს ბიზნეს-კითხვებს, აზუსტებს მოთხოვნებს, გამოკვეთს მთავარ KPI-ებს და სთავაზობს უკეთეს გადაწყვეტილების ლოგიკას და არა მხოლოდ ასრულებს ტექნიკურ დავალებას.
+      </div>
+    </div>
+
+    <h2><span class="n">3</span> შეთავაზებული გადაწყვეტა</h2>
+    <p>ჩვენ ვაშენებთ არა მოთხოვნების სიას, არამედ <b>გადაწყვეტილების არქიტექტურას</b>. არსებული რეპორტინგის საფუძველზე იქმნება ერთიანი კომერციული გარემო, სადაც:</p>
+    <ul>
+      <li>მენეჯმენტი ერთ სივრცეში ხედავს ურთიერთდაკავშირებულ მაჩვენებლებს: გაყიდვები, რაოდენობა, მარჟა, გეგმა-ფაქტი, sell-out;</li>
+      <li>საერთო ფილტრებით მარტივად გადადის ზოგადი სურათიდან დეტალზე (drill-down);</li>
+      <li>მცირდება ცალკეულ tab-ებში ძებნისა და ხელით შეჯერების საჭიროება;</li>
+      <li>self-service ანალიტიკა ხელმისაწვდომი ხდება Ad Hoc Report Builder-ის საშუალებით.</li>
+    </ul>
+    <div class="real"><b>პოზიციონირება:</b> ეს არ არის არსებული Power BI-ის ჩანაცვლება. ეს არის ფრაგმენტული რეპორტინგის გადაქცევა ერთიან კომერციული გადაწყვეტილების გარემოდ, სადაც სურათი ერთ ეკრანზე იკითხება და დეტალი ერთ კლიკზე გაიხსნება.</div>
+
+    <h2><span class="n">4</span> საპილოტე Scope: ანალიტიკური ბლოკები</h2>
+    <p class="lead">შესაძლებლობები დაგეგმილია 5 თემატურ ბლოკად და self-service ფენად. მიზანი არ არის 15 დამოუკიდებელი tab, არამედ ლოგიკურად დაკავშირებული ხედები.</p>
+    <div class="grid">
+      <div class="card block">
+        <h3>A. Executive Commercial Overview</h3>
+        ერთიანი მმართველობითი ხედი: გაყიდვები თანხაში და რაოდენობაში, მარჟა, გეგმა-ფაქტი, sell-out, დინამიკა და ზრდის ტემპი.
+      </div>
+      <div class="card block">
+        <h3>B. Sales &amp; Channel Performance</h3>
+        LFL შედარებითი ანალიზი, ABC / Pareto, Top &amp; Bottom რეიტინგები, არხების კლასიფიკაცია, penetration და წილის ცვლილება დროში.
+      </div>
+      <div class="card block">
+        <h3>C. Product &amp; Profitability</h3>
+        გაყიდვები პროდუქტისა და ნომენკლატურული იერარქიის მიხედვით, ბრენდებისა და კატეგორიების მომგებიანობა, შეთანხმებული კლასტერიზაცია (მომწოდებლები, კლიენტები, ნომენკლატურა).
+      </div>
+      <div class="card block">
+        <h3>D. Planning &amp; Sell-Out</h3>
+        გაყიდვების გეგმები და შესრულება წლის, თვის, დღის, ნომენკლატურისა და არხის ჭრილში; რაოდენობრივი და თანხობრივი მაჩვენებლები; sell-out ხედები მონაცემთა ხელმისაწვდომობის ფარგლებში.
+      </div>
+      <div class="card block">
+        <h3>E. Inventory, Geography &amp; People</h3>
+        პროდუქციის ნაშთების As-Is ანალიზი ნომენკლატურისა და საწყობის მიხედვით; გაყიდვები რაიონის, რეგიონისა და ქალაქის ჭრილში; მენეჯერების და მომწოდებლების გეგმა-ფაქტი.
+      </div>
+      <div class="card block" style="border-top-color:var(--gd)">
+        <h3>F. Ad Hoc Report Builder (self-service)</h3>
+        მომხმარებლის მიერ ფორმირებადი Table, Pivot და Chart ხედები განსაზღვრული პარამეტრებით. self-service ანალიტიკის საფუძველი.
+      </div>
+    </div>
+
+    <h2><span class="n">5</span> AI ინტეგრაცია (საპილოტე შესაძლებლობა)</h2>
+    <p>AI წარმოდგენილია როგორც კონკრეტული საპილოტე შესაძლებლობა და არა ბუნდოვანი დაპირება. Phase 0-ში შეირჩევა მაქსიმუმ 1-2 გამოყენების სცენარი შემდეგი ჩამონათვალიდან:</p>
+    <ul>
+      <li>ბუნებრივ ენაზე შეკითხვების დასმა შეთანხმებულ KPI-ებზე;</li>
+      <li>ავტომატური მოკლე narrative summary მთავარ ცვლილებებზე;</li>
+      <li>ანომალიებისა და მნიშვნელოვანი ცვლილებების გამოკვეთა;</li>
+      <li>მენეჯმენტისთვის დასასმელი შეკითხვების შეთავაზება.</li>
+    </ul>
+    <div class="note"><b>მნიშვნელოვანია:</b> AI ნაწილი ფიქსირდება როგორც Proof of Concept / integration-readiness stream. სრულფასოვანი production rollout და მასთან დაკავშირებული დამატებითი ხარჯები განისაზღვრება ცალკე, ტექნიკური და ინფორმაციული უსაფრთხოების შეფასების შემდეგ.</div>
+
+    <h2><span class="n">6</span> ტექნოლოგია და ტექნიკური წინაპირობები</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>გამოყენებული ტექნოლოგია</h3>
+        <ul>
+          <li>Qlik Sense Enterprise on Windows;</li>
+          <li>client-managed / on-premises deployment;</li>
+          <li>კლიენტის ინფრასტრუქტურაში გამოყოფილი ვირტუალური სერვერი;</li>
+          <li>კლიენტის არსებულ მონაცემთა წყაროსთან უსაფრთხო მიერთება.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>კლიენტის მხრიდან საჭირო</h3>
+        <ul>
+          <li>ვირტუალური სერვერის გამოყოფა;</li>
+          <li>მონაცემთა წყაროზე წვდომის უზრუნველყოფა;</li>
+          <li>ტექნიკური პასუხისმგებელი პირის განსაზღვრა;</li>
+          <li>მონაცემთა სტრუქტურის ანოტაცია (რომელი ველი რას ნიშნავს, სად ინახება მონაცემი, რა კავშირებია ცხრილებს შორის);</li>
+          <li>ბიზნეს-owner-ის განსაზღვრა KPI-ებისა და ანგარიშგების ლოგიკის დასადასტურებლად;</li>
+          <li>საჭიროების შემთხვევაში მომხმარებლებისა და წვდომის უფლებების სია.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note"><b>VM-ის საბოლოო პარამეტრები (CPU / RAM / Storage) არ ფიქსირდება ამ ეტაპზე.</b> ისინი განისაზღვრება Phase 0-ში, შემდეგი ფაქტორების შეფასების შემდეგ: მონაცემთა მოცულობა, განახლების სიხშირე, მომხმარებლების რაოდენობა, ერთდროული მომხმარებლები, აპლიკაციების რაოდენობა და უსაფრთხოების მოთხოვნები.</div>
+
+    <h2><span class="n">7</span> მიწოდების ფაზები და ვადები</h2>
+    <table>
+      <tr><th style="width:88px">ფაზა</th><th style="width:92px">ვადა</th><th>ძირითადი შედეგები</th></tr>
+      <tr>
+        <td><b>Phase 0</b><br>Mobilization &amp; Access</td>
+        <td><span class="wk">კვირა 0-1</span></td>
+        <td>ხელშეკრულების გაფორმება; პირველი თვის გადახდა; პასუხისმგებელი პირების განსაზღვრა; VM-ის გამოყოფა და მონაცემთა წყაროზე წვდომა; მონაცემთა სტრუქტურის აღწერა და ანოტაცია; მონაცემების ხარისხის პირველადი შემოწმება; KPI-ებისა და Scope-ის საბოლოო დადასტურება; სამუშაო გეგმის შეთანხმება.</td>
+      </tr>
+      <tr>
+        <td><b>Phase 1</b><br>Foundation &amp; Report Builder</td>
+        <td><span class="wk">კვირა 2-3</span></td>
+        <td>Qlik Sense გარემოს ინსტალაცია და კონფიგურაცია; მონაცემთა წყაროსთან მიერთება; საწყისი მონაცემთა მოდელი; Ad Hoc Report Builder-ის პირველი ვერსია; მომხმარებელთან პირველი review.</td>
+      </tr>
+      <tr>
+        <td><b>Phase 2</b><br>Core Commercial Analytics</td>
+        <td><span class="wk">კვირა 4-6</span></td>
+        <td>გეგმა-ფაქტი; გაყიდვები თანხაში და რაოდენობაში; LFL; ABC; Top &amp; Bottom; პროდუქტისა და ნომენკლატურული იერარქიის ანალიზი; ბრენდებისა და კატეგორიების მომგებიანობა; არხების დინამიკა და წილის ცვლილება.</td>
+      </tr>
+      <tr>
+        <td><b>Phase 3</b><br>Extended Analytics</td>
+        <td><span class="wk">კვირა 7-9</span></td>
+        <td>sell-out ანალიზი; ნაშთების As-Is ხედები; რაიონების, რეგიონებისა და ქალაქების ანალიზი; მენეჯერების ანალიზი; მომწოდებლების გეგმა-ფაქტი; შეთანხმებული კლასტერიზაცია; პარამეტრებით ფორმირებადი ანალიტიკური რეპორტი.</td>
+      </tr>
+      <tr>
+        <td><b>Phase 4</b><br>Stabilization &amp; Pilot Review</td>
+        <td><span class="wk">კვირა 10-12</span></td>
+        <td>UAT (მომხმარებლის მიერ მიღების ტესტირება); დაზუსტებები შეთანხმებული Scope-ის ფარგლებში; მონაცემთა ლოგიკისა და refresh პროცესის შემოწმება; მომხმარებლების მოკლე ტრენინგი; საპილოტე შედეგების შეფასება; შემდეგი ეტაპის roadmap.</td>
+      </tr>
+    </table>
+
+    <h2><span class="n">8</span> პასუხისმგებლობები</h2>
+    <div class="resp">
+      <div class="col c">
+        <h3>კლიენტის მხარე (Tradeline)</h3>
+        <ul>
+          <li>წვდომების უზრუნველყოფა;</li>
+          <li>მონაცემთა ანოტაცია;</li>
+          <li>ტექნიკური და ბიზნეს-owner-ის გამოყოფა;</li>
+          <li>დროული უკუკავშირი;</li>
+          <li>UAT-ში მონაწილეობა.</li>
+        </ul>
+      </div>
+      <div class="col b">
+        <h3>Bivision-ის მხარე</h3>
+        <ul>
+          <li>პროექტის მართვა;</li>
+          <li>ტექნიკური გარემოს გამართვა;</li>
+          <li>მონაცემთა მოდელი;</li>
+          <li>შეთანხმებული ანალიტიკური შესაძლებლობების მიწოდება;</li>
+          <li>რეგულარული review;</li>
+          <li>ბიზნეს-ლოგიკის challenge და დაზუსტება;</li>
+          <li>ტრენინგი და საპილოტე შედეგების შეფასება.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2><span class="n">9</span> წარმატების კრიტერიუმები</h2>
+    <ul>
+      <li>ერთიანი კომერციული ხედის შექმნა გაყიდვების, რაოდენობების, მარჟის, გეგმა-ფაქტისა და sell-out-ის ძირითადი მაჩვენებლებით;</li>
+      <li>Ad Hoc Report Builder-ის მიწოდება;</li>
+      <li>შეთანხმებული Scope-ის ანალიტიკური შესაძლებლობების ეტაპობრივი მიწოდება;</li>
+      <li>მონაცემთა განახლების გამართული პროცესი;</li>
+      <li>ბიზნეს-owner-ის მიერ UAT-ის გავლა;</li>
+      <li>მომხმარებლების ტრენინგი;</li>
+      <li>პროექტის ბოლოს scale-up roadmap.</li>
+    </ul>
+
+    <h2><span class="n">10</span> Scope Exclusions</h2>
+    <p class="lead">გამჭვირვალობისთვის, საპილოტე პროექტი არ მოიცავს:</p>
+    <div class="excl">
+      <ul>
+        <li>მონაცემთა წყაროში არსებული შეცდომების სრულად გასწორებას;</li>
+        <li>master data cleansing-ს, თუ ცალკე არ შეთანხმდა;</li>
+        <li>ყველა არსებული Power BI რეპორტის მექანიკურ გადატანას;</li>
+        <li>შეუზღუდავ ცვლილებებს;</li>
+        <li>ახალი გარე მონაცემთა წყაროების დამატებას შეთანხმების გარეშე;</li>
+        <li>AI-ის სრულფასოვან production rollout-ს საპილოტე Scope-ის ფარგლებში.</li>
+      </ul>
+    </div>
+
+    <h2><span class="n">11</span> კომერციული პირობები</h2>
+    <div class="price">
+      <div class="pc t"><span>ყოველთვიური მომსახურება</span><div class="big">3 500 ₾</div><span>დღგ-ს გარეშე</span></div>
+      <div class="pc m"><span>საერთო ღირებულება (3 თვე)</span><div class="big">10 500 ₾</div><span>დღგ-ს გარეშე</span></div>
+    </div>
+    <ul>
+      <li>საპილოტე პროექტის ხანგრძლივობა: 3 თვე;</li>
+      <li>გადახდა: ყოველთვიურად, წინასწარ;</li>
+      <li>პირველი გადახდა: პროექტზე მუშაობის დაწყებამდე;</li>
+      <li>დამატებითი მოთხოვნები, რომლებიც სცდება შეთანხმებულ Scope-ს, ფასდება ცალკე, change request-ის საფუძველზე;</li>
+      <li>Qlik ლიცენზიების შემადგენლობა ფასდება Phase 0-ში, საჭიროებების დადასტურების შემდეგ.</li>
+    </ul>
+
+    <div class="cta">
+      <h2><span class="n">12</span> შემდეგი ნაბიჯები</h2>
+      <p style="margin-top:0">საპილოტე პროექტის დასაწყებად:</p>
+      <ul>
+        <li>შეთავაზების დადასტურება და ხელშეკრულების გაფორმება;</li>
+        <li>კლიენტის მხრიდან ტექნიკური და ბიზნეს-owner-ის გამოყოფა;</li>
+        <li>პირველი თვის გადახდა და Phase 0-ის გაშვება (კვირა 0-1).</li>
+      </ul>
+      <p style="margin-bottom:0">დეტალების შესათანხმებლად: <a href="mailto:info@bivision.ge">info@bivision.ge</a> · <a href="https://bivision.ge">bivision.ge</a></p>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <span>Bivision · BI &amp; Qlik პარტნიორი</span>
+    <span class="mono">შეთავაზება · Tradeline / Dressup · 2026 · ფასები დღგ-ს გარეშე</span>
+  </div>
+
+</div>
+</body>
+</html>
