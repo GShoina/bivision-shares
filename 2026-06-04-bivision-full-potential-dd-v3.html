@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bivision — Full-Potential DD v3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Georgian:wght@600;700&family=Noto+Sans+Georgian:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
+<style>
+:root{--purple:#5B57A0;--purpled:#46427E;--green:#069648;--greend:#0a7d40;--bg:#EEF1F6;--card:#FFFFFF;--ink:#2C2A47;--ink2:#4A4866;--muted:#807FA0;--line:#E2E2EE;--red:#C0392B;--amber:#C77A1E;--tint:#EFEEF8;--tintg:#E7F4EC}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans Georgian",sans-serif;line-height:1.55;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 80px}
+header.top{padding:24px 0 14px;border-bottom:4px solid var(--purple)}
+.logo{font-family:"Noto Serif Georgian",serif;font-weight:700;font-size:26px;color:var(--purple);letter-spacing:-.5px}
+.logo .o{color:var(--green)}
+.kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--green);font-weight:800;margin-top:8px}
+header.top h1{font-family:"Noto Serif Georgian",serif;font-weight:700;font-size:26px;margin:4px 0;line-height:1.2}
+header.top .sub{color:var(--muted);font-size:13px}
+nav.tabs{position:sticky;top:0;z-index:20;background:var(--bg);display:flex;gap:3px;flex-wrap:wrap;border-bottom:2px solid var(--purple);padding-top:8px}
+nav.tabs button{font-family:inherit;font-size:12.5px;font-weight:700;border:none;background:transparent;color:var(--muted);padding:10px 12px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;border-radius:6px 6px 0 0}
+nav.tabs button:hover{color:var(--purple);background:var(--tint)}
+nav.tabs button.active{color:#fff;background:var(--purple);border-bottom-color:var(--green)}
+.panel{display:none;padding-top:22px;animation:f .3s ease}
+.panel.active{display:block}
+@keyframes f{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+h2.sec{font-family:"Noto Serif Georgian",serif;font-size:22px;font-weight:700;margin:6px 0 4px;color:var(--purpled);border-left:5px solid var(--green);padding-left:12px}
+.lead{color:var(--ink2);font-size:14px;margin:8px 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:14px 0;box-shadow:0 2px 8px rgba(91,87,160,.05)}
+.card h3{font-family:"Noto Serif Georgian",serif;font-size:17px;margin:0 0 8px;font-weight:700;color:var(--purpled);display:flex;align-items:center;gap:8px}
+.info{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:50%;background:var(--green);color:#fff;font-size:12px;font-weight:800;border:none;cursor:pointer;font-family:Georgia,serif;line-height:1;flex:none}
+.info:hover{background:var(--greend)}.info.p{background:var(--purple)}.info.p:hover{background:var(--purpled)}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px}
+th,td{text-align:right;padding:9px 11px;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+thead th{background:var(--tint);border-bottom:2px solid var(--purple);font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--purpled);font-weight:800}
+tbody tr:nth-child(even){background:#faf9fd}tbody tr:hover{background:var(--tint)}
+.tot{background:var(--tint)!important;font-weight:800}.tot td{border-top:2px solid var(--purple)}
+.pos{color:var(--greend);font-weight:800}.neg{color:var(--red);font-weight:800}
+.tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.04em;padding:2px 6px;border-radius:5px}
+.tag.F{background:var(--tintg);color:var(--greend)}.tag.E{background:#f6ecdb;color:var(--amber)}.tag.I{background:#ece9f6;color:var(--purpled)}.tag.G{background:#f5e2e0;color:var(--red)}
+.insight{background:var(--tint);border-left:4px solid var(--purple);border-radius:0 8px 8px 0;padding:11px 14px;margin:12px 0;font-size:14px}
+.insight b{color:var(--purpled)}
+.keypts{margin:10px 0 2px;padding-left:0;list-style:none}
+.keypts li{font-size:13.5px;margin:6px 0;padding-left:22px;position:relative}
+.keypts li:before{content:"▸";position:absolute;left:0;color:var(--green);font-weight:800}
+.miss{font-size:13px;color:var(--purpled);background:var(--tint);border-left:3px solid var(--purple);padding:8px 13px;border-radius:0 6px 6px 0;margin:10px 0}
+.chal{font-size:13px;color:var(--amber);background:#faf3e8;border-left:3px solid var(--amber);padding:8px 13px;border-radius:0 6px 6px 0;margin:10px 0}
+.miss b,.chal b{color:var(--ink)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin:8px 0 6px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;box-shadow:0 2px 8px rgba(91,87,160,.05)}
+.kpi .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;display:flex;justify-content:space-between;align-items:center;gap:6px}
+.kpi .v{font-family:"Noto Serif Georgian",serif;font-size:24px;font-weight:700;margin-top:5px;color:var(--purpled)}
+.kpi .d{font-size:11.5px;color:var(--ink2);margin-top:3px}
+.asof{font-size:12px;color:var(--muted);margin:2px 0 16px}
+.truth{background:linear-gradient(180deg,var(--tint),#fff);border:1px solid var(--line);border-left:5px solid var(--green);border-radius:12px;padding:20px 22px;margin:16px 0}
+.truth h3{font-family:"Noto Serif Georgian",serif;color:var(--purpled);font-size:19px;margin:0 0 10px}
+.truth p{font-size:14px;margin:8px 0}
+.truth .hl{color:var(--purple);font-weight:800;background:#fff;padding:0 3px;border-radius:3px}
+.chartbox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 0;box-shadow:0 2px 8px rgba(91,87,160,.05)}
+.chartbox h4{font-size:13px;color:var(--purpled);margin:0 0 4px;font-weight:800}
+.chartbox .unit{font-size:11px;color:var(--muted);margin-bottom:10px}
+.chartwrap{position:relative;height:310px}
+.rag{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.rag.r{background:var(--red)}.rag.a{background:var(--amber)}.rag.g{background:var(--green)}
+.prio{display:flex;gap:12px;align-items:flex-start;margin:12px 0;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:12px;border-left:5px solid var(--purple)}
+.prio .num{font-family:"Noto Serif Georgian",serif;font-size:26px;font-weight:700;color:var(--purple);flex:none;line-height:1}
+.prio h4{margin:0 0 4px;font-size:15px;color:var(--purpled)}
+.prio p{margin:4px 0;font-size:13.5px}
+.src{font-size:11px;color:var(--muted);border-top:1px dashed var(--line);margin-top:18px;padding-top:10px}
+.modal{display:none;position:fixed;inset:0;background:rgba(44,42,71,.55);z-index:100;align-items:center;justify-content:center;padding:18px}
+.modal.show{display:flex}
+.modal-box{background:#fff;border-radius:14px;max-width:520px;width:100%;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.25);position:relative;max-height:84vh;overflow:auto;border-top:5px solid var(--green)}
+.modal-box h3{font-family:"Noto Serif Georgian",serif;color:var(--purpled);margin:0 0 12px;font-size:19px;padding-right:30px}
+.modal-box .b{font-size:14px;line-height:1.65}.modal-box .b b{color:var(--purpled)}
+.modal-x{position:absolute;top:14px;right:16px;border:none;background:var(--tint);color:var(--purpled);width:30px;height:30px;border-radius:50%;font-size:18px;cursor:pointer;font-weight:700}
+.modal-x:hover{background:var(--purple);color:#fff}
+@media(max-width:640px){header.top h1{font-size:20px}.kpi .v{font-size:20px}.chartwrap{height:280px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="logo">B·VISI<span class="o">O</span>N</div>
+  <div class="kicker">Full-Potential Due Diligence · v3 · შიდა მართვისთვის</div>
+  <h1>ეკონომიკური სიმართლე · Full-Potential · Headcount · Valuation</h1>
+  <div class="sub">B2B ანალიტიკის SaaS პროდუქტ-კომპანია · მონაცემი 2021 ოქტ.–2026 მაისი (1C, accrual, ₾) · ⓘ = განმარტება + გაანგარიშება</div>
+</header>
+<nav class="tabs" id="nav">
+  <button class="active" data-t="t0">სიმართლე + Bridge</button>
+  <button data-t="t1">AS-IS</button>
+  <button data-t="t2">Leakage</button>
+  <button data-t="t3">Full-Potential</button>
+  <button data-t="t4">Benchmarks</button>
+  <button data-t="t8">Headcount</button>
+  <button data-t="t5">ვიზუალი</button>
+  <button data-t="t6">Valuation</button>
+  <button data-t="t9">ფოკუსი</button>
+  <button data-t="t7">Missing</button>
+</nav>
+<div id="panels">
+
+<!-- T0 -->
+<section class="panel active" id="t0">
+  <h2 class="sec">ეკონომიკური სიმართლე</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="l"><span>MRR</span><button class="info" data-k="mrr">i</button></div><div class="v">~80 ათ.₾</div><div class="d">May 2026: ~71 ათ./თვე</div></div>
+    <div class="kpi"><div class="l"><span>ARR</span><button class="info" data-k="arr">i</button></div><div class="v">~964 ათ.₾</div><div class="d">FJ-ის წასვლამდე</div></div>
+    <div class="kpi"><div class="l"><span>Salary / Revenue</span><button class="info" data-k="sal2rev">i</button></div><div class="v">87%</div><div class="d">წინა 12თვე: 62% ▲ გაუარესდა</div></div>
+    <div class="kpi"><div class="l"><span>Run-rate EBITDA</span><button class="info" data-k="ebitda">i</button></div><div class="v">~67 ათ.₾</div><div class="d">range 67–190 (comp gap)</div></div>
+    <div class="kpi"><div class="l"><span>NRR (external)</span><button class="info" data-k="nrr">i</button></div><div class="v">~96%</div><div class="d">&lt;100% → ბაზა იწურება</div></div>
+    <div class="kpi"><div class="l"><span>Rule of 40</span><button class="info" data-k="rule40">i</button></div><div class="v">~12</div><div class="d">2024: ~43 ▼</div></div>
+  </div>
+  <div class="asof"><b>მდგომარეობა:</b> TTM (Jun 2025 – May 2026), <b>as of 2026-05-31</b>. შედარება: წინა 12 თვე (Jun 2024 – May 2025). შემოსავალი TTM 937 ათ. vs წინა 1 057 ათ. = <b class="neg">−11%</b>.</div>
+
+  <div class="truth">
+    <h3>უხერხული სიმართლე (v3 — შესწორებული)</h3>
+    <p>TTM ჭრილში (as of 2026-05-31) <span class="hl">შემოსავალი −11%-ით დაეცა</span> (937 vs 1 057 ათ.), წმინდა მარჟა 30%-დან <span class="hl">7%-მდე</span>. ეს უკვე არ არის მხოლოდ „plateau" — ეს კლებაა.</p>
+    <p><span class="hl">ჩემი ადრინდელი „run-rate EBITDA ~230 ათ." არასწორი იყო.</span> შენ დააზუსტე, რომ ხარჯის ზრდა მიმდინარეა — ე.ი. December-ის ცვლადი ანაზღაურება ongoing-ია. TTM EBITDA ფაქტობრივად <span class="hl">~67 ათ.</span>; ნორმალიზებული მხოლოდ მაშინ ადის ~190-მდე, თუ comp headcount-მოდელამდე (665 ათ.) დაბრუნდება — ეს ღია data gap-ია.</p>
+    <p>Salary/Revenue <span class="hl">87%</span> (Rev/Salary 1.15 vs სამიზნე 1.8) — გუნდი ძვირია მიმდინარე შემოსავალთან. ფასის გაზრდა <span class="hl">რეალურად რთულია</span> (კონკურენცია + AI), Fortune Jack-ის (~84 ათ.) ჩანაცვლება <span class="hl">ძალიან რთული</span>. ე.ი. upside მოკრძალებულია, downside რეალური.</p>
+  </div>
+
+  <h2 class="sec" style="margin-top:24px">Full-Potential Value Bridge <button class="info p" data-k="bridge">i</button></h2>
+  <p class="lead">v3 რეალისტური — ფასის გაზრდა ამოღებულია; აქცენტი მომწიფებულ ბაზაზე, operating leverage-ზე და expansion-ზე.</p>
+  <div class="chartbox"><h4>Value Bridge (რეალისტური)</h4><div class="unit">ერთეული: ათ. ₾ / წელიწადში · საწყისი = TTM EBITDA</div><div class="chartwrap"><canvas id="bridge"></canvas></div></div>
+  <table>
+    <thead><tr><th>ბერკეტი</th><th>EBITDA (ათ.₾)</th><th>ტიპი</th><th>Conf.</th></tr></thead>
+    <tbody>
+      <tr><td>TTM EBITDA (საწყისი)</td><td><b>~67</b></td><td><span class="tag F">FACT</span></td><td>MED</td></tr>
+      <tr><td>− Fortune Jack (ჩანაცვლება ძნელია)</td><td class="neg">−50</td><td><span class="tag F">FACT</span></td><td>HIGH</td></tr>
+      <tr><td>+ Operating leverage <button class="info" data-k="opleverage">i</button> (მომწიფებული ბაზა, headcount ფლეთი)</td><td class="pos">+40</td><td><span class="tag R">REC</span></td><td>MED</td></tr>
+      <tr><td>+ Cross-sell expansion (კონკრეტული — იხ. Full-Potential)</td><td class="pos">+30</td><td><span class="tag R">REC</span></td><td>MED-LOW</td></tr>
+      <tr class="tot"><td>Full-Potential EBITDA (რეალისტური)</td><td><b>~87</b> (60–130)</td><td>—</td><td>MED-LOW</td></tr>
+      <tr><td>+ AI-პროდუქტის monetization</td><td class="pos">optionality</td><td><span class="tag R">REC</span></td><td>LOW</td></tr>
+      <tr><td>+ comp ნორმალიზაცია (თუ 665 ≠ ongoing)</td><td class="pos">+ up to 100</td><td><span class="tag G">GAP</span></td><td>გადასაწყვეტი</td></tr>
+    </tbody>
+  </table>
+  <div class="insight"><b>გულახდილი ინსაითი:</b> ფასის გაზრდის ბერკეტის გარეშე realistic full-potential EBITDA ~87 ათ. (60–130). ეს <b>ბევრად ნაკლებია</b> ვიდრე valuation-მოდელის იგულისხმებული ~474 ათ. — ე.ი. 2.2მ შეფასება მოითხოვს ან peak-მომგებიანობის დაბრუნებას + ზრდას, ან comp-ის რეალურ ნორმალიზაციას.</div>
+</section>
+
+<!-- T1 -->
+<section class="panel" id="t1">
+  <h2 class="sec">1 · AS-IS ღირებულება</h2>
+  <div class="card">
+    <h3>მომგებიანობა: normalized vs reported <button class="info" data-k="ebitda">i</button></h3>
+    <table>
+      <thead><tr><th></th><th>2024</th><th>2025</th><th>TTM (→05.31.26)</th></tr></thead>
+      <tbody>
+        <tr><td>შემოსავალი (ათ.₾)</td><td><b>1 000</b></td><td><b>991</b></td><td><b>937</b> <span class="neg">−11%</span></td></tr>
+        <tr><td>Reported ნეტო</td><td>302</td><td>115</td><td>62</td></tr>
+        <tr><td>მარჟა</td><td>30%</td><td>12%</td><td><b>7%</b></td></tr>
+        <tr><td>EBITDA (incl. ongoing comp)</td><td>~300</td><td>~120</td><td><b>~67</b></td></tr>
+        <tr><td>EBITDA თუ comp → 665 ათ. (gap)</td><td>—</td><td>—</td><td class="pos">~190</td></tr>
+      </tbody>
+    </table>
+    <div class="insight"><b>ინსაითი:</b> EBITDA-ს ნამდვილი დონე დამოკიდებულია ერთ კითხვაზე: TTM ხელფასი 814 ათ. vs headcount-მოდელი 665 ათ. — ეს <b>149 ათ. სხვაობა ongoing-ია თუ ნორმალიზებადი?</b> შენი თქმით ongoing → EBITDA ~67. ეს არის ცენტრალური data gap.</div>
+  </div>
+  <div class="card">
+    <h3>შემოსავლის ხარისხი — მრავალწლიანი <button class="info" data-k="captive">i</button></h3>
+    <table>
+      <thead><tr><th>ნაკადი (ათ.₾)</th><th>2023</th><th>2024</th><th>2025</th><th>2026*</th></tr></thead>
+      <tbody>
+        <tr><td>RO (recurring)</td><td>607</td><td>535</td><td>564</td><td>214</td></tr>
+        <tr><td>Products (SaaS)</td><td>146</td><td>301</td><td>268</td><td>109</td></tr>
+        <tr><td>Reselling</td><td>130</td><td>163</td><td>159</td><td>61</td></tr>
+        <tr class="tot"><td>სულ</td><td>883</td><td>1 000</td><td>991</td><td>384</td></tr>
+        <tr><td>captive (NGT/Elvare/NRG)</td><td>75</td><td>99</td><td>89</td><td>—</td></tr>
+        <tr><td><b>external core</b></td><td class="pos">762</td><td class="pos">883</td><td class="pos">928</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <div class="unit">* 2026 = იან.–მაი. (5 თვე)</div>
+    <div class="insight"><b>ინსაითი (რა ხდება):</b> Products გაიზარდა 2023→2024 (146→301) — ეს იყო ზრდის ძრავა; მერე <b>დაიკლო (268, 2026-ში ტემპი კიდევ ნელია)</b> — კონკურენცია/AI. RO ფლეთია. ე.ი. სტანდარტული პროდუქტების ტალღა გაცხრა და ახალი ძრავა ჯერ არ ჩანს.</div>
+    <ul class="keypts"><li>external core ~928 ათ. (2025) — captive 9% valuation-ში ფასდაკლებით.</li><li>~95% recurring — ხარისხიანი, მაგრამ ორგანულად არ მზარდი (NRR 96%).</li></ul>
+  </div>
+  <div class="card">
+    <h3>ინდიკატური Valuation <button class="info" data-k="indicval">i</button></h3>
+    <table>
+      <thead><tr><th>მიდგომა</th><th>Multiple</th><th>EV (მლნ ₾)</th></tr></thead>
+      <tbody>
+        <tr><td>EV/EBITDA (run-rate ~67 ათ.)</td><td>4–6x</td><td><b>0.27–0.40</b></td></tr>
+        <tr><td>EV/EBITDA (თუ comp ნორმ. ~190)</td><td>4–6x</td><td><b>0.76–1.14</b></td></tr>
+        <tr><td>EV/Revenue (~0.94მ)</td><td>0.8–1.5x</td><td><b>0.75–1.4</b></td></tr>
+        <tr><td>concentration/captive adj.</td><td>−15–30%</td><td class="neg">↓</td></tr>
+      </tbody>
+    </table>
+    <div class="insight"><b>ინსაითი:</b> market-comp AS-IS ~0.3–1.4მ (EBITDA-ბაზაზე ძლიერ დამოკიდებული comp-gap-ზე). მფლობელის WACC-მოდელი 2.2–2.55მ — Full-Potential შეფასებაა (იხ. Valuation ტაბი).</div>
+    <div class="miss"><b>Limitation:</b> ქართულ ბაზაზე ლიკვიდური comparable არ არსებობს; ინდიკატურია.</div>
+  </div>
+</section>
+
+<!-- T2 -->
+<section class="panel" id="t2">
+  <h2 class="sec">2 · Value Leakage & Hidden Value</h2>
+  <table>
+    <thead><tr><th>#</th><th>ელემენტი</th><th>ტიპი</th><th>ეფექტი/წ</th><th>Conf.</th></tr></thead>
+    <tbody>
+      <tr><td>①</td><td><b>მომწიფებული ბაზის შენარჩუნება</b> (ფასი ვერ იზრდება → retention კრიტიკულია)</td><td><span class="tag R">REC</span></td><td class="pos">+40</td><td>MED</td></tr>
+      <tr><td>②</td><td><b>NRR &lt;100%</b> — ბაზა ~4%/წ იწურება</td><td><span class="tag I">INF</span></td><td class="neg">−40</td><td>MED</td></tr>
+      <tr><td>③</td><td><b>მარკეტინგი</b> — outsourced (~36 ათ.), demand-gen ~0</td><td><span class="tag R">REC</span></td><td>fragility</td><td>MED</td></tr>
+      <tr><td>④</td><td><b>Comp 87% of revenue</b> — სტრუქტურული, არა „waste"</td><td><span class="tag F">FACT</span></td><td>op.lev.</td><td>HIGH</td></tr>
+      <tr><td>⑤</td><td><b>Captive</b> (NGT/Elvare/NRG ~9%)</td><td><span class="tag F">FACT</span></td><td>val. adj.</td><td>HIGH</td></tr>
+      <tr><td>⑥</td><td><b>ჰოლდინგ-კონცენტრაცია</b> TBC ~19% peak</td><td><span class="tag I">INF</span></td><td>−15–30% EV</td><td>MED</td></tr>
+      <tr><td>⑦</td><td>Reselling — <b>გადაწყვეტილია ✓</b> (net of license)</td><td><span class="tag F">FACT</span></td><td>—</td><td>HIGH</td></tr>
+    </tbody>
+  </table>
+  <div class="card">
+    <h3>① ფასი ვერ იზრდება → ბაზის შენარჩუნება ხდება მთავარი</h3>
+    <ul class="keypts">
+      <li><span class="tag F">FACT</span> კონტრაქტები 15+ თვიანია ავტო-გადახდით; 15 თვის შემდეგ კლიენტი <b>მაღალმარჟიანია</b> (მცირე რესურსი). მაგრამ კონკურენცია + AI → ფასის გაზრდა რთულია.</li>
+      <li><span class="tag R">REC</span> ღირებულება არ არის ფასის ზრდაში — <b>მომწიფებული (15თვე+) ბაზის churn-ის შემცირებაშია</b>: იქ დაკარგვა = სუფთა მარჟის დაკარგვა. retention +1–2pp → +~40 ათ.</li>
+    </ul>
+    <div class="chal"><b>Challenge:</b> 15-თვიანი payback-ის შემდეგ რომელი კლიენტები არიან „pure margin"-ში და რა არის მათი churn? ეს უნდა გაიზომოს — იქაა ფარული ღირებულება.</div>
+  </div>
+  <div class="card">
+    <h3>④ Comp — სტრუქტურული, არა waste (გასწორება)</h3>
+    <ul class="keypts">
+      <li><span class="tag F">FACT</span> ცვლადი ანაზღაურება სტრუქტურულია (მენეჯმენტი/KAM კვარტალური + გუნდის წლის ბოლო) — არა discretionary „waste". ამიტომ „cut bonus" <b>არ არის ბერკეტი</b>.</li>
+      <li><span class="tag I">INF</span> ნამდვილი ბერკეტი = <b>operating leverage</b>: comp ~87% შემოსავლის; ერთადერთი ჯანსაღი გზა — შემოსავლის ზრდა იმავე headcount-ზე, არა comp-ის შემცირება.</li>
+    </ul>
+    <div class="insight"><b>⑦ გასწორება:</b> Reselling net-ია ლიცენზიაზე (Qlik COGS ~349 ათ. drill-down-ზე) → revenue-ს არ ბერავს. ეჭვი მოხსნილია.</div>
+  </div>
+</section>
+
+<!-- T3 -->
+<section class="panel" id="t3">
+  <h2 class="sec">3 · Full-Potential (12–24 თვე) <button class="info p" data-k="mckinsey">i</button></h2>
+  <p class="lead">რეალისტური ბერკეტები — ფასის გაზრდის გარეშე (კონკურენცია + AI).</p>
+  <table>
+    <thead><tr><th>ბერკეტი</th><th>ეფექტი/წ</th><th>ვადა</th><th>სირთულე</th><th>Conf.</th></tr></thead>
+    <tbody>
+      <tr><td>Op. leverage — მომწიფებული ბაზა, headcount ფლეთი</td><td class="pos">+40</td><td>0–12 თვე</td><td>დაბ.</td><td>MED</td></tr>
+      <tr><td>Cross-sell expansion (იხ. სცენარები ქვემოთ)</td><td class="pos">+30</td><td>6–18 თვე</td><td>საშ.</td><td>MED-LOW</td></tr>
+      <tr><td>მომწიფებული ბაზის retention (+1–2pp)</td><td class="pos">+ჩართ. ზემოთ</td><td>მუდმ.</td><td>საშ.</td><td>MED</td></tr>
+      <tr><td>− Fortune Jack (ჩანაცვლება ძნელი)</td><td class="neg">−50</td><td>—</td><td>—</td><td>HIGH</td></tr>
+      <tr><td>AI-პროდუქტი: premium upsell</td><td class="pos">optionality</td><td>12–24 თვე</td><td>მაღ.</td><td>LOW</td></tr>
+    </tbody>
+  </table>
+  <div class="card">
+    <h3>Cross-sell / NRR→100% — კონკრეტული სცენარები</h3>
+    <ul class="keypts">
+      <li><b>1. მოდულების cross-sell:</b> single-product კლიენტებზე დამატებითი მოდული (BiFinance → BiRetail/BiStock/BiDebitor/BiAudit). მიზანი: 5–8 არსებულ კლიენტს +1 მოდული (~3–5 ათ./წ თითო) → ~+20–35 ათ.</li>
+      <li><b>2. AI-ფენა upsell:</b> premium კლიენტებზე conversational AI (Qlik+Claude) ფასიანი დამატება → retention + ARPU. (ეს შენი პილოტია — optionality.)</li>
+      <li><b>3. Seat/user expansion:</b> არსებულ კონტრაქტებში მომხმარებლების/აპების ზრდა.</li>
+    </ul>
+    <div class="chal"><b>Challenge:</b> 40+ კლიენტიდან რამდენს აქვს მხოლოდ 1 პროდუქტი? ეს რიცხვი განსაზღვრავს expansion-ის რეალურ ჭერს. (DATA GAP — product-per-client.)</div>
+  </div>
+  <div class="card">
+    <h3>Downside (inaction)</h3>
+    <ul class="keypts"><li><span class="tag I">INF</span> FJ წავა, ფასი ფლეთი, ბაზა −4%/წ, comp ongoing → EBITDA ~20–50 ათ., შემოსავ. ~840–890 ათ. წმინდა break-even-თან ახლოს.</li></ul>
+  </div>
+</section>
+
+<!-- T4 -->
+<section class="panel" id="t4">
+  <h2 class="sec">4 · Benchmarks (ორმაგი ლინზა) <button class="info p" data-k="benchmark">i</button></h2>
+  <p class="lead">სამიზნე — SaaS (შენი სტრატეგია); ეკონომიკა ჯერ services. <span class="rag g"></span>კარგი <span class="rag a"></span>საზღვარზე <span class="rag r"></span>პრობლემა.</p>
+  <table>
+    <thead><tr><th>მაჩვენებელი</th><th>სტანდარტი</th><th>Bivision (TTM)</th><th>RAG</th></tr></thead>
+    <tbody>
+      <tr><td>Rule of 40 <button class="info" data-k="rule40">i</button></td><td>≥40</td><td><b>~12</b> (2024 ~43)</td><td><span class="rag r"></span></td></tr>
+      <tr><td>NRR <button class="info" data-k="nrr">i</button></td><td>SMB 100–110%</td><td><b>~96%</b></td><td><span class="rag a"></span></td></tr>
+      <tr><td>Gross margin <button class="info" data-k="grossmargin">i</button></td><td>SaaS 70–80%</td><td><b>~44%</b> (net of license)</td><td><span class="rag a"></span></td></tr>
+      <tr><td>წმინდა მარჟა</td><td>15–30%</td><td><b>7%</b> TTM</td><td><span class="rag r"></span></td></tr>
+      <tr><td>Rev / employee</td><td>SaaS ~$130k</td><td>~$50k</td><td><span class="rag r"></span></td></tr>
+      <tr><td>Rev / billable FTE</td><td>$200k+</td><td>~$69k (187 ათ.₾)</td><td><span class="rag r"></span></td></tr>
+      <tr><td>კონცენტრაცია <button class="info" data-k="concentration">i</button></td><td>&lt;25%/კლიენტი</td><td>entity OK; ჰოლდინგ TBC ~19%</td><td><span class="rag a"></span></td></tr>
+    </tbody>
+  </table>
+  <div class="insight"><b>ინსაითი:</b> SaaS-კომპანიად პოზიციონირება (შენი სტრატეგია) სწორია სამიზნედ, მაგრამ <b>დღევანდელი ეკონომიკა services-ისაა და benchmark-ებზე ქვემოთ</b>. ეს განსხვავება (აღქმა vs რეალობა) თავად ფოკუსის საკითხია.</div>
+</section>
+
+<!-- T8 HEADCOUNT -->
+<section class="panel" id="t8">
+  <h2 class="sec">5 · Headcount & Payroll</h2>
+  <p class="lead">გუნდის მოდელი (gross = net × 1.301). ცვლადი ანაზღაურება კვარტალურია; P&L-ში თანაბრად accrual.</p>
+  <div class="card">
+    <h3>გუნდი</h3>
+    <table>
+      <thead><tr><th>ფუნქციური ჯგუფი</th><th>FTE</th><th>Gross/თვე</th><th>კლასი</th></tr></thead>
+      <tbody>
+        <tr><td>GA + Sales (მფლობელი)</td><td>1</td><td>13 010</td><td>Non-billable mgmt</td></tr>
+        <tr><td>KAM + RO+Product+Support</td><td>2</td><td>23 418</td><td>Billable</td></tr>
+        <tr><td>RO+Product+Support</td><td>3</td><td>16 003</td><td>Billable</td></tr>
+        <tr><td>Marketing</td><td>—</td><td>2 992</td><td>Outsourced (არა FTE)</td></tr>
+        <tr class="tot"><td>სულ (gross/თვე)</td><td>6 + 1</td><td><b>55 423</b></td><td>5 billable / 1 mgmt</td></tr>
+      </tbody>
+    </table>
+    <ul class="keypts">
+      <li><span class="tag F">FACT</span> Annualized gross: სულ <b>665 071</b> · billable <b>473 044</b> · mgmt+sales <b>156 120</b> · marketing <b>35 908</b>.</li>
+      <li><span class="tag F">FACT</span> ბონუსი: P&L accrual <b>5 204 gross/თვე</b>; ფულადი <b>15 612/კვარტალი</b> (არა თვიური).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Delivery allocation (preliminary) & Contribution</h3>
+    <p style="font-size:13px;color:var(--ink2);margin:0 0 6px"><span class="tag E">MGMT ESTIMATE</span> 5 billable ≈ თანაბრად: RO / Product / Support — თითო 1.67 FTE ≈ 13 140 gross/თვე (157 681/წ). <b>არა verified utilization.</b></p>
+    <div class="chartwrap" style="height:280px"><canvas id="contrib"></canvas></div>
+    <div class="unit">Contribution (TTM): revenue − allocated delivery (support RO:Product-ზე გადანაწ.). * Reselling net-ია ლიცენზიაზე, ~0 delivery.</div>
+    <div class="insight"><b>ინსაითი (ESTIMATE):</b> 33/33/33 დაშვებით <b>RO არის მარჟის ძრავა (50%)</b>, ხოლო <b>Product თხელია (18%)</b> — თუმცა შენ Product-ს სტრატეგიულ ცენტრად ხედავ. ეს ან ნიშნავს, რომ Product-ს მეტი revenue/delivery სჭირდება, ან allocation არასწორია.</div>
+    <div class="miss"><b>Sensitivity (RO 50% / Product 30% / Support 20% of delivery):</b> RO contribution 233 ათ. (44%), Product 83 ათ. (33%). ე.ი. დასკვნა მგრძნობიარეა allocation-ზე → <b>time-tracking აუცილებელია</b> (DATA GAP).</div>
+  </div>
+
+  <div class="card">
+    <h3>მეტრიკები (E1–E9) — TTM revenue 937 ათ.</h3>
+    <table>
+      <thead><tr><th>მეტრიკა</th><th>მნიშვნელობა</th><th>label</th></tr></thead>
+      <tbody>
+        <tr><td>1. Rev / total person (7)</td><td><b>134 ათ.₾</b></td><td><span class="tag F">FACT</span></td></tr>
+        <tr><td>2. Rev / internal employee (6)</td><td><b>156 ათ.₾</b></td><td><span class="tag F">FACT</span></td></tr>
+        <tr><td>3. Rev / billable FTE (5)</td><td><b>187 ათ.₾</b></td><td><span class="tag F">FACT</span></td></tr>
+        <tr><td>4. Gross profit / billable FTE</td><td><b>93 ათ.₾</b></td><td><span class="tag I">INF</span></td></tr>
+        <tr><td>5. Contribution: RO / Product / Reselling</td><td>269 / 47 / 148</td><td><span class="tag E">ESTIMATE</span></td></tr>
+        <tr><td>6. Personnel % revenue</td><td>71% (model) / <b>87%</b> (actual)</td><td><span class="tag F">FACT</span></td></tr>
+        <tr><td>7. Non-billable opex % gross profit</td><td>41%</td><td><span class="tag I">INF</span></td></tr>
+        <tr><td>8. Break-even rev / billable FTE</td><td>145 (model) / 175 (actual) vs 187</td><td><span class="tag I">INF</span></td></tr>
+        <tr><td>9. Allocation sensitivity</td><td>RO 44–50% / Product 18–33%</td><td><span class="tag E">ESTIMATE</span></td></tr>
+      </tbody>
+    </table>
+    <div class="chal"><b>ცენტრალური DATA GAP:</b> headcount-მოდელი = 665 ათ./წ, მაგრამ TTM ფაქტ. ხელფასი = 814 ათ. (+149 ათ.). ეს სხვაობა (გუნდის წლის ბოლო პული?) <b>ongoing-ია თუ ნორმალიზებადი</b> — ეს განსაზღვრავს EBITDA-ს (67 vs 190) და მთელ valuation-ს.</div>
+  </div>
+</section>
+
+<!-- T5 VISUAL -->
+<section class="panel" id="t5">
+  <h2 class="sec">6 · ვიზუალი · კვარტალური</h2>
+  <div class="chartbox"><h4>შემოსავალი ნაკადებად (წლიური)</h4><div class="unit">ერთეული: ათ. ₾ · 2026* = 5 თვე</div><div class="chartwrap"><canvas id="rev"></canvas></div></div>
+  <div class="chartbox"><h4>კვარტალური ნეტო & Salary/Revenue</h4><div class="unit">სვეტი = ნეტო (ათ.₾) · ხაზი = Sal/Rev (%) · 2025Q4 = წლის ბოლო ცვლადი ანაზღ.</div><div class="chartwrap"><canvas id="qtr"></canvas></div></div>
+  <div class="chartbox"><h4>ჰოლდინგ-კონცენტრაცია</h4><div class="unit">ერთეული: % შემოსავლის</div><div class="chartwrap"><canvas id="conc"></canvas></div></div>
+  <table>
+    <thead><tr><th>კვარტ.</th><th>Gross</th><th>RO</th><th>Prod</th><th>Resell</th><th>Sal/Rev</th><th>Net</th></tr></thead>
+    <tbody>
+      <tr><td>24Q1</td><td>196</td><td>123</td><td>55</td><td>18</td><td>62%</td><td>52</td></tr>
+      <tr><td>24Q2</td><td>265</td><td>124</td><td>78</td><td>62</td><td>50%</td><td>111</td></tr>
+      <tr><td>24Q3</td><td>251</td><td>142</td><td>83</td><td>25</td><td>53%</td><td>83</td></tr>
+      <tr><td>24Q4</td><td>288</td><td>146</td><td>85</td><td>57</td><td>69%</td><td>56</td></tr>
+      <tr><td>25Q1</td><td>244</td><td>147</td><td>73</td><td>24</td><td>66%</td><td>77</td></tr>
+      <tr><td>25Q2</td><td>276</td><td>147</td><td>70</td><td>59</td><td>59%</td><td>97</td></tr>
+      <tr><td>25Q3</td><td>223</td><td>141</td><td>64</td><td>18</td><td>74%</td><td>43</td></tr>
+      <tr><td>25Q4</td><td>248</td><td>129</td><td>61</td><td>58</td><td>130%</td><td class="neg">−101</td></tr>
+      <tr><td>26Q1</td><td>221</td><td>127</td><td>66</td><td>27</td><td>77%</td><td>47</td></tr>
+      <tr><td>26Q2*</td><td>164</td><td>87</td><td>43</td><td>34</td><td>62%</td><td>50</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- T6 VALUATION -->
+<section class="panel" id="t6">
+  <h2 class="sec">7 · Valuation მოდელი <button class="info p" data-k="wacc">i</button></h2>
+  <p class="lead">მფლობელის WACC-მოდელი + 3 წელი + 2026/2027 forecast + reconciliation.</p>
+  <div class="card">
+    <h3>WACC პარამეტრები (CAPM build-up)</h3>
+    <table>
+      <tbody>
+        <tr><td>Risk-Free (10Y T-Bond)</td><td>4.33%</td></tr>
+        <tr><td>Country Risk Premium 2025</td><td>4.02%</td></tr>
+        <tr><td>Industry Beta → Adjusted</td><td>1.24 → 1.16</td></tr>
+        <tr><td>Market Risk Premium (USA / Georgia)</td><td>4.33% / 8.35%</td></tr>
+        <tr><td>Liquidity / Minority / Project-Vol</td><td>1.0% / 2.0% / 3.0%</td></tr>
+        <tr><td>Cost of Equity</td><td><b>22.08%</b></td></tr>
+        <tr><td>Cost of Debt · D/V · E/V</td><td>10.80% · 0% · 100%</td></tr>
+        <tr class="tot"><td>WACC (= Cost of Equity, all-equity)</td><td><b>21.53%</b></td></tr>
+      </tbody>
+    </table>
+    <div class="miss"><b>Researched (Damodaran 2026):</b> US ERP ~4.4% ≈ მფლობელის MRP USA 4.33%; Georgia ERP = US + CRP, შესაბამისი 8.35%-თან. WACC მეთოდურად <b>დასაბუთებულია</b> ქართული მცირე private-ისთვის.</div>
+  </div>
+  <div class="card">
+    <h3>EBITDA → EV: 3 წელი + Forecast</h3>
+    <div class="chartwrap" style="height:280px"><canvas id="val"></canvas></div>
+    <table>
+      <thead><tr><th></th><th>2024</th><th>2025</th><th>2026 TTM</th><th>2027F</th></tr></thead>
+      <tbody>
+        <tr><td>შემოსავალი (ათ.₾)</td><td>1 000</td><td>991</td><td>937</td><td>~860</td></tr>
+        <tr><td>EBITDA (ათ.₾)</td><td>~300</td><td>~120</td><td><b>~67</b></td><td>~85</td></tr>
+        <tr><td>იგულ. EV = EBITDA/WACC</td><td>1.39მ</td><td>0.56მ</td><td><b>0.31მ</b></td><td>0.40მ</td></tr>
+      </tbody>
+    </table>
+    <div class="unit">2027F: post-FJ full year, მოკრძალებული expansion. EV = EBITDA ÷ 21.53% (g=0, გამარტივება).</div>
+  </div>
+  <div class="card">
+    <h3>Reconciliation: მფლობელის 2.2–2.55მ vs მონაცემი</h3>
+    <ul class="keypts">
+      <li><span class="tag F">FACT</span> მფლობელის mark: EV <b>2.2მ</b>, Market Value <b>2.55მ</b> (+15.9% growth), 1% = 25 500 ₾.</li>
+      <li><span class="tag I">INF</span> 2.2მ × WACC 21.53% → იგულ. მდგრადი EBITDA <b>~474 ათ./წ</b>. ან: 2.2მ = 2024-peak EBITDA (300) <b>+ ~8% მუდმივი ზრდა</b> [300/(0.2153−0.079)].</li>
+      <li><span class="tag I">INF</span> ე.ი. 2.2მ <b>არ არის AS-IS</b> — ის გულისხმობს peak-მომგებიანობის დაბრუნებას + ზრდას. მიმდინარე ~67 ათ. EBITDA → EV ~0.3მ (~33x EBITDA-ს ჩათვლა 2.2მ-ში rich).</li>
+    </ul>
+    <div class="chal"><b>Challenge:</b> 2.2მ რეალურია მხოლოდ Full-Potential-ის შესრულებისას. შიდა მართვისთვის — გამოიყენე <b>ორი mark</b>: AS-IS ~0.3–0.6მ (conservative reality) და Target ~2.2მ (თუ გეგმა შესრულდა). ერთი რიცხვი ამახინჯებს.</div>
+  </div>
+</section>
+
+<!-- T9 FOCUS -->
+<section class="panel" id="t9">
+  <h2 class="sec">8 · ფოკუსი — რა ვაკეთოთ (პრიორიტეტებით)</h2>
+  <p class="lead">მიზანი: შიდა მართვა + რეალობის დანახვა. პრიორიტეტი = მაღალი ეფექტი × რეალისტურობა.</p>
+  <div class="prio"><div class="num">1</div><div><h4>შემოსავალი იკლებს — მოზიდვა #1 პრობლემაა</h4>
+    <p>−11% TTM + Fortune Jack მიდის (ჩანაცვლება ძნელი) + ფასი ვერ იზრდება. ერთადერთი გასასვლელი = <b>განმეორებადი მოზიდვის ძრავა</b>.</p>
+    <p><b>გადაწყვეტილება:</b> outsourced მარკეტინგი (36 ათ.) demand-gen-ს ~0-ს იძლევა → ან გახადე pipeline-ზე ანგარიშვალდებული, ან გადაიტანე owner-led სტრუქტურულ BD-ზე.</p></div></div>
+  <div class="prio"><div class="num">2</div><div><h4>Comp vs შემოსავალი — არამდგრადი</h4>
+    <p>Salary/Revenue <b>87%</b> (Rev/Salary 1.15 vs სამიზნე 1.8). comp სტრუქტურულია (არა waste), ამიტომ ერთადერთი ჯანსაღი გზა = <b>შემოსავლის ზრდა იმავე გუნდზე (operating leverage)</b>, არა შემცირება.</p></div></div>
+  <div class="prio"><div class="num">3</div><div><h4>მომწიფებული (15თვე+) ბაზის შენარჩუნება</h4>
+    <p>payback-ის შემდეგ კონტრაქტი სუფთა მარჟაა. იქ churn = ყველაზე ძვირი დანაკარგი. <b>retention ფოკუსი</b> ფასის გაზრდის რეალისტური ალტერნატივაა.</p></div></div>
+  <div class="prio"><div class="num">4</div><div><h4>Product ეკონომიკა vs სტრატეგია</h4>
+    <p>Bivision-ს SaaS პროდუქტ-კომპანიად ხედავ, მაგრამ Product line contribution ~18% (ESTIMATE) — RO არის ძრავა. <b>Product-ს მეტი revenue/delivery FTE სჭირდება ან AI-პროდუქტმა უნდა მონეტიზდეს.</b> ჯერ — time-tracking, რომ ეს გადამოწმდეს.</p></div></div>
+  <div class="prio"><div class="num">5</div><div><h4>Valuation რეალობა — ორი mark</h4>
+    <p>2.2მ = Full-Potential (peak EBITDA + 8% ზრდა). მიმდინარე ეკონომიკა → ~0.3–0.6მ. <b>შიდა მართვისთვის გამოიყენე ორივე:</b> conservative reality + target. ერთი ოპტიმისტური რიცხვი მალავს პრობლემას.</p></div></div>
+</section>
+
+<!-- T7 MISSING -->
+<section class="panel" id="t7">
+  <h2 class="sec">9 · Missing · კითხვები</h2>
+  <div class="card"><h3>გადაწყვეტილი ✓</h3>
+    <ul class="keypts">
+      <li>Captive: NGT Group, Elvare, NRG Georgia (~9%) → external core ~928 ათ.</li>
+      <li>Reselling: net of license (Qlik COGS ~349 ათ.).</li>
+      <li>Headcount: 6 FTE (5 billable) + 1 outsourced; run-rate 665 ათ.</li>
+      <li>მიზანი: შიდა მართვა + რეალობა. სტრატეგია: SaaS პროდუქტ-კომპანია. ფასის ესკალაცია: რთული (კონკურენცია+AI). FJ ჩანაცვლება: ძნელი.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>ჯერ აკლია (კრიტიკული)</h3>
+    <ul class="keypts">
+      <li><b>Comp reconciliation:</b> 665 (model) vs 814 (TTM) — 149 ათ. ongoing თუ ნორმალიზებადი? → EBITDA.</li>
+      <li><b>Time-tracking:</b> delivery allocation RO/Product/Support — contribution-ის გადასამოწმებლად.</li>
+      <li><b>Product-per-client:</b> რამდენ კლიენტს აქვს 1 პროდუქტი → cross-sell ჭერი.</li>
+      <li><b>მომწიფებული ბაზის churn:</b> 15თვე+ კოჰორტის retention.</li>
+      <li><b>Valuation income base + g:</b> 2.2მ-ის გასამჭვირვალებლად.</li>
+    </ul>
+  </div>
+</section>
+
+</div><!-- /panels -->
+
+<div class="src">წყაროები: Bivision_Historical2.xls (1C) · headcount/comp & valuation params — მფლობელის მონაცემი · გარე benchmark (2025–26): Orb, Pavilion, SaaS Capital, High Alpha, Benchmarkit, SPI, Deltek, Northstar, Damodaran ERP 2026. ⚠️ საკუთრების უფლებით დაცულ ბაზებზე წვდომა არ მაქვს; ლოკალური ქართული comparable არ არსებობს. TTM = trailing 12 თვე (Jun 2025–May 2026), as of 2026-05-31.</div>
+</div>
+<div class="modal" id="modal"><div class="modal-box"><button class="modal-x" id="mx">×</button><h3 id="mt"></h3><div class="b" id="mb"></div></div></div>
+<script>
+var GLOSS={
+ flat:['flat (ფლეთი)','<b>flat</b> = მაჩვენებელი წლიდან წლამდე პრაქტიკულად <b>არ იცვლება</b> — არც იზრდება, არც ეცემა, სტაბილურია. მაგ.: RO recurring შემოსავალი 4 წელია ~535–607 ათ. ₾ დიაპაზონში — ე.ი. flat.'],
+ mrr:['MRR — Monthly Recurring Revenue','<b>MRR</b> — თვიური განმეორებადი შემოსავალი (recurring კონტრაქტების თვიური ჯამი).<br><br><b>Bivision:</b> ბოლო 3 თვის საშ. ~<b>80 ათ.₾/თვე</b> (May 2026 ~71 ათ.). ARR = MRR × 12 ≈ 964 ათ.<br><br><b>ფორმულა:</b> Σ(აქტიური recurring კონტრაქტის თვიური ღირებულება).'],
+ arr:['ARR — Annual Recurring Revenue','<b>ARR</b> = MRR × 12 — წლიური განმეორებადი შემოსავალი.<br><br><b>Bivision:</b> ~<b>964 ათ.₾</b> (as of 2026-05-31), Fortune Jack-ის წასვლამდე (~84 ათ./წ მასშია ჯერ).'],
+ sal2rev:['Salary / Revenue','<b>Salary / Revenue</b> = ჯამური ხელფასი ÷ შემოსავალი. დაბალი = უკეთესი. საკონსულტაციო სამიზნე: Revenue/Salary ≈ 1.8, ანუ Salary/Revenue ≈ 56%.<br><br><b>Bivision TTM:</b> ხელფასი ~814 ÷ შემოსავ. ~937 = <b>87%</b> (Rev/Salary 1.15) — წინა 12 თვეში ~62%. ე.ი. გაუარესდა (შემოსავ. დაეცა, ხელფასი იგივე დარჩა).'],
+ ebitda:['EBITDA','<b>EBITDA</b> — ოპერაციული ფულადი მომგებიანობა (მოგება პროცენტის, გადასახადის, ამორტიზაციის გამოკლებამდე).<br><br><b>Bivision TTM ~67 ათ.₾</b> (ნეტო 62 + ამორტიზაცია). <b>მნიშვნელოვანი:</b> ეს უკვე შეიცავს წლის ბოლოს ცვლად ანაზღაურებას (ongoing). თუ comp ნორმალიზდება headcount-მოდელამდე (665 vs ფაქტ. 814), EBITDA ~190-მდე ადის — ეს ღია data gap-ია.'],
+ rule40:['Rule of 40','<b>Rule of 40</b> — SaaS-ის ჯანმრთელობის წესი: <b>ზრდა% + მარჟა% ≥ 40</b>.<br><br><b>Bivision:</b> 2024 → +13% + 30% = <b>~43 ✓</b>; TTM 2026 → −11% + 7% = <b>~12 (ფაქტ. უარყოფითი ზრდით კიდევ ნაკლები) ✗</b>.<br><br>მხოლოდ ~1/4 აღწევს 40-ს; >40 → ~9.4x revenue multiple.'],
+ nrr:['NRR — Net Revenue Retention','<b>NRR</b> — არსებული კლიენტებისგან შემოსავალი ერთ წელიწადში, ახალი კლიენტების გარეშე.<br><br><b>ფორმულა:</b> (წელი N შემოსავ. იმ კლიენტებისგან, ვინც N-1-ში იყვნენ) ÷ (იგივე კლიენტების N-1 შემოსავ.) × 100.<br><br>&lt;100% = ბაზა იწურება. <b>Bivision external NRR ~96%</b> → ბაზა ~4%-ით იკლებს; ზრდა მთლიანად ახალ მოზიდვაზეა.'],
+ grossmargin:['Gross margin','<b>Gross margin</b> = (შემოსავ. − პირდაპირი ღირებ.) ÷ შემოსავ.<br><br>Bivision-ის შემოსავალი უკვე <b>net-ია ლიცენზიის ღირებულებაზე</b> (Qlik license COGS ~349 ათ. 2025-ში drill-down-ზე). ~44% = მარჟა delivery-ხელფასის შემდეგ — services-ბიზნესის სტრუქტურა.'],
+ bridge:['Full-Potential Value Bridge','<b>კონცეფცია (Bain/PE):</b> დღევანდელი run-rate EBITDA-დან იწყება, თითო ბერკეტის ეფექტი ემატება/აკლდება, სანამ მივა რეალისტურ სრულ პოტენციალამდე 12–24 თვეში.<br><br><b>ფორმულა:</b> საწყისი EBITDA + Σ(ბერკეტების წმინდა ეფექტი). თითო ფაქტი vs ვარაუდი, confidence-ით.<br><br><b>v3 რეალისტური:</b> ფასის გაზრდა ამოღებულია (კონკურენცია + AI ზღუდავს); აქცენტი — მომწიფებული ბაზის შენარჩუნებაზე, operating leverage-ზე და expansion-ზე.'],
+ mckinsey:['McKinsey-style value levers','<b>Value levers</b> — ღირებულების შექმნის ბერკეტები 4 კატეგორიად: (1) შემოსავლის ზრდა, (2) მარჟა/ხარჯი, (3) კაპიტალის ეფექტი, (4) რისკის შემცირება.<br><br>თითო = ₾-ეფექტი × ვადა × სირთულე. პრიორიტეტი = მაღალი ეფექტი × დაბალი სირთულე.'],
+ opleverage:['Operating leverage','<b>Operating leverage</b> — როცა შემოსავალი იზრდება ხარჯის ზრდაზე სწრაფად (fixed cost ბაზაზე), მარჟა ფართოვდება.<br><br><b>Bivision-ისთვის:</b> 15-თვიანი payback-ის შემდეგ კონტრაქტი მაღალმარჟიანია (მცირე რესურსი). თუ ბაზა მწიფდება და headcount არ იზრდება — მარჟა იზრდება. ეს ფასის გაზრდის რეალისტური ალტერნატივაა.'],
+ captive:['Captive / related-party','<b>Captive</b> — შემოსავალი დაკავშირებული მხარისგან. Bivision-ის მშობელი NGT-ის ჰოლდინგი: <b>NGT Group, Elvare, NRG Georgia (~9%)</b>. არ არის arm’s-length; valuation-ში ფასდაკლებით ითვლება.'],
+ concentration:['Client concentration','<b>კონცენტრაცია</b> — ერთ კლიენტზე/ჯგუფზე წილი. benchmark: >25% ერთზე = ეგზისტენც. რისკი, ფასს −15–30%. Bivision: entity OK (&lt;14%), ჰოლდინგ-დონეზე TBC პიკზე ~19%.'],
+ benchmark:['ორმაგი benchmark','Bivision ჰიბრიდია → ფასდება ორი ლინზით: <b>SaaS</b> (NRR, gross margin, Rule of 40, ARR/employee) და <b>professional-services</b> (utilization, rev/billable, net margin, concentration). სამიზნე — SaaS (მფლობელის სტრატეგია), მაგრამ ეკონომიკა ჯერ services.'],
+ indicval:['ინდიკატური Valuation','<b>ინდიკატური valuation</b> — სწრაფი შეფასების დიაპაზონი multiple-ებით (EV/EBITDA, EV/Revenue), არა სრული DCF.<br><br><b>EV/EBITDA:</b> ბიზნესის ღირებულება = EBITDA × multiple (მცირე private services ~3–6x).<br><b>EV/Revenue:</b> = შემოსავ. × multiple (SaaS-ისთვის უფრო მაღალი).<br><br>⚠️ ქართულ ბაზაზე ლიკვიდური comparable არ არსებობს → ინდიკატურია, არა შეფასება. სრული WACC-მოდელი → ტაბი ‘Valuation’.'],
+ wacc:['WACC','<b>WACC</b> — დისკონტის განაკვეთი (მაღალი = მაღალი რისკი = დაბალი ღირებულება).<br><br><b>CAPM build-up:</b> Cost of Equity = Risk-free + β×Market Risk Premium + country + liquidity + minority + volatility premiums.<br><br>Bivision all-equity (D/V 0%) → WACC = Cost of Equity = <b>21.53%</b>. (US ERP ~4.4% Damodaran 2026 ≈ მფლობელის 4.33%; Georgia ERP = US+CRP ≈ 8.35% — მეთოდურად სწორი.)'],
+ captableval:['Capitalization vs Market Value','<b>Capitalization [EV]</b> = საბაზისო ღირებულება მიმდინარე მომგებიანობით.<br><b>Market Value [EV]</b> = + Extra Growth Value (+15.9% ზრდის პრემია).<br>all-equity → EV = Equity. 1% წილი = Equity ÷ 100.']
+};
+function openM(k){var g=GLOSS[k];if(!g)return;document.getElementById('mt').innerHTML=g[0];document.getElementById('mb').innerHTML=g[1];document.getElementById('modal').classList.add('show');}
+document.addEventListener('click',function(e){var b=e.target.closest('.info');if(b){openM(b.dataset.k);}if(e.target.id==='modal'||e.target.id==='mx'){document.getElementById('modal').classList.remove('show');}});
+
+/* TABS: independent of charts */
+(function(){var nav=document.getElementById('nav');
+ function show(t){var bs=document.querySelectorAll('nav.tabs button');for(var i=0;i<bs.length;i++)bs[i].classList.toggle('active',bs[i].dataset.t===t);
+  var ps=document.querySelectorAll('.panel');for(var j=0;j<ps.length;j++)ps[j].classList.toggle('active',ps[j].id===t);
+  window.scrollTo({top:0,behavior:'smooth'});if(window.__ic)setTimeout(function(){try{window.__ic(t);}catch(e){}},60);}
+ if(nav)nav.addEventListener('click',function(e){var b=e.target.closest('button');if(b)show(b.dataset.t);});})();
+
+/* CHARTS: guarded */
+(function(){if(typeof Chart==='undefined')return;
+ try{if(typeof ChartDataLabels!=='undefined')Chart.register(ChartDataLabels);}catch(e){}
+ try{Chart.defaults.font.family="'Noto Sans Georgian',sans-serif";}catch(e){}
+ var C={purple:'#5B57A0',purpled:'#46427E',green:'#069648',amber:'#C77A1E',muted:'#9794B8',red:'#C0392B',ink:'#2C2A47',line:'#E2E2EE'};var m={};
+ function bridge(){if(m.b||!document.getElementById('bridge'))return;m.b=1;var L=['67','−50','+40','+30','87'];
+  new Chart(document.getElementById('bridge'),{type:'bar',data:{labels:['TTM EBITDA','− Fortune Jack','+ Op. leverage','+ Cross-sell','Full-Pot.'],
+   datasets:[{data:[[0,67],[17,67],[17,57],[57,87],[0,87]],backgroundColor:[C.purple,C.red,C.green,C.green,C.purpled],borderRadius:4}]},
+   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
+    tooltip:{callbacks:{label:function(c){return (c.raw[1]-c.raw[0])+' ათ.';}}},
+    datalabels:{anchor:'end',align:'top',color:C.ink,font:{weight:'800',size:12},formatter:function(v,c){return L[c.dataIndex];}}},
+    scales:{y:{title:{display:true,text:'ათ. ₾'},grid:{color:C.line},suggestedMax:100},x:{grid:{display:false},ticks:{font:{size:10}}}}}});}
+ function rev(){if(m.r||!document.getElementById('rev'))return;m.r=1;
+  new Chart(document.getElementById('rev'),{type:'bar',data:{labels:['2022','2023','2024','2025','2026*'],
+   datasets:[{label:'RO (recurring)',data:[555,607,535,564,214],backgroundColor:C.purple},
+    {label:'Products (SaaS)',data:[46,146,301,268,109],backgroundColor:C.green},
+    {label:'Reselling',data:[128,130,163,159,61],backgroundColor:C.muted}]},
+   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'},datalabels:{color:'#fff',font:{weight:'700',size:10},formatter:function(v){return v>=45?v:'';}}},
+    scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,title:{display:true,text:'ათ. ₾'},grid:{color:C.line}}}}});}
+ function qtr(){if(m.q||!document.getElementById('qtr'))return;m.q=1;var n=[52,111,83,56,77,97,43,-101,47,50];
+  new Chart(document.getElementById('qtr'),{data:{labels:['24Q1','24Q2','24Q3','24Q4','25Q1','25Q2','25Q3','25Q4','26Q1','26Q2*'],
+   datasets:[{type:'bar',label:'ნეტო (ათ.₾)',data:n,backgroundColor:n.map(function(v){return v<0?C.red:C.purple;}),borderRadius:3,yAxisID:'y',datalabels:{color:C.ink,anchor:'center',font:{weight:'800',size:9},formatter:function(v){return v;}}},
+    {type:'line',label:'Salary/Rev %',data:[62,50,53,69,66,59,74,130,77,62],borderColor:C.amber,backgroundColor:C.amber,yAxisID:'y1',tension:.3,pointRadius:3,datalabels:{align:'top',color:C.amber,font:{weight:'700',size:9},formatter:function(v){return v+'%';}}}]},
+   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{position:'left',title:{display:true,text:'ნეტო (ათ.₾)'},grid:{color:C.line}},y1:{position:'right',title:{display:true,text:'Sal/Rev %'},grid:{display:false},suggestedMax:150},x:{grid:{display:false}}}}});}
+ function conc(){if(m.c||!document.getElementById('conc'))return;m.c=1;
+  new Chart(document.getElementById('conc'),{type:'line',data:{labels:['2022','2023','2024','2025'],
+   datasets:[{label:'TBC ჯგუფი',data:[19,18,15,13],borderColor:C.purple,backgroundColor:C.purple,tension:.3,pointRadius:4,datalabels:{align:'top',color:C.purple,font:{weight:'700',size:11},formatter:function(v){return v+'%';}}},
+    {label:'NGT (captive)',data:[3,5,7,7],borderColor:C.green,backgroundColor:C.green,tension:.3,pointRadius:4,datalabels:{align:'bottom',color:C.green,font:{weight:'700',size:11},formatter:function(v){return v+'%';}}}]},
+   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{title:{display:true,text:'% შემოსავლის'},grid:{color:C.line},suggestedMax:24},x:{grid:{display:false}}}}});}
+ function contrib(){if(m.ct||!document.getElementById('contrib'))return;m.ct=1;
+  new Chart(document.getElementById('contrib'),{type:'bar',data:{labels:['RO','Product','Reselling'],
+   datasets:[{label:'Contribution (ათ.₾)',data:[269,47,148],backgroundColor:[C.purple,C.amber,C.green],borderRadius:4,datalabels:{anchor:'end',align:'top',color:C.ink,font:{weight:'800',size:12},formatter:function(v,c){var p=['50%','18%','100%*'];return v+' ('+p[c.dataIndex]+')';}}}]},
+   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{title:{display:true,text:'ათ. ₾ (TTM)'},grid:{color:C.line},suggestedMax:320},x:{grid:{display:false}}}}});}
+ function val(){if(m.v||!document.getElementById('val'))return;m.v=1;
+  new Chart(document.getElementById('val'),{type:'bar',data:{labels:['2024','2025','2026 TTM','2027F'],
+   datasets:[{label:'EBITDA-ით ნაგ. EV (EBITDA/WACC)',data:[1393,557,311,418],backgroundColor:C.purple,borderRadius:4,datalabels:{anchor:'end',align:'top',color:C.ink,font:{weight:'800',size:11},formatter:function(v){return (v/1000).toFixed(1)+'მ';}}}]},
+   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
+    annotation:{},tooltip:{callbacks:{afterBody:function(){return 'მფლობელის mark: 2.2მ EV';}}}},
+    scales:{y:{title:{display:true,text:'EV (ათ. ₾)'},grid:{color:C.line},suggestedMax:2400},x:{grid:{display:false}}}}});}
+ window.__ic=function(t){try{if(t==='t0')bridge();if(t==='t5'){rev();qtr();conc();}if(t==='t8')contrib();if(t==='t6')val();}catch(e){}};
+ window.addEventListener('load',function(){setTimeout(function(){try{window.__ic('t0');}catch(e){}},150);});})();
+</script>
+</body>
+</html>
