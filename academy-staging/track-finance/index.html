@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Bivision Academy · AI ფინანსში — სიზუსტე, კონტროლი, სიცხადე</title>
+<style>
+  :root{
+    --blue:#2b6cb0; --blue-d:#1e4e7a; --ink:#16201b; --muted:#5d6b62;
+    --bg:#f4f6f9; --card:#fff; --line:#e2e8f0; --accent:#2b6cb0; --gold:#b8860b;
+    --green:#00a651; --green-d:#0f5c31; --purple:#6B63B5;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI','Noto Sans Georgian',Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+  .wrap{max-width:880px;margin:0 auto;padding:0 18px}
+  header.top{background:linear-gradient(135deg,var(--blue-d),var(--blue));color:#fff;padding:28px 0}
+  header.top .k{font-size:12px;letter-spacing:.5px;opacity:.9;text-transform:uppercase}
+  header.top h1{margin:7px 0 5px;font-size:23px;line-height:1.35}
+  header.top p{margin:0;opacity:.93;font-size:14px;max-width:720px}
+  .banner{background:#eef4fb;border:1px solid #cfe0f0;border-radius:10px;padding:13px 16px;margin:18px 0;font-size:13.5px;color:var(--blue-d)}
+  .banner b{color:var(--blue-d)}
+  .progress{height:6px;background:var(--line);border-radius:6px;margin:14px 0 4px;overflow:hidden}
+  .progress > i{display:block;height:100%;background:var(--blue);width:0;transition:width .3s}
+  .topicbar{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 6px}
+  .topicbar button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px 13px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;font-family:inherit}
+  .topicbar button.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .topicbar button.mod{border-color:#d8cff0;color:#5a4fa0}
+  .topicbar button.mod.on{background:var(--purple);border-color:var(--purple);color:#fff}
+  .tabs{display:flex;gap:6px;border-bottom:2px solid var(--line);margin:16px 0 0}
+  .tabs.hide{display:none}
+  .tabs button{border:none;background:none;padding:11px 16px;font-size:14.5px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;font-family:inherit}
+  .tabs button.on{color:var(--blue-d);border-bottom-color:var(--blue)}
+  .pane{display:none;padding:22px 2px 10px;animation:fade .2s}
+  .pane.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1}}
+  .read h2{font-size:19px;color:var(--blue-d);margin:22px 0 10px}
+  .read p{margin:0 0 13px;font-size:15.5px}
+  .read .meta{font-size:12.5px;color:var(--muted);margin-bottom:16px}
+  .case{background:#f3f8fd;border-left:4px solid var(--blue);border-radius:8px;padding:13px 16px;margin:17px 0;font-size:14.5px}
+  .case .lbl{color:var(--blue);font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px}
+  .myth{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--line);margin:17px 0}
+  @media(max-width:560px){.myth{grid-template-columns:1fr}}
+  .myth > div{padding:13px 16px;font-size:14px}
+  .myth .m{background:#fdecec;color:#a3352b}
+  .myth .r{background:#e7f7ec;color:var(--green-d)}
+  .myth .lbl{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;font-weight:800;opacity:.85}
+  .fail{background:#fff8e6;border-left:4px solid var(--gold);border-radius:8px;padding:13px 16px;margin:17px 0;font-size:14px;color:#5e4a00}
+  .fail .lbl{color:#9a7a00;font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px}
+  .step{background:linear-gradient(135deg,#eef4fb,#eefaf2);border:1px solid #cfe0f0;border-radius:10px;padding:14px 16px;margin:18px 0 6px;font-size:15px}
+  .step .lbl{color:var(--blue-d);font-weight:800;display:block;margin-bottom:5px}
+  .card2{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:6px 0 16px}
+  .card2 h2{color:var(--blue-d);font-size:19px;margin:0 0 6px}
+  .card2 h3{font-size:15.5px;margin:16px 0 6px}
+  .card2 p{font-size:15px}
+  .ck{display:flex;gap:10px;align-items:flex-start;background:#fafbfc;border:1px solid var(--line);border-radius:9px;padding:12px 14px;margin-bottom:10px;font-size:14.5px;cursor:pointer}
+  .ck input{margin-top:3px;width:17px;height:17px;accent-color:var(--blue);cursor:pointer}
+  .ck.done{background:#eef4fb;border-color:#cfe0f0}
+  .ck.done span{color:var(--blue-d)}
+  .rubric{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:10px}
+  .rubric th,.rubric td{text-align:right;padding:8px 10px;border-bottom:1px solid var(--line)}
+  .rubric th{background:var(--bg);font-size:12px;text-transform:uppercase;color:var(--muted)}
+  .q{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:16px}
+  .q .qn{font-weight:700;font-size:15.5px;margin-bottom:12px}
+  .q .opt{display:block;width:100%;text-align:right;border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:11px 14px;margin-bottom:9px;font-size:14.5px;cursor:pointer;font-family:inherit;transition:.15s}
+  .q .opt:hover{border-color:var(--accent)}
+  .q .opt.correct{background:#e7f7ec;border-color:var(--green);color:var(--green-d);font-weight:700}
+  .q .opt.wrong{background:#fdecec;border-color:#e05656;color:#a33}
+  .q .fb{margin-top:8px;font-size:13.5px;display:none;border-radius:8px;padding:10px 12px}
+  .q .fb.show{display:block}
+  .q .fb.ok{background:#e7f7ec;color:var(--green-d)}
+  .q .fb.no{background:#fdecec;color:#a33}
+  .score{background:var(--blue);color:#fff;border-radius:10px;padding:14px 18px;font-weight:700;text-align:center;display:none}
+  .score.show{display:block}
+  .cta{background:linear-gradient(135deg,var(--blue-d),var(--blue));color:#fff;border-radius:12px;padding:24px 26px;margin:24px 0 8px}
+  .cta h3{margin:0 0 9px;font-size:19px}
+  .cta p{margin:0 0 15px;opacity:.95;font-size:14.5px}
+  .cta a{display:inline-block;background:#fff;color:var(--blue-d);text-decoration:none;font-weight:700;border-radius:8px;padding:12px 22px;font-size:14.5px}
+  .navbtns{display:flex;justify-content:space-between;margin:22px 0 8px}
+  .navbtns button{border:1px solid var(--blue);background:#fff;color:var(--blue-d);border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer;font-family:inherit}
+  .navbtns button:hover{background:var(--blue);color:#fff}
+  .navbtns button:disabled{opacity:.4;cursor:default}
+  .flag{color:#a36b00;font-size:12px;background:#fff3d6;border-radius:5px;padding:1px 6px}
+  footer{color:var(--muted);font-size:12.5px;text-align:center;padding:24px 0 40px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="k">Bivision Academy · ფინანსისა და აუდიტის გზა (role track)</div>
+    <h1>AI ფინანსში: სიზუსტე, კონტროლი, სიცხადე</h1>
+    <p>ფინანსისტის, ბუღალტრისა და აუდიტორის გზამკვლევი. სად ენდო AI-ს, სად გადაამოწმე, როგორ დაიცავ მონაცემს და როგორ ხედავ ფინანსურ სურათს რეალურ დროში.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="banner">
+    <b>ვისთვის:</b> CFO, ფინანსისტი, ბუღალტერი, აუდიტორი. ქეისები რეალურ პატერნებზეა დაფუძნებული; კომპანიები ანონიმურია და ციფრები ილუსტრაციული. პროდუქტის პირობა, რომელიც დროში იცვლება, მონიშნულია <span class="flag">[გადასამოწმებელი]</span>-ით.
+  </div>
+
+  <div class="progress"><i id="bar"></i></div>
+  <div class="topicbar" id="topicbar"></div>
+
+  <div class="tabs" id="tabs">
+    <button class="on" data-tab="read" onclick="setTab('read',this)">📖 კითხვა</button>
+    <button data-tab="check" onclick="setTab('check',this)">✅ checklist</button>
+  </div>
+
+  <div class="pane read on" id="pane-read"></div>
+  <div class="pane" id="pane-check"></div>
+  <div class="pane" id="pane-single"></div>
+
+  <div class="navbtns">
+    <button id="prevBtn" onclick="prevTopic()">← წინა</button>
+    <button id="nextBtn" onclick="nextTopic()">შემდეგი →</button>
+  </div>
+
+  <footer>
+    Bivision Academy · Finance/Audit role track · staging (noindex) · კონტენტი ანონიმური, ციფრები ილუსტრაციული · Bivision 2026
+  </footer>
+</div>
+
+<script>
+const TOPICS = [
+  {
+    id:'l1', short:'1. ენდე თუ ამოწმე',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 1 — მითი: „AI ცდება, ფინანსებში ვერ ენდობი"</div>
+<h2>AI ფინანსში: სად ენდო, სად გადაამოწმე</h2>
+<p>ფინანსისტი, ბუღალტერი და აუდიტორი ბუნებით ფრთხილები არიან, და ეს სწორია. სიზუსტე მათი პროფესიის გული. სწორედ ამიტომ AI-ის მიმართ პირველი რეაქცია ხშირად უარყოფაა: თუ ის ცდება, ფინანსებში მას ვერ ვენდობით. ეს ლოგიკურია, მაგრამ კითხვა არასწორად დგას. საქმე არ არის იმაში, ენდო თუ არა AI-ს ბრმად. საქმეა იმაში, რომ იცოდე, სად ენდო და სად აუცილებლად გადაამოწმო.</p>
+<p>დაიწყე ერთი მარტივი წესით. AI კარგია იქ, სადაც სამუშაო გამეორებადია და შედეგი ადვილად გადასამოწმებელია. ის სუსტია იქ, სადაც პასუხს ვერ ამოწმებ ან საბოლოო პასუხისმგებლობა მასზე გადააქვს. ფინანსში ეს ნიშნავს: AI-ს მიანდე მონაცემის მომზადება, დახარისხება, პირველი ვერსიის აწყობა. მაგრამ საბოლოო ციფარი, რომელიც ანგარიშში ან დეკლარაციაში მიდის, ყოველთვის ადამიანმა უნდა დაადასტუროს.</p>
+<p>ეს გამიჯვნა ფინანსში განსაკუთრებით მნიშვნელოვანია, რადგან აქ შეცდომის ფასი მაღალია. სხვა სფეროში არასწორი ტექსტი უხერხულობაა. ფინანსში არასწორი ციფარი ჯარიმა, არასწორი გადაწყვეტილება ან აუდიტის პრობლემაა. ამიტომ AI-ის როლი აქ უფრო ვიწროდ, მაგრამ უფრო დისციპლინირებულად უნდა განისაზღვროს, ვიდრე სხვაგან.</p>
+<p>როგორ ამოწმებ ეფექტურად, თუ AI ბევრ ერთეულს ამზადებს? სრულად ხელახლა გადათვლა მთელ აზრს მოაკლებდა ავტომატიზაციას. ამის ნაცვლად ფინანსისტები ხშირად იყენებენ შერჩევით კონტროლს. ამოწმებ ნაწილს, განსაკუთრებით იქ, სადაც თანხა დიდია ან რაღაც ეჭვს ბადებს, და თუ შერჩევა სუფთაა, დანარჩენს ენდობი. ეს იგივე ლოგიკაა, რასაც აუდიტში იყენებ. AI არ ცვლის ამ პრინციპს, უბრალოდ უფრო სწრაფს ხდის მომზადების ნაწილს.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ბუღალტრული კომპანია, რომელიც ყოველთვიურად ასობით პირველად დოკუმენტს ამუშავებდა. AI-ს მიანდეს დოკუმენტებიდან მონაცემის ამოღება და ცხრილში გადატანა, რასაც ადრე ხელით აკეთებდნენ საათობით. მაგრამ შეინარჩუნეს წესი: ბუღალტერი თითოეულ ჯგუფს თვალს ავლებდა და ეჭვის შემთხვევაში ამოწმებდა. შედეგად დრო მკვეთრად დაიზოგა, კონტროლი კი არ შესუსტდა.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>AI ცდება, ფინანსებში მას ვერ ენდობი.</div><div class="r"><span class="lbl">რეალობა</span>AI მართლაც ცდება ხანდახან. სწორედ ამიტომ მისი როლი მომზადებაა, არა საბოლოო დადასტურება. სწორად აწყობილ პროცესში მისი შეცდომა ადამიანის კონტროლამდე ვერ აღწევს.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა კომპანიამ AI-ის შედეგი პირდაპირ, შემოწმების გარეშე გადაიტანა ანგარიშში. ერთ თვეში შეცდომა აღმოაჩინეს, რომელიც ადამიანს ადვილად დაენახებოდა. პრობლემა AI არ იყო. პრობლემა გამოტოვებული კონტროლის ნაბიჯი იყო. რეალური მოლოდინი: AI ამზადებს, ადამიანი ადასტურებს. ეს ნაბიჯი ფინანსში არასოდეს უნდა გამოტოვო.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>აიღე ერთი ფინანსური რუტინა და დახაზე ორ სვეტად: სად შეუძლია AI-ს მომზადება და სად რჩება ადამიანის სავალდებულო კონტროლი. ეს ერთი ცხრილი შენი უსაფრთხო ავტომატიზაციის რუკაა.</div>`,
+    check:[
+      'მესმის წესი: AI ამზადებს, ადამიანი ადასტურებს, საბოლოო ციფარს ყოველთვის ვამოწმებ',
+      'გამოვყავი, სად შეუძლია AI-ს მომზადება და სად რჩება ადამიანის სავალდებულო კონტროლი',
+      'ვიცი, რომ AI კარგია იქ, სადაც შედეგი ადვილად გადასამოწმებელია',
+      'კონტროლის ნაბიჯი ფინანსურ პროცესში არ გამომიტოვებია'
+    ]
+  },
+  {
+    id:'l2', short:'2. უსაფრთხოება',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 2 — მითი: „AI შენს მონაცემს გაჟონავს"</div>
+<h2>მონაცემთა უსაფრთხოება: რა ატვირთო, რა არა</h2>
+<p>ფინანსურ მონაცემთან მუშაობისას მეორე გონივრული შიში უსაფრთხოებაა. სად მიდის ჩემი მონაცემი, როცა AI-ს ვაძლევ? ისწავლის თუ არა ის ჩემს ციფრებს და სხვას ხომ არ აჩვენებს? ეს კითხვები სწორია და მათ პასუხი სჭირდება, არა იგნორირება.</p>
+<p>დაიწყე იმის გაგებით, რომ ყველა AI-ხელსაწყო ერთნაირი არ არის. ბიზნეს-დონის სერვისებს ჩვეულებრივ აქვთ წესი, რომ შენი მონაცემი მათი მოდელის სასწავლებლად არ გამოიყენება. <span class="flag">[გადასამოწმებელი]</span> ეს კონკრეტული პირობა ყოველი ხელსაწყოს დოკუმენტში უნდა გადაამოწმო, რადგან ის განსხვავდება და დროში იცვლება. მთავარი პრინციპი ასეთია: სანამ მგრძნობიარე მონაცემს ატვირთავ, იცოდე, ვის აძლევ და რა პირობით.</p>
+<p>პრაქტიკული წესი მარტივია. დაყავი მონაცემი ორ ჯგუფად. პირველი, ის, რაც საჯაროა ან საიდუმლოს არ შეიცავს. ამაზე თამამად მუშაობ. მეორე, ის, რაც პირადი ან საიდუმლოა: კონკრეტული პირადი ნომრები, ხელფასები სახელებთან ერთად, ბანკის რეკვიზიტები. ასეთ მონაცემს ან საერთოდ არ ატვირთავ, ან ჯერ ანონიმურს ხდი, ანუ სახელებს ცვლი კოდებით და ციფრებს ინარჩუნებ.</p>
+<p>არსებობს კიდევ ერთი დაცვის ფენა, რომელიც ღირს იცოდე. ანონიმიზაცია მხოლოდ სახელების წაშლა არ არის. ხშირად საკმარისია, რომ AI-ს მისცე მხოლოდ ის ნაწილი, რომელიც კონკრეტული ანალიზისთვის სჭირდება, და არა მთელი ბაზა. თუ გინდა ხარჯების სტრუქტურა გაარჩიო, AI-ს არ სჭირდება კლიენტების სახელები ან პირადი ნომრები. რაც ნაკლებ მგრძნობიარე მონაცემს გადასცემ, მით ნაკლებია რისკი. ეს მარტივი წესი, ანუ მიეცი მხოლოდ საჭირო, შემთხვევათა უმეტესობას ფარავს.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ფინანსური განყოფილება, რომელსაც სურდა AI-ით გაეანალიზებინა ხელფასების სტრუქტურა. პირდაპირ ატვირთვის ნაცვლად, ჯერ სახელები ჩაანაცვლეს კოდებით და მხოლოდ ციფრები და პოზიციები დატოვეს. ანალიზი სრულად მიიღეს, კონფიდენციალურობა კი არ დაირღვა. სტრუქტურა და კავშირები შენარჩუნდა, პირადი ვინაობა არა.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>AI ნებისმიერ შემთხვევაში გაჟონავს ჩემს მონაცემს.</div><div class="r"><span class="lbl">რეალობა</span>რისკი ხელსაწყოსა და ჩვევაზეა დამოკიდებული, არა AI-ის ბუნებაზე. სწორი ხელსაწყო და ანონიმიზაციის ჩვევა რისკს მინიმუმამდე ამცირებს.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა თანამშრომელმა მთელი კლიენტების ბაზა, პირადი ნომრებითურთ, უფასო, უცნობ ხელსაწყოში ატვირთა, პირობების წაკითხვის გარეშე. ეს რეალური რისკია. რეალური მოლოდინი: ჯერ პირობა, მერე ატვირთვა. უფასო და უცნობი ხელსაწყო მგრძნობიარე მონაცემისთვის არ ვარგა.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>დაადგინე შენს გუნდში ერთი მარტივი წესი: რა ტიპის მონაცემი არ ტვირთება AI-ში არასოდეს და რა შემთხვევაში საჭიროა ჯერ ანონიმიზაცია. ერთი ფურცელი საკმარისია.</div>`,
+    check:[
+      'ვიცი, რომ ხელსაწყოს პირობა (მონაცემს არ სწავლობს) უნდა გადავამოწმო დოკუმენტში',
+      'მონაცემი დავყავი: საჯარო/უსაფრთხო და პირადი/საიდუმლო',
+      'მგრძნობიარე მონაცემს ან არ ვტვირთავ, ან ჯერ ანონიმურს ვხდი',
+      'გუნდს დავუდგინე წესი, რა არ ტვირთება AI-ში არასოდეს'
+    ]
+  },
+  {
+    id:'l3', short:'3. ავტომატიზაცია',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 3 — მითი: „ეს ჩემს სამუშაოს ჩაანაცვლებს"</div>
+<h2>რუტინის ავტომატიზაცია: სად ზოგავ ფინანსში</h2>
+<p>ფინანსურ განყოფილებაში დროის დიდი ნაწილი მეორდება. იგივე შეჯერებები, იგივე ანგარიშები, იგივე დოკუმენტების დამუშავება, თვიდან თვემდე. სწორედ ეს გამეორებადი რუტინაა AI-ის ყველაზე ღირებული ადგილი ფინანსში. და სწორედ აქ ჩნდება შიში: თუ რუტინას AI აიღებს, მე რაღა დამრჩება?</p>
+<p>პასუხი ის არის, რომ რუტინა შენი სამუშაოს ყველაზე ნაკლებად ღირებული ნაწილია. დოკუმენტიდან ციფრის ხელით გადატანა ან ორი ცხრილის შეჯერება შენ კი არ გაძლიერებს, არამედ დროს გართმევს. როცა ამ ნაწილს AI იღებს, შენ გრჩება ის, რისთვისაც ნამდვილად გჭირდები: ანალიზი, შეფასება, რისკის დანახვა, გადაწყვეტილება. AI ბუღალტერს არ ცვლის. ის ცვლის ბუღალტრის ყველაზე მოსაწყენ საათებს.</p>
+<p>სად დაიწყო? ეძებე სამი ნიშანი. სამუშაო მეორდება ყოველთვე. ის დიდ დროს ჭამს. და მისი შედეგი ადვილად შესამოწმებელია. სამივე ნიშანი ერთად ნიშნავს, რომ ეს რუტინა ავტომატიზაციისთვის მზადაა. სწორედ ასეთი სამუშაოა, მაგალითად, ანგარიშფაქტურების შეჯერება ან პირველადი დოკუმენტებიდან მონაცემის ამოღება.</p>
+<p>ყველა რუტინა ერთნაირად არ ვარგა ავტომატიზაციისთვის. თუ სამუშაო ყოველ ჯერზე განსხვავებულ მსჯელობას მოითხოვს ან იშვიათად ხდება, მისი ავტომატიზაცია მეტ თავსატეხს მოგიტანს, ვიდრე სარგებელს. ამიტომ პირველი კანდიდატი ის რუტინა უნდა იყოს, რომელიც სტაბილურია, ანუ ყოველთვე ერთნაირად კეთდება. სტაბილური და გამეორებადი სამუშაო AI-სთვის იდეალურია, ცვალებადი და ერთჯერადი მსჯელობა კი ჯერ ადამიანთან რჩება. სწორი არჩევანი დასაწყისში ნახევარ წარმატებას ნიშნავს, რადგან პირველი წარმატებული ავტომატიზაცია გუნდის ნდობას იმსახურებს და შემდეგ ნაბიჯს აადვილებს.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>კომპანია, სადაც ერთი თანამშრომელი ყოველთვის თვის ბოლოს, რამდენიმე დღეს ხარჯავდა მომწოდებლების ანგარიშფაქტურების შეჯერებაზე. AI-ს მიანდეს დოკუმენტებიდან მონაცემის ამოღება და წინასწარი შეჯერება, ადამიანი კი მხოლოდ შეუსაბამობებს ამოწმებდა. რამდენიმედღიანი რუტინა საათებამდე შემცირდა, ხოლო თანამშრომელი მეტ დროს უთმობდა იმას, რასაც AI ვერ აკეთებდა, ანუ გადახდების დაგეგმვას.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>ავტომატიზაცია ჩემს სამუშაოს ჩაანაცვლებს.</div><div class="r"><span class="lbl">რეალობა</span>ის ჩაანაცვლებს შენი სამუშაოს რუტინულ ნაწილს, არა შენ. ვინც რუტინას ავტომატიზებს, უფრო ღირებული ხდება, რადგან მეტ დროს უთმობს ნამდვილ ანალიზს.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა გუნდმა მთელი თვის დახურვის პროცესი ერთბაშად სცადა გადაეტანა AI-ზე, ნაბიჯ-ნაბიჯ ნაცვლად. შედეგად ვერ მიენდვნენ და უკან დაიხიეს. რეალური მოლოდინი: ავტომატიზაცია ერთი რუტინით იწყება. დაამტკიცე ერთზე, მერე გააფართოვე.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>ამოარჩიე ერთი ფინანსური რუტინა, რომელიც ყოველთვე მეორდება და ყველაზე მეტ დროს ჭამს. ეს იქნება შენი პირველი ავტომატიზაციის კანდიდატი.</div>`,
+    check:[
+      'მესმის, რომ AI რუტინას ცვლის, არა ბუღალტერს',
+      'ვეძებ რუტინას 3 ნიშნით: მეორდება, დროს ჭამს, შედეგი ადვილად შესამოწმებელია',
+      'ავირჩიე ერთი ფინანსური რუტინა, რომელიც ყველაზე მეტ დროს ჭამს',
+      'ვიცი, რომ ავტომატიზაცია ერთი რუტინით იწყება, არა მთელი პროცესით ერთბაშად'
+    ]
+  },
+  {
+    id:'l4', short:'4. აუდიტი და კვალი',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 4 — მითი: „AI-ის შედეგი აუდიტს ვერ უძლებს"</div>
+<h2>აუდიტი და კვალი: AI კონტროლის ქვეშ</h2>
+<p>ფინანსში შედეგი არ კმარა. უნდა შეგეძლოს იმის ჩვენება, საიდან მოვიდა ეს ციფარი. აუდიტორი სწორედ ამას ეკითხება: მაჩვენე, როგორ მიხვედი ამ შედეგამდე. აქედან მოდის გონივრული შიში: თუ ციფარი AI-მ მოამზადა, როგორ დავიცავ მას აუდიტის წინ?</p>
+<p>პასუხი იმაშია, რომ AI კი არ წყვეტს კვალს, არამედ შენ წყვეტ, რა კვალს ინახავ. სწორად აწყობილ პროცესში ყოველი ნაბიჯი დოკუმენტირებულია: საიდან წამოვიდა მონაცემი, რა გააკეთა AI-მ, ვინ შეამოწმა და დაადასტურა. ეს კვალი იგივეა, რასაც ხელით მუშაობისას ინახავ, უბრალოდ ერთი ნაბიჯი ავტომატურია. აუდიტს არ აინტერესებს, ხელით აიწყო ციფარი თუ AI-ით. მას აინტერესებს, შეგიძლია თუ არა მისი ახსნა და გადამოწმება.</p>
+<p>მთავარი წესი ასეთია: არასოდეს დატოვო AI შავ ყუთად. ყოველთვის უნდა შეგეძლოს ჩვენება, რა მონაცემზე დაყრდნობით მიიღო შედეგი და ვინ დაუდასტურა. თუ ამის ჩვენება არ შეგიძლია, პრობლემა AI არ არის, არამედ პროცესი, რომელშიც კონტროლისა და კვალის ნაბიჯი გამოგრჩა.</p>
+<p>პრაქტიკაში ეს უფრო მარტივია, ვიდრე ჟღერს. შენ რთული სისტემა არ გჭირდება. საკმარისია, რომ თითო ფინანსურ პროცესს ჰქონდეს ნათელი პასუხი სამ კითხვაზე: საიდან მოვიდა მონაცემი, რა გააკეთა AI-მ და ვინ დაადასტურა ადამიანებიდან. თუ ეს სამი ყოველთვის ჩაწერილია, შენი პროცესი აუდიტისთვის მზადაა. მთავარი დისციპლინაა, არა ტექნოლოგია. იგივე წესი, რომელსაც ხელით მუშაობისას იცავ, უბრალოდ ერთი ნაბიჯი ახლა AI-ს აქვს მინდობილი.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>კომპანია, რომელმაც AI ჩართო ხარჯების კლასიფიკაციაში. იმისთვის, რომ აუდიტისთვის მზად ყოფილიყვნენ, ყოველი თვის ბოლოს ინახავდნენ საწყის დოკუმენტებს, AI-ის შემოთავაზებულ კლასიფიკაციას და ბუღალტრის დადასტურებას. როცა აუდიტი მოვიდა, კითხვაზე „საიდან ეს ციფარი" პასუხი მზად იყო, ნაბიჯ-ნაბიჯ.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>AI-ის შედეგი აუდიტს ვერ უძლებს.</div><div class="r"><span class="lbl">რეალობა</span>აუდიტს ვერ უძლებს დაუსაბუთებელი ციფარი, განურჩევლად იმისა, ვინ მოამზადა. AI-ით მომზადებული, მაგრამ დოკუმენტირებული და დადასტურებული ციფარი ისეთივე გამძლეა, როგორც ხელით აწყობილი.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა კომპანიამ AI გამოიყენა, მაგრამ შუალედური ნაბიჯები არ შეინახა. აუდიტის დროს ვერ ახსნეს, საიდან წამოვიდა კონკრეტული ციფარი. პრობლემა ისევ პროცესში იყო, არა AI-ში. რეალური მოლოდინი: კვალი ინახე იმავე დისციპლინით, როგორც ხელით მუშაობისას.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>ნებისმიერ ფინანსურ პროცესში, სადაც AI-ს იყენებ, დაადგინე სამი რამ, რაც ყოველთვის ინახება: საწყისი მონაცემი, AI-ის შედეგი და ადამიანის დადასტურება. ეს სამი შენი აუდიტ-მზადყოფნაა.</div>`,
+    check:[
+      'ვაცნობიერებ, რომ აუდიტს დაუსაბუთებელი ციფარი ვერ უძლებს, განურჩევლად ვინ მოამზადა',
+      'AI-ს არ ვტოვებ შავ ყუთად, ყოველთვის შემიძლია ვაჩვენო, საიდან მოვიდა შედეგი',
+      'ვინახავ სამ რამეს: საწყისი მონაცემი, AI-ის შედეგი, ადამიანის დადასტურება',
+      'კვალს ვინახავ იმავე დისციპლინით, როგორც ხელით მუშაობისას'
+    ]
+  },
+  {
+    id:'l5', short:'5. ხიდი → სიცხადე',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 5 — ხიდი ფინანსურ ანალიტიკისკენ</div>
+<h2>ხიდი: ფინანსური სიცხადე რეალურ დროში (Bivision core)</h2>
+<p>აქამდე ვისაუბრეთ იმაზე, როგორ იყენებ AI-ს ფინანსურ რუტინაში უსაფრთხოდ და კონტროლის ქვეშ. ახლა მთავარ კითხვამდე მივდივართ, რომელიც ფინანსისტს ყველაზე მეტად ეხება: როგორ ხედავ კომპანიის ფინანსურ სურათს რეალურ დროში, არა თვის დახურვის შემდეგ?</p>
+<p>ფინანსში ყველაზე ძვირი ის არ არის, რასაც ხარჯავ. ყველაზე ძვირი ის არის, რასაც დროზე ვერ ხედავ. ფულადი ნაკადი, რომელიც მოულოდნელად დაიჭიმა. კლიენტი, რომელიც სისტემატურად აგვიანებს და საბრუნავ კაპიტალს ჭამს. პროდუქტი, რომლის მარჟა ჩუმად დაეცა. ეს ყველაფერი ციფრებშია, მაგრამ თუ ციფარი მიმოფანტულია და ანგარიში თვის ბოლოს მზადდება, შენ ამ პრობლემებს უკვე დაგვიანებით ხედავ.</p>
+<p>აქ შემოდის ის ფენა, რომელზეც AI ცალკე ვერ გადის, ანუ ფინანსური ანალიტიკა. ის შენს მონაცემს, რომელიც სხვადასხვა სისტემაშია, აერთიანებს ერთ ცოცხალ სურათად. ფულადი ნაკადი, მოგება, დებიტორები და მარჟა ერთ ეკრანზე, რეალურ დროში. ეს ის სიცხადეა, რომელიც ფინანსისტს რეაქტიულიდან პროაქტიულ როლში გადაჰყავს.</p>
+<p>რა განსხვავებაა ცოცხალ ფინანსურ dashboard-სა და ჩვეულებრივ ფინანსურ ანგარიშს შორის? ანგარიში თვის ბოლოს ამბობს, რა მოხდა. dashboard ნებისმიერ მომენტში ამბობს, რა ხდება ახლა და რა მოდის. სწორედ ეს ცვლის ფინანსისტის როლს. როცა ფულად ნაკადს ან დებიტორებს ცოცხლად ხედავ, შენ პრობლემას ხვდები, სანამ ის გადახდის შეფერხებად იქცევა. ფინანსისტი წყვეტს იყოს ის, ვინც წარსულს აღწერს, და ხდება ის, ვინც მომავალს გეგმავს.</p>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>ასეთი ფინანსური სიცხადე ძვირია და მხოლოდ დიდი კომპანიებისთვისაა.</div><div class="r"><span class="lbl">რეალობა</span>ის ერთი მნიშვნელოვანი dashboard-ით იწყება, მაგალითად ფულადი ნაკადის ან დებიტორების სურათით. ღირებულება არა ხელსაწყოს ფასშია, არამედ იმაში, რომ პრობლემას დროზე დაინახავ.</div></div>
+<div class="case"><span class="lbl">რეალური ქეისი</span>კომპანია, რომელიც ფულად ნაკადს Excel-ში, ხელით ადევნებდა თვალს, ყოველთვის დაგვიანებით. როცა ცოცხალი dashboard აეწყო, სადაც შემოსავალი, გასავალი და მოსალოდნელი ჩამოსვლები ერთად ჩანდა, ფინანსისტმა პირველად დაინახა ფულადი ხარვეზი ორი კვირით ადრე, სანამ ის რეალურ პრობლემად იქცეოდა.</div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა კომპანიამ მოინდომა ერთბაშად სრული ფინანსური სისტემის აწყობა და პროექტი თვეებით გაიწელა. რეალური მოლოდინი: დაიწყე ერთი dashboard-ით, რომელიც ერთ მტკივნეულ კითხვას პასუხობს. ხშირად ეს ფულადი ნაკადია.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>ჩამოაყალიბე ერთი ფინანსური კითხვა, რომელზეც დღეს დაგვიანებით იღებ პასუხს. სწორედ ეს იქნება შენი პირველი ფინანსური dashboard-ის გული.</div>
+<div class="cta">
+  <h3>უფასო „მონაცემთა მზადყოფნის აუდიტი"</h3>
+  <p>Bivision-ი ქართულ კომპანიებს სწორედ ამ ფინანსურ სიცხადეს უქმნის: Qlik-ისა და Power BI-ის dashboard-ებით, რომლებიც ფულად ნაკადს, მარჟას და დებიტორებს ცოცხალ სურათად აქცევენ. დასაწყისად გთავაზობთ უფასო აუდიტს, სადაც ერთად განვსაზღვრავთ შენს პირველ ფინანსურ dashboard-ს.</p>
+  <a href="https://bivision.ge" target="_blank" rel="noopener">აუდიტის დაჯავშნა →</a>
+</div>`,
+    check:[
+      'ვაცნობიერებ, რომ ფინანსში ყველაზე ძვირია ის, რასაც დროზე ვერ ვხედავ',
+      'მესმის, რომ AI რუტინას იღებს, ფინანსურ სიცხადეს კი ანალიტიკა ქმნის',
+      'ჩამოვაყალიბე ერთი ფინანსური კითხვა, რომელზეც დღეს დაგვიანებით ვიღებ პასუხს',
+      'ვიცი, რომ სიცხადე ერთი dashboard-ით იწყება, ხშირად ფულადი ნაკადით'
+    ]
+  },
+  {
+    id:'project', short:'📋 პროექტი', mod:true, single:true,
+    html:`<div class="card2">
+<h2>პროექტი — ფინანსური კონტროლის რუკა + პირველი dashboard</h2>
+<p class="meta">~30 წუთი · შენი რეალური ფინანსური პროცესისთვის</p>
+<p>ამ პროექტში ორ რამეს გააკეთებ. ჯერ აირჩევ ერთ ფინანსურ რუტინას და დახაზავ მის უსაფრთხო ავტომატიზაციას. შემდეგ ჩამოაყალიბებ ერთ ფინანსურ კითხვას, საიდანაც შენი პირველი dashboard დაიწყება.</p>
+<h3>ნაწილი 1 — კონტროლის რუკა</h3>
+<table class="rubric">
+  <tr><th>ველი</th><th>შენი პასუხი</th></tr>
+  <tr><td>რომელი რუტინა (მაგ: ანგარიშფაქტურების შეჯერება)</td><td>☐</td></tr>
+  <tr><td>რას ამზადებს AI</td><td>☐</td></tr>
+  <tr><td>რას ამოწმებს და ადასტურებს ადამიანი</td><td>☐</td></tr>
+  <tr><td>რა კვალი ინახება (საწყისი + AI-ის შედეგი + დადასტურება)</td><td>☐</td></tr>
+  <tr><td>რა მონაცემი არ იტვირთება ან ჯერ ანონიმდება</td><td>☐</td></tr>
+</table>
+<h3>ნაწილი 2 — პირველი dashboard-ის კითხვა</h3>
+<p>რომელ ფინანსურ კითხვაზე გინდა, რომ პასუხი ყოველთვის ცოცხლად გქონდეს? (მაგ: „რა არის ჩემი ფულადი ნაკადი მომდევნო ორ კვირაში?") ჩამოწერე კითხვა, საჭირო ციფრები და მათი წყაროები.</p>
+</div>`
+  },
+  {
+    id:'test', short:'🧠 ფინალური ტესტი', mod:true, quiz:[
+      {q:'1. ფინანსში AI-ის სწორი როლი რა არის?',
+       opts:['საბოლოო ციფრის დადასტურება ადამიანის გარეშე','მონაცემის მომზადება, საბოლოო დადასტურება ადამიანზე რჩება','გადაწყვეტილების სრულად მიღება'],
+       correct:1, fb:'AI ამზადებს, ადამიანი ადასტურებს საბოლოო ციფარს.'},
+      {q:'2. მგრძნობიარე ფინანსურ მონაცემს რა უნდა უყო ატვირთვამდე?',
+       opts:['პირდაპირ ატვირთო, ასე სწრაფია','ან არ ატვირთო, ან ჯერ ანონიმური გახადო','მხოლოდ უფასო ხელსაწყოში ატვირთო'],
+       correct:1, fb:'მგრძნობიარე მონაცემი ან არ იტვირთება, ან ჯერ ანონიმდება.'},
+      {q:'3. „ავტომატიზაცია ჩემს სამუშაოს ჩაანაცვლებს" — რა არის რეალობა?',
+       opts:['დიახ, ბუღალტერი აღარ დასჭირდება','ჩაანაცვლებს რუტინულ ნაწილს, არა ადამიანს','არაფერი შეიცვლება'],
+       correct:1, fb:'AI ცვლის რუტინას; ბუღალტერი მეტ დროს უთმობს ანალიზს.'},
+      {q:'4. როგორ ხდება AI-ით მომზადებული ციფარი აუდიტ-მედეგი?',
+       opts:['თუ AI ცდება, არასოდეს','თუ ინახავ კვალს: საწყისი მონაცემი, AI-ის შედეგი, ადამიანის დადასტურება','თუ ბოლოს ხელით გადააკეთებ'],
+       correct:1, fb:'აუდიტს დაუსაბუთებელი ციფარი ვერ უძლებს; დოკუმენტირებული გამძლეა.'},
+      {q:'5. ფინანსში ყველაზე ძვირი რა არის?',
+       opts:['ის, რასაც ხარჯავ','ის, რასაც დროზე ვერ ხედავ','ხელსაწყოს ფასი'],
+       correct:1, fb:'დაგვიანებით დანახული პრობლემა ყველაზე ძვირია.'},
+      {q:'6. ფინანსური სიცხადე როგორ უნდა დაიწყოს?',
+       opts:['სრული ფინანსური სისტემის ერთბაშად აწყობით','ერთი dashboard-ით, ხშირად ფულადი ნაკადით','ლოდინით, სანამ კომპანია გაიზრდება'],
+       correct:1, fb:'დაიწყე ერთი მტკივნეული კითხვით, აჩვენე შედეგი, გააფართოვე.'}
+    ]
+  },
+  {
+    id:'audit', short:'🎯 უფასო აუდიტი', mod:true, single:true,
+    html:`<div class="cta">
+  <h3>უფასო „მონაცემთა მზადყოფნის აუდიტი"</h3>
+  <p>ხუთმა გაკვეთილმა აჩვენა, როგორ იყენებ AI-ს ფინანსში უსაფრთხოდ, კონტროლის ქვეშ და როგორ ხედავ ფინანსურ სურათს ცოცხლად. შემდეგი ნაბიჯი კონკრეტულია. 30-40 წუთიან საუბარში ერთად განვსაზღვრავთ შენს პირველ ფინანსურ dashboard-ს: ფულადი ნაკადი, დებიტორები თუ მარჟა, რა მონაცემი სჭირდება და როგორ აიწყობა Qlik-ში ან Power BI-ში.</p>
+  <a href="https://bivision.ge" target="_blank" rel="noopener">აუდიტის დაჯავშნა →</a>
+</div>
+<div class="card2">
+<h2>რას მიიღებ აუდიტიდან</h2>
+<p>1. შენი პირველი ფინანსური dashboard-ის გეგმა: კითხვა, ციფრები, წყაროები.</p>
+<p>2. შენი ფინანსური მონაცემის რუკა: სად არის, რა აკლია, რა კავშირები სჭირდება.</p>
+<p>3. ერთი მკაფიო შემდეგი ნაბიჯი Qlik-ის ან Power BI-ის მიმართულებით, შენი კომპანიის ზომაზე მორგებული.</p>
+</div>`
+  }
+];
+
+let cur = 0, tab = 'read';
+const tb = document.getElementById('topicbar');
+TOPICS.forEach((t,i)=>{
+  const b = document.createElement('button');
+  b.textContent = t.short;
+  if(t.mod) b.className = 'mod';
+  b.onclick = ()=>{ cur=i; tab='read'; render(); };
+  tb.appendChild(b);
+});
+
+function setTab(name, el){
+  tab = name;
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on', b===el));
+  paint();
+}
+
+function render(){
+  [...tb.children].forEach((b,i)=>b.classList.toggle('on', i===cur));
+  document.getElementById('bar').style.width = ((cur+1)/TOPICS.length*100) + '%';
+  const tabs = document.getElementById('tabs');
+  const t = TOPICS[cur];
+  if(t.single || t.quiz){
+    tabs.classList.add('hide');
+  } else {
+    tabs.classList.remove('hide');
+    document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on', b.dataset.tab==='read'));
+    tab = 'read';
+  }
+  document.getElementById('prevBtn').disabled = (cur===0);
+  document.getElementById('nextBtn').disabled = (cur===TOPICS.length-1);
+  paint();
+}
+
+function paint(){
+  const t = TOPICS[cur];
+  const pr = document.getElementById('pane-read');
+  const pc = document.getElementById('pane-check');
+  const ps = document.getElementById('pane-single');
+  pr.classList.remove('on'); pc.classList.remove('on'); ps.classList.remove('on');
+  if(t.single){
+    ps.innerHTML = t.html; ps.classList.add('on'); return;
+  }
+  if(t.quiz){
+    ps.innerHTML = renderQuiz(t.quiz); ps.classList.add('on'); return;
+  }
+  pr.innerHTML = t.read;
+  pc.innerHTML = `<div class="card2"><h2>გადაწყვეტილების checklist</h2>`
+    + t.check.map(x=>`<label class="ck" onclick="this.classList.toggle('done')"><input type="checkbox"><span>${x}</span></label>`).join('')
+    + `</div>`;
+  if(tab==='check') pc.classList.add('on'); else pr.classList.add('on');
+}
+
+function renderQuiz(items){
+  let html = `<div class="card2"><h2>ფინალური ტესტი</h2><p>ექვსი კითხვა მთელ ტრეკზე. აირჩიე პასუხი და ნახე ახსნა.</p></div>`;
+  items.forEach((it,qi)=>{
+    html += `<div class="q" id="q${qi}"><div class="qn">${it.q}</div>`
+      + it.opts.map((o,oi)=>`<button class="opt" onclick="answer(${qi},${oi})">${o}</button>`).join('')
+      + `<div class="fb" id="fb${qi}"></div></div>`;
+  });
+  html += `<div class="score" id="score"></div>`;
+  return html;
+}
+
+let answered = {};
+function answer(qi, oi){
+  const t = TOPICS[cur];
+  if(!t.quiz || answered[qi]!==undefined) return;
+  answered[qi] = oi;
+  const it = t.quiz[qi];
+  const qEl = document.getElementById('q'+qi);
+  const opts = qEl.querySelectorAll('.opt');
+  opts[it.correct].classList.add('correct');
+  if(oi!==it.correct) opts[oi].classList.add('wrong');
+  const fb = document.getElementById('fb'+qi);
+  const ok = oi===it.correct;
+  fb.className = 'fb show ' + (ok?'ok':'no');
+  fb.textContent = (ok?'სწორია. ':'ზუსტი არ არის. ') + it.fb;
+  const done = Object.keys(answered).length;
+  if(done===t.quiz.length){
+    let right = 0;
+    t.quiz.forEach((q,i)=>{ if(answered[i]===q.correct) right++; });
+    const s = document.getElementById('score');
+    s.className = 'score show';
+    s.textContent = `შედეგი: ${right} / ${t.quiz.length}` + (right===t.quiz.length?' — სრული ქულა.':'');
+  }
+}
+
+function prevTopic(){ if(cur>0){ cur--; tab='read'; answered={}; render(); window.scrollTo({top:0,behavior:'smooth'}); } }
+function nextTopic(){ if(cur<TOPICS.length-1){ cur++; tab='read'; answered={}; render(); window.scrollTo({top:0,behavior:'smooth'}); } }
+
+render();
+</script>
+</body>
+</html>
