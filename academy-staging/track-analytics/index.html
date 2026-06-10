@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Bivision Academy · შენი მონაცემები ერთ სურათად — ანალიტიკის გზა</title>
+<style>
+  :root{
+    --green:#00a651; --green-d:#0f5c31; --ink:#16201b; --muted:#5d6b62;
+    --bg:#f4f7f5; --card:#fff; --line:#e3e9e4; --accent:#00b35c; --gold:#b8860b;
+    --blue:#2b6cb0; --purple:#6B63B5;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI','Noto Sans Georgian',Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+  .wrap{max-width:880px;margin:0 auto;padding:0 18px}
+  header.top{background:linear-gradient(135deg,#0f5c31,var(--green));color:#fff;padding:28px 0}
+  header.top .k{font-size:12px;letter-spacing:.5px;opacity:.9;text-transform:uppercase}
+  header.top h1{margin:7px 0 5px;font-size:23px;line-height:1.35}
+  header.top p{margin:0;opacity:.93;font-size:14px;max-width:720px}
+  .banner{background:#eafaf1;border:1px solid #bfe6cd;border-radius:10px;padding:13px 16px;margin:18px 0;font-size:13.5px;color:var(--green-d)}
+  .banner b{color:var(--green-d)}
+  .progress{height:6px;background:var(--line);border-radius:6px;margin:14px 0 4px;overflow:hidden}
+  .progress > i{display:block;height:100%;background:var(--green);width:0;transition:width .3s}
+  .topicbar{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 6px}
+  .topicbar button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px 13px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;font-family:inherit}
+  .topicbar button.on{background:var(--green);color:#fff;border-color:var(--green)}
+  .topicbar button.mod{border-color:#d8cff0;color:#5a4fa0}
+  .topicbar button.mod.on{background:var(--purple);border-color:var(--purple);color:#fff}
+  .tabs{display:flex;gap:6px;border-bottom:2px solid var(--line);margin:16px 0 0}
+  .tabs.hide{display:none}
+  .tabs button{border:none;background:none;padding:11px 16px;font-size:14.5px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;font-family:inherit}
+  .tabs button.on{color:var(--green-d);border-bottom-color:var(--green)}
+  .pane{display:none;padding:22px 2px 10px;animation:fade .2s}
+  .pane.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1}}
+  .read h2{font-size:19px;color:var(--green-d);margin:22px 0 10px}
+  .read p{margin:0 0 13px;font-size:15.5px}
+  .read .meta{font-size:12.5px;color:var(--muted);margin-bottom:16px}
+  .case{background:#f3f8fd;border-left:4px solid var(--blue);border-radius:8px;padding:13px 16px;margin:17px 0;font-size:14.5px}
+  .case .lbl{color:var(--blue);font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px}
+  .myth{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--line);margin:17px 0}
+  @media(max-width:560px){.myth{grid-template-columns:1fr}}
+  .myth > div{padding:13px 16px;font-size:14px}
+  .myth .m{background:#fdecec;color:#a3352b}
+  .myth .r{background:#e7f7ec;color:var(--green-d)}
+  .myth .lbl{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;font-weight:800;opacity:.85}
+  .fail{background:#fff8e6;border-left:4px solid var(--gold);border-radius:8px;padding:13px 16px;margin:17px 0;font-size:14px;color:#5e4a00}
+  .fail .lbl{color:#9a7a00;font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px}
+  .step{background:linear-gradient(135deg,#eef6ff,#f3fbf6);border:1px solid #cfe6d8;border-radius:10px;padding:14px 16px;margin:18px 0 6px;font-size:15px}
+  .step .lbl{color:var(--green-d);font-weight:800;display:block;margin-bottom:5px}
+  .card2{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:6px 0 16px}
+  .card2 h2{color:var(--green-d);font-size:19px;margin:0 0 6px}
+  .card2 h3{font-size:15.5px;margin:16px 0 6px}
+  .card2 p{font-size:15px}
+  .ck{display:flex;gap:10px;align-items:flex-start;background:#fafbfa;border:1px solid var(--line);border-radius:9px;padding:12px 14px;margin-bottom:10px;font-size:14.5px;cursor:pointer}
+  .ck input{margin-top:3px;width:17px;height:17px;accent-color:var(--green);cursor:pointer}
+  .ck.done{background:#eef9f1;border-color:#bfe6cd}
+  .ck.done span{color:var(--green-d)}
+  .rubric{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:10px}
+  .rubric th,.rubric td{text-align:right;padding:8px 10px;border-bottom:1px solid var(--line)}
+  .rubric th{background:var(--bg);font-size:12px;text-transform:uppercase;color:var(--muted)}
+  .q{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:16px}
+  .q .qn{font-weight:700;font-size:15.5px;margin-bottom:12px}
+  .q .opt{display:block;width:100%;text-align:right;border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:11px 14px;margin-bottom:9px;font-size:14.5px;cursor:pointer;font-family:inherit;transition:.15s}
+  .q .opt:hover{border-color:var(--accent)}
+  .q .opt.correct{background:#e7f7ec;border-color:var(--green);color:var(--green-d);font-weight:700}
+  .q .opt.wrong{background:#fdecec;border-color:#e05656;color:#a33}
+  .q .fb{margin-top:8px;font-size:13.5px;display:none;border-radius:8px;padding:10px 12px}
+  .q .fb.show{display:block}
+  .q .fb.ok{background:#e7f7ec;color:var(--green-d)}
+  .q .fb.no{background:#fdecec;color:#a33}
+  .score{background:var(--green);color:#fff;border-radius:10px;padding:14px 18px;font-weight:700;text-align:center;display:none}
+  .score.show{display:block}
+  .cta{background:linear-gradient(135deg,#0f5c31,var(--green));color:#fff;border-radius:12px;padding:24px 26px;margin:24px 0 8px}
+  .cta h3{margin:0 0 9px;font-size:19px}
+  .cta p{margin:0 0 15px;opacity:.95;font-size:14.5px}
+  .cta a{display:inline-block;background:#fff;color:var(--green-d);text-decoration:none;font-weight:700;border-radius:8px;padding:12px 22px;font-size:14.5px}
+  .navbtns{display:flex;justify-content:space-between;margin:22px 0 8px}
+  .navbtns button{border:1px solid var(--green);background:#fff;color:var(--green-d);border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer;font-family:inherit}
+  .navbtns button:hover{background:var(--green);color:#fff}
+  .navbtns button:disabled{opacity:.4;cursor:default}
+  .flag{color:#a36b00;font-size:12px;background:#fff3d6;border-radius:5px;padding:1px 6px}
+  footer{color:var(--muted);font-size:12.5px;text-align:center;padding:24px 0 40px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="k">Bivision Academy · ანალიტიკის გზა (role track)</div>
+    <h1>შენი მონაცემები ერთ სურათად</h1>
+    <p>მიმოფანტული მონაცემიდან ცოცხალ გადაწყვეტილებამდე. ხუთი გაკვეთილი ანალიტიკოსისა და ოპერაციების გუნდისთვის. ხიდი ბიზნეს-ანალიტიკისკენ.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="banner">
+    <b>ვისთვის:</b> ანალიტიკოსი, ოპერაციების და ფინანსების გუნდი, ყველა, ვინც მონაცემს აგროვებს და ანგარიშს აწყობს. ქეისები რეალურ პატერნებზეა დაფუძნებული; კომპანიები ანონიმურია და ციფრები ილუსტრაციული. პროდუქტის დეტალი, რომელიც დროში იცვლება, მონიშნულია <span class="flag">[გადასამოწმებელი]</span>-ით.
+  </div>
+
+  <div class="progress"><i id="bar"></i></div>
+  <div class="topicbar" id="topicbar"></div>
+
+  <div class="tabs" id="tabs">
+    <button class="on" data-tab="read" onclick="setTab('read',this)">📖 კითხვა</button>
+    <button data-tab="check" onclick="setTab('check',this)">✅ checklist</button>
+  </div>
+
+  <div class="pane read on" id="pane-read"></div>
+  <div class="pane" id="pane-check"></div>
+  <div class="pane" id="pane-single"></div>
+
+  <div class="navbtns">
+    <button id="prevBtn" onclick="prevTopic()">← წინა</button>
+    <button id="nextBtn" onclick="nextTopic()">შემდეგი →</button>
+  </div>
+
+  <footer>
+    Bivision Academy · Analytics/Ops role track · staging (noindex) · კონტენტი ანონიმური, ციფრები ილუსტრაციული · Bivision 2026
+  </footer>
+</div>
+
+<script>
+const TOPICS = [
+  {
+    id:'l1', short:'1. ფარული ხარჯი',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 1 — მითი: „მონაცემი მოწესრიგებულია, უბრალოდ Excel-შია"</div>
+<h2>მიმოფანტული მონაცემი ფარული ხარჯია</h2>
+<p>ყველა კომპანიას, რომელიც წლებია მუშაობს, უზარმაზარი მონაცემი აქვს დაგროვილი. გაყიდვები, კლიენტები, მარაგი, ხარჯები, მომწოდებლები. პრობლემა იშვიათად ისაა, რომ მონაცემი არ არსებობს. პრობლემა თითქმის ყოველთვის ისაა, რომ ის მიმოფანტულია. ნაწილი ერთ Excel-ფაილშია, ნაწილი მეორეში, ნაწილი სააღრიცხვო პროგრამაში, ნაწილი კი მხოლოდ ერთი ადამიანის თავში, რომელიც შვებულებაში რომ წავა, პასუხებიც მასთან ერთად მიდის.</p>
+<p>ეს მიმოფანტულობა უხილავი ხარჯია. ის ანგარიშში ცალკე ხაზად არ ჩანს, მაგრამ ყოველდღე გფლანგავს დროსა და ფულს. სამი ნიშნით იცნობ მას. პირველი, ანგარიშის აწყობას საათები ან დღეები სჭირდება და ის ყოველთვის დაგვიანებულია. მეორე, ერთსა და იმავე კითხვაზე ორი ადამიანი ორ სხვადასხვა ციფარს გაძლევს, რადგან თითოეული თავისი ფაილიდან თვლის. მესამე, როცა მნიშვნელოვან გადაწყვეტილებას იღებ, ციფარს კი არ უყურებ, არამედ შეგრძნებას ენდობი, რადგან ციფარი დროზე ხელთ არ გაქვს.</p>
+<p>საიდან მოდის ეს მიმოფანტულობა? ის ბოროტი განზრახვით არ ჩნდება. კომპანია იზრდება, თითო განყოფილება თავის ხელსაწყოს ირჩევს. გაყიდვები ერთ ფაილს აწარმოებს, საწყობი მეორეს, ბუღალტერია მესამეს. თითოეული ცალკე ლოგიკურია. პრობლემა მაშინ ჩნდება, როცა ერთიან სურათს ეძებ და ის არსად არის. რაც უფრო იზრდება კომპანია, მით უფრო ძვირი ჯდება ეს ფანტვა, რადგან ყოველი ახალი ფაილი კიდევ ერთ კუნძულს ამატებს, რომელიც დანარჩენებს არ ელაპარაკება.</p>
+<p>ამ ხარჯის ყველაზე საშიში ნაწილი დროის დაკარგვა არ არის. ის ცუდი გადაწყვეტილებებია, რომელსაც დაგვიანებული ან არასწორი ციფრის გამო იღებ. როცა ხელმძღვანელი ვერ ხედავს, რომელი მიმართულება მუშაობს და რომელი არა, ის ან ზედმეტ ფულს ხარჯავს იქ, სადაც არ ღირს, ან აჭიანურებს ნაბიჯს იქ, სადაც დროულად უნდა მოქცეულიყო. მონაცემის ფანტვა ბოლოს ყოველთვის გადაწყვეტილების ხარისხში ჩანს.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>საბითუმო კომპანია, რამდენიმე ასეული პროდუქტით. ყოველი თვის დასაწყისში ერთი თანამშრომელი მთელ კვირას ხარჯავდა იმაზე, რომ სხვადასხვა ფაილიდან ხელით აეწყო გაყიდვების ანგარიში. სანამ ანგარიში მზადდებოდა, თვის ნახევარი უკვე გასული იყო და ციფარი უკვე ძველდებოდა. ანუ კომპანია მუდამ წარსულს უყურებდა, არა აწმყოს.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>ჩვენი მონაცემი მოწესრიგებულია, უბრალოდ Excel-შია.</div><div class="r"><span class="lbl">რეალობა</span>Excel-ში ყოფნა და მოწესრიგებულობა ერთი და იგივე არ არის. მოწესრიგებული მონაცემი ის არის, რომელზეც პასუხს წუთებში იღებ, არა დღეებში.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა კომპანიამ გადაწყვიტა, ჯერ წლების მონაცემი სრულად „დაელაგებინა", სანამ რამე ცოცხალ სისტემას ააშენებდა. პროექტი თვეებით გაიწელა, ხალხი დაიღალა და ბოლოს მიატოვეს. რეალური მოლოდინი: არ გჭირდება ჯერ ყველაფრის სრულყოფა. გჭირდება ერთი მნიშვნელოვანი კითხვა და მხოლოდ ის მონაცემი, რომელიც ამ კითხვას პასუხობს.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>დათვალე, კონკრეტულად რამდენი საათი იხარჯება შენს კომპანიაში თვეში ანგარიშების ხელით აწყობაზე. ეს ერთი ციფარი ხშირად საკმარისია იმის დასანახად, რომ მიმოფანტული მონაცემი იაფი არ არის.</div>`,
+    check:[
+      'დავთვალე, რამდენი საათი იხარჯება თვეში ანგარიშების ხელით აწყობაზე',
+      'ვაცნობიერებ, რომ Excel-ში ყოფნა და მოწესრიგებულობა ერთი არ არის',
+      'ვიცი, სად არის ჩემი მონაცემი მიმოფანტული (ფაილები, პროგრამა, ადამიანების თავი)',
+      'დავადგინე ერთი მნიშვნელოვანი კითხვა, რომელზეც პასუხი დღეს დროზე არ მაქვს'
+    ]
+  },
+  {
+    id:'l2', short:'2. dashboard vs Excel',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 2 — მითი: „Excel საკმარისია"</div>
+<h2>dashboard თუ ხელით ანგარიში</h2>
+<p>წინა გაკვეთილში დავინახეთ, რომ მიმოფანტული მონაცემი ფარული ხარჯია. ახლა იმ ცვლილებაზე ვისაუბროთ, რომელიც ამ ხარჯს ხსნის. ეს არის გადასვლა ხელით აწყობილი ანგარიშიდან ცოცხალ dashboard-ზე.</p>
+<p>რა განსხვავებაა მათ შორის? ხელით აწყობილი ანგარიში ფოტოა. ის გიჩვენებს, რა იყო იმ მომენტში, როცა გადაიღე, და მეორე დღესვე ძველდება. dashboard ცოცხალი ფანჯარაა. ის მონაცემს პირდაპირ წყაროდან იღებს და ყოველთვის აჩვენებს, რა ხდება ახლა. შენ აღარ ხარჯავ დროს ანგარიშის აწყობაზე, შენ უბრალოდ უყურებ მზა სურათს. ეს მცირე სხვაობა ჩანს, მაგრამ ის სრულად ცვლის, რამდენად სწრაფად რეაგირებ.</p>
+<p>dashboard-ის მთავარი ღირებულება მხოლოდ სიჩქარე არ არის. მთავარია, რომ ის ერთ ჭეშმარიტებას ქმნის. როცა ყველა ერთსა და იმავე ცოცხალ სურათს უყურებს, ქრება კამათი იმაზე, ვისი ციფარია სწორი. დირექტორი, ფინანსისტი და გაყიდვების ხელმძღვანელი ერთსა და იმავე ეკრანს ხედავენ. გადაწყვეტილება ფაქტზე დგას, არა იმაზე, ვისი Excel უფრო ახალია.</p>
+<p>არის კიდევ ერთი ღირებულება, რომელსაც ხშირად ვერ ამჩნევენ. ცოცხალი dashboard ცვლის იმასაც, თუ რა კითხვებს სვამ. როცა ციფარი დღეებში გაქვს, მხოლოდ დიდ, იშვიათ კითხვებს სვამ, რადგან ყოველი პასუხი ძვირი ჯდება. როცა ციფარი წამებში გაქვს, იწყებ პატარა, ხშირი კითხვების დასმას: რატომ დაეცა ეს ფილიალი გუშინ, რომელი პროდუქტი გაიყიდა უკეთ ამ კვირას. სწორედ ეს პატარა, ხშირი კითხვებია, რომელიც ბიზნესს რეალურად აუმჯობესებს.</p>
+<p>აქ ერთი ხაფანგია. dashboard თავისთავად სარგებელს არ მოაქვს, თუ მასზე ვერავინ იღებს გადაწყვეტილებას. ხშირად კომპანია ლამაზ ეკრანს აშენებს და მერე ისევ ძველ Excel-ს უბრუნდება, რადგან dashboard მისი ნამდვილი კითხვებისთვის არ აეწყო. ამიტომ მთავარია არა ის, რამდენად ლამაზია, არამედ ის, პასუხობს თუ არა იმ კითხვებს, რომელზეც შენ ნამდვილად გადაწყვეტილებას იღებ.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>სარესტორნო ქსელი რამდენიმე ფილიალით. ადრე თითოეული ფილიალი თავის ანგარიშს თავისებურად აგზავნიდა და მენეჯმენტი კვირაში ერთხელ ცდილობდა მათ შეჯერებას. როცა ერთი ცოცხალი dashboard აეწყო, სადაც ყველა ფილიალის გაყიდვა და ხარჯი ერთ ეკრანზე ჩანდა, შეჯერებაზე დახარჯული დღეები გაქრა. უფრო მნიშვნელოვანი ის იყო, რომ პრობლემურ ფილიალს ახლა იმავე დღეს ხედავდნენ, არა თვის ბოლოს.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>Excel საკმარისია, რას შეგვცვლის dashboard.</div><div class="r"><span class="lbl">რეალობა</span>Excel შესანიშნავია ერთჯერადი თვლისთვის. ის ცუდია გამეორებადი, ცოცხალი სურათისთვის. ყოველთვიური ხელით ანგარიში ნიშანია, რომ dashboard გჭირდება.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა გუნდმა dashboard ააწყო, მაგრამ მასში ოცი სხვადასხვა ციფარი ჩატენა. შედეგად მასზე ვერავინ იყურებოდა, რადგან ვერაფერს ხვდებოდა. რეალური მოლოდინი: კარგი dashboard ბევრ ციფარს კი არ აჩვენებს, არამედ იმ რამდენიმეს, რომელზეც გადაწყვეტილება დგას.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>აიღე ერთი ანგარიში, რომელსაც ყოველთვე ხელით აწყობ. ჩაიწერე, რომელ სამ ციფარს უყურებ მასში პირველ რიგში. სწორედ ეს სამი ციფარი იქნება შენი პირველი dashboard-ის გული.</div>`,
+    check:[
+      'ვიცი განსხვავება: ანგარიში ფოტოა, dashboard ცოცხალი ფანჯარა',
+      'გამოვყავი ერთი ანგარიში, რომელსაც ყოველთვე ხელით ვაწყობ',
+      'ჩავიწერე ის 3 ციფარი, რომელსაც პირველ რიგში ვუყურებ',
+      'ვაცნობიერებ, რომ კარგი dashboard ცოტა მთავარ ციფარს აჩვენებს, არა ყველაფერს'
+    ]
+  },
+  {
+    id:'l3', short:'3. გაერთიანება',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 3 — მითი: „ეს IT-ის საქმეა"</div>
+<h2>მონაცემთა გაერთიანება: საიდან სად</h2>
+<p>dashboard რომ ცოცხალი იყოს, მონაცემი სადღაც უნდა მოგროვდეს. აქ ჩნდება კითხვა, რომელიც ხშირად აშინებს: როგორ გავაერთიანო ჩემი მიმოფანტული მონაცემი? ეს ნაბიჯი ტექნიკურად ჟღერს, მაგრამ მისი ლოგიკა მარტივია და სწორედ შენ, და არა მხოლოდ IT, უნდა გესმოდეს ის.</p>
+<p>დაიწყე იქიდან, რომ ჩამოწერო, საიდან მოდის შენი მონაცემი. ჩვეულებრივ რამდენიმე ძირითადი წყაროა. გაყიდვები ხშირად სააღრიცხვო პროგრამაშია, მაგალითად Fina-ში, Oris-ში ან 1C-ში. მარაგი შეიძლება ცალკე სისტემაში იყოს. ბანკის ამონაწერი ცალკე. კლიენტების ინფორმაცია კიდევ სხვაგან. თითოეული ეს წყარო კუნძულია. გაერთიანება ნიშნავს, რომ ამ კუნძულებს შორის ხიდები გაიყვანო, რომ მონაცემი ერთ ადგილას მოგროვდეს და ერთმანეთს დაუკავშირდეს.</p>
+<p>მთავარი, რაც უნდა გესმოდეს, ეს არის: გაერთიანება ერთჯერადი დიდი პროექტი არ უნდა იყოს. შენ არ გჭირდება, რომ პირველივე დღეს ყველა წყარო შეაერთო. დაიწყე ორი ან სამი ყველაზე მნიშვნელოვანი წყაროთი, რომელიც შენს მთავარ კითხვას პასუხობს, და თანდათან დაამატე დანარჩენი.</p>
+<p>როგორ უკავშირდება ერთმანეთს ეს კუნძულები პრაქტიკულად? ჩვეულებრივ რომელიღაც საერთო ნიშნით. ერთი და იგივე კლიენტი, პროდუქტის კოდი ან თარიღი ორივე წყაროში მეორდება და სწორედ ეს საერთო ნიშანი აკავშირებს მათ. ამიტომ სანამ გააერთიანებ, ღირს დარწმუნდე, რომ ეს საერთო ნიშანი ორივე მხარეს ერთნაირად იწერება. თუ ერთ ფაილში კლიენტს ერთი სახელით ეძახიან, მეორეში სხვით, ხიდი ვერ აეწყობა, სანამ ამას არ მოაწესრიგებ. ეს არ ნიშნავს, რომ ჯერ მთელი მონაცემი იდეალურად უნდა გაასუფთავო. ნიშნავს მხოლოდ, რომ იმ ორ წყაროს შორის, რომელსაც აერთიანებ, საერთო ენა უნდა იყოს.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>სავაჭრო კომპანია, რომელსაც გაყიდვები სააღრიცხვო პროგრამაში ჰქონდა, ფაქტობრივი ჩამოსვლები კი ბანკის ამონაწერში. ცალკ-ცალკე ვერავინ ხედავდა, რომელ კლიენტს რა დაგვიანებით უხდიდა. როცა ეს ორი წყარო ერთ სურათში გაერთიანდა, მაშინვე გამოჩნდა რამდენიმე კლიენტი, რომელიც სისტემატურად აგვიანებდა გადახდას და ფარულად ჭამდა საბრუნავ კაპიტალს.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>მონაცემთა გაერთიანება IT-ის საქმეა, ჩემი არა.</div><div class="r"><span class="lbl">რეალობა</span>IT ხიდებს აშენებს, მაგრამ რომელი კუნძულები უნდა შეუერთდეს და რა კითხვაზე, ეს ბიზნესის გადაწყვეტილებაა. თუ შენ არ იცი, რა გინდა დაინახო, IT-ც ვერ აგიწყობს სასარგებლო სურათს.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა კომპანიამ IT-ს უთხრა „გააერთიანე ყველაფერი", კონკრეტული კითხვის გარეშე. შედეგად მიიღო უზარმაზარი, ჭრელი სისტემა, რომელსაც პრაქტიკული აზრი არ ჰქონდა. რეალური მოლოდინი: ჯერ კითხვა, მერე გაერთიანება. ტექნიკა კითხვას ემსახურება, არა პირიქით.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>დახაზე შენი მონაცემის წყაროები, თითო ცალკე ბლოკად. გაავლე ხაზი ორ წყაროს შორის, რომელთა ერთად დანახვაც ყველაზე მეტ ღირებულებას მოგიტანდა. ეს ერთი ხაზი იქნება შენი გაერთიანების პირველი ნაბიჯი.</div>`,
+    check:[
+      'ჩამოვწერე ჩემი მონაცემის ძირითადი წყაროები (სააღრიცხვო, მარაგი, ბანკი, კლიენტები)',
+      'ვაცნობიერებ, რომ გაერთიანება ეტაპობრივია, არა ერთჯერადი დიდი პროექტი',
+      'დავადგინე 2 წყარო, რომელთა ერთად დანახვა ყველაზე ღირებულია',
+      'ვიცი, რომ ჯერ კითხვაა, მერე ტექნიკა, არა პირიქით'
+    ]
+  },
+  {
+    id:'l4', short:'4. სწორი მეტრიკა',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 4 — მითი: „მეტი ციფარი = მეტი ცოდნა"</div>
+<h2>სწორი მეტრიკა: რას უყურებ</h2>
+<p>მონაცემი გააერთიანე, dashboard გაქვს. ახლა ყველაზე მნიშვნელოვანი კითხვა: რას უყურებ? ბევრი კომპანია სწორედ აქ ცდება. ფიქრობენ, რომ რაც მეტ ციფარს უყურებენ, მით უკეთ ესმით ბიზნესი. სინამდვილეში პირიქითაა. ბევრი ციფარი ყურადღებას ფანტავს და მთავარს მალავს.</p>
+<p>დაიწყე იმის გარჩევით, რა არის ნამდვილად მნიშვნელოვანი. ბრუნვა ლამაზი ციფარია, მაგრამ ის მთელ სიმართლეს არ ამბობს. შეიძლება ბრუნვა იზრდებოდეს, მოგება კი იკლებდეს, რადგან ფასდაკლებებში ან ხარჯებში იკარგება. ამიტომ მარჟას უყურე, არა მხოლოდ ბრუნვას. იგივე ეხება საშუალო ციფრებს. „საშუალო მოგება" ხშირად მალავს იმას, რომ ერთი პროდუქტი ან ფილიალი ფულს გშოვის, მეორე კი ფარულად წაგებაში მუშაობს. სწორი მეტრიკა გიჩვენებს არა საშუალოს, არამედ სად იბადება მოგება და სად იკარგება.</p>
+<p>კარგი მიდგომა ასეთია: თითო მნიშვნელოვან ციფარს დაუსვი კითხვა „და მერე რა?". თუ ციფარი იცვლება და შენ მაინც არაფერს აკეთებ სხვანაირად, ის ციფარი dashboard-ზე ზედმეტია. დატოვე მხოლოდ ის, რაც გადაწყვეტილებას ცვლის.</p>
+<p>არსებობს კიდევ ერთი გასარჩევი: ციფარი, რომელიც წარსულს აღწერს, და ციფარი, რომელიც მომავალს გაფრთხილებს. მთლიანი თვის მოგება წარსულია, მასზე უკვე ვეღარაფერს შეცვლი. ხოლო შეკვეთების ტემპი, ახალი კლიენტების რაოდენობა ან მარაგის ამოწურვის სიჩქარე გაფრთხილებს იმაზე, რაც მოვა. კარგ dashboard-ზე ორივე ტიპის ციფარია, მაგრამ გადაწყვეტილებას ის მეორე ცვლის, რადგან ის დროზე გაძლევს მოქმედების საშუალებას. ამიტომ, როცა მეტრიკას არჩევ, იკითხე არა მხოლოდ „რას მეუბნება ეს ციფარი", არამედ „რის გაკეთებას მაცლის, სანამ გვიან არ არის".</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>საცალო ქსელი, რომელიც წარმატებას მთლიანი ბრუნვით ზომავდა. ბრუნვა იზრდებოდა, ყველა კმაყოფილი იყო. როცა მარჟა პროდუქტების ჭრილში დაინახეს, აღმოჩნდა, რომ გაყიდვების ზრდას ყველაზე დაბალმარჟიანი პროდუქტი იძლეოდა, ხოლო ყველაზე მომგებიანი ნელ-ნელა ქრებოდა თაროებიდან. მთლიანი ბრუნვა ამ პრობლემას მთლიანად მალავდა.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>რაც მეტ ციფარს ვუყურებ, მით უკეთ მესმის ბიზნესი.</div><div class="r"><span class="lbl">რეალობა</span>მეტი ციფარი ხშირად ნაკლებ სიცხადეს ნიშნავს. ძალა იმ რამდენიმე მეტრიკაშია, რომელიც პირდაპირ უკავშირდება გადაწყვეტილებას.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა გუნდმა dashboard-ზე ორმოცი მაჩვენებელი გაიტანა, რომ „სრული სურათი" ჰქონოდა. სამი თვის შემდეგ მასზე ვერავინ იღებდა გადაწყვეტილებას, რადგან მთავარი ხმაურში იკარგებოდა. რეალური მოლოდინი: დაიწყე ხუთამდე მთავარი მეტრიკით. დანარჩენი მაშინ დაამატე, როცა ნამდვილად დაგჭირდება.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>აიღე შენი ბიზნესის სამი მთავარი მაჩვენებელი და თითოეულს ჰკითხე „და მერე რა?". თუ პასუხი არ ცვლის შენს ქმედებას, ის მაჩვენებელი მთავარი არ არის. ასე გაფილტრავ ხმაურს მთავარისგან.</div>`,
+    check:[
+      'ვაცნობიერებ, რომ მარჟას უნდა ვუყურო, არა მხოლოდ ბრუნვას',
+      'ვიცი, რომ საშუალო ციფარი მალავს, სად იბადება და სად იკარგება მოგება',
+      'თითო მთავარ ციფარს დავუსვი კითხვა „და მერე რა?"',
+      'დავიწყე ხუთამდე მთავარი მეტრიკით, არა ყველაფრით'
+    ]
+  },
+  {
+    id:'l5', short:'5. ხიდი → BI',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 5 — ხიდი Qlik / Power BI-ისკენ</div>
+<h2>ხიდი: ბიზნეს-ანალიტიკა (Bivision core)</h2>
+<p>ოთხი გაკვეთილი იმაზე იყო, როგორ აქცევ მიმოფანტულ მონაცემს ცოცხალ სურათად და სწორ მეტრიკად. ახლა ბუნებრივი კითხვა ჩნდება: სად კეთდება ეს ყველაფერი რეალურად? აქ შემოდის ის, რასაც ბიზნეს-ანალიტიკა, ანუ BI (Business Intelligence), ჰქვია. Qlik და Power BI სწორედ ასეთი ხელსაწყოებია. ისინი შენს მიმოფანტულ წყაროებს აერთიანებენ, ცოცხალ dashboard-ად აქცევენ და გაძლევენ საშუალებას, რომ ციფარს არა მხოლოდ უყურო, არამედ ჩაუღრმავდე.</p>
+<p>რა განსხვავებაა ამ ხელსაწყოებსა და Excel-ს შორის? Excel ცალკეულ ფაილს ამუშავებს. BI პლატფორმა ბევრ წყაროს აერთიანებს ერთ ცოცხალ მოდელად, რომელიც თვითონ ნახლდება. შენ აღარ აწყობ ანგარიშს ხელით. შენ ერთხელ აწყობ მოდელს და მერე უბრალოდ უსვამ კითხვებს. დააწკაპუნებ ერთ ფილიალს და dashboard მაშინვე იმ ფილიალის სურათს გიჩვენებს. ეს ის ცოცხალი, კითხვებზე მორგებული სურათია, რომელზეც წინა გაკვეთილებში ვისაუბრეთ.</p>
+<p>როდის ხდება ნათელი, რომ Excel-იდან BI-ზე გადასვლის დროა? რამდენიმე ნიშნით. როცა ერთსა და იმავე ანგარიშს ყოველთვე ხელით აწყობ. როცა ფაილი იმდენად დიდია, რომ იკიდება ან ნელდება. როცა რამდენიმე ადამიანი ერთ ფაილს ცვლის და ვერსიები ერთმანეთს ერევა. როცა კითხვაზე პასუხის მიღებას იმაზე მეტი დრო სჭირდება, ვიდრე თვითონ გადაწყვეტილება იმსახურებს. თუ ეს ნიშნები გაცნობია, ეს Excel-ის ბრალი არ არის. უბრალოდ შენი კითხვები მის შესაძლებლობებს გასცდა.</p>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>BI ძვირია და მხოლოდ დიდი კომპანიებისთვისაა.</div><div class="r"><span class="lbl">რეალობა</span>BI არ ნიშნავს მილიონიან ინვესტიციას. ის შეიძლება ერთი მნიშვნელოვანი dashboard-ით დაიწყოს, რომელიც ერთ რეალურ პრობლემას ხსნის. ღირებულება ხელსაწყოს ფასში არ არის, არამედ იმ გადაწყვეტილებებში, რომელსაც ის სწორ დროს გაძლევს.</div></div>
+<div class="case"><span class="lbl">რეალური ქეისი</span>საშუალო ზომის კომპანია, რომელიც ფიქრობდა, BI მისთვის ჯერ ნაადრევი იყო. დაიწყეს მხოლოდ ერთი dashboard-ით, რომელიც კლიენტების გადახდის დისციპლინას აჩვენებდა. პირველივე თვეში დაინახეს რამდენიმე კლიენტი, რომელიც სისტემატურად აგვიანებდა და საბრუნავ კაპიტალს ჭამდა. ერთმა dashboard-მა თავისი ფასი მაშინვე გაიმართლა.</div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა კომპანიამ BI-ის დანერგვა დიდი, ყოვლისმომცველი პროექტით დაიწყო, რომელიც ნახევარ წელს გასტანდა. ხალხი დაიღალა, სანამ პირველ შედეგს დაინახავდა. რეალური მოლოდინი: დაიწყე ერთი dashboard-ით, რომელიც ერთ რეალურ კითხვას პასუხობს, აჩვენე შედეგი სწრაფად და მერე გააფართოვე.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>დაუბრუნდი იმ ერთ მნიშვნელოვან კითხვას, რომელიც პირველ გაკვეთილზე ჩამოაყალიბე. ეს არის სწორი ადგილი, საიდანაც შენი პირველი dashboard უნდა დაიწყოს.</div>
+<div class="cta">
+  <h3>უფასო „მონაცემთა მზადყოფნის აუდიტი"</h3>
+  <p>Bivision-ი სწორედ ამას აშენებს ქართული კომპანიებისთვის: Qlik-ისა და Power BI-ის dashboard-ებს, რომლებიც შენს მიმოფანტულ მონაცემს ცოცხალ სურათად აქცევენ. დასაწყისად გთავაზობთ უფასო აუდიტს, სადაც ერთად განვსაზღვრავთ შენს პირველ მნიშვნელოვან dashboard-ს და იმ მონაცემს, რომელიც მას სჭირდება.</p>
+  <a href="https://bivision.ge" target="_blank" rel="noopener">აუდიტის დაჯავშნა →</a>
+</div>`,
+    check:[
+      'მესმის განსხვავება: Excel ცალკე ფაილია, BI ცოცხალი მოდელი ბევრ წყაროზე',
+      'ვიცი, რომ BI ერთი dashboard-ით იწყება, არა მილიონიანი პროექტით',
+      'დავადგინე ის ერთი კითხვა, საიდანაც ჩემი პირველი dashboard დაიწყება',
+      'ვაცნობიერებ, რომ ღირებულება გადაწყვეტილებაშია, არა ხელსაწყოს ფასში'
+    ]
+  },
+  {
+    id:'project', short:'📋 პროექტი', mod:true, single:true,
+    html:`<div class="card2">
+<h2>პროექტი — შენი პირველი dashboard ერთ გვერდზე</h2>
+<p class="meta">~30 წუთი · შენი რეალური ბიზნესის მონაცემზე</p>
+<p>აიღე ერთი გადაწყვეტილება, რომელსაც დღეს სწრაფად ვერ იღებ, რადგან ციფარი დროზე ხელთ არ გაქვს. შემდეგ შეავსე ეს ოთხი ველი ერთ გვერდზე. ეს არის შენი პირველი dashboard-ის სქელი ჩონჩხი, რომელსაც მერე Bivision-თან ერთად აქცევ ცოცხალ სისტემად.</p>
+<h3>1. კითხვა</h3>
+<p>რომელ ერთ კითხვაზე გინდა, რომ პასუხი ყოველთვის ხელთ გქონდეს? მაგალითად: „რომელი პროდუქტი მომიტანს რეალურ მოგებას ამ თვეში?"</p>
+<h3>2. მეტრიკა</h3>
+<p>რომელი 3-5 ციფარი პასუხობს ამ კითხვას? (მაგ: მარჟა პროდუქტზე, გაყიდვა პროდუქტზე, დაბრუნებები.) გახსოვდეს „და მერე რა?" ფილტრი.</p>
+<h3>3. წყაროები</h3>
+<p>საიდან მოდის ეს ციფრები? (მაგ: გაყიდვები Fina-დან, ხარჯი Excel-დან, ჩამოსვლები ბანკიდან.)</p>
+<h3>4. ვინ უყურებს</h3>
+<p>ვინ მიიღებს ამ dashboard-ით გადაწყვეტილებას და რა სიხშირით?</p>
+<table class="rubric">
+  <tr><th>კრიტერიუმი</th><th>შევავსე</th></tr>
+  <tr><td>კითხვა კონკრეტულია (და მერე რა? ცვლის ქმედებას)</td><td>☐</td></tr>
+  <tr><td>5-მდე მთავარი მეტრიკა, არა ყველაფერი</td><td>☐</td></tr>
+  <tr><td>ყველა მეტრიკას მითითებული აქვს წყარო</td><td>☐</td></tr>
+  <tr><td>ნათელია, ვინ და რა სიხშირით უყურებს</td><td>☐</td></tr>
+</table>
+</div>`
+  },
+  {
+    id:'test', short:'🧠 ფინალური ტესტი', mod:true, quiz:[
+      {q:'1. მიმოფანტული მონაცემის მთავარი პრობლემა რა არის?',
+       opts:['მონაცემი საერთოდ არ არსებობს','მონაცემი არსებობს, მაგრამ ხელით უნდა შეჯერდე და დროზე ხელთ არ გაქვს','მონაცემი ძალიან ბევრია და ადგილს იკავებს'],
+       correct:1, fb:'მონაცემი ჩვეულებრივ არსებობს. პრობლემა მისი მიმოფანტულობა და დაგვიანებაა.'},
+      {q:'2. რით განსხვავდება dashboard ხელით ანგარიშისგან?',
+       opts:['dashboard უფრო ლამაზად გამოიყურება','dashboard ცოცხალია და პირდაპირ წყაროდან ნახლდება','განსხვავება პრაქტიკულად არ არის'],
+       correct:1, fb:'ანგარიში ფოტოა და ძველდება. dashboard ცოცხალი ფანჯარაა.'},
+      {q:'3. ვისი გადაწყვეტილებაა, რომელი მონაცემი უნდა გაერთიანდეს?',
+       opts:['მხოლოდ IT-ის','ბიზნესის: IT ხიდს აშენებს, კითხვას ბიზნესი სვამს','მომწოდებლის'],
+       correct:1, fb:'ჯერ ბიზნეს-კითხვა, მერე ტექნიკა. IT კითხვას ემსახურება.'},
+      {q:'4. რომელ ციფარს უნდა მიექცეს მეტი ყურადღება?',
+       opts:['მხოლოდ მთლიან ბრუნვას','მარჟას, რადგან ბრუნვა მთელ სიმართლეს არ ამბობს','მხოლოდ საშუალო მაჩვენებელს'],
+       correct:1, fb:'ბრუნვა შეიძლება იზრდებოდეს, მოგება კი იკლებდეს.'},
+      {q:'5. როგორ უნდა დაიწყოს BI-ის დანერგვა?',
+       opts:['დიდი, ნახევარწლიანი ყოვლისმომცველი პროექტით','ერთი dashboard-ით, რომელიც ერთ რეალურ კითხვას პასუხობს','ყველა მონაცემის სრული დალაგებით ჯერ'],
+       correct:1, fb:'დაიწყე ერთი dashboard-ით, აჩვენე შედეგი სწრაფად, მერე გააფართოვე.'},
+      {q:'6. რისთვის ესმება მეტრიკას კითხვა „და მერე რა?"',
+       opts:['რომ მეტი ციფარი დავამატოთ dashboard-ზე','რომ გავფილტროთ ის ციფრები, რომლებიც გადაწყვეტილებას არ ცვლიან','რომ dashboard უფრო ჭრელი გავხადოთ'],
+       correct:1, fb:'თუ ციფარი ქმედებას არ ცვლის, ის dashboard-ზე ზედმეტია.'}
+    ]
+  },
+  {
+    id:'audit', short:'🎯 უფასო აუდიტი', mod:true, single:true,
+    html:`<div class="cta">
+  <h3>უფასო „მონაცემთა მზადყოფნის აუდიტი"</h3>
+  <p>ხუთმა გაკვეთილმა აჩვენა, როგორ აქცევ მიმოფანტულ მონაცემს ცოცხალ სურათად. შემდეგი ნაბიჯი კონკრეტულია. 30-40 წუთიან საუბარში ერთად განვსაზღვრავთ შენს პირველ მნიშვნელოვან dashboard-ს: რომელ კითხვას პასუხობს, რა მონაცემი სჭირდება და როგორ აიწყობა Qlik-ში ან Power BI-ში. გამოხვალ კონკრეტული გეგმით, არა გაყიდვის პრეზენტაციით.</p>
+  <a href="https://bivision.ge" target="_blank" rel="noopener">აუდიტის დაჯავშნა →</a>
+</div>
+<div class="card2">
+<h2>რას მიიღებ აუდიტიდან</h2>
+<p>1. შენი ერთი მნიშვნელოვანი dashboard-ის გეგმა: კითხვა, მეტრიკა, წყაროები.</p>
+<p>2. შენი მონაცემის რუკა: სად არის, რა აკლია, რა კავშირები სჭირდება.</p>
+<p>3. ერთი მკაფიო შემდეგი ნაბიჯი Qlik-ის ან Power BI-ის მიმართულებით, შენი რეალური მონაცემის ზომაზე მორგებული.</p>
+</div>`
+  }
+];
+
+let cur = 0, tab = 'read';
+const tb = document.getElementById('topicbar');
+TOPICS.forEach((t,i)=>{
+  const b = document.createElement('button');
+  b.textContent = t.short;
+  if(t.mod) b.className = 'mod';
+  b.onclick = ()=>{ cur=i; tab='read'; render(); };
+  tb.appendChild(b);
+});
+
+function setTab(name, el){
+  tab = name;
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on', b===el));
+  paint();
+}
+
+function render(){
+  [...tb.children].forEach((b,i)=>b.classList.toggle('on', i===cur));
+  document.getElementById('bar').style.width = ((cur+1)/TOPICS.length*100) + '%';
+  const tabs = document.getElementById('tabs');
+  const t = TOPICS[cur];
+  if(t.single || t.quiz){
+    tabs.classList.add('hide');
+  } else {
+    tabs.classList.remove('hide');
+    document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on', b.dataset.tab==='read'));
+    tab = 'read';
+  }
+  document.getElementById('prevBtn').disabled = (cur===0);
+  document.getElementById('nextBtn').disabled = (cur===TOPICS.length-1);
+  paint();
+}
+
+function paint(){
+  const t = TOPICS[cur];
+  const pr = document.getElementById('pane-read');
+  const pc = document.getElementById('pane-check');
+  const ps = document.getElementById('pane-single');
+  pr.classList.remove('on'); pc.classList.remove('on'); ps.classList.remove('on');
+  if(t.single){
+    ps.innerHTML = t.html; ps.classList.add('on'); return;
+  }
+  if(t.quiz){
+    ps.innerHTML = renderQuiz(t.quiz); ps.classList.add('on'); return;
+  }
+  pr.innerHTML = t.read;
+  pc.innerHTML = `<div class="card2"><h2>გადაწყვეტილების checklist</h2>`
+    + t.check.map(x=>`<label class="ck" onclick="this.classList.toggle('done')"><input type="checkbox"><span>${x}</span></label>`).join('')
+    + `</div>`;
+  if(tab==='check') pc.classList.add('on'); else pr.classList.add('on');
+}
+
+function renderQuiz(items){
+  let html = `<div class="card2"><h2>ფინალური ტესტი</h2><p>ექვსი კითხვა მთელ ტრეკზე. აირჩიე პასუხი და ნახე ახსნა.</p></div>`;
+  items.forEach((it,qi)=>{
+    html += `<div class="q" id="q${qi}"><div class="qn">${it.q}</div>`
+      + it.opts.map((o,oi)=>`<button class="opt" onclick="answer(${qi},${oi})">${o}</button>`).join('')
+      + `<div class="fb" id="fb${qi}"></div></div>`;
+  });
+  html += `<div class="score" id="score"></div>`;
+  return html;
+}
+
+let answered = {};
+function answer(qi, oi){
+  const t = TOPICS[cur];
+  if(!t.quiz || answered[qi]!==undefined) return;
+  answered[qi] = oi;
+  const it = t.quiz[qi];
+  const qEl = document.getElementById('q'+qi);
+  const opts = qEl.querySelectorAll('.opt');
+  opts[it.correct].classList.add('correct');
+  if(oi!==it.correct) opts[oi].classList.add('wrong');
+  const fb = document.getElementById('fb'+qi);
+  const ok = oi===it.correct;
+  fb.className = 'fb show ' + (ok?'ok':'no');
+  fb.textContent = (ok?'სწორია. ':'ზუსტი არ არის. ') + it.fb;
+  const done = Object.keys(answered).length;
+  if(done===t.quiz.length){
+    let right = 0;
+    t.quiz.forEach((q,i)=>{ if(answered[i]===q.correct) right++; });
+    const s = document.getElementById('score');
+    s.className = 'score show';
+    s.textContent = `შედეგი: ${right} / ${t.quiz.length}` + (right===t.quiz.length?' — სრული ქულა.':'');
+  }
+}
+
+function prevTopic(){ if(cur>0){ cur--; tab='read'; answered={}; render(); window.scrollTo({top:0,behavior:'smooth'}); } }
+function nextTopic(){ if(cur<TOPICS.length-1){ cur++; tab='read'; answered={}; render(); window.scrollTo({top:0,behavior:'smooth'}); } }
+
+render();
+</script>
+</body>
+</html>
