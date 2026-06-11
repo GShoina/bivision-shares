@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Bivision Academy · M02 — მარკეტინგის ავტომატიზაცია AI-ით</title>
+<style>
+  :root{
+    --pri:#9333ea; --pri-d:#6b21a8; --ink:#1b1622; --muted:#655d6e;
+    --bg:#f8f5fb; --card:#fff; --line:#e9e2f0; --accent:#9333ea; --gold:#b8860b;
+    --green:#00a651; --green-d:#0f5c31; --blue:#2b6cb0; --red:#c0392b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI','Noto Sans Georgian',Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+  .wrap{max-width:880px;margin:0 auto;padding:0 18px}
+  header.top{background:linear-gradient(135deg,var(--pri-d),var(--pri));color:#fff;padding:28px 0}
+  header.top .k{font-size:12px;letter-spacing:.5px;opacity:.9;text-transform:uppercase}
+  header.top h1{margin:7px 0 5px;font-size:23px;line-height:1.35}
+  header.top p{margin:0;opacity:.93;font-size:14px;max-width:720px}
+  .banner{background:#f5eefb;border:1px solid #e2cff0;border-radius:10px;padding:13px 16px;margin:18px 0;font-size:13.5px;color:var(--pri-d)}
+  .banner b{color:var(--pri-d)}
+  .progress{height:6px;background:var(--line);border-radius:6px;margin:14px 0 4px;overflow:hidden}
+  .progress > i{display:block;height:100%;background:var(--pri);width:0;transition:width .3s}
+  .topicbar{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 6px}
+  .topicbar button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px 13px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;font-family:inherit}
+  .topicbar button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+  .topicbar button.mod{border-color:#bfe6cd;color:#0f7a43}
+  .topicbar button.mod.on{background:var(--green);border-color:var(--green);color:#fff}
+  .tabs{display:flex;gap:6px;border-bottom:2px solid var(--line);margin:16px 0 0}
+  .tabs.hide{display:none}
+  .tabs button{border:none;background:none;padding:11px 16px;font-size:14.5px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;font-family:inherit}
+  .tabs button.on{color:var(--pri-d);border-bottom-color:var(--pri)}
+  .pane{display:none;padding:22px 2px 10px;animation:fade .2s}
+  .pane.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1}}
+  .read h2{font-size:19px;color:var(--pri-d);margin:22px 0 10px}
+  .read p{margin:0 0 13px;font-size:15.5px}
+  .read .meta{font-size:12.5px;color:var(--muted);margin-bottom:16px}
+  .case{background:#f3f8fd;border-left:4px solid var(--blue);border-radius:8px;padding:13px 16px;margin:17px 0;font-size:14.5px}
+  .case .lbl{color:var(--blue);font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px}
+  .myth{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--line);margin:17px 0}
+  @media(max-width:560px){.myth{grid-template-columns:1fr}}
+  .myth > div{padding:13px 16px;font-size:14px}
+  .myth .m{background:#fdecec;color:#a3352b}
+  .myth .r{background:#e7f7ec;color:var(--green-d)}
+  .myth .lbl{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;font-weight:800;opacity:.85}
+  .fail{background:#fff8e6;border-left:4px solid var(--gold);border-radius:8px;padding:13px 16px;margin:17px 0;font-size:14px;color:#5e4a00}
+  .fail .lbl{color:#9a7a00;font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px}
+  .step{background:linear-gradient(135deg,#f5eefb,#eefaf2);border:1px solid #e2cff0;border-radius:10px;padding:14px 16px;margin:18px 0 6px;font-size:15px}
+  .step .lbl{color:var(--pri-d);font-weight:800;display:block;margin-bottom:5px}
+  .card2{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:6px 0 16px}
+  .card2 h2{color:var(--pri-d);font-size:19px;margin:0 0 6px}
+  .card2 h3{font-size:15.5px;margin:16px 0 6px}
+  .card2 p{font-size:15px}
+  .ck{display:flex;gap:10px;align-items:flex-start;background:#fbfafc;border:1px solid var(--line);border-radius:9px;padding:12px 14px;margin-bottom:10px;font-size:14.5px;cursor:pointer}
+  .ck input{margin-top:3px;width:17px;height:17px;accent-color:var(--pri);cursor:pointer}
+  .ck.done{background:#f5eefb;border-color:#e2cff0}
+  .ck.done span{color:var(--pri-d)}
+  .rubric{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:10px}
+  .rubric th,.rubric td{text-align:right;padding:8px 10px;border-bottom:1px solid var(--line)}
+  .rubric th{background:var(--bg);font-size:12px;text-transform:uppercase;color:var(--muted)}
+  .q{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:16px}
+  .q .qn{font-weight:700;font-size:15.5px;margin-bottom:12px}
+  .q .opt{display:block;width:100%;text-align:right;border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:11px 14px;margin-bottom:9px;font-size:14.5px;cursor:pointer;font-family:inherit;transition:.15s}
+  .q .opt:hover{border-color:var(--accent)}
+  .q .opt.correct{background:#e7f7ec;border-color:var(--green);color:var(--green-d);font-weight:700}
+  .q .opt.wrong{background:#fdecec;border-color:#e05656;color:#a33}
+  .q .fb{margin-top:8px;font-size:13.5px;display:none;border-radius:8px;padding:10px 12px}
+  .q .fb.show{display:block}
+  .q .fb.ok{background:#e7f7ec;color:var(--green-d)}
+  .q .fb.no{background:#fdecec;color:#a33}
+  .score{background:var(--pri);color:#fff;border-radius:10px;padding:14px 18px;font-weight:700;text-align:center;display:none}
+  .score.show{display:block}
+  .cta{background:linear-gradient(135deg,#0f5c31,var(--green));color:#fff;border-radius:12px;padding:24px 26px;margin:24px 0 8px}
+  .cta h3{margin:0 0 9px;font-size:19px}
+  .cta p{margin:0 0 15px;opacity:.95;font-size:14.5px}
+  .cta a{display:inline-block;background:#fff;color:var(--green-d);text-decoration:none;font-weight:700;border-radius:8px;padding:12px 22px;font-size:14.5px}
+  .navbtns{display:flex;justify-content:space-between;margin:22px 0 8px}
+  .navbtns button{border:1px solid var(--pri);background:#fff;color:var(--pri-d);border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer;font-family:inherit}
+  .navbtns button:hover{background:var(--pri);color:#fff}
+  .navbtns button:disabled{opacity:.4;cursor:default}
+  .flag{color:#a36b00;font-size:12px;background:#fff3d6;border-radius:5px;padding:1px 6px}
+  footer{color:var(--muted);font-size:12.5px;text-align:center;padding:24px 0 40px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="k">Bivision Academy · M02 — მოდული (პრაქტიკული)</div>
+    <h1>მარკეტინგის ავტომატიზაცია AI-ით</h1>
+    <p>არა მითები, არამედ გამეორებადი სისტემა. როგორ აქცევ AI-ს ერთჯერადი დახმარებიდან რეგულარულ მარკეტინგულ პროცესად: პოსტები, ბრენდის რецепტი, კალენდარი, ad copy, ელ-ფოსტა და ბოლოს გაზომვა, რომ ნახო, მართლა იმუშავა თუ არა.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="banner">
+    <b>ვისთვის:</b> მარკეტერი და მცირე გუნდი, ვისაც უკვე ესმის AI-ის საფუძვლები და ახლა უნდა, რომ მარკეტინგი სისტემად აქციოს. ეს არის პრაქტიკული მოდული. თუ ჯერ ბრენდის ხმის და კრეატივის ლოგიკა გინდა, ჯერ მარკეტინგის role track გაიარე. ქეისები რეალურ პატერნებზეა, ბრენდები ანონიმური, ციფრები ილუსტრაციული; დროში ცვალებადი დეტალი მონიშნულია <span class="flag">[გადასამოწმებელი]</span>-ით.
+  </div>
+
+  <div class="progress"><i id="bar"></i></div>
+  <div class="topicbar" id="topicbar"></div>
+
+  <div class="tabs" id="tabs">
+    <button class="on" data-tab="read" onclick="setTab('read',this)">📖 კითხვა</button>
+    <button data-tab="check" onclick="setTab('check',this)">✅ checklist</button>
+  </div>
+
+  <div class="pane read on" id="pane-read"></div>
+  <div class="pane" id="pane-check"></div>
+  <div class="pane" id="pane-single"></div>
+
+  <div class="navbtns">
+    <button id="prevBtn" onclick="prevTopic()">← წინა</button>
+    <button id="nextBtn" onclick="nextTopic()">შემდეგი →</button>
+  </div>
+
+  <footer>
+    Bivision Academy · M02 Marketing Automation · staging (noindex) · კონტენტი ანონიმური, ციფრები ილუსტრაციული · Bivision 2026
+  </footer>
+</div>
+
+<script>
+const TOPICS = [
+  {
+    id:'l1', short:'1. პოსტი სისტემით',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 1 — მითი: „AI თითო პოსტში გეხმარება"</div>
+<h2>ერთი იდეიდან კვირის კონტენტამდე</h2>
+<p>სოციალური ქსელის პოსტი მცირე გუნდისთვის გაუთავებელი ლენტია. ერთი დასრულდა, მეორე უნდა. ბევრი მარკეტერი AI-ს სწორედ აქ იყენებს, მაგრამ თითო პოსტზე. სთხოვს ერთ პოსტს, იღებს, აქვეყნებს, მერე ისევ ნულიდან. ეს ნამდვილი ლევერიჯი არ არის. დაზოგილი დრო მცირეა, რადგან პროცესი ისევ ხელით ტრიალებს. ნამდვილი მოგება ცალკე პოსტში კი არ არის, არამედ გამეორებად სისტემაში.</p>
+<p>სისტემა ასე იწყება. კვირის დასაწყისში აიღე ერთი ცენტრალური იდეა ან გზავნილი. შემდეგ AI-ს სთხოვე, რომ ეს ერთი იდეა რამდენიმე სხვადასხვა ფორმატად დაშალოს: ერთი, რომელიც კითხვას სვამს, ერთი მოკლე ისტორია, ერთი პრაქტიკული რჩევა, ერთი განცხადება. ერთი იდეა მთელ კვირად იქცევა. შენ აღარ წერ ნულიდან, შენ ხვეწავ მზა დრაფტებს.</p>
+<p>აქ მთავარია ერთი სხვაობა. „სწრაფად დაწერა" და „ავტომატიზაცია" სხვადასხვა რამეა. ავტომატიზაცია ნიშნავს გამეორებად პროცესს, რომელსაც ყოველ კვირას ერთი და იმავე რецептით უშვებ. პირველად შენ აშენებ ამ რецептს. მერე უბრალოდ აწვდი კვირის ახალ იდეას და სისტემა მუშაობს. სწორედ ეს რецептი არის ღირებული აქტივი, არა ცალკეული ტექსტი.</p>
+<p>ერთი გაფრთხილება. batching არ ნიშნავს ბრმად გამოქვეყნებას. AI გაძლევს კვირის ნედლეულს, მაგრამ შენ მაინც ირჩევ, ჭრი და ამოწმებ, რომ თითო პოსტმა თავისი ადგილი დაიმსახუროს. სისტემა ცარიელი ეკრანის დროს გზოგავს, არა გადაწყვეტილებას. სიჩქარეა დაჩქარებული, ფიქრი კი შენთან რჩება.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>მცირე მომსახურების ბიზნესი, სადაც მარკეტერი ყოველ პოსტს ცალკე წერდა და კვირაში სამი ძლივს გამოდიოდა. ააწყო მარტივი კვირის რецепტი: ერთი თემა, ხუთი დრაფტი ერთ ჯდომაზე. პოსტზე დახარჯული დრო მკვეთრად შემცირდა, გამოქვეყნება კი შემთხვევითობიდან რეგულარულ რიტმად იქცა.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>AI მხოლოდ ცალკეულ პოსტში გეხმარება.</div><div class="r"><span class="lbl">რეალობა</span>ნამდვილი ლევერიჯი ერთი იდეის კვირად დაშლაშია, გამეორებადი რецепტით. სისტემა აზოგავს დროს, არა ცალკეული პოსტი.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა მარკეტერმა ერთბაშად ოცდაათი პოსტი დააგენერირა და შემოწმების გარეშე დააგეგმარა. ლენტი ერთფეროვანი და უსიცოცხლო გახდა. რეალური მოლოდინი: batching დრაფტებისთვისაა, არა ავტომატური გამოქვეყნებისთვის. არჩევა და ჭრა შენ გრჩება.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>აიღე მომავალი კვირის ერთი ცენტრალური გზავნილი და სთხოვე AI-ს ხუთი განსხვავებული ფორმატის პოსტი იმავე იდეაზე. შემდეგ შენ შეარჩიე, დაამუშავე და დააგეგმარე.</div>`,
+    check:[
+      'მესმის, რომ ლევერიჯი ცალკე პოსტში არ არის, არამედ გამეორებად სისტემაში',
+      'ერთი იდეიდან კვირის რამდენიმე ფორმატის პოსტი ავაწყვე',
+      'ვაცნობიერებ, რომ batching დროს აზოგავს, არა გადაწყვეტილებას',
+      'ვცადე: ერთი თემა, ხუთი დრაფტი ერთ ჯდომაზე'
+    ]
+  },
+  {
+    id:'l2', short:'2. ბრენდის რецепტი',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 2 — მითი: „ბრენდი ყოველ ჯერზე თავიდან უნდა ავუხსნა"</div>
+<h2>ბრენდის ხმა, როგორც გამეორებადი რецепტი</h2>
+<p>ცალკე role track-ში ვნახეთ მთავარი აზრი: AI ისე წერს, როგორც ასწავლი, და ბრენდის ხმა შენი პასუხისმგებლობაა. აქ კითხვა უფრო პრაქტიკულია. როგორ გავხადო ბრენდის ხმა გამეორებადი, რომ ავტომატიზაციის დროს ის არ აირიოს? პასუხი ერთი მარტივი ხელსაწყოა, რომელსაც ბრენდის რецептს ვუწოდებთ.</p>
+<p>ბრენდის რецептი მოკლე, გამეორებადი ბლოკია. ის შეიცავს ტონის აღწერას, შენი სამი-ხუთი საუკეთესო ტექსტის ნიმუშს, სიტყვებს, რომელსაც ბრენდი ყოველთვის ამბობს, და სიტყვებს, რომელსაც არასოდეს. ამ ბლოკს ერთხელ ინახავ და ყოველი მარკეტინგული promt-ის დასაწყისში სვამ. ამის შემდეგ ყველა დრაფტი თავიდანვე ბრენდის ხმაში იწყება, არა გენერიკულში.</p>
+<p>რატომ არის ეს ავტომატიზაციისთვის გადამწყვეტი? როცა მასშტაბდები, ანუ batching და კალენდარი ერთვება, მთავარი რისკი drift-ია. თითო ნამუშევარი ცოტათი აცდენილი ბრენდიდან, გამრავლებული ბევრ ნამუშევარზე, საბოლოოდ ფერმკრთალ, ანონიმურ ბრენდს იძლევა. რецептი არის ღუზა, რომელიც მთელ ავტომატურ ნაკადს ერთ ხმაში აკავებს. ერთხელ ააშენე, ყველგან გამოიყენე.</p>
+<p>ერთი დათქმა. რецептი ცოცხალი დოკუმენტია. განაახლე, როცა ბრენდი იცვლება ან როცა შენიშნავ, რომ AI მუდმივად ერთსა და იმავეს აცდენს. ეს არ არის ერთხელ შექმნილი და მივიწყებული ფაილი, არამედ ხელსაწყო, რომელსაც უვლი. რაც უფრო ზუსტია რецептი, მით ნაკლები შესწორება სჭირდება ყოველ დრაფტს.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ბრენდი, რომელმაც ერთგვერდიანი „ბრენდის ნაკრები" ააწყო: ტონი, ხუთი მაგალითი, ყოველთვის და არასოდეს სიტყვები. ეს ბლოკი ყველა promt-ში შედიოდა. ახალი თანამშრომელიც კი პირველი დღიდან ბრენდის ხმაში წერდა, წლების გამოცდილების გარეშე, რადგან ხმა ფაილში იყო ჩაწერილი, არა მხოლოდ ვინმეს თავში.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>ბრენდი ყოველ ჯერზე თავიდან უნდა ავუხსნა AI-ს.</div><div class="r"><span class="lbl">რეალობა</span>ერთხელ შენახული რецепტი ბრენდის ხმას გამეორებადს ხდის მთელ ავტომატურ კონტენტში. ერთხელ წერ, ყოველ ჯერზე იყენებ.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>გუნდმა ბრენდის ხმა „თავებში" დატოვა, ჩაუწერლად. შედეგად თითო ადამიანის AI-ტექსტი სხვანაირად ჟღერდა და ბრენდი დაიშალა. რეალური მოლოდინი: ჩაწერე, გააზიარე, ჩასვი. ჩაუწერელი ხმა ვერ მასშტაბდება.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>ააწყე ერთგვერდიანი ბრენდის რецепტი: ტონი, ხუთი ნიმუში, ყოველთვის-სიტყვები და არასოდეს-სიტყვები. შეინახე ისეთ ადგილას, სადაც მთელ გუნდს ხელი მიუწვდება.</div>`,
+    check:[
+      'ავაწყვე ერთგვერდიანი ბრენდის რецепტი (ტონი, 5 ნიმუში, ყოველთვის/არასოდეს სიტყვები)',
+      'რецепტს ყოველ მარკეტინგულ promt-ში ვიყენებ',
+      'მესმის, რომ მასშტაბის დროს მთავარი რისკი ბრენდის drift-ია',
+      'რецепტი გუნდისთვის ხელმისაწვდომ ადგილას შევინახე'
+    ]
+  },
+  {
+    id:'l3', short:'3. კონტენტ-კალენდარი',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 3 — მითი: „თვის წინ დაგეგმვა მცირე გუნდისთვის შეუძლებელია"</div>
+<h2>კონტენტ-კალენდარი ერთ ჯდომაზე</h2>
+<p>ბევრი გუნდი კონტენტს კვირაში ერთხელ, რეაქტიულად გეგმავს. ეს მუდმივ ჩამორჩენას ბადებს. ორშაბათს ცარიელი ეკრანი, პანიკა, ნაჩქარევი პოსტი. AI-ით თვის დაგეგმვა ერთ ჯდომაზე რეალური ხდება. ჯერ თემები კვირების მიხედვით, მერე დრაფტები. წინასწარ დაგეგმვა სწორედ ის ადგილია, საიდანაც მშვიდი, თანმიმდევრული მარკეტინგი იწყება.</p>
+<p>აქ მთავარი ლევერიჯი გადამუშავებაა. ერთი მყარი მასალა, მაგალითად ერთი ბლოგი, ერთი ქეისი ან კლიენტის ხშირი კითხვა, შეიძლება იქცეს პოსტად, ნიუსლეტერის ნაწილად, რეკლამის კუთხედ და მოკლე ვიდეოს სცენარად. სთხოვე AI-ს, რომ ერთი ბირთვული მასალა რამდენიმე ფორმატად გადაამუშავოს. ერთხელ ნაფიქრი აზრი ბევრ შედეგად იქცევა.</p>
+<p>როგორ კეთდება პრაქტიკულად? მიეცი AI-ს თვის თემები და შენი ბრენდის რецепტი, შემდეგ სთხოვე კალენდრის დრაფტი: კვირაში ერთი ბირთვული მასალა და მისი გადამუშავებული ფორმატები. შემდეგ შენ ხვეწავ და ამტკიცებ. კალენდარი ცოცხალი გეგმა ხდება, არა ყოველ ორშაბათს განმეორებადი პანიკა.</p>
+<p>ერთი დათქმა. კალენდარი გეგმაა, არა გალია. დატოვე ადგილი დროული, რეაქტიული კონტენტისთვის: სიახლე, მოვლენა, სეზონური თემა. ავტომატიზაცია დაგეგმილ ხერხემალს იღებს, შენ კი სივრცეს იტოვებ სპონტანურისთვის. ეს ბალანსი გაძლევს რიტმსაც და სიცოცხლესაც.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ერთი ადამიანის მარკეტინგი, რომელიც მუდამ ჩქარობდა. ერთხელ დაჯდა, თვის ოთხი თემა დაგეგმა და კვირაში ერთი ბირთვული მასალა ოთხ ფორმატად გადაამუშავა. ჩქარობა მზა გეგმის ხვეწად იქცა. დაგეგმვის შემდეგ ყოველდღიური სტრესი ბევრად დაიკლო.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>თვის წინ დაგეგმვა ზედმეტად ხისტია ან შეუძლებელია მცირე გუნდისთვის.</div><div class="r"><span class="lbl">რეალობა</span>AI თვის დრაფტ-კალენდარს რეალურს ხდის. შენ არგებ და ასწორებ, არა იგონებ ნულიდან.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>გუნდმა თვის ერთმანეთთან დაუკავშირებელი პოსტები ავტომატურად დააგენერირა. ლენტს არც თემა ჰქონდა და არც ისტორია, მიმდევრები იბნეოდნენ. რეალური მოლოდინი: ჯერ თემები, მერე დრაფტები. სტრუქტურა მოცულობამდე.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>აირჩიე მომავალი თვის ოთხი კვირის თემა, სთხოვე AI-ს კვირაში ერთი ბირთვული მასალა და მისი გადამუშავებული ფორმატები, შემდეგ შენ ჩაამატე საკუთარ კალენდარში.</div>`,
+    check:[
+      'მესმის, რომ წინასწარ დაგეგმვა რეაქტიულ ჩქარობას ცვლის',
+      'ერთი ბირთვული მასალა რამდენიმე ფორმატად გადავამუშავე',
+      'თვის კალენდარი თემებით ავაწყვე, არა შემთხვევითი პოსტებით',
+      'კალენდარში ადგილი დავტოვე დროულ/რეაქტიულ კონტენტს'
+    ]
+  },
+  {
+    id:'l4', short:'4. Ad copy ტესტად',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 4 — მითი: „კარგი რეკლამა ერთი გენიალური იდეაა"</div>
+<h2>Ad copy ვარიანტებად, ტესტირებისთვის</h2>
+<p>რეკლამა ტესტირებით ცოცხლობს ან კვდება. პრობლემა ისაა, რომ ხელით ბევრი ვარიანტის წერა ნელია, ამიტომ უმეტესობა ერთ ან ორ ვერსიას უშვებს და რეალურად ვერასდროს სწავლობს, რა მუშაობს. AI სწორედ ამ ბოსტნელს ხსნის. ის წამებში გაძლევს ბევრ კუთხეს, საიდანაც ნამდვილი ტესტი იწყება.</p>
+<p>ჯერ სტრუქტურა. რეკლამას აქვს hook, ანუ პირველი ხაზი, კუთხე, ანუ ტკივილი, სარგებელი, ემოცია ან მტკიცებულება, და CTA, ანუ მოწოდება. სთხოვე AI-ს ერთი და იგივე შეთავაზება რამდენიმე კუთხით და რამდენიმე hook-ით დაწეროს. ახლა ერთი ვარაუდის ნაცვლად რეალური სატესტო ნაკრები გაქვს.</p>
+<p>რა და როგორ უნდა ვტესტო? ცვალე ერთი რამ ერთ ჯერზე, hook ან კუთხე, გაუშვი და ნახე, რომელი იპყრობს ყურადღებას და რომელი იძლევა კონვერსიას. AI გაძლევს ვარიანტებს, ბაზარი იძლევა ვერდიქტს. შენი საქმეა, წაიკითხო შედეგი და გააძლიერო ის, რაც მუშაობს. სწორედ ეს ციკლია რეკლამის გული.</p>
+<p>ერთი დათქმა. მრავალფეროვნება თავისთავად ხმაურია. ტესტე ის კუთხეები, რომელიც კლიენტის რეალურ მოტივაციას ეხმიანება, არა შემთხვევითი გადაფრაზება. და გამარჯვებული რეკლამაც ბრენდის რецепტს გადის, რომ შენი ხმით ჟღერდეს, არა გენერიკული აქციის ენით.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ბრენდი, რომელიც თვეების განმავლობაში ერთ რეკლამას უშვებდა ვარაუდით. დააგენერირა ექვსი კუთხის ვარიანტი, დატესტა და აღმოაჩინა, რომ მტკიცებულებაზე დაშენებული კუთხე ბევრად სჯობდა ფუნქციაზე დაშენებულს. იგივე ბიუჯეტი, მეტი კლიენტი, რადგან ბოლოს და ბოლოს დატესტა და არ გამოიცნო.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>კარგი ad copy ერთი გენიალური იდეის ნაყოფია.</div><div class="r"><span class="lbl">რეალობა</span>კარგი ad copy ბევრ კუთხეს შორის სწრაფი ტესტის გამარჯვებულია. AI ამ ვარიანტებს იაფს ხდის.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>გუნდმა რვა რეკლამა დატესტა, რომელიც მხოლოდ წვრილი სიტყვებით განსხვავდებოდა. ვერაფერი ისწავლა, რადგან არსებითად არაფერი იცვლებოდა. რეალური მოლოდინი: ტესტე რეალური კუთხეები, ცვალე ერთი მნიშვნელოვანი რამ ერთ ჯერზე.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>აიღე ერთი მიმდინარე შეთავაზება, სთხოვე AI-ს ხუთი კუთხის ვარიანტი (ტკივილი, სარგებელი, მტკიცებულება, ემოცია, ცნობისმოყვარეობა) და აირჩიე ორი-სამი დასატესტად.</div>`,
+    check:[
+      'მესმის, რომ რეკლამის ძალა ტესტირებაშია, არა ერთ გენიალურ ვერსიაში',
+      'ერთ შეთავაზებაზე რამდენიმე კუთხე/hook ვაწარმოე',
+      'ვტესტავ ერთ მნიშვნელოვან ცვლილებას ერთ ჯერზე',
+      'გამარჯვებული რეკლამაც ბრენდის ხმაში რჩება'
+    ]
+  },
+  {
+    id:'l5', short:'5. ელ-ფოსტა',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 5 — მითი: „ელ-ფოსტა მცირე გუნდისთვის ზედმეტად მძიმეა"</div>
+<h2>ელ-ფოსტა და ნიუსლეტერი თანმიმდევრობით</h2>
+<p>ელ-ფოსტა ის არხია, რომელსაც მარკეტერები ყველაზე ხშირად უგულებელყოფენ, რადგან მძიმედ ჩანს: subject ხაზი, ტექსტი, თანმიმდევრობა. AI ამ ღირებულებას მკვეთრად ამცირებს. ის ნიუსლეტერი ან welcome სექვენსი, რომელსაც თვეებია გადადებ, ერთ ჯდომაზე დრაფტად იქცევა.</p>
+<p>დაიწყე subject ხაზებიდან. ეს ყველაზე დიდი ლევერიჯია ყველაზე მცირე ძალისხმევით. სთხოვე AI-ს ერთ წერილზე ათი subject-ვარიანტი, აირჩიე ორი საუკეთესო და დატესტე. პატარა ცვლილება, დიდი გავლენა გახსნის მაჩვენებელზე. ეს ერთი ჩვევა ცალკე ღირს.</p>
+<p>მთავარი ძალა ცალკე წერილში არ არის, თანმიმდევრობაშია. სთხოვე AI-ს, რომ შენი შეთავაზებიდან და ბრენდის რецептიდან მოკლე სამწერილიანი welcome სექვენსი ააწყოს: მისალმება, ღირებულება, შეთავაზება. შენ ხვეწავ და ერთხელ ჩართავ. ამის შემდეგ ის ყოველ ახალ გამომწერზე თავისით მუშაობს. სწორედ აქ ხდება ელ-ფოსტა ნამდვილი ავტომატიზაცია.</p>
+<p>ერთი დათქმა. ელ-ფოსტა ნდობის არხია. ნუ აავტომატებ თავს სპამამდე. ნაკლები, მაგრამ რეალურად სასარგებლო წერილი სჯობს ხშირ და ცარიელს. და ყოველი გაგზავნა, განსაკუთრებით ახალი სექვენსის პირველი წერილი, ადამიანის თვალს გადის. ეს იგივე წესია, რასაც ბრენდის კონტროლში ვხედავთ: AI ამზადებს, ადამიანი უშვებს.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ბიზნესი, რომელიც „აპირებდა" ნიუსლეტერის გაშვებას, მაგრამ წლობით აგდებდა. AI-ით ერთ ჯდომაზე ააწყო სამწერილიანი welcome სექვენსი, დაამუშავა და ჩართო. ახალი გამომწერები ახლა თბილ, ბრენდის ხმაში ჩასმულ შესავალს თავისით იღებენ, მუდმივი ძალისხმევის გარეშე.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>ელ-ფოსტის მარკეტინგი მცირე გუნდისთვის ზედმეტად დროტევადია.</div><div class="r"><span class="lbl">რეალობა</span>AI სწრაფად აკეთებს subject-ების, ტექსტის და სექვენსის პირველ დრაფტს. შენ ხვეწავ და ერთხელ აავტომატებ.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა ადამიანმა AI-ით დაწერილი სექვენსი წაუკითხავად ჩართო. ერთ წერილში არასწორი მტკიცება მთელ სიას წავიდა. რეალური მოლოდინი: აავტომატე გაგზავნა, არა შემოწმება. ახალი სექვენსის პირველი გაგზავნა ადამიანის თვალს გადის.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>AI-ით ააწყე სამწერილიანი welcome სექვენსი (მისალმება, ღირებულება, რბილი შეთავაზება), დაამუშავე და ჩართე ახალი გამომწერებისთვის.</div>`,
+    check:[
+      'მესმის, რომ ელ-ფოსტის ძალა თანმიმდევრობაშია, არა ერთ წერილში',
+      'ერთ წერილზე 10 subject-ვარიანტი ვაწარმოე და ავარჩიე საუკეთესო',
+      '3-წერილიანი welcome სექვენსი ავაწყვე და ერთხელ ჩავრთე',
+      'ახალი სექვენსის პირველი გაგზავნა ადამიანის თვალს გადის'
+    ]
+  },
+  {
+    id:'l6', short:'6. ხიდი → გაზომვა',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 6 — ხიდი მონაცემებსა და გაზომვისკენ (Bivision core)</div>
+<h2>გაზომე: დაზოგა თუ არა და იმუშავა თუ არა</h2>
+<p>ავტომატიზაციას ერთი მახე ახლავს: თითქოს ბევრს აკეთებ. უფრო მეტ პოსტს, წერილს და რეკლამას უშვებ და გეჩვენება, რომ საქმე წინ მიდის. მაგრამ მეტი მოცულობა თავისთავად მიზანი არ არის. მიზანი მეტი შედეგია ნაკლები ძალისხმევით. რომ გაიგო, ავტომატიზაციამ მართლა იმუშავა თუ არა, ორ რამეს ზომავ: დაზოგა თუ არა დრო და დაძრა თუ არა ციფარი.</p>
+<p>ჯერ დროის კითხვა. დააფიქსირე უხეშად, რამდენ ხანს ჭამდა მარკეტინგული საქმე ადრე და რამდენს ახლა. თუ კვირის კონტენტი რვა საათიდან ორ საათამდე ჩამოვიდა, ეს რეალური, საჩვენებელი ლევერიჯია. ეს მარტივი ნახევარია და ღირს მისი ჩაწერა, რადგან სწორედ ის ამართლებს ავტომატიზაციაში ჩადებულ დროს.</p>
+<p>ახლა შედეგის კითხვა, რომელიც უფრო რთული და უფრო მნიშვნელოვანია. ავტომატურმა კონტენტმა კლიენტი მოიყვანა თუ მხოლოდ მოწონებები? ამის სანახავად შენი მარკეტინგული მონაცემი ერთ ადგილას უნდა იყოს: რომელი არხი, რომელი კამპანია, რა ფასად მოვიდა კლიენტი. სოციალურ ქსელში, საიტის ანალიტიკაში და გაყიდვებში მიმოფანტული, ამას ვერ ხედავ. ერთად შეკრებილი, ხედავ.</p>
+<p>სწორედ აქ ხვდება მარკეტინგის ავტომატიზაცია Bivision-ის ბირთვს. ცოცხალი dashboard შენს მიმოფანტულ მარკეტინგულ მონაცემს ერთ სურათად კრებს: არა მხოლოდ რამდენმა ნახა, არამედ რამდენი იქცა კლიენტად და რა ფასად. ეს არის სხვაობა იმას შორის, ბლუკუნს აავტომატებ თუ ზრდას. სანამ ამას ვერ ზომავ, ავტომატიზაცია მხოლოდ უფრო სწრაფი ხმაურია.</p>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>თუ ავტომატიზაცია მეტს აწარმოებს, ესე იგი მუშაობს.</div><div class="r"><span class="lbl">რეალობა</span>მეტი მოცულობა შედეგი არ არის. მუშაობა ნიშნავს ნაკლებ დროს და მეტ კლიენტს, და ამას მხოლოდ გაზომვა აჩვენებს.</div></div>
+<div class="case"><span class="lbl">რეალური ქეისი</span>გუნდი, რომელმაც მძიმედ აავტომატა და კონტენტის მოცულობა სამჯერ გაიზარდა, მაგრამ ვერ თქვა, დაიძრა თუ არა გაყიდვები. როცა მონაცემი ერთ dashboard-ში გაერთიანდა, აღმოჩნდა, რომ ავტომატური ძალისხმევის დიდი ნაწილი იმ არხში მიდიოდა, რომელიც კლიენტს არ აქცევდა. გადაანაწილეს და იგივე ძალისხმევით რეალური შედეგი მიიღეს.</div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>გუნდმა „კონტენტის ათმაგი ზრდა" წარმატებად იზეიმა, შემდეგ კი მშვიდმა კვარტალმა გაყიდვების სტაგნაცია აჩვენა. რეალური მოლოდინი: მოცულობა ამაო ციფარია, კლიენტი და კლიენტის ფასი კი ნამდვილი.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>აირჩიე ერთი მარკეტინგული კითხვა, რომელზეც დღეს ციფრით ვერ პასუხობ, მაგალითად რომელი არხი მოგიყვანს კლიენტს ყველაზე იაფად. სწორედ აქ იწყება შენი dashboard.</div>
+<div class="cta">
+  <h3>უფასო „მონაცემთა მზადყოფნის აუდიტი"</h3>
+  <p>Bivision-ი ქართულ კომპანიებს ეხმარება, რომ მარკეტინგი ციფრით მართონ, არა შეგრძნებით. Qlik-ისა და Power BI-ის dashboard-ები შენს მიმოფანტულ მარკეტინგულ მონაცემს ერთ სურათად აქცევს. დასაწყისად გთავაზობთ უფასო აუდიტს, სადაც განვსაზღვრავთ, რომელ მარკეტინგულ კითხვას უნდა უპასუხო პირველ რიგში.</p>
+  <a href="https://bivision.ge" target="_blank" rel="noopener">აუდიტის დაჯავშნა →</a>
+</div>`,
+    check:[
+      'მესმის, რომ მეტი მოცულობა არ ნიშნავს შედეგს',
+      'დავიწყე დროის გაზომვა: რამდენი დაზოგა ავტომატიზაციამ',
+      'ვაცნობიერებ, რომ შედეგის ცოდნას მონაცემის ერთად შეკრება სჭირდება',
+      'ჩამოვაყალიბე ერთი კითხვა, რომელზეც დღეს ციფრით ვერ ვპასუხობ'
+    ]
+  },
+  {
+    id:'project', short:'📋 პროექტი', mod:true, single:true,
+    html:`<div class="card2">
+<h2>პროექტი — მარკეტინგის ავტომატიზაციის ნაკრები</h2>
+<p class="meta">~30-40 წუთი · შენი რეალური ბიზნესისთვის</p>
+<p>სამი ნაწილი, რომელიც ერთად შენი პირველი გამეორებადი მარკეტინგული სისტემის ჩონჩხია. ჯერ ბრენდის რецепტი, მერე თვის კალენდრის ჩონჩხი, ბოლოს ერთი გაზომვის კითხვა.</p>
+<h3>ნაწილი 1 — ბრენდის რецепტი</h3>
+<table class="rubric">
+  <tr><th>ელემენტი</th><th>შევავსე</th></tr>
+  <tr><td>ტონის აღწერა (მაგ: თბილი, მოკლე, საქმიანი)</td><td>☐</td></tr>
+  <tr><td>3-5 საუკეთესო ტექსტის ნიმუში</td><td>☐</td></tr>
+  <tr><td>3 სიტყვა/ფრაზა, რომელსაც ბრენდი ყოველთვის ამბობს</td><td>☐</td></tr>
+  <tr><td>3 რამ, რასაც ბრენდი არასოდეს იტყვის</td><td>☐</td></tr>
+</table>
+<h3>ნაწილი 2 — თვის კალენდრის ჩონჩხი</h3>
+<table class="rubric">
+  <tr><th>ელემენტი</th><th>შევავსე</th></tr>
+  <tr><td>4 კვირის თემა</td><td>☐</td></tr>
+  <tr><td>კვირაში 1 ბირთვული მასალა</td><td>☐</td></tr>
+  <tr><td>თითო მასალის 3+ გადამუშავებული ფორმატი (პოსტი, ნიუსლეტერი, რეკლამა)</td><td>☐</td></tr>
+  <tr><td>ადგილი დროული/რეაქტიული კონტენტისთვის</td><td>☐</td></tr>
+</table>
+<h3>ნაწილი 3 — გაზომვის კითხვა</h3>
+<p>ჩამოწერე ერთი მარკეტინგული კითხვა, რომელზეც გინდა ციფრით პასუხი (მაგ: „რომელი არხი მომიყვანს კლიენტს ყველაზე იაფად?"), საჭირო ციფრები და სად არის ეს მონაცემი დღეს.</p>
+</div>`
+  },
+  {
+    id:'test', short:'🧠 ფინალური ტესტი', mod:true, quiz:[
+      {q:'1. რა არის სოციალური კონტენტის ნამდვილი ლევერიჯი AI-თან?',
+       opts:['ცალკეული პოსტის უფრო სწრაფად დაწერა','ერთი იდეის კვირის კონტენტად დაშლა გამეორებადი რецепტით','რაც შეიძლება მეტი პოსტის გამოქვეყნება'],
+       correct:1, fb:'ავტომატიზაცია გამეორებად პროცესს ნიშნავს, არა ერთჯერად სიჩქარეს.'},
+      {q:'2. რა აკავებს ბრენდის ხმას ერთიანად მასშტაბის დროს?',
+       opts:['ყოველ ჯერზე თავიდან ახსნა','ერთხელ შენახული ბრენდის რецепტი, რომელსაც ყოველ promt-ში სვამ','AI-ის მეტი ნდობა'],
+       correct:1, fb:'რецепტი ღუზაა, რომელიც drift-ს აკავებს მთელ ავტომატურ ნაკადში.'},
+      {q:'3. კონტენტ-კალენდრის მთავარი ლევერიჯი რა არის?',
+       opts:['მეტი პოსტის გამოშვება','ერთი ბირთვული მასალის რამდენიმე ფორმატად გადამუშავება','ყოველი დღის ცალკე დაგეგმვა'],
+       correct:1, fb:'ერთხელ ნაფიქრი აზრი ბევრ ფორმატად იქცევა.'},
+      {q:'4. ad copy-ში AI-ის მთავარი სარგებელი რა არის?',
+       opts:['ერთი იდეალური რეკლამის შექმნა','ბევრი კუთხის სწრაფი წარმოება ტესტირებისთვის','რეკლამის ავტომატური გაშვება ტესტის გარეშე'],
+       correct:1, fb:'AI ვარიანტებს იძლევა, ბაზარი ვერდიქტს; შენ კითხულობ შედეგს.'},
+      {q:'5. სად არის ელ-ფოსტის ნამდვილი ძალა?',
+       opts:['ერთ იდეალურ წერილში','თანმიმდევრობაში, რომელსაც ერთხელ ჩართავ','რაც შეიძლება ხშირ გაგზავნაში'],
+       correct:1, fb:'welcome სექვენსი ერთხელ იწყობა და ყოველ ახალ გამომწერზე მუშაობს.'},
+      {q:'6. როდის იცი, რომ ავტომატიზაცია მართლა იმუშავა?',
+       opts:['როცა მოცულობა გაიზარდა','როცა დრო დაიზოგა და კლიენტი/ფასი დაიძრა, რასაც გაზომვა აჩვენებს','როცა მოწონებები გაიზარდა'],
+       correct:1, fb:'მეტი მოცულობა ამაო ციფარია; შედეგი დროსა და კლიენტში იზომება.'}
+    ]
+  },
+  {
+    id:'audit', short:'🎯 უფასო აუდიტი', mod:true, single:true,
+    html:`<div class="cta">
+  <h3>უფასო „მონაცემთა მზადყოფნის აუდიტი"</h3>
+  <p>ექვსმა გაკვეთილმა აჩვენა, როგორ აქცევ მარკეტინგს გამეორებად სისტემად: პოსტი, ბრენდის რецепტი, კალენდარი, ad copy, ელ-ფოსტა. ბოლო ნაბიჯი გაზომვაა. 30-40 წუთიან საუბარში ერთად განვსაზღვრავთ შენს პირველ მარკეტინგულ dashboard-ს: რომელ კითხვას პასუხობს, რა მონაცემი სჭირდება და როგორ აიწყობა Qlik-ში ან Power BI-ში.</p>
+  <a href="https://bivision.ge" target="_blank" rel="noopener">აუდიტის დაჯავშნა →</a>
+</div>
+<div class="card2">
+<h2>რას მიიღებ აუდიტიდან</h2>
+<p>1. შენი პირველი მარკეტინგული dashboard-ის გეგმა: კითხვა, მეტრიკა, წყაროები.</p>
+<p>2. შენი მარკეტინგული მონაცემის რუკა: სად არის, რა აკლია, რა კავშირები სჭირდება.</p>
+<p>3. ერთი მკაფიო შემდეგი ნაბიჯი, რომ მარკეტინგის ავტომატიზაცია მოცულობიდან შედეგზე გადაიტანო.</p>
+</div>`
+  }
+];
+
+let cur = 0, tab = 'read';
+const tb = document.getElementById('topicbar');
+TOPICS.forEach((t,i)=>{
+  const b = document.createElement('button');
+  b.textContent = t.short;
+  if(t.mod) b.className = 'mod';
+  b.onclick = ()=>{ cur=i; tab='read'; render(); };
+  tb.appendChild(b);
+});
+
+function setTab(name, el){
+  tab = name;
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on', b===el));
+  paint();
+}
+
+function render(){
+  [...tb.children].forEach((b,i)=>b.classList.toggle('on', i===cur));
+  document.getElementById('bar').style.width = ((cur+1)/TOPICS.length*100) + '%';
+  const tabs = document.getElementById('tabs');
+  const t = TOPICS[cur];
+  if(t.single || t.quiz){
+    tabs.classList.add('hide');
+  } else {
+    tabs.classList.remove('hide');
+    document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on', b.dataset.tab==='read'));
+    tab = 'read';
+  }
+  document.getElementById('prevBtn').disabled = (cur===0);
+  document.getElementById('nextBtn').disabled = (cur===TOPICS.length-1);
+  paint();
+}
+
+function paint(){
+  const t = TOPICS[cur];
+  const pr = document.getElementById('pane-read');
+  const pc = document.getElementById('pane-check');
+  const ps = document.getElementById('pane-single');
+  pr.classList.remove('on'); pc.classList.remove('on'); ps.classList.remove('on');
+  if(t.single){
+    ps.innerHTML = t.html; ps.classList.add('on'); return;
+  }
+  if(t.quiz){
+    ps.innerHTML = renderQuiz(t.quiz); ps.classList.add('on'); return;
+  }
+  pr.innerHTML = t.read;
+  pc.innerHTML = `<div class="card2"><h2>გადაწყვეტილების checklist</h2>`
+    + t.check.map(x=>`<label class="ck" onclick="this.classList.toggle('done')"><input type="checkbox"><span>${x}</span></label>`).join('')
+    + `</div>`;
+  if(tab==='check') pc.classList.add('on'); else pr.classList.add('on');
+}
+
+function renderQuiz(items){
+  let html = `<div class="card2"><h2>ფინალური ტესტი</h2><p>ექვსი კითხვა მთელ მოდულზე. აირჩიე პასუხი და ნახე ახსნა.</p></div>`;
+  items.forEach((it,qi)=>{
+    html += `<div class="q" id="q${qi}"><div class="qn">${it.q}</div>`
+      + it.opts.map((o,oi)=>`<button class="opt" onclick="answer(${qi},${oi})">${o}</button>`).join('')
+      + `<div class="fb" id="fb${qi}"></div></div>`;
+  });
+  html += `<div class="score" id="score"></div>`;
+  return html;
+}
+
+let answered = {};
+function answer(qi, oi){
+  const t = TOPICS[cur];
+  if(!t.quiz || answered[qi]!==undefined) return;
+  answered[qi] = oi;
+  const it = t.quiz[qi];
+  const qEl = document.getElementById('q'+qi);
+  const opts = qEl.querySelectorAll('.opt');
+  opts[it.correct].classList.add('correct');
+  if(oi!==it.correct) opts[oi].classList.add('wrong');
+  const fb = document.getElementById('fb'+qi);
+  const ok = oi===it.correct;
+  fb.className = 'fb show ' + (ok?'ok':'no');
+  fb.textContent = (ok?'სწორია. ':'ზუსტი არ არის. ') + it.fb;
+  const done = Object.keys(answered).length;
+  if(done===t.quiz.length){
+    let right = 0;
+    t.quiz.forEach((q,i)=>{ if(answered[i]===q.correct) right++; });
+    const s = document.getElementById('score');
+    s.className = 'score show';
+    s.textContent = `შედეგი: ${right} / ${t.quiz.length}` + (right===t.quiz.length?' — სრული ქულა.':'');
+  }
+}
+
+function prevTopic(){ if(cur>0){ cur--; tab='read'; answered={}; render(); window.scrollTo({top:0,behavior:'smooth'}); } }
+function nextTopic(){ if(cur<TOPICS.length-1){ cur++; tab='read'; answered={}; render(); window.scrollTo({top:0,behavior:'smooth'}); } }
+
+render();
+</script>
+</body>
+</html>
