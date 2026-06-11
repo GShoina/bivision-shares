@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Bivision Academy · M04 — სისტემების AI-კავშირი</title>
+<style>
+  :root{
+    --pri:#4f46e5; --pri-d:#3730a3; --ink:#1a1830; --muted:#5b5870;
+    --bg:#f6f6fd; --card:#fff; --line:#e2e0f4; --accent:#4f46e5; --gold:#b8860b;
+    --green:#00a651; --green-d:#0f5c31; --blue:#2b6cb0; --red:#c0392b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI','Noto Sans Georgian',Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+  .wrap{max-width:880px;margin:0 auto;padding:0 18px}
+  header.top{background:linear-gradient(135deg,var(--pri-d),var(--pri));color:#fff;padding:28px 0}
+  header.top .k{font-size:12px;letter-spacing:.5px;opacity:.9;text-transform:uppercase}
+  header.top h1{margin:7px 0 5px;font-size:23px;line-height:1.35}
+  header.top p{margin:0;opacity:.93;font-size:14px;max-width:720px}
+  .banner{background:#eeedfb;border:1px solid #cdc9f0;border-radius:10px;padding:13px 16px;margin:18px 0;font-size:13.5px;color:var(--pri-d)}
+  .banner b{color:var(--pri-d)}
+  .progress{height:6px;background:var(--line);border-radius:6px;margin:14px 0 4px;overflow:hidden}
+  .progress > i{display:block;height:100%;background:var(--pri);width:0;transition:width .3s}
+  .topicbar{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 6px}
+  .topicbar button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px 13px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;font-family:inherit}
+  .topicbar button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+  .topicbar button.mod{border-color:#bfe6cd;color:#0f7a43}
+  .topicbar button.mod.on{background:var(--green);border-color:var(--green);color:#fff}
+  .tabs{display:flex;gap:6px;border-bottom:2px solid var(--line);margin:16px 0 0}
+  .tabs.hide{display:none}
+  .tabs button{border:none;background:none;padding:11px 16px;font-size:14.5px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;font-family:inherit}
+  .tabs button.on{color:var(--pri-d);border-bottom-color:var(--pri)}
+  .pane{display:none;padding:22px 2px 10px;animation:fade .2s}
+  .pane.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1}}
+  .read h2{font-size:19px;color:var(--pri-d);margin:22px 0 10px}
+  .read p{margin:0 0 13px;font-size:15.5px}
+  .read .meta{font-size:12.5px;color:var(--muted);margin-bottom:16px}
+  .case{background:#f3f8fd;border-left:4px solid var(--blue);border-radius:8px;padding:13px 16px;margin:17px 0;font-size:14.5px}
+  .case .lbl{color:var(--blue);font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px}
+  .myth{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--line);margin:17px 0}
+  @media(max-width:560px){.myth{grid-template-columns:1fr}}
+  .myth > div{padding:13px 16px;font-size:14px}
+  .myth .m{background:#fdecec;color:#a3352b}
+  .myth .r{background:#e7f7ec;color:var(--green-d)}
+  .myth .lbl{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;font-weight:800;opacity:.85}
+  .fail{background:#fff8e6;border-left:4px solid var(--gold);border-radius:8px;padding:13px 16px;margin:17px 0;font-size:14px;color:#5e4a00}
+  .fail .lbl{color:#9a7a00;font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px}
+  .step{background:linear-gradient(135deg,#eeedfb,#f0effb);border:1px solid #cdc9f0;border-radius:10px;padding:14px 16px;margin:18px 0 6px;font-size:15px}
+  .step .lbl{color:var(--pri-d);font-weight:800;display:block;margin-bottom:5px}
+  .card2{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:6px 0 16px}
+  .card2 h2{color:var(--pri-d);font-size:19px;margin:0 0 6px}
+  .card2 h3{font-size:15.5px;margin:16px 0 6px}
+  .card2 p{font-size:15px}
+  .ck{display:flex;gap:10px;align-items:flex-start;background:#fbfafc;border:1px solid var(--line);border-radius:9px;padding:12px 14px;margin-bottom:10px;font-size:14.5px;cursor:pointer}
+  .ck input{margin-top:3px;width:17px;height:17px;accent-color:var(--pri);cursor:pointer}
+  .ck.done{background:#eeedfb;border-color:#cdc9f0}
+  .ck.done span{color:var(--pri-d)}
+  .rubric{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:10px}
+  .rubric th,.rubric td{text-align:right;padding:8px 10px;border-bottom:1px solid var(--line)}
+  .rubric th{background:var(--bg);font-size:12px;text-transform:uppercase;color:var(--muted)}
+  .q{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:16px}
+  .q .qn{font-weight:700;font-size:15.5px;margin-bottom:12px}
+  .q .opt{display:block;width:100%;text-align:right;border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:11px 14px;margin-bottom:9px;font-size:14.5px;cursor:pointer;font-family:inherit;transition:.15s}
+  .q .opt:hover{border-color:var(--accent)}
+  .q .opt.correct{background:#e7f7ec;border-color:var(--green);color:var(--green-d);font-weight:700}
+  .q .opt.wrong{background:#fdecec;border-color:#e05656;color:#a33}
+  .q .fb{margin-top:8px;font-size:13.5px;display:none;border-radius:8px;padding:10px 12px}
+  .q .fb.show{display:block}
+  .q .fb.ok{background:#e7f7ec;color:var(--green-d)}
+  .q .fb.no{background:#fdecec;color:#a33}
+  .score{background:var(--pri);color:#fff;border-radius:10px;padding:14px 18px;font-weight:700;text-align:center;display:none}
+  .score.show{display:block}
+  .cta{background:linear-gradient(135deg,#0f5c31,var(--green));color:#fff;border-radius:12px;padding:24px 26px;margin:24px 0 8px}
+  .cta h3{margin:0 0 9px;font-size:19px}
+  .cta p{margin:0 0 15px;opacity:.95;font-size:14.5px}
+  .cta a{display:inline-block;background:#fff;color:var(--green-d);text-decoration:none;font-weight:700;border-radius:8px;padding:12px 22px;font-size:14.5px}
+  .navbtns{display:flex;justify-content:space-between;margin:22px 0 8px}
+  .navbtns button{border:1px solid var(--pri);background:#fff;color:var(--pri-d);border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer;font-family:inherit}
+  .navbtns button:hover{background:var(--pri);color:#fff}
+  .navbtns button:disabled{opacity:.4;cursor:default}
+  .flag{color:#a36b00;font-size:12px;background:#fff3d6;border-radius:5px;padding:1px 6px}
+  footer{color:var(--muted);font-size:12.5px;text-align:center;padding:24px 0 40px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="k">Bivision Academy · M04 — მოდული (პრაქტიკული)</div>
+    <h1>სისტემების AI-კავშირი: ინტეგრაცია და ავტომატიზაცია</h1>
+    <p>როგორ ააალაპარაკო შენი ხელსაწყოები ერთმანეთთან, როგორ დააკავშირო AI შენს ნამდვილ მონაცემთან და რა წესით გააკეთო ეს უსაფრთხოდ. პრაქტიკული ნაბიჯები, არა თეორია.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="banner">
+    <b>ვისთვის:</b> მცირე ბიზნესის მფლობელი ან გუნდი, ვისაც სხვადასხვა ხელსაწყოში ხელით გადააქვს ერთი და იგივე მონაცემი და უნდა, ეს თვითონ მოწესრიგდეს. ეს პრაქტიკული მოდულია. ქეისები რეალურ პატერნებზეა, ბრენდები ანონიმური, ციფრები ილუსტრაციული; დროში ცვალებადი დეტალი მონიშნულია <span class="flag">[გადასამოწმებელი]</span>-ით. კონკრეტული პლატფორმის სახელს განზრახ ნაკლებად ვასახელებთ, რადგან ბაზარი სწრაფად იცვლება — ლოგიკა რჩება.
+  </div>
+
+  <div class="progress"><i id="bar"></i></div>
+  <div class="topicbar" id="topicbar"></div>
+
+  <div class="tabs" id="tabs">
+    <button class="on" data-tab="read" onclick="setTab('read',this)">📖 კითხვა</button>
+    <button data-tab="check" onclick="setTab('check',this)">✅ checklist</button>
+  </div>
+
+  <div class="pane read on" id="pane-read"></div>
+  <div class="pane" id="pane-check"></div>
+  <div class="pane" id="pane-single"></div>
+
+  <div class="navbtns">
+    <button id="prevBtn" onclick="prevTopic()">← წინა</button>
+    <button id="nextBtn" onclick="nextTopic()">შემდეგი →</button>
+  </div>
+
+  <footer>
+    Bivision Academy · M04 სისტემების AI-კავშირი · staging (noindex) · კონტენტი ანონიმური, ციფრები ილუსტრაციული · Bivision 2026
+  </footer>
+</div>
+
+<script>
+const TOPICS = [
+  {
+    id:'l1', short:'1. რა და რატომ',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 1 — მითი: „სისტემების დასაკავშირებლად IT-განყოფილებაა საჭირო"</div>
+<h2>ინტეგრაცია და ავტომატიზაცია: რა და რატომ</h2>
+<p>თითქმის ყველა მცირე ბიზნესი ერთსა და იმავე უხილავ გადასახადს იხდის: ხელით გადააქვს მონაცემი ერთი ადგილიდან მეორეში. ლიდი ფორმიდან ცხრილში, ცხრილიდან CRM-ში, შეკვეთა წერილიდან ბუღალტერიაში. ეს წუთები დღეში საათებად იკრიბება და ყოველ გადატანაზე შეცდომის შანსიც ჩნდება. ინტეგრაცია სწორედ ამ ხელით ხიდის მოშორებაა.</p>
+<p>ორი სიტყვა გავმიჯნოთ. ინტეგრაცია ნიშნავს, რომ ორი ხელსაწყო ერთმანეთს ელაპარაკება და მონაცემს იზიარებს. ავტომატიზაცია ნიშნავს, რომ ეს გაცვლა თვითონ ხდება, შენი ჩარევის გარეშე. გონებრივი მოდელი მარტივია: არის გამშვები მოვლენა და არის საპასუხო მოქმედება. „როცა ფორმა შეივსება, დაამატე მწკრივი ცხრილში." სწორედ ეს წყვილი, გამშვები და მოქმედება, არის ყველა ავტომატიზაციის გული.</p>
+<p>რატომ აქვს ამას ბიზნესისთვის მნიშვნელობა? სამი მიზეზით. პირველი, დრო: ხელით გადატანა ქრება. მეორე, სიზუსტე: ადამიანი იღლება და ცდება, წესი არა. მესამე, სიჩქარე: ლიდი ფორმის შევსებისთანავე ხვდება იქ, სადაც მასზე რეაგირება ხდება, არა ხვალ. ეს არ არის ტექნიკური ფუფუნება, ეს დაკარგული დროისა და დაკარგული ლიდის პირდაპირი დაბრუნებაა.</p>
+<p>ერთი გულახდილი დათქმა, რომელსაც მთელი მოდული დაეყრდნობა. ავტომატიზაცია აძლიერებს იმ პროცესს, რომელსაც აყენებ. თუ პროცესი კარგია, ის კარგს უფრო სწრაფად აკეთებს. თუ პროცესი არეულია, ის არევას უფრო სწრაფად ამრავლებს. ამიტომ ჯერ პროცესი გაასწორე, მერე გააავტომატე.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ბიზნესი, რომელშიც ერთი თანამშრომელი ყოველ დილით ლიდებს ფორმიდან ხელით გადაჰქონდა CRM-ში. დაახ. 40 წუთი დღეში. ერთი მარტივი კავშირის შემდეგ ეს ნული გახდა, შეცდომებიც გაქრა და ის დრო კლიენტთან საუბარს დაუბრუნდა.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>სისტემების დასაკავშირებლად IT-განყოფილება ან პროგრამისტია საჭირო.</div><div class="r"><span class="lbl">რეალობა</span>მარტივი „გამშვები და მოქმედება" კავშირები ახლა თვითონ შეგიძლია; რთული ინტეგრაცია რჩება პროფესიონალს.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა გუნდმა არეული, გაუმართავი პროცესი გააავტომატა. შედეგად, არასწორი მონაცემი ახლა სამჯერ უფრო სწრაფად ვრცელდებოდა ხუთ ხელსაწყოში. რეალური მოლოდინი: ჯერ ერთი პროცესი მართებულად დაალაგე ქაღალდზე, მერე გააავტომატე.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>ჩამოწერე ერთი საქმე, რომელშიც რეგულარულად ხელით გადაგაქვს ინფორმაცია ერთი ადგილიდან მეორეში. ეს შენი პირველი ავტომატიზაციის კანდიდატია.</div>`,
+    check:[
+      'მესმის განსხვავება: ინტეგრაცია (ხელსაწყოები ელაპარაკებიან) vs ავტომატიზაცია (თვითონ ხდება)',
+      'ვიცი გული: გამშვები მოვლენა → მოქმედება',
+      'ჩამოვწერე ერთი ხელით-გადატანის საქმე, რომელიც მაწუხებს',
+      'მესმის, რომ ჯერ პროცესი ვასწორო, მერე გავაავტომატო'
+    ]
+  },
+  {
+    id:'l2', short:'2. AI + ხელსაწყოები',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 2 — მითი: „AI მხოლოდ ჩატია, ჩემს ნამდვილ სისტემებს ვერ ეხება"</div>
+<h2>AI დაკავშირებული შენს ხელსაწყოებთან</h2>
+<p>ბევრი ფიქრობს, რომ AI მხოლოდ ფანჯარაა, სადაც კითხვას წერ და პასუხს იღებ, შენი ნამდვილი მონაცემისგან მოწყვეტით. ეს უკვე ასე აღარ არის. თანამედროვე AI-ს შეიძლება პირდაპირ დაუკავშირო შენი ხელსაწყოები, ანუ ცხრილი, CRM, ფოსტა, კალენდარი, ე.წ. connector-ის საშუალებით. შემდეგ მას უბრალო ენით ეკითხები შენს რეალურ მონაცემზე და ის პასუხობს.</p>
+<p>რას ცვლის ეს პრაქტიკაში? ნაცვლად იმისა, რომ ცხრილი თვითონ გახსნა, გაფილტრო და დათვალო, AI-ს ეუბნები: „რომელი კლიენტი არ მქონია კონტაქტი ბოლო თვეში?" ან „შემიჯამე ამ თვის ლიდები წყაროების მიხედვით." ის შენს ნამდვილ მონაცემს კითხულობს და პასუხს გაძლევს. ხელით ფილტრაცია და დათვლა ქრება.</p>
+<p>პრაქტიკული workflow ასეთია. დაიწყე ერთი ხელსაწყოთი, არა ხუთით. დააკავშირე ერთი ცხრილი ან CRM. დასვი ერთი ნამდვილი კითხვა, რომელსაც ხშირად ხელით ეძებ. შეამოწმე, პასუხი მართალია თუ არა, შენს მონაცემს ადარებ. როცა ერთ კავშირს ენდობი, მაშინ დაუმატე მეორე. ნდობა თანდათან შენდება, არა ერთბაშად.</p>
+<p>გულახდილი დათქმა და ხიდი შემდეგ გაკვეთილებთან. დასაწყისში AI-ს მიეცი მხოლოდ კითხვის (წაკითხვის) უფლება, არა ჩაწერის. დაე, ჯერ კითხოს და გიპასუხოს, არა შეცვალოს. ჩაწერა, ანუ მონაცემის შეცვლა ან წაშლა, ცალკე ნდობის დონეა და ადამიანის შემოწმებას სჭირდება. ვის რის შეხება შეუძლია, ეს უსაფრთხოების საკითხია, რომელსაც ბოლო გაკვეთილში მთლიანად დავუბრუნდებით.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>გაყიდვების პატარა გუნდი, რომელიც ყოველ ორშაბათს ხელით ფილტრავდა CRM-ს გაცივებული ლიდების მოსაძებნად. AI-სთან დაკავშირების შემდეგ ერთ წინადადებას სვამდნენ და სიას მყისვე იღებდნენ. იგივე მონაცემი, წუთები ნაცვლად საათისა.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>AI მხოლოდ ზოგად ჩატს აკეთებს, ჩემს რეალურ სისტემებსა და მონაცემს ვერ ეხება.</div><div class="r"><span class="lbl">რეალობა</span>connector-ით AI-ს შენს ხელსაწყოებს უკავშირებ და ნამდვილ მონაცემზე გეპასუხება.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა ადამიანმა AI-ს მაშინვე ცოცხალ კლიენტთა ბაზაში ჩაწერის სრული უფლება მისცა. AI-მ ბევრი ჩანაწერი ერთბაშად შეცვალა და გასწორებას დრო დასჭირდა. რეალური მოლოდინი: ჯერ მხოლოდ წაკითხვა, ჩაწერა მერე და ადამიანის შემოწმებით.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>დააკავშირე ერთი ხელსაწყო (ცხრილი ან CRM) AI-სთან წაკითხვის რეჟიმში და დასვი ერთი ნამდვილი კითხვა, რომელსაც ჩვეულებრივ ხელით ეძებ.</div>`,
+    check:[
+      'მესმის, რომ AI-ს შემიძლია დავუკავშირო ნამდვილი ხელსაწყოები (connector)',
+      'დავიწყე ერთი ხელსაწყოთი, არა ხუთით ერთბაშად',
+      'პასუხი შევამოწმე ნამდვილ მონაცემთან (ნდობა თანდათან)',
+      'დასაწყისში მხოლოდ წაკითხვა მივეცი, ჩაწერა — ცალკე ნდობის დონეა'
+    ]
+  },
+  {
+    id:'l3', short:'3. ავტომატიზაციის ხიდი',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 3 — მითი: „ორი აპის დასაკავშირებლად დეველოპერი სჭირდება"</div>
+<h2>ავტომატიზაციის ხიდი: გამშვები და მოქმედება</h2>
+<p>ხშირად შენ გინდა არა ის, რომ AI-ს ელაპარაკო, არამედ ის, რომ ორმა ხელსაწყომ ერთმანეთს თვითონ დაელაპარაკოს. სწორედ ამისთვისაა ავტომატიზაციის ხიდი, ანუ პლატფორმა, რომელიც აპებს კოდის გარეშე აკავშირებს მარტივი წესებით. შენ ალაგებ რეცეპტს: „როცა ეს მოხდება, ის გააკეთე."</p>
+<p>პატერნი ყოველთვის ერთია, ის გამშვები და მოქმედება, რომელიც პირველ გაკვეთილში ვახსენეთ. „როცა ფორმა შეივსება (გამშვები), დაამატე მწკრივი ცხრილში (მოქმედება) და გამომიგზავნე შეტყობინება (მეორე მოქმედება)." შენ წესს აღწერ, პლატფორმა კი ამ ხიდს ინახავს და ყოველ ჯერზე თვითონ ასრულებს. ერთხელ ალაგებ, მერე მუშაობს.</p>
+<p>პრაქტიკული რჩევა, რომელიც ბევრ თავსატეხს აგარიდებს: დაიწყე ორი ნაბიჯით, არა თორმეტით. ერთი გამშვები, ერთი მოქმედება. გაუშვი ერთ რეალურ მაგალითზე და დარწმუნდი, რომ ბოლომდე მუშაობს. მხოლოდ მერე დაუმატე მესამე ნაბიჯი. პატარა, მუშა ხიდი ბევრად სჯობს დიდ, რთულ ხიდს, რომელიც ჩუმად ტყდება და ვერ ხვდები, სად.</p>
+<p>როდის რომელი? თუ გინდა, კითხო და გაიგო შენს მონაცემზე, AI connector სჯობს (წინა გაკვეთილი). თუ გინდა, რომ მოვლენა თვითონ იწვევდეს მოქმედებას ადამიანის გარეშე, ავტომატიზაციის ხიდი სჯობს. ხშირად ორივეს ერთად იყენებ: ხიდი მონაცემს ადგილზე ამისამართებს, AI კი მერე ამ მონაცემს გიხსნის და გიპასუხებს.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ბიზნესი, რომელშიც ფორმის ყოველი ახალი ლიდი ხელით უნდა გადაეტანათ და მერე გუნდისთვის ეცნობებინათ. ააწყვეს მარტივი ხიდი: ფორმა, ცხრილი, შეტყობინება. ახლა ახალი ლიდი წამებში ჩნდება ცხრილში და გუნდი მაშინვე იგებს. ხელით ნაბიჯი აღარ არსებობს.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>ორი აპის დასაკავშირებლად პროგრამისტი და კოდი სჭირდება.</div><div class="r"><span class="lbl">რეალობა</span>ავტომატიზაციის ხიდი აპებს კოდის გარეშე აკავშირებს მარტივი „გამშვები და მოქმედება" წესით.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა ადამიანმა ერთბაშად თორმეტნაბიჯიანი ხიდი ააწყო. ის ჩუმად გაწყდა შუა ადგილას და კვირაობით ვერ ხვდებოდა, რომ მონაცემი იკარგებოდა. რეალური მოლოდინი: დაიწყე ორი ნაბიჯით, შეამოწმე, მერე გაზარდე.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>აირჩიე ერთი წყვილი (ერთი გამშვები, ერთი მოქმედება), ააწყვე ის ავტომატიზაციის ხიდად და გაუშვი ერთ რეალურ მაგალითზე შესამოწმებლად.</div>`,
+    check:[
+      'მესმის, რომ ხიდი = „გამშვები → მოქმედება" რეცეპტი კოდის გარეშე',
+      'ვიწყებ ორი ნაბიჯით, არა თორმეტით',
+      'გავუშვი ერთ რეალურ მაგალითზე და დავრწმუნდი, რომ ბოლომდე მუშაობს',
+      'ვიცი არჩევანი: AI connector (კითხვა) vs ხიდი (თვითმოქმედი ნაკადი)'
+    ]
+  },
+  {
+    id:'l4', short:'4. MCP → Qlik',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 4 — ხიდი: AI რეალურ ბიზნეს-მონაცემთან (Bivision core)</div>
+<h2>MCP: AI-ს უსაფრთხო კავშირი შენს ნამდვილ სისტემებთან</h2>
+<p>connector-ები და ხიდები კარგია ცალკეული ხელსაწყოსთვის. მაგრამ როცა გინდა, AI-მ შენს სერიოზულ, ცოცხალ ბიზნეს-სისტემებს მიწვდეს ერთიანი, სტანდარტული წესით, აქ ჩნდება MCP. მარტივად: MCP არის საერთო ენა, რომლითაც AI უსაფრთხოდ ელაპარაკება შენს ნამდვილ სისტემებსა და მონაცემს. ეს არ არის ცალკეული ხრიკი, ეს სტანდარტია.</p>
+<p>რატომ აქვს ამას ბიზნესისთვის მნიშვნელობა? იმიტომ, რომ სწორედ ასე წვდება AI შენს ნამდვილ მონაცემს კონტროლირებად, განმეორებად ფორმაში, არა ერთჯერადი დაკოპირებით. ეს არის ის ფენა, რომელიც AI-ს ცალკეული პასუხებიდან ნამდვილ სამუშაო ინსტრუმენტად აქცევს. და, რაც მთავარია, MCP-ის საშუალებით AI შენს ბიზნეს-ანალიტიკასაც წვდება, მათ შორის Qlik-ს.</p>
+<p>აქ მოდის ხიდი Bivision-ის ბირთვთან. წარმოიდგინე, ხუთი dashboard-ის ხელით გახსნისა და ცდენის ნაცვლად, შენ პირდაპირ ეკითხები მონაცემს: „რომელ პროდუქტს დაუვარდა ზღვარი ამ კვარტალში?" Bivision-ი ქართულ კომპანიებს უშენებს სწორედ ამ კავშირს, Qlik MCP-ს, რომ შენს ნამდვილ ბიზნეს-მონაცემს ბუნებრივი ენით ესაუბრო. ცალკეული no-code ხელსაწყო ამას ვერ აკეთებს; ეს მონაცემთა ხერხემლის საქმეა.</p>
+<p>გულახდილი დათქმა. MCP ძლიერია, რადგან რეალურ მონაცემს ხსნის, და სწორედ ამიტომ საზღვრები აქ კიდევ უფრო მნიშვნელოვანია. ყოველი კავშირისთვის ცხადად განსაზღვრე, რა მონაცემს წვდება და შეუძლია თუ არა მისი შეცვლა. ფართო, უსაზღვრო წვდომა მოხერხებულად გამოიყურება, სანამ რამე არ აირევა. ამ წესებს მომდევნო, ბოლო გაკვეთილში ცალკე გავწერთ.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ხელმძღვანელი, რომელიც ყოველ დილით ხუთ სხვადასხვა dashboard-ს ხსნიდა, რომ ერთი სურათი შეეკრა. როცა მონაცემი ერთიან, AI-სთან დაკავშირებულ ფენაში მოექცა, კითხვას უბრალო ენით სვამდა და პასუხს მყისვე იღებდა. ხუთი ფანჯრის ცდენა ერთმა კითხვამ ჩაანაცვლა.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>AI-ს სერიოზულ ბიზნეს-მონაცემთან და ანალიტიკასთან დაკავშირება ჯერ შორეული მომავალია ან მხოლოდ დიდი კომპანიების საქმეა.</div><div class="r"><span class="lbl">რეალობა</span>MCP უკვე ის სტანდარტია, რომლითაც AI ნამდვილ მონაცემს, მათ შორის Qlik-ს, უსაფრთხოდ წვდება.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა ბიზნესმა AI ერთბაშად ყველაფერს დააკავშირა, ყოველგვარი საზღვრის გარეშე. ცხადი არ იყო, რას წვდებოდა და რის შეცვლა შეეძლო, რის გამოც ენდობოდნენ კიდეც ვერ. რეალური მოლოდინი: თითო კავშირი ცალკე განსაზღვრე და მოსინჯე, არა ყველაფერი ერთად.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>ჩამოწერე შენი ნამდვილი სისტემები (გაყიდვები, ფინანსები, ანალიტიკა), რომელთან წვდომაც AI-სგან გინდა. ეს სია არის შენი handoff-საუბარი Bivision-თან.</div>`,
+    check:[
+      'მესმის, რომ MCP = საერთო, სტანდარტული, უსაფრთხო ენა AI-სა და ნამდვილ სისტემებს შორის',
+      'ვაცნობიერებ, რომ ასე წვდება AI ბიზნეს-ანალიტიკას, მათ შორის Qlik-ს (Qlik MCP)',
+      'მესმის ხიდი: ცალკეული ხელსაწყო vs ნამდვილი მონაცემთა ხერხემალი (Bivision core)',
+      'ჩამოვწერე ჩემი ნამდვილი სისტემები — handoff-საუბრის სია'
+    ]
+  },
+  {
+    id:'l5', short:'5. უსაფრთხოება',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 5 — მითი: „უსაფრთხოება IT-ის საქმეა, არა ჩემი"</div>
+<h2>უსაფრთხოება და კონტროლი: კავშირი ნდობით</h2>
+<p>ყოველი კავშირი, რომელსაც აშენებ, ერთდროულად ძალაცაა და რისკიც. რაც მეტ სისტემას ააალაპარაკებ ერთმანეთთან, მით მეტი ღირებულება იქმნება და მით მეტი ადგილია, სადაც რამე შეიძლება არასწორად წავიდეს. კარგი ამბავი: უსაფრთხოება აქ არ ნიშნავს ტექნიკურ ხელოვნებას. ის ნიშნავს რამდენიმე მარტივ წესს, რომელსაც თვითონ ამოწმებ.</p>
+<p>პირველი წესი: მინიმალური წვდომა. ყოველ კავშირს მიეცი მხოლოდ ის, რაც სჭირდება, არც ერთით მეტი. თუ ხელსაწყოს მხოლოდ წაკითხვა სჭირდება, ჩაწერის უფლება ნუ მისცემ. მეორე წესი: წაიკითხე, სანამ ჩაწერ. ახალ კავშირს ჯერ მხოლოდ კითხვა ანდე, დააკვირდი, მერე დაუშვი მოქმედება. მესამე წესი: მგრძნობიარე მოქმედებას ადამიანის შემოწმება სჭირდება, ანუ ფული, წაშლა, ბრენდის სახელით გაგზავნა ავტომატურად არ უნდა გავიდეს.</p>
+<p>კიდევ ორი პრაქტიკული წესი. შეინახე კვალი: გქონდეს ჩანაწერი, რა ხდება ავტომატურად, რომ პრობლემის შემთხვევაში გასაგები იყოს, სად მოხდა. და მოეპყარი წვდომის გასაღებებს, ანუ პაროლებსა და API-კოდებს, როგორც ნაღდ ფულს: არ დადო ღია ტექსტში, არ გააზიარო ჩატში, არ ჩასვა საჯარო ადგილას. გასაღები იგივეა, რაც სეიფის კოდი.</p>
+<p>ერთი ფართო პრინციპი, რომელიც ყველაფერს აერთიანებს. შენ უნდა შეგეძლოს ერთი წინადადებით თქმა, რა რას წვდება და რა შეუძლია გააკეთოს. თუ ამას ნათლად ვერ ამბობ, ესე იგი ძალიან ბევრი წვდენაა ღია. კონტროლი არ ნიშნავს, რომ ნაკლები ააშენო; ნიშნავს, რომ იცოდე, რა ააშენე და ვის რა ხელი მიუწვდება. სწორედ ეს გარჩევა ხდის ავტომატიზაციას სანდოს.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ბიზნესი, რომელმაც ერთ ხელსაწყოს მოხერხებულობისთვის ფართო წვდომა მისცა ყველაფერზე. ერთი გაჟონილი გასაღები საკმარისი იყო, რომ პრობლემა შექმნილიყო. როცა წვდომა მხოლოდ საჭიროზე დაიყვანეს და გასაღებები მოაწესრიგეს, იგივე ავტომატიზაცია დარჩა, რისკი კი მკვეთრად დაეცა.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>უსაფრთხოება IT-ის ან პროგრამისტის საქმეა, არა მფლობელის.</div><div class="r"><span class="lbl">რეალობა</span>რამდენიმე მარტივი წესი (მინიმალური წვდომა, წაიკითხე-სანამ-ჩაწერ, ადამიანი მგრძნობიარეზე) შენ თვითონ ამოწმებ.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა ადამიანმა API-გასაღები ღია ტექსტში, საერთო დოკუმენტში შეინახა და გაუზიარა. გასაღები არასწორ ხელში მოხვდა და წვდომის გაუქმება დასჭირდა. რეალური მოლოდინი: გასაღები ნაღდი ფულივით დაიცავი, არასდროს ღია ან საჯარო ადგილას.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>აიღე ერთი არსებული კავშირი და ერთი წინადადებით ჩაიწერე, რას წვდება და შეუძლია თუ არა ჩაწერა. თუ წვდომა საჭიროზე მეტია, შეამცირე.</div>`,
+    check:[
+      'მინიმალური წვდომა: ყოველ კავშირს მხოლოდ საჭირო უფლება',
+      'წაიკითხე სანამ ჩაწერ; მგრძნობიარე მოქმედება ადამიანის თვალს გადის',
+      'გასაღებებს/პაროლებს ნაღდ ფულივით ვეპყრობი (არ ღია ტექსტში, არ ჩატში)',
+      'ერთი წინადადებით ვამბობ, რა რას წვდება და რა შეუძლია — თუ ვერა, ზედმეტი წვდომაა'
+    ]
+  },
+  {
+    id:'project', short:'📋 პროექტი', mod:true, single:true,
+    html:`<div class="card2">
+<h2>პროექტი — დააკავშირე ორი ხელსაწყო, ბოლომდე</h2>
+<p class="meta">~40 წუთი · შენი რეალური ბიზნესისთვის</p>
+<p>აირჩიე ერთი ხელით-გადატანის საქმე შენი სიიდან და მოაშორე ხელი: ან ააწყვე ავტომატიზაციის ხიდი (გამშვები და მოქმედება), ან დააკავშირე AI ერთ ხელსაწყოს და დაუსვი ნამდვილი კითხვა. იმუშავე ნაბიჯ-ნაბიჯ და ბოლოს გააკეთე უსაფრთხოების შემოწმება.</p>
+<h3>ნაბიჯები</h3>
+<table class="rubric">
+  <tr><th>ნაბიჯი</th><th>შევასრულე</th></tr>
+  <tr><td>1. ავირჩიე ერთი რეალური საქმე (ხელით-გადატანა)</td><td>☐</td></tr>
+  <tr><td>2. გავწერე გამშვები → მოქმედება (ან: რომელ ხელსაწყოს ვაკავშირებ AI-ს)</td><td>☐</td></tr>
+  <tr><td>3. ავაწყვე კავშირი ორი ნაბიჯით (არა თორმეტით)</td><td>☐</td></tr>
+  <tr><td>4. გავუშვი ერთ რეალურ მაგალითზე და დავრწმუნდი, რომ ბოლომდე მუშაობს</td><td>☐</td></tr>
+  <tr><td>5. უსაფრთხოება: ჩავწერე რას წვდება და შეუძლია თუ არა ჩაწერა</td><td>☐</td></tr>
+  <tr><td>6. ზედმეტი წვდომა შევამცირე; გასაღები უსაფრთხოდ შევინახე</td><td>☐</td></tr>
+</table>
+<h3>თვით-შეფასება</h3>
+<p>ერთი წინადადებით: ეს მარტივი კავშირი იყო (თვითონ ააწყვე) თუ ნამდვილ მონაცემთა ხერხემალს მიადგა (handoff-კანდიდატი)? ჩაიწერე, რამდენი დრო დაზოგა ერთ კვირაში.</p>
+</div>`
+  },
+  {
+    id:'test', short:'🧠 ფინალური ტესტი', mod:true, quiz:[
+      {q:'1. რა არის ყველა ავტომატიზაციის გული?',
+       opts:['რთული კოდი','გამშვები მოვლენა → მოქმედება','ძვირი პლატფორმა'],
+       correct:1, fb:'„როცა ეს მოხდება, ის გააკეთე" — გამშვები და მოქმედება.'},
+      {q:'2. რა უნდა გააკეთო, სანამ პროცესს გააავტომატებ?',
+       opts:['ჯერ პროცესი გაასწორო (ავტომატიზაცია აძლიერებს, კარგსაც და არეულსაც)','რაც შეიძლება სწრაფად გააავტომატო','დაამატო რაც შეიძლება მეტი ნაბიჯი'],
+       correct:0, fb:'არეული პროცესის ავტომატიზაცია არევას უფრო სწრაფად ამრავლებს.'},
+      {q:'3. AI-ს ახალ კავშირს თავიდან რა უფლება უნდა მისცე?',
+       opts:['სრული ჩაწერა და წაშლა','მხოლოდ წაკითხვა (ჩაწერა — ცალკე ნდობის დონე)','არანაირი, AI მონაცემს ვერ ეხება'],
+       correct:1, fb:'ჯერ წაიკითხოს და გიპასუხოს; ჩაწერა მერე, ადამიანის შემოწმებით.'},
+      {q:'4. როდის ააწყობ ავტომატიზაციის ხიდს, და არა AI-კითხვას?',
+       opts:['როცა გინდა, მონაცემზე უბრალოდ კითხო','როცა გინდა, მოვლენა თვითონ იწვევდეს მოქმედებას ადამიანის გარეშე','არასდროს, ისინი ერთი და იგივეა'],
+       correct:1, fb:'ხიდი = თვითმოქმედი ნაკადი; connector = კითხვა მონაცემზე. ხშირად ერთად.'},
+      {q:'5. რა არის MCP მარტივი ენით?',
+       opts:['ერთი კონკრეტული აპლიკაცია','საერთო, სტანდარტული, უსაფრთხო ენა AI-სა და ნამდვილ სისტემებს (მათ შორის Qlik) შორის','მხოლოდ no-code ხელსაწყო'],
+       correct:1, fb:'ეს ის ფენაა, რომლითაც AI შენს ნამდვილ ბიზნეს-მონაცემს წვდება — Bivision-ის Qlik MCP.'},
+      {q:'6. რომელია უსაფრთხოების სწორი წესი?',
+       opts:['ფართო წვდომა მოხერხებულობისთვის','მინიმალური წვდომა + წაიკითხე-სანამ-ჩაწერ + გასაღები ნაღდ ფულივით','გასაღები საერთო დოკუმენტში, რომ გუნდმა ნახოს'],
+       correct:1, fb:'უნდა შეგეძლოს ერთი წინადადებით თქმა, რა რას წვდება და რა შეუძლია.'}
+    ]
+  },
+  {
+    id:'audit', short:'🎯 უფასო აუდიტი', mod:true, single:true,
+    html:`<div class="cta">
+  <h3>უფასო „მონაცემთა მზადყოფნის აუდიტი"</h3>
+  <p>ხუთმა გაკვეთილმა აჩვენა, როგორ დააკავშირო ხელსაწყოები და როგორ ააალაპარაკო AI შენს მონაცემთან უსაფრთხოდ. შემდეგი ნაბიჯი მაშინ დგება, როცა შენი ცალკეული კავშირები ერთ სანდო, დაკავშირებულ მონაცემთა სურათად უნდა შეიკრას. 30-40 წუთიან საუბარში ერთად განვსაზღვრავთ, რომელი კავშირი ააწყო თვითონ და როგორ აიწყობა შენი მონაცემთა ხერხემალი Qlik MCP-ით.</p>
+  <a href="https://bivision.ge" target="_blank" rel="noopener">აუდიტის დაჯავშნა →</a>
+</div>
+<div class="card2">
+<h2>რას მიიღებ აუდიტიდან</h2>
+<p>1. რუკა: რომელი კავშირი ააწყო თვითონ (connector/ხიდი) და რომელი გადააბარო (ნამდვილი ინტეგრაცია, ანალიტიკა).</p>
+<p>2. შენი ნამდვილი მონაცემის სურათი: რომელ სისტემებს უნდა მიწვდეს AI და როგორ აიწყობა ეს უსაფრთხოდ (Qlik MCP).</p>
+<p>3. ერთი მკაფიო შემდეგი ნაბიჯი, რომ მიმოფანტული კავშირებიდან ერთ სანდო, კითხვად მონაცემთა სურათზე გადახვიდე.</p>
+</div>`
+  }
+];
+
+let cur = 0, tab = 'read';
+const tb = document.getElementById('topicbar');
+TOPICS.forEach((t,i)=>{
+  const b = document.createElement('button');
+  b.textContent = t.short;
+  if(t.mod) b.className = 'mod';
+  b.onclick = ()=>{ cur=i; tab='read'; render(); };
+  tb.appendChild(b);
+});
+
+function setTab(name, el){
+  tab = name;
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on', b===el));
+  paint();
+}
+
+function render(){
+  [...tb.children].forEach((b,i)=>b.classList.toggle('on', i===cur));
+  document.getElementById('bar').style.width = ((cur+1)/TOPICS.length*100) + '%';
+  const tabs = document.getElementById('tabs');
+  const t = TOPICS[cur];
+  if(t.single || t.quiz){
+    tabs.classList.add('hide');
+  } else {
+    tabs.classList.remove('hide');
+    document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on', b.dataset.tab==='read'));
+    tab = 'read';
+  }
+  document.getElementById('prevBtn').disabled = (cur===0);
+  document.getElementById('nextBtn').disabled = (cur===TOPICS.length-1);
+  paint();
+}
+
+function paint(){
+  const t = TOPICS[cur];
+  const pr = document.getElementById('pane-read');
+  const pc = document.getElementById('pane-check');
+  const ps = document.getElementById('pane-single');
+  pr.classList.remove('on'); pc.classList.remove('on'); ps.classList.remove('on');
+  if(t.single){
+    ps.innerHTML = t.html; ps.classList.add('on'); return;
+  }
+  if(t.quiz){
+    ps.innerHTML = renderQuiz(t.quiz); ps.classList.add('on'); return;
+  }
+  pr.innerHTML = t.read;
+  pc.innerHTML = `<div class="card2"><h2>გადაწყვეტილების checklist</h2>`
+    + t.check.map(x=>`<label class="ck" onclick="this.classList.toggle('done')"><input type="checkbox"><span>${x}</span></label>`).join('')
+    + `</div>`;
+  if(tab==='check') pc.classList.add('on'); else pr.classList.add('on');
+}
+
+function renderQuiz(items){
+  let html = `<div class="card2"><h2>ფინალური ტესტი</h2><p>ექვსი კითხვა მთელ მოდულზე. აირჩიე პასუხი და ნახე ახსნა.</p></div>`;
+  items.forEach((it,qi)=>{
+    html += `<div class="q" id="q${qi}"><div class="qn">${it.q}</div>`
+      + it.opts.map((o,oi)=>`<button class="opt" onclick="answer(${qi},${oi})">${o}</button>`).join('')
+      + `<div class="fb" id="fb${qi}"></div></div>`;
+  });
+  html += `<div class="score" id="score"></div>`;
+  return html;
+}
+
+let answered = {};
+function answer(qi, oi){
+  const t = TOPICS[cur];
+  if(!t.quiz || answered[qi]!==undefined) return;
+  answered[qi] = oi;
+  const it = t.quiz[qi];
+  const qEl = document.getElementById('q'+qi);
+  const opts = qEl.querySelectorAll('.opt');
+  opts[it.correct].classList.add('correct');
+  if(oi!==it.correct) opts[oi].classList.add('wrong');
+  const fb = document.getElementById('fb'+qi);
+  const ok = oi===it.correct;
+  fb.className = 'fb show ' + (ok?'ok':'no');
+  fb.textContent = (ok?'სწორია. ':'ზუსტი არ არის. ') + it.fb;
+  const done = Object.keys(answered).length;
+  if(done===t.quiz.length){
+    let right = 0;
+    t.quiz.forEach((q,i)=>{ if(answered[i]===q.correct) right++; });
+    const s = document.getElementById('score');
+    s.className = 'score show';
+    s.textContent = `შედეგი: ${right} / ${t.quiz.length}` + (right===t.quiz.length?' — სრული ქულა.':'');
+  }
+}
+
+function prevTopic(){ if(cur>0){ cur--; tab='read'; answered={}; render(); window.scrollTo({top:0,behavior:'smooth'}); } }
+function nextTopic(){ if(cur<TOPICS.length-1){ cur++; tab='read'; answered={}; render(); window.scrollTo({top:0,behavior:'smooth'}); } }
+
+render();
+</script>
+</body>
+</html>
