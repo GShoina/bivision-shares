@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Bivision Academy · M03 — AI-ით შენება კოდის გარეშე</title>
+<style>
+  :root{
+    --pri:#0d9488; --pri-d:#0f766e; --ink:#15201e; --muted:#5b6b68;
+    --bg:#f5fbfa; --card:#fff; --line:#dceeeb; --accent:#0d9488; --gold:#b8860b;
+    --green:#00a651; --green-d:#0f5c31; --blue:#2b6cb0; --red:#c0392b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI','Noto Sans Georgian',Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+  .wrap{max-width:880px;margin:0 auto;padding:0 18px}
+  header.top{background:linear-gradient(135deg,var(--pri-d),var(--pri));color:#fff;padding:28px 0}
+  header.top .k{font-size:12px;letter-spacing:.5px;opacity:.9;text-transform:uppercase}
+  header.top h1{margin:7px 0 5px;font-size:23px;line-height:1.35}
+  header.top p{margin:0;opacity:.93;font-size:14px;max-width:720px}
+  .banner{background:#e9faf7;border:1px solid #b9e8e0;border-radius:10px;padding:13px 16px;margin:18px 0;font-size:13.5px;color:var(--pri-d)}
+  .banner b{color:var(--pri-d)}
+  .progress{height:6px;background:var(--line);border-radius:6px;margin:14px 0 4px;overflow:hidden}
+  .progress > i{display:block;height:100%;background:var(--pri);width:0;transition:width .3s}
+  .topicbar{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 6px}
+  .topicbar button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px 13px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;font-family:inherit}
+  .topicbar button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+  .topicbar button.mod{border-color:#bfe6cd;color:#0f7a43}
+  .topicbar button.mod.on{background:var(--green);border-color:var(--green);color:#fff}
+  .tabs{display:flex;gap:6px;border-bottom:2px solid var(--line);margin:16px 0 0}
+  .tabs.hide{display:none}
+  .tabs button{border:none;background:none;padding:11px 16px;font-size:14.5px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;font-family:inherit}
+  .tabs button.on{color:var(--pri-d);border-bottom-color:var(--pri)}
+  .pane{display:none;padding:22px 2px 10px;animation:fade .2s}
+  .pane.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1}}
+  .read h2{font-size:19px;color:var(--pri-d);margin:22px 0 10px}
+  .read p{margin:0 0 13px;font-size:15.5px}
+  .read .meta{font-size:12.5px;color:var(--muted);margin-bottom:16px}
+  .case{background:#f3f8fd;border-left:4px solid var(--blue);border-radius:8px;padding:13px 16px;margin:17px 0;font-size:14.5px}
+  .case .lbl{color:var(--blue);font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px}
+  .myth{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--line);margin:17px 0}
+  @media(max-width:560px){.myth{grid-template-columns:1fr}}
+  .myth > div{padding:13px 16px;font-size:14px}
+  .myth .m{background:#fdecec;color:#a3352b}
+  .myth .r{background:#e7f7ec;color:var(--green-d)}
+  .myth .lbl{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;font-weight:800;opacity:.85}
+  .fail{background:#fff8e6;border-left:4px solid var(--gold);border-radius:8px;padding:13px 16px;margin:17px 0;font-size:14px;color:#5e4a00}
+  .fail .lbl{color:#9a7a00;font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px}
+  .step{background:linear-gradient(135deg,#e9faf7,#eefaf2);border:1px solid #b9e8e0;border-radius:10px;padding:14px 16px;margin:18px 0 6px;font-size:15px}
+  .step .lbl{color:var(--pri-d);font-weight:800;display:block;margin-bottom:5px}
+  .card2{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:6px 0 16px}
+  .card2 h2{color:var(--pri-d);font-size:19px;margin:0 0 6px}
+  .card2 h3{font-size:15.5px;margin:16px 0 6px}
+  .card2 p{font-size:15px}
+  .ck{display:flex;gap:10px;align-items:flex-start;background:#fbfafc;border:1px solid var(--line);border-radius:9px;padding:12px 14px;margin-bottom:10px;font-size:14.5px;cursor:pointer}
+  .ck input{margin-top:3px;width:17px;height:17px;accent-color:var(--pri);cursor:pointer}
+  .ck.done{background:#e9faf7;border-color:#b9e8e0}
+  .ck.done span{color:var(--pri-d)}
+  .rubric{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:10px}
+  .rubric th,.rubric td{text-align:right;padding:8px 10px;border-bottom:1px solid var(--line)}
+  .rubric th{background:var(--bg);font-size:12px;text-transform:uppercase;color:var(--muted)}
+  .q{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:16px}
+  .q .qn{font-weight:700;font-size:15.5px;margin-bottom:12px}
+  .q .opt{display:block;width:100%;text-align:right;border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:11px 14px;margin-bottom:9px;font-size:14.5px;cursor:pointer;font-family:inherit;transition:.15s}
+  .q .opt:hover{border-color:var(--accent)}
+  .q .opt.correct{background:#e7f7ec;border-color:var(--green);color:var(--green-d);font-weight:700}
+  .q .opt.wrong{background:#fdecec;border-color:#e05656;color:#a33}
+  .q .fb{margin-top:8px;font-size:13.5px;display:none;border-radius:8px;padding:10px 12px}
+  .q .fb.show{display:block}
+  .q .fb.ok{background:#e7f7ec;color:var(--green-d)}
+  .q .fb.no{background:#fdecec;color:#a33}
+  .score{background:var(--pri);color:#fff;border-radius:10px;padding:14px 18px;font-weight:700;text-align:center;display:none}
+  .score.show{display:block}
+  .cta{background:linear-gradient(135deg,#0f5c31,var(--green));color:#fff;border-radius:12px;padding:24px 26px;margin:24px 0 8px}
+  .cta h3{margin:0 0 9px;font-size:19px}
+  .cta p{margin:0 0 15px;opacity:.95;font-size:14.5px}
+  .cta a{display:inline-block;background:#fff;color:var(--green-d);text-decoration:none;font-weight:700;border-radius:8px;padding:12px 22px;font-size:14.5px}
+  .navbtns{display:flex;justify-content:space-between;margin:22px 0 8px}
+  .navbtns button{border:1px solid var(--pri);background:#fff;color:var(--pri-d);border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer;font-family:inherit}
+  .navbtns button:hover{background:var(--pri);color:#fff}
+  .navbtns button:disabled{opacity:.4;cursor:default}
+  .flag{color:#a36b00;font-size:12px;background:#fff3d6;border-radius:5px;padding:1px 6px}
+  footer{color:var(--muted);font-size:12.5px;text-align:center;padding:24px 0 40px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="k">Bivision Academy · M03 — მოდული (პრაქტიკული)</div>
+    <h1>AI-ით შენება კოდის გარეშე</h1>
+    <p>როგორ ააშენო შენ თვითონ მარტივი, მუშა ციფრული ხელსაწყოები: ლენდინგი, ფორმა, კალკულატორი. და, რაც მთავარია, როდის გააკეთო ეს თვითონ და როდის გადააბარო პროფესიონალს.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="banner">
+    <b>ვისთვის:</b> მცირე ბიზნესის მფლობელი ან გუნდი, ვისაც დეველოპერის ლოდინის გარეშე უნდა ააშენოს მარტივი ციფრული რამ. ეს პრაქტიკული მოდულია. ქეისები რეალურ პატერნებზეა, ბრენდები ანონიმური, ციფრები ილუსტრაციული; დროში ცვალებადი დეტალი მონიშნულია <span class="flag">[გადასამოწმებელი]</span>-ით. კონკრეტული no-code ხელსაწყოს სახელს განზრახ არ ვასახელებთ, რადგან ბაზარი სწრაფად იცვლება — ლოგიკა რჩება.
+  </div>
+
+  <div class="progress"><i id="bar"></i></div>
+  <div class="topicbar" id="topicbar"></div>
+
+  <div class="tabs" id="tabs">
+    <button class="on" data-tab="read" onclick="setTab('read',this)">📖 კითხვა</button>
+    <button data-tab="check" onclick="setTab('check',this)">✅ checklist</button>
+  </div>
+
+  <div class="pane read on" id="pane-read"></div>
+  <div class="pane" id="pane-check"></div>
+  <div class="pane" id="pane-single"></div>
+
+  <div class="navbtns">
+    <button id="prevBtn" onclick="prevTopic()">← წინა</button>
+    <button id="nextBtn" onclick="nextTopic()">შემდეგი →</button>
+  </div>
+
+  <footer>
+    Bivision Academy · M03 No-code building · staging (noindex) · კონტენტი ანონიმური, ციფრები ილუსტრაციული · Bivision 2026
+  </footer>
+</div>
+
+<script>
+const TOPICS = [
+  {
+    id:'l1', short:'1. რა ააშენო',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 1 — მითი: „ციფრული რამის შესაქმნელად პროგრამისტია საჭირო"</div>
+<h2>რა შეიძლება ააშენო კოდის გარეშე</h2>
+<p>თითქმის ყველა მცირე ბიზნესს აქვს პატარა ციფრული საჭიროებების სია, რომელიც წლობით არ კეთდება. ერთი კამპანიის ლენდინგი, ფორმა, რომელიც ლიდებს კრებს, პატარა კალკულატორი. თითოეულისთვის დეველოპერის დაქირავება ნელია და ძვირი, ამიტომ ეს საქმეები ელოდება და ელოდება. სწორედ აქ შეიცვალა ყველაფერი.</p>
+<p>AI-მ ის ზღურბლი დასწია, რომელიც ადრე მხოლოდ პროგრამისტს ეკუთვნოდა. შენ აღწერ უბრალო ენით, რა გინდა, AI კი მუშა გვერდს, ფორმას ან ხელსაწყოს გიგენერირებს. შენ კოდს არ წერ, აღწერ და ხვეწავ. ეს არ გაქცევს დეველოპერად, მაგრამ გაძლევს უნარს, თვითონ ააშენო მარტივი, სტანდარტული 80%.</p>
+<p>მთავარი გონებრივი მოდელი ერთია. გამიჯნე „მარტივი და სტანდარტული" „რთული და მორგებულისგან". მარტივს, ანუ გვერდს, ფორმას, კალკულატორს, ახლა თვითონ ააშენებ ერთ შუადღეში. რთულს, ანუ ნამდვილ პროგრამულ სისტემას, მასშტაბურ ინტეგრაციას, მგრძნობიარე მონაცემს, კვლავ პროფესიონალი სჭირდება. ამ ორის გარჩევა თვითონ უნარია.</p>
+<p>რატომ აქვს ამას ბიზნესისთვის მნიშვნელობა? სიჩქარე და დამოუკიდებლობა. კამპანიის გვერდი დღესვე ცოცხლდება, არა სამ კვირაში. იდეას იაფად ამოწმებ, სანამ ფულს ჩადებ. წყვეტ დეველოპერის რიგში ლოდინს იმ საქმეებზე, რომელიც დეველოპერის ღირსიც არასდროს იყო. ენერგია იქ რჩება, სადაც მართლა საჭიროა.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>მცირე ბიზნესის მფლობელი, რომელიც თვეების განმავლობაში ელოდა მარტივ ლენდინგს. ერთ შუადღეში თვითონ ააშენა AI-ით და იმავე კვირაში კამპანია გაუშვა. გვერდი მდიდრული არ იყო, მაგრამ მუშაობდა და დროზე იყო. ლოდინი დამოუკიდებლობით შეცვალა.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>ნებისმიერი ციფრული რამის ასაშენებლად პროგრამისტია საჭირო.</div><div class="r"><span class="lbl">რეალობა</span>მარტივი, სტანდარტული 80% ახლა თვითონ შეგიძლია; პროფესიონალი ნამდვილად რთული 20%-ისთვის შეინახე.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა ადამიანმა მთელი რთული ბიზნეს-სისტემა no-code AI-ით სცადა, კედლებს მიადგა და დაასკვნა, რომ „AI-შენება უსარგებლოა". რეალური მოლოდინი: ის ძლიერია მარტივ 80%-ში და არასწორი ხელსაწყოა რთული 20%-ისთვის. შეცდომა გარჩევაში იყო, არა ხელსაწყოში.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>ჩამოწერე 3 პატარა ციფრული რამ, რომელსაც ბიზნესი აყოვნებდა (გვერდი, ფორმა, ხელსაწყო). ეს შენი no-code კანდიდატებია.</div>`,
+    check:[
+      'მესმის, რომ მარტივი/სტანდარტული 80% თვითონ შემიძლია ავაშენო',
+      'ვაცნობიერებ, რომ რთული/მგრძნობიარე 20% პროფესიონალს რჩება',
+      'ჩამოვწერე 3 პატარა ციფრული რამ, რომელსაც ვაყოვნებდი',
+      'მესმის, რომ AI-build დამოუკიდებლობასა და სიჩქარეს მაძლევს'
+    ]
+  },
+  {
+    id:'l2', short:'2. ლენდინგი',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 2 — მითი: „ლენდინგს დიზაინერი და კვირები სჭირდება"</div>
+<h2>ლენდინგი: ერთი გვერდი, ერთი მიზანი</h2>
+<p>ლენდინგი ყველაზე ხშირი no-code მოგებაა. ერთი გვერდი ერთი მიზნით: კამპანია, პროდუქტი, ღონისძიებაზე რეგისტრაცია. შენ აღწერ მიზანს და შიგთავსს, AI კი სუფთა, მუშა გვერდს ააწყობს. დიდი ნაწილი, რომელიც ადრე დიზაინერსა და კვირებს ითხოვდა, ახლა ერთი შუადღის საქმეა.</p>
+<p>ლენდინგს მუშაობას დიზაინი კი არ ანიჭებს, სტრუქტურა. მკაფიო სათაური, ანუ რა და ვისთვის, შემდეგ ღირებულება, მერე ნდობა ან მტკიცებულება, და ბოლოს ერთი მკაფიო მოწოდება. მიეცი AI-ს ეს ნაწილები და ის თანმიმდევრულ გვერდს ააწყობს. რაც უფრო ნათელია შენი შიგთავსი, მით უკეთესი გვერდი.</p>
+<p>პრაქტიკული workflow ასეთია. დაიწყე ერთი მიზნით და ერთი აუდიტორიით. სათაური და მოწოდება შენ თვითონ დაწერე, რადგან ეს გვერდის გულია. დანარჩენის დრაფტი და აწყობა AI-ს მიანდე. შემდეგ შეხედე გვერდს ვიზიტორის თვალით და მოაჭერი ყველაფერი, რაც ერთი მოქმედებიდან აშორებს ყურადღებას.</p>
+<p>ერთი გულახდილი დათქმა. no-code ლენდინგი შესანიშნავია ტესტისთვის და კამპანიისთვის, მაგრამ რეალური შეთავაზება და მოქმედების რეალური მიზეზი ისევ შენზეა. AI ლამაზად ააგებს გარსს, არსი კი, ანუ შეთავაზება, მტკიცებულება და სიცხადე, შენია. სუსტ შეთავაზებას ლამაზი გვერდი ვერ გადაარჩენს.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>მომსახურების ბიზნესი, რომელსაც ერთი კონკრეტული შეთავაზებისთვის გვერდი სჭირდებოდა. აღწერა შეთავაზება, აუდიტორია და მოწოდება, მიიღო მუშა გვერდი და გაუშვა. გვერდმა იმუშავა იმიტომ, რომ შეთავაზება მკაფიო იყო, არა იმიტომ, რომ რთული იყო.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>ლენდინგს დიზაინერი და კვირები სჭირდება.</div><div class="r"><span class="lbl">რეალობა</span>მკაფიო მიზნით და AI-ით მუშა გვერდი ერთი შუადღეა. სტრუქტურა სჯობს მორთულობას.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა ადამიანმა AI-ით ულამაზესი გვერდი ააწყო ხუთი სხვადასხვა მოწოდებით და ერთი ფოკუსის გარეშე. ვიზიტორებმა არ იცოდნენ, რა ექნათ. რეალური მოლოდინი: ერთი გვერდი, ერთი მიზანი, ერთი მოწოდება.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>აირჩიე ერთი შეთავაზება, სათაური და მოწოდება თვითონ დაწერე, შემდეგ სთხოვე AI-ს ერთგვერდიანი ლენდინგი ამის გარშემო ააწყოს.</div>`,
+    check:[
+      'მესმის, რომ ლენდინგის ძალა სტრუქტურაშია, არა დიზაინში',
+      'სათაური და მოწოდება (CTA) თვითონ დავწერე — გვერდის გული',
+      'ერთი გვერდი, ერთი მიზანი, ერთი მოწოდება დავიცავი',
+      'ვაცნობიერებ, რომ სუსტ შეთავაზებას ლამაზი გვერდი ვერ გადაარჩენს'
+    ]
+  },
+  {
+    id:'l3', short:'3. ფორმა → ცხრილი',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 3 — მითი: „ლიდების შესაგროვებლად ძვირი CRM სჭირდება"</div>
+<h2>ფორმა, რომელიც მონაცემს ცხრილში კრებს</h2>
+<p>ფორმა არის ის, რითაც ბიზნესი გარე სამყაროს იჭერს: ლიდები, რეგისტრაცია, მოთხოვნა, უკუკავშირი. ხშირი წარუმატებლობა თვითონ ფორმის აშენებაში არ არის. პრობლემა ისაა, რომ მონაცემი უსარგებლო ადგილას ვარდება, ანუ მიმოფანტულ წერილებში, ნაცვლად ერთი ადგილისა, სადაც დაასორტირებ და იმოქმედებ.</p>
+<p>პრაქტიკული აწყობა ასეთია. ფორმა, რომლის პასუხებიც პირდაპირ ცხრილში (Sheets ან Excel) ჩაედინება. ახლა თითო ლიდი ერთი მწკრივია: სახელი, კონტაქტი, რა უნდა, როდის. AI დაგეხმარება ფორმის ველების მოფიქრებაში და ნაკადის გამართვაში. ცხრილი ხდება შენი მარტივი, უფასო, პირველი რიგის CRM.</p>
+<p>რატომ არის ცხრილი მნიშვნელოვანი? სტრუქტურირებული მონაცემის გამო. როცა პასუხები მწკრივებად და სვეტებად იქცა, შეგიძლია დაასორტირო, გაფილტრო, დათვალო და სისტემურად გააგრძელო კონტაქტი. ეს არის პირველი ნაბიჯი „შეგროვებიდან" „გამოყენებამდე". ეს არის თესლიც ყველაფრისა, რაც მერე მოდის: სუფთა ცხრილია ის, რაზეც dashboard საბოლოოდ შენდება.</p>
+<p>ერთი დათქმა. ფორმა და ცხრილი სწორი ხელსაწყოა მცირე მასშტაბზე. როცა მოცულობა და სირთულე იზრდება, ანუ ბევრი წყარო, ნამდვილი pipeline, ავტომატიზაცია, შენ ნამდვილ CRM-ზე ან ბაზაზე გადადიხარ. ნუ გადააჭარბებ ადრე, მაგრამ იცოდე, რომ ცხრილს ჭერი აქვს. ამ ჭერს ცალკე გაკვეთილში დავუბრუნდებით.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ბიზნესი, რომელიც ლიდებს პირად შეტყობინებებსა და მიმოფანტულ წერილებში კრებდა და კარგავდა. ააშენა ერთი ფორმა, ერთი ცხრილი. უცებ თითო ლიდი მწკრივად იქცა, არაფერი იკარგებოდა, კონტაქტის გაგრძელება სისტემური გახდა. მარტივი, მაგრამ გაჟონვა შეაჩერა.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>ლიდების შესაგროვებლად პირველი დღიდან ძვირი CRM სჭირდება.</div><div class="r"><span class="lbl">რეალობა</span>ფორმა სუფთა ცხრილში თავიდან საკმარისია და სწორედ ის არის საფუძველი, რაზეც ყველაფერი შენდება.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>გუნდმა ლამაზი ფორმა ააწყო, რომლის პასუხებიც მხოლოდ წერილზე მოდიოდა. ერთ თვეში ლიდები ჩაიფლა და დაიკარგა. რეალური მოლოდინი: ფორმა ნახევარია, დანიშნულება (გამოყენებადი ცხრილი) მეორე ნახევარია.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>ააშენე ერთი ფორმა შენი ყველაზე ხშირი მოთხოვნისთვის, ჩააქციე ერთ ცხრილში, თითო პასუხი ერთი მწკრივი.</div>`,
+    check:[
+      'მესმის, რომ ფორმის ღირებულება დანიშნულებაშია (ერთი გამოყენებადი ცხრილი)',
+      'ავაშენე ფორმა, რომელიც პასუხებს ცხრილში კრებს',
+      'თითო პასუხი = ერთი მწკრივი (სტრუქტურირებული მონაცემი)',
+      'ვაცნობიერებ, რომ ცხრილს ჭერი აქვს — დიდ მასშტაბზე CRM/ბაზა'
+    ]
+  },
+  {
+    id:'l4', short:'4. კალკულატორი',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 4 — მითი: „ინტერაქტიულ ხელსაწყოს ნამდვილი დეველოპმენტი სჭირდება"</div>
+<h2>კალკულატორი და პატარა ხელსაწყო</h2>
+<p>პატარა ინტერაქტიული ხელსაწყო ერთ-ერთი ყველაზე ნაკლებად გამოყენებული no-code მოგებაა. ფასის კალკულატორი, ROI-ის შემფასებელი, „რომელი ვარიანტი გერგება" კითხვარი. ის სასარგებლოა კლიენტისთვის, რომელიც მყისიერ პასუხს იღებს, და შენთვის, რადგან ინტერესს იჭერს და ლიდს აკვალიფიცირებს.</p>
+<p>ქვედა ლოგიკა მარტივია: შემავალი მონაცემი, შემდეგ წესი, შემდეგ შედეგი. შენ განსაზღვრავ წესს, ანუ შენს ფასწარმოქმნის ლოგიკას ან ფორმულას, AI კი ამ წესის გარშემო ინტერაქტიულ ხელსაწყოს ააგებს. რთული ნაწილი შენი წესის სიცხადეა, აშენება უკვე ადვილია.</p>
+<p>პრაქტიკული გამოყენება მარკეტინგში. უფასო კალკულატორი შენს საიტზე არის „ინჟინერია როგორც მარკეტინგი". ვინმე ითვლის თავის შესაძლო დანაზოგს ან ხარჯს, მყისვე იღებს ღირებულებას და შენ თბილ ლიდს იღებ. ის მუშაობს იმიტომ, რომ ჯერ აძლევს, მერე ითხოვს.</p>
+<p>გულახდილობა. ხელსაწყო ისეთივე კარგია, როგორიც მის უკან მდგარი წესი. თუ შენი ფასწარმოქმნის ლოგიკა ბუნდოვანია, კალკულატორი შემცდარს გაჩვენებს, რაც უარესია, ვიდრე საერთოდ არ ქონა. ჯერ ლოგიკა ქაღალდზე გაასწორე, მერე ააშენე. და მგრძნობიარე ლოგიკა, ანუ ნამდვილი ფასდადება ან ფინანსური რჩევა, ადამიანის შემოწმებას სჭირდება, სანამ შენ მაგივრად ალაპარაკდება.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ბიზნესი, რომელმაც ფასწარმოქმნის ლოგიკა მარტივ კალკულატორად აქცია. პოტენციური კლიენტი მყისიერ სავარაუდო ფასს იღებდა, თვითონ კვალიფიცირდებოდა და გაყიდვის საუბარზე უკვე თბილი მოდიოდა. ნაკლები ცარიელი დაინტერესება, უკეთესი საუბრები.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>ინტერაქტიულ ხელსაწყოს ნამდვილი პროგრამული დეველოპმენტი სჭირდება.</div><div class="r"><span class="lbl">რეალობა</span>მკაფიო წესი და AI გაძლევს მუშა ხელსაწყოს; საქმე ლოგიკაშია, არა კოდში.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა ადამიანმა კალკულატორი ბუნდოვან, არასწორ ლოგიკაზე ააშენა. მან შემცდარი ციფრები გასცა და ნდობა დააზიანა. რეალური მოლოდინი: ჯერ წესი ქაღალდზე გაამართე; თავდაჯერებული არასწორი ციფარი უარესია, ვიდრე ხელსაწყოს არქონა.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>დაწერე ქაღალდზე შენი უმარტივესი შემავალი→წესი→შედეგი (მაგ: ფასის შეფასება), შემდეგ სთხოვე AI-ს ამის გარშემო კალკულატორი ააგოს.</div>`,
+    check:[
+      'მესმის, რომ ხელსაწყო = შემავალი → წესი → შედეგი',
+      'წესი/ლოგიკა ჯერ ქაღალდზე გავაცხადე, მერე ავაშენე',
+      'ვაცნობიერებ, რომ კალკულატორი lead-magnet-ია (აძლევს, მერე ითხოვს)',
+      'მგრძნობიარე ლოგიკა ადამიანის შემოწმებას გადის'
+    ]
+  },
+  {
+    id:'l5', short:'5. იტერაცია',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 5 — მითი: „ერთხელ აღწერ და AI იდეალურად ააშენებს"</div>
+<h2>იტერაცია: შენება ნაბიჯ-ნაბიჯ</h2>
+<p>ყველაზე მნიშვნელოვანი no-code უნარი იტერაციაა. გვერდი ან ხელსაწყო თითქმის არასდროს გამოდის ისე, როგორც გინდა, პირველივე ცდაზე. პირველი ვერსია საწყისი წერტილია. უნარი ისაა, რომ შეხედო, ზუსტად დაასახელო, რა არ არის რიგზე, და მოითხოვო ცვლილება.</p>
+<p>როგორ ვაიტერირო კარგად? იყავი კონკრეტული ცვლილებაში, ერთი რამ ერთ ჯერზე. არა „გააუმჯობესე" (AI ამაზე ვერ იმოქმედებს), არამედ „სათაური გაადიდე და ღილაკი სურათის ზემოთ ატანე". კონკრეტული უკუკავშირი იღებს კონკრეტულ შესწორებას. ბუნდოვანი უკუკავშირი იღებს შემთხვევით ცვლილებას.</p>
+<p>გონებრივი გადატრიალება ასეთია. შენ მანქანას ინსტრუქციას კი არ უწერ, არამედ რედაქტორივით მართავ. ხედავ დრაფტს, რეაგირებ, მიმართულებას აძლევ. ყოველი წრე უფრო ახლოს მიდის. სამი-ოთხი ფოკუსირებული წრე ჩვეულებრივ სჯობს ერთ იდეალურ გიგანტურ promt-ს. ააშენე, შეხედე, შეასწორე, გაიმეორე.</p>
+<p>დათქმა. იცოდე, როდის გაჩერდე. იტერაციას კლებადი უკუგება აქვს; რაღაც მომენტში „საკმარისი და live" სჯობს „იდეალურს და არასდროს გამოშვებულს". ასევე, თუ რამდენიმე წრის შემდეგ AI მუდმივად აცდენს, პრობლემა ჩვეულებრივ შენი ბუნდოვანი განზრახვაა, არა ხელსაწყო. ჯერ გაარკვიე, რა გინდა ზუსტად, მერე ითხოვე.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ადამიანი, რომელიც ნერვიულობდა, რომ AI-მ „პირველ ცდაზე ის არ ააშენა, რაც უნდოდა". როცა კონკრეტულ, ერთ-ერთ უკუკავშირზე გადავიდა, ხელსაწყო რამდენიმე წრეში აეწყო. ცვლილება იმაში იყო, როგორ ითხოვდა, არა ხელსაწყოში.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>ერთხელ აღწერ და AI იდეალურად ააშენებს.</div><div class="r"><span class="lbl">რეალობა</span>შენ აშენებ იტერაციით: კონკრეტული უკუკავშირი, ერთი ცვლილება ერთ ჯერზე, რამდენიმე წრე.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა ადამიანმა მხოლოდ ბუნდოვანი უკუკავშირი მისცა („არ მომწონს, უკეთესი გახადე"), მიიღო შემთხვევითი ცვლილებები და დანებდა. რეალური მოლოდინი: დაასახელე ზუსტი ცვლილება; ბუნდოვანი შესვლა, ბუნდოვანი შედეგი.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>აიღე ნებისმიერი დრაფტი, რომელიც AI-მ ააშენა, მიეცი სამი კონკრეტული, ერთ-ერთი ცვლილების მოთხოვნა და უყურე, როგორ უახლოვდება.</div>`,
+    check:[
+      'მესმის, რომ პირველი ვერსია საწყისია, არა საბოლოო',
+      'კონკრეტულ ცვლილებას ვთხოვ, ერთს ერთ ჯერზე',
+      'AI-ს ვმართავ როგორც რედაქტორი (ააშენე → ნახე → შეასწორე)',
+      'ვიცი, როდის გავჩერდე: „საკმარისი და live" სჯობს „იდეალურს და არასდროს"'
+    ]
+  },
+  {
+    id:'l6', short:'6. გამოქვეყნება',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 6 — მითი: „გამოქვეყნება რთული, ტექნიკური ნაწილია"</div>
+<h2>გამოქვეყნება: დრაფტიდან ცოცხალამდე</h2>
+<p>აშენებული გვერდი ან ხელსაწყო, რომელიც არასდროს ცოცხლდება, უსარგებლოა. გამოქვეყნება არის ის ნაბიჯი, რომელიც დრაფტს ისეთ რამედ აქცევს, რასაც სამყარო გამოიყენებს. no-code ხელსაწყოებში გამოქვეყნება ჩვეულებრივ ერთი ღილაკი ან ბმულია, ბევრად მარტივი, ვიდრე ადრე იყო.</p>
+<p>პრაქტიკული საფუძვლები. შენ იღებ გასაზიარებელ ბმულს; შეგიძლია შენს დომენზე დადო ან მზა ბმული გამოიყენო. კამპანიისთვის სუფთა ბმული საკმარისია. აზრი ისაა, რომ მოიხსნას ბოლო ხახუნი „ავაშენე"-სა და „ხალხი იყენებს"-ს შორის.</p>
+<p>გამოქვეყნების შემდეგ წრე გრძელდება. შენ აკვირდები, როგორ იყენებენ, და აგრძელებ ხვეწას. გამოქვეყნება დასასრული არ არის, სწავლის დასაწყისია. ცოცხალი გვერდი იმას გეუბნება, რასაც დრაფტი ვერასდროს: აჭერენ თუ არა, ავსებენ თუ არა ფორმას, სად ტოვებენ.</p>
+<p>დათქმა. სანამ რამეს გამოაქვეყნებ, რაც მონაცემს კრებს ან ბრენდის სახელით ლაპარაკობს, ბოლო ადამიანური შემოწმება გააკეთე. და როგორც კი რამე ცოცხალი და რეალურია, საბაზისო კითხვებზე უნდა იფიქრო: ფორმა მართლა აწვდის თუ არა, მონაცემი უსაფრთხო ადგილას მიდის თუ არა, ვინ ხედავს. გამოქვეყნება მხოლოდ წვდომას კი არ მოაქვს, პასუხისმგებლობასაც.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ბიზნესი, რომელმაც კამპანიის გვერდი ააშენა, მაგრამ „სანამ იდეალური გახდება" კვირები აჭიანურა და კამპანიის ფანჯარა გაუშვა. როცა მიიღო, რომ „კარგი და live სჯობს იდეალურს და დაგვიანებულს", გამოაქვეყნა და ბოლოს და ბოლოს რეალური უკუკავშირი მიიღო. გაშვება იყო გასაღები.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>გამოქვეყნება რთული, ტექნიკური ნაწილია.</div><div class="r"><span class="lbl">რეალობა</span>no-code ხელსაწყოებში ის ჩვეულებრივ ღილაკია; დისციპლინა საერთოდ გაშვებაა, არა მარადიული დახვეწა.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა ადამიანმა ლიდების ფორმა გამოაქვეყნა იმის შემოწმების გარეშე, სად მიდიოდა მონაცემი. პასუხები უჩუმრად ქრებოდა და ლიდები იკარგებოდა. რეალური მოლოდინი: გამოქვეყნებამდე გადაამოწმე, რომ რამე მართლა მუშაობს ბოლომდე (ფორმა აწვდის, ბმული იხსნება).</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>აიღე ერთი ნამუშევარი, გააკეთე ბოლო შემოწმება (მუშაობს ბოლომდე, ადამიანმა ნახა) და გამოაქვეყნე გასაზიარებელი ბმულით.</div>`,
+    check:[
+      'მესმის, რომ აუშვებელი ნამუშევარი ღირებულებას არ ქმნის',
+      'გამოქვეყნებამდე ბოლო შემოწმება გავაკეთე (მუშაობს end-to-end)',
+      'ვაცნობიერებ, რომ live-ის შემდეგ სწავლა და იტერაცია გრძელდება',
+      'მონაცემის შემგროვებელი ნამუშევარი ადამიანის თვალს გადის გამოქვეყნებამდე'
+    ]
+  },
+  {
+    id:'l7', short:'7. ლიმიტები → ხიდი',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 7 — ხიდი: სად მთავრდება no-code, სად იწყება მონაცემი (Bivision core)</div>
+<h2>რა არ ააშენო: ლიმიტები და handoff</h2>
+<p>ყველაზე ღირებული no-code უნარი ისაა, ვიცოდე, რა არ ავაშენო თვითონ. no-code AI შესანიშნავია მარტივი, სტანდარტული, დაბალი რისკის რამისთვის. ის არასწორი ხელსაწყოა რთული, მორგებული, მგრძნობიარე ან მასშტაბ-კრიტიკული სისტემისთვის. ამის არასწორად შეფასება უფრო ძვირი ჯდება, ვიდრე ზოგავს.</p>
+<p>სად გადის ხაზი? no-code-ით ნუ ააშენებ სისტემებს, რომლებიც მგრძნობიარე მონაცემს ინახავს (ფინანსური, პერსონალური მასშტაბით), რომლებსაც ნამდვილი ინტეგრაცია სჭირდება შენს ძირითად ბიზნეს-სისტემებს შორის, ან რომლებზეც ბიზნესი ნამდვილად დგას. ამათ ნამდვილი ინჟინერია, უსაფრთხოება და მფლობელობა სჭირდება. no-code შენაკეთი აქ მყიფე და სარისკოა.</p>
+<p>პატერნი, რომელსაც აუცილებლად მიადგები, ასეთია. აშენებ მარტივ ხელსაწყოებს, ისინი მუშაობს, შემდეგ გინდება, რომ ერთმანეთს და შენს ნამდვილ მონაცემს, ანუ გაყიდვებს, ფინანსებს, ოპერაციებს, დაელაპარაკონ. სწორედ ის მომენტი, როცა მიმოფანტული ხელსაწყოები და ცხრილები ერთ დაკავშირებულ, სანდო სურათად უნდა იქცეს, არის ის წერტილი, სადაც no-code მთავრდება და ნამდვილი მონაცემთა საქმე იწყება.</p>
+<p>აქ ცხოვრობს Bivision-ის ბირთვი. შენი ნამდვილი ბიზნეს-მონაცემის, ERP-ის, გაყიდვების, ფინანსების ერთ სანდო სურათად დაკავშირება და მისგან dashboard-ების აშენება, რომელზეც ბიზნესს მართავ, ერთი შუადღის no-code საქმე არ არის. ეს ის პროფესიული 20%-ია. no-code გხდის დამოუკიდებელს მარტივში; Bivision არის პარტნიორი მონაცემთა ხერხემლისთვის. handoff-წერტილის ცოდნა მთელი გაკვეთილია.</p>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>თუ no-code AI მარტივს აშენებს, საბოლოოდ ყველაფერს ააშენებს.</div><div class="r"><span class="lbl">რეალობა</span>ის სწორი ხელსაწყოა მარტივი 80%-ისთვის და არასწორი კრიტიკული 20%-ისთვის; უნარი handoff-ია.</div></div>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ბიზნესი, რომელმაც სასარგებლო პატარა ხელსაწყოები ააშენა, მერე კი მთელი დაკავშირებული მონაცემთა სისტემა no-code-ით სცადა. ის მყიფე და არასანდო გახდა. როცა მონაცემთა ხერხემალი სათანადო პარტნიორს გადააბარა და no-code კიდეებისთვის შეინარჩუნა, ორივემ იმუშავა.</div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა ადამიანმა ნამდვილი ფინანსური ლოგიკა და მგრძნობიარე კლიენტის მონაცემი მყიფე no-code შენაკეთში გაატარა. ერთმა ხარვეზმა რეალური არევა გამოიწვია. რეალური მოლოდინი: მგრძნობიარე და კრიტიკული და დაკავშირებული = პროფესიული ტერიტორია, არა შაბათ-კვირის შენება.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>შეხედე შენი no-code კანდიდატების სიას და მონიშნე, რომელია მარტივი/უსაფრთხო (ააშენე თვითონ) და რომელი კრიტიკული/დაკავშირებული/მგრძნობიარე (გადააბარე). ეს ხაზი შენი რუკაა.</div>
+<div class="cta">
+  <h3>უფასო „მონაცემთა მზადყოფნის აუდიტი"</h3>
+  <p>როცა შენი ხელსაწყოები და მონაცემი ერთ სანდო სურათად უნდა იქცეს, ეს უკვე no-code-ის მიღმაა. Bivision-ი ქართულ კომპანიებს ეხმარება, რომ ნამდვილი ბიზნეს-მონაცემი დააკავშირონ და Qlik-ისა და Power BI-ის dashboard-ად აქციონ. დასაწყისად გთავაზობთ უფასო აუდიტს, სადაც განვსაზღვრავთ, სად მთავრდება შენი no-code და სად იწყება მონაცემთა ხერხემალი.</p>
+  <a href="https://bivision.ge" target="_blank" rel="noopener">აუდიტის დაჯავშნა →</a>
+</div>`,
+    check:[
+      'მესმის, რომ ყველაზე ღირებული უნარი ისაა, ვიცოდე რა არ ავაშენო',
+      'მგრძნობიარე/კრიტიკული/დაკავშირებული სისტემა პროფესიონალს რჩება',
+      'ვაცნობიერებ handoff-წერტილს: სადაც no-code მთავრდება, იწყება მონაცემთა საქმე',
+      'ჩემი სიის კანდიდატები გავყავი: მარტივი/უსაფრთხო vs კრიტიკული/handoff'
+    ]
+  },
+  {
+    id:'project', short:'📋 პროექტი', mod:true, single:true,
+    html:`<div class="card2">
+<h2>პროექტი — ერთი ნამდვილი ხელსაწყო, ბოლომდე</h2>
+<p class="meta">~40 წუთი · შენი რეალური ბიზნესისთვის</p>
+<p>აირჩიე ერთი no-code ხელსაწყო შენი კანდიდატების სიიდან და ააშენე ბოლომდე, გამოქვეყნებამდე. მიჰყევი მოდულის ნაბიჯებს.</p>
+<h3>ნაბიჯები</h3>
+<table class="rubric">
+  <tr><th>ნაბიჯი</th><th>შევასრულე</th></tr>
+  <tr><td>1. ავირჩიე ერთი: ლენდინგი / ფორმა→ცხრილი / კალკულატორი</td><td>☐</td></tr>
+  <tr><td>2. გავაცხადე მიზანი + აუდიტორია (ან წესი/ლოგიკა ქაღალდზე)</td><td>☐</td></tr>
+  <tr><td>3. სათაური/CTA ან ფორმის ველები თვითონ დავწერე</td><td>☐</td></tr>
+  <tr><td>4. AI-ით ავაშენე პირველი ვერსია</td><td>☐</td></tr>
+  <tr><td>5. 3 კონკრეტული, ერთ-ერთი იტერაცია გავაკეთე</td><td>☐</td></tr>
+  <tr><td>6. ბოლო შემოწმება: მუშაობს ბოლომდე (მონაცემი სად მიდის?)</td><td>☐</td></tr>
+  <tr><td>7. გამოვაქვეყნე გასაზიარებელი ბმულით</td><td>☐</td></tr>
+</table>
+<h3>თვით-შეფასება</h3>
+<p>ერთი წინადადებით: მარტივი იყო თუ კრიტიკული/დაკავშირებული? თუ მეორე, ეს handoff-კანდიდატია, არა no-code. ჩაიწერე, რა ისწავლე იტერაციაზე.</p>
+</div>`
+  },
+  {
+    id:'test', short:'🧠 ფინალური ტესტი', mod:true, quiz:[
+      {q:'1. რას ააშენებ კოდის გარეშე თამამად?',
+       opts:['ნებისმიერ რთულ ბიზნეს-სისტემას','მარტივ, სტანდარტულ 80%-ს (გვერდი, ფორმა, ხელსაწყო)','მხოლოდ ტექსტს'],
+       correct:1, fb:'რთული/მგრძნობიარე 20% პროფესიონალს რჩება.'},
+      {q:'2. რა ანიჭებს ლენდინგს მუშაობას?',
+       opts:['მდიდრული დიზაინი','სტრუქტურა: ერთი მიზანი, ერთი მკაფიო მოწოდება','ბევრი სხვადასხვა CTA'],
+       correct:1, fb:'სტრუქტურა სჯობს მორთულობას; სუსტ შეთავაზებას ლამაზი გვერდი ვერ შველის.'},
+      {q:'3. რატომ ჩაედინება ფორმა ცხრილში?',
+       opts:['ლამაზად გამოიყურება','რომ მონაცემი სტრუქტურირებული და გამოყენებადი იყოს (თითო ლიდი = მწკრივი)','რომ წერილი არ მივიღოთ'],
+       correct:1, fb:'სუფთა ცხრილი არის საფუძველი, რაზეც მერე dashboard შენდება.'},
+      {q:'4. რა არის კალკულატორის ყველაზე რთული ნაწილი?',
+       opts:['კოდის დაწერა','წესის/ლოგიკის სიცხადე ქაღალდზე','ფერების არჩევა'],
+       correct:1, fb:'არასწორი ლოგიკა შემცდარ ციფრს გასცემს — ჯერ წესი გაამართე.'},
+      {q:'5. როგორ აშენებ კარგად AI-ით?',
+       opts:['ერთი იდეალური გიგანტური promt-ით','იტერაციით: კონკრეტული უკუკავშირი, ერთი ცვლილება ერთ ჯერზე','ბუნდოვანი „გააუმჯობესე"-თი'],
+       correct:1, fb:'რედაქტორივით მართავ: ააშენე, ნახე, შეასწორე, გაიმეორე.'},
+      {q:'6. გამოქვეყნებაში მთავარი დისციპლინა რა არის?',
+       opts:['მარადიული დახვეწა სანამ იდეალური გახდება','საერთოდ გაშვება + ბოლო შემოწმება (მუშაობს ბოლომდე)','რაც შეიძლება სწრაფად, შემოწმების გარეშე'],
+       correct:1, fb:'„კარგი და live" სჯობს „იდეალურს და დაგვიანებულს", მაგრამ მონაცემს ამოწმებ.'},
+      {q:'7. სად მთავრდება no-code და იწყება მონაცემთა საქმე?',
+       opts:['არსად, no-code ყველაფერს აშენებს','როცა მიმოფანტული ხელსაწყოები/მონაცემი ერთ სანდო, დაკავშირებულ სურათად უნდა იქცეს','მხოლოდ დიდ კომპანიებში'],
+       correct:1, fb:'ეს handoff-წერტილია — Bivision-ის ბირთვი (dashboard მონაცემთა ხერხემალზე).'}
+    ]
+  },
+  {
+    id:'audit', short:'🎯 უფასო აუდიტი', mod:true, single:true,
+    html:`<div class="cta">
+  <h3>უფასო „მონაცემთა მზადყოფნის აუდიტი"</h3>
+  <p>შვიდმა გაკვეთილმა აჩვენა, როგორ ააშენო მარტივი ხელსაწყოები თვითონ და, რაც მთავარია, სად გადააბარო. შემდეგი ნაბიჯი მაშინ დგება, როცა შენი ხელსაწყოები და მონაცემი ერთ სანდო სურათად უნდა შეიკრას. 30-40 წუთიან საუბარში ერთად განვსაზღვრავთ, სად მთავრდება შენი no-code და როგორ აიწყობა შენი მონაცემთა ხერხემალი Qlik-ში ან Power BI-ში.</p>
+  <a href="https://bivision.ge" target="_blank" rel="noopener">აუდიტის დაჯავშნა →</a>
+</div>
+<div class="card2">
+<h2>რას მიიღებ აუდიტიდან</h2>
+<p>1. რუკა: რომელი ხელსაწყო ააშენო თვითონ (no-code) და რომელი გადააბარო (კრიტიკული/დაკავშირებული).</p>
+<p>2. შენი ნამდვილი მონაცემის სურათი: სად არის, რა აკლია, რა კავშირები სჭირდება ერთიან dashboard-ამდე.</p>
+<p>3. ერთი მკაფიო შემდეგი ნაბიჯი, რომ მიმოფანტული ხელსაწყოებიდან ერთ სანდო, მართვად სურათზე გადახვიდე.</p>
+</div>`
+  }
+];
+
+let cur = 0, tab = 'read';
+const tb = document.getElementById('topicbar');
+TOPICS.forEach((t,i)=>{
+  const b = document.createElement('button');
+  b.textContent = t.short;
+  if(t.mod) b.className = 'mod';
+  b.onclick = ()=>{ cur=i; tab='read'; render(); };
+  tb.appendChild(b);
+});
+
+function setTab(name, el){
+  tab = name;
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on', b===el));
+  paint();
+}
+
+function render(){
+  [...tb.children].forEach((b,i)=>b.classList.toggle('on', i===cur));
+  document.getElementById('bar').style.width = ((cur+1)/TOPICS.length*100) + '%';
+  const tabs = document.getElementById('tabs');
+  const t = TOPICS[cur];
+  if(t.single || t.quiz){
+    tabs.classList.add('hide');
+  } else {
+    tabs.classList.remove('hide');
+    document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on', b.dataset.tab==='read'));
+    tab = 'read';
+  }
+  document.getElementById('prevBtn').disabled = (cur===0);
+  document.getElementById('nextBtn').disabled = (cur===TOPICS.length-1);
+  paint();
+}
+
+function paint(){
+  const t = TOPICS[cur];
+  const pr = document.getElementById('pane-read');
+  const pc = document.getElementById('pane-check');
+  const ps = document.getElementById('pane-single');
+  pr.classList.remove('on'); pc.classList.remove('on'); ps.classList.remove('on');
+  if(t.single){
+    ps.innerHTML = t.html; ps.classList.add('on'); return;
+  }
+  if(t.quiz){
+    ps.innerHTML = renderQuiz(t.quiz); ps.classList.add('on'); return;
+  }
+  pr.innerHTML = t.read;
+  pc.innerHTML = `<div class="card2"><h2>გადაწყვეტილების checklist</h2>`
+    + t.check.map(x=>`<label class="ck" onclick="this.classList.toggle('done')"><input type="checkbox"><span>${x}</span></label>`).join('')
+    + `</div>`;
+  if(tab==='check') pc.classList.add('on'); else pr.classList.add('on');
+}
+
+function renderQuiz(items){
+  let html = `<div class="card2"><h2>ფინალური ტესტი</h2><p>შვიდი კითხვა მთელ მოდულზე. აირჩიე პასუხი და ნახე ახსნა.</p></div>`;
+  items.forEach((it,qi)=>{
+    html += `<div class="q" id="q${qi}"><div class="qn">${it.q}</div>`
+      + it.opts.map((o,oi)=>`<button class="opt" onclick="answer(${qi},${oi})">${o}</button>`).join('')
+      + `<div class="fb" id="fb${qi}"></div></div>`;
+  });
+  html += `<div class="score" id="score"></div>`;
+  return html;
+}
+
+let answered = {};
+function answer(qi, oi){
+  const t = TOPICS[cur];
+  if(!t.quiz || answered[qi]!==undefined) return;
+  answered[qi] = oi;
+  const it = t.quiz[qi];
+  const qEl = document.getElementById('q'+qi);
+  const opts = qEl.querySelectorAll('.opt');
+  opts[it.correct].classList.add('correct');
+  if(oi!==it.correct) opts[oi].classList.add('wrong');
+  const fb = document.getElementById('fb'+qi);
+  const ok = oi===it.correct;
+  fb.className = 'fb show ' + (ok?'ok':'no');
+  fb.textContent = (ok?'სწორია. ':'ზუსტი არ არის. ') + it.fb;
+  const done = Object.keys(answered).length;
+  if(done===t.quiz.length){
+    let right = 0;
+    t.quiz.forEach((q,i)=>{ if(answered[i]===q.correct) right++; });
+    const s = document.getElementById('score');
+    s.className = 'score show';
+    s.textContent = `შედეგი: ${right} / ${t.quiz.length}` + (right===t.quiz.length?' — სრული ქულა.':'');
+  }
+}
+
+function prevTopic(){ if(cur>0){ cur--; tab='read'; answered={}; render(); window.scrollTo({top:0,behavior:'smooth'}); } }
+function nextTopic(){ if(cur<TOPICS.length-1){ cur++; tab='read'; answered={}; render(); window.scrollTo({top:0,behavior:'smooth'}); } }
+
+render();
+</script>
+</body>
+</html>
