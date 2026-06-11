@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Bivision Academy · AI მარკეტინგში — შენი ბრენდის ხმით</title>
+<style>
+  :root{
+    --pri:#9333ea; --pri-d:#6b21a8; --ink:#1b1622; --muted:#655d6e;
+    --bg:#f8f5fb; --card:#fff; --line:#e9e2f0; --accent:#9333ea; --gold:#b8860b;
+    --green:#00a651; --green-d:#0f5c31; --blue:#2b6cb0; --red:#c0392b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI','Noto Sans Georgian',Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+  .wrap{max-width:880px;margin:0 auto;padding:0 18px}
+  header.top{background:linear-gradient(135deg,var(--pri-d),var(--pri));color:#fff;padding:28px 0}
+  header.top .k{font-size:12px;letter-spacing:.5px;opacity:.9;text-transform:uppercase}
+  header.top h1{margin:7px 0 5px;font-size:23px;line-height:1.35}
+  header.top p{margin:0;opacity:.93;font-size:14px;max-width:720px}
+  .banner{background:#f5eefb;border:1px solid #e2cff0;border-radius:10px;padding:13px 16px;margin:18px 0;font-size:13.5px;color:var(--pri-d)}
+  .banner b{color:var(--pri-d)}
+  .progress{height:6px;background:var(--line);border-radius:6px;margin:14px 0 4px;overflow:hidden}
+  .progress > i{display:block;height:100%;background:var(--pri);width:0;transition:width .3s}
+  .topicbar{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 6px}
+  .topicbar button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px 13px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;font-family:inherit}
+  .topicbar button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+  .topicbar button.mod{border-color:#bfe6cd;color:#0f7a43}
+  .topicbar button.mod.on{background:var(--green);border-color:var(--green);color:#fff}
+  .tabs{display:flex;gap:6px;border-bottom:2px solid var(--line);margin:16px 0 0}
+  .tabs.hide{display:none}
+  .tabs button{border:none;background:none;padding:11px 16px;font-size:14.5px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;font-family:inherit}
+  .tabs button.on{color:var(--pri-d);border-bottom-color:var(--pri)}
+  .pane{display:none;padding:22px 2px 10px;animation:fade .2s}
+  .pane.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1}}
+  .read h2{font-size:19px;color:var(--pri-d);margin:22px 0 10px}
+  .read p{margin:0 0 13px;font-size:15.5px}
+  .read .meta{font-size:12.5px;color:var(--muted);margin-bottom:16px}
+  .case{background:#f3f8fd;border-left:4px solid var(--blue);border-radius:8px;padding:13px 16px;margin:17px 0;font-size:14.5px}
+  .case .lbl{color:var(--blue);font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px}
+  .myth{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--line);margin:17px 0}
+  @media(max-width:560px){.myth{grid-template-columns:1fr}}
+  .myth > div{padding:13px 16px;font-size:14px}
+  .myth .m{background:#fdecec;color:#a3352b}
+  .myth .r{background:#e7f7ec;color:var(--green-d)}
+  .myth .lbl{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;font-weight:800;opacity:.85}
+  .fail{background:#fff8e6;border-left:4px solid var(--gold);border-radius:8px;padding:13px 16px;margin:17px 0;font-size:14px;color:#5e4a00}
+  .fail .lbl{color:#9a7a00;font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px}
+  .step{background:linear-gradient(135deg,#f5eefb,#eefaf2);border:1px solid #e2cff0;border-radius:10px;padding:14px 16px;margin:18px 0 6px;font-size:15px}
+  .step .lbl{color:var(--pri-d);font-weight:800;display:block;margin-bottom:5px}
+  .card2{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:6px 0 16px}
+  .card2 h2{color:var(--pri-d);font-size:19px;margin:0 0 6px}
+  .card2 h3{font-size:15.5px;margin:16px 0 6px}
+  .card2 p{font-size:15px}
+  .ck{display:flex;gap:10px;align-items:flex-start;background:#fbfafc;border:1px solid var(--line);border-radius:9px;padding:12px 14px;margin-bottom:10px;font-size:14.5px;cursor:pointer}
+  .ck input{margin-top:3px;width:17px;height:17px;accent-color:var(--pri);cursor:pointer}
+  .ck.done{background:#f5eefb;border-color:#e2cff0}
+  .ck.done span{color:var(--pri-d)}
+  .rubric{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:10px}
+  .rubric th,.rubric td{text-align:right;padding:8px 10px;border-bottom:1px solid var(--line)}
+  .rubric th{background:var(--bg);font-size:12px;text-transform:uppercase;color:var(--muted)}
+  .q{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:16px}
+  .q .qn{font-weight:700;font-size:15.5px;margin-bottom:12px}
+  .q .opt{display:block;width:100%;text-align:right;border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:11px 14px;margin-bottom:9px;font-size:14.5px;cursor:pointer;font-family:inherit;transition:.15s}
+  .q .opt:hover{border-color:var(--accent)}
+  .q .opt.correct{background:#e7f7ec;border-color:var(--green);color:var(--green-d);font-weight:700}
+  .q .opt.wrong{background:#fdecec;border-color:#e05656;color:#a33}
+  .q .fb{margin-top:8px;font-size:13.5px;display:none;border-radius:8px;padding:10px 12px}
+  .q .fb.show{display:block}
+  .q .fb.ok{background:#e7f7ec;color:var(--green-d)}
+  .q .fb.no{background:#fdecec;color:#a33}
+  .score{background:var(--pri);color:#fff;border-radius:10px;padding:14px 18px;font-weight:700;text-align:center;display:none}
+  .score.show{display:block}
+  .cta{background:linear-gradient(135deg,#0f5c31,var(--green));color:#fff;border-radius:12px;padding:24px 26px;margin:24px 0 8px}
+  .cta h3{margin:0 0 9px;font-size:19px}
+  .cta p{margin:0 0 15px;opacity:.95;font-size:14.5px}
+  .cta a{display:inline-block;background:#fff;color:var(--green-d);text-decoration:none;font-weight:700;border-radius:8px;padding:12px 22px;font-size:14.5px}
+  .navbtns{display:flex;justify-content:space-between;margin:22px 0 8px}
+  .navbtns button{border:1px solid var(--pri);background:#fff;color:var(--pri-d);border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer;font-family:inherit}
+  .navbtns button:hover{background:var(--pri);color:#fff}
+  .navbtns button:disabled{opacity:.4;cursor:default}
+  .flag{color:#a36b00;font-size:12px;background:#fff3d6;border-radius:5px;padding:1px 6px}
+  footer{color:var(--muted);font-size:12.5px;text-align:center;padding:24px 0 40px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="k">Bivision Academy · მარკეტინგის გზა (role track)</div>
+    <h1>AI მარკეტინგში: შენი ბრენდის ხმით</h1>
+    <p>მარკეტერისა და CMO-ის გზამკვლევი. როგორ წერ ბრენდის ხმით, აწარმოებ კონტენტს მასშტაბით, აშენებ კამპანიას და ბოლოს ზომავ, რა მუშაობს რეალურად.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="banner">
+    <b>ვისთვის:</b> მარკეტერი, CMO, ბრენდის და კონტენტის გუნდი. ქეისები რეალურ პატერნებზეა დაფუძნებული; ბრენდები ანონიმურია და ციფრები ილუსტრაციული. პროდუქტის დეტალი, რომელიც დროში იცვლება, მონიშნულია <span class="flag">[გადასამოწმებელი]</span>-ით.
+  </div>
+
+  <div class="progress"><i id="bar"></i></div>
+  <div class="topicbar" id="topicbar"></div>
+
+  <div class="tabs" id="tabs">
+    <button class="on" data-tab="read" onclick="setTab('read',this)">📖 კითხვა</button>
+    <button data-tab="check" onclick="setTab('check',this)">✅ checklist</button>
+  </div>
+
+  <div class="pane read on" id="pane-read"></div>
+  <div class="pane" id="pane-check"></div>
+  <div class="pane" id="pane-single"></div>
+
+  <div class="navbtns">
+    <button id="prevBtn" onclick="prevTopic()">← წინა</button>
+    <button id="nextBtn" onclick="nextTopic()">შემდეგი →</button>
+  </div>
+
+  <footer>
+    Bivision Academy · Marketing role track · staging (noindex) · კონტენტი ანონიმური, ციფრები ილუსტრაციული · Bivision 2026
+  </footer>
+</div>
+
+<script>
+const TOPICS = [
+  {
+    id:'l1', short:'1. ბრენდის ხმა',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 1 — მითი: „AI გენერიკულ ტექსტს წერს"</div>
+<h2>AI შენი ბრენდის ხმით</h2>
+<p>მარკეტერის პირველი იმედგაცრუება AI-ით თითქმის ყოველთვის ერთნაირია. სთხოვ ტექსტს და გიბრუნებს რაღაც გლუვს, სწორს, მაგრამ უსახურს. ისეთს, თითქოს ნებისმიერ კომპანიას შეეფერებოდეს. ეს მართლა ასეა, მაგრამ მიზეზი ის არ არის, რომ AI ცუდად წერს. მიზეზი ის არის, რომ მან არ იცის, ვინ ხარ. გენერიკული პასუხი გენერიკული დავალების შედეგია.</p>
+<p>ბრენდს ხმა აქვს. ის არის ის, თუ როგორ ლაპარაკობ კლიენტთან: თბილად თუ საქმიანად, მოკლედ თუ დაწვრილებით, ხუმრობით თუ სერიოზულად. ეს ხმა შენს თავსა და შენს ტექსტებშია, უბრალოდ AI-ს ჯერ არ მიგიცია. როცა მას აჩვენებ, თუ როგორ ლაპარაკობ, ის შენი ხმით იწყებს წერას. ეს რთული არ არის. საჭიროა, რომ AI-ს მისცე რამდენიმე რეალური მაგალითი შენი საუკეთესო ტექსტებიდან და უთხრა, რა ტონი გინდა.</p>
+<p>აქ მთავარია ერთი აზრის გათავისება. AI არ არის ჯადოსნური ღილაკი, რომელიც ბრენდს თვითონ მიხვდება. ის სარკეა. რასაც აჩვენებ, იმას აირეკლავს. თუ მისცემ შენი ბრენდის საუკეთესო მაგალითებს, ის შენი ბრენდის ხმით წერს. თუ არაფერს მისცემ, ის საშუალო, გენერიკულ ხმას აირჩევს, რადგან სხვა გზა არ აქვს. ბრენდის ხმა შენი პასუხისმგებლობაა, არა AI-ის სავარაუდო ნაკლი.</p>
+<p>კიდევ ერთი პრაქტიკული რჩევა. ბრენდის ხმის სწავლება ერთჯერადი არ არის. პირველ რამდენიმე ცდაზე AI ბოლომდე ვერ მოირგებს ტონს და ეს ნორმალურია. შენ ეუბნები, რა მოგწონს და რა არა, ის სწორდება. სამი-ოთხი ასეთი შესწორების შემდეგ ის უკვე ბევრად ზუსტად წერს. ეს იგივეა, რასაც ახალ თანამშრომელს ასწავლი: პირველ კვირას უსწორებ, მერე ის თვითონ ხვდება, რა გინდა.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>მცირე კოსმეტიკის ბრენდი, რომელსაც თბილი, მეგობრული ხმა ჰქონდა Instagram-ზე. თავიდან AI-ის ტექსტები ცივი და ფორმალური გამოდიოდა. შემდეგ მარკეტერმა AI-ს მისცა ათი საუკეთესო ძველი პოსტი და უთხრა: ასე ვლაპარაკობთ, ამ ტონით დაწერე. ამის შემდეგ ტექსტები ბრენდის ხმაში ჩაჯდა და დრო, რომელიც ერთ პოსტს სჭირდებოდა, რამდენჯერმე შემცირდა.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>AI მხოლოდ გენერიკულ ტექსტს წერს.</div><div class="r"><span class="lbl">რეალობა</span>AI ისე წერს, როგორც ასწავლი. გენერიკული ტექსტი გენერიკული მითითების ბრალია. რამდენიმე კარგი მაგალითი და მკაფიო ტონი მას შენი ხმით ამეტყველებს.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა ბრენდმა AI-ის პირველი, უსახური ვერსია პირდაპირ გამოაქვეყნა და მერე დაასკვნა, რომ „AI მათთვის არ მუშაობს". პრობლემა ისევ მითითება იყო, არა AI. რეალური მოლოდინი: პირველი ვერსია მასალაა, არა საბოლოო ტექსტი. შენ ასწავლი და ხვეწავ.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>შეარჩიე შენი ხუთი საუკეთესო ტექსტი ან პოსტი და შეინახე ცალკე. ეს იქნება შენი ბრენდის ხმის ნიმუში, რომელსაც ყოველ ჯერზე AI-ს მისცემ.</div>`,
+    check:[
+      'მესმის, რომ გენერიკული ტექსტი გენერიკული მითითების შედეგია',
+      'შევარჩიე 5 საუკეთესო ტექსტი ბრენდის ხმის ნიმუშად',
+      'ვაცნობიერებ, რომ ბრენდის ხმა ჩემი პასუხისმგებლობაა, არა AI-ის ნაკლი',
+      'პირველ ვერსიას მასალად ვუყურებ, არა საბოლოო ტექსტად'
+    ]
+  },
+  {
+    id:'l2', short:'2. კონტენტი მასშტაბით',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 2 — მითი: „სწრაფი = იაფფასიანი, ცუდი"</div>
+<h2>კონტენტი მასშტაბით, ხარისხის დათმობის გარეშე</h2>
+<p>მარკეტინგში ერთ-ერთი ყველაზე დიდი ტკივილი მუდმივი კონტენტია. პოსტები, წერილები, აღწერები, კამპანიის ტექსტები. ეს ნაკადი არ ჩერდება და მცირე გუნდს ის ფიზიკურად ღლის. სწორედ აქ აძლევს AI ყველაზე დიდ სარგებელს. ის კონტენტის წარმოებას აჩქარებს. მაგრამ მაშინვე ჩნდება ეჭვი: თუ სწრაფად წერ, ხარისხს ხომ არ თმობ?</p>
+<p>პასუხი იმაზეა დამოკიდებული, როგორ იყენებ სიჩქარეს. თუ სიჩქარეს იმისთვის იყენებ, რომ ნაკლები ფიქრით მეტი გამოუშვა, ხარისხი დაეცემა. თუ სიჩქარეს იმისთვის იყენებ, რომ პირველი ვერსია წამებში მიიღო და მერე დრო დარჩენილ ხვეწაზე დახარჯო, ხარისხი პირიქით იზრდება. AI ცარიელი ფურცლის პრობლემას ხსნის. შენ აღარ იწყებ ნულიდან. იწყებ მზა ვერსიიდან, რომელსაც ბრენდის ხმაზე და კონკრეტიკაზე მართავ.</p>
+<p>არის კიდევ ერთი მოგება, რომელსაც ხშირად ვერ ამჩნევენ. როცა პირველი ვერსია უკვე გაქვს, შენი ენერგია კრიტიკაზე გადადის, არა შექმნაზე. ცარიელ ფურცელთან ბრძოლა ყველაზე მეტ ნებისყოფას ჭამს. როცა AI ამ ბრძოლას იღებს, შენ უფრო ნათლად ხედავ, რა აკლია ტექსტს, რა არ ჯდება ბრენდში, სად სუსტია გზავნილი. რედაქტირება უფრო ადვილია, ვიდრე ნულიდან შექმნა, და სწორედ რედაქტირებაშია ხარისხი.</p>
+<p>ღირს ერთი რამის გათვალისწინება. AI კარგია მრავალფეროვან ნედლეულში, მაგრამ ერთფეროვნებას იძლევა, თუ მას ყოველ ჯერზე ერთსა და იმავეს სთხოვ. თუ გინდა, რომ კონტენტი არ გახდეს ერთმანეთის მსგავსი, ყოველ ჯერზე მიეცი ახალი კონკრეტიკა: ახალი მაგალითი, ახალი კუთხე, ახალი დეტალი შენი ბიზნესიდან. რაც უფრო კონკრეტული ხარ, მით უფრო ცოცხალი და განსხვავებულია შედეგი.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ერთი ადამიანის მარკეტინგი საშუალო ბიზნესში. ადრე კვირაში სამი პოსტი ძლივს გამოდიოდა, რადგან თითო ცარიელი ეკრანიდან იწერებოდა. AI-ის დახმარებით პირველი ვერსიები წამებში მზადდებოდა, მარკეტერი კი დროს ხვეწასა და ვიზუალზე ხარჯავდა. შედეგად კონტენტის რაოდენობა გაიზარდა და ხარისხი არ დაცემულა, რადგან გათავისუფლებული დრო სწორედ ხარისხში ჩაიდო.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>სწრაფი კონტენტი იაფფასიანი და ცუდია.</div><div class="r"><span class="lbl">რეალობა</span>სიჩქარე ხარისხს არ ეწინააღმდეგება, თუ ის ხვეწაზე გათავისუფლებულ დროდ გადააქციე. ცუდი კონტენტი ნაჩქარევი ფიქრის ბრალია, არა სწრაფი ხელსაწყოს.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა ბრენდმა AI-ით კონტენტი მასობრივად, შემოწმების გარეშე გამოუშვა. პოსტები ერთმანეთს ჰგავდა და ბრენდი ფერმკრთალი გახდა. რეალური მოლოდინი: AI რაოდენობას იძლევა, შენ უზრუნველყოფ, რომ თითო ნამუშევარს ბრენდის ხმა და აზრი ჰქონდეს.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>აიღე ერთი კვირის კონტენტ-გეგმა და სცადე ასე: AI წერს პირველ ვერსიებს, შენ ხარჯავ დროს მხოლოდ მათ გაუმჯობესებაზე. შეადარე, რამდენი დრო დაზოგე და დაეცა თუ არა ხარისხი.</div>`,
+    check:[
+      'მესმის, რომ AI ცარიელი ფურცლის პრობლემას ხსნის, არა ხარისხს ანაცვლებს',
+      'სიჩქარით გათავისუფლებულ დროს ხვეწაში ვდებ, არა მეტ ნედლ ტექსტში',
+      'ვუზრუნველყოფ, რომ თითო ნამუშევარს ბრენდის ხმა და აზრი ჰქონდეს',
+      'ერთ კვირის გეგმაზე ვცადე: AI პირველი ვერსია, მე ხვეწა'
+    ]
+  },
+  {
+    id:'l3', short:'3. კამპანია',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 3 — მითი: „AI კრეატივს ვერ ჩაანაცვლებს"</div>
+<h2>კამპანია და გზავნილი: AI როგორც პარტნიორი</h2>
+<p>კარგ მარკეტერს ხშირად აქვს ეჭვი: AI ხომ ვერ იქნება შემოქმედებითი ჩემსავით? ეს კითხვა სწორია, მაგრამ აქცენტს ცოტა არასწორ ადგილას სვამს. AI შენს კრეატივს არ ცვლის. ის შენი კრეატივის გამაძლიერებელი პარტნიორია. სხვაობა იმაშია, რომ კარგ იდეას მაინც შენ არჩევ, AI კი გეხმარება, რომ უფრო მეტი ვარიანტი უფრო სწრაფად ნახო.</p>
+<p>როგორ მუშაობს ეს პრაქტიკაში? კამპანიის დაწყებისას ყველაზე ძნელი ცარიელი ფურცელია. AI-ს შეუძლია წამებში მოგცეს ათი განსხვავებული კუთხე ერთ გზავნილზე, ხუთი სხვადასხვა სათაური, სამი ტონი ერთ შეთავაზებაზე. ეს ვარიანტები საბოლოო პასუხი არ არის. ისინი ნედლეულია, რომელშიც შენ ირჩევ საუკეთესოს, აერთიანებ ორ იდეას ერთში და ხვეწავ. AI გაძლევს არჩევანის სიგანეს, შენ იღებ გადაწყვეტილებას.</p>
+<p>ეს განსაკუთრებით ღირებულია მაშინ, როცა ერთ იდეაში გაჭედილი ხარ. ყველა მარკეტერს ემართება, რომ თავში ერთი მიდგომა უტრიალებს და სხვას ვერ ხედავს. სწორედ აქ არის AI სასარგებლო. ის სწრაფად გაჩვენებს იმ კუთხეებს, რომელზეც შენ ჯერ არ გიფიქრია. შენ შეიძლება ცხრა უარყო, მაგრამ ის მეათე, რომელიც თვითონ არ მოგსვლოდა, ხშირად კამპანიის გული ხდება.</p>
+<p>ერთი რამ ცალკე უნდა აღინიშნოს. AI კარგი პარტნიორია იდეების გასაფართოებლად, მაგრამ ცუდი მსაჯია იმისა, რომელი იდეა იმუშავებს შენს ბაზარზე. ეს ცოდნა შენთან რჩება, რადგან შენ იცი შენი კლიენტი, შენი ბაზარი და შენი ბრენდის ისტორია. ამიტომ AI-ს იყენებ ვარიანტების მისაღებად, საბოლოო რჩევას კი შენი ბაზრის ცოდნაზე ააგებ. ეს ორი ერთად ბევრად ძლიერია, ვიდრე ცალკე.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ბრენდი, რომელიც ახალ შეთავაზებას უშვებდა. მარკეტერმა AI-ს სთხოვა ერთ გზავნილზე ათი განსხვავებული მიდგომა: შიშზე, სარგებელზე, ემოციაზე და სხვა. ათიდან ორი იდეა მას თვითონ არ მოსვლოდა. საბოლოო კამპანია სწორედ ამ ორის შერწყმაზე აეწყო. AI-მ იდეა არ ჩაანაცვლა, არამედ მისი დიაპაზონი გააფართოვა.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>AI კრეატივს ვერ ჩაანაცვლებს, ამიტომ უსარგებლოა.</div><div class="r"><span class="lbl">რეალობა</span>ის კრეატივს კი არ ცვლის, არამედ ამრავლებს ვარიანტებს, საიდანაც შენ ირჩევ. პარტნიორი, რომელიც სწრაფად აზროვნებს, კარგ მარკეტერს უფრო ძლიერს ხდის.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა გუნდმა AI-ის პირველი იდეა, არჩევანის გარეშე, პირდაპირ აიღო და გაუშვა. კამპანია უფერული გამოვიდა. რეალური მოლოდინი: AI ვარიანტებს იძლევა, არჩევანი და გემოვნება შენ გრჩება. სწორედ ეს არჩევანია მარკეტერის ნამდვილი ღირებულება.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>შემდეგ კამპანიაში, სანამ ერთ იდეას აირჩევ, სთხოვე AI-ს ერთ გზავნილზე ხუთი განსხვავებული კუთხე. შემდეგ შენ აირჩიე და შეურიე საუკეთესო.</div>`,
+    check:[
+      'მესმის, რომ AI კრეატივს ამრავლებს ვარიანტებად, არ ცვლის',
+      'კამპანიის დასაწყისში ვითხოვ რამდენიმე განსხვავებულ კუთხეს',
+      'საბოლოო არჩევანი და გემოვნება ჩემთან რჩება',
+      'ვაცნობიერებ, რომ პირველი იდეა არჩევანის გარეშე ხშირად უფერულია'
+    ]
+  },
+  {
+    id:'l4', short:'4. ბრენდის კონტროლი',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 4 — მითი: „AI ბრენდს დააზიანებს"</div>
+<h2>ბრენდის რისკი და კონტროლი</h2>
+<p>AI-ის სიჩქარეს ერთი რეალური რისკი ახლავს. რაც უფრო ადვილია კონტენტის სწრაფად გამოშვება, მით უფრო ადვილია რაღაცის გამოშვება, რაც ბრენდს არ შეეფერება ან, უარეს შემთხვევაში, აზიანებს. ეს რისკი ნამდვილია, მაგრამ ის AI-ის ბრალი არ არის. ის გამოტოვებული კონტროლის ბრალია.</p>
+<p>წესი მარტივია და იგივეა, რასაც ნებისმიერ სხვა სფეროში ვხედავთ. AI ამზადებს, ადამიანი უშვებს. ბრენდის სახელით საჯაროდ გასული არც ერთი ტექსტი არ უნდა გავიდეს ადამიანის თვალის გარეშე. განსაკუთრებით ფრთხილი უნდა იყო მგრძნობიარე თემებზე, საჩივრებზე, ოფიციალურ განცხადებებზე. ასეთ ადგილებში AI პირველ ვერსიას ამზადებს, მაგრამ საბოლოო სიტყვა ყოველთვის ადამიანისაა.</p>
+<p>კარგი ჩარჩო ასე გამოიყურება. დაყავი კონტენტი ორ ჯგუფად რისკის მიხედვით. დაბალი რისკის კონტენტი, მაგალითად ჩვეულებრივი პოსტი ან პროდუქტის აღწერა, შეიძლება სწრაფად, მსუბუქი შემოწმებით გავიდეს. მაღალი რისკის კონტენტი, რომელიც მგრძნობიარე თემას ან კრიზისს ეხება, ყოველთვის ადამიანის ყურადღებით დადასტურებას მოითხოვს. ეს გამიჯვნა გაძლევს სიჩქარესაც და უსაფრთხოებასაც, ერთის მეორეზე გაცვლის გარეშე.</p>
+<p>ეს წესი არ ნიშნავს, რომ AI მარკეტინგში ნელა გხდის. პირიქით. დაბალი რისკის კონტენტი, რომელიც ბრენდის დიდ ნაწილს შეადგენს, სწრაფად მოძრაობს. მხოლოდ ის მცირე, მაგრამ მნიშვნელოვანი ნაწილი, რომელსაც რეალური ზიანი შეუძლია, გადის დამატებით კონტროლს. ასე იღებ სიჩქარეს იქ, სადაც უსაფრთხოა, და სიფრთხილეს იქ, სადაც ის ნამდვილად საჭიროა. გასაღები ის არის, რომ წესი წინასწარ დაადგინო, არა მაშინ, როცა პრობლემა უკვე მოხდა.</p>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ბრენდი, რომელმაც AI ჩართო სოციალურ ქსელში პასუხების მომზადებაში. დააწესეს მკაფიო წესი: AI ამზადებს პასუხის ვარიანტს, მაგრამ კლიენტთან არც ერთი შეტყობინება არ იგზავნება ადამიანის დადასტურების გარეშე. ერთხელ AI-მ მგრძნობიარე საჩივარზე ფორმალურად სწორი, მაგრამ ცივი პასუხი მოამზადა. ადამიანმა შეცვალა და გაათბო. კონტროლის ნაბიჯმა ბრენდი დაიცვა.</div>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>AI ბრენდს დააზიანებს.</div><div class="r"><span class="lbl">რეალობა</span>ბრენდს აზიანებს კონტროლის გარეშე გამოშვებული კონტენტი, არა თვითონ AI. სწორი წესი, ანუ ადამიანი საბოლოო კარიბჭესთან, ამ რისკს ხსნის.</div></div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა კომპანიამ AI-ს ავტომატური პასუხები მიანდო კლიენტებთან, ადამიანის გარეშე. ერთმა უხერხულმა პასუხმა საჯაროდ იჩხუბა. რეალური მოლოდინი: ავტომატიზაცია მომზადებაშია, არა საჯარო გამოშვებაში. კარიბჭესთან ადამიანი დგას.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>დაადგინე ნათელი წესი, რა ტიპის კონტენტი არ ქვეყნდება ადამიანის დადასტურების გარეშე. დაიწყე იქიდან, რომ ეს წესი ყველაზე მგრძნობიარე არხებზე გავრცელდეს.</div>`,
+    check:[
+      'მესმის წესი: ბრენდის სახელით AI ამზადებს, ადამიანი უშვებს',
+      'კონტენტი დავყავი რისკის მიხედვით (დაბალი vs მაღალი)',
+      'მაღალი რისკის კონტენტი ყოველთვის ადამიანის დადასტურებას გადის',
+      'დავადგინე, რა არ ქვეყნდება ავტომატურად, ადამიანის გარეშე'
+    ]
+  },
+  {
+    id:'l5', short:'5. ხიდი → გაზომვა',
+    read:`<div class="meta">⏱ ~10 წთ · გაკვეთილი 5 — ხიდი მონაცემებსა და გაზომვისკენ</div>
+<h2>ხიდი: გაზომე, რა მუშაობს (Bivision core)</h2>
+<p>მარკეტინგში ერთი ძველი ფრაზაა: ვიცი, რომ ჩემი ბიუჯეტის ნახევარი იკარგება, უბრალოდ არ ვიცი, რომელი ნახევარი. ეს ხუმრობა დიდხანს იყო სიმართლე, მაგრამ დღეს ის აღარ უნდა იყოს. სწორედ აქ ხვდება მარკეტინგი Bivision-ის ბირთვს, ანუ მონაცემსა და გაზომვას.</p>
+<p>კონტენტი და კამპანია მნიშვნელოვანია, მაგრამ მათი ნამდვილი ღირებულება მაშინ ჩანს, როცა ხედავ, რა მუშაობს და რა არა. რომელი არხი მოგიყვანს კლიენტს და რომელი მხოლოდ ხარჯავს. რა ჯდება ერთი ახალი კლიენტი თითო არხზე. ეს ციფრები ჩვეულებრივ მიმოფანტულია: ნაწილი სოციალურ ქსელშია, ნაწილი საიტის ანალიტიკაში, ნაწილი გაყიდვების სისტემაში. სანამ ისინი ერთ სურათად არ აეწყობა, შენ მართავ მარკეტინგს შეგრძნებით, არა ციფრით.</p>
+<p>ცოცხალი მარკეტინგული dashboard სწორედ ამ ფანტვას ხსნის. ის სხვადასხვა არხის შედეგს ერთ ეკრანზე აერთიანებს და გიჩვენებს არა მხოლოდ რამდენი ნახა ხალხმა, არამედ რამდენი იქცა კლიენტად და რა ფასად. ეს ის სიცხადეა, რომელიც გადაწყვეტილებას ცვლის. შენ წყვეტ იქ ხარჯვას, რაც არ მუშაობს, და აძლიერებ იმას, რაც მუშაობს. იგივე ბიუჯეტი უფრო ჭკვიანურად მუშაობს.</p>
+<p>მნიშვნელოვანია ერთი რამის გაგება. გაზომვა მარკეტერს თავისუფლებას არ ართმევს, არამედ აძლევს. როცა ციფრით შეგიძლია აჩვენო, რომელმა კამპანიამ რა მოიტანა, შენი ბიუჯეტის დაცვა ბევრად ადვილია. ციფარი არა მხოლოდ აკონტროლებს, არამედ ამართლებს შენს ნამუშევარს ხელმძღვანელობის წინაშე. სწორედ გაზომვა აქცევს მარკეტინგს იმ განყოფილებად, რომელსაც ენდობიან, არა იმად, რომელსაც ხარჯად აღიქვამენ.</p>
+<div class="myth"><div class="m"><span class="lbl">მითი</span>მარკეტინგი შემოქმედებაა, ის ვერ იზომება.</div><div class="r"><span class="lbl">რეალობა</span>შემოქმედება ბოლომდე ვერ იზომება, მაგრამ შედეგი იზომება. რომელმა გზავნილმა იმუშავა და რა ფასად, ეს მკაფიო ციფარია. სწორედ ის აქცევს მარკეტინგს ხარჯიდან ინვესტიციად.</div></div>
+<div class="case"><span class="lbl">რეალური ქეისი</span>ბრენდი, რომელიც რამდენიმე არხში ერთდროულად ხარჯავდა, მაგრამ ვერ ხედავდა, რომელი მუშაობდა. როცა მონაცემი ერთ dashboard-ში გაერთიანდა, აღმოჩნდა, რომ ბიუჯეტის დიდი ნაწილი ყველაზე სუსტ არხში მიდიოდა. გადანაწილების შემდეგ იგივე ფულით მეტი კლიენტი მოვიდა.</div>
+<div class="fail"><span class="lbl">პრაქტიკული fuckup</span>ერთმა გუნდმა მთელი ენერგია კონტენტის წარმოებაში ჩადო, გაზომვა კი საერთოდ არ ჰქონდა. ვერ თქვეს, რა მუშაობდა, ამიტომ იგივე შეცდომებს იმეორებდნენ. რეალური მოლოდინი: კონტენტი და გაზომვა ერთად მუშაობს. ერთი მეორის გარეშე ბრმაა.</div>
+<div class="step"><span class="lbl">ერთი ნაბიჯი</span>ჩამოაყალიბე ერთი მარკეტინგული კითხვა, რომელზეც დღეს ნათელი ციფრით ვერ პასუხობ. მაგალითად, რომელი არხი მოგიყვანს კლიენტს ყველაზე იაფად. სწორედ აქ იწყება შენი მარკეტინგული dashboard.</div>
+<div class="cta">
+  <h3>უფასო „მონაცემთა მზადყოფნის აუდიტი"</h3>
+  <p>Bivision-ი ქართულ კომპანიებს ეხმარება, რომ მარკეტინგი ციფრით მართონ, არა შეგრძნებით. Qlik-ისა და Power BI-ის dashboard-ები შენს მიმოფანტულ მარკეტინგულ მონაცემს ერთ სურათად აქცევს. დასაწყისად გთავაზობთ უფასო აუდიტს, სადაც განვსაზღვრავთ, რომელ მარკეტინგულ კითხვას უნდა უპასუხო პირველ რიგში.</p>
+  <a href="https://bivision.ge" target="_blank" rel="noopener">აუდიტის დაჯავშნა →</a>
+</div>`,
+    check:[
+      'ვაცნობიერებ, რომ მარკეტინგის შედეგი იზომება, თუნდაც შემოქმედება ბოლომდე ვერ',
+      'ვიცი, რომ ჩემი მარკეტინგული მონაცემი მიმოფანტულია (სოც. ქსელი, საიტი, გაყიდვები)',
+      'ჩამოვაყალიბე ერთი კითხვა: რომელი არხი მომიყვანს კლიენტს ყველაზე იაფად',
+      'მესმის, რომ კონტენტი და გაზომვა ერთად მუშაობს, ცალკე ბრმაა'
+    ]
+  },
+  {
+    id:'project', short:'📋 პროექტი', mod:true, single:true,
+    html:`<div class="card2">
+<h2>პროექტი — ბრენდის ხმის ნაკრები + გაზომვის კითხვა</h2>
+<p class="meta">~30 წუთი · შენი რეალური ბრენდისთვის</p>
+<p>ორი ნაწილი. ჯერ ააწყობ ბრენდის ხმის ნაკრებს, რომელსაც ყოველ ჯერზე AI-ს მისცემ. შემდეგ ჩამოაყალიბებ ერთ მარკეტინგულ კითხვას, რომელზეც გინდა, რომ ციფრით პასუხობდე.</p>
+<h3>ნაწილი 1 — ბრენდის ხმის ნაკრები</h3>
+<table class="rubric">
+  <tr><th>ელემენტი</th><th>შევავსე</th></tr>
+  <tr><td>5 საუკეთესო ტექსტი/პოსტი (ნიმუში)</td><td>☐</td></tr>
+  <tr><td>ტონის აღწერა (მაგ: თბილი, მოკლე, ხუმრობით)</td><td>☐</td></tr>
+  <tr><td>3 სიტყვა/ფრაზა, რომელსაც ბრენდი ყოველთვის ამბობს</td><td>☐</td></tr>
+  <tr><td>3 რამ, რასაც ბრენდი არასოდეს იტყვის</td><td>☐</td></tr>
+</table>
+<h3>ნაწილი 2 — გაზომვის კითხვა</h3>
+<p>რომელ მარკეტინგულ კითხვაზე გინდა, რომ ციფრით პასუხობდე? (მაგ: „რომელი არხი მომიყვანს კლიენტს ყველაზე იაფად?") ჩამოწერე კითხვა, საჭირო ციფრები და სად არის ეს მონაცემი დღეს.</p>
+</div>`
+  },
+  {
+    id:'test', short:'🧠 ფინალური ტესტი', mod:true, quiz:[
+      {q:'1. AI რატომ წერს ხანდახან გენერიკულ ტექსტს?',
+       opts:['იმიტომ, რომ ცუდად წერს ყოველთვის','იმიტომ, რომ მისთვის ბრენდის ხმა და მაგალითები არ მიგიცია','იმიტომ, რომ ქართულად ვერ წერს'],
+       correct:1, fb:'გენერიკული პასუხი გენერიკული მითითების შედეგია.'},
+      {q:'2. სიჩქარე და ხარისხი როგორ თანაარსებობს კონტენტში?',
+       opts:['სწრაფი ყოველთვის ცუდია','AI პირველ ვერსიას იძლევა, გათავისუფლებული დრო ხვეწაში ჩაიდება','ხარისხს მნიშვნელობა არ აქვს'],
+       correct:1, fb:'ცუდი კონტენტი ნაჩქარევი ფიქრის ბრალია, არა სწრაფი ხელსაწყოს.'},
+      {q:'3. კამპანიაში AI-ის როლი რა არის?',
+       opts:['კრეატივის სრული ჩანაცვლება','ვარიანტების გამრავლება, საიდანაც შენ ირჩევ','მხოლოდ მართლწერის შემოწმება'],
+       correct:1, fb:'AI დიაპაზონს აფართოებს; არჩევანი მარკეტერისაა.'},
+      {q:'4. ბრენდის რისკს რა ხსნის?',
+       opts:['AI-ის საერთოდ არ გამოყენება','წესი: AI ამზადებს, ადამიანი უშვებს','კონტენტის ავტომატური გამოქვეყნება'],
+       correct:1, fb:'ბრენდს აზიანებს კონტროლის გარეშე გასული კონტენტი, არა AI.'},
+      {q:'5. „მარკეტინგი ვერ იზომება" — რა არის რეალობა?',
+       opts:['მართალია, არაფერი იზომება','შემოქმედება ბოლომდე ვერ, მაგრამ შედეგი იზომება','მხოლოდ დიდი კომპანიები ზომავენ'],
+       correct:1, fb:'რა იმუშავა და რა ფასად — ეს მკაფიო ციფარია.'},
+      {q:'6. მარკეტინგული dashboard საიდან იწყება?',
+       opts:['ყველა არხის ერთბაშად აწყობით','ერთი კითხვით, მაგ: რომელი არხი მოგიყვანს კლიენტს ყველაზე იაფად','კონტენტის რაოდენობის გაზრდით'],
+       correct:1, fb:'დაიწყე ერთი მკაფიო კითხვით, რომელზეც დღეს ციფრით ვერ პასუხობ.'}
+    ]
+  },
+  {
+    id:'audit', short:'🎯 უფასო აუდიტი', mod:true, single:true,
+    html:`<div class="cta">
+  <h3>უფასო „მონაცემთა მზადყოფნის აუდიტი"</h3>
+  <p>ხუთმა გაკვეთილმა აჩვენა, როგორ წერ ბრენდის ხმით, აწარმოებ კონტენტს მასშტაბით და ბოლოს ზომავ, რა მუშაობს. შემდეგი ნაბიჯი კონკრეტულია. 30-40 წუთიან საუბარში ერთად განვსაზღვრავთ შენს პირველ მარკეტინგულ dashboard-ს: რომელ კითხვას პასუხობს, რა მონაცემი სჭირდება და როგორ აიწყობა Qlik-ში ან Power BI-ში.</p>
+  <a href="https://bivision.ge" target="_blank" rel="noopener">აუდიტის დაჯავშნა →</a>
+</div>
+<div class="card2">
+<h2>რას მიიღებ აუდიტიდან</h2>
+<p>1. შენი პირველი მარკეტინგული dashboard-ის გეგმა: კითხვა, მეტრიკა, წყაროები.</p>
+<p>2. შენი მარკეტინგული მონაცემის რუკა: სად არის, რა აკლია, რა კავშირები სჭირდება.</p>
+<p>3. ერთი მკაფიო შემდეგი ნაბიჯი, რომ მარკეტინგი ციფრით მართო, არა შეგრძნებით.</p>
+</div>`
+  }
+];
+
+let cur = 0, tab = 'read';
+const tb = document.getElementById('topicbar');
+TOPICS.forEach((t,i)=>{
+  const b = document.createElement('button');
+  b.textContent = t.short;
+  if(t.mod) b.className = 'mod';
+  b.onclick = ()=>{ cur=i; tab='read'; render(); };
+  tb.appendChild(b);
+});
+
+function setTab(name, el){
+  tab = name;
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on', b===el));
+  paint();
+}
+
+function render(){
+  [...tb.children].forEach((b,i)=>b.classList.toggle('on', i===cur));
+  document.getElementById('bar').style.width = ((cur+1)/TOPICS.length*100) + '%';
+  const tabs = document.getElementById('tabs');
+  const t = TOPICS[cur];
+  if(t.single || t.quiz){
+    tabs.classList.add('hide');
+  } else {
+    tabs.classList.remove('hide');
+    document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on', b.dataset.tab==='read'));
+    tab = 'read';
+  }
+  document.getElementById('prevBtn').disabled = (cur===0);
+  document.getElementById('nextBtn').disabled = (cur===TOPICS.length-1);
+  paint();
+}
+
+function paint(){
+  const t = TOPICS[cur];
+  const pr = document.getElementById('pane-read');
+  const pc = document.getElementById('pane-check');
+  const ps = document.getElementById('pane-single');
+  pr.classList.remove('on'); pc.classList.remove('on'); ps.classList.remove('on');
+  if(t.single){
+    ps.innerHTML = t.html; ps.classList.add('on'); return;
+  }
+  if(t.quiz){
+    ps.innerHTML = renderQuiz(t.quiz); ps.classList.add('on'); return;
+  }
+  pr.innerHTML = t.read;
+  pc.innerHTML = `<div class="card2"><h2>გადაწყვეტილების checklist</h2>`
+    + t.check.map(x=>`<label class="ck" onclick="this.classList.toggle('done')"><input type="checkbox"><span>${x}</span></label>`).join('')
+    + `</div>`;
+  if(tab==='check') pc.classList.add('on'); else pr.classList.add('on');
+}
+
+function renderQuiz(items){
+  let html = `<div class="card2"><h2>ფინალური ტესტი</h2><p>ექვსი კითხვა მთელ ტრეკზე. აირჩიე პასუხი და ნახე ახსნა.</p></div>`;
+  items.forEach((it,qi)=>{
+    html += `<div class="q" id="q${qi}"><div class="qn">${it.q}</div>`
+      + it.opts.map((o,oi)=>`<button class="opt" onclick="answer(${qi},${oi})">${o}</button>`).join('')
+      + `<div class="fb" id="fb${qi}"></div></div>`;
+  });
+  html += `<div class="score" id="score"></div>`;
+  return html;
+}
+
+let answered = {};
+function answer(qi, oi){
+  const t = TOPICS[cur];
+  if(!t.quiz || answered[qi]!==undefined) return;
+  answered[qi] = oi;
+  const it = t.quiz[qi];
+  const qEl = document.getElementById('q'+qi);
+  const opts = qEl.querySelectorAll('.opt');
+  opts[it.correct].classList.add('correct');
+  if(oi!==it.correct) opts[oi].classList.add('wrong');
+  const fb = document.getElementById('fb'+qi);
+  const ok = oi===it.correct;
+  fb.className = 'fb show ' + (ok?'ok':'no');
+  fb.textContent = (ok?'სწორია. ':'ზუსტი არ არის. ') + it.fb;
+  const done = Object.keys(answered).length;
+  if(done===t.quiz.length){
+    let right = 0;
+    t.quiz.forEach((q,i)=>{ if(answered[i]===q.correct) right++; });
+    const s = document.getElementById('score');
+    s.className = 'score show';
+    s.textContent = `შედეგი: ${right} / ${t.quiz.length}` + (right===t.quiz.length?' — სრული ქულა.':'');
+  }
+}
+
+function prevTopic(){ if(cur>0){ cur--; tab='read'; answered={}; render(); window.scrollTo({top:0,behavior:'smooth'}); } }
+function nextTopic(){ if(cur<TOPICS.length-1){ cur++; tab='read'; answered={}; render(); window.scrollTo({top:0,behavior:'smooth'}); } }
+
+render();
+</script>
+</body>
+</html>
