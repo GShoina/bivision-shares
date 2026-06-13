@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Bivision Academy — უფასო პრაქტიკული AI კურსები</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#6B63B5; --purple-d:#4d4694; --green:#00A651; --green-d:#0f7a43;
+    --ink:#1b1b2b; --muted:#5f5c72; --bg:#f6f6fb; --card:#fff; --line:#e6e4f2;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans Georgian','Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 18px}
+  /* header */
+  header.bar{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+  header.bar .wrap{display:flex;align-items:center;gap:12px;padding:13px 18px}
+  header.bar img{height:24px}
+  header.bar .ac{font-weight:800;color:var(--purple);letter-spacing:.06em;font-size:14px}
+  header.bar .who{margin-left:auto;font-size:13px;color:var(--muted)}
+  /* hero */
+  .hero{background:linear-gradient(135deg,var(--purple-d),var(--purple));color:#fff;padding:54px 0 48px}
+  .hero h1{margin:0 0 12px;font-size:34px;line-height:1.2}
+  .hero p{margin:0 0 8px;font-size:17px;opacity:.95;max-width:640px}
+  .hero .pill{display:inline-block;background:rgba(255,255,255,.16);border-radius:20px;padding:4px 14px;font-size:13px;font-weight:600;margin-bottom:18px}
+  /* registration */
+  .reg{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 26px;margin:-32px auto 30px;max-width:560px;box-shadow:0 10px 30px rgba(77,70,148,.10);position:relative;z-index:5}
+  .reg h2{margin:0 0 4px;font-size:21px;color:var(--purple-d)}
+  .reg p.s{margin:0 0 18px;font-size:14px;color:var(--muted)}
+  .reg label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin:12px 0 5px}
+  .reg input{width:100%;border:1.5px solid var(--line);border-radius:9px;padding:12px 14px;font-size:15px;font-family:inherit}
+  .reg input:focus{outline:none;border-color:var(--purple)}
+  .reg button{width:100%;margin-top:18px;background:var(--green);color:#fff;border:none;border-radius:9px;padding:14px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit}
+  .reg button:hover{background:var(--green-d)}
+  .reg .err{color:#c0392b;font-size:13px;margin-top:8px;display:none}
+  .reg .note{font-size:11.5px;color:#a36b00;background:#fff8e6;border-radius:6px;padding:7px 10px;margin-top:14px}
+  .welcome{background:#eaf7ef;border:1px solid #bfe6cd;border-radius:14px;padding:18px 22px;margin:-20px auto 26px;max-width:680px;display:none;position:relative;z-index:5}
+  .welcome b{color:var(--green-d)}
+  /* catalog */
+  .catalog{filter:blur(5px);pointer-events:none;opacity:.55;transition:.4s}
+  .catalog.unlocked{filter:none;pointer-events:auto;opacity:1}
+  .lockmsg{text-align:center;color:var(--muted);font-size:14px;margin:8px 0 18px;font-weight:600}
+  .lockmsg.hide{display:none}
+  .group{margin:30px 0 6px}
+  .group h3{font-size:15px;color:var(--purple-d);text-transform:uppercase;letter-spacing:.05em;margin:0 0 4px}
+  .group .gsub{font-size:13.5px;color:var(--muted);margin:0 0 14px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+  .course{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:18px 20px;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:.18s}
+  .course:hover{border-color:var(--purple);box-shadow:0 6px 18px rgba(77,70,148,.10);transform:translateY(-2px)}
+  .course .tag{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px}
+  .course.start .tag{color:var(--purple)}
+  .course.track .tag{color:#0f7a43}
+  .course.module .tag{color:#0e7490}
+  .course h4{margin:0 0 7px;font-size:17px;line-height:1.3}
+  .course p{margin:0 0 14px;font-size:14px;color:var(--muted);flex:1}
+  .course .foot{display:flex;align-items:center;justify-content:space-between;font-size:13px}
+  .course .lc{color:var(--muted)}
+  .course .go{color:var(--green-d);font-weight:700}
+  .course .started{display:none;background:#eaf7ef;color:var(--green-d);border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:700;margin-left:8px}
+  .course.is-started .started{display:inline-block}
+  /* cta */
+  .audit{background:linear-gradient(135deg,var(--green-d),var(--green));color:#fff;border-radius:16px;padding:28px 30px;margin:36px 0 10px;text-align:center}
+  .audit h3{margin:0 0 8px;font-size:21px}
+  .audit p{margin:0 0 16px;opacity:.95}
+  .audit a{display:inline-block;background:#fff;color:var(--green-d);text-decoration:none;font-weight:700;border-radius:9px;padding:12px 26px}
+  footer{color:var(--muted);font-size:12.5px;text-align:center;padding:26px 0 44px}
+  @media(max-width:560px){.hero h1{font-size:27px}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <img src="../bivision-logo.svg" alt="Bivision">
+    <span class="ac">ACADEMY</span>
+    <span class="who" id="who"></span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="pill">უფასო · ქართულად · პრაქტიკული</span>
+    <h1>Bivision Academy</h1>
+    <p>AI შენი ბიზნესისთვის, ზედმეტი ჰაიპის გარეშე. ნამდვილი ქართული მაგალითები, ყოველ გაკვეთილზე ერთი ნაბიჯი.</p>
+    <p>დარეგისტრირდი ერთხელ და გახსენი ყველა კურსი.</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <div class="reg" id="regCard">
+    <h2>დაიწყე სწავლა</h2>
+    <p class="s">შეიყვანე სახელი და ელფოსტა, რომ კურსები გაიხსნას.</p>
+    <label for="rname">სახელი</label>
+    <input id="rname" type="text" placeholder="შენი სახელი" autocomplete="name">
+    <label for="remail">ელფოსტა</label>
+    <input id="remail" type="email" placeholder="you@company.ge" autocomplete="email">
+    <div class="err" id="regErr">გთხოვ შეავსე სახელი და სწორი ელფოსტა.</div>
+    <button onclick="register()">დაიწყე სწავლა უფასოდ →</button>
+    <div class="note">სატესტო რეჟიმი: მონაცემი ინახება მხოლოდ ამ ბრაუზერში (front-end). რეალური ლიდ-ჩაწერა (HubSpot/Brevo) ცალკე ნაბიჯია.</div>
+  </div>
+
+  <div class="welcome" id="welcome">
+    კეთილი იყოს დაბრუნება, <b id="wname"></b>. ყველა კურსი ღიაა. <a href="#" onclick="resetReg(event)" style="color:var(--muted);font-size:12px">(გასვლა)</a>
+  </div>
+
+  <div class="lockmsg" id="lockmsg">↑ დარეგისტრირდი, რომ კურსები გაიხსნას</div>
+
+  <div class="catalog" id="catalog">
+
+    <div class="group">
+      <h3>დაიწყე აქ</h3>
+      <p class="gsub">გადაწყვეტილების მიმღებისთვის: სად დგას AI შენი კომპანიისთვის.</p>
+      <div class="cards" id="g-start"></div>
+    </div>
+
+    <div class="group">
+      <h3>შენი როლისთვის</h3>
+      <p class="gsub">როდის და რატომ: მიდგომა და მსჯელობა შენი სფეროსთვის (ანალიტიკა, ფინანსი, მარკეტინგი).</p>
+      <div class="cards" id="g-track"></div>
+    </div>
+
+    <div class="group">
+      <h3>პრაქტიკული მოდულები</h3>
+      <p class="gsub">როგორ: ნაბიჯ-ნაბიჯ სამუშაო პროცესი, შესასრულებლად.</p>
+      <div class="cards" id="g-module"></div>
+    </div>
+
+    <div class="audit">
+      <h3>უფასო AI-მზადყოფნის აუდიტი</h3>
+      <p>როცა მზად ხარ, რომ AI შენს ნამდვილ ბიზნეს-მონაცემს დაუკავშირო, ერთად ვნახავთ საიდან დაიწყო.</p>
+      <a href="https://bivision.ge" target="_blank" rel="noopener">აუდიტის დაჯავშნა →</a>
+    </div>
+  </div>
+
+  <footer>
+    Bivision Academy · staging (noindex) · უფასო კურსები · Bivision 2026
+  </footer>
+</div>
+
+<script>
+const COURSES = [
+  {slug:'c-level-wedge', group:'start',  tag:'გზამკვლევი', title:'AI შენი კომპანიისთვის', desc:'გადაწყვეტილების მიმღებისთვის: საიდან დაიწყო, რა ღირს, რას ერიდო.', lessons:4},
+
+  {slug:'track-analytics', group:'track', tag:'როლი · ანალიტიკა', title:'შენი მონაცემები ერთ სურათად', desc:'ანალიტიკის გზა: მონაცემიდან გადაწყვეტილებამდე.', lessons:5},
+  {slug:'track-finance',   group:'track', tag:'როლი · ფინანსი',   title:'AI ფინანსში', desc:'სიზუსტე, კონტროლი, სიცხადე ფინანსურ საქმეში.', lessons:5},
+  {slug:'track-marketing', group:'track', tag:'როლი · მარკეტინგი', title:'AI მარკეტინგში', desc:'შენი ბრენდის ხმით, მასშტაბურად და კონტროლით.', lessons:5},
+
+  {slug:'m01', group:'module', tag:'მოდული 1', title:'Claude ბიზნესისთვის', desc:'საფუძვლები: როგორ ალაპარაკო AI შენი საქმისთვის.', lessons:5},
+  {slug:'m02', group:'module', tag:'მოდული 2', title:'მარკეტინგის ავტომატიზაცია AI-ით', desc:'პოსტები, კამპანია, ელფოსტა, გაზომვა, სისტემურად.', lessons:6},
+  {slug:'m03', group:'module', tag:'მოდული 3', title:'AI-ით შენება კოდის გარეშე', desc:'ლენდინგი, ფორმა, კალკულატორი: ააწყე და გამოაქვეყნე.', lessons:7},
+  {slug:'m04', group:'module', tag:'მოდული 4', title:'სისტემების AI-კავშირი', desc:'ინტეგრაცია და ავტომატიზაცია: ხელსაწყოები ერთმანეთთან.', lessons:5},
+  {slug:'m05', group:'module', tag:'მოდული 5', title:'ბიზნეს AI აგენტი', desc:'შენი პირველი მუშა: როლი, ცოდნა, workflow, კონტროლი.', lessons:7}
+];
+
+const KEY_USER='bivAcademyUser', KEY_STARTED='bivAcademyStarted';
+
+function getUser(){ try{ return JSON.parse(localStorage.getItem(KEY_USER)); }catch(e){ return null; } }
+function getStarted(){ try{ return JSON.parse(localStorage.getItem(KEY_STARTED))||[]; }catch(e){ return []; } }
+
+function buildCatalog(){
+  const started = getStarted();
+  const mk = c => {
+    const isS = started.includes(c.slug) ? ' is-started' : '';
+    return `<a class="course ${c.group}${isS}" href="${c.slug}/" onclick="markStarted('${c.slug}')">
+      <span class="tag">${c.tag}</span>
+      <h4>${c.title}<span class="started">დაწყებული</span></h4>
+      <p>${c.desc}</p>
+      <div class="foot"><span class="lc">${c.lessons} გაკვეთილი</span><span class="go">გახსნა →</span></div>
+    </a>`;
+  };
+  document.getElementById('g-start').innerHTML  = COURSES.filter(c=>c.group==='start').map(mk).join('');
+  document.getElementById('g-track').innerHTML  = COURSES.filter(c=>c.group==='track').map(mk).join('');
+  document.getElementById('g-module').innerHTML = COURSES.filter(c=>c.group==='module').map(mk).join('');
+}
+
+function markStarted(slug){
+  const s = getStarted();
+  if(!s.includes(slug)){ s.push(slug); localStorage.setItem(KEY_STARTED, JSON.stringify(s)); }
+}
+
+function applyState(){
+  const u = getUser();
+  buildCatalog();
+  if(u){
+    document.getElementById('regCard').style.display='none';
+    document.getElementById('welcome').style.display='block';
+    document.getElementById('wname').textContent = u.name;
+    document.getElementById('who').textContent = u.name;
+    document.getElementById('catalog').classList.add('unlocked');
+    document.getElementById('lockmsg').classList.add('hide');
+  }
+}
+
+function register(){
+  const name=document.getElementById('rname').value.trim();
+  const email=document.getElementById('remail').value.trim();
+  const ok = name.length>0 && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+  if(!ok){ document.getElementById('regErr').style.display='block'; return; }
+  localStorage.setItem(KEY_USER, JSON.stringify({name,email,ts:new Date().toISOString()}));
+  applyState();
+  document.getElementById('catalog').scrollIntoView({behavior:'smooth'});
+}
+
+function resetReg(e){
+  e.preventDefault();
+  localStorage.removeItem(KEY_USER);
+  location.reload();
+}
+
+applyState();
+</script>
+</body>
+</html>
