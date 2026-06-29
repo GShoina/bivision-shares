@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ka"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BiFinance Carousel — ბრიფი (Mariam)</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'BPG Nino Mtavruli','Sylfaen','Segoe UI','Noto Sans Georgian',sans-serif}
+:root{--ink:#1c0f33;--pur:#6653C6;--lime:#C2F23D;--grn:#2FCA02;--white:#fff;--mut:#b9aee0;--bg:#f4f3f9;--line:#e3e0ef;--red:#d23f3f}
+body{background:var(--bg);color:#221a36;line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding:30px 22px 70px}
+.logo{height:20px;width:auto;display:inline-block;vertical-align:middle;color:#fff}
+.cover{background:linear-gradient(140deg,#6653C6,#3a2f6e);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:26px}
+.cover .logo{height:26px;margin-bottom:14px}
+.cover h1{font-size:25px;margin-bottom:6px}
+.cover p{color:#e6e2ff;font-size:14px}
+h2{font-size:20px;color:var(--pur);margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--line);display:flex;align-items:center;gap:10px}
+.num{background:var(--pur);color:#fff;width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;flex:0 0 auto}
+.fb{background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.fb .item{padding:14px 18px;border-bottom:1px solid var(--line)}
+.fb .item:last-child{border-bottom:none}
+.fb b{color:var(--pur)}
+.fb .why{color:#6a6480;font-size:14px;margin-top:3px}
+.tip{color:#6a6480;font-size:13px;margin-top:4px}
+.slides{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;margin-top:6px}
+.slide{width:430px;height:430px;border-radius:16px;overflow:hidden;position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:34px;color:#fff}
+.dark{background:radial-gradient(120% 120% at 80% 0%,#33205a 0%,#1c0f33 60%)}
+.purbg{background:linear-gradient(150deg,#6653C6,#46407e)}
+.limebg{background:var(--lime);color:var(--ink)}
+.limebg .logo{color:var(--pur)}
+.s1{background:linear-gradient(180deg,#241546 0%,#1c0f33 100%)}
+.s1 svg.chart{position:absolute;left:0;right:0;top:38px;width:100%;opacity:.9}
+.ast{font-size:24px;color:var(--lime)}.limebg .ast{color:var(--ink)}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:12px;letter-spacing:.5px;opacity:.92}
+.tag{display:inline-block;background:var(--lime);color:var(--ink);font-weight:800;font-size:13px;padding:6px 14px;border-radius:18px}
+.h1{font-size:40px;font-weight:800;line-height:1.12}.h1 .hl{color:var(--lime)}.limebg .h1{color:var(--ink)}
+.kick{font-size:14px;font-weight:700;color:var(--lime);letter-spacing:1px;text-transform:uppercase}
+.sub{font-size:16px;line-height:1.4;color:#efeaff;font-weight:500}.limebg .sub{color:#3a2d12}
+.eq{font-size:50px;font-weight:800}.eq .no{color:#ff6b6b}
+.list{display:flex;flex-direction:column;gap:15px}
+.row{display:flex;gap:11px;align-items:flex-start;font-size:18px;font-weight:600;line-height:1.25}
+.dot{flex:0 0 auto;width:25px;height:25px;border-radius:50%;background:var(--lime);color:var(--ink);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:13px}
+.foot{display:flex;justify-content:space-between;align-items:center;font-size:12px;opacity:.85}
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:#fff;font-weight:800;font-size:18px;padding:13px 22px;border-radius:12px}.btn .arr{color:var(--lime)}
+.adset{background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.adset .r{display:flex;gap:14px;padding:11px 18px;border-bottom:1px solid var(--line);font-size:15px}
+.adset .r:last-child{border-bottom:none}
+.adset .k{flex:0 0 180px;font-weight:700;color:var(--pur)}
+.adset .v{flex:1}.adset .v b{color:#221a36}
+.note{background:#fff7e6;border-left:4px solid #d99a00;padding:12px 16px;border-radius:8px;font-size:14px;margin:10px 0}
+.mon{background:#eef6ff;border:1px solid #c4dbf3;border-radius:8px;padding:12px 16px;font-size:14px;margin-top:12px}
+.mon b{color:#1f5fa8}
+</style></head><body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="bvlogo" viewBox="0 0 144 26">
+<path d="M56.8281 0.919434V25.0884H63.5676V0.919434H56.8281Z" fill="currentColor"/>
+<path d="M76.1284 10.0346C72.7799 9.2725 71.9509 8.79009 71.9509 7.6834V7.61651C71.9509 6.75101 72.7495 6.05983 74.371 6.05983C76.5094 6.05983 78.9275 6.89087 81.1409 8.44349L84.4894 3.71266C81.8605 1.6067 78.6498 0.5 74.5433 0.5C68.7402 0.5 65.1871 3.74509 65.1871 8.23472V8.30566C65.1871 13.2777 69.1598 14.7249 74.3021 15.9025C77.5837 16.6606 78.3782 17.214 78.3782 18.2153V18.2821C78.3782 19.3179 77.4053 19.9422 75.6115 19.9422C72.8164 19.9422 70.1571 18.9389 67.7734 17.0417L64.0459 21.4928C67.0153 24.1521 71.0935 25.5 75.3703 25.5C81.2402 25.5 85.14 22.563 85.14 17.6275V17.5565C85.14 13.0345 81.6902 11.2366 76.1284 10.0306V10.0346Z" fill="currentColor"/>
+<path d="M86.416 0.919434V25.0884H93.1515V0.919434H86.416Z" fill="currentColor"/>
+<path d="M136.379 0.919434V13.6931L126.439 0.919434H120.19V25.0884H126.818V11.8283L137.142 25.0884H143.012V0.919434H136.379Z" fill="currentColor"/>
+<path d="M49.0915 0.919434L43.6067 16.2146L38.1117 0.919434H30.6182L40.4244 25.2627H46.6409L56.4472 0.919434H49.0915Z" fill="currentColor"/>
+<path d="M16.8092 12.4526C18.9517 11.5202 20.5408 9.86017 20.5408 7.06505V6.99411C20.5408 5.33811 19.957 4.06116 18.9841 3.09634C17.5693 1.6775 15.4309 0.919434 12.3926 0.919434H0V25.0884H12.4615C18.2281 25.0884 21.6151 22.5669 21.6151 18.4239V18.357C21.6151 15.0754 19.7503 13.4194 16.8113 12.4526H16.8092ZM6.52059 6.30293H10.8724C12.873 6.30293 13.9087 7.06505 13.9087 8.37444V8.44538C13.9087 9.86017 12.7736 10.5513 10.7386 10.5513H6.52059V6.30293ZM14.9161 17.4895C14.9161 18.9083 13.7384 19.7029 11.7014 19.7029H6.52262V15.2477H11.6386C13.8803 15.2477 14.9181 16.1092 14.9181 17.4226V17.4895H14.9161Z" fill="currentColor"/>
+<path d="M110.086 17.1556C109.166 17.9015 107.996 18.3474 106.719 18.3474C103.764 18.3474 101.368 15.9516 101.368 12.9963C101.368 10.2336 103.466 7.9574 106.162 7.67566V0.926025C99.7486 1.21993 94.6367 6.51018 94.6367 12.9963C94.6367 19.4825 100.047 25.0828 106.719 25.0828C109.857 25.0828 112.715 23.8869 114.861 21.9269L110.086 17.1556Z" fill="currentColor"/>
+<path d="M29.8513 4.75031C29.8513 6.86844 28.1345 8.58321 26.0184 8.58321C23.9023 8.58321 22.1875 6.86844 22.1875 4.75031C22.1875 2.63218 23.9023 0.919434 26.0184 0.919434C28.1345 0.919434 29.8513 2.63421 29.8513 4.75031Z" fill="#2FCA02"/>
+<path d="M107.275 0.925537V7.67517C109.971 7.95692 112.069 10.2331 112.069 12.9958C112.069 14.2728 111.623 15.4464 110.873 16.3666L115.649 21.138C117.613 18.9915 118.804 16.1335 118.804 12.9958C118.804 6.5097 113.689 1.21741 107.275 0.925537Z" fill="#2FCA02"/>
+</symbol></svg>
+
+<div class="wrap">
+
+<div class="cover">
+  <svg class="logo"><use href="#bvlogo"/></svg>
+  <h1>BiFinance Carousel — ბრიფი</h1>
+  <p>Mariam-ისთვის · GelLa-სგან · 2026-06-29 · 1) ფიდბექი · 2) გაუმჯობესებული ვერსია · 3) Adset</p>
+</div>
+
+<h2><span class="num">1</span>ფიდბექი ვიზუალზე — რა გავასწოროთ</h2>
+<div class="fb">
+  <div class="item"><b>1. პირველი სლაიდი — ვიზუალი დატოვე, სათაური წინ წამოწიე.</b>
+    <div class="why">ფოტო/ვიზუალი კარგია, არ მოვკლათ. უბრალოდ სათაური უფრო დიდი და კონტრასტული უნდა იყოს, რომ ის იყოს მთავარი გმირი. ვიზუალი ფონად, ტექსტი ზემოდან (მუქი გადაფარვით, რომ ასოები კარგად გამოჩნდეს).</div></div>
+  <div class="item"><b>2. მე-2 და მე-3 სლაიდი — ტექსტი mobile-ზე ვერ იკითხება.</b>
+    <div class="why">პატარა აბზაცი და წვრილი წარწერები ტელეფონზე იკარგება, ხალხი კი თითქმის ყველა ტელეფონიდან ნახავს. გავამსხვილოთ, თითო სლაიდზე ნაკლები სიტყვა.</div></div>
+  <div class="item"><b>3. ერთი მოწოდება (CTA) დავტოვოთ.</b>
+    <div class="why">ახლა პირველზე წერია „გაიგე მეტი", ბოლოზე „მოითხოვე დემო" — ორი სხვადასხვა ქმედება ფანტავს. ვირჩევთ ერთს: „მოითხოვე დემო" ბოლო სლაიდზე, დანარჩენებზე ღილაკი არ სჭირდება.</div></div>
+  <div class="item"><b>4. მესამე სლაიდი — გადატვირთულია.</b>
+    <div class="why">ბევრი პატარა ბურთულა და დამაკავშირებელი ხაზი ერთ სლაიდზე ბევრია. 3 მკაფიო პუნქტი სრულიად საკმარისია — ნაკლები მეტია.</div></div>
+</div>
+
+<h2><span class="num">2</span>ჩემი ვერსია — მიმართულება</h2>
+<p class="tip">ეს HTML-mockup-ია (მიმართულება), არა საბოლოო ფაილი. ააწყე Canva/Figma-ში ამ ლოგიკით. ბრენდი: იისფერი #6653C6 + lime #C2F23D + მუქი, რეალური ლოგო, bivision.ge.</p>
+<div class="slides">
+
+  <div class="slide s1">
+    <svg class="chart" viewBox="0 0 430 150" preserveAspectRatio="none" height="150"><polyline points="0,120 70,95 130,105 200,60 270,72 340,28 430,20" fill="none" stroke="#C2F23D" stroke-width="4"/><circle cx="340" cy="28" r="7" fill="#C2F23D"/><circle cx="200" cy="60" r="5" fill="#fff"/></svg>
+    <div class="top" style="position:relative;z-index:2"><svg class="logo"><use href="#bvlogo"/></svg><span>bivision.ge</span></div>
+    <div style="position:relative;z-index:2">
+      <div class="kick">ფინანსური სიცხადე</div>
+      <div class="h1" style="margin-top:12px">ბრუნვა <span class="hl">გაიზარდა</span>.<br>მოგება <span class="hl">არა</span>. რატომ?</div>
+    </div>
+    <div class="foot" style="position:relative;z-index:2"><span class="tag">BiFinance</span><span class="ast">✳</span></div>
+  </div>
+
+  <div class="slide purbg">
+    <div class="top"><svg class="logo"><use href="#bvlogo"/></svg><span class="ast">✳</span></div>
+    <div><div class="eq">ბრუნვა <span class="no">≠</span> მოგება</div>
+      <div class="sub" style="margin-top:18px">ბრუნვასთან ერთად ხარჯიც იზრდება და მარჟა „ქრება". რიცხვი დიდია, ჯიბეში კი ცოტა რჩება.</div></div>
+    <div class="foot"><span>bivision.ge</span></div>
+  </div>
+
+  <div class="slide dark">
+    <div class="top"><svg class="logo"><use href="#bvlogo"/></svg><span class="ast">✳</span></div>
+    <div><div class="kick" style="margin-bottom:18px">BiFinance გაჩვენებს</div>
+      <div class="list">
+        <div class="row"><span class="dot">1</span><span>რომელი პროდუქტი ქმნის <b style="color:var(--lime)">რეალურ მოგებას</b></span></div>
+        <div class="row"><span class="dot">2</span><span>სად <b style="color:var(--lime)">იკარგება</b> ხარჯი და მარჟა</span></div>
+        <div class="row"><span class="dot">3</span><span>EBITDA, Cash Flow, Profit <b style="color:var(--lime)">რეალურ დროში</b></span></div>
+      </div></div>
+    <div class="foot"><span>bivision.ge</span></div>
+  </div>
+
+  <div class="slide limebg">
+    <div class="top"><svg class="logo"><use href="#bvlogo"/></svg><span class="ast">✳</span></div>
+    <div><div class="h1" style="font-size:36px">სწორი კითხვა.<br>სწორი პასუხი.</div>
+      <div class="sub" style="margin-top:14px">ნახე შენი ბიზნესის რეალური მოგება 15 წუთში.</div></div>
+    <div class="foot" style="opacity:1"><span class="btn">მოითხოვე დემო <span class="arr">→</span></span><span style="font-weight:700">bivision.ge</span></div>
+  </div>
+
+</div>
+
+<h2><span class="num">3</span>Adset — დეტალები (Mariam ქმნის + უშვებს · მონიტორინგი: GelLa)</h2>
+<div class="note">⚠️ მთავარი: მიზანი = <b>Leads</b>, არა Traffic. წინა კამპანიამ (BiMedical, Traffic) 0 ლიდი მოიტანა. ლიდი <b>Instant Form</b>-ით დაიჭირე — ისე Meta-ში რჩება და არ იკარგება.</div>
+<div class="adset">
+  <div class="r"><span class="k">კამპანიის მიზანი</span><span class="v"><b>Leads (ლიდები)</b> · Ads Manager → New Campaign → Leads</span></div>
+  <div class="r"><span class="k">კონვერსიის ადგილი</span><span class="v"><b>Instant Form</b> (მყისიერი ფორმა). მეორადი ღილაკი → WhatsApp <b>wa.me/995593255385</b></span></div>
+  <div class="r"><span class="k">Adset სახელი</span><span class="v">BiFinance_Carousel_Leads_v1</span></div>
+  <div class="r"><span class="k">ბიუჯეტი</span><span class="v"><b>$25 lifetime</b> (ჯამური, არა დღიური). ხანგრძლივობა ~7 დღე. <span class="tip">$25 = სატესტო/სიგნალის ბიუჯეტი — learning-phase-ს სრულად ვერ დაასრულებს, მაგრამ ადრეულ სიგნალს მოგვცემს. learning-ის დროს არ შეცვალო.</span></span></div>
+  <div class="r"><span class="k">ლოკაცია</span><span class="v"><b>საქართველო</b> (თბილისი + დიდი ქალაქები). ⚠️ geo აუცილებლად დაბლოკე — წინა adset 95%-ით უცხო ქვეყნებში წავიდა.</span></div>
+  <div class="r"><span class="k">ასაკი / სქესი / ენა</span><span class="v"><b>30–55</b> · ყველა · ქართული</span></div>
+  <div class="r"><span class="k">აუდიტორია</span><span class="v">პოზიციები: CFO, ფინანსური დირექტორი, ბიზნესის მფლობელი, ბუღალტერი · ინტერესები: financial management, business intelligence, ERP, accounting. <span class="tip">ან არსებული „Bivision LAL" აუდიტორია + საიტის ვიზიტორების retargeting.</span></span></div>
+  <div class="r"><span class="k">Placements</span><span class="v"><b>Facebook Feed</b> (მთავარი) + Instagram Feed; Stories სურვილისამებრ. <b>Audience Network — გამორთე</b>.</span></div>
+  <div class="r"><span class="k">ოპტიმიზაცია</span><span class="v">Leads-ზე (Meta თვითონ ეძებს ლიდს, არა იაფ click-ს)</span></div>
+  <div class="r"><span class="k">კრეატივი</span><span class="v">ეს 4-სლაიდიანი carousel. Primary text = slide-1-ის hook. CTA ღილაკი = <b>„მოითხოვე დემო"</b>. ბმული → <b>/saas-products/bifinance/</b> ან Instant Form.</span></div>
+  <div class="r"><span class="k">Tracking</span><span class="v">Meta Pixel (ანგარიშში უკვეა) + Lead event. <span class="tip">Instant Form ისედაც Meta-ში იჭერს ლიდს.</span></span></div>
+  <div class="r"><span class="k">UTM</span><span class="v">ბმულზე: utm_source=fb · utm_campaign=bifinance_carousel</span></div>
+</div>
+<div class="mon"><b>მონიტორინგი = GelLa (ჩემი პასუხისმგებლობა, არა Mariam-ის).</b> Mariam-ის საქმე: ააწყოს და გაუშვას. შემდეგ მე ვადევნებ თვალს ყოველდღე და ვწყვეტ: CPL დაბალია + ლიდი მოდის → შემდეგ რაუნდზე გაზრდილ ბიუჯეტს შემოგთავაზებ; 0 ლიდი → ვაჩერებ და კრეატივს/აუდიტორიას ვცვლი. შედეგს მე გაჩვენებ.</div>
+
+<p class="tip" style="margin-top:26px">GelLa · Bivision · 2026-06-29</p>
+</div></body></html>
