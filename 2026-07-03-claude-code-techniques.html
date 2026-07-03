@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ka"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Claude Code ტექნიკები Bivision-ისთვის: Dynamic Workflows + /goal</title>
+<style>
+  :root{--purple:#6B63B5;--green:#00A651;--ink:#16181d;--muted:#5d6472;--line:#e4e6ee;--bg:#f5f6fa}
+  *{box-sizing:border-box}
+  body{margin:0;font:15.5px/1.65 "Segoe UI","Noto Sans Georgian",sans-serif;background:var(--bg);color:var(--ink)}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 70px}
+  header{background:linear-gradient(135deg,#4b4490,var(--purple));color:#fff;padding:30px 0;margin-bottom:6px}
+  header .in{max-width:900px;margin:0 auto;padding:0 20px}
+  header h1{margin:0 0 6px;font-size:23px;line-height:1.35}
+  header p{margin:0;opacity:.92;font-size:13.5px}
+  h2{color:#473f80;font-size:19px;margin:28px 0 8px;border-bottom:2px solid var(--line);padding-bottom:6px}
+  h3{font-size:16px;margin:18px 0 6px;color:#2b2660}
+  .lead{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:18px 0}
+  ul{margin:6px 0 12px;padding-right:20px}
+  li{margin-bottom:5px}
+  .use{background:#e7f7ec;border:1px solid #8fce9f;border-radius:9px;padding:12px 16px;margin:12px 0}
+  .use .lbl{color:#0f7a43;font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:6px}
+  .trap{background:#fdf0e6;border:1px solid #e8b98f;border-radius:9px;padding:12px 16px;margin:12px 0;font-size:14.5px}
+  .trap .lbl{color:#b5651d;font-weight:800;font-size:12px;text-transform:uppercase;display:block;margin-bottom:4px}
+  .src{font-size:12.5px;color:var(--muted);background:#fff;border:1px dashed var(--line);border-radius:8px;padding:10px 14px;margin:14px 0}
+  code{background:#eef;border-radius:4px;padding:1px 6px;font-size:13px}
+  b{color:#2b2660}
+  footer{color:var(--muted);font-size:12.5px;text-align:center;padding:26px 0}
+</style></head>
+<body>
+<header><div class="in">
+  <h1>Claude Code ტექნიკები Bivision-ისთვის: Dynamic Workflows + /goal</h1>
+  <p>წყარო: 2 linas.substack გზამკვლევი (paywalled) + Gurafa-ს პრაქტიკა · 2026-07-03</p>
+</div></header>
+<div class="wrap">
+
+  <div class="lead">
+    <b>მთავარი:</b> ორივე სტატია აღწერს ფიჩერს, რომელიც <b>უკვე მაქვს და ვიყენებ</b>. „Dynamic Workflows" = <code>Workflow</code> ორკესტრაცია, „/goal" = ავტონომიური ლუპი. სტატიები paywalled-ია, ამიტომ ეს გვერდი შესავალს + ჩემს რეალურ საოპერაციო ცოდნას აერთებს, რომ ღირებულება paywall-ის მიღმა არ დაიკარგოს.
+  </div>
+
+  <h2>1. Dynamic Workflows (ორკესტრაცია)</h2>
+  <p><b>რა არის:</b> ერთი პრომპტიდან Claude წერს საკუთარ ორკესტრაციის პროგრამას, უშვებს კოორდინირებულ AI-აგენტების ფლოტს და აბრუნებს <b>ერთ ვერიფიცირებულ შედეგს</b>. 6 პატერნი. მუშაობს არა მხოლოდ კოდზე: hiring, investor DD, content pipeline, security audit, ბიზნეს-გეგმის stress-test. სტატიის მაგალითი: 750 000 ხაზიანი კოდის გადაწერა 11 დღეში.</p>
+  <div class="use"><span class="lbl">როგორ ვიყენებ Bivision-ისთვის (რეალურად, ამ სესიაშივე)</span>
+  <ul>
+    <li><b>პარალელური კონტენტ-ფაბრიკა:</b> 4 აკადემიის მოდული ერთდროულად გავასწორე, თითო აგენტი თავის დოკუმენტს იღებდა და ასახავდა.</li>
+    <li><b>კონკურენტების DD:</b> თითო აგენტი თითო კონკურენტს (Amadeo, DSL, Dastafe, Gegidze) → ერთი შედარებითი ცხრილი.</li>
+    <li><b>Multi-source სვიპი:</b> news + LinkedIn + web თითო კუთხიდან, ბრმად ერთმანეთის მიმართ, მერე სინთეზი.</li>
+    <li><b>Adversarial verify:</b> N სკეპტიკი თითო finding-ზე, უმრავლესობა თუ უარყოფს, ვკლავ.</li>
+  </ul></div>
+  <div class="trap"><span class="lbl">Cost trap</span> ერთი workflow ათობით აგენტს უშვებს და token-ს სწრაფად წვავს. მასშტაბი ამოცანას მოვარგებ (მცირე კვლევა = 3-5 აგენტი; „ღრმა აუდიტი" = ფლოტი + verify). ვრთავ მხოლოდ როცა იტყვი <code>ultracode</code> ან „use a workflow".</div>
+
+  <h2>2. /goal (ავტონომიური ლუპი)</h2>
+  <p><b>რა არის:</b> სესია ავტონომიურ ლუპად. აგენტი მუშაობს, ამოწმებს <b>goal-პირობა შესრულდა თუ არა</b>, და აგრძელებს სანამ არ შესრულდება, შენთან შეჯერების გარეშე.</p>
+  <p><b>მთავარი ინსაიტი (სტატიიდან):</b> bottleneck მოდელი კი არა, <b>SPEC-ია</b>. ბუნდოვანი პირობა ან უსასრულოდ ლუპავს, ან „თავს იკატუნებს" რომ დაასრულა. reliability მოდის <b>harness-იდან</b> (context discipline + model selection), არა მოდელიდან. „context rot" გრძელ ლუპებს ხრავს სანამ ფანჯარა გაივსება.</p>
+  <p><b>3-ელემენტიანი ფორმულა goal-პირობისთვის:</b> (1) end-state ზუსტად, (2) როგორ ვერიფიცირდება, (3) stop-criteria.</p>
+  <div class="use"><span class="lbl">როგორ ვიყენებ Gurafa-სთვის</span>
+  <ul>
+    <li><b>დღიური AI-scout:</b> „იმუშავე სანამ 5 ახალ სიგნალს არ შეაგროვებ".</li>
+    <li><b>Competitor monitoring:</b> „აკონტროლე სანამ ახალ ივენთს/რეკლამას არ დაიჭერ".</li>
+    <li><b>Research DD:</b> „იკვლიე სანამ DD-ს 8-ვე ტაბი არ შეივსება ვერიფიცირებული ფაქტებით".</li>
+  </ul></div>
+  <div class="trap"><span class="lbl">Bivision-ისთვის (fintech-ის მსგავსად)</span> ავტონომიურ ლუპს ვუწესებ: data-sensitivity tiers, customer-facing/money gate (ამ ორზე ავტომატურ ქმედებას არ ვასრულებ), internal-only ფლაგი. ე.ი. ლუპი თავისუფალია შიდა კვლევაზე, გაჩერდება customer/money გადაწყვეტილებაზე.</div>
+
+  <h2>3. Bonus (სტატიებში ნახსენები)</h2>
+  <ul>
+    <li><b>„Never Hitting Claude's Limits":</b> context engineering + model selection, გრძელი /goal-ლუპი რომ ალოკაციას არ წვავდეს.</li>
+    <li><b>„Claude Code Routines":</b> მზა routine-ები — ავტონომიური code review, deploy verify, deal-flow screening.</li>
+  </ul>
+
+  <h2>შენ (owner) როგორ გამოიყენო</h2>
+  <ul>
+    <li><b>დიდი კვლევა/აუდიტი</b> → დამავალე <code>ultracode</code>-ით, workflow ავაწყობ (ფლოტი + verify).</li>
+    <li><b>დღიური/მუდმივი intel</b> → /goal-ლუპი, ავტონომიურად, goal-პირობით.</li>
+    <li><b>წესი:</b> ორივესთვის მკაფიო end-state მომეცი. სიზუსტე პირობაში = სიზუსტე შედეგში.</li>
+  </ul>
+
+  <div class="src">
+    <b>წყაროები:</b><br>
+    Dynamic Workflows: linas.substack.com/p/claude-code-dynamic-workflows-guide (2026-06-05, paid)<br>
+    /goal Guide: linas.substack.com/p/the-complete-claude-goal-guide (2026-05-15, paid)<br>
+    სრული ტექსტი subscription-ს სჭირდება; ეს ანალიზი = შესავალი + Gurafa-ს პრაქტიკული ცოდნა.
+  </div>
+
+  <footer>Gurafa · Bivision AI Scout · 2026-07-03</footer>
+</div>
+</body></html>
