@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>AI ოსტატობის კიბე · Bivision Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{ --purple:#6B63B5; --green:#00A651; --ink:#1B1E24; --muted:#5b6270; --line:#e6e6ef; --bg:#f7f7fb; --card:#fff; }
+  *{box-sizing:border-box}
+  body{font-family:'Noto Sans Georgian','Segoe UI',sans-serif;color:var(--ink);background:var(--bg);margin:0;line-height:1.6;}
+  .wrap{max-width:880px;margin:0 auto;padding:28px 18px 70px;}
+  header{border-bottom:4px solid var(--purple);padding-bottom:14px;margin-bottom:18px;}
+  h1{color:var(--purple);font-size:1.55rem;margin:0 0 4px;}
+  .sub{color:var(--muted);font-size:.9rem;}
+  .intro{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--green);border-radius:12px;padding:15px 18px;margin:14px 0;}
+  .intro b{color:var(--green);}
+  h2{font-size:1.2rem;border-left:5px solid var(--purple);padding-left:11px;margin:30px 0 12px;}
+  /* diagnostic */
+  .diag{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;}
+  .prog{height:8px;background:#eee;border-radius:20px;overflow:hidden;margin-bottom:16px;}
+  .prog>i{display:block;height:100%;background:linear-gradient(90deg,var(--purple),var(--green));width:0;transition:.3s;}
+  .q{font-size:1.1rem;font-weight:600;margin:4px 0 14px;}
+  .opt{display:block;width:100%;text-align:left;background:#f7f7fb;border:1.5px solid var(--line);border-radius:11px;padding:12px 15px;cursor:pointer;font-size:1rem;margin-bottom:9px;font-family:inherit;}
+  .opt:hover{border-color:var(--purple);background:#f0effa;}
+  .qnum{color:var(--purple);font-weight:700;font-size:.82rem;}
+  .res{display:none;text-align:center;}
+  .res.show{display:block;}
+  .badge{display:inline-block;background:linear-gradient(135deg,var(--purple),var(--green));color:#fff;border-radius:14px;padding:14px 22px;margin:6px 0 10px;}
+  .badge .nm{font-size:1.4rem;font-weight:800;}
+  .prof{font-weight:700;color:var(--purple);margin:4px 0;}
+  .nextbox{background:#f4fcf7;border:1px solid #bfe8cf;border-radius:11px;padding:13px 15px;text-align:left;margin:12px 0;}
+  .nextbox b{color:var(--green);}
+  .btn{background:var(--purple);color:#fff;border:none;border-radius:10px;padding:10px 18px;cursor:pointer;font-size:.95rem;font-family:inherit;}
+  /* ladder */
+  .rung{display:grid;grid-template-columns:48px 1fr auto;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 15px;margin-bottom:9px;}
+  .rung .n{width:40px;height:40px;border-radius:11px;background:var(--purple);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:1.15rem;}
+  .rung.done .n{background:var(--green);}
+  .rung h3{margin:0;font-size:1.02rem;}
+  .rung .out{color:var(--muted);font-size:.85rem;}
+  .rung .mk{background:none;border:1.5px solid var(--line);border-radius:8px;padding:7px 11px;cursor:pointer;font-size:.82rem;color:var(--muted);font-family:inherit;white-space:nowrap;}
+  .rung.done .mk{border-color:var(--green);color:var(--green);}
+  .pbar{height:10px;background:#eee;border-radius:20px;overflow:hidden;margin:6px 0 14px;}
+  .pbar>i{display:block;height:100%;background:var(--green);width:0;transition:.3s;}
+  .pstat{font-size:.9rem;color:var(--muted);margin-bottom:10px;}
+  .cta{background:var(--card);border:2px solid var(--green);border-radius:14px;padding:18px;text-align:center;margin-top:24px;}
+  .cta b{color:var(--green);}
+  footer{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:.8rem;text-align:center;}
+  a.back{color:var(--purple);text-decoration:none;font-size:.88rem;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="../">&larr; Academy მთავარი</a>
+<header>
+  <h1>AI ოსტატობის კიბე</h1>
+  <div class="sub">6 დონე: Amateur-დან Agent Orchestrator-მდე · Bivision Academy</div>
+</header>
+
+<div class="intro">
+  <b>ეს არ არის "გახდი Claude-ის ექსპერტი" კურსი.</b> ეს არის გზა, რომ AI მიუშვა <b>შენს საკუთარ ბიზნეს მონაცემს</b> და ზუსტად გაიგო, რა შეგიძლია თავად და სად იწყება პროფესიონალის (done-for-you) საქმე. თითო დონე ბიზნეს-შედეგზეა მიბმული, არა feature-ზე. ერთადერთი მეტრიკა: <b>რამდენ დროს ათავისუფლებ და რა უფრო ღირებულზე ხარჯავ.</b>
+</div>
+
+<h2>1. სად ხარ ახლა? (1 წუთი)</h2>
+<div class="diag">
+  <div class="prog"><i id="bar"></i></div>
+  <div id="quiz">
+    <div class="qnum" id="qnum"></div>
+    <div class="q" id="qtext"></div>
+    <div id="opts"></div>
+  </div>
+  <div class="res" id="res">
+    <div class="badge"><div style="font-size:.8rem;opacity:.9">შენი მაღალი წერტილი</div><div class="nm" id="rname"></div></div>
+    <div class="prof" id="rprof"></div>
+    <div id="rdesc" style="font-size:.95rem;margin-bottom:6px;"></div>
+    <div class="nextbox" id="rnext"></div>
+    <button class="btn" onclick="restart()">თავიდან</button>
+  </div>
+</div>
+
+<h2>2. კიბე და შენი პროგრესი</h2>
+<div class="pstat" id="pstat">დასრულებული: 0 / 6</div>
+<div class="pbar"><i id="pfill"></i></div>
+<div id="ladder"></div>
+
+<div class="cta">
+  <b>მზად ხარ "შენს მონაცემზე"?</b><br>
+  დონეები 1-3 თავად გაივლი. სად მთავრდება DIY და იწყება done-for-you (ERP + Excel + ბანკის API ერთ დაშბორდში). ეს Bivision-ის უფასო data-readiness აუდიტია.
+  <div style="margin-top:10px;"><button class="btn" onclick="alert('აუდიტის ფორმა იხსნება; owner-gate: HubSpot wiring საჭიროა')">უფასო აუდიტი</button></div>
+</div>
+
+<footer>Bivision Academy · AI ოსტატობის კიბე · Dan Martell-ის "6 Levels" ჩარჩოზე, ქართულ ბიზნეს-კონტექსტში · პროგრესი ინახება ამ ბრაუზერში.</footer>
+</div>
+
+<script>
+/* ---- Diagnostic (fixed profile-based scoring) ---- */
+const Q=[
+ {q:"ჯერ აკონტექსტებ Claude-ს (სთხოვ კითხვები დაგისვას) და პასუხს ამოწმებინებ?",h:"დონე 1: Amateur"},
+ {q:"გაქვს Project, სადაც კონტექსტი და პროცესი ერთხელ ჩაწერე და ხარისხს იმეორებ?",h:"დონე 2: Regular"},
+ {q:"მიერთებული გაქვს გარე ხელსაწყო (Gmail/HubSpot/Calendar) და მონაცემი თავად მოდის?",h:"დონე 3: Integrator"},
+ {q:"გაქვს Skill ან განრიგზე ავტომატურად გაშვებული workflow?",h:"დონე 4: Operator"},
+ {q:"ააშენე შიდა ხელსაწყო/აპი Claude Code-ით?",h:"დონე 5: Builder"},
+ {q:"გადააბარე მთელი workflow sub-აგენტს და მხოლოდ შედეგს ამოწმებ?",h:"დონე 6: Orchestrator"}
+];
+const NAMES=["დამწყები","Amateur","Regular","Integrator","Operator","Builder","Agent Orchestrator"];
+const DESC=["Claude ჯერ უბრალო ძიებაა. სწორი მცირე ჩვევები მაშინვე ასწევს ხარისხს.",
+ "იყენებ interview + self-check-ს. შემდეგი: გაიმეორე ხარისხი Project-ით.",
+ "სტაბილურ ხარისხს იღებ. შემდეგი: მონაცემი თავად მოვიდეს.",
+ "ხელსაწყოები მიერთებულია. შემდეგი: განმეორებადი საქმე ავტომატურად გაეშვას.",
+ "doer-დან director-მდე გადახვედი. შემდეგი: ააშენე ის, რასაც ვერ ყიდულობ.",
+ "აშენებ შიდა ხელსაწყოებს. შემდეგი: საქმე გადაანაწილე აგენტებზე.",
+ "მწვერვალზე ხარ. მასშტაბი აგენტებით იზრდება, არა შენი დროით."];
+const NEXT=["სთხოვე Claude-ს ჯერ 5 კითხვა დაგისვას, მერე პასუხი, ბოლოს self-check.",
+ "ერთი განმეორებადი როლი გადაიყვანე Project-ში Master + System prompt-ით.",
+ "ჩართე 1 Connector (Gmail/HubSpot) და სთხოვე დღის შეჯამება + artifact.",
+ "1 პროცესი აქციე Skill-ად და დააყენე განრიგზე.",
+ "Plan Mode-ში ააწერინე გეგმა 1 პატარა ხელსაწყოზე და ააშენებინე.",
+ "1 workflow გადააბარე sub-აგენტს მკაფიო lane-ით; 1 კვირა მხოლოდ შედეგი შეამოწმე.",
+ "გააფართოვე ახალი sub-აგენტით. ფული/კლიენტი/შეუქცევადი ნაბიჯი human-gate-ზე დატოვე."];
+let i=0,ans=[];
+function rq(){
+ document.getElementById('res').classList.remove('show');
+ document.getElementById('quiz').style.display='block';
+ document.getElementById('qnum').textContent="კითხვა "+(i+1)+" / 6 · "+Q[i].h;
+ document.getElementById('qtext').textContent=Q[i].q;
+ document.getElementById('bar').style.width=(i/6*100)+"%";
+ const o=document.getElementById('opts');o.innerHTML='';
+ [["კი, ამას ვაკეთებ",1],["არა / ჯერ არა",0]].forEach(([t,v])=>{
+   const b=document.createElement('button');b.className='opt';b.textContent=t;b.onclick=()=>{ans[i]=v;if(i<5){i++;rq();}else fin();};o.appendChild(b);});
+}
+function fin(){
+ let yes=[];for(let k=0;k<6;k++)if(ans[k]===1)yes.push(k+1);
+ let top=yes.length?Math.max.apply(null,yes):0;
+ let gaps=[];for(let k=1;k<top;k++)if(ans[k-1]!==1)gaps.push(k);
+ let prof=top===0?"დამწყები":gaps.length===0?"თანმიმდევრული, საფუძველი მყარია":top>=4?"ტექნიკური სპეციალისტი, საფუძველი გამოტოვე":"შერეული, ნაწილი გამოტოვებული გაქვს";
+ let ai=gaps.length?(gaps[0]-1):Math.min(top,6);
+ let gn=gaps.length?" შენიშვნა: მაღალ დონეზე ხარ, მაგრამ "+gaps.map(g=>"L"+g).join(", ")+" გამოტოვებული გაქვს; ჯერ ის შეავსე.":"";
+ document.getElementById('bar').style.width="100%";
+ document.getElementById('quiz').style.display='none';
+ document.getElementById('res').classList.add('show');
+ document.getElementById('rname').textContent=top===0?NAMES[0]:"L"+top+" "+NAMES[top];
+ document.getElementById('rprof').textContent=prof;
+ document.getElementById('rdesc').textContent=DESC[top]+gn;
+ document.getElementById('rnext').innerHTML="<b>შენი 1 შემდეგი ნაბიჯი:</b> "+NEXT[ai];
+}
+function restart(){i=0;ans=[];rq();}
+
+/* ---- Ladder progress (persisted) ---- */
+const LV=[
+ ["Amateur","ხარისხიანი პასუხი ერთ ამოცანაზე"],
+ ["Regular","სტაბილური ხარისხი, განმეორებადი როლი"],
+ ["Integrator","მონაცემი თავად მოდის, ხელით აღარ კოპირებ"],
+ ["Operator","განმეორებადი საქმე ავტომატურად გადის"],
+ ["Builder","შიდა ხელსაწყო, რომელსაც ვერ ყიდულობ"],
+ ["Agent Orchestrator","აგენტები მუშაობენ, შენ ზედამხედველობ"]
+];
+const KEY="bivLadderProgress";
+function getProg(){try{return JSON.parse(localStorage.getItem(KEY))||[];}catch(e){return [];}}
+function setProg(a){localStorage.setItem(KEY,JSON.stringify(a));}
+function toggle(n){let p=getProg();const idx=p.indexOf(n);if(idx>=0)p.splice(idx,1);else p.push(n);setProg(p);paintLadder();}
+function paintLadder(){
+ const p=getProg();const wrap=document.getElementById('ladder');wrap.innerHTML='';
+ LV.forEach((l,k)=>{const n=k+1;const done=p.indexOf(n)>=0;
+   const d=document.createElement('div');d.className='rung'+(done?' done':'');
+   d.innerHTML='<div class="n">'+n+'</div><div><h3>'+l[0]+'</h3><div class="out">'+l[1]+'</div></div>';
+   const b=document.createElement('button');b.className='mk';b.textContent=done?'✓ დასრულდა':'მონიშნე';b.onclick=()=>toggle(n);
+   d.appendChild(b);wrap.appendChild(d);});
+ const c=p.length;document.getElementById('pstat').textContent="დასრულებული: "+c+" / 6";
+ document.getElementById('pfill').style.width=(c/6*100)+"%";
+}
+rq();paintLadder();
+</script>
+</body>
+</html>
